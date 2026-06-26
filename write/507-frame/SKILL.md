@@ -1,6 +1,6 @@
 ---
 name: 507-frame
-description: "507 的结构化方案 skill（活动/培训/工作坊/合作提案/项目计划）。输入是需求（不是 idea），507 可能给参考方案；产物是推动决策/行动的正式方案文档，反 AI 腔调（不挂来源、不写场面话、信息密度高）。和 forge/stage 分工：forge 是要读的文章，stage 是要讲的稿，frame 是推动决策的方案。Use when user mentions 写方案, 写个方案, 写个计划, 起草方案, 起草计划, 写活动方案, 写培训方案, 写工作坊方案, 写合作提案, 写项目计划, 结构化文档, 方案文档, 写提案, 拟方案, 拟计划, 正式文档, 推动决策的文档, frame, proposal, plan, structured doc, workshop plan, partnership proposal, project plan, brief."
+description: "507 的结构化方案 skill（活动/培训/工作坊/合作提案/项目计划）。输入是需求（不是 idea），507 可能给参考方案；产物是推动决策/行动的正式方案文档，反 AI 腔调（不挂来源、不写场面话、信息密度高）。和 forge/stage 分工：forge 是要读的文章，stage 是要讲的稿，frame 是推动决策的方案。不接代码重构或架构改造；不接产品方向重定位（那改权威文档，不走写方案）。Use when user mentions 写方案, 写个方案, 写个计划, 起草方案, 起草计划, 写活动方案, 写培训方案, 写工作坊方案, 写合作提案, 写项目计划, 结构化文档, 方案文档, 写提案, 拟方案, 拟计划, 正式文档, 推动决策的文档, frame, proposal, plan, structured doc, workshop plan, partnership proposal, project plan, brief."
 ---
 
 # 507 框定（frame）

@@ -1,6 +1,6 @@
 ---
 name: 507-inspection
-description: "给代码库做架构体检，找「加深机会」——把浅模块改深。先只读探索找摩擦点，出 markdown 或 HTML 候选报告，选定后调用 507-grill 拷问设计，接口设计那步可用 pi 自递归并行脑暴 3 个截然不同方案。Use when user mentions 架构体检, 做架构体检, 找重构机会, 该重构了, 哪些模块该加深, 浅模块改深, 抗熵增, 代码是不是该收拾了, 代码该收拾了, 模块职责边界, 职责不清, 找接缝, 架构哪里有问题, 代码体检, inspection, improve-arch, architecture review, refactor opportunity, deepen modules, architecture audit."
+description: "给代码库做架构体检，找「加深机会」——把浅模块改深。先只读探索找摩擦点，出 markdown 或 HTML 候选报告，选定后调用 507-grill 拷问设计，接口设计那步可用 pi 自递归并行脑暴 3 个截然不同方案。产品能力或场景的'重做'（如关系图谱/画像/雷达要重做）本质是代码架构重构，归本 skill，不归写方案文档的 skill。Use when user mentions 架构体检, 做架构体检, 找重构机会, 该重构了, 哪些模块该加深, 浅模块改深, 抗熵增, 代码是不是该收拾了, 代码该收拾了, 场景重做, 这些场景要重做, 现有要重做, 能力要重做, 重新实现这套, 换思路重做, 模块职责边界, 职责不清, 找接缝, 架构哪里有问题, 代码体检, inspection, improve-arch, architecture review, refactor opportunity, deepen modules, architecture audit."
 ---
 
 # 架构体检（inspection）
