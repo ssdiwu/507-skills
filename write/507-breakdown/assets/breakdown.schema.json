@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "507 Video Pull Breakdown",
+  "type": "object",
+  "required": [
+    "videoType",
+    "oneLineThesis",
+    "structure",
+    "visualLanguage",
+    "segments"
+  ],
+  "properties": {
+    "videoType": {
+      "type": "string",
+      "enum": ["talking-head", "tutorial", "narrative", "promo", "mixed"]
+    },
+    "oneLineThesis": { "type": "string" },
+    "structure": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "summary"],
+        "properties": {
+          "label": { "type": "string" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "visualLanguage": {
+      "type": "object",
+      "properties": {
+        "camera": { "type": "array", "items": { "type": "string" } },
+        "editing": { "type": "array", "items": { "type": "string" } },
+        "subtitle": { "type": "array", "items": { "type": "string" } },
+        "ui": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["start", "end", "transcript", "visualChange", "techniques", "patterns"],
+        "properties": {
+          "start": { "type": "string" },
+          "end": { "type": "string" },
+          "transcript": { "type": "string" },
+          "visualChange": { "type": "string" },
+          "techniques": { "type": "array", "items": { "type": "string" } },
+          "patterns": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

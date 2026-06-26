@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "507 Video Remake Prompt Pack",
+  "type": "object",
+  "required": [
+    "projectName",
+    "target",
+    "borrowedPatterns",
+    "lockedPatterns",
+    "structure",
+    "storyboard"
+  ],
+  "properties": {
+    "projectName": { "type": "string" },
+    "target": {
+      "type": "object",
+      "required": ["theme", "platform", "duration", "style"],
+      "properties": {
+        "theme": { "type": "string" },
+        "platform": { "type": "string" },
+        "duration": { "type": "string" },
+        "style": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "borrowedPatterns": { "type": "array", "items": { "type": "string" } },
+    "lockedPatterns": { "type": "array", "items": { "type": "string" } },
+    "structure": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "summary"],
+        "properties": {
+          "label": { "type": "string" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "storyboard": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["beat", "goal", "visual", "notes"],
+        "properties": {
+          "beat": { "type": "string" },
+          "goal": { "type": "string" },
+          "visual": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
