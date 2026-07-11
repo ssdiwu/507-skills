@@ -11,7 +11,7 @@ def anchor_match(anchor:str,text:str)->bool:
  anchor=anchor.strip().lower(); text=text.lower()
  if not anchor: return False
  # A local transcript/OCR hit is lexical evidence only; explicit denial or uncertainty never counts.
- if re.search(r"\b(?:not|no|without|cannot|can't|nowhere|invisible|hidden|fake|absent|unclear|maybe|might|possibly|could)\b|未出现|没有出现|并未|不可见|隐藏|假的",text): return False
+ if re.search(r"\b(?:not|no|without|cannot|can't|doesn't|never|nowhere|invisible|hidden|fake|absent|unclear|maybe|might|possibly|could)\b|未出现|没有出现|并未|看不到|不可见|隐藏|假的",text): return False
  if any(ord(c)>127 for c in anchor): return anchor in text
  return bool(re.search(r"(?<!\w)"+re.escape(anchor)+r"(?!\w)",text))
 def transcript_hits(path:Path,anchors:list[str]):
