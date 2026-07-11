@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Validate saved MiniMax-M3 understanding fixtures against the semantic contract.
 
-These fixtures are real outputs from MiniMax-M3 /anthropic/v1/messages calls
-(2026-07-10), saved without API keys. This test proves the adapter's output
-structure is real and reproducible.
+These fixtures are static semantic-contract samples saved without API keys.
+This test validates output structure only; it does not prove a live API call.
 
 Run: python3 scripts/test_understanding_fixtures.py
 Exit 0 = PASS, non-zero = FAIL.
@@ -44,10 +43,7 @@ def validate_understanding(data: dict, name: str) -> None:
         if unit["status"] != "unlocalized":
             raise SystemExit(f"FAIL {name}: unit[{i}] status={unit['status']} (expected unlocalized)")
     prov = data.get("provenance", {})
-    if prov.get("source", "").startswith("real-minimax"):
-        print(f"PASS {name}: {len(units)} units, provenance source={prov.get('source')}")
-    else:
-        print(f"PASS {name}: {len(units)} units (no real-source provenance)")
+    print(f"PASS {name}: {len(units)} units, provenance source={prov.get('source', 'unspecified')}")
 
 
 def main() -> int:

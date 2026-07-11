@@ -4,14 +4,14 @@
   "semanticSource": "minimax_m3",
   "limitations": [],
   "videoInput": null,
-  "videoPath": "/Users/diwu/Workspace/Codes/Skills/507-skills/write/507-breakdown/assets/fixtures/m3_smoke_synthetic_20260710/video_synthetic_8s.mp4",
+  "videoPath": "/Users/diwu/Workspace/Codes/Skills/507-skills/write/507-breakdown/assets/fixtures/m3_smoke_synthetic_20260711/video_synthetic_8s.mp4",
   "videoHash": "dac80a0d86655c36900acb86b181700f00610b21f13f3ac72ddbcec5f84d9aa9",
   "steps": {
     "video_understanding_minimax": {
       "status": "success",
       "detail": "MiniMax-M3 整段理解完成",
       "at": "2026-07-11T02:29:19.068311+00:00",
-      "output": "/Users/diwu/Workspace/Codes/Skills/507-skills/write/507-breakdown/assets/fixtures/m3_smoke_synthetic_20260710/workspace/analysis/video_understanding_minimax.json",
+      "output": "/Users/diwu/Workspace/Codes/Skills/507-skills/write/507-breakdown/assets/fixtures/m3_smoke_synthetic_20260711/workspace/analysis/video_understanding_minimax.json",
       "model": "MiniMax-M3",
       "fps": 1.0,
       "promptVersion": "video_understanding_v1"

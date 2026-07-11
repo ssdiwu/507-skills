@@ -24,6 +24,6 @@
   "provenance": {
     "model": "MiniMax-M3",
     "fps": 1,
-    "source": "real-minimax-m3-smoke-test-2026-07-10"
+    "source": "static-semantic-contract-fixture"
   }
 }

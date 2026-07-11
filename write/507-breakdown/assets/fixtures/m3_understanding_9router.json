@@ -170,6 +170,6 @@
     "fps": 1.0,
     "promptVersion": "video_understanding_v1",
     "videoHash": "cb8dc32c366af7d56258750828f910aaad67e6310b856893bb873a378a0d1195",
-    "source": "real-minimax-m3-smoke-test-2026-07-10"
+    "source": "static-semantic-contract-fixture"
   }
 }

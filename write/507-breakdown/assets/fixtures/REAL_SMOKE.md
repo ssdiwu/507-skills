@@ -1,12 +1,12 @@
 # MiniMax-M3 真实 smoke test 证据
 
-- 日期：2026-07-10
+- 日期：2026-07-11（与归档 manifest 的成功时间一致）
 - 请求路径：MiniMax Files API `https://api.minimaxi.com/v1/files/upload` → `https://api.minimaxi.com/anthropic/v1/messages`
 - 认证：仅运行时环境变量 `MiniMax_API_KEY`；本目录不包含密钥或请求 header。
 
 ## 可复现小视频
 
-`m3_smoke_synthetic_20260710/` 包含由 `scripts/test_minimax_adapter.py --evidence-dir ...` 真实调用生成的：
+`m3_smoke_synthetic_20260711/` 包含由 `scripts/test_minimax_adapter.py --evidence-dir ...` 真实调用生成的：
 
 - `video_synthetic_8s.mp4`：ffmpeg 生成的 8 秒输入视频
 - `workspace/raw/video_manifest.json`：包含输入 SHA-256 和 `video_understood`
@@ -19,9 +19,9 @@
 ```bash
 export MiniMax_API_KEY=...
 python3 scripts/test_minimax_adapter.py \
-  --evidence-dir assets/fixtures/m3_smoke_synthetic_20260710
+  --evidence-dir assets/fixtures/m3_smoke_synthetic_20260711
 ```
 
-## 真实内容视频
+## 静态结构 fixture
 
-`m3_understanding_9router.json` 是对本机 9router 竖屏视频的真实 M3 输出。原始视频不纳入仓库；fixture 的 `provenance.videoHash` 是输入 SHA-256，可供持有同一文件的人核对。
+`m3_understanding_9router.json` 仅用于覆盖多语义单元的 schema 校验；原始输入及调用日志未归档，因此不作为真实 API 调用证据。
