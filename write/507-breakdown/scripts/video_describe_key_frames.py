@@ -25,7 +25,7 @@ def valid_anchor_checks(checks, anchors:list[str])->bool:
     if not isinstance(checks,list) or len(checks)!=len(anchors): return False
     by={x.get("anchor"):x for x in checks if isinstance(x,dict)}
     if set(by)!=set(anchors): return False
-    return all(x.get("visible") is True and isinstance(x.get("evidence"),str) and x["evidence"].strip() and not re.search(r"\b(?:not|no|cannot|can't|nowhere|invisible|hidden|fake|absent)\b|未|没有|并未|不可见",x["evidence"],re.I) for x in by.values())
+    return all(x.get("visible") is True and isinstance(x.get("evidence"),str) and x["evidence"].strip() and anchor_match(x["anchor"],x["evidence"]) for x in by.values())
 
 def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
     duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
