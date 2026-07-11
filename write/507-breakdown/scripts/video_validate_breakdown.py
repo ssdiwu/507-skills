@@ -89,7 +89,7 @@ def main()->int:
  for u in units:
   spoken=u.get("reference",{}).get("spokenAnchors",[]); visual=u.get("reference",{}).get("visualAnchors",[])
   for w in u.get("candidateWindows",[]):
-   if w["evidence"]=="image_visual_anchor" and not any(any(anchor_match(a,o.get("description","")) for a in visual) and o.get("semanticUnit")==u.get("id") and (o.get("semanticUnit"),o.get("pts"),o.get("frame")) in allowed and (ws/o.get("frame","")).is_file() and o.get("description")==w.get("text") and w["start"]<=o.get("pts",-999)<=w["end"] for o in observations): fail("图片窗口缺少观察原件")
+   if w["evidence"]=="image_visual_anchor" and not any(all(any(c.get("anchor")==a and c.get("visible") is True and isinstance(c.get("evidence"),str) and c["evidence"].strip() for c in o.get("anchorChecks",[])) for a in visual) and o.get("semanticUnit")==u.get("id") and (o.get("semanticUnit"),o.get("pts"),o.get("frame")) in allowed and (ws/o.get("frame","")).is_file() and o.get("description")==w.get("text") and w["start"]<=o.get("pts",-999)<=w["end"] for o in observations): fail("图片窗口缺少观察原件")
    if w["evidence"]=="ocr" and not any(any(anchor_match(a,r.get("text","")) for a in visual) and r.get("text")==w.get("text") and abs(r.get("pts",-999)-w["start"])<0.01 and (ws/r.get("frame","")).is_file() for r in ocr): fail("OCR 窗口缺少原件")
    if w["evidence"]=="asr":
     matches=re.findall(r"\[(\d+):(\d+)-(\d+):(\d+)\]\s*(.*)",transcript_text)

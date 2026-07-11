@@ -19,7 +19,7 @@ def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->dict:
     text="\n".join(x.get("text","") for x in data.get("content",[]) if x.get("type")=="text").strip()
     try: result=json.loads(text)
     except json.JSONDecodeError as exc: raise RuntimeError("图片理解未返回 JSON") from exc
-    if not isinstance(result.get("description"),str) or not isinstance(result.get("anchorChecks"),list): raise RuntimeError("图片理解 JSON 字段非法")
+    if not isinstance(result.get("description"),str) or not isinstance(result.get("anchorChecks"),list) or any(not isinstance(x,dict) or not isinstance(x.get("anchor"),str) or not isinstance(x.get("visible"),bool) or not isinstance(x.get("evidence"),str) or not x["evidence"].strip() for x in result["anchorChecks"]): raise RuntimeError("图片理解 JSON 字段非法")
     return result
 def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
     duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
