@@ -9,8 +9,9 @@ def extract(video:Path,out:Path,start:float,end:float,fps:float,budget:int)->lis
     frames=[]; t=start
     while t<=end and len(frames)<budget:
         path=out/f"video_frame_{int(t*1000):010d}.jpg"
-        subprocess.run(["ffmpeg","-y","-ss",str(t),"-i",str(video),"-frames:v","1","-vf","scale=1280:-1","-q:v","2",str(path)],check=True,capture_output=True)
-        frames.append({"pts":round(t,3),"frame":str(path)})
+        result = subprocess.run(["ffmpeg","-y","-ss",str(t),"-i",str(video),"-frames:v","1","-vf","scale=1280:-1","-q:v","2",str(path)],check=False,capture_output=True)
+        if result.returncode == 0 and path.exists():
+            frames.append({"pts":round(t,3),"frame":str(path)})
         t+=1/fps
     return frames
 
