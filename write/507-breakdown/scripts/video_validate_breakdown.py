@@ -84,7 +84,9 @@ def main()->int:
  for u in units:
   for w in u.get("candidateWindows",[]):
    if w["evidence"]=="image_visual_anchor" and not any(o.get("semanticUnit")==u.get("id") and abs(o.get("pts",-999)-((w["start"]+w["end"])/2))<=0.51 for o in observations): fail("图片窗口缺少观察原件")
-   if w["evidence"]=="asr" and w.get("text") not in transcript_text: fail("ASR 窗口缺少原件")
+   if w["evidence"]=="asr":
+    matches=re.findall(r"\[(\d+):(\d+)-(\d+):(\d+)\]\s*(.*)",transcript_text)
+    if not any(w.get("text")==text and abs(w["start"]-(int(a)*60+int(b)))<0.01 and abs(w["end"]-(int(c)*60+int(d)))<0.01 for a,b,c,d,text in matches): fail("ASR 窗口缺少同时间原件")
  for name in [VIDEO_META,VIDEO_TRANSCRIPT,VIDEO_BREAKDOWN_MD,VIDEO_BREAKDOWN_JSON]:
   path = ws / name
   if not path.exists(): fail(f"缺少最终产物：{name}")
