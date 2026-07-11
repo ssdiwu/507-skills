@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bounded MiniMax image understanding for already-localized adaptive frames."""
 from __future__ import annotations
-import argparse,base64,json,mimetypes,os
+import argparse,base64,json,mimetypes,os,re
 from pathlib import Path
 from urllib.request import Request,urlopen
 from video_contract import ANALYSIS_DIR, STATUS_VISUALLY_VERIFIED, VideoManifest, ensure_dir
@@ -23,7 +23,7 @@ def apply_visual_matches(ws:Path, items:list[dict])->None:
     for item in items:
         unit=by_id.get(item.get("semanticUnit"))
         anchors=(unit or {}).get("reference",{}).get("visualAnchors",[])
-        if unit and any(a and a.lower() in item["description"].lower() for a in anchors):
+        if unit and any(a and re.search(r"(?<!\\w)"+re.escape(a.lower())+r"(?!\\w)",item["description"].lower()) for a in anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
             unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":t+0.5,"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")
@@ -36,7 +36,8 @@ def main()->int:
     for window in adaptive.get("windows",[]):
         for frame in window.get("frames",[]):
             if len(items)>=a.max_frames:break
-            path=ws/frame["frame"]
+            path=(ws/frame["frame"]).resolve()
+            if not path.is_relative_to(ws.resolve()): raise SystemExit("自适应帧路径越出工作区")
             description = describe(a.base_url,key,a.model,path)
             if not description:
                 manifest.step("video_key_frame_images","failed",f"图片理解返回空描述：{frame['frame']}")
@@ -48,7 +49,7 @@ def main()->int:
         raise SystemExit("没有可供图片理解的自适应关键帧")
     apply_visual_matches(ws,items)
     locations=json.loads((ws/ANALYSIS_DIR/"video_locations.json").read_text(encoding="utf-8"))
-    unresolved=[u.get("id") for u in locations.get("semanticUnits",[]) if u.get("localizationStatus")=="unresolved" and u.get("reference",{}).get("visualAnchors")]
+    unresolved=[u.get("id") for u in locations.get("semanticUnits",[]) if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("visualAnchors") or u.get("reference",{}).get("spokenAnchors"))]
     if unresolved:
         manifest.step("video_key_frame_images","failed",f"视觉锚点未核验：{unresolved}")
         raise SystemExit(f"视觉锚点未核验：{unresolved}")
