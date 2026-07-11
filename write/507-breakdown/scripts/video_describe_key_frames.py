@@ -25,7 +25,7 @@ def apply_visual_matches(ws:Path, items:list[dict])->None:
         anchors=(unit or {}).get("reference",{}).get("visualAnchors",[])
         if unit and any(a and a.lower() in item["description"].lower() for a in anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
-            unit["candidateWindows"]=[{"start":max(0,t-0.5),"end":t+0.5,"evidence":"image_visual_anchor","text":item["description"]}]
+            unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":t+0.5,"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")
 
 def main()->int:
@@ -47,6 +47,11 @@ def main()->int:
         manifest.step("video_key_frame_images","failed","没有可供图片理解的自适应关键帧")
         raise SystemExit("没有可供图片理解的自适应关键帧")
     apply_visual_matches(ws,items)
+    locations=json.loads((ws/ANALYSIS_DIR/"video_locations.json").read_text(encoding="utf-8"))
+    unresolved=[u.get("id") for u in locations.get("semanticUnits",[]) if u.get("localizationStatus")=="unresolved" and u.get("reference",{}).get("visualAnchors")]
+    if unresolved:
+        manifest.step("video_key_frame_images","failed",f"视觉锚点未核验：{unresolved}")
+        raise SystemExit(f"视觉锚点未核验：{unresolved}")
     out=ws/ANALYSIS_DIR/"video_frame_observations.json";ensure_dir(out.parent);out.write_text(json.dumps({"model":a.model,"observations":items,"limit":a.max_frames},ensure_ascii=False,indent=2),encoding="utf-8")
     manifest.step("video_key_frame_images","success","关键帧图片理解完成",str(out),model=a.model,frameCount=len(items),limit=a.max_frames)
     manifest.set_status(STATUS_VISUALLY_VERIFIED);print(out);return 0
