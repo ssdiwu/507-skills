@@ -66,7 +66,7 @@ def streamed_upload(base_url: str, api_key: str, video: Path) -> str:
 
 
 def parse_json_lenient(text: str) -> dict:
-    """Parse JSON from model output, tolerating markdown fences and partial formatting."""
+    """Parse one JSON object, allowing prose/fences around (not inside) it."""
     text = text.strip()
     if text.startswith("```"):
         text = text.split("\n", 1)[-1].rsplit("```", 1)[0].strip()
@@ -74,22 +74,35 @@ def parse_json_lenient(text: str) -> dict:
         return json.loads(text, strict=False)
     except json.JSONDecodeError:
         pass
-    # Try to find the outermost JSON object
     start = text.find("{")
     if start == -1:
         raise RuntimeError("MiniMax 返回不含 JSON 对象")
     depth = 0
-    end = start
-    for i in range(start, len(text)):
-        if text[i] == "{": depth += 1
-        elif text[i] == "}":
+    in_string = False
+    escaped = False
+    end = None
+    for i, char in enumerate(text[start:], start):
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            continue
+        if char == '"':
+            in_string = True
+        elif char == "{":
+            depth += 1
+        elif char == "}":
             depth -= 1
             if depth == 0:
                 end = i + 1
                 break
-    candidate = text[start:end]
+    if end is None:
+        raise RuntimeError("MiniMax 返回的 JSON 对象未闭合")
     try:
-        return json.loads(candidate, strict=False)
+        return json.loads(text[start:end], strict=False)
     except json.JSONDecodeError as exc:
         raise RuntimeError(f"MiniMax 返回的 JSON 无法解析（位置 {exc.pos}）: {text[:200]}...") from exc
 
