@@ -38,7 +38,7 @@ def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
         checks={x.get("anchor"):x for x in item.get("anchorChecks",[]) if isinstance(x,dict)}
         if unit and anchors and valid_anchor_checks(item.get("anchorChecks"),anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
-            unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":min(duration,t+0.5),"evidence":"image_visual_anchor","text":item["description"]})
+            unit.setdefault("candidateWindows",[]).append({"start":max(0,t-1.0),"end":min(duration,t+1.0),"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")
 
 def main()->int:
