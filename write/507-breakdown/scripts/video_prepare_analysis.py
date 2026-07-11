@@ -8,7 +8,11 @@ from video_contract import ANALYSIS_DIR, STATUS_ANALYSIS_READY, VIDEO_BREAKDOWN_
 def main()->int:
  p=argparse.ArgumentParser(description="生成视频拉片分析简报");p.add_argument("--workspace",required=True);a=p.parse_args();ws=Path(a.workspace).expanduser().resolve();m=VideoManifest.load(ws);analysis=ws/ANALYSIS_DIR
  understanding=json.loads((analysis/"video_understanding_minimax.json").read_text(encoding="utf-8")) if (analysis/"video_understanding_minimax.json").exists() else {"semanticUnits":[]}
- locations=json.loads((analysis/"video_locations.json").read_text(encoding="utf-8"));observations=json.loads((analysis/"video_frame_observations.json").read_text(encoding="utf-8"))
+ locations=json.loads((analysis/"video_locations.json").read_text(encoding="utf-8"))
+ observations=json.loads((analysis/"video_frame_observations.json").read_text(encoding="utf-8"))
+ image_step=m.data.get("steps",{}).get("video_key_frame_images",{})
+ if image_step.get("status") != "success" or not observations.get("observations"):
+  raise SystemExit("图片核验未成功或没有观察结果，不能生成 video_analysis_ready")
  transcript_path=ws/"raw"/"video_asr"/"video_transcript.txt"
  if not transcript_path.exists(): transcript_path=ws/"raw"/"video_subtitles"/"video_transcript.txt"
  transcript=transcript_path.read_text(encoding="utf-8",errors="ignore") if transcript_path.exists() else "（无文字证据）"
