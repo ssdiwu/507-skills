@@ -70,20 +70,32 @@ def main()->int:
  if understanding.exists() and m.data.get("analysisMode")!="forced_local_fallback":
   ids=[u.get("id") for u in json.loads(understanding.read_text(encoding="utf-8")).get("semanticUnits",[])]
   unit_ids=[u.get("id") for u in units]
-  if not ids or len(ids)!=len(set(ids)) or len(unit_ids)!=len(set(unit_ids)) or unit_ids!=ids: fail("定位语义单元与 M3 输出不一致")
+  originals=json.loads(understanding.read_text(encoding="utf-8")).get("semanticUnits",[])
+  if not ids or len(ids)!=len(set(ids)) or len(unit_ids)!=len(set(unit_ids)) or unit_ids!=ids or any(u.get("reference")!=originals[i] for i,u in enumerate(units)): fail("定位语义单元与 M3 输出不一致")
  duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(m.data["videoPath"])],text=True).strip())
  def valid_window(w): return isinstance(w,dict) and isinstance(w.get("start"),(int,float)) and isinstance(w.get("end"),(int,float)) and math.isfinite(w["start"]) and math.isfinite(w["end"]) and 0<=w["start"]<w["end"]<=duration and isinstance(w.get("evidence"),str) and w["evidence"] in {"asr","ocr","image_visual_anchor"}
  invalid=[u.get("id") for u in units if u.get("localizationStatus") not in {"localized","unresolved"} or (u.get("localizationStatus")=="localized" and (not u.get("candidateWindows") or not all(valid_window(w) for w in u["candidateWindows"])))]
  unresolved=[u.get("id") for u in units if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("spokenAnchors") or u.get("reference",{}).get("visualAnchors"))]
  if invalid: fail(f"非法定位状态：{invalid}")
  if unresolved: fail(f"未核验的语义锚点：{unresolved}")
+ observations=json.loads((ws/ANALYSIS_DIR/"video_frame_observations.json").read_text(encoding="utf-8")).get("observations",[])
+ transcript=(ws/"raw"/"video_asr"/"video_transcript.txt")
+ transcript_text=transcript.read_text(encoding="utf-8",errors="ignore") if transcript.exists() else ""
+ for u in units:
+  for w in u.get("candidateWindows",[]):
+   if w["evidence"]=="image_visual_anchor" and not any(o.get("semanticUnit")==u.get("id") and abs(o.get("pts",-999)-((w["start"]+w["end"])/2))<=0.51 for o in observations): fail("图片窗口缺少观察原件")
+   if w["evidence"]=="asr" and w.get("text") not in transcript_text: fail("ASR 窗口缺少原件")
  for name in [VIDEO_META,VIDEO_TRANSCRIPT,VIDEO_BREAKDOWN_MD,VIDEO_BREAKDOWN_JSON]:
   path = ws / name
   if not path.exists(): fail(f"缺少最终产物：{name}")
   if not path.read_text(encoding="utf-8", errors="ignore").strip(): fail(f"最终产物为空：{name}")
  breakdown_md = (ws / VIDEO_BREAKDOWN_MD).read_text(encoding="utf-8", errors="ignore")
  if "待填写" in breakdown_md or "（待" in breakdown_md: fail("video_breakdown.md 仍含未填写模板")
- validate(json.loads((ws/VIDEO_BREAKDOWN_JSON).read_text(encoding="utf-8")))
+ data=json.loads((ws/VIDEO_BREAKDOWN_JSON).read_text(encoding="utf-8")); validate(data)
+ evidence_windows=[w for u in units for w in u.get("candidateWindows",[])]
+ for seg in data["segments"]:
+  start,end=seconds(seg["start"]),seconds(seg["end"])
+  if end>duration or not any(w["start"]<=start and end<=w["end"] for w in evidence_windows): fail("segment 未被本地证据窗口覆盖")
  m.step("video_validation","success","最终拉片包校验通过",str(ws/VIDEO_BREAKDOWN_JSON));m.set_status(STATUS_COMPLETED)
  meta_path=ws/VIDEO_META
  if meta_path.exists():
