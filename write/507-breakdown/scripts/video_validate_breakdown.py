@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Final gate: validate the full breakdown schema, tags, evidence, and lifecycle."""
 from __future__ import annotations
-import argparse, json, re
+import argparse, json, math, re, subprocess
 from pathlib import Path
 from video_contract import ANALYSIS_DIR, STATUS_ANALYSIS_READY, STATUS_COMPLETED, VIDEO_BREAKDOWN_JSON, VIDEO_BREAKDOWN_MD, VIDEO_META, VIDEO_TRANSCRIPT, VideoManifest
 
@@ -69,8 +69,10 @@ def main()->int:
  understanding=ws/ANALYSIS_DIR/"video_understanding_minimax.json"
  if understanding.exists() and m.data.get("analysisMode")!="forced_local_fallback":
   ids=[u.get("id") for u in json.loads(understanding.read_text(encoding="utf-8")).get("semanticUnits",[])]
-  if not ids or len(ids)!=len(set(ids)) or {u.get("id") for u in units}!=set(ids): fail("定位语义单元与 M3 输出不一致")
- def valid_window(w): return isinstance(w,dict) and isinstance(w.get("start"),(int,float)) and isinstance(w.get("end"),(int,float)) and w["end"]>w["start"] and isinstance(w.get("evidence"),str) and w["evidence"] in {"asr","ocr","image_visual_anchor"}
+  unit_ids=[u.get("id") for u in units]
+  if not ids or len(ids)!=len(set(ids)) or len(unit_ids)!=len(set(unit_ids)) or unit_ids!=ids: fail("定位语义单元与 M3 输出不一致")
+ duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(m.data["videoPath"])],text=True).strip())
+ def valid_window(w): return isinstance(w,dict) and isinstance(w.get("start"),(int,float)) and isinstance(w.get("end"),(int,float)) and math.isfinite(w["start"]) and math.isfinite(w["end"]) and 0<=w["start"]<w["end"]<=duration and isinstance(w.get("evidence"),str) and w["evidence"] in {"asr","ocr","image_visual_anchor"}
  invalid=[u.get("id") for u in units if u.get("localizationStatus") not in {"localized","unresolved"} or (u.get("localizationStatus")=="localized" and (not u.get("candidateWindows") or not all(valid_window(w) for w in u["candidateWindows"])))]
  unresolved=[u.get("id") for u in units if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("spokenAnchors") or u.get("reference",{}).get("visualAnchors"))]
  if invalid: fail(f"非法定位状态：{invalid}")

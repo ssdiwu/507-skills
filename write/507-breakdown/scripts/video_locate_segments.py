@@ -10,7 +10,7 @@ def duration(video: Path) -> float:
 def anchor_match(anchor:str,text:str)->bool:
  anchor=anchor.strip().lower(); text=text.lower()
  if not anchor: return False
- if re.search(r"(?:not|no|without|未|没有|不可见).{0,24}"+re.escape(anchor), text): return False
+ if re.search(r"(?:not|no|without|未|没有|不可见).{0,24}"+re.escape(anchor), text) or re.search(re.escape(anchor)+r".{0,24}(?:not\s+visible|not\s+shown|不可见|没有)", text): return False
  if any(ord(c)>127 for c in anchor): return anchor in text
  return bool(re.search(r"(?<!\w)"+re.escape(anchor)+r"(?!\w)",text))
 def transcript_hits(path:Path,anchors:list[str]):

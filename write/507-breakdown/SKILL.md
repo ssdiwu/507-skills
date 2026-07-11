@@ -29,7 +29,7 @@ analysis/video_analysis_brief.md
 
 1. 取得视频与本地 ASR、scene-cut、OCR 证据。
 2. 默认调用 MiniMax-M3 整段理解；从环境变量 `MiniMax_API_KEY` 读取密钥，不读取 `.zshrc`。
-3. 用每 10 秒 1 帧 locator（定位器）索引、ASR、OCR、PTS 帧和 scene-cut 定位 M3 语义锚点。
+3. 用 ASR/OCR 命中定位语义锚点；每 10 秒 locator、PTS 帧和 scene-cut 仅提供受限视觉搜索点，须由图片锚点命中回写定位。
 4. 对候选窗口有界加密抽帧（默认 2fps），并对关键帧做图片理解。
 5. 汇总分析简报；agent 基于本地证据填写最终 `video_breakdown.*`。
 6. `video_validate_breakdown.py --workspace ...` 通过后才标记 `video_completed`。
