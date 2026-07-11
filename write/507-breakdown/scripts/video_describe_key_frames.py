@@ -23,7 +23,7 @@ def apply_visual_matches(ws:Path, items:list[dict])->None:
     for item in items:
         unit=by_id.get(item.get("semanticUnit"))
         anchors=(unit or {}).get("reference",{}).get("visualAnchors",[])
-        if unit and any(a and re.search(r"(?<!\\w)"+re.escape(a.lower())+r"(?!\\w)",item["description"].lower()) for a in anchors):
+        if unit and any(a and re.search(r"(?<!\w)"+re.escape(a.lower())+r"(?!\w)",item["description"].lower()) for a in anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
             unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":t+0.5,"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")

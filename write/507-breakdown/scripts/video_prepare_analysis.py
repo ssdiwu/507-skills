@@ -17,7 +17,7 @@ def main()->int:
   raise SystemExit("图片核验未成功或没有观察结果，不能生成 video_analysis_ready")
  for item in observations["observations"]:
   frame=Path(item.get("frame", ""))
-  if not isinstance(item.get("pts"),(int,float)) or frame.is_absolute() or ".." in frame.parts or not str(frame) or not isinstance(item.get("description"),str) or not item["description"].strip() or not (ws/frame).is_file() or (item.get("semanticUnit"),item["pts"],item["frame"]) not in allowed:
+  if not isinstance(item.get("pts"),(int,float)) or frame.is_absolute() or ".." in frame.parts or not str(frame) or not isinstance(item.get("description"),str) or not item["description"].strip() or not (ws/frame).is_file() or not (ws/frame).resolve().is_relative_to(ws.resolve()) or (item.get("semanticUnit"),item["pts"],item["frame"]) not in allowed:
    raise SystemExit("图片观察缺少 PTS、帧路径、非空描述或对应帧文件，不能生成 video_analysis_ready")
  transcript_path=ws/"raw"/"video_asr"/"video_transcript.txt"
  if not transcript_path.exists(): transcript_path=ws/"raw"/"video_subtitles"/"video_transcript.txt"

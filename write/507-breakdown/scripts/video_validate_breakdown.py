@@ -62,6 +62,10 @@ def main()->int:
  if m.data.get("analysisMode")!="forced_local_fallback": required.insert(0,"video_understanding_minimax")
  for step in required:
   if m.data.get("steps",{}).get(step,{}).get("status")!="success": fail(f"前置阶段未成功：{step}")
+ locations=ws/ANALYSIS_DIR/"video_locations.json"
+ if locations.exists():
+  unresolved=[u.get("id") for u in json.loads(locations.read_text(encoding="utf-8")).get("semanticUnits",[]) if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("spokenAnchors") or u.get("reference",{}).get("visualAnchors"))]
+  if unresolved: fail(f"未核验的语义锚点：{unresolved}")
  for name in [VIDEO_META,VIDEO_TRANSCRIPT,VIDEO_BREAKDOWN_MD,VIDEO_BREAKDOWN_JSON]:
   path = ws / name
   if not path.exists(): fail(f"缺少最终产物：{name}")
