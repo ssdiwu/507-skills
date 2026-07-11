@@ -79,11 +79,16 @@ def main()->int:
  if invalid: fail(f"非法定位状态：{invalid}")
  if unresolved: fail(f"未核验的语义锚点：{unresolved}")
  observations=json.loads((ws/ANALYSIS_DIR/"video_frame_observations.json").read_text(encoding="utf-8")).get("observations",[])
+ adaptive=json.loads((ws/ANALYSIS_DIR/"video_adaptive_frames.json").read_text(encoding="utf-8")).get("windows",[])
+ allowed={(w.get("semanticUnit"),f.get("pts"),f.get("frame")) for w in adaptive for f in w.get("frames",[])}
+ ocr_path=ws/ANALYSIS_DIR/"video_ocr_index.json"
+ ocr=json.loads(ocr_path.read_text(encoding="utf-8")) if ocr_path.exists() else []
  transcript=(ws/"raw"/"video_asr"/"video_transcript.txt")
  transcript_text=transcript.read_text(encoding="utf-8",errors="ignore") if transcript.exists() else ""
  for u in units:
   for w in u.get("candidateWindows",[]):
-   if w["evidence"]=="image_visual_anchor" and not any(o.get("semanticUnit")==u.get("id") and abs(o.get("pts",-999)-((w["start"]+w["end"])/2))<=0.51 for o in observations): fail("图片窗口缺少观察原件")
+   if w["evidence"]=="image_visual_anchor" and not any(o.get("semanticUnit")==u.get("id") and (o.get("semanticUnit"),o.get("pts"),o.get("frame")) in allowed and (ws/o.get("frame","")).is_file() and o.get("description")==w.get("text") and w["start"]<=o.get("pts",-999)<=w["end"] for o in observations): fail("图片窗口缺少观察原件")
+   if w["evidence"]=="ocr" and not any(r.get("text")==w.get("text") and abs(r.get("pts",-999)-w["start"])<0.01 and (ws/r.get("frame","")).is_file() for r in ocr): fail("OCR 窗口缺少原件")
    if w["evidence"]=="asr":
     matches=re.findall(r"\[(\d+):(\d+)-(\d+):(\d+)\]\s*(.*)",transcript_text)
     if not any(w.get("text")==text and abs(w["start"]-(int(a)*60+int(b)))<0.01 and abs(w["end"]-(int(c)*60+int(d)))<0.01 for a,b,c,d,text in matches): fail("ASR 窗口缺少同时间原件")
