@@ -9,10 +9,11 @@ def duration(video: Path) -> float:
  return float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
 def anchor_match(anchor:str,text:str)->bool:
  anchor=anchor.strip().lower(); text=text.lower()
- if not anchor or re.search(r"\b(?:might|possibly|maybe|could|unclear|absent|report|article|states|asked|whether|actual|claimed|there|according|caption|should|does|reviewer|mentioned|red)\b|未出现|没有出现|实际画面|引用",text): return False
- if re.search(r"(?:not|no|without|absent|unclear|maybe|未|没有|不可见).{0,32}"+re.escape(anchor), text) or re.search(re.escape(anchor)+r".{0,32}(?:not\s+visible|not\s+shown|absent|unclear|maybe|不可见|没有)", text): return False
+ if not anchor: return False
+ # A local transcript/OCR hit is lexical evidence only; explicit denial or uncertainty never counts.
+ if re.search(r"\b(?:not|no|without|invisible|hidden|fake|absent|unclear|maybe|might|possibly|could)\b|未出现|没有出现|不可见|隐藏|假的",text): return False
  if any(ord(c)>127 for c in anchor): return anchor in text
- return bool(re.search(r"(?<!\w)"+re.escape(anchor)+r"\s+(?:is|appears|fills|shows|visible)(?!\w)",text))
+ return bool(re.search(r"(?<!\w)"+re.escape(anchor)+r"(?!\w)",text))
 def transcript_hits(path:Path,anchors:list[str]):
  if not path.exists(): return []
  hits=[]
