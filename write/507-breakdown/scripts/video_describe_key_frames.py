@@ -7,8 +7,8 @@ from urllib.request import Request,urlopen
 from video_contract import ANALYSIS_DIR, STATUS_VISUALLY_VERIFIED, VideoManifest, ensure_dir
 from video_locate_segments import anchor_match
 
-PROMPT="Describe only observable UI, subtitles, state changes, and text in this frame. Do not invent time or actions outside this image."
-def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->str:
+PROMPT="Return JSON only: {description:string, anchorChecks:[{anchor:string,visible:boolean,evidence:string}]}. Mark visible=true only for a clearly present anchor; false for absent, denied, quoted, uncertain, or unreadable anchors."
+def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->dict:
     payload={"model":model,"max_tokens":1200,"messages":[{"role":"user","content":[{"type":"text","text":PROMPT+"\nTarget visual anchors: "+", ".join(anchors)+". State explicitly whether each is visible."},{"type":"image","source":{"type":"base64","media_type":mimetypes.guess_type(path.name)[0] or "image/jpeg","data":base64.b64encode(path.read_bytes()).decode()}}]}]}
     req=Request(base.rstrip("/")+"/anthropic/v1/messages",data=json.dumps(payload).encode(),headers={"Authorization":f"Bearer {key}","Content-Type":"application/json","anthropic-version":"2023-06-01"},method="POST")
     try:
@@ -16,7 +16,11 @@ def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->str:
     except Exception as exc:
         detail=exc.read().decode("utf-8",errors="replace")[:500] if hasattr(exc,"read") else ""
         raise RuntimeError(f"图片理解请求失败：{exc} {detail}") from exc
-    return "\n".join(x.get("text","") for x in data.get("content",[]) if x.get("type")=="text").strip()
+    text="\n".join(x.get("text","") for x in data.get("content",[]) if x.get("type")=="text").strip()
+    try: result=json.loads(text)
+    except json.JSONDecodeError as exc: raise RuntimeError("图片理解未返回 JSON") from exc
+    if not isinstance(result.get("description"),str) or not isinstance(result.get("anchorChecks"),list): raise RuntimeError("图片理解 JSON 字段非法")
+    return result
 def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
     duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
     path=ws/ANALYSIS_DIR/"video_locations.json"
@@ -25,7 +29,8 @@ def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
     for item in items:
         unit=by_id.get(item.get("semanticUnit"))
         anchors=(unit or {}).get("reference",{}).get("visualAnchors",[])
-        if unit and any(anchor_match(a,item["description"]) for a in anchors):
+        checks={x.get("anchor"):x for x in item.get("anchorChecks",[]) if isinstance(x,dict)}
+        if unit and any(checks.get(a,{}).get("visible") is True for a in anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
             unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":min(duration,t+0.5),"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")
@@ -40,11 +45,12 @@ def main()->int:
             if len(items)>=a.max_frames:break
             path=(ws/frame["frame"]).resolve()
             if not path.is_relative_to(ws.resolve()): raise SystemExit("自适应帧路径越出工作区")
-            description = describe(a.base_url,key,a.model,path,anchors_by_id.get(window.get("semanticUnit"),[]))
+            result = describe(a.base_url,key,a.model,path,anchors_by_id.get(window.get("semanticUnit"),[]))
+            description=result["description"]
             if not description:
                 manifest.step("video_key_frame_images","failed",f"图片理解返回空描述：{frame['frame']}")
                 raise SystemExit(f"图片理解返回空描述：{frame['frame']}")
-            items.append({"pts":frame["pts"],"frame":frame["frame"],"semanticUnit":window.get("semanticUnit"),"description":description})
+            items.append({"pts":frame["pts"],"frame":frame["frame"],"semanticUnit":window.get("semanticUnit"),"description":description,"anchorChecks":result["anchorChecks"]})
         if len(items)>=a.max_frames:break
     if not items:
         manifest.step("video_key_frame_images","failed","没有可供图片理解的自适应关键帧")
