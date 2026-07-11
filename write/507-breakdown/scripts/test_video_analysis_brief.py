@@ -9,7 +9,11 @@ from video_contract import VideoManifest
 def workspace(ok:bool):
  ws=Path(tempfile.mkdtemp(prefix="video-brief-"));(ws/"raw"/"video_asr").mkdir(parents=True);(ws/"analysis").mkdir()
  m=VideoManifest(ws);m.data["videoPath"]="/tmp/input.mp4";m.flush()
- for name,data in [("video_locations.json",{"semanticUnits":[]}),("video_frame_observations.json",{"observations":[{"pts":1}] if ok else []})]:(ws/"analysis"/name).write_text(json.dumps(data))
+ if ok:
+  frame=ws/"raw"/"frame.jpg";frame.write_bytes(b"fixture")
+  observations=[{"pts":1,"frame":"raw/frame.jpg","description":"verified frame"}]
+ else: observations=[]
+ for name,data in [("video_locations.json",{"semanticUnits":[]}),("video_frame_observations.json",{"observations":observations})]:(ws/"analysis"/name).write_text(json.dumps(data))
  (ws/"raw"/"video_asr"/"video_transcript.txt").write_text("[00:00-00:01] test")
  if ok:m.step("video_key_frame_images","success","verified")
  return ws

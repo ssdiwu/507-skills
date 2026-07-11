@@ -17,6 +17,7 @@ scene_cut(video,m)
 subprocess.run([sys.executable,str(SCRIPTS/"video_locate_segments.py"),"--workspace",str(ws)],check=True)
 data=json.loads((ws/"analysis"/"video_locations.json").read_text())
 assert [x["pts"] for x in data["coarseFrames"]]==[0.0,10.0]
-window=data["semanticUnits"][0]["candidateWindows"][0]
-assert window["evidence"]=="scene_cut" and window["start"]>0
-print("PASS: PTS locator index and scene-cut evidence window")
+unit=data["semanticUnits"][0]
+assert unit["localizationStatus"]=="unresolved" and unit["candidateWindows"]==[]
+assert unit["visualSearchPoints"][0]["evidence"]=="scene_cut" and unit["visualSearchPoints"][0]["pts"]>0
+print("PASS: PTS locator index keeps unmatched semantics unresolved")

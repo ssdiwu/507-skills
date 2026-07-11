@@ -1,6 +1,6 @@
 # 507 Breakdown
 
-`507-breakdown` 将单个视频编译为可复核的拉片包：MiniMax-M3 给整段语义参考，本地 ASR、OCR、PTS 帧和 scene-cut 确认真实时间，再对关键窗口做自适应抽帧和图片理解。
+`507-breakdown` 将单个视频编译为可复核的拉片包：MiniMax-M3 仅给整段语义参考；ASR/OCR 命中才会定位语义窗口，PTS 与 scene-cut 只提供本地视觉搜索点。抽帧按窗口证据调整密度，并在图片理解后核验。
 
 ## 完成契约
 

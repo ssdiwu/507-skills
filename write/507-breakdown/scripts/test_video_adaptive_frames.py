@@ -13,5 +13,6 @@ m=VideoManifest(ws);m.data["videoPath"]=str(video);m.data["videoHash"]=video_has
 subprocess.run([sys.executable,str(S/"video_extract_adaptive_frames.py"),"--workspace",str(ws),"--fps","2","--max-frames-per-window","3"],check=True)
 data=json.loads((ws/"analysis"/"video_adaptive_frames.json").read_text()); item=data["windows"][0]
 assert len(item["frames"])==3 and item["budget"]==3 and item["stopReason"]=="frame_budget_reached"
-assert [f["pts"] for f in item["frames"]]==[0,0.5,1.0]
-print("PASS: bounded adaptive PTS frames record budget stop reason")
+assert item["samplingStrategy"]=="scene_cut_dense" and item["samplingFps"]==4
+assert [f["pts"] for f in item["frames"]]==[0,0.25,0.5]
+print("PASS: scene-cut windows densify within bounded PTS frame budget")

@@ -13,6 +13,9 @@ def main()->int:
  image_step=m.data.get("steps",{}).get("video_key_frame_images",{})
  if image_step.get("status") != "success" or not observations.get("observations"):
   raise SystemExit("图片核验未成功或没有观察结果，不能生成 video_analysis_ready")
+ for item in observations["observations"]:
+  if not isinstance(item.get("pts"),(int,float)) or not isinstance(item.get("frame"),str) or not item["frame"] or not isinstance(item.get("description"),str) or not item["description"].strip() or not (ws/item["frame"]).is_file():
+   raise SystemExit("图片观察缺少 PTS、帧路径、非空描述或对应帧文件，不能生成 video_analysis_ready")
  transcript_path=ws/"raw"/"video_asr"/"video_transcript.txt"
  if not transcript_path.exists(): transcript_path=ws/"raw"/"video_subtitles"/"video_transcript.txt"
  transcript=transcript_path.read_text(encoding="utf-8",errors="ignore") if transcript_path.exists() else "（无文字证据）"

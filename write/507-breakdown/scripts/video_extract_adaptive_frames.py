@@ -25,13 +25,18 @@ def main()->int:
     locations=json.loads((ws/ANALYSIS_DIR/"video_locations.json").read_text(encoding="utf-8")); out_dir=ws/"raw"/RAW_ADAPTIVE_DIR;ensure_dir(out_dir)
     observations=[]; seen=set()
     for unit in locations.get("semanticUnits",[]):
-        for window in unit.get("candidateWindows",[]):
+        windows=list(unit.get("candidateWindows",[]))
+        if not windows:
+            windows=[{"start":max(0,point["pts"]-1),"end":point["pts"]+1,"evidence":point["evidence"],"semanticMatch":False} for point in unit.get("visualSearchPoints",[])]
+        for window in windows:
             key=(round(window["start"],3),round(window["end"],3))
             if key in seen: continue
             seen.add(key); name=f"video_window_{int(key[0]*1000):010d}_{int(key[1]*1000):010d}"; target=out_dir/name;ensure_dir(target)
-            frames=extract(video,target,key[0],key[1],a.fps,a.max_frames_per_window)
+            strategy = "scene_cut_dense" if window.get("evidence") == "scene_cut" else "evidence_uniform"
+            effective_fps = max(a.fps,4) if strategy == "scene_cut_dense" else a.fps
+            frames=extract(video,target,key[0],key[1],effective_fps,a.max_frames_per_window)
             stop_reason = "frame_budget_reached" if len(frames) >= a.max_frames_per_window else "window_end_or_decode_boundary"
-            observations.append({"semanticUnit":unit.get("id"),"window":window,"frames":[{"pts":f["pts"],"frame":str(Path(f["frame"]).relative_to(ws))} for f in frames],"budget":a.max_frames_per_window,"stopReason":stop_reason})
+            observations.append({"semanticUnit":unit.get("id"),"window":window,"frames":[{"pts":f["pts"],"frame":str(Path(f["frame"]).relative_to(ws))} for f in frames],"budget":a.max_frames_per_window,"samplingFps":effective_fps,"samplingStrategy":strategy,"stopReason":stop_reason})
     out=ws/ANALYSIS_DIR/"video_adaptive_frames.json";out.write_text(json.dumps({"fps":a.fps,"windows":observations},ensure_ascii=False,indent=2),encoding="utf-8")
     manifest.step("video_adaptive_frames","success","关键窗口自适应抽帧完成",str(out),fps=a.fps,maxFramesPerWindow=a.max_frames_per_window)
     print(out);return 0

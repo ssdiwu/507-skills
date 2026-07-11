@@ -14,7 +14,9 @@ def transcript_hits(path:Path,anchors:list[str]):
   m=re.match(r"\[(\d+):(\d+)-(\d+):(\d+)\]\s*(.*)",line)
   if m and any(x.lower() in m[5].lower() for x in anchors if x): hits.append((int(m[1])*60+int(m[2]),int(m[3])*60+int(m[4]),m[5]))
  return hits
-def frame_at(video:Path,out:Path,t:float): subprocess.run(["ffmpeg","-y","-ss",str(t),"-i",str(video),"-frames:v","1","-vf","scale=640:-1","-q:v","3",str(out)],check=True,capture_output=True)
+def frame_at(video:Path,out:Path,t:float)->bool:
+ r=subprocess.run(["ffmpeg","-y","-ss",str(t),"-i",str(video),"-frames:v","1","-vf","scale=640:-1","-q:v","3",str(out)],check=False,capture_output=True)
+ return r.returncode==0 and out.exists()
 def ocr_index(ws:Path,coarse:list[dict],manifest:VideoManifest):
  if not shutil.which("tesseract"):
   manifest.step("video_ocr","skipped","未安装 tesseract");return []
@@ -27,8 +29,9 @@ def main():
  p=argparse.ArgumentParser(description="本地语义锚点定位");p.add_argument("--workspace",required=True);p.add_argument("--interval",type=float,default=10);a=p.parse_args();
  if a.interval<=0: raise SystemExit("--interval 必须为正数")
  ws=Path(a.workspace).expanduser().resolve();m=VideoManifest.load(ws);video=Path(m.data["videoPath"]);d=ws/"raw"/RAW_LOCATOR_DIR;ensure_dir(d);total=duration(video);coarse=[]
- for t in [round(i*a.interval,3) for i in range(int(total//a.interval)+1)]:
-  path=d/f"video_frame_{int(t*1000):010d}.jpg";frame_at(video,path,t);coarse.append({"pts":t,"frame":str(path.relative_to(ws))})
+ for t in [round(i*a.interval,3) for i in range(int((max(total-0.001,0))//a.interval)+1)]:
+  path=d/f"video_frame_{int(t*1000):010d}.jpg"
+  if frame_at(video,path,t): coarse.append({"pts":t,"frame":str(path.relative_to(ws))})
  ocr=ocr_index(ws,coarse,m);u=ws/ANALYSIS_DIR/"video_understanding_minimax.json";understanding=json.loads(u.read_text(encoding="utf-8")) if u.exists() else {"semanticUnits":[{"id":"forced_local_scan","meaning":"全片本地降级视觉搜索","spokenAnchors":[],"visualAnchors":[]}]}
  transcript=ws/"raw"/"video_asr"/"video_transcript.txt";units=[]
  scene_cut_path=ws/"analysis"/"video_scene_cut_index.json"
@@ -38,9 +41,9 @@ def main():
   if not windows:
    for row in ocr:
     if any(x.lower() in row["text"].lower() for x in unit.get("visualAnchors",[]) if x): windows.append({"start":row["pts"],"end":min(total,row["pts"]+a.interval),"evidence":"ocr","text":row["text"]})
-  if not windows and scene_cuts:
-   windows=[{"start":item["pts"],"end":min(total,item["pts"]+a.interval),"evidence":"scene_cut","text":"scene-cut 时间点"} for item in scene_cuts]
-  if not windows: windows=[{"start":x["pts"],"end":min(total,x["pts"]+a.interval),"evidence":"locator_search","text":"unverified visual search"} for x in coarse]
-  units.append({"id":unit.get("id"),"meaning":unit.get("meaning"),"reference":unit,"candidateWindows":windows})
+  localization_status="localized" if windows else "unresolved"
+  # Scene cuts and coarse PTS frames are visual-search material, not semantic matches.
+  visual_search=[] if windows else ([{"pts":x["pts"],"evidence":"scene_cut"} for x in scene_cuts] or [{"pts":x["pts"],"evidence":"locator_pts"} for x in coarse])
+  units.append({"id":unit.get("id"),"meaning":unit.get("meaning"),"reference":unit,"localizationStatus":localization_status,"candidateWindows":windows,"visualSearchPoints":visual_search})
  out=ws/ANALYSIS_DIR/"video_locations.json";out.write_text(json.dumps({"locatorIntervalSec":a.interval,"coarseFrames":coarse,"ocrIndex":ocr,"semanticUnits":units},ensure_ascii=False,indent=2),encoding="utf-8");m.step("video_localization","success","已建立 10 秒定位索引和候选窗口",str(out),intervalSec=a.interval);m.set_status(STATUS_LOCALIZED);print(out)
 if __name__=="__main__":main()
