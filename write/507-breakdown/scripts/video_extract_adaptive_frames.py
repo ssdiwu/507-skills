@@ -30,7 +30,8 @@ def main()->int:
             if key in seen: continue
             seen.add(key); name=f"video_window_{int(key[0]*1000):010d}_{int(key[1]*1000):010d}"; target=out_dir/name;ensure_dir(target)
             frames=extract(video,target,key[0],key[1],a.fps,a.max_frames_per_window)
-            observations.append({"semanticUnit":unit.get("id"),"window":window,"frames":[{"pts":f["pts"],"frame":str(Path(f["frame"]).relative_to(ws))} for f in frames],"budget":a.max_frames_per_window,"stopReason":"window_budget_or_end"})
+            stop_reason = "frame_budget_reached" if len(frames) >= a.max_frames_per_window else "window_end_or_decode_boundary"
+            observations.append({"semanticUnit":unit.get("id"),"window":window,"frames":[{"pts":f["pts"],"frame":str(Path(f["frame"]).relative_to(ws))} for f in frames],"budget":a.max_frames_per_window,"stopReason":stop_reason})
     out=ws/ANALYSIS_DIR/"video_adaptive_frames.json";out.write_text(json.dumps({"fps":a.fps,"windows":observations},ensure_ascii=False,indent=2),encoding="utf-8")
     manifest.step("video_adaptive_frames","success","关键窗口自适应抽帧完成",str(out),fps=a.fps,maxFramesPerWindow=a.max_frames_per_window)
     print(out);return 0
