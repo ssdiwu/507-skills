@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse, json, math, re, subprocess
 from pathlib import Path
 from video_contract import ANALYSIS_DIR, STATUS_ANALYSIS_READY, STATUS_COMPLETED, VIDEO_BREAKDOWN_JSON, VIDEO_BREAKDOWN_MD, VIDEO_META, VIDEO_TRANSCRIPT, VideoManifest
+from video_locate_segments import anchor_match
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = json.loads((ROOT / "assets" / "breakdown.schema.json").read_text(encoding="utf-8"))
@@ -86,9 +87,10 @@ def main()->int:
  transcript=(ws/"raw"/"video_asr"/"video_transcript.txt")
  transcript_text=transcript.read_text(encoding="utf-8",errors="ignore") if transcript.exists() else ""
  for u in units:
+  anchors=u.get("reference",{}).get("spokenAnchors",[])+u.get("reference",{}).get("visualAnchors",[])
   for w in u.get("candidateWindows",[]):
-   if w["evidence"]=="image_visual_anchor" and not any(o.get("semanticUnit")==u.get("id") and (o.get("semanticUnit"),o.get("pts"),o.get("frame")) in allowed and (ws/o.get("frame","")).is_file() and o.get("description")==w.get("text") and w["start"]<=o.get("pts",-999)<=w["end"] for o in observations): fail("图片窗口缺少观察原件")
-   if w["evidence"]=="ocr" and not any(r.get("text")==w.get("text") and abs(r.get("pts",-999)-w["start"])<0.01 and (ws/r.get("frame","")).is_file() for r in ocr): fail("OCR 窗口缺少原件")
+   if w["evidence"]=="image_visual_anchor" and not any(any(anchor_match(a,o.get("description","")) for a in anchors) and o.get("semanticUnit")==u.get("id") and (o.get("semanticUnit"),o.get("pts"),o.get("frame")) in allowed and (ws/o.get("frame","")).is_file() and o.get("description")==w.get("text") and w["start"]<=o.get("pts",-999)<=w["end"] for o in observations): fail("图片窗口缺少观察原件")
+   if w["evidence"]=="ocr" and not any(any(anchor_match(a,r.get("text","")) for a in anchors) and r.get("text")==w.get("text") and abs(r.get("pts",-999)-w["start"])<0.01 and (ws/r.get("frame","")).is_file() for r in ocr): fail("OCR 窗口缺少原件")
    if w["evidence"]=="asr":
     matches=re.findall(r"\[(\d+):(\d+)-(\d+):(\d+)\]\s*(.*)",transcript_text)
     if not any(w.get("text")==text and abs(w["start"]-(int(a)*60+int(b)))<0.01 and abs(w["end"]-(int(c)*60+int(d)))<0.01 for a,b,c,d,text in matches): fail("ASR 窗口缺少同时间原件")
