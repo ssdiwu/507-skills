@@ -5,6 +5,7 @@ import argparse,base64,json,mimetypes,os,re
 from pathlib import Path
 from urllib.request import Request,urlopen
 from video_contract import ANALYSIS_DIR, STATUS_VISUALLY_VERIFIED, VideoManifest, ensure_dir
+from video_locate_segments import anchor_match
 
 PROMPT="Describe only observable UI, subtitles, state changes, and text in this frame. Do not invent time or actions outside this image."
 def describe(base:str,key:str,model:str,path:Path)->str:
@@ -23,7 +24,7 @@ def apply_visual_matches(ws:Path, items:list[dict])->None:
     for item in items:
         unit=by_id.get(item.get("semanticUnit"))
         anchors=(unit or {}).get("reference",{}).get("visualAnchors",[])
-        if unit and any(a and re.search(r"(?<!\w)"+re.escape(a.lower())+r"(?!\w)",item["description"].lower()) for a in anchors):
+        if unit and any(anchor_match(a,item["description"]) for a in anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
             unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":t+0.5,"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")

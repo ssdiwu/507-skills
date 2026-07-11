@@ -13,5 +13,5 @@ video_understanding_minimax
 
 - M3 时间、顺序、方向不能作为事实。
 - 本地 ASR、OCR、PTS 帧与 scene-cut 才能确认最终时间窗。
-- 图片理解只处理已定位窗口。
+- 图片理解处理已定位窗口，或仅作为未定位语义单元的受限视觉搜索点；后者必须由图片锚点命中回写定位，否则失败。
 - `video_validate_breakdown.py` 通过前，工作区不是 `video_completed`。

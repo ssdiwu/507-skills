@@ -7,12 +7,17 @@ from video_contract import ANALYSIS_DIR, RAW_LOCATOR_DIR, STATUS_LOCALIZED, Vide
 
 def duration(video: Path) -> float:
  return float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
+def anchor_match(anchor:str,text:str)->bool:
+ anchor=anchor.strip().lower(); text=text.lower()
+ if not anchor: return False
+ if any(ord(c)>127 for c in anchor): return anchor in text
+ return bool(re.search(r"(?<!\w)"+re.escape(anchor)+r"(?!\w)",text))
 def transcript_hits(path:Path,anchors:list[str]):
  if not path.exists(): return []
  hits=[]
  for line in path.read_text(encoding="utf-8",errors="ignore").splitlines():
   m=re.match(r"\[(\d+):(\d+)-(\d+):(\d+)\]\s*(.*)",line)
-  if m and any(x.lower() in m[5].lower() for x in anchors if x): hits.append((int(m[1])*60+int(m[2]),int(m[3])*60+int(m[4]),m[5]))
+  if m and any(anchor_match(x,m[5]) for x in anchors): hits.append((int(m[1])*60+int(m[2]),int(m[3])*60+int(m[4]),m[5]))
  return hits
 def frame_at(video:Path,out:Path,t:float)->bool:
  r=subprocess.run(["ffmpeg","-y","-ss",str(t),"-i",str(video),"-frames:v","1","-vf","scale=640:-1","-q:v","3",str(out)],check=False,capture_output=True)
@@ -40,7 +45,7 @@ def main():
   windows=[{"start":s,"end":e,"evidence":"asr","text":t} for s,e,t in transcript_hits(transcript,unit.get("spokenAnchors",[]))]
   if not windows:
    for row in ocr:
-    if any(x.lower() in row["text"].lower() for x in unit.get("visualAnchors",[]) if x): windows.append({"start":row["pts"],"end":min(total,row["pts"]+a.interval),"evidence":"ocr","text":row["text"]})
+    if any(anchor_match(x,row["text"]) for x in unit.get("visualAnchors",[])): windows.append({"start":row["pts"],"end":min(total,row["pts"]+a.interval),"evidence":"ocr","text":row["text"]})
   localization_status="localized" if windows else "unresolved"
   # Scene cuts and coarse PTS frames are visual-search material, not semantic matches.
   visual_search=[] if windows else ([{"pts":x["pts"],"evidence":"scene_cut"} for x in scene_cuts] or [{"pts":x["pts"],"evidence":"locator_pts"} for x in coarse])

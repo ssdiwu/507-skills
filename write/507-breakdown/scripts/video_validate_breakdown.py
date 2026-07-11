@@ -63,9 +63,12 @@ def main()->int:
  for step in required:
   if m.data.get("steps",{}).get(step,{}).get("status")!="success": fail(f"前置阶段未成功：{step}")
  locations=ws/ANALYSIS_DIR/"video_locations.json"
- if locations.exists():
-  unresolved=[u.get("id") for u in json.loads(locations.read_text(encoding="utf-8")).get("semanticUnits",[]) if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("spokenAnchors") or u.get("reference",{}).get("visualAnchors"))]
-  if unresolved: fail(f"未核验的语义锚点：{unresolved}")
+ if not locations.exists(): fail("缺少定位结果：video_locations.json")
+ units=json.loads(locations.read_text(encoding="utf-8")).get("semanticUnits",[])
+ invalid=[u.get("id") for u in units if u.get("localizationStatus") not in {"localized","unresolved"}]
+ unresolved=[u.get("id") for u in units if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("spokenAnchors") or u.get("reference",{}).get("visualAnchors"))]
+ if invalid: fail(f"非法定位状态：{invalid}")
+ if unresolved: fail(f"未核验的语义锚点：{unresolved}")
  for name in [VIDEO_META,VIDEO_TRANSCRIPT,VIDEO_BREAKDOWN_MD,VIDEO_BREAKDOWN_JSON]:
   path = ws / name
   if not path.exists(): fail(f"缺少最终产物：{name}")
