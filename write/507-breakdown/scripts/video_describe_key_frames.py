@@ -21,6 +21,12 @@ def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->dict:
     except json.JSONDecodeError as exc: raise RuntimeError("图片理解未返回 JSON") from exc
     if not isinstance(result.get("description"),str) or not isinstance(result.get("anchorChecks"),list) or any(not isinstance(x,dict) or not isinstance(x.get("anchor"),str) or not x["anchor"].strip() or not isinstance(x.get("visible"),bool) or not isinstance(x.get("evidence"),str) or not x["evidence"].strip() for x in result["anchorChecks"]) or {x["anchor"] for x in result["anchorChecks"]} != set(anchors) or len(result["anchorChecks"]) != len(set(anchors)): raise RuntimeError("图片理解 JSON 字段非法")
     return result
+def valid_anchor_checks(checks, anchors:list[str])->bool:
+    if not isinstance(checks,list) or len(checks)!=len(anchors): return False
+    by={x.get("anchor"):x for x in checks if isinstance(x,dict)}
+    if set(by)!=set(anchors): return False
+    return all(x.get("visible") is True and isinstance(x.get("evidence"),str) and x["evidence"].strip() and not re.search(r"\b(?:not|no|cannot|can't|nowhere|invisible|hidden|fake|absent)\b|未|没有|并未|不可见",x["evidence"],re.I) for x in by.values())
+
 def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
     duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
     path=ws/ANALYSIS_DIR/"video_locations.json"
@@ -30,7 +36,7 @@ def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
         unit=by_id.get(item.get("semanticUnit"))
         anchors=(unit or {}).get("reference",{}).get("visualAnchors",[])
         checks={x.get("anchor"):x for x in item.get("anchorChecks",[]) if isinstance(x,dict)}
-        if unit and anchors and all(checks.get(a,{}).get("visible") is True and not re.search(r"\b(?:not|no|hidden|invisible|fake|absent)\b|未|没有|不可见",checks.get(a,{}).get("evidence",""),re.I) for a in anchors):
+        if unit and anchors and valid_anchor_checks(item.get("anchorChecks"),anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
             unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":min(duration,t+0.5),"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")
