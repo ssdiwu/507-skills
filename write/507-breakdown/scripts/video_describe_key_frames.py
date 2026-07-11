@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bounded MiniMax image understanding for already-localized adaptive frames."""
 from __future__ import annotations
-import argparse,base64,json,mimetypes,os,re
+import argparse,base64,json,mimetypes,os,re,subprocess
 from pathlib import Path
 from urllib.request import Request,urlopen
 from video_contract import ANALYSIS_DIR, STATUS_VISUALLY_VERIFIED, VideoManifest, ensure_dir
@@ -17,7 +17,8 @@ def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->str:
         detail=exc.read().decode("utf-8",errors="replace")[:500] if hasattr(exc,"read") else ""
         raise RuntimeError(f"图片理解请求失败：{exc} {detail}") from exc
     return "\n".join(x.get("text","") for x in data.get("content",[]) if x.get("type")=="text").strip()
-def apply_visual_matches(ws:Path, items:list[dict])->None:
+def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
+    duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
     path=ws/ANALYSIS_DIR/"video_locations.json"
     data=json.loads(path.read_text(encoding="utf-8"))
     by_id={u.get("id"):u for u in data.get("semanticUnits",[])}
@@ -26,7 +27,7 @@ def apply_visual_matches(ws:Path, items:list[dict])->None:
         anchors=(unit or {}).get("reference",{}).get("visualAnchors",[])
         if unit and any(anchor_match(a,item["description"]) for a in anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
-            unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":t+0.5,"evidence":"image_visual_anchor","text":item["description"]})
+            unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":min(duration,t+0.5),"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")
 
 def main()->int:
@@ -48,7 +49,7 @@ def main()->int:
     if not items:
         manifest.step("video_key_frame_images","failed","没有可供图片理解的自适应关键帧")
         raise SystemExit("没有可供图片理解的自适应关键帧")
-    apply_visual_matches(ws,items)
+    apply_visual_matches(ws,items,Path(manifest.data["videoPath"]))
     locations=json.loads((ws/ANALYSIS_DIR/"video_locations.json").read_text(encoding="utf-8"))
     unresolved=[u.get("id") for u in locations.get("semanticUnits",[]) if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("visualAnchors") or u.get("reference",{}).get("spokenAnchors"))]
     if unresolved:
