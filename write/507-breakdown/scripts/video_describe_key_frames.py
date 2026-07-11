@@ -8,8 +8,8 @@ from video_contract import ANALYSIS_DIR, STATUS_VISUALLY_VERIFIED, VideoManifest
 from video_locate_segments import anchor_match
 
 PROMPT="Describe only observable UI, subtitles, state changes, and text in this frame. Do not invent time or actions outside this image."
-def describe(base:str,key:str,model:str,path:Path)->str:
-    payload={"model":model,"max_tokens":1200,"messages":[{"role":"user","content":[{"type":"text","text":PROMPT},{"type":"image","source":{"type":"base64","media_type":mimetypes.guess_type(path.name)[0] or "image/jpeg","data":base64.b64encode(path.read_bytes()).decode()}}]}]}
+def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->str:
+    payload={"model":model,"max_tokens":1200,"messages":[{"role":"user","content":[{"type":"text","text":PROMPT+"\nTarget visual anchors: "+", ".join(anchors)+". State explicitly whether each is visible."},{"type":"image","source":{"type":"base64","media_type":mimetypes.guess_type(path.name)[0] or "image/jpeg","data":base64.b64encode(path.read_bytes()).decode()}}]}]}
     req=Request(base.rstrip("/")+"/anthropic/v1/messages",data=json.dumps(payload).encode(),headers={"Authorization":f"Bearer {key}","Content-Type":"application/json","anthropic-version":"2023-06-01"},method="POST")
     try:
         with urlopen(req,timeout=120) as r: data=json.loads(r.read().decode())
@@ -33,13 +33,13 @@ def main()->int:
     p=argparse.ArgumentParser(description="关键帧图片理解");p.add_argument("--workspace",required=True);p.add_argument("--model",default=os.getenv("MINIMAX_IMAGE_MODEL",os.getenv("MINIMAX_VIDEO_MODEL","MiniMax-M3")));p.add_argument("--max-frames",type=int,default=120);p.add_argument("--base-url",default=os.getenv("MINIMAX_API_BASE_URL","https://api.minimaxi.com"));a=p.parse_args()
     key=os.getenv("MiniMax_API_KEY");
     if not key: raise SystemExit("MiniMax_API_KEY 未导出")
-    ws=Path(a.workspace).expanduser().resolve();manifest=VideoManifest.load(ws);adaptive=json.loads((ws/ANALYSIS_DIR/"video_adaptive_frames.json").read_text(encoding="utf-8"));items=[]
+    ws=Path(a.workspace).expanduser().resolve();manifest=VideoManifest.load(ws); locations=json.loads((ws/ANALYSIS_DIR/"video_locations.json").read_text(encoding="utf-8")); anchors_by_id={u.get("id"):u.get("reference",{}).get("visualAnchors",[]) for u in locations.get("semanticUnits",[])};adaptive=json.loads((ws/ANALYSIS_DIR/"video_adaptive_frames.json").read_text(encoding="utf-8"));items=[]
     for window in adaptive.get("windows",[]):
         for frame in window.get("frames",[]):
             if len(items)>=a.max_frames:break
             path=(ws/frame["frame"]).resolve()
             if not path.is_relative_to(ws.resolve()): raise SystemExit("自适应帧路径越出工作区")
-            description = describe(a.base_url,key,a.model,path)
+            description = describe(a.base_url,key,a.model,path,anchors_by_id.get(window.get("semanticUnit"),[]))
             if not description:
                 manifest.step("video_key_frame_images","failed",f"图片理解返回空描述：{frame['frame']}")
                 raise SystemExit(f"图片理解返回空描述：{frame['frame']}")

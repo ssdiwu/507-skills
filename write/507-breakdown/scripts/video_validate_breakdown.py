@@ -65,7 +65,8 @@ def main()->int:
  locations=ws/ANALYSIS_DIR/"video_locations.json"
  if not locations.exists(): fail("缺少定位结果：video_locations.json")
  units=json.loads(locations.read_text(encoding="utf-8")).get("semanticUnits",[])
- invalid=[u.get("id") for u in units if u.get("localizationStatus") not in {"localized","unresolved"}]
+ if not units: fail("定位结果缺少语义单元")
+ invalid=[u.get("id") for u in units if u.get("localizationStatus") not in {"localized","unresolved"} or (u.get("localizationStatus")=="localized" and not u.get("candidateWindows"))]
  unresolved=[u.get("id") for u in units if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("spokenAnchors") or u.get("reference",{}).get("visualAnchors"))]
  if invalid: fail(f"非法定位状态：{invalid}")
  if unresolved: fail(f"未核验的语义锚点：{unresolved}")
