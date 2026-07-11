@@ -55,12 +55,16 @@ def extract_bullets(section: str) -> list[str]:
 
 
 def collect_source_package(pull_dir: Path) -> dict:
-    breakdown_json_path = pull_dir / "breakdown.json"
-    breakdown_md_path = pull_dir / "breakdown.md"
-    meta_path = pull_dir / "meta.md"
-    for path in [breakdown_json_path, breakdown_md_path, meta_path]:
+    manifest_path = pull_dir / "raw" / "video_manifest.json"
+    breakdown_json_path = pull_dir / "video_breakdown.json"
+    breakdown_md_path = pull_dir / "video_breakdown.md"
+    meta_path = pull_dir / "video_meta.md"
+    for path in [manifest_path, breakdown_json_path, breakdown_md_path, meta_path]:
         if not path.exists():
-            raise SystemExit(f"缺少必要拉片包文件：{path}")
+            raise SystemExit(f"缺少必要的新拉片包文件：{path}")
+    manifest = load_json(manifest_path)
+    if manifest.get("status") != "video_completed":
+        raise SystemExit(f"拉片包未完成，不能进入 remix：{pull_dir}（status={manifest.get('status')!r}）")
 
     breakdown = load_json(breakdown_json_path)
     breakdown_md = load_text(breakdown_md_path)
@@ -73,6 +77,7 @@ def collect_source_package(pull_dir: Path) -> dict:
 
     return {
         "path": str(pull_dir),
+        "analysisMode": manifest.get("analysisMode"),
         "title": title,
         "videoType": breakdown.get("videoType", "mixed"),
         "oneLineThesis": breakdown.get("oneLineThesis", ""),
@@ -314,7 +319,7 @@ def write_project_readme(path: Path, project_name: str, theme: str, platform: st
     locked_lines = [f"- `{t}`" for t in locked] or ["- （无）"]
     content = f"""# Remake 创作包说明
 
-本目录是 `507-video-remake` 的一次重组创作包产出。
+本目录是 `507-remix` 的一次重组创作包产出。
 
 ## 创作目标
 
@@ -347,7 +352,7 @@ def write_project_readme(path: Path, project_name: str, theme: str, platform: st
 
 ## 标签术语速查
 
-本创作包中的英文标签对应中文含义（完整版见 `507-video-pull/references/tag-vocabulary.md`）：
+本创作包中的英文标签对应中文含义（完整版见 `507-breakdown/references/tag-vocabulary.md`）：
 
 **叙事与结构（借什么）**
 - `hook-result-first`：结果先行开场。
@@ -372,7 +377,7 @@ def write_project_readme(path: Path, project_name: str, theme: str, platform: st
 
 ## 下一步
 
-- 需要调整创作方向：重跑 `video_remake.py run` 并传新的主题/平台/时长/风格或 include/exclude 参数。
+- 需要调整创作方向：重跑 `video_remake.py run` 并传新的主题/平台/时长/风格或 include/exclude 参数。创作包归宿为 `03-作品/{{选题}}/视频/`。
 - 需要重新合并不同拉片包：多 `--pull-dir` 重新运行。
 - 需要进后续执行层（如生图、生视频）：把 `prompt-pack.json` 喂给对应工具，注意其是工具无关的。
 """
@@ -433,7 +438,7 @@ def main():
     subparsers = parser.add_subparsers(dest="command")
 
     run_parser = subparsers.add_parser("run", help="读取多个拉片包并生成创作包")
-    run_parser.add_argument("--pull-dir", required=True, action="append", help="一个 `507-video-pull` 工作区")
+    run_parser.add_argument("--pull-dir", required=True, action="append", help="一个 `507-breakdown` 的 video_completed 工作区")
     run_parser.add_argument("--project-name", required=True)
     run_parser.add_argument("--theme", required=True)
     run_parser.add_argument("--platform", required=True)
@@ -441,7 +446,7 @@ def main():
     run_parser.add_argument("--style", required=True)
     run_parser.add_argument("--include-pattern", action="append")
     run_parser.add_argument("--exclude-pattern", action="append")
-    run_parser.add_argument("--output-dir", required=True, help="输出根目录，应指向作品主轴 works/{选题}/视频/")
+    run_parser.add_argument("--output-dir", required=True, help="输出根目录，应指向作品主轴 03-作品/{选题}/视频/")
     run_parser.add_argument("--force", action="store_true")
 
     args = parser.parse_args()

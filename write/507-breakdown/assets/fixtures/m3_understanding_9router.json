@@ -1,0 +1,175 @@
+{
+  "videoThesis": "A tutorial introducing an open-source project called 9Router (formerly Nightrider) that acts as a free AI router/proxy for various AI coding CLIs, explaining its working principles, quick start installation steps, and demonstrating its web dashboard configuration features including endpoints, providers, combinations, and usage analytics.",
+  "videoTypeHint": "tutorial",
+  "semanticUnits": [
+    {
+      "id": "intro",
+      "meaning": "Introduction of the project name 9Router (formerly Nightrider) as an open-source AI router.",
+      "spokenAnchors": [
+        "3 2 1 Hello各位小伙伴大家好 我是507",
+        "今天给大家带来一款开源项目的分享",
+        "它的名字叫做Nightruder 它具体是怎么用的呢"
+      ],
+      "visualAnchors": [
+        "GitHub README page with a red devil/demon logo",
+        "Title '9Router - 免费 AI 路由群' (Free AI Router Group)",
+        "Section '为什么选择 9Router?' (Why choose 9Router?)"
+      ],
+      "referencePosition": "beginning",
+      "referenceTimeHint": "start",
+      "status": "unlocalized"
+    },
+    {
+      "id": "working_principle",
+      "meaning": "Explanation of the working principle: routing requests from local CLI tools to various AI providers through a local port.",
+      "spokenAnchors": [
+        "我们可以看到它的一个工作原理 我们的一个CLI",
+        "无论是Gothicodex还是Gemini",
+        "又或者是等等其他的 通过了这款软件之后",
+        "后端是可以把我们把不同的一个CodingPack整合在一起"
+      ],
+      "visualAnchors": [
+        "Section header '工作原理' (Working Principle)",
+        "Flowchart showing 'Your CLI Tool' connecting to 'http://localhost:20128' and then to '9Router (Smart Router)'",
+        "List of supported CLIs: Claude Code, Codex, Gemini CLI, Cursor, Cline, etc."
+      ],
+      "referencePosition": "early",
+      "referenceTimeHint": "early",
+      "status": "unlocalized"
+    },
+    {
+      "id": "quick_start",
+      "meaning": "Demonstration of the quick start installation steps, including global installation and launching the dashboard.",
+      "spokenAnchors": [
+        "那事不宜迟 我们现在赶紧开始吧",
+        "首先第一个 我们是先进行一个全局安装",
+        "只要输入这两行命令之后",
+        "我们的一个仪表盘就可以通过这个地址进行一个打开"
+      ],
+      "visualAnchors": [
+        "Section header '快速开始' (Quick Start)",
+        "Step 1: Global installation command 'npm install -g 9router'",
+        "Step 2: Run command '9router'",
+        "Section '仪表盘地址' (Dashboard address) showing local host URL"
+      ],
+      "referencePosition": "early",
+      "referenceTimeHint": "early",
+      "status": "unlocalized"
+    },
+    {
+      "id": "dashboard_overview",
+      "meaning": "Overview of the web dashboard interface and its four main navigation sections.",
+      "spokenAnchors": [
+        "那我们来到了这个仪表盘之后",
+        "我们看到这里有四个功能 我们是需要去注意的",
+        "分别是端点 供应商 组合和使用情况",
+        "首先先从端点开始 我们可以看到"
+      ],
+      "visualAnchors": [
+        "9Router proxy web interface",
+        "Left sidebar menu items: '端点' (Endpoints), '供应商' (Providers), '组合' (Combinations), '使用情况' (Usage)"
+      ],
+      "referencePosition": "middle",
+      "referenceTimeHint": "middle",
+      "status": "unlocalized"
+    },
+    {
+      "id": "endpoints_config",
+      "meaning": "Configuration of API endpoints and creation of an API key in the dashboard.",
+      "spokenAnchors": [
+        "这里是API的一个请求的一个地址",
+        "然后我们这里还需要设置一个API密钥",
+        "只要点击创建密钥 随便输入一个数字",
+        "点击创建 然后这里直接复制 点击完毕",
+        "然后我们就可以去到我们的C-Switch",
+        "又或者是我们的一个配置文件里面"
+      ],
+      "visualAnchors": [
+        "Endpoints page showing Local, Tunnel, and Tailscale configuration options",
+        "Create API key dialog box",
+        "API 密钥 (API Key) section showing a generated key '507'"
+      ],
+      "referencePosition": "middle",
+      "referenceTimeHint": "middle",
+      "status": "unlocalized"
+    },
+    {
+      "id": "providers_config",
+      "meaning": "Exploration of the AI providers section, showing a wide list of supported domestic and international AI models.",
+      "spokenAnchors": [
+        "进行一个配置 第二个则是我们的供应商",
+        "然后我们可以直接往下面拉",
+        "这边可以看到我们很多国产模型的一个",
+        "CodingPan 这里都可以使用我这里配置的制谱",
+        "MiniMax和OpenCloud的一个套餐"
+      ],
+      "visualAnchors": [
+        "Providers page displaying a grid of provider logos and names",
+        "Categories for 'OAuth 供应商' and 'API 密钥供应商'",
+        "Visible provider names including ZHIPU GLM, Qwen, Doubao, Claude, OpenAI, Gemini, etc."
+      ],
+      "referencePosition": "middle",
+      "referenceTimeHint": "middle",
+      "status": "unlocalized"
+    },
+    {
+      "id": "combinations_config",
+      "meaning": "Demonstration of creating a 'combination' by assigning different specific models to different CLIs.",
+      "spokenAnchors": [
+        "第三个则是我们的一个组合",
+        "那这里为了方便 我把MiniMax配置到Hyku",
+        "然后把Sony配置了我的一个制谱的模型",
+        "然后Obs配置了最近比较火的一个DeepSipVspo的一个模型",
+        "然后第四个是我们的一个请求情况"
+      ],
+      "visualAnchors": [
+        "Combinations page with a list of CLIs (cursor-cli, hkiku, ciku, obs)",
+        "Toggles to enable/disable combinations for specific CLIs"
+      ],
+      "referencePosition": "late",
+      "referenceTimeHint": "late",
+      "status": "unlocalized"
+    },
+    {
+      "id": "usage_analytics",
+      "meaning": "Reviewing the Usage & Analytics page to monitor request statistics, costs, and recent request logs across different models.",
+      "spokenAnchors": [
+        "我们可以看到在这里",
+        "它可以看到我们最近链接哪一些不同的一个请求",
+        "那像这里就刚刚我用Sony发了一个GRM的一个请求",
+        "后面又用Obs发了一个DeepSip的一个请求"
+      ],
+      "visualAnchors": [
+        "Usage & Analytics page with numerical statistics for requests, quota, and cost",
+        "Line/bar chart visualizing usage data",
+        "Recent request log panel showing model names, status (Success/Error), and timestamps"
+      ],
+      "referencePosition": "late",
+      "referenceTimeHint": "late",
+      "status": "unlocalized"
+    },
+    {
+      "id": "outro",
+      "meaning": "Concluding remarks recommending the project for users with different coding plans to maximize utilization, followed by a sign-off.",
+      "spokenAnchors": [
+        "如果说你跟我一样手上有不同的一个CodingPan的话",
+        "议你使用一下这个项目来最大化利用你不同的一个Coding",
+        "那本次分享到这里结束 欢迎下次过来观看",
+        "谢谢 拜拜"
+      ],
+      "visualAnchors": [
+        "Return to the initial GitHub README page showing the 9Router project details"
+      ],
+      "referencePosition": "end",
+      "referenceTimeHint": "end",
+      "status": "unlocalized"
+    }
+  ],
+  "provenance": {
+    "model": "MiniMax-M3",
+    "fps": 1.0,
+    "promptVersion": "video_understanding_v1",
+    "videoHash": "cb8dc32c366af7d56258750828f910aaad67e6310b856893bb873a378a0d1195",
+    "source": "real-minimax-m3-smoke-test-2026-07-10"
+  }
+}

@@ -1,26 +1,14 @@
-# 507 Video Remake 借鉴重组方法
+# 视频重组方法
 
-## 目标
+`507-remix` 只消费 `507-breakdown` 已完成的新拉片包：
 
-`507-video-remake` 不做直接复刻，而是做**借鉴后原创**。
+```text
+raw/video_manifest.json  # status=video_completed
+video_meta.md
+video_breakdown.md
+video_breakdown.json
+```
 
-它的职责是：
-- 读取一个或多个 `507-video-pull` 拉片包
-- 自动抽取可借鉴手法
-- 识别冲突与不适合混合的部分
-- 重组为一个新的原创创作包
+从 `video_breakdown.json` 读取稳定的结构与标签，从 `video_breakdown.md` 读取人读理由和不建议借鉴项。旧包不兼容。
 
-## 核心产物
-
-- `brief.md`：这支新视频想讲什么
-- `borrow-map.md`：借了谁的什么，不借什么
-- `structure.md`：信息节拍与结构安排
-- `storyboard.md`：分镜/镜头脚本
-- `style-lock.md`：字幕 / UI / 镜头 / 节奏 / 色彩等风格锁定
-- `prompt-pack.json`：完全工具无关的结构化创作蓝图
-
-## 原则
-
-- 默认全量读取所有输入拉片包，再自动挑借用项
-- 人读版给 507 看，机器版给后续执行器消费
-- 不写任何模型专用 prompt，不绑定任何执行工具
+创作包输出到 `03-作品/{选题}/视频/{project_name}/`，不绑定具体生成工具。

@@ -1,15 +1,15 @@
 # 507 Video Pull 标签词表
 
-`breakdown.json` 里的标签使用**封闭词表**。
+`video_breakdown.json` 里的标签使用**封闭词表**。
 
 规则：
 - `JSON` 只能使用这里定义过的标签（机器消费）。
-- 新观察先写进 `breakdown.md`，不要直接发明新标签写进 `JSON`。
+- 新观察先写进 `video_breakdown.md`，不要直接发明新标签写进 `JSON`。
 - 当某类观察稳定重复出现，再把它提升成正式标签。
 
 ## 分组与字段对应
 
-词表分组与 `assets/breakdown.schema.json` 的字段严格对齐，`validate_breakdown.py` 会强制归属：
+词表分组与 `assets/breakdown.schema.json` 的字段严格对齐，`video_validate_breakdown.py` 会强制归属：
 
 | 词表分组 | 写入位置 |
 |---|---|

@@ -1,0 +1,29 @@
+{
+  "videoThesis": "The video opens in complete darkness with no visible content, audio, motion, or discernible features, suggesting either a fade-in from black, an intro sequence, or a pre-roll state before the primary content begins.",
+  "videoTypeHint": "other",
+  "semanticUnits": [
+    {
+      "id": "unit_dark_intro",
+      "meaning": "The video begins with a completely black screen containing no visible subjects, text, graphics, motion, or light. No audio cues are present, indicating a pre-content or fade-in state awaiting the start of the main video material.",
+      "spokenAnchors": [],
+      "visualAnchors": [
+        "solid black frame",
+        "no visible subjects",
+        "no visible text",
+        "no visible graphics",
+        "no visible motion",
+        "no visible light sources",
+        "completely dark screen",
+        "uniform black pixels"
+      ],
+      "referencePosition": "screen-wide",
+      "referenceTimeHint": "start of video",
+      "status": "unlocalized"
+    }
+  ],
+  "provenance": {
+    "model": "MiniMax-M3",
+    "fps": 1,
+    "source": "real-minimax-m3-smoke-test-2026-07-10"
+  }
+}

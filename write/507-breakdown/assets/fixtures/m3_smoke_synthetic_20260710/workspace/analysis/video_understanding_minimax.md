@@ -1,0 +1,35 @@
+# MiniMax 视频理解
+
+> 未验证的语义参考，不是时间事实。
+
+```json
+{
+  "videoThesis": "The provided sequence consists entirely of a black screen, conveying no discernable visual or semantic information.",
+  "videoTypeHint": "black-frame / placeholder / missing-content",
+  "semanticUnits": [
+    {
+      "id": "unit_001",
+      "meaning": "Complete absence of visual content; a uniform black frame with no objects, text, people, or motion detectable.",
+      "spokenAnchors": [],
+      "visualAnchors": [
+        "solid black frame",
+        "no motion",
+        "no visible text",
+        "no visible objects",
+        "no people present",
+        "no scene change"
+      ],
+      "referencePosition": "unknown",
+      "referenceTimeHint": "unknown",
+      "status": "unlocalized"
+    }
+  ],
+  "provenance": {
+    "model": "MiniMax-M3",
+    "fps": 1.0,
+    "thinking": false,
+    "promptVersion": "video_understanding_v1",
+    "videoHash": "dac80a0d86655c36900acb86b181700f00610b21f13f3ac72ddbcec5f84d9aa9"
+  }
+}
+```
