@@ -19,7 +19,7 @@ def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->dict:
     text="\n".join(x.get("text","") for x in data.get("content",[]) if x.get("type")=="text").strip()
     try: result=json.loads(text)
     except json.JSONDecodeError as exc: raise RuntimeError("图片理解未返回 JSON") from exc
-    if not isinstance(result.get("description"),str) or not isinstance(result.get("anchorChecks"),list) or any(not isinstance(x,dict) or not isinstance(x.get("anchor"),str) or not isinstance(x.get("visible"),bool) or not isinstance(x.get("evidence"),str) or not x["evidence"].strip() for x in result["anchorChecks"]): raise RuntimeError("图片理解 JSON 字段非法")
+    if not isinstance(result.get("description"),str) or not isinstance(result.get("anchorChecks"),list) or any(not isinstance(x,dict) or not isinstance(x.get("anchor"),str) or not x["anchor"].strip() or not isinstance(x.get("visible"),bool) or not isinstance(x.get("evidence"),str) or not x["evidence"].strip() for x in result["anchorChecks"]) or {x["anchor"] for x in result["anchorChecks"]} != set(anchors) or len(result["anchorChecks"]) != len(set(anchors)): raise RuntimeError("图片理解 JSON 字段非法")
     return result
 def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
     duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
@@ -30,7 +30,7 @@ def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
         unit=by_id.get(item.get("semanticUnit"))
         anchors=(unit or {}).get("reference",{}).get("visualAnchors",[])
         checks={x.get("anchor"):x for x in item.get("anchorChecks",[]) if isinstance(x,dict)}
-        if unit and any(checks.get(a,{}).get("visible") is True for a in anchors):
+        if unit and anchors and all(checks.get(a,{}).get("visible") is True and not re.search(r"\b(?:not|no|hidden|invisible|fake|absent)\b|未|没有|不可见",checks.get(a,{}).get("evidence",""),re.I) for a in anchors):
             t=item["pts"]; unit["localizationStatus"]="localized"
             unit.setdefault("candidateWindows",[]).append({"start":max(0,t-0.5),"end":min(duration,t+0.5),"evidence":"image_visual_anchor","text":item["description"]})
     path.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding="utf-8")
@@ -38,6 +38,7 @@ def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
 def main()->int:
     p=argparse.ArgumentParser(description="关键帧图片理解");p.add_argument("--workspace",required=True);p.add_argument("--model",default=os.getenv("MINIMAX_IMAGE_MODEL",os.getenv("MINIMAX_VIDEO_MODEL","MiniMax-M3")));p.add_argument("--max-frames",type=int,default=120);p.add_argument("--base-url",default=os.getenv("MINIMAX_API_BASE_URL","https://api.minimaxi.com"));a=p.parse_args()
     key=os.getenv("MiniMax_API_KEY");
+    if not a.base_url.startswith("https://"): raise SystemExit("图片理解 base-url 必须为 HTTPS")
     if not key: raise SystemExit("MiniMax_API_KEY 未导出")
     ws=Path(a.workspace).expanduser().resolve();manifest=VideoManifest.load(ws); locations=json.loads((ws/ANALYSIS_DIR/"video_locations.json").read_text(encoding="utf-8")); anchors_by_id={u.get("id"):u.get("reference",{}).get("visualAnchors",[]) for u in locations.get("semanticUnits",[])};adaptive=json.loads((ws/ANALYSIS_DIR/"video_adaptive_frames.json").read_text(encoding="utf-8"));items=[]
     for window in adaptive.get("windows",[]):
