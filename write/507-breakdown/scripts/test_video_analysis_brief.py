@@ -13,7 +13,7 @@ def workspace(ok:bool):
   frame=ws/"raw"/"frame.jpg";frame.write_bytes(b"fixture")
   observations=[{"semanticUnit":"u","pts":1,"frame":"raw/frame.jpg","description":"verified frame"}]
  else: observations=[]
- for name,data in [("video_locations.json",{"semanticUnits":[]}),("video_frame_observations.json",{"observations":observations}),("video_adaptive_frames.json",{"windows":[{"semanticUnit":"u","frames":[{"pts":1,"frame":"raw/frame.jpg"}]}] if ok else []})]:(ws/"analysis"/name).write_text(json.dumps(data))
+ for name,data in [("video_locations.json",{"semanticUnits":[{"id":"u"}]}),("video_frame_observations.json",{"observations":observations}),("video_adaptive_frames.json",{"windows":[{"semanticUnit":"u","frames":[{"pts":1,"frame":"raw/frame.jpg"}]}] if ok else []})]:(ws/"analysis"/name).write_text(json.dumps(data))
  (ws/"raw"/"video_asr"/"video_transcript.txt").write_text("[00:00-00:01] test")
  if ok:m.step("video_key_frame_images","success","verified")
  return ws
