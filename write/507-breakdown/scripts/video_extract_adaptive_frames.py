@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Extract bounded, PTS-labelled frames only for localized candidate windows."""
 from __future__ import annotations
-import argparse,json,subprocess
+import argparse,json,re,subprocess
 from pathlib import Path
 from video_contract import ANALYSIS_DIR, RAW_ADAPTIVE_DIR, VideoManifest, ensure_dir
 
@@ -31,7 +31,10 @@ def main()->int:
         for window in windows:
             key=(unit.get("id"),round(window["start"],3),round(window["end"],3))
             if key in seen: continue
-            seen.add(key); name=f"video_window_{str(key[0])}_{int(key[1]*1000):010d}_{int(key[2]*1000):010d}"; target=out_dir/name;ensure_dir(target)
+            seen.add(key)
+            safe_id=re.sub(r"[^a-zA-Z0-9_-]","_",str(key[0]))
+            if not safe_id or safe_id != str(key[0]): raise SystemExit("语义单元 ID 非法，拒绝创建帧目录")
+            name=f"video_window_{safe_id}_{int(key[1]*1000):010d}_{int(key[2]*1000):010d}"; target=out_dir/name;ensure_dir(target)
             strategy = "scene_cut_dense" if window.get("evidence") == "scene_cut" else "evidence_uniform"
             effective_fps = max(a.fps,4) if strategy == "scene_cut_dense" else a.fps
             frames=extract(video,target,key[1],key[2],effective_fps,a.max_frames_per_window)

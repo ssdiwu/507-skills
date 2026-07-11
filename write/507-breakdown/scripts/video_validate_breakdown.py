@@ -66,7 +66,12 @@ def main()->int:
  if not locations.exists(): fail("缺少定位结果：video_locations.json")
  units=json.loads(locations.read_text(encoding="utf-8")).get("semanticUnits",[])
  if not units: fail("定位结果缺少语义单元")
- invalid=[u.get("id") for u in units if u.get("localizationStatus") not in {"localized","unresolved"} or (u.get("localizationStatus")=="localized" and not u.get("candidateWindows"))]
+ understanding=ws/ANALYSIS_DIR/"video_understanding_minimax.json"
+ if understanding.exists() and m.data.get("analysisMode")!="forced_local_fallback":
+  ids=[u.get("id") for u in json.loads(understanding.read_text(encoding="utf-8")).get("semanticUnits",[])]
+  if not ids or len(ids)!=len(set(ids)) or {u.get("id") for u in units}!=set(ids): fail("定位语义单元与 M3 输出不一致")
+ def valid_window(w): return isinstance(w,dict) and isinstance(w.get("start"),(int,float)) and isinstance(w.get("end"),(int,float)) and w["end"]>w["start"] and isinstance(w.get("evidence"),str) and w["evidence"] in {"asr","ocr","image_visual_anchor"}
+ invalid=[u.get("id") for u in units if u.get("localizationStatus") not in {"localized","unresolved"} or (u.get("localizationStatus")=="localized" and (not u.get("candidateWindows") or not all(valid_window(w) for w in u["candidateWindows"])))]
  unresolved=[u.get("id") for u in units if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("spokenAnchors") or u.get("reference",{}).get("visualAnchors"))]
  if invalid: fail(f"非法定位状态：{invalid}")
  if unresolved: fail(f"未核验的语义锚点：{unresolved}")
