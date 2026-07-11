@@ -32,6 +32,7 @@ STATUS_VISUALLY_VERIFIED = "video_visually_verified"
 STATUS_ANALYSIS_READY = "video_analysis_ready"
 STATUS_COMPLETED = "video_completed"
 STATUS_SEMANTIC_FAILED = "video_semantic_failed"
+STATUS_FAILED = "video_failed"
 
 
 def ensure_dir(path: Path) -> None:

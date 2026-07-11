@@ -3,7 +3,7 @@
 from __future__ import annotations
 import argparse,json,shutil,subprocess,sys
 from pathlib import Path
-from video_contract import (RAW_ASR_DIR,RAW_SCENECUT_DIR,RAW_VIDEO_DIR,STATUS_ACQUIRED,STATUS_ANALYSIS_READY,STATUS_SEMANTIC_FAILED,VideoManifest,ensure_dir,video_hash)
+from video_contract import (RAW_ASR_DIR,RAW_SCENECUT_DIR,RAW_VIDEO_DIR,STATUS_ACQUIRED,STATUS_FAILED,STATUS_SEMANTIC_FAILED,VideoManifest,ensure_dir,video_hash)
 
 def slugify(value:str)->str:
  import re
@@ -69,7 +69,7 @@ def main()->int:
   call("video_locate_segments.py",ws);call("video_extract_adaptive_frames.py",ws);call("video_describe_key_frames.py",ws);call("video_prepare_analysis.py",ws)
   print(ws)
  except Exception as exc:
-  if m.data.get("status")!=STATUS_SEMANTIC_FAILED:m.set_status("failed")
+  if m.data.get("status")!=STATUS_SEMANTIC_FAILED:m.set_status(STATUS_FAILED)
   m.note(str(exc));raise
  return 0
 if __name__=="__main__":raise SystemExit(main())

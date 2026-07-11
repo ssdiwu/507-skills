@@ -27,3 +27,5 @@ python3 scripts/video_validate_breakdown.py --workspace 05-视频拉片/<video-i
 ```
 
 MiniMax-M3 为默认必经步骤，使用 `MiniMax_API_KEY` 环境变量。显式 `--force-local-fallback` 只跳过 M3 **整段视频理解**，但图片理解仍需 `MiniMax_API_KEY`；未导出密钥时无法完成拉片。
+
+设计与真实 smoke evidence 见 [`doc/README.md`](doc/README.md)。
