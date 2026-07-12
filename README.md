@@ -1,104 +1,82 @@
 # 507 Skills
 
-一套围绕 507 个人工作法设计的 agent skill 系列。按**两条工作流 + 通用层**组织。
+一套把个人工作法拆成**可独立触发、可组合、以明确产物衔接**的 Agent Skills（智能体技能）。它不是 prompt（提示词）大杂烩：每个 skill 都说明什么时候用、解决什么、产出什么，以及明确不做什么。
 
-核心目标不是"多功能"，而是把 507 已经稳定有效的工作方式做成可复用入口。
+> 这是 507 正在使用的工作流公开版。它以 [Pi](https://github.com/badlogic/pi-mono) 的 skill（技能）发现机制为主要使用环境；内容本身也可作为其他 Agent（智能体）平台的工作流参考。
 
-## 目录结构
+## 适合谁
 
-```
-507/
-├── write/    写作工作流（素材 → 碎片 → 选题 → 成品）
-├── code/     代码工作流（对齐 → 方案 → 实现 → 体检）
-├── common/   通用 skill（两条流都用）
-└── README.md 本文件
-```
+- 想把“和 Agent 聊聊”变成可复用工作流的人；
+- 需要区分调研、对齐、规格化、实施、审查等不同动作的人；
+- 想借鉴内容生产或代码项目工作流，但不想一次性引入完整框架的人。
 
-## write/ 写作工作流
+## 两条工作流
 
-写作流的主链是 **mine → fuse → forge**（冶金隐喻：挖矿 → 熔炼 → 锻造），外加平行的沉淀支线 cast、视频支线 breakdown/remix、和成文层的变体 stage/frame。
-
-```
-【入口/挖掘层】→ 产碎片进 vault 01-碎片/
-  mine        吃三种入口（507想法/外部文章/视频拉片内容）
-              先看 vault → 有目的外搜正反例 → 产碎片，边产边落碎片流水线
-  breakdown   你指定视频 → 拉片包（不外搜，拉完给 mine 挖内容）
-
-【融合层】→ 两条平行分支
-  fuse        碎片 → 候选 idea（进 02-创意/候选/）     ← 走向"写出来"
-  cast        碎片簇 → 知识库主题页（进 04-知识库/）   ← 走向"系统化沉淀"
-
-【成文层】→ 基于想法手动分流，产成品进 03-作品/
-  forge       ≥1 idea（+可选碎片/多创意）→ 长文（博客/公众号/专栏）
-  stage       多 idea + 多碎片组合 → 讲稿/PPT/课程稿/企业培训
-  frame       需求（+参考方案）→ 方案/计划/提案
-  remix       拉片包（+碎片/idea 增色）→ 视频创作包
+```text
+写作：素材 → mine 挖碎片 → fuse 融选题 → forge 成文
+代码：grill 对齐 → blueprint 写需求 → workorder 开工单 → 实现 → inspection 体检
 ```
 
-**主链核心动作**：mine 挖碎片 → fuse 融成候选 idea → 507 审 → forge 锻成长文。
+| 目录 | 目的 | 入口 |
+| --- | --- | --- |
+| [`write/`](write/README.md) | 从素材、视频到文章、讲稿、方案与创作包 | `mine`、`fuse`、`forge`、`breakdown`、`remix` 等 |
+| [`code/`](code/README.md) | 从项目对齐到需求、工单、原型和架构体检 | `ground`、`blueprint`、`workorder`、`mockup`、`inspection` |
+| [`common/`](common/README.md) | 不依赖具体场景的对齐、调研与解释动作 | `grill`、`research`、`teach` |
 
-**关键边界**：
-- mine 不产选题（归 fuse）、不写正文（归 forge）
-- fuse 不挖碎片（归 mine）、不写正文（归 forge）
-- cast 和 fuse 平行（都从碎片聚合，fuse→选题，cast→知识库页）
-- 成文层四个（forge/stage/frame/remix）靠 507 基于想法手动分流
+完整的职责边界、输入输出和触发词在各 skill 的 `SKILL.md`（技能说明）中；流程图与总览见各目录的 `README.md`（说明文档）。
 
-## code/ 代码工作流
+## 快速开始（Pi）
 
+> 先 fork（派生）本仓库，便于保留自己的修改；以下路径可按你的环境调整。
+
+```bash
+# 1. 获取仓库
+mkdir -p ~/Workspace/Skills
+cd ~/Workspace/Skills
+git clone https://github.com/<your-account>/507-skills.git
+
+# 2. 让 Pi 发现这些 skills
+mkdir -p ~/.agents/skills
+ln -s ~/Workspace/Skills/507-skills ~/.agents/skills/507-skills
 ```
-grill(对齐) → blueprint(画 PRD 蓝图) → workorder(开 issue 工单) → prototype(验证) → 实现 → inspection(体检)
-                                                              ↑
-                                                        setup(项目初始化/巡检)
-```
 
-| skill | 解决什么 |
-|---|---|
-| `507-ground` | 代码项目初始化/巡检（AGENTS.md、doc/、术语表、决策档案） |
-| `507-blueprint` | 对话/方案 → PRD 需求规格（承接 grill→dgoal 的中间规格化层） |
-| `507-workorder` | 任务 → GitHub issue 工单（正向拆 issue + 反向 bug 转 issue，可被 AI 领取） |
-| `507-inspection` | 代码库架构体检，找"加深机会" |
-| `507-mockup` | 可丢弃原型，正式实现前回答一个具体问题 |
+重开 Pi 会话后，按自然语言触发对应 skill。例如：
 
-## common/ 通用 skill
+- “帮我把这个方案问透” → `507-grill`
+- “把刚才讨论整理成 PRD” → `507-blueprint`
+- “把这些碎片融成一个选题” → `507-fuse`
+- “给这个项目做架构体检” → `507-inspection`
 
-场景无关，两条流都用：
+不必安装全套：可以只复制一个 `SKILL.md`（技能说明）及其引用的 `references/`、`scripts/`、`assets/` 文件到自己的 skill 目录。带脚本的 skill 会在自身说明中列出运行时依赖和环境变量。
 
-| skill | 解决什么 |
-|---|---|
-| `507-grill` | 开工前对齐的决策树追问，把改动/方案问透，沉淀术语/决策/经验 |
-| `507-research` | 调研外部参照物（项目/文章/库）的真实机制 + 借鉴意义判断 |
-| `507-teach` | 概念解释器，用各种通俗易懂的话讲懂一个概念（默认不落盘） |
+## 配套 Agent 配置
 
-## 命名约定
+这个仓库额外公开了 507 的配套配置，供阅读、借鉴和按需采用：
 
-write/ 的 skill 用**动作隐喻**命名（冶金/影视工序），成链：
+- [`templates/AGENTS.global.example.md`](templates/AGENTS.global.example.md)：全局 `AGENTS.md`（代理行为规范）模板。它保留个人工作流取向，请替换称呼、路径和工具约定后再使用。
+- [`prompts/`](prompts/)：`/explain`、`/fix`、`/review`、`/commit` 等 Pi prompt（提示词）模板。部分 prompt 引用 `dgoal`（目标闭环）或本仓库的 `507-*` skills；未安装相应能力时，请删改相关路由规则。
 
-- **mine**（挖矿）→ **fuse**（熔炼）→ **forge**（锻造）— 文字内容主链
-- **cast**（铸造）— 碎片浇铸成知识库主题页
-- **breakdown**（拆片）+ **remix**（混剪重组）— 视频支线
-- **stage**（上台）— 内容搬上舞台讲出去
-- **frame**（框定）— 把需求框成结构化方案
+这些文件不是安装 skills 的必需项，也不应覆盖你已有的项目级 `AGENTS.md`（项目规范）。项目局部约束始终应优先于全局习惯。
 
-code/ 的 skill 用**建造隐喻**命名，同构于建造链"设计院画图→施工队施工→监理验收"的角色分离：
+## 设计原则
 
-- **ground**（奠基）— 项目初始化
-- **blueprint**（画蓝图）— 把方案落成 PRD 需求规格
-- **workorder**（开工单）— 把任务落成可领取的 GitHub issue 工单
-- **mockup**（样板）— 用可丢弃代码试探假设，锚回"验证设计的试做件"原义
-- **inspection**（验收巡检）— 架构体检，找浅模块加深
+1. **一 skill 一动作**：`mine` 不写文章，`forge` 不挖素材；相邻 skill 不抢职责。
+2. **以产物接力**：碎片、候选 idea、PRD、issue、报告是阶段之间的交接物，而不是口头状态。
+3. **流程可跳过**：每个 skill 都可独立触发；完整链路是地图，不是强制仪式。
+4. **先证据后优化**：先定位真实问题、失败样例或验证假设，再扩大工作量。
+5. **安全默认**：不提交密钥、个人/客户资料或未经授权的素材；外部 API（接口）密钥仅通过环境变量传入。
 
-核心同构：建造链"施工外包"↔ code 层"实现外包给 prompts"——code 层只管画图、试做、验收，不碰实现。
+## 依赖与边界
 
-common/ 的 skill 保留原名（grill/research/teach 已是场景无关的动作名）。
+多数 skill 是纯 Markdown（标记语言）工作流，无额外依赖。`write/507-breakdown`（视频拉片）和 `write/507-remix`（视频重组）包含 Python（编程语言）脚本，可能需要 `ffmpeg`、`yt-dlp`、OCR（文字识别）或 `MiniMax_API_KEY`（接口密钥）；请先阅读其目录内的 `README.md`。
 
-## 系列纪律
+本仓库不包含任何 API key（接口密钥）、账号 Cookie（会话凭据）、个人 vault（知识库）或客户材料。请勿把它们提交到 fork（派生仓库）或 issue（问题单）。详见 [`SECURITY.md`](SECURITY.md)。
 
-- 每个 skill 都是**可独立触发**的入口，不强制走完整条链。
-- 阶段之间用"输出物"衔接：mine 的碎片 → fuse 的候选 idea → forge 的长文。
-- 写作流 skill 共享 vault 的目录结构（`01-碎片/` `02-创意/` `03-作品/` `04-知识库/`）和碎片/选题/知识库流水线纪律（见 vault `AGENTS.md`）。
-- 通用 skill（grill/research/teach）在两条流里扮演不同角色，不重复建。
+## 贡献与发布
 
-## 边界（这些不在这个系列里）
+- 贡献方式见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
+- 安全问题见 [`SECURITY.md`](SECURITY.md)。
+- 变更记录见 [`CHANGELOG.md`](CHANGELOG.md)。
+- 使用条款见 [`LICENSE`](LICENSE)。
 
-- `dteam`（多角色实施）：当 implementation 需要后台多 agent 协作时引用，是系列外能力。
-- 架构职责由系列内 `507-inspection` 承担，无外部架构评审 skill 依赖。
+欢迎提 issue（问题单）讨论：一个 skill 的边界是否清楚、是否有可复现的失败场景、怎样让它更容易独立采用。对于非常个人化的偏好，优先在自己的 fork（派生仓库）中调整。
