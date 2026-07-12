@@ -33,7 +33,7 @@
 # 1. 获取仓库
 mkdir -p ~/Workspace/Skills
 cd ~/Workspace/Skills
-git clone https://github.com/<your-account>/507-skills.git
+git clone https://github.com/ssdiwu/507-skills.git
 
 # 2. 让 Pi 发现这些 skills
 mkdir -p ~/.agents/skills
