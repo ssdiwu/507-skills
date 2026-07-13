@@ -15,7 +15,7 @@ description: "为一个或多个代码项目做 507 工作流初始化/巡检。
 
 - 项目根 `AGENTS.md`
 - 项目根 `README.md`
-- 项目根 `CHANGELOG.md`（对外发布/多开发者协作时必备）
+- 项目根 `CHANGELOG.md`（主动维护项目从开局建立；以 `Unreleased` 段承接未发布变更）
 - `doc/README.md`（文档地图）
 - `doc/术语表.md`（项目术语表）
 - `doc/决策档案/`（架构决策记录）
@@ -128,9 +128,9 @@ description: "为一个或多个代码项目做 507 工作流初始化/巡检。
 
 按 `references/project-standard.md` 的 CHANGELOG 条件必备项核验：
 
-- 项目有版本发布/对外用户/多开发者协作 → 应有 `CHANGELOG.md`。
-- 纯个人工具/实验仓库/内部脚本 → 不强制。
-- 已存在的 CHANGELOG：版本倒序、变更类型标注、破坏性变更是否显式、未发布的内部计划是否误塞。
+- 主动维护型代码项目（包括尚未发布但会持续演进的项目）→ 从开局应有 `CHANGELOG.md`；以 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 基本格式建立 `## [Unreleased]`，不倒填历史提交。
+- 一次性原型、明确不再维护的实验或私人临时脚本 → 可明确豁免。
+- 已存在的 CHANGELOG：版本倒序、变更类型标注、破坏性变更和迁移是否显式；`Unreleased` 只写用户/使用者可感知变更，不误塞内部计划、实现细节或逐提交日志。
 
 只输出"是否达标 + 缺什么"。
 

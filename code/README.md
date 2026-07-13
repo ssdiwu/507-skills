@@ -17,7 +17,7 @@ ground（奠基）  →  blueprint（画蓝图）  →  workorder（开工单）
                                             架构体检 · 找浅模块加深
 ```
 
-- **ground 奠基**：搭项目骨架、初始化规范（AGENTS.md / doc / 术语表 / 分层 README）
+- **ground 奠基**：搭项目骨架、初始化规范（AGENTS.md / README / CHANGELOG / doc / 术语表 / 分层 README）
 - **blueprint 画蓝图**：把方案/对话落成 PRD 需求规格——想清楚要做什么
 - **workorder 开工单**：把任务落成可上传 GitHub、可被 AI 领取的 issue 工单——把要做的事写成可领取的执行单元
 - **mockup 样板**：用可丢弃代码在正式实现前验证一个设计假设，锚回"验证设计的试做件"原义
@@ -32,7 +32,7 @@ ground（奠基）  →  blueprint（画蓝图）  →  workorder（开工单）
 ### 环境维度（独立于执行链）
 
 #### `507-ground` 奠基
-为一个或多个代码项目做 507 工作流初始化/巡检。检查项目自己的 AGENTS.md、doc/、doc/术语表.md、doc/决策档案/、分层 README 和已口述但未沉淀的约束。
+为一个或多个代码项目做 507 工作流初始化/巡检。检查项目自己的 AGENTS.md、README.md、CHANGELOG.md、doc/、doc/术语表.md、doc/决策档案/、分层 README 和已口述但未沉淀的约束。
 - 不在执行链里，是项目环境维度的入口，可独立运行
 - 触发："setup 507""项目初始化""巡检这些项目"
 
@@ -82,7 +82,7 @@ ground（奠基）  →  blueprint（画蓝图）  →  workorder（开工单）
 
   ┌─ ground ────────────────────────────────────────────────┐
   │  奠基 / 项目初始化                                    │
-  │  AGENTS.md · doc/骨架 · 术语表 · 分层 README              │
+  │  AGENTS.md · README · CHANGELOG · doc/骨架 · 术语表 · 分层 README │
   │  独立于执行链，可单独运行；新项目时作为链的起点            │
   └────────────────────────────────────────────────────────┘
                           │
@@ -137,7 +137,7 @@ flowchart TD
         teach["teach 理解<br/>讲懂概念"]
     end
 
-    ground["ground 奠基<br/>项目初始化<br/>AGENTS · doc · 术语表 · 分层 README<br/>独立于执行链"]
+    ground["ground 奠基<br/>项目初始化<br/>AGENTS · README · CHANGELOG · doc · 术语表 · 分层 README<br/>独立于执行链"]
     ground --> blueprint
 
     blueprint["blueprint 画蓝图<br/>PRD 需求规格<br/>对齐→执行 可选规格化层"]

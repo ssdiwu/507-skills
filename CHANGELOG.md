@@ -12,6 +12,8 @@
 
 - `507-forge` 从显式模式、调性分流和四层清单收敛为写作合同驱动的共创循环，支持 Agent 自动调用 `mine / fuse` 补证、创意材料回写和书面平台保真改编。
 - 选题判断参考迁入 `507-fuse`，只在候选方向难以取舍时按需加载。
+- 代码项目规范改为从开局建立基于 Keep a Changelog 的 `CHANGELOG.md` 和 `Unreleased` 段；`/fix`、`/commit`、`/review` 与 `507-ground` 同步检查用户可感知变更和首次初始化边界。
+- 全局 `AGENTS.md` 示例不再预设使用者昵称，改由使用者偏好或项目约定决定称呼。
 
 ### Removed
 
