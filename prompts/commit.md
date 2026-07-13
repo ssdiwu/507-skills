@@ -29,7 +29,15 @@ $@
 
 - **入口 README**：用户可见能力、安装/运行方式、项目定位、目录结构、主要入口变化时同步根 `README.md`。像 `Curio/README.md`、`pi-dgoal/README.md` 这类入口说明，不能在功能完成后失真。
 - **分层 README / 项目地图**：目录职责、入口、边界、上下游变化时同步目标目录及上下级 `README.md`；涉及 `doc/` 组织或分层 README 按 `/map` 规则处理。
-- **CHANGELOG**：对外发布的库 / CLI / SDK / App / 多人项目，用户可感知的 Added / Changed / Fixed / Removed / Breaking 必须记录；不塞内部实现细节或未来计划。
+- **CHANGELOG**：主动维护型代码项目从开局就应有 `CHANGELOG.md`。缺失时先按以下最小骨架创建，不倒填历史提交：
+  ```md
+  # Changelog
+
+  本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 的基本格式；版本以 Git tag（Git 标签）为准。
+
+  ## [Unreleased]
+  ```
+  本次用户/使用者可感知变更必须写入 `Unreleased` 的 `Added` / `Changed` / `Fixed` / `Removed` / `Breaking`；不塞内部实现细节、未来计划或逐提交日志，纯内部重构、测试或文档地图调整不强塞条目。
 - **doc 知识库**：架构、运行方式、路线图、版本实施方案、能力边界变化时同步 `doc/README.md`、`doc/10-架构与运行/`、`doc/30-路线图/`、`doc/40-版本实施方案/` 等当前权威文档；归档文档不作当前权威。
 - **术语表**：新增或澄清稳定项目语言时同步 `doc/术语表.md`；只写领域词。
 - **决策档案**：同时满足「难逆转 / 无上下文会困惑 / 有真实权衡」才新增或更新 `doc/决策档案/`；不为小约定补空条目。新增 / 更新 ADR 时同步 `doc/决策档案/README.md` 索引（编号 + 标题 + 一句话主旨），文件名用 `0001-中文标题.md`（中文为主、项目术语沿用术语表规范叫法）。

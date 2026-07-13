@@ -37,7 +37,7 @@ $@
 
 - 是否违反项目 `AGENTS.md`、`doc/`、`README.md` 或决策档案；术语是否和 `doc/术语表.md` 冲突。
 - 是否改了职责、入口、运行方式却没同步文档。
-- 用户可见能力、发布版本、安装 / 运行方式变化时，是否同步 `README.md`、`CHANGELOG.md`、`doc/`、版本号或 git tag；版本发布时 tag、版本号、CHANGELOG 版本段三者是否一致。
+- 主动维护型代码项目是否从开局具备采用 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 基本格式的 `CHANGELOG.md` 与 `## [Unreleased]` 段；用户可见能力、安装 / 运行方式变化是否同步到对应分类条目。版本发布时 tag、版本号、CHANGELOG 版本段三者是否一致。
 - 是否违反项目明确的「不做」边界。
 
 **Spec**
