@@ -21,6 +21,9 @@
 # 固定的真实 M3 输出 fixture 合约校验（无需 API key）
 python3 test_understanding_fixtures.py
 
+# 图片响应带 Markdown JSON 围栏的回归测试（无需 API key）
+python3 test_image_response_parser.py
+
 # 严格真实 M3 上传 smoke test（默认生成 8 秒输入；需要 key）
 export MiniMax_API_KEY=...
 python3 test_minimax_adapter.py

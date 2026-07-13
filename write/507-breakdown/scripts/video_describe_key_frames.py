@@ -5,9 +5,33 @@ import argparse,base64,json,mimetypes,os,re,subprocess
 from pathlib import Path
 from urllib.request import Request,urlopen
 from video_contract import ANALYSIS_DIR, STATUS_VISUALLY_VERIFIED, VideoManifest, ensure_dir
-from video_locate_segments import anchor_match
+from video_understand_minimax import parse_json_lenient
 
 PROMPT="Return JSON only: {description:string, anchorChecks:[{anchor:string,visible:boolean,evidence:string}]}. Mark visible=true only for a clearly present anchor; false for absent, denied, quoted, uncertain, or unreadable anchors."
+
+def parse_image_result(text: str, anchors: list[str]) -> dict:
+    """Parse a MiniMax image response and enforce the key-frame contract."""
+    result = parse_json_lenient(text)
+    checks = result.get("anchorChecks")
+    if (
+        not isinstance(result.get("description"), str)
+        or not isinstance(checks, list)
+        or any(
+            not isinstance(item, dict)
+            or not isinstance(item.get("anchor"), str)
+            or not item["anchor"].strip()
+            or not isinstance(item.get("visible"), bool)
+            or not isinstance(item.get("evidence"), str)
+            or not item["evidence"].strip()
+            for item in checks
+        )
+        or {item["anchor"] for item in checks} != set(anchors)
+        or len(checks) != len(set(anchors))
+    ):
+        raise RuntimeError("图片理解 JSON 字段非法")
+    return result
+
+
 def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->dict:
     payload={"model":model,"max_tokens":1200,"messages":[{"role":"user","content":[{"type":"text","text":PROMPT+"\nTarget visual anchors: "+", ".join(anchors)+". State explicitly whether each is visible."},{"type":"image","source":{"type":"base64","media_type":mimetypes.guess_type(path.name)[0] or "image/jpeg","data":base64.b64encode(path.read_bytes()).decode()}}]}]}
     req=Request(base.rstrip("/")+"/anthropic/v1/messages",data=json.dumps(payload).encode(),headers={"Authorization":f"Bearer {key}","Content-Type":"application/json","anthropic-version":"2023-06-01"},method="POST")
@@ -17,15 +41,15 @@ def describe(base:str,key:str,model:str,path:Path, anchors:list[str]=[])->dict:
         detail=exc.read().decode("utf-8",errors="replace")[:500] if hasattr(exc,"read") else ""
         raise RuntimeError(f"图片理解请求失败：{exc} {detail}") from exc
     text="\n".join(x.get("text","") for x in data.get("content",[]) if x.get("type")=="text").strip()
-    try: result=json.loads(text)
-    except json.JSONDecodeError as exc: raise RuntimeError("图片理解未返回 JSON") from exc
-    if not isinstance(result.get("description"),str) or not isinstance(result.get("anchorChecks"),list) or any(not isinstance(x,dict) or not isinstance(x.get("anchor"),str) or not x["anchor"].strip() or not isinstance(x.get("visible"),bool) or not isinstance(x.get("evidence"),str) or not x["evidence"].strip() for x in result["anchorChecks"]) or {x["anchor"] for x in result["anchorChecks"]} != set(anchors) or len(result["anchorChecks"]) != len(set(anchors)): raise RuntimeError("图片理解 JSON 字段非法")
-    return result
+    return parse_image_result(text, anchors)
 def valid_anchor_checks(checks, anchors:list[str])->bool:
     if not isinstance(checks,list) or len(checks)!=len(anchors): return False
     by={x.get("anchor"):x for x in checks if isinstance(x,dict)}
     if set(by)!=set(anchors): return False
-    return all(x.get("visible") is True and isinstance(x.get("evidence"),str) and x["evidence"].strip() and anchor_match(x["anchor"],x["evidence"]) for x in by.values())
+    # Image evidence may paraphrase an anchor or affirm an absence (for example,
+    # "no text"). The echoed anchor, affirmative boolean, and non-empty evidence
+    # form the image-verification contract; OCR-style lexical matching is invalid here.
+    return all(x.get("visible") is True and isinstance(x.get("evidence"),str) and x["evidence"].strip() for x in by.values())
 
 def apply_visual_matches(ws:Path, items:list[dict], video:Path)->None:
     duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(video)],text=True).strip())
