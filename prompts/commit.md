@@ -11,7 +11,7 @@ $@
 ## 收尾流程
 
 1. **确认范围并复核 diff**
-   - `git status --short` 区分 staged / unstaged / untracked；发现非本次工作的意外改动，停下问 507。
+   - `git status --short` 区分 staged / unstaged / untracked；发现非本次工作的意外改动，停下问用户。
    - 读 `git diff` 和 `git diff --cached`，确认无调试日志、临时文件、密钥、无关格式化。
    - 只精准暂存本次工作相关文件，不要 `git add .`；暂存区为空时先 `git add <path>`，仍不确定就问。
 
@@ -21,7 +21,7 @@ $@
 
 4. **提交**：生成 Conventional Commits 中文提交信息，执行 `git commit`，提交前最后再看一次 `git status --short`。
 
-5. **可选：打 tag**：只有版本发布才打。tag 跟随项目惯例（通常 `v<版本号>`，如 `v1.2.0`），必须和 `package.json` / manifest / CHANGELOG 版本段一致；打前确认对应 commit 已提交；是否 push 到远端先问 507，不自动推送。
+5. **可选：打 tag**：只有版本发布才打。tag 跟随项目惯例（通常 `v<版本号>`，如 `v1.2.0`），必须和 `package.json` / manifest / CHANGELOG 版本段一致；打前确认对应 commit 已提交；是否 push 到远端先问用户，不自动推送。
 
 ## 同步检查清单
 
@@ -58,7 +58,7 @@ type 用英文：`feat` / `fix` / `refactor` / `docs` / `test` / `chore` / `perf
 
 - 主题行 ≤ 72 字符，中文简洁明了。
 - 正文解释「为什么」，不重复 diff 已经展示的「做了什么」。
-- 一次 commit 只做一件事；diff 混多个主题时先拆分提交或问 507。
+- 一次 commit 只做一件事；diff 混多个主题时先拆分提交或问用户。
 
 ## 完成后
 

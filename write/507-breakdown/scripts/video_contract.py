@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Shared workspace contract for the 507 video breakdown pipeline."""
+"""Shared workspace contract for the video breakdown pipeline."""
 from __future__ import annotations
 
 import hashlib

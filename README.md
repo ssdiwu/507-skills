@@ -1,8 +1,8 @@
-# 507 Skills
+#用户 Skills
 
-一套把个人工作法拆成**可独立触发、可组合、以明确产物衔接**的 Agent Skills（智能体技能）。它不是 prompt（提示词）大杂烩：每个 skill 都说明什么时候用、解决什么、产出什么，以及明确不做什么。
+一套把工作方法拆成**可独立触发、可组合、以明确产物衔接**的 Agent Skills（智能体技能）。它不是 prompt（提示词）大杂烩：每个 skill 都说明什么时候用、解决什么、产出什么，以及明确不做什么。
 
-> 这是 507 正在使用的工作流公开版。它以 [Pi](https://github.com/badlogic/pi-mono) 的 skill（技能）发现机制为主要使用环境；内容本身也可作为其他 Agent（智能体）平台的工作流参考。
+> 这是一套面向公开使用者的工作流。它以 [Pi](https://github.com/badlogic/pi-mono) 的 skill（技能）发现机制为主要使用环境；内容本身也可作为其他 Agent（智能体）平台的工作流参考。
 
 ## 适合谁
 
@@ -52,9 +52,9 @@ ln -s ~/Workspace/Skills/507-skills ~/.agents/skills/507-skills
 
 ## 配套 Agent 配置
 
-这个仓库额外公开了 507 的配套配置，供阅读、借鉴和按需采用：
+这个仓库额外提供配套配置，供阅读、借鉴和按需采用：
 
-- [`templates/AGENTS.global.example.md`](templates/AGENTS.global.example.md)：全局 `AGENTS.md`（代理行为规范）模板。它保留个人工作流取向，请替换称呼、路径和工具约定后再使用。
+- [`templates/AGENTS.global.example.md`](templates/AGENTS.global.example.md)：全局 `AGENTS.md`（代理行为规范）模板。它保留特定工作流取向，请按目标环境调整称呼、路径和工具约定后再使用。
 - [`prompts/`](prompts/)：`/explain`、`/fix`、`/review`、`/commit` 等 Pi prompt（提示词）模板。部分 prompt 引用 `dgoal`（目标闭环）或本仓库的 `507-*` skills；未安装相应能力时，请删改相关路由规则。
 
 这些文件不是安装 skills 的必需项，也不应覆盖你已有的项目级 `AGENTS.md`（项目规范）。项目局部约束始终应优先于全局习惯。

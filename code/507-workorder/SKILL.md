@@ -1,6 +1,6 @@
 ---
 name: 507-workorder
-description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub、可被 AI 领取执行的工单。正向把方案/PRD 拆成可领取 issue，反向把 bug/gap 落成可追踪 issue。模板以 507 实际 issue 实践为骨架（正向八板块 + 反向现象/影响/方案/验收/风险），issue 本身就是执行合同，不另产 Agent Brief。Use when user mentions 写 issue, 开 issue, 拆 issue, 开工单, 上传 issue, 让 AI 领取任务, 把任务传 GitHub, bug 转 issue, gap 转 issue, 记个 bug, 落成工单, 提 issue, workorder, work order, github issue, ticket."
+description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub、可被 AI 领取执行的工单。正向把方案/PRD 拆成可领取 issue，反向把 bug/gap 落成可追踪 issue。模板以 经实践验证的 issue 模板为骨架（正向八板块 + 反向现象/影响/方案/验收/风险），issue 本身就是执行合同，不另产 Agent Brief。Use when user mentions 写 issue, 开 issue, 拆 issue, 开工单, 上传 issue, 让 AI 领取任务, 把任务传 GitHub, bug 转 issue, gap 转 issue, 记个 bug, 落成工单, 提 issue, workorder, work order, github issue, ticket."
 ---
 
 # 写工单（workorder）
@@ -33,17 +33,17 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 3. **耐久优先于精确**——issue 可能几天后才被领取，代码结构会变。写接口、类型、行为契约、验收标准；少写文件路径，更不写行号。
 4. **写行为，不写步骤**——描述系统应做什么，不规定领取者去哪个文件怎么改。
 5. **用项目语言**——先读 `doc/术语表.md` 和相关 `doc/决策档案/`；issue 标题和正文使用项目术语。
-6. **不空访谈**——综合已有上下文（对话/PRD/代码），不重新采访 507。缺关键事实时，一次只问一个问题，并附推荐答案。
+6. **不空访谈**——综合已有上下文（对话/PRD/代码），不重复询问用户。缺关键事实时，一次只问一个问题，并附推荐答案。
 7. **范围外要显式**——明确写"不做什么"，防止领取者镀金（擅自加东西）。
-8. **远程元数据必须完整**——上传 GitHub 后必须设置并核验 `labels（标签）` 与 `assignees（负责人）`；默认负责人使用当前 GitHub 登录用户，除非 507 明确指定其他负责人。
+8. **远程元数据必须完整**——上传 GitHub 后必须设置并核验 `labels（标签）` 与 `assignees（负责人）`；默认负责人使用当前 GitHub 登录用户，除非用户明确指定其他负责人。
 
 ## 模式一：正向 issue（把方案/PRD 拆成可领取工单）
 
-适用：507 说"拆 issue""开 issue""把方案传 GitHub""让 AI 领取"。
+适用：用户说"拆 issue""开 issue""把方案传 GitHub""让 AI 领取"。
 
 ### 正向 issue 八板块模板
 
-来自 507 实际 issue 实践（如 diwu-flow-dev #650/#651），这是验证过的成熟形态：
+来自 经实践验证的 issue 模板（如同类项目的既有 issue），这是验证过的成熟形态：
 
 ```md
 ## 1. 标识 [identity]
@@ -112,11 +112,11 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 
 ## 模式二：反向 issue（bug/gap 转工单）
 
-适用：507 说"记个 bug""这个行为不对帮我转 issue""这个 gap 要落成 issue""提个 QA"。
+适用：用户说"记个 bug""这个行为不对帮我转 issue""这个 gap 要落成 issue""提个 QA"。
 
 ### 反向 issue 模板
 
-来自 507 实际 gap issue 实践（如 diwu-flow-dev #659）：
+来自 经实践验证的 gap issue 模板（如同类项目的既有 gap issue）：
 
 ```md
 ## 现象
@@ -183,7 +183,7 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 
 ## 启动姿势
 
-当 507：
+当用户：
 - 说"拆 issue""开 issue""把方案传 GitHub""让 AI 领取"→ 正向模式
 - 说"记个 bug""这个 gap 落成 issue""提个 QA"→ 反向模式
 

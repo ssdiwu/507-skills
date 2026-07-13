@@ -1,9 +1,9 @@
 ---
 name: 507-breakdown
-description: "507 的视频拉片 skill：将一个视频经 MiniMax-M3 整段理解、本地文本定位、受限视觉搜索、自适应抽帧与图片证据回写核验，产出可供 remix 消费的 video_* 拉片包。Use when user mentions 拉片, 拆视频, 视频借鉴, 视频取证, 怎么剪, 视频结构分析, breakdown, video breakdown, transcript extraction. 普通本地视频总结走 pi-sense，不走本 skill。"
+description: "视频拉片 skill：将一个视频经 MiniMax-M3 整段理解、本地文本定位、受限视觉搜索、自适应抽帧与图片证据回写核验，产出可供 remix 消费的 video_* 拉片包。Use when user mentions 拉片, 拆视频, 视频借鉴, 视频取证, 怎么剪, 视频结构分析, breakdown, video breakdown, transcript extraction. 普通本地视频总结走 pi-sense，不走本 skill。"
 ---
 
-# 507 拉片（breakdown）
+# 视频拉片（breakdown）
 
 把一个视频编译成可核验、可复用的拉片包。它不是快速总结：MiniMax-M3 先理解整段视频，本地证据再确认关键时间与画面。
 

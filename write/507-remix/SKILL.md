@@ -1,9 +1,9 @@
 ---
 name: 507-remix
-description: "507 的视频借鉴重组 skill。只消费 video_completed 的 507-breakdown video_* 拉片包，抽取可借鉴手法并重组为原创创作包。Use when user mentions 视频借鉴重组, 原创创作包, 视频二创, remix, video remake, recombine."
+description: "视频借鉴重组 skill。只消费 video_completed 的 507-breakdown video_* 拉片包，抽取可借鉴手法并重组为原创创作包。Use when user mentions 视频借鉴重组, 原创创作包, 视频二创, remix, video remake, recombine."
 ---
 
-# 507 混剪（remix）
+# 混剪（remix）
 
 将一个或多个已完成拉片包重组为原创视频创作包；不读取原视频，不做取证。
 

@@ -434,7 +434,7 @@ def run_pipeline(args):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="507 Video Remake 创作包生成器")
+    parser = argparse.ArgumentParser(description="视频重组创作包生成器")
     subparsers = parser.add_subparsers(dest="command")
 
     run_parser = subparsers.add_parser("run", help="读取多个拉片包并生成创作包")

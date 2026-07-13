@@ -46,7 +46,7 @@ def scene_cut(video:Path,manifest:VideoManifest)->None:
 def call(name:str,ws:Path,*extra:str)->None:
  run([sys.executable,str(Path(__file__).with_name(name)),"--workspace",str(ws),*extra])
 def main()->int:
- p=argparse.ArgumentParser(description="507 视频拉片流水线")
+ p=argparse.ArgumentParser(description="视频拉片流水线")
  sub=p.add_subparsers(dest="command");r=sub.add_parser("run");r.add_argument("--video",required=True);r.add_argument("--output-dir",default="./05-视频拉片");r.add_argument("--title-hint");r.add_argument("--lang");r.add_argument("--force",action="store_true");r.add_argument("--force-local-fallback",action="store_true")
  sub.add_parser("check")
  a=p.parse_args()

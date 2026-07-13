@@ -1,4 +1,4 @@
-# 507 Video Pull 标签词表
+# Video Pull 标签词表
 
 `video_breakdown.json` 里的标签使用**封闭词表**。
 

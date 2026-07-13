@@ -7,7 +7,7 @@
 ```json
 {
   "title": "作品标题",
-  "author": "507",
+  "author": "示例作者",
   "avatar": "assets/avatar.png",
   "layoutMode": "longform",
   "stylePreset": "newspaper",
@@ -42,7 +42,7 @@
 ## 样式
 
 - `stylePreset` 选择整套外观；可选值与适用场景见 [`styles.md`](styles.md)。
-- 未填写时使用 `editorial-507`。
+- 未填写时使用 `editorial-default`。
 - 同一项目只选一个主样式；换样式不改逻辑文案。
 - `theme` 只用于覆盖颜色变量，不替代样式预设。
 

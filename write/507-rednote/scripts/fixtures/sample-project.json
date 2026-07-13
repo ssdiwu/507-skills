@@ -1,13 +1,13 @@
 {
   "title": "小红书图卡烟测",
-  "author": "507",
+  "author": "示例作者",
   "avatar": "sample.svg",
   "layoutMode": "longform",
   "stylePreset": "newspaper",
   "pages": [
     {
       "type": "cover",
-      "kicker": "507 REDNOTE",
+      "kicker": "REDNOTE",
       "title": "把一篇文章做成图片文章",
       "subtitle": "先锁判断，再做分页",
       "image": "sample.svg",

@@ -1,15 +1,15 @@
 ---
 name: 507-ground
-description: "为一个或多个代码项目做 507 工作流初始化/巡检。重点检查项目自己的 AGENTS.md、doc/、doc/术语表.md、doc/决策档案/、分层 README 和已口述但未沉淀的约束。Use when user mentions setup 507, 项目初始化, 巡检这些项目, 校准 AGENTS.md, 补项目地图, 沉淀术语表, 整理项目规范, 工作流初始化, 初始化项目, 巡检项目, 项目规范巡检, 补 README, 补 doc, 沉淀约束, 校准工作流, 项目体检, 给这个项目配 507, project setup, AGENTS.md, project map, project bootstrap, scaffold."
+description: "为一个或多个代码项目做初始化/巡检。重点检查项目自己的 AGENTS.md、doc/、doc/术语表.md、doc/决策档案/、分层 README 和已口述但未沉淀的约束。Use when user mentions 项目初始化, 巡检这些项目, 校准 AGENTS.md, 补项目地图, 沉淀术语表, 整理项目规范, 工作流初始化, 初始化项目, 巡检项目, 项目规范巡检, 补 README, 补 doc, 沉淀约束, 校准工作流, 项目体检, 给这个项目配工作流, project setup, AGENTS.md, project map, project bootstrap, scaffold."
 ---
 
-# 507 项目初始化 / 巡检
+# 项目初始化 / 巡检
 
-这个 skill 用来给**具体代码项目**做 507 工作流初始化或巡检。
+这个 skill 用来给**具体代码项目**做项目工作流初始化或巡检。
 
 它关注的是每个项目自己的规范和知识沉淀，而不是整理全局 agent 配置。
 
-巡检基准是 `references/project-standard.md`（项目标准规范）。如果项目有明确历史例外，先说明差异，再问 507 是否保留。
+巡检基准是 `references/project-standard.md`（项目标准规范）。如果项目有明确历史例外，先说明差异，再问用户是否保留。
 
 核心对象：
 
@@ -26,15 +26,15 @@ description: "为一个或多个代码项目做 507 工作流初始化/巡检。
 
 ## 什么时候使用
 
-- 新项目需要接入 507 工作流。
+- 新项目需要接入项目工作流。
 - 老项目的 `AGENTS.md` 太胖、太旧或缺关键约束。
 - 项目有 `doc/`，但缺术语表、ADR 或文档地图。
 - 多个项目需要统一检查初始化质量。
-- 507 口述了项目规则，需要沉淀进项目文件。
+-用户口述了项目规则，需要沉淀进项目文件。
 
 ## 不做什么
 
-- 不整理全局 `/Users/diwu/.pi/agent/AGENTS.md`，除非用户明确要求。
+- 不修改全局 agent 配置；除非用户明确要求且已给出目标路径。
 - 不把所有规则塞进项目 `AGENTS.md`。
 - 不自动重写项目文档；先巡检、列建议、等确认。
 - 不为了“规范完整”创建空目录或空文档。
@@ -44,12 +44,11 @@ description: "为一个或多个代码项目做 507 工作流初始化/巡检。
 用户可以给一个或多个项目根目录，例如：
 
 ```text
-/Users/diwu/Documents/codes/Githubs/pi-daily
-/Users/diwu/Documents/codes/Githubs/pi-dloop
-/Users/diwu/Documents/codes/Githubs/pi-dteam
+/path/to/project-a
+/path/to/project-b
 ```
 
-如果用户给的是 workspace（如 `/Users/diwu/Documents/codes/Githubs`），先识别里面的 repo 列表，等 507 选项目，不要自动全量修改。
+如果用户给的是 workspace（如 `/path/to/workspace`），先识别里面的 repo 列表，等待用户选定目标项目，不要自动全量修改。
 
 ## 巡检流程
 
@@ -177,24 +176,18 @@ description: "为一个或多个代码项目做 507 工作流初始化/巡检。
 2. ...
 ```
 
-一次只问 507 一个确认问题，并附推荐答案。
+一次只问用户一个确认问题，并附推荐答案。
 
-## 三个样本的判断基准
+## 巡检判断原则
 
-从当前已看过的样本出发：
-
-- `pi-daily`：已有 `AGENTS.md`、`doc/README.md`、路线图和系统架构，缺 `doc/术语表.md` / `doc/决策档案/` / `CHANGELOG.md`；适合补术语表候选，不急着补 ADR；若对外发布应补 CHANGELOG。
-- `pi-dloop`：目前只有 `README.md`，没有 `AGENTS.md` / `doc/`；适合做完整初始化：项目 AGENTS、doc/README、`术语表.md` 候选、README 分层检查。
-- `pi-dteam`：已有丰富 `doc/` 和 `doc/术语表.md`，但 `术语表.md` 仍偏薄；适合做术语表扩充和 ADR 候选提取，而不是重建。
-
-这些只是判断基准；实际执行仍要先读项目当前文件。
+以目标项目当前文件和 `references/project-standard.md` 为准，不以任何预设样本替代实际检查。发现历史例外时，说明差异、影响和推荐动作，再由用户决定是否保留。
 
 ## 输出格式
 
 默认先输出巡检报告，不写文件：
 
 ```md
-# 507 Setup 巡检报告
+# 项目初始化巡检报告
 
 ## 总览
 
@@ -214,7 +207,7 @@ description: "为一个或多个代码项目做 507 工作流初始化/巡检。
 - 建议下一步：...
 ```
 
-507 确认后再落地改文件。
+用户确认后再落地改文件。
 
 ## 红线
 

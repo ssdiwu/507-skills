@@ -32,7 +32,7 @@ BLOCK_TYPES = {"paragraph", "note", "quote", "image", "cards", "flow", "timeline
 TONES = {"green", "blue", "purple", "red"}
 IMAGE_POSITIONS = {"center", "top", "bottom", "left", "right", "center top", "center bottom", "left center", "right center"}
 STYLE_LABELS = {
-    "editorial-507": "507 编辑文档",
+    "editorial-default": "编辑文档",
     "retro": "复古怀旧",
     "newspaper": "报纸",
     "mono": "极简黑白",
@@ -52,7 +52,7 @@ STYLE_LABELS = {
     "pink": "粉色渐变",
 }
 STYLE_PRESETS = {
-    "editorial-507": {"paper": "#f2f8ef", "paperAlt": "#eaf4e8", "ink": "#173c2d", "muted": "#6f8679", "accent": "#37a84f", "accentDark": "#246d38", "line": "#a9cfad"},
+    "editorial-default": {"paper": "#f2f8ef", "paperAlt": "#eaf4e8", "ink": "#173c2d", "muted": "#6f8679", "accent": "#37a84f", "accentDark": "#246d38", "line": "#a9cfad"},
     "retro": {"paper": "#F4ECD8", "paperAlt": "#E8DBC0", "ink": "#4A3F35", "muted": "#8B715F", "accent": "#C17F59", "accentDark": "#8B5A3C", "line": "#C9A27F"},
     "newspaper": {"paper": "#f5f0e8", "paperAlt": "#ede8e0", "ink": "#1a1a1a", "muted": "#665f56", "accent": "#8b0000", "accentDark": "#650000", "line": "#81786d"},
     "mono": {"paper": "#FFFFFF", "paperAlt": "#F0F0F0", "ink": "#000000", "muted": "#555555", "accent": "#000000", "accentDark": "#000000", "line": "#000000"},
@@ -71,7 +71,7 @@ STYLE_PRESETS = {
     "y2k": {"paper": "#0D0D2B", "paperAlt": "#171743", "ink": "#00FFFF", "muted": "#7BB5C2", "accent": "#FF00FF", "accentDark": "#00FFFF", "line": "#6534A4"},
     "pink": {"paper": "#FFE5EC", "paperAlt": "#FFF5F7", "ink": "#5D3A4A", "muted": "#8B6574", "accent": "#FF6B9D", "accentDark": "#B43E69", "line": "#FFB3CC"},
 }
-THEME_DEFAULTS = STYLE_PRESETS["editorial-507"]
+THEME_DEFAULTS = STYLE_PRESETS["editorial-default"]
 
 
 class SectionAuditParser(HTMLParser):
@@ -182,7 +182,7 @@ def validate_spec(spec: dict) -> None:
     layout_mode = spec.get("layoutMode", "longform")
     if layout_mode not in LAYOUT_MODES:
         die(f"layoutMode 无效：{layout_mode}；可选：{', '.join(LAYOUT_MODES)}")
-    style_preset = spec.get("stylePreset", "editorial-507")
+    style_preset = spec.get("stylePreset", "editorial-default")
     if style_preset not in STYLE_PRESETS:
         die(f"stylePreset 无效：{style_preset}；可选：{', '.join(STYLE_PRESETS)}")
     pages = spec.get("pages")
@@ -374,7 +374,7 @@ def render_html(spec: dict, spec_path: Path) -> str:
     spec_dir = spec_path.parent
     avatar = asset_data_uri(spec.get("avatar"), spec_dir)
     layout_mode = spec.get("layoutMode", "longform")
-    style_preset = spec.get("stylePreset", "editorial-507")
+    style_preset = spec.get("stylePreset", "editorial-default")
     theme = {**STYLE_PRESETS[style_preset], **spec.get("theme", {})}
     theme_css = "\n".join(f"  --{re.sub(r'([A-Z])', lambda m: '-' + m.group(1).lower(), key)}: {value};" for key, value in theme.items())
     if layout_mode == "cards":
@@ -580,7 +580,7 @@ def write_manifest(output_dir: Path, spec_path: Path, spec: dict, files: list[Pa
         "sourceSpec": str(spec_path),
         "sourceSpecSha256": sha256(spec_path),
         "layoutMode": spec.get("layoutMode", "longform"),
-        "stylePreset": spec.get("stylePreset", "editorial-507"),
+        "stylePreset": spec.get("stylePreset", "editorial-default"),
         "html": "rednote.html",
         "htmlSha256": sha256(output_dir / "rednote.html"),
         "pageCount": len(files),
@@ -649,7 +649,7 @@ def run(args: argparse.Namespace) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="507-rednote 内部渲染脚本")
+    parser = argparse.ArgumentParser(description="小红书图文渲染脚本")
     parser.add_argument("--spec", required=True, help="rednote-project.json")
     parser.add_argument("--output-dir", required=True, help="作品下的小红书目录")
     parser.add_argument("--pages", help="只重渲染指定页，例如 3,5,7")

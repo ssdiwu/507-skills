@@ -87,7 +87,7 @@
       "visualAnchors": [
         "Endpoints page showing Local, Tunnel, and Tailscale configuration options",
         "Create API key dialog box",
-        "API 密钥 (API Key) section showing a generated key '507'"
+        "API 密钥 (API Key) section showing a generated key 'sample-key'"
       ],
       "referencePosition": "middle",
       "referenceTimeHint": "middle",

@@ -1,4 +1,4 @@
-# 507 Remix
+# 视频借鉴重组（remix）
 
 `507-remix` 只消费 `video_completed` 的 `507-breakdown` 拉片包，并把可借鉴的结构、镜头、字幕、UI 与节奏重组为原创创作包。
 

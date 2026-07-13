@@ -16,7 +16,7 @@ $@
 
 不默认只看工作区未提交内容，按顺序尝试：
 
-1. 507 明确给了 commit、branch、tag 或路径 → 以它为准。
+1.用户明确给了 commit、branch、tag 或路径 → 以它为准。
 2. 有未提交改动 → 审查 `git diff` 和 `git diff --staged`。
 3. 当前分支相对 `origin/main` / `main` / `origin/master` / `master` 有差异 → 审查 `git diff <base>...HEAD`。
 4. 已 commit/push 且无未提交改动 → 审查当前分支相对默认主干 diff；工作区干净不等于没可审内容。
@@ -29,7 +29,7 @@ $@
 
 **项目规范来源**：`AGENTS.md`、`doc/README.md`、`doc/术语表.md`、`doc/决策档案/`、目标代码目录及上下级 `README.md`、`CONTRIBUTING.md` / `STYLE.md` / `STANDARDS.md`、lint / format / test / tsconfig 配置。只指出违反「已存在规范」的问题，不把个人偏好包装成规范。
 
-**需求来源**：507 明确给的 issue / PRD / spec / 文档 → commit message / branch name 线索 → `doc/40-版本实施方案/` / `doc/30-路线图/` / `.scratch/` → 当前对话已确认需求。找不到需求来源不跳过，Spec 标「无明确 spec」，只检查范围蔓延和行为风险。
+**需求来源**：用户明确给的 issue / PRD / spec / 文档 → commit message / branch name 线索 → `doc/40-版本实施方案/` / `doc/30-路线图/` / `.scratch/` → 当前对话已确认需求。找不到需求来源不跳过，Spec 标「无明确 spec」，只检查范围蔓延和行为风险。
 
 ## 审查重点
 

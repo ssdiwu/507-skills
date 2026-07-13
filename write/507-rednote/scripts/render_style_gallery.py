@@ -131,7 +131,7 @@ def run(args: argparse.Namespace) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="507-rednote 样式预览脚本")
+    parser = argparse.ArgumentParser(description="小红书图文样式预览脚本")
     parser.add_argument("--spec", required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--styles", help="逗号分隔的样式 ID；默认全部")
