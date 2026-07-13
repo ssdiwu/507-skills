@@ -13,7 +13,7 @@
 ## 两条工作流
 
 ```text
-写作：素材 → mine 挖碎片 → fuse 融选题 → forge 成文
+写作：素材 → mine 挖碎片 → fuse 融选题 → forge 共创收敛成文
 代码：grill 对齐 → blueprint 写需求 → workorder 开工单 → 实现 → inspection 体检
 ```
 
