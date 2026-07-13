@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/507-rednote/rednote-project.schema.json",
+  "title": "507 Rednote Project",
+  "type": "object",
+  "required": ["title", "pages"],
+  "additionalProperties": false,
+  "properties": {
+    "title": {"type": "string", "minLength": 1},
+    "author": {"type": "string"},
+    "avatar": {"type": "string"},
+    "layoutMode": {"enum": ["longform", "cards"]},
+    "stylePreset": {
+      "enum": ["editorial-507", "retro", "newspaper", "mono", "nature", "bluegrad", "autumn", "dark", "morandi", "cyber", "neubrutalism", "vintage-film", "memphis", "editorial", "glass", "bento", "y2k", "pink"]
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paper": {"$ref": "#/$defs/color"},
+        "paperAlt": {"$ref": "#/$defs/color"},
+        "ink": {"$ref": "#/$defs/color"},
+        "muted": {"$ref": "#/$defs/color"},
+        "accent": {"$ref": "#/$defs/color"},
+        "accentDark": {"$ref": "#/$defs/color"},
+        "line": {"$ref": "#/$defs/color"}
+      }
+    },
+    "pages": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 20,
+      "prefixItems": [{"$ref": "#/$defs/coverPage"}],
+      "items": {"$ref": "#/$defs/articlePage"}
+    }
+  },
+  "$defs": {
+    "color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+    "coverPage": {
+      "type": "object",
+      "required": ["type", "title"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "cover"},
+        "kicker": {"type": "string"},
+        "title": {"type": "string", "minLength": 1},
+        "subtitle": {"type": "string"},
+        "author": {"type": "string"},
+        "image": {"type": "string"},
+        "imagePosition": {"$ref": "#/$defs/imagePosition"}
+      }
+    },
+    "articlePage": {
+      "type": "object",
+      "required": ["type", "sourceMap", "blocks"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "article"},
+        "heading": {"type": "string", "minLength": 1},
+        "sourceMap": {"type": "string"},
+        "closing": {"type": "boolean"},
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/block"}
+        }
+      }
+    },
+    "block": {
+      "oneOf": [
+        {"$ref": "#/$defs/paragraph"},
+        {"$ref": "#/$defs/textBlock"},
+        {"$ref": "#/$defs/imageBlock"},
+        {"$ref": "#/$defs/cardsBlock"},
+        {"$ref": "#/$defs/sequenceBlock"}
+      ]
+    },
+    "paragraph": {
+      "type": "object",
+      "required": ["type", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "paragraph"},
+        "text": {"type": "string"},
+        "variant": {"enum": ["body", "lead", "big", "muted"]}
+      }
+    },
+    "textBlock": {
+      "type": "object",
+      "required": ["type", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["note", "quote"]},
+        "text": {"type": "string"}
+      }
+    },
+    "imageBlock": {
+      "type": "object",
+      "required": ["type", "src"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "image"},
+        "src": {"type": "string"},
+        "alt": {"type": "string"},
+        "caption": {"type": "string"},
+        "height": {"type": "integer", "minimum": 120, "maximum": 520},
+        "fit": {"enum": ["contain", "cover"]},
+        "position": {"$ref": "#/$defs/imagePosition"}
+      }
+    },
+    "cardsBlock": {
+      "type": "object",
+      "required": ["type", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "cards"},
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {"$ref": "#/$defs/item"}
+        }
+      }
+    },
+    "sequenceBlock": {
+      "type": "object",
+      "required": ["type", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["flow", "timeline"]},
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 5,
+          "items": {"$ref": "#/$defs/item"}
+        }
+      }
+    },
+    "imagePosition": {
+      "enum": ["center", "top", "bottom", "left", "right", "center top", "center bottom", "left center", "right center"]
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tag": {"type": "string"},
+        "title": {"type": "string"},
+        "text": {"type": "string"},
+        "tone": {"enum": ["green", "blue", "purple", "red"]}
+      },
+      "anyOf": [
+        {"required": ["title"]},
+        {"required": ["text"]}
+      ]
+    }
+  }
+}

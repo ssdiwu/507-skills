@@ -13,7 +13,7 @@
 ## 两条工作流
 
 ```text
-写作：素材 → mine 挖碎片 → fuse 融选题 → forge 共创收敛成文
+写作：素材 → mine 挖碎片 → fuse 融选题 → forge 共创收敛成文 → rednote 小红书图卡（可选）
 代码：grill 对齐 → blueprint 写需求 → workorder 开工单 → 实现 → inspection 体检
 ```
 
@@ -45,6 +45,7 @@ ln -s ~/Workspace/Skills/507-skills ~/.agents/skills/507-skills
 - “帮我把这个方案问透” → `507-grill`
 - “把刚才讨论整理成 PRD” → `507-blueprint`
 - “把这些碎片融成一个选题” → `507-fuse`
+- “把这篇文章做成小红书图文” → `507-rednote`
 - “给这个项目做架构体检” → `507-inspection`
 
 不必安装全套：可以只复制一个 `SKILL.md`（技能说明）及其引用的 `references/`、`scripts/`、`assets/` 文件到自己的 skill 目录。带脚本的 skill 会在自身说明中列出运行时依赖和环境变量。
@@ -68,7 +69,7 @@ ln -s ~/Workspace/Skills/507-skills ~/.agents/skills/507-skills
 
 ## 依赖与边界
 
-多数 skill 是纯 Markdown（标记语言）工作流，无额外依赖。`write/507-breakdown`（视频拉片）和 `write/507-remix`（视频重组）包含 Python（编程语言）脚本，可能需要 `ffmpeg`、`yt-dlp`、OCR（文字识别）或 `MiniMax_API_KEY`（接口密钥）；请先阅读其目录内的 `README.md`。
+多数 skill 是纯 Markdown（标记语言）工作流，无额外依赖。`write/507-breakdown`（视频拉片）、`write/507-remix`（视频重组）和 `write/507-rednote`（小红书图卡）包含 Python（编程语言）脚本；视频链可能需要 `ffmpeg`、`yt-dlp`、OCR（文字识别）或 `MiniMax_API_KEY`（接口密钥），图卡链需要 Pillow 与本地 Chrome / Chromium。请先阅读对应目录的 `README.md`。
 
 本仓库不包含任何 API key（接口密钥）、账号 Cookie（会话凭据）、个人 vault（知识库）或客户材料。请勿把它们提交到 fork（派生仓库）或 issue（问题单）。详见 [`SECURITY.md`](SECURITY.md)。
 

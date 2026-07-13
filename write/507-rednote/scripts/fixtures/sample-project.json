@@ -1,0 +1,66 @@
+{
+  "title": "小红书图卡烟测",
+  "author": "507",
+  "avatar": "sample.svg",
+  "layoutMode": "longform",
+  "stylePreset": "newspaper",
+  "pages": [
+    {
+      "type": "cover",
+      "kicker": "507 REDNOTE",
+      "title": "把一篇文章做成图片文章",
+      "subtitle": "先锁判断，再做分页",
+      "image": "sample.svg",
+      "imagePosition": "center"
+    },
+    {
+      "type": "article",
+      "heading": "页面不是素材容器",
+      "sourceMap": "论证链第 1 步",
+      "blocks": [
+        {"type": "paragraph", "variant": "lead", "text": "每一页只承担一个推进任务。"},
+        {"type": "paragraph", "text": "可以缩短句子，也可以调整顺序，但不能借平台适配之名更换中心判断。"},
+        {"type": "note", "text": "连续两页映射不回原文，就该暂停返工。"},
+        {"type": "quote", "text": "局部都合理，不代表整篇成立。"}
+      ]
+    },
+    {
+      "type": "article",
+      "sourceMap": "论证链第 2 步（续页）",
+      "blocks": [
+        {"type": "image", "src": "sample.svg", "alt": "本地测试图", "height": 300, "fit": "contain", "position": "center", "caption": "素材由本地路径内嵌。"},
+        {"type": "cards", "items": [
+          {"tag": "证据", "title": "证明事实", "text": "截图只承担事实锚定。", "tone": "blue"},
+          {"tag": "判断", "title": "推进论证", "text": "文字负责解释它意味着什么。", "tone": "green"}
+        ]}
+      ]
+    },
+    {
+      "type": "article",
+      "heading": "从主稿走到最终图卡",
+      "sourceMap": "论证链第 3 步",
+      "blocks": [
+        {"type": "flow", "items": [
+          {"title": "主稿", "text": "锁定中心判断", "tone": "blue"},
+          {"title": "逻辑文案", "text": "映射论证台阶", "tone": "purple"},
+          {"title": "图卡", "text": "渲染并复核", "tone": "green"}
+        ]},
+        {"type": "quote", "text": "文案确认后，渲染阶段不临时改字。"}
+      ]
+    },
+    {
+      "type": "article",
+      "heading": "交付前仍要看联系表",
+      "sourceMap": "结论",
+      "closing": true,
+      "blocks": [
+        {"type": "timeline", "items": [
+          {"title": "先看全局", "text": "密度与节奏是否稳定。", "tone": "green"},
+          {"title": "再查原图", "text": "尺寸、裁切和隐私是否安全。", "tone": "blue"},
+          {"title": "最后回归", "text": "是否仍服务于中心判断。", "tone": "purple"}
+        ]},
+        {"type": "quote", "text": "图全部导出，不等于作品已经完成。"}
+      ]
+    }
+  ]
+}
