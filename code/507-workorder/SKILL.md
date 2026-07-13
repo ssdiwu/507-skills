@@ -35,6 +35,7 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 5. **用项目语言**——先读 `doc/术语表.md` 和相关 `doc/决策档案/`；issue 标题和正文使用项目术语。
 6. **不空访谈**——综合已有上下文（对话/PRD/代码），不重新采访 507。缺关键事实时，一次只问一个问题，并附推荐答案。
 7. **范围外要显式**——明确写"不做什么"，防止领取者镀金（擅自加东西）。
+8. **远程元数据必须完整**——上传 GitHub 后必须设置并核验 `labels（标签）` 与 `assignees（负责人）`；默认负责人使用当前 GitHub 登录用户，除非 507 明确指定其他负责人。
 
 ## 模式一：正向 issue（把方案/PRD 拆成可领取工单）
 
@@ -84,6 +85,8 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 ## 8. 远程映射 [remote]（若上传 GitHub）
 - **parent_issue**: #...
 - **role**: 这个 issue 在整体里的角色
+- **labels**: 使用仓库已有标签，至少包含类型标签（`缺陷` / `能力` / `体验优化` / `规范治理`）和优先级标签（`P0`–`P3`）；按任务需要补充领域标签（如 `界面` / `服务` / `贴纸` / `测试`）。
+- **assignees**: 默认当前 GitHub 登录用户；若项目协作约定另有负责人，以明确指定为准。
 ```
 
 ### 可选：推进顺序与依赖总表
@@ -160,7 +163,10 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 ## 发布
 
 - 按依赖顺序发布：blocker 先发，后续 issue 才能引用真实编号。
+- 发布前先用 `gh label list` 读取仓库已有标签，不自造标签；用 `gh api user` 确认当前登录用户。
 - 用 `gh issue create` 等工具上传（若项目有 gh CLI 和权限）。
+- 创建成功后必须补齐远程元数据：`gh issue edit <number> --add-label "..." --add-assignee "..."`。
+- 创建后必须用 `gh issue view <number> --json labels,assignees` 核验标签和负责人确实已落远程。
 - **不关闭或修改 parent issue**。
 
 ## 和其他 skill 的边界
