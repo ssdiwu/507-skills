@@ -7,5 +7,7 @@
 3. [`../code/README.md`](../code/README.md)：代码工作流及其接力关系。
 4. [`../common/README.md`](../common/README.md)：通用 skill（智能体技能）的职责。
 5. 各 skill 目录的 `SKILL.md`：触发词、操作步骤、输入输出与限制。
+6. [`术语表.md`](术语表.md)：定义本仓库稳定使用的项目语言。
+7. [`决策档案/`](决策档案/README.md)：记录难逆转、缺少上下文会令人困惑且存在真实权衡的项目决策。
 
 各 skill 内部的 `doc/`、`references/` 与 `README.md` 仅解释该 skill 的局部实现或方法，不覆盖其上级工作流边界。历史 Git（版本控制）记录用于追溯，不作为当前行为规范。

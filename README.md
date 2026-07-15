@@ -1,77 +1,106 @@
 # Agent Skills
 
-一套把工作方法拆成**可独立触发、可组合、以明确产物衔接**的 Agent Skills（智能体技能）。它不是 prompt（提示词）大杂烩：每个 skill 都说明什么时候用、解决什么、产出什么，以及明确不做什么。
+一套把工作方法拆成**可独立触发、可组合、以明确产物衔接**的 Agent Skills（智能体技能）。每个 skill 都说明什么时候用、解决什么、产出什么，以及明确不做什么。
 
-> 这是一套面向公开使用者的工作流。它以 [Pi](https://github.com/badlogic/pi-mono) 的 skill（技能）发现机制为主要使用环境；内容本身也可作为其他 Agent（智能体）平台的工作流参考。
+本仓库遵循 [Agent Skills 标准](https://agentskills.io/specification)，以 Pi 与 OpenAI Codex 为同等支持的主要宿主。共享 `SKILL.md`（技能说明）只定义动作、边界、产物和验收；宿主专属调度留在使用者自己的 `AGENTS.md`（智能体规范）。
 
 ## 适合谁
 
 - 想把“和 Agent 聊聊”变成可复用工作流的人；
-- 需要区分调研、对齐、规格化、实施、审查等不同动作的人；
-- 想借鉴内容生产或代码项目工作流，但不想一次性引入完整框架的人。
+- 需要区分调研、对齐、规格化、实施、审查和交付的人；
+- 同时使用 Pi、Codex 或其它兼容 Agent Skills 的宿主，希望共用一套方法的人；
+- 想按需采用单个 skill，而不是一次引入完整框架的人。
 
-## 两条工作流
+## 工作流
 
 ```text
 写作：素材 → mine 挖碎片 → fuse 融选题 → forge 共创收敛成文 → rednote 小红书图卡（可选）
-代码：grill 对齐 → blueprint 写需求 → workorder 开工单 → 实现 → inspection 体检
+
+代码：survey 勘察 → blueprint 蓝图 / workorder 工单（按需）→ 实施
+      → asbuilt 实况地图（按需）→ audit 审查 → closeout Git 收尾
+
+架构回路：inspection 只读体检 → retrofit 逐项验证与行为不变改造 → audit
 ```
 
 | 目录 | 目的 | 入口 |
 | --- | --- | --- |
-| [`write/`](write/README.md) | 从素材、视频到文章、讲稿、方案与创作包 | `mine`、`fuse`、`forge`、`breakdown`、`remix` 等 |
-| [`code/`](code/README.md) | 从项目对齐到需求、工单、原型和架构体检 | `ground`、`blueprint`、`workorder`、`mockup`、`inspection` |
-| [`common/`](common/README.md) | 不依赖具体场景的对齐、调研与解释动作 | `grill`、`research`、`teach` |
+| [`write/`](write/README.md) | 从素材、视频到文章、讲稿、方案与创作包 | `507-mine`、`507-fuse`、`507-forge`、`507-breakdown` 等 |
+| [`code/`](code/README.md) | 从项目勘察、需求与施工到审查、收尾和架构回路 | `507-survey`、`507-repair`、`507-retrofit`、`507-audit` 等 |
+| [`common/`](common/README.md) | 不依赖具体场景的对齐、调研、解释与会话移交 | `507-grill`、`507-research`、`507-teach`、`507-handover` |
 
-完整的职责边界、输入输出和触发词在各 skill 的 `SKILL.md`（技能说明）中；流程图与总览见各目录的 `README.md`（说明文档）。
+完整触发词、输入输出和职责边界以各目录的 `SKILL.md` 为准。
 
-## 快速开始（Pi）
+## 新代码执行入口
 
-> 先 fork（派生）本仓库，便于保留自己的修改；以下路径可按你的环境调整。
+| Skill | 动作 |
+| --- | --- |
+| `507-survey` | 读取项目依据，定位并解释问题，默认不实施 |
+| `507-repair` | 建反馈环，最小修复 bug、报错、回归或冲突 |
+| `507-asbuilt` | 以代码为证据，只维护 README/doc 项目地图 |
+| `507-audit` | 审查任意明确交付范围的规范、需求与质量 |
+| `507-closeout` | 明确要求提交时，验证、精确暂存并创建本地 commit |
+| `507-retrofit` | 保持外部行为不变，改造内部模块、抽象和接缝 |
+| `507-probe` | 测试是主任务时补测、运行和缩小失败范围 |
+| `507-formwork` | 明确 test-first/TDD 时按红绿重构实施 |
+| `507-handover` | 中断、换会话、压缩上下文或转交时输出临时交接摘要 |
+
+## 安装
+
+先 fork（派生）或 clone（克隆）仓库，再将它链接到两个宿主都支持的用户级技能目录：
 
 ```bash
-# 1. 获取仓库
-mkdir -p ~/Workspace/Skills
+mkdir -p ~/Workspace/Skills ~/.agents/skills
 cd ~/Workspace/Skills
 git clone https://github.com/ssdiwu/507-skills.git
-
-# 2. 让 Pi 发现这些 skills
-mkdir -p ~/.agents/skills
 ln -s ~/Workspace/Skills/507-skills ~/.agents/skills/507-skills
 ```
 
-重开 Pi 会话后，按自然语言触发对应 skill。例如：
+当前版本的 [Pi](https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/README.md) 与 [Codex](https://developers.openai.com/codex/build-skills#where-to-save-skills) 文档都将 `~/.agents/skills/` 列为用户级技能目录，并支持符号链接。这个发现位置属于宿主实现约定，不是 Agent Skills 标准本身；新增或修改 skill 后若没有立即出现，重开对应会话。
 
-- “帮我把这个方案问透” → `507-grill`
-- “把刚才讨论整理成 PRD” → `507-blueprint`
-- “把这些碎片融成一个选题” → `507-fuse`
-- “把这篇文章做成小红书图文” → `507-rednote`
-- “给这个项目做架构体检” → `507-inspection`
+## 使用
 
-不必安装全套：可以只复制一个 `SKILL.md`（技能说明）及其引用的 `references/`、`scripts/`、`assets/` 文件到自己的 skill 目录。带脚本的 skill 会在自身说明中列出运行时依赖和环境变量。
+### 自然语言触发
+
+skill 的 `description`（描述）保留常用动作词，两个宿主都可按意图自动加载。例如：
+
+- “先帮我定位这个问题在项目里的位置” → `507-survey`
+- “修复这个回归，先建立复现” → `507-repair`
+- “校准这个目录的 README 和项目地图” → `507-asbuilt`
+- “审查这个分支相对 main 的全部改动” → `507-audit`
+- “用 TDD 做这个功能” → `507-formwork`
+- “把 inspection 报告逐项处理完” → `507-retrofit`
+
+### 显式调用
+
+需要强制使用某个技能时，使用宿主原生语法：
+
+```text
+Pi:    /skill:507-audit
+Codex: $507-audit
+```
+
+两端允许使用不同工具和调度方式，但必须保持触发条件、修改权限、停止位置、产物和验证标准一致。
 
 ## 配套 Agent 配置
 
-这个仓库额外提供配套配置，供阅读、借鉴和按需采用：
+[`templates/AGENTS.global.example.md`](templates/AGENTS.global.example.md) 提供宿主中立的全局 `AGENTS.md` 示例。复制到自己的宿主配置后，再按该宿主可用工具补充调度规则；不要把个人称呼、机器路径、私有仓库或凭据同步回公开仓库。
 
-- [`templates/AGENTS.global.example.md`](templates/AGENTS.global.example.md)：全局 `AGENTS.md`（代理行为规范）模板。它保留特定工作流取向，请按目标环境调整称呼、路径和工具约定后再使用。
-- [`prompts/`](prompts/)：`/explain`、`/fix`、`/review`、`/commit` 等 Pi prompt（提示词）模板。部分 prompt 引用 `dgoal`（目标闭环）或本仓库的 `507-*` skills；未安装相应能力时，请删改相关路由规则。
-
-这些文件不是安装 skills 的必需项，也不应覆盖你已有的项目级 `AGENTS.md`（项目规范）。项目局部约束始终应优先于全局习惯。
+项目局部约束始终优先于全局习惯。
 
 ## 设计原则
 
-1. **一 skill 一动作**：`mine` 不写文章，`forge` 不挖素材；相邻 skill 不抢职责。
-2. **以产物接力**：碎片、候选 idea、PRD、issue、报告是阶段之间的交接物，而不是口头状态。
-3. **流程可跳过**：每个 skill 都可独立触发；完整链路是地图，不是强制仪式。
-4. **先证据后优化**：先定位真实问题、失败样例或验证假设，再扩大工作量。
-5. **安全默认**：不提交密钥、个人/客户资料或未经授权的素材；外部 API（接口）密钥仅通过环境变量传入。
+1. **一 skill 一动作**：相邻能力靠明确产物和路由接力，不用总控技能吞并。
+2. **以产物接力**：碎片、候选 idea、PRD、issue、证据报告和 commit 是阶段交接物。
+3. **流程可跳过**：每个 skill 可独立触发，完整链路是地图，不是强制仪式。
+4. **结果跨宿主一致**：共享技能不写 Pi/Codex 条件分支；工具过程可以不同。
+5. **先证据后优化**：先定位真实问题、失败样例或验证信号，再扩大工作量。
+6. **安全默认**：不提交密钥、个人/客户资料或未经授权的素材；外部密钥只通过环境变量传入。
 
 ## 依赖与边界
 
-多数 skill 是纯 Markdown（标记语言）工作流，无额外依赖。`write/507-breakdown`（视频拉片）、`write/507-remix`（视频重组）和 `write/507-rednote`（小红书图卡）包含 Python（编程语言）脚本；视频链可能需要 `ffmpeg`、`yt-dlp`、OCR（文字识别）或 `MiniMax_API_KEY`（接口密钥），图卡链需要 Pillow 与本地 Chrome / Chromium。请先阅读对应目录的 `README.md`。
+多数 skill 是纯 Markdown（标记语言）工作流，无额外依赖。带脚本的写作 skill 会在自身说明中列出运行时依赖和环境变量。请先阅读对应目录的 `README.md`。
 
-本仓库不包含任何 API key（接口密钥）、账号 Cookie（会话凭据）、个人 vault（知识库）或客户材料。请勿把它们提交到 fork（派生仓库）或 issue（问题单）。详见 [`SECURITY.md`](SECURITY.md)。
+本仓库不包含任何 API key（接口密钥）、账号 Cookie（会话凭据）、个人 vault（知识库）或客户材料。详见 [`SECURITY.md`](SECURITY.md)。
 
 ## 贡献与发布
 
@@ -80,4 +109,4 @@ ln -s ~/Workspace/Skills/507-skills ~/.agents/skills/507-skills
 - 变更记录见 [`CHANGELOG.md`](CHANGELOG.md)。
 - 使用条款见 [`LICENSE`](LICENSE)。
 
-欢迎提 issue（问题单）讨论：一个 skill 的边界是否清楚、是否有可复现的失败场景、怎样让它更容易独立采用。对于非常个人化的偏好，优先在自己的 fork（派生仓库）中调整。
+欢迎提 issue（问题单）讨论 skill 边界、可复现失败和跨宿主行为。个人偏好优先留在自己的 `AGENTS.md` 或 fork 中。
