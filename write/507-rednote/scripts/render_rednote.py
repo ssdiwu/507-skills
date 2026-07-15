@@ -204,8 +204,9 @@ def validate_spec(spec: dict) -> None:
         if page["type"] == "cover":
             if page_index != 1:
                 die(f"{label} 不得再次使用 cover")
-            reject_unknown(page, {"type", "kicker", "title", "subtitle", "author", "image", "imagePosition"}, label)
+            reject_unknown(page, {"type", "kicker", "title", "sourceMap", "subtitle", "author", "image", "imagePosition"}, label)
             require_text(page.get("title"), f"{label}.title")
+            require_text(page.get("sourceMap"), f"{label}.sourceMap")
             if page.get("imagePosition", "center") not in IMAGE_POSITIONS:
                 die(f"{label}.imagePosition 无效：{page.get('imagePosition')}")
         else:
@@ -285,6 +286,7 @@ def render_block(block: dict, spec_dir: Path) -> str:
 def render_cover(page: dict, spec: dict, spec_dir: Path, avatar: str | None) -> str:
     image = asset_data_uri(page.get("image"), spec_dir)
     image_position = html.escape(page.get("imagePosition", "center"), quote=True)
+    source_map = html.escape(page.get("sourceMap", ""), quote=True)
     cover_image = f'<img class="cover-image" src="{image}" alt="" style="object-position:{image_position}">' if image else ""
     no_image = " no-image" if not image else ""
     kicker = f'<div class="kicker">{rich_text(page["kicker"])}</div>' if page.get("kicker") else ""
@@ -293,7 +295,7 @@ def render_cover(page: dict, spec: dict, spec_dir: Path, avatar: str | None) -> 
     sign = f'<div class="cover-sign">{rich_text(author)}</div>' if author else ""
     avatar_html = f'<img class="avatar cover-avatar" src="{avatar}" alt="">' if avatar else ""
     return (
-        f'<section class="page cover{no_image}" data-page="1" data-heading="{html.escape(page["title"], quote=True)}">{cover_image}'
+        f'<section class="page cover{no_image}" data-page="1" data-heading="{html.escape(page["title"], quote=True)}" data-source-map="{source_map}">{cover_image}'
         f'<div class="cover-body">{kicker}<h1>{rich_text(page["title"])}</h1>{subtitle}{sign}</div>'
         f'{avatar_html}</section>'
     )

@@ -9,6 +9,7 @@
       "type": "cover",
       "kicker": "REDNOTE",
       "title": "把一篇文章做成图片文章",
+      "sourceMap": "M1 / 标题与中心判断",
       "subtitle": "先锁判断，再做分页",
       "image": "sample.svg",
       "imagePosition": "center"
@@ -16,7 +17,7 @@
     {
       "type": "article",
       "heading": "页面不是素材容器",
-      "sourceMap": "论证链第 1 步",
+      "sourceMap": "M2 / 论证链第 1 步",
       "blocks": [
         {"type": "paragraph", "variant": "lead", "text": "每一页只承担一个推进任务。"},
         {"type": "paragraph", "text": "可以缩短句子，也可以调整顺序，但不能借平台适配之名更换中心判断。"},
@@ -26,7 +27,7 @@
     },
     {
       "type": "article",
-      "sourceMap": "论证链第 2 步（续页）",
+      "sourceMap": "M3 / 论证链第 2 步（续页）",
       "blocks": [
         {"type": "image", "src": "sample.svg", "alt": "本地测试图", "height": 300, "fit": "contain", "position": "center", "caption": "素材由本地路径内嵌。"},
         {"type": "cards", "items": [
@@ -38,7 +39,7 @@
     {
       "type": "article",
       "heading": "从主稿走到最终图卡",
-      "sourceMap": "论证链第 3 步",
+      "sourceMap": "M4 / 论证链第 3 步",
       "blocks": [
         {"type": "flow", "items": [
           {"title": "主稿", "text": "锁定中心判断", "tone": "blue"},
@@ -51,7 +52,7 @@
     {
       "type": "article",
       "heading": "交付前仍要看联系表",
-      "sourceMap": "结论",
+      "sourceMap": "M5 / 结论",
       "closing": true,
       "blocks": [
         {"type": "timeline", "items": [

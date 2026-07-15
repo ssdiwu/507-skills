@@ -3,6 +3,7 @@ import json
 import sys
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -22,11 +23,13 @@ class RenderRednoteTests(unittest.TestCase):
         output = renderer.render_html(self.spec, self.spec_path)
         self.assertIn("data:image/svg+xml;base64,", output)
         self.assertNotIn("sample.svg", output)
-        self.assertIn('data-source-map="论证链第 1 步"', output)
+        self.assertIn('class="page cover" data-page="1"', output)
+        self.assertIn('data-source-map="M1 / 标题与中心判断"', output)
+        self.assertIn('data-source-map="M2 / 论证链第 1 步"', output)
         self.assertIn('<body class="theme-newspaper layout-longform">', output)
         self.assertIn('id="flow-source"', output)
         self.assertIn('id="flow-page-template"', output)
-        self.assertIn('class="flow-unit" data-heading="" data-source-map="论证链第 2 步（续页）"', output)
+        self.assertIn('class="flow-unit" data-heading="" data-source-map="M3 / 论证链第 2 步（续页）"', output)
 
     def test_cards_mode_keeps_explicit_physical_pages(self):
         spec = copy.deepcopy(self.spec)
@@ -94,11 +97,13 @@ class RenderRednoteTests(unittest.TestCase):
         with self.assertRaises(SystemExit):
             renderer.validate_spec(spec)
 
-    def test_requires_source_mapping_for_every_article_page(self):
-        spec = copy.deepcopy(self.spec)
-        del spec["pages"][1]["sourceMap"]
-        with self.assertRaises(SystemExit):
-            renderer.validate_spec(spec)
+    def test_requires_source_mapping_for_every_page(self):
+        for page_index in (0, 1):
+            with self.subTest(page_index=page_index):
+                spec = copy.deepcopy(self.spec)
+                del spec["pages"][page_index]["sourceMap"]
+                with self.assertRaises(SystemExit):
+                    renderer.validate_spec(spec)
 
     def test_rejects_unknown_fields_instead_of_ignoring_typos(self):
         spec = copy.deepcopy(self.spec)
@@ -110,6 +115,25 @@ class RenderRednoteTests(unittest.TestCase):
         self.assertEqual(renderer.parse_pages("5,2,2", 5), [2, 5])
         with self.assertRaises(SystemExit):
             renderer.parse_pages("0,2", 5)
+
+    def test_manifest_records_render_freshness_and_source_mapping(self):
+        with TemporaryDirectory() as tmp:
+            output_dir = Path(tmp)
+            spec_path = output_dir / "rednote-project.json"
+            spec_path.write_text(json.dumps(self.spec, ensure_ascii=False), encoding="utf-8")
+            (output_dir / "rednote.html").write_text("<html></html>", encoding="utf-8")
+            pages_dir = output_dir / "pages"
+            pages_dir.mkdir()
+            page_file = pages_dir / "rednote_page_01.jpg"
+            page_file.write_bytes(b"jpeg-placeholder")
+            page_map = [{"page": 1, "type": "cover", "sourceMap": "M1 / 标题与中心判断"}]
+
+            renderer.write_manifest(output_dir, spec_path, self.spec, [page_file], [1], page_map)
+
+            manifest = json.loads((output_dir / "render-manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["status"], "rendered")
+            self.assertEqual(manifest["sourceSpecSha256"], renderer.sha256(spec_path))
+            self.assertEqual(manifest["pageMap"], page_map)
 
 
 if __name__ == "__main__":

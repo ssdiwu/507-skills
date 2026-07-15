@@ -58,7 +58,7 @@ compatibility: "Requires Python 3.10+, Pillow, and local Google Chrome or Chromi
 3. 可删的支撑层与不可删的转折/结论。
 4. 主稿全部图片的清单、原始顺序，以及“正文保留 / 改作封面 / 明确删除及理由”。
 5. 帖子标题、封面标题、副标题和分页模式。
-6. **保真清单**：逐项列出不可删的承重内容。若主稿含可直接复用的完整提示词、模板、表格、步骤或用户已明确要求保留的章节，默认视为不可压缩；除非用户明确同意拆成另一篇或删除，否则不得把它们静默概括成一句“文末有提示词”。
+6. **保真清单**：以 `M1`、`M2`…逐项列出不可删的承重内容。若主稿含可直接复用的完整提示词、模板、表格、步骤或用户已明确要求保留的章节，默认视为不可压缩；除非用户明确同意拆成另一篇或删除，否则不得把它们静默概括成一句“文末有提示词”。
 7. **资源分发策略**：对提示词、模板、清单、附件等可领取资源，必须明确选择“图卡全文交付 / 评论区钩子 / 拆为系列 / 外链或附件领取”之一；写清完整资源仍存在哪里，以及图卡怎样准确承诺。评论区钩子只在用户明确选择后可用，不能伪装成正文已经交付。
 
 模板与逻辑文案约束见 [`references/copy-spec.md`](references/copy-spec.md)。没有锁定中心判断、论证链、保真清单、资源分发策略和图片去向，不进入分页。
@@ -80,7 +80,7 @@ compatibility: "Requires Python 3.10+, Pillow, and local Google Chrome or Chromi
 
 ### 3. 生成内容规格
 
-按 [`assets/rednote-project.schema.json`](assets/rednote-project.schema.json) 和 [`references/project-spec.md`](references/project-spec.md) 创建 `rednote-project.json`。长文默认写 `layoutMode: longform`，其中 `pages` 是章节/段落逻辑块，不等于最终图片页；清单或对比卡片才用 `layoutMode: cards`。尚未选风格时可暂用 `editorial-用户`。图片与头像尽量复制到作品目录并用相对路径引用；禁止远程图片 URL。
+按 [`assets/rednote-project.schema.json`](assets/rednote-project.schema.json) 和 [`references/project-spec.md`](references/project-spec.md) 创建 `rednote-project.json`。长文默认写 `layoutMode: longform`，其中 `pages` 是章节/段落逻辑块，不等于最终图片页；清单或对比卡片才用 `layoutMode: cards`。每个逻辑块的 `sourceMap` 必须写入它承接的 `M` 编号；渲染前逐项核对保真清单中的每个编号至少出现一次，未覆盖就回到 Copy Spec 补块，不以“整体大致讲到了”放行。尚未选风格时可暂用 `editorial-用户`。图片与头像尽量复制到作品目录并用相对路径引用；禁止远程图片 URL。
 
 ### 4. 选择外观样式
 
@@ -115,7 +115,15 @@ python3 <skill-dir>/scripts/render_rednote.py \
 
 脚本负责：内嵌本地素材、生成单文件 HTML、调用本地 Chrome、导出 1500×2000 JPG、检查溢出、生成联系表和清单。运行条件见 [`scripts/README.md`](scripts/README.md)。
 
-### 6. 双重验收
+### 6. 交付硬门与双重验收
+
+**先过交付硬门，才谈验收或提交。** 每次修改 `copy-spec.md`、`rednote-project.json`、图片、头像或全局样式后，必须重渲染受影响输出；`longform`（长文）任一逻辑块变化一律全量重渲染。独立核对：
+
+1. `render-manifest.json` 的 `status` 为 `rendered`，其 `sourceSpecSha256` 必须等于当前 `rednote-project.json` 的 SHA-256（安全散列）；不相等表示图卡、HTML（网页）和联系表仍是旧规格。
+2. 保真清单的每个 `M` 编号至少出现在一个当前 `rednote-project.json` 逻辑块的 `sourceMap` 中；未覆盖的承重内容不能被“概述过”替代。
+3. `render-manifest.json` 所列全部图卡、`contact-sheet.jpg`、`rednote.html` 均存在；物理页数可以不同于逻辑块数，但必须来自当前规格。
+
+任一项失败时，状态只能是“规格已更新、输出过期”，不得称为发布包完成、不得提交生成物、不得让用户按现有图卡发布。
 
 **内容验收**：逐页映射回中心判断与论证链；渲染文案与 `copy-spec.md` 一致；没有凭空增加教程线。
 
@@ -129,4 +137,4 @@ python3 <skill-dir>/scripts/render_rednote.py \
 - 不在渲染阶段临时改文案。
 - 不把私密截图未经脱敏直接嵌入。
 - 不上传正文、图片、头像或凭据到远程渲染服务。
-- 不交付未看联系表、未验证尺寸和页数的图卡。
+- 不交付未看联系表、未验证尺寸和页数、或未通过“当前规格 ↔ 渲染清单”新鲜度核对的图卡。

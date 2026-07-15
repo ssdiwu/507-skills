@@ -38,12 +38,13 @@
     "color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
     "coverPage": {
       "type": "object",
-      "required": ["type", "title"],
+      "required": ["type", "title", "sourceMap"],
       "additionalProperties": false,
       "properties": {
         "type": {"const": "cover"},
         "kicker": {"type": "string"},
         "title": {"type": "string", "minLength": 1},
+        "sourceMap": {"type": "string", "minLength": 1},
         "subtitle": {"type": "string"},
         "author": {"type": "string"},
         "image": {"type": "string"},
