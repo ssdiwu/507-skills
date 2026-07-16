@@ -4,6 +4,21 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-16
+
+### Changed
+
+- `code/` 与 `common/` 的公开 skill 名称改为功能直译并继续保留 `507-` 命名空间：`setup`、`prd`、`issue`、`prototype`、`inspect`、`explain`、`fix`、`map`、`review`、`commit`、`simplify`、`test`、`tdd` 与 `handoff`；`grill`、`research` 和 `teach` 保持不变。
+- 非写作技能的标题、流程图、路由说明、全局 `AGENTS.md` 模板及 Pi/Codex 本机配置同步使用功能语言；`write/` 保留既有创作命名体系。
+
+### Removed
+
+- 移除 `code/` 与 `common/` 的旧施工名称目录，不保留重复 skill 别名。
+
+### Breaking
+
+- 显式调用需从 `507-ground`、`507-blueprint`、`507-workorder`、`507-mockup`、`507-inspection`、`507-survey`、`507-repair`、`507-asbuilt`、`507-audit`、`507-closeout`、`507-retrofit`、`507-probe`、`507-formwork` 与 `507-handover` 分别迁移到 `507-setup`、`507-prd`、`507-issue`、`507-prototype`、`507-inspect`、`507-explain`、`507-fix`、`507-map`、`507-review`、`507-commit`、`507-simplify`、`507-test`、`507-tdd` 与 `507-handoff`。
+
 ## [0.1.0] - 2026-07-16
 
 ### Added

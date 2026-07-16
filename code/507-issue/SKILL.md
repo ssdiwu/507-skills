@@ -1,15 +1,15 @@
 ---
-name: 507-workorder
-description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub、可被 AI 领取执行的工单。正向把方案/PRD 拆成可领取 issue，反向把 bug/gap 落成可追踪 issue。模板以 经实践验证的 issue 模板为骨架（正向八板块 + 反向现象/影响/方案/验收/风险），issue 本身就是执行合同，不另产 Agent Brief。Use when user mentions 写 issue, 开 issue, 拆 issue, 开工单, 上传 issue, 让 AI 领取任务, 把任务传 GitHub, bug 转 issue, gap 转 issue, 记个 bug, 落成工单, 提 issue, workorder, work order, github issue, ticket."
+name: 507-issue
+description: "写 GitHub issue——把任务结构化成可上传 GitHub、可被 AI 领取执行的 issue。正向把方案/PRD 拆成可领取 issue，反向把 bug/gap 落成可追踪 issue。模板以经实践验证的 issue 模板为骨架（正向八板块 + 反向现象/影响/方案/验收/风险），issue 本身就是执行合同，不另产 Agent Brief。Use when user mentions 写 issue, 开 issue, 拆 issue, 上传 issue, 让 AI 领取任务, 把任务传 GitHub, bug 转 issue, gap 转 issue, 记个 bug, 提 issue, github issue, ticket."
 ---
 
-# 写工单（workorder）
+# GitHub Issue（issue）
 
 把任务结构化成**可上传 GitHub、可被 AI 领取执行的工单**。
 
 解决的核心问题是 **任务留档与协同**——当你需要把一个任务交给 GitHub 上的 AI 或协作者领取时，口头描述不够，要落成一份结构化、自足、可追踪的 issue。issue 既是留档载体，也是执行合同：AI 领取后照着 issue 内容直接做，不需要你在 issue 之外再补一份执行说明。
 
-`507-workorder` 做的是：**任务 → 结构化 GitHub issue 工单**。
+`507-issue` 做的是：**任务 → 结构化 GitHub issue 工单**。
 
 ## 覆盖什么
 
@@ -19,12 +19,12 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 
 ## 不覆盖什么
 
-- 开工前把方案问透 → 不在本 skill 范围（先问透再开工单）
-- 把对话/方案落成**需求规格文档（PRD）** → 用 `507-blueprint`（PRD 是"想清楚要做什么"，工单是"把要做的事写成可领取的单元"）
+- 实施前把方案问透 → 不在本 skill 范围（先问透再创建 issue）
+- 把对话/方案落成**需求规格文档（PRD）** → 用 `507-prd`（PRD 是"想清楚要做什么"，工单是"把要做的事写成可领取的单元"）
 - 真实调用 issue tracker 创建 issue（除非项目已有 `gh` CLI 等明确工具与权限）
 - 执行本身（领取后怎么做走执行入口，不在本 skill 范围）
 
-> 和 blueprint 的关系：blueprint 产 PRD（需求规格），workorder 产 issue（可领取工单）。PRD 可作为 workorder 的可选输入（重任务先 PRD 再拆工单），但 workorder 也可独立触发（bug 直接开工单，不经 PRD）。
+> 和 `507-prd` 的关系：`507-prd` 产 PRD（需求规格），`507-issue` 产可领取 issue。PRD 可作为 `507-issue` 的可选输入（重任务先 PRD 再拆 issue），但 `507-issue` 也可独立触发（bug 可直接创建 issue，不经 PRD）。
 
 ## 核心纪律（不可违反）
 
@@ -107,7 +107,7 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 ### issue 类型分组
 - 开路 issue: #A, #B
 - 内容层 issue: #C, #D
-- 收尾 issue: #E
+- 最终 issue: #E
 ```
 
 ## 模式二：反向 issue（bug/gap 转工单）
@@ -173,13 +173,13 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 
 | skill | 分工 |
 |---|---|
-| **workorder** | 任务 → GitHub issue 工单（本 skill） |
-| **blueprint** | 对话/方案 → PRD 需求规格（workorder 的可选上游；PRD 想清楚，再拆工单） |
-| **grill** | 把方案/改动问透（开工单前对齐） |
-| **执行入口** | 编排执行（领取 issue 后另行编排；本 skill 只产工单，不编排执行） |
+| **issue** | 任务 → GitHub issue（本 skill） |
+| **prd** | 对话/方案 → PRD 需求规格（`507-issue` 的可选上游；PRD 想清楚，再拆 issue） |
+| **grill** | 把方案/改动问透（创建 issue 前对齐） |
+| **执行入口** | 编排执行（领取 issue 后另行编排；本 skill 只产 issue，不编排执行） |
 | **修 bug** | 修复走执行入口（反向 issue 记录问题后，修复另行处理） |
 
-时序：对齐 → blueprint 画 PRD（可选）→ workorder 开工单 → AI 领取 → 执行。
+时序：对齐 → 写 PRD（可选）→ 创建 GitHub issue → AI 领取 → 执行。
 
 ## 启动姿势
 
@@ -200,4 +200,4 @@ description: "写 GitHub issue 工单——把任务结构化成可上传 GitHub
 - 不写文件路径/行号作为执行指令（写行为契约，耐久优先）。
 - 不把 issue 写成实现步骤（写"做什么"不写"怎么改"）。
 - 不跳过范围外声明（excludes 防镀金）。
-- 不在和 blueprint 的边界上抢 PRD 的活。
+- 不在和 `507-prd` 的边界上抢 PRD 的工作。

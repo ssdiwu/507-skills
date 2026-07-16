@@ -1,9 +1,9 @@
 ---
-name: 507-audit
+name: 507-review
 description: "交付审查：围绕明确的 commit、branch、diff 或路径检查 Standards、Spec 与 Code Quality，只报告问题、证据和路由。Use when user says review this change, code review, 审查改动, 检查提交, 检查分支, 需求符合度, 交付审查. 不用于主动寻找全库架构机会。"
 ---
 
-# 交付审查（audit）
+# 交付审查（review）
 
 对一个明确的代码或文档变更范围检查：
 
@@ -84,12 +84,12 @@ description: "交付审查：围绕明确的 commit、branch、diff 或路径检
 
 ## 后续路由
 
-- bug、逻辑或安全问题 → `507-repair`；
-- 测试缺口/失败 → `507-probe`；明确 test-first → `507-formwork`；
-- 行为不变内部改造 → `507-retrofit`；架构摩擦 → `507-inspection`；
-- 地图文档失真 → `507-asbuilt`；完整地基巡检 → `507-ground`；
-- 漏做需求 → `507-blueprint` 或 `507-workorder`；
-- 已完成且用户明确要求 Git 收尾 → `507-closeout`。
+- bug、逻辑或安全问题 → `507-fix`；
+- 测试缺口/失败 → `507-test`；明确 test-first → `507-tdd`；
+- 行为不变内部简化 → `507-simplify`；架构摩擦 → `507-inspect`；
+- 地图文档失真 → `507-map`；完整项目初始化或规范巡检 → `507-setup`；
+- 漏做需求 → `507-prd` 或 `507-issue`；
+- 已完成且用户明确要求 Git 提交 → `507-commit`。
 
 ## 红线
 
