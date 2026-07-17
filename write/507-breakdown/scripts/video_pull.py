@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Public orchestrator for the required video breakdown lifecycle."""
 from __future__ import annotations
-import argparse,json,shutil,subprocess,sys
+import argparse,json,os,shutil,subprocess,sys
 from pathlib import Path
 from video_contract import (RAW_ASR_DIR,RAW_SCENECUT_DIR,RAW_VIDEO_DIR,STATUS_ACQUIRED,STATUS_FAILED,STATUS_SEMANTIC_FAILED,VideoManifest,ensure_dir,video_hash)
 
@@ -9,6 +9,19 @@ def slugify(value:str)->str:
  import re
  value=re.sub(r"[^a-z0-9\u4e00-\u9fff]+","-",value.lower()).strip("-");return value or "video"
 def run(cmd:list[str]): return subprocess.run(cmd,check=True,capture_output=True,text=True)
+def asr_python_candidate(explicit:str|None)->Path:
+ raw=explicit or os.getenv("VIDEO_ASR_PYTHON") or sys.executable
+ return Path(os.path.abspath(Path(raw).expanduser()))
+def asr_python_available(python:Path)->bool:
+ return python.is_file() and os.access(python,os.X_OK)
+def python_has_module(python:Path,module:str)->bool:
+ if not asr_python_available(python): return False
+ try:return subprocess.run([str(python),"-c",f"import {module}"],check=False,capture_output=True,text=True).returncode==0
+ except OSError:return False
+def resolve_asr_python(explicit:str|None)->Path:
+ python=asr_python_candidate(explicit)
+ if not asr_python_available(python): raise RuntimeError(f"ASR Python 不可用：{python}；请用 --asr-python 或 VIDEO_ASR_PYTHON 指定可执行文件")
+ return python
 def acquire(video:str,manifest:VideoManifest)->Path:
  out=manifest.raw_dir/RAW_VIDEO_DIR;ensure_dir(out)
  if video.startswith(("http://","https://")):
@@ -19,11 +32,11 @@ def acquire(video:str,manifest:VideoManifest)->Path:
  source=Path(video).expanduser().resolve()
  if not source.exists(): raise RuntimeError(f"本地视频不存在：{source}")
  dest=out/source.name;shutil.copy2(source,dest);return dest
-def asr(video:Path,manifest:VideoManifest,lang:str|None)->None:
+def asr(video:Path,manifest:VideoManifest,lang:str|None,asr_python:str|None)->None:
  out=manifest.raw_dir/RAW_ASR_DIR;ensure_dir(out);audio=out/"video_audio.wav";transcript=out/"video_transcript.txt"
  run(["ffmpeg","-y","-i",str(video),"-vn","-acodec","pcm_s16le","-ar","16000","-ac","1",str(audio)])
- python=Path.home()/".venvs"/"video-asr"/"bin"/"python"
- if not python.exists(): raise RuntimeError("未找到 ~/.venvs/video-asr/bin/python")
+ python=resolve_asr_python(asr_python)
+ if not python_has_module(python,"faster_whisper"): raise RuntimeError(f"ASR Python 未安装 faster-whisper：{python}")
  run([str(python),str(Path(__file__).with_name("video_asr_faster_whisper.py")),str(audio),str(transcript),"--language",lang or "auto"])
  manifest.step("video_asr","success","本地 ASR 完成",str(transcript))
 def scene_cut(video:Path,manifest:VideoManifest)->None:
@@ -47,11 +60,12 @@ def call(name:str,ws:Path,*extra:str)->None:
  run([sys.executable,str(Path(__file__).with_name(name)),"--workspace",str(ws),*extra])
 def main()->int:
  p=argparse.ArgumentParser(description="视频拉片流水线")
- sub=p.add_subparsers(dest="command");r=sub.add_parser("run");r.add_argument("--video",required=True);r.add_argument("--output-dir",default="./05-视频拉片");r.add_argument("--title-hint");r.add_argument("--lang");r.add_argument("--force",action="store_true");r.add_argument("--force-local-fallback",action="store_true")
- sub.add_parser("check")
+ sub=p.add_subparsers(dest="command");r=sub.add_parser("run");r.add_argument("--video",required=True);r.add_argument("--output-dir",default="./05-视频拉片");r.add_argument("--title-hint");r.add_argument("--lang");r.add_argument("--asr-python",help="运行 faster-whisper 的 Python 可执行文件");r.add_argument("--force",action="store_true");r.add_argument("--force-local-fallback",action="store_true")
+ c=sub.add_parser("check");c.add_argument("--asr-python",help="检查指定的 ASR Python 可执行文件")
  a=p.parse_args()
  if a.command=="check":
-  import os;print({"ffmpeg":shutil.which("ffmpeg") is not None,"yt_dlp":shutil.which("yt-dlp") is not None,"minimax_key":bool(os.getenv("MiniMax_API_KEY"))});return 0
+  python=asr_python_candidate(a.asr_python);available=asr_python_available(python)
+  print({"ffmpeg":shutil.which("ffmpeg") is not None,"ffprobe":shutil.which("ffprobe") is not None,"yt_dlp":shutil.which("yt-dlp") is not None,"tesseract":shutil.which("tesseract") is not None,"asr_python":str(python),"asr_python_exists":available,"faster_whisper":python_has_module(python,"faster_whisper") if available else False,"minimax_key":bool(os.getenv("MiniMax_API_KEY"))});return 0
  if a.command!="run":p.print_help();return 1
  root=Path(a.output_dir).expanduser().resolve();ws=root/slugify(a.title_hint or Path(a.video).stem)
  if ws.exists() and not a.force: raise SystemExit(f"工作区已存在：{ws}；使用 --force 覆盖")
@@ -59,7 +73,7 @@ def main()->int:
  ensure_dir(ws/"raw");m=VideoManifest(ws);m.data["videoInput"]=a.video;m.flush()
  try:
   video=acquire(a.video,m);m.data["videoPath"]=str(video);m.data["videoHash"]=video_hash(video);m.set_status(STATUS_ACQUIRED);m.step("video_acquisition","success","视频取得",str(video))
-  asr(video,m,a.lang);scene_cut(video,m)
+  asr(video,m,a.lang,a.asr_python);scene_cut(video,m)
   if a.force_local_fallback:
    m.set_mode("forced_local_fallback","local_frames_asr",["未使用 MiniMax-M3 整段语义理解"])
   else:
