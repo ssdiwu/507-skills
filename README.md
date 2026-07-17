@@ -13,28 +13,52 @@
 
 ## 工作流
 
-```text
-写作：素材 → mine 挖碎片 → fuse 融选题 → forge 共创收敛成文 → rednote 小红书图卡（可选）
+认知入口与交付工作流分层接力：`common/` 先处理项目未知、概念障碍、外部证据和用户决策；问题清楚后，再进入 `code/` 或 `write/` 的具体交付链。
 
-代码：explain 理解项目 → prd 需求规格 / issue 任务定义（按需）→ 实现
-      → map 项目地图（按需）→ review 交付审查 → commit Git 提交
+```mermaid
+flowchart LR
+    unknown["项目问题尚未看清"] --> explore["507-explore<br/>读取项目共识与证据"]
+    concept["用户不理解一个概念"] --> explain["507-explain<br/>用文字与必要示意讲懂"]
 
-架构回路：inspect 只读架构审查 → simplify 逐项验证与行为不变简化 → review
+    explore --> frontier{"当前可推进边界属于什么？"}
+    frontier -->|"外部机制"| research["507-research"]
+    frontier -->|"用户决策"| grill["507-grill"]
+    frontier -->|"需要看见后判断"| prototype["507-prototype"]
+    frontier -->|"已经清楚"| delivery{"进入哪条交付流？"}
+
+    research --> delivery
+    grill --> delivery
+    prototype --> delivery
+    delivery --> code["code<br/>规格 · 实现 · 审查 · 提交"]
+    delivery --> write["write<br/>素材 · 选题 · 成文 · 发布适配"]
 ```
+
+- **代码主链**：`explore（按需） → prd / issue（按需） → 实现 → review → commit（明确要求时）`
+- **写作主链**：`mine → fuse → forge → rednote（按需）`，另有 cast、stage、frame、breakdown 与 remix 分支。
+- **架构回路**：`inspect → simplify → review`。
 
 | 目录 | 目的 | 入口 |
 | --- | --- | --- |
+| [`common/`](common/README.md) | 跨代码与写作的探索、概念解释、调研、对齐和移交 | `507-explore`、`507-explain`、`507-research`、`507-grill`、`507-handoff` |
+| [`code/`](code/README.md) | 从需求与实现到审查、提交和架构回路 | `507-prd`、`507-fix`、`507-simplify`、`507-review` 等 |
 | [`write/`](write/README.md) | 从素材、视频到文章、讲稿、方案与创作包 | `507-mine`、`507-fuse`、`507-forge`、`507-breakdown` 等 |
-| [`code/`](code/README.md) | 从项目理解、需求与实现到审查、提交和架构回路 | `507-explain`、`507-fix`、`507-simplify`、`507-review` 等 |
-| [`common/`](common/README.md) | 不依赖具体场景的对齐、调研、解释与会话移交 | `507-grill`、`507-research`、`507-teach`、`507-handoff` |
 
 完整触发词、输入输出和职责边界以各目录的 `SKILL.md` 为准。
 
-## 代码工作流入口
+## 通用认知入口
 
 | Skill | 动作 |
 | --- | --- |
-| `507-explain` | 读取项目依据，定位并解释问题，默认不实施 |
+| `507-explore` | 只读探索项目未知，在会话中维护已知、未知、`frontier（当前可推进边界）`与证据边界 |
+| `507-explain` | 把用户不理解的单个概念讲懂，必要时使用表格、`Mermaid（图表语法）`或 `ASCII（字符图）`示意 |
+| `507-research` | 核实外部参照物的真实机制并判断对当前项目的借鉴意义 |
+| `507-grill` | 沿依赖关系对齐只有用户能够决定的意图、边界与风险取舍 |
+| `507-handoff` | 中断、换会话或转交时输出临时交接摘要 |
+
+## 代码交付入口
+
+| Skill | 动作 |
+| --- | --- |
 | `507-setup` | 初始化项目工作规范或执行全量规范检查 |
 | `507-prd` | 把对话或方案沉淀成 PRD 需求规格 |
 | `507-issue` | 把任务写成可上传 GitHub、可被领取的 issue |
@@ -68,7 +92,8 @@ ln -s ~/Workspace/Skills/507-skills ~/.agents/skills/507-skills
 
 skill 的 `description`（描述）保留常用动作词，两个宿主都可按意图自动加载。例如：
 
-- “先帮我定位这个问题在项目里的位置” → `507-explain`
+- “先帮我看看这个问题在项目里的位置和未知边界” → `507-explore`
+- “用流程图讲清楚状态机是什么” → `507-explain`
 - “修复这个回归，先建立复现” → `507-fix`
 - “校准这个目录的 README 和项目地图” → `507-map`
 - “审查这个分支相对 main 的全部改动” → `507-review`

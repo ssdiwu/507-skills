@@ -11,3 +11,5 @@
 7. [`决策档案/`](决策档案/README.md)：记录难逆转、缺少上下文会令人困惑且存在真实权衡的项目决策。
 
 各 skill 内部的 `doc/`、`references/` 与 `README.md` 仅解释该 skill 的局部实现或方法，不覆盖其上级工作流边界。历史 Git（版本控制）记录用于追溯，不作为当前行为规范。
+
+当前工作流定义与流程图分别维护在根 `README.md`、`common/README.md`、`code/README.md` 与 `write/README.md`；本文件只负责文档权威与阅读顺序，不复制完整工作流。
