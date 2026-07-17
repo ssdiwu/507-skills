@@ -6,7 +6,7 @@ MiniMax-M3 必经理解与本地证据核验的视频拉片 skill。最终时间
 
 ## 关键边界
 
-- MiniMax 请求适配独立维护，不依赖 pi-sense 运行时。
+- MiniMax 请求适配独立维护，所需运行时依赖必须在本目录显式声明。
 - 只从环境变量 `MiniMax_API_KEY` 读取密钥；不读取或输出 `.zshrc`。
 - 默认 M3 失败非零；仅 `--force-local-fallback` 可跳过整段理解。
 - 只写/读 video_* 新工作区契约；不兼容旧包。
