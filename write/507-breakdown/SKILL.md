@@ -50,3 +50,10 @@ python3 scripts/video_validate_breakdown.py --workspace 05-视频拉片/<video-i
 ```
 
 脚本均使用小写 snake_case，视频流水线文件以 `video_` 开头。详情见 `scripts/README.md` 与 `references/analysis-playbook.md`。
+
+## 完成与接力
+
+- **完成信号**：validator（校验器）通过，`raw/video_manifest.json` 为 `video_completed`，最终时间窗均有本地证据，降级路径与限制已记录。
+- **产物**：`05-视频拉片/<video-id>/` 下可核验、可复用的新 `video_*` 拉片包。
+- **候选出口**：需要挖内容判断、观点或写作碎片时进入 `507-mine`；需要借鉴叙事、镜头、字幕或节奏手法时进入 `507-remix`；两类目标同时存在时可分别接力；只需要拉片证据时直接结束。
+- **回退条件**：M3、图片理解或本地证据不足时保留未完成工作区并报告限制，不标记 `video_completed`，也不把不完整包交给下游。
