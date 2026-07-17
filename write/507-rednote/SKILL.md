@@ -1,6 +1,6 @@
 ---
 name: 507-rednote
-description: "把已成立的书面作品改编并渲染成小红书 3:4 图片文章：锁定中心判断、论证链与原图去向，产逻辑 Copy Spec，按真实高度自动分页，从 18 套外观中选样式，导出 1500×2000 图卡、联系表并验收。Use when user mentions 做成小红书图文, 小红书图片文章, 小红书图卡, 3:4竖图, 把文章转成小红书, RedNoteImage, rednote cards, xiaohongshu carousel."
+description: "把已成立的书面作品改编并渲染成小红书 3:4 图片文章：锁定中心判断、论证链与原图去向，产逻辑 Copy Spec，按真实高度自动分页，从 18 套外观中选样式，导出 1500×2000 图卡、联系表并验收。Use when user mentions 做成小红书图文, 小红书图片文章, 小红书图卡, 3:4竖图, 把文章转成小红书, rednote cards, xiaohongshu carousel."
 compatibility: "Requires Python 3.10+, Pillow, and local Google Chrome or Chromium."
 ---
 
@@ -17,7 +17,7 @@ compatibility: "Requires Python 3.10+, Pillow, and local Google Chrome or Chromi
 ## 不覆盖什么
 
 - 选题、挖素材和长文成稿，分别归 `507-mine`、`507-fuse`、`507-forge`。
-- 单张封面、场景图或 AI 插图归 `image-workflow`；本 skill 只在确需额外素材时调用它。
+- 单张封面、场景图或 AI 插图不属于本 skill；确有需要时，使用当前环境可用的配图或图像生成能力。
 - 不负责登录、发布或运营小红书。
 - 不把成熟文章改造成原文没有的教程、清单或行动建议。
 
@@ -80,7 +80,7 @@ compatibility: "Requires Python 3.10+, Pillow, and local Google Chrome or Chromi
 
 ### 3. 生成内容规格
 
-按 [`assets/rednote-project.schema.json`](assets/rednote-project.schema.json) 和 [`references/project-spec.md`](references/project-spec.md) 创建 `rednote-project.json`。长文默认写 `layoutMode: longform`，其中 `pages` 是章节/段落逻辑块，不等于最终图片页；清单或对比卡片才用 `layoutMode: cards`。每个逻辑块的 `sourceMap` 必须写入它承接的 `M` 编号；渲染前逐项核对保真清单中的每个编号至少出现一次，未覆盖就回到 Copy Spec 补块，不以“整体大致讲到了”放行。尚未选风格时可暂用 `editorial-用户`。图片与头像尽量复制到作品目录并用相对路径引用；禁止远程图片 URL。
+按 [`assets/rednote-project.schema.json`](assets/rednote-project.schema.json) 和 [`references/project-spec.md`](references/project-spec.md) 创建 `rednote-project.json`。长文默认写 `layoutMode: longform`，其中 `pages` 是章节/段落逻辑块，不等于最终图片页；清单或对比卡片才用 `layoutMode: cards`。每个逻辑块的 `sourceMap` 必须写入它承接的 `M` 编号；渲染前逐项核对保真清单中的每个编号至少出现一次，未覆盖就回到 Copy Spec 补块，不以“整体大致讲到了”放行。尚未选风格时可暂用 `editorial-default`。图片与头像尽量复制到作品目录并用相对路径引用；禁止远程图片 URL。
 
 ### 4. 选择外观样式
 
@@ -135,7 +135,7 @@ python3 <skill-dir>/scripts/render_rednote.py \
 
 - **完成信号**：当前规格 SHA-256 与 render manifest（渲染清单）一致，保真编号全部覆盖，图卡/HTML/联系表齐全且内容与视觉验收通过。
 - **产物**：作品目录中的 `copy-spec.md`、`rednote-project.json`、单文件 HTML、1500×2000 图卡、联系表和渲染清单。
-- **候选出口**：主稿或论证链不成立时返回 `507-forge`；缺单张必要封面/插图时进入 `image-workflow` 后返回；用户承诺或删除取舍未定时进入 `507-grill`；发布包完成后直接结束或交给另行授权的发布流程。
+- **候选出口**：主稿或论证链不成立时返回 `507-forge`；缺单张必要封面/插图时，使用当前环境可用的配图或图像生成能力，完成后返回；用户承诺或删除取舍未定时进入 `507-grill`；发布包完成后直接结束或交给另行授权的发布流程。
 - **回退条件**：规格与渲染产物不新鲜、保真清单未覆盖或视觉检查失败时回到规格并重渲染，不交付旧 JPG。
 
 ## 红线

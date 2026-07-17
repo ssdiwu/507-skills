@@ -11,4 +11,4 @@
 - `assets/rednote-project.schema.json`：渲染输入契约。
 - `scripts/`：样式预览、本地 HTML 生成、Chrome 截图、尺寸检查与联系表生成。
 
-本 skill 不负责长文成稿、单张 AI 配图或小红书发布；对应能力分别交给 `507-forge`、`image-workflow` 和发布工具。
+本 skill 不负责长文成稿、单张 AI 配图或小红书发布：长文返回 `507-forge`；单张配图使用当前环境可用的配图或图像生成能力；发布需另行授权。

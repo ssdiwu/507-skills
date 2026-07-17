@@ -735,7 +735,7 @@ code { padding:2px 7px; border-radius:7px; background:rgba(0,0,0,.07); font-fami
 .cover-sub { padding-top:22px; border-top:2px solid var(--line); color:var(--accent-dark); font-size:30px; line-height:1.45; font-weight:800; }
 .cover-sign { position:absolute; left:66px; bottom:54px; color:var(--muted); font-size:20px; font-weight:700; }
 .cover-avatar { width:94px; height:104px; right:48px; bottom:38px; }
-/* style presets adapted from the local RedNoteImage theme system */
+/* Self-contained style presets bundled with 507-rednote. */
 .theme-retro { font-family:"Noto Serif SC","Songti SC",serif; }
 .theme-retro .page,.theme-retro .cover-body { background-color:var(--paper); background-image:radial-gradient(circle at 25px 25px,rgba(139,90,60,.12) 1px,transparent 1.5px); background-size:50px 50px; }
 .theme-retro .topbar { border-bottom-style:dashed; }
