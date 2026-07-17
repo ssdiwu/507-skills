@@ -1,0 +1,73 @@
+{
+  "videoThesis": "A synthetic tutorial demonstrates how to prepare, assemble, verify, and finish a small tabletop organizer.",
+  "videoTypeHint": "tutorial",
+  "semanticUnits": [
+    {
+      "id": "introduce_goal",
+      "meaning": "The presenter states the goal and lays out the parts needed for the tabletop organizer.",
+      "spokenAnchors": [
+        "First, place every part on a clear surface.",
+        "We will assemble the organizer and check that it sits flat."
+      ],
+      "visualAnchors": [
+        "an empty tabletop",
+        "one base panel and two divider panels arranged side by side"
+      ],
+      "referencePosition": "beginning",
+      "referenceTimeHint": "start",
+      "status": "unlocalized"
+    },
+    {
+      "id": "attach_first_divider",
+      "meaning": "The first divider is aligned with the left slot and pressed into the base.",
+      "spokenAnchors": [
+        "Align the first divider with the left slot.",
+        "Press straight down until the edges are level."
+      ],
+      "visualAnchors": [
+        "hands aligning a divider above the left slot",
+        "the first divider seated vertically in the base"
+      ],
+      "referencePosition": "early",
+      "referenceTimeHint": "after the introduction",
+      "status": "unlocalized"
+    },
+    {
+      "id": "attach_second_divider",
+      "meaning": "The second divider is installed in the remaining slot to complete the organizer shape.",
+      "spokenAnchors": [
+        "Repeat the same motion for the second divider.",
+        "Both dividers should now be parallel."
+      ],
+      "visualAnchors": [
+        "a second divider moving into the remaining slot",
+        "two parallel dividers standing on the base"
+      ],
+      "referencePosition": "middle",
+      "referenceTimeHint": "middle",
+      "status": "unlocalized"
+    },
+    {
+      "id": "verify_and_finish",
+      "meaning": "The completed organizer is checked for alignment and stability before the tutorial concludes.",
+      "spokenAnchors": [
+        "Check that every joint is flush.",
+        "If the base stays flat, the organizer is ready to use."
+      ],
+      "visualAnchors": [
+        "a hand checking each divider joint",
+        "the completed organizer resting flat on the tabletop"
+      ],
+      "referencePosition": "end",
+      "referenceTimeHint": "end",
+      "status": "unlocalized"
+    }
+  ],
+  "provenance": {
+    "model": "synthetic",
+    "fps": 1.0,
+    "promptVersion": "semantic-contract-v1",
+    "source": "static-semantic-contract-fixture",
+    "synthetic": true
+  }
+}

@@ -37,7 +37,7 @@ VIDEO_ASR_PYTHON=/path/to/python python3 video_pull.py run --video <url-or-path>
 # ASR Python 选择和依赖状态回归
 python3 test_video_pull_runtime.py
 
-# 固定的真实 M3 输出 fixture 合约校验（无需 API key）
+# 静态合成 M3 契约 fixture 校验（无需 API key）
 python3 test_understanding_fixtures.py
 
 # 图片响应带 Markdown JSON 围栏的回归测试（无需 API key）

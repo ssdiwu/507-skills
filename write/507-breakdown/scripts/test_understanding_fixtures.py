@@ -15,14 +15,14 @@ from pathlib import Path
 FIXTURES = Path(__file__).resolve().parent.parent / "assets" / "fixtures"
 
 
-def validate_understanding(data: dict, name: str) -> None:
+def validate_understanding(data: dict, name: str, minimum_units: int = 1) -> None:
     if not isinstance(data.get("videoThesis"), str) or not data["videoThesis"].strip():
         raise SystemExit(f"FAIL {name}: videoThesis missing or empty")
     if not isinstance(data.get("videoTypeHint"), str) or not data["videoTypeHint"].strip():
         raise SystemExit(f"FAIL {name}: videoTypeHint missing or empty")
     units = data.get("semanticUnits", [])
-    if not units:
-        raise SystemExit(f"FAIL {name}: empty semanticUnits")
+    if len(units) < minimum_units:
+        raise SystemExit(f"FAIL {name}: expected at least {minimum_units} semanticUnits, got {len(units)}")
     required = {"id", "meaning", "spokenAnchors", "visualAnchors", "referencePosition", "referenceTimeHint", "status"}
     for i, unit in enumerate(units):
         missing = required - set(unit)
@@ -47,16 +47,16 @@ def validate_understanding(data: dict, name: str) -> None:
 
 
 def main() -> int:
-    fixtures = [
-        "m3_understanding_synthetic.json",
-        "m3_understanding_9router.json",
-    ]
-    for name in fixtures:
+    fixtures = {
+        "m3_understanding_synthetic.json": 1,
+        "m3_understanding_multi_unit_synthetic.json": 2,
+    }
+    for name, minimum_units in fixtures.items():
         path = FIXTURES / name
         if not path.exists():
             raise SystemExit(f"FAIL: fixture not found: {path}")
         data = json.loads(path.read_text(encoding="utf-8"))
-        validate_understanding(data, name)
+        validate_understanding(data, name, minimum_units)
     print("\n=== all fixture validations PASS ===")
     return 0
 

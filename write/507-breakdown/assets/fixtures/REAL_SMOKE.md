@@ -24,4 +24,7 @@ python3 scripts/test_minimax_adapter.py \
 
 ## 静态结构 fixture
 
-`m3_understanding_9router.json` 仅用于覆盖多语义单元的 schema 校验；原始输入及调用日志未归档，因此不作为真实 API 调用证据。
+- `m3_understanding_synthetic.json` 覆盖单语义单元结构。
+- `m3_understanding_multi_unit_synthetic.json` 覆盖多语义单元结构。
+
+两者都是合成契约样本，只验证 schema，不作为真实 API 调用证据。
