@@ -1,6 +1,6 @@
 ---
 name: 507-review
-description: "交付审查：围绕明确的 commit、branch、diff 或路径检查 Standards、Spec 与 Code Quality，只报告问题、证据和路由。Use when user says review this change, code review, 审查改动, 检查提交, 检查分支, 需求符合度, 交付审查. 不用于主动寻找全库架构机会。"
+description: "交付审查：围绕明确的 commit、branch、diff 或路径检查 Standards、Spec 与 Code Quality，只报告问题、证据和路由。Use when user says review this change, code review, review 一下, 检查, 审查, 审查改动, 审查这次改动, 检查提交, 检查分支, 过一遍代码, 把关, 需求符合度, 交付审查. 不用于主动寻找全库架构机会。"
 ---
 
 # 交付审查（review）

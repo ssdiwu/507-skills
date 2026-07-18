@@ -1,6 +1,6 @@
 ---
 name: 507-remix
-description: "视频借鉴重组 skill。只消费一个或多个 video_completed 的 507-breakdown 拉片包，提取可借鉴的结构、叙事、镜头、字幕与节奏模式，明确不借内容和身份，再重组为原创视频创作包与工具无关的 prompt-pack.json；不读取原视频、不做取证、不直接渲染成片。Use when user mentions 视频借鉴重组, 原创创作包, 视频二创, remix, video remake, recombine, 借这个视频的手法."
+description: "视频借鉴重组 skill。只消费一个或多个 video_completed 的 507-breakdown 拉片包，提取可借鉴的结构、叙事、镜头、字幕与节奏模式，明确不借内容和身份，再重组为原创视频创作包与工具无关的 prompt-pack.json；不读取原视频、不做取证、不直接渲染成片。Use when user mentions 视频借鉴重组, 借鉴视频, 仿照这个视频, 视频二创, 二创, 视频重组, 原创创作包, 借这个视频的手法, remix, video remake, recombine."
 ---
 
 # 视频借鉴重组（remix）

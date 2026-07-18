@@ -1,6 +1,6 @@
 ---
 name: 507-simplify
-description: "在保持公开契约与可观察行为不变的前提下，对指定代码范围或 507-inspect 报告逐项建立证据、修改并验证。可深入内部模块、抽象与接缝；若需要行为变化则停止并路由到需求实施。Use when user mentions simplify, simplify code, 行为不变重构, 内部简化, 按报告修改, 处理 inspect 报告, 局部重构, 降低复杂度, 收敛架构摩擦。"
+description: "在保持公开契约与可观察行为不变的前提下，对指定代码范围或 507-inspect 报告逐项建立证据、修改并验证。可深入内部模块、抽象与接缝；若需要行为变化则停止并路由到需求实施。Use when user mentions simplify, simplify code, 简化, 简化代码, 行为不变重构, 内部简化, 按报告修改, 处理 inspect 报告, 局部重构, 降低复杂度, 收敛架构摩擦。"
 ---
 
 # 行为不变简化（simplify）

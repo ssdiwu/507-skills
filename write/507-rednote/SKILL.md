@@ -1,6 +1,6 @@
 ---
 name: 507-rednote
-description: "把已成立的书面作品改编并渲染成小红书 3:4 图片文章：锁定中心判断、论证链与原图去向，产逻辑 Copy Spec，按真实高度自动分页，从 18 套外观中选样式，导出 1500×2000 图卡、联系表并验收。Use when user mentions 做成小红书图文, 小红书图片文章, 小红书图卡, 3:4竖图, 把文章转成小红书, rednote cards, xiaohongshu carousel."
+description: "把已成立的书面作品改编并渲染成小红书 3:4 图片文章：锁定中心判断、论证链与原图去向，产逻辑 Copy Spec，按真实高度自动分页，从 18 套外观中选样式，导出 1500×2000 图卡、联系表并验收。Use when user mentions 做成小红书, 做成小红书图文, 小红书图片文章, 小红书图卡, 小红书文案, 小红书排版, 3:4竖图, 把文章转成小红书, rednote cards, xiaohongshu carousel."
 compatibility: "Requires Python 3.10+, Pillow, and local Google Chrome or Chromium."
 ---
 

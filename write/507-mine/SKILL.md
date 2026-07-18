@@ -1,6 +1,6 @@
 ---
 name: 507-mine
-description: "写作流的碎片挖掘入口。把用户想法、现有文章、研究证据或 video_completed 拉片包转成可复用碎片、观点与材料交接；先查既有知识库做去重和互链，不承担系统外部调研。证据不足时调用 research 补证后返回；不产选题、不写正文。Use when user mentions 挖一下, 挖碎片, 产碎片, 落碎片, 我有个想法, 这个观点记下来, 拆解吸收, 从这篇文章提观点, 拉片后挖内容, content mining, extract fragments."
+description: "写作流的碎片挖掘入口。把用户想法、现有文章、研究证据或 video_completed 拉片包转成可复用碎片、观点与材料交接；先查既有知识库做去重和互链，不承担系统外部调研。证据不足时调用 research 补证后返回；不产选题、不写正文。Use when user mentions 挖一下, 挖碎片, 产碎片, 落碎片, 我有个想法, 记个想法, 这个观点记下来, 拆解吸收, 提取要点, 摘录, 整理观点, 从这篇文章提观点, 拉片后挖内容, content mining, extract fragments."
 ---
 
 # 碎片挖掘（mine）

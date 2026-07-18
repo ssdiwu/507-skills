@@ -1,6 +1,6 @@
 ---
 name: 507-map
-description: "维护项目地图：以当前代码为证据，建立或校准 README、doc 组织、目录职责、入口与上下游，只修改地图文档。Use when user says map, project map, 补 README, 校准 README, 整理 doc, 文档地图, 目录职责, 分层 README."
+description: "维护项目地图：以当前代码为证据，建立或校准 README、doc 组织、目录职责、入口与上下游，只修改地图文档。Use when user says map, project map, 梳理项目结构, 项目结构, 更新 README, 补 README, 校准 README, 整理 doc, 整理结构, 文档地图, 目录职责, 分层 README."
 ---
 
 # 项目地图（map）

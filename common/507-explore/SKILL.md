@@ -1,6 +1,6 @@
 ---
 name: 507-explore
-description: "项目探索：面对尚未看清问题形状、无法安全规划或不知道从哪里开始的项目问题，先读取项目规则、既有共识与现实证据，在临时会话中区分已知、未知、当前 frontier 与证据边界；只读推进一个当前可解决问题，并路由到 explain、research、grill、prototype、规格或执行。Use when user mentions 探索一下, 先看看怎么回事, 先别做, 先理清, 不知道从哪开始, 这个问题在哪, 帮我看懂这个项目, 这段代码怎么工作, explore, investigate this project, orient me, locate the problem, understand this codebase, explain this code."
+description: "项目探索：面对尚未看清问题形状、无法安全规划或不知道从哪里开始的项目问题，先读取项目规则、既有共识与现实证据，在临时会话中区分已知、未知、当前 frontier 与证据边界；只读推进一个当前可解决问题，并路由到 explain、research、grill、prototype、规格或执行。Use when user mentions 探索一下, 先看看怎么回事, 先别做, 先理清, 梳理一下, 搞清楚状况, 摸清楚, 不知道从哪开始, 这个问题在哪, 帮我看懂这个项目, 上手这个项目, 这段代码怎么工作, explore, investigate this project, orient me, locate the problem, understand this codebase, explain this code."
 ---
 
 # 项目探索（`explore`）

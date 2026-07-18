@@ -1,6 +1,6 @@
 ---
 name: 507-fix
-description: "根因修复：已明确存在 bug、报错、崩溃、异常、回归或合并冲突时，先建立可重复反馈环，再以最小改动修复根因并验证。Use when user says fix, debugging, 修 bug, 修复报错, 修复冲突, error, crash, regression."
+description: "根因修复：已明确存在 bug、报错、崩溃、异常、回归或合并冲突时，先建立可重复反馈环，再以最小改动修复根因并验证。Use when user says fix, 修一下, 修 bug, 报错了, 崩了, 跑挂了, 有 bug, 修复报错, 合并冲突, 修复冲突, 修不通, debugging, error, crash, regression."
 ---
 
 # 根因修复（fix）

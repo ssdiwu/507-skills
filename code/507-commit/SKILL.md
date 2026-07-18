@@ -1,6 +1,6 @@
 ---
 name: 507-commit
-description: "Git 提交：在用户明确要求提交时，轻量安全复核变更、精确暂存、运行相关验证并创建真实 Conventional Commit；默认不 push。Use when user says commit, 提交这些改动, Git 提交, 生成并执行提交, 准备提交."
+description: "Git 提交：在用户明确要求提交时，轻量安全复核变更、精确暂存、运行相关验证并创建真实 Conventional Commit；默认不 push。Use when user says commit, 提交, 提交一下, 提交这些改动, 提交代码, Git 提交, commit 一下, 生成并执行提交, 准备提交, 存个档。"
 ---
 
 # Git 提交（commit）

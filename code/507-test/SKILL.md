@@ -1,6 +1,6 @@
 ---
 name: 507-test
-description: "测试任务：测试本身是主要任务时，用现有框架补行为测试、运行测试、修正过时测试或缩小失败范围；真实生产 bug 转根因修复。Use when user says test, testing, 补测试, 跑测试, 修失败测试, 缩小失败范围, coverage."
+description: "测试任务：测试本身是主要任务时，用现有框架补行为测试、运行测试、修正过时测试或缩小失败范围；真实生产 bug 转根因修复。Use when user says test, testing, 写测试, 加测试, 补测试, 跑测试, 运行测试, 测试挂了, 测试失败, 修失败测试, 缩小失败范围, coverage."
 ---
 
 # 测试与失败定位（test）

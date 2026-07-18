@@ -1,6 +1,6 @@
 ---
 name: 507-research
-description: "通用外部证据入口。研究外部项目、文章、文档、标准、竞品或当前事实，区分已核实事实、来源观点、本项目推断与未知，产出可追溯的 evidence handoff（证据交接）。可独立回答，也可把证据交给 explain、explore、mine、grill、PRD 或 issue；不挖碎片、不替用户做取舍、不直接实施。Use when user mentions 调研一下, 研究一下, 查证, 核实, 搜资料, 看看这个项目, 看看这篇文章, 外部证据, 竞品, 参考实现, benchmark, research, investigate, verify sources."
+description: "通用外部证据入口。研究外部项目、文章、文档、标准、竞品或当前事实，区分已核实事实、来源观点、本项目推断与未知，产出可追溯的 evidence handoff（证据交接）。可独立回答，也可把证据交给 explain、explore、mine、grill、PRD 或 issue；不挖碎片、不替用户做取舍、不直接实施。Use when user mentions 查一下, 搜一下, 帮我查, 调研一下, 研究一下, 调查一下, 查证, 核实, 搜资料, 找资料, 看看这个项目, 看看这篇文章, 外部证据, 竞品, 参考实现, benchmark, research, investigate, verify sources."
 ---
 
 # 外部调研（research）

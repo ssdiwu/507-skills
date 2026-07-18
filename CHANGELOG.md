@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- 补全 13 个 skill 的中文口语触发词以提升宿主自动路由命中率：`507-commit`、`507-fix`、`507-test`、`507-map`、`507-handoff`、`507-remix`、`507-research`、`507-explore`、`507-mine`、`507-rednote`、`507-breakdown`、`507-review` 与 `507-simplify`；其中 `507-review` 在保留裸「检查/审查」高频口语入口的同时补充 `review 一下`、`过一遍代码`、`把关` 等带变更语境的精准词，`507-breakdown` 移除与 `507-remix` 撞车的「视频借鉴」。
+
 ## [0.2.1] - 2026-07-17
 
 ### Changed

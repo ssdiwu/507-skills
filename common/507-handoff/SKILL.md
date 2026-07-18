@@ -1,6 +1,6 @@
 ---
 name: 507-handoff
-description: "会话移交：中断、换会话、压缩上下文或转交给另一 Agent 时，在对话中生成脱敏的临时交接摘要，不写文件。Use when user says handoff, 交接, 换会话, 转交, 压缩上下文, 给下一个 agent 摘要."
+description: "会话移交：中断、换会话、压缩上下文或转交给另一 Agent 时，在对话中生成脱敏的临时交接摘要，不写文件。Use when user says handoff, 交接, 交接一下, 移交, 换会话, 换个会话, 转交, 压缩上下文, 上下文太长了, 给下一个 agent 摘要."
 ---
 
 # 会话移交（handoff）
