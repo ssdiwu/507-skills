@@ -28,6 +28,7 @@ flowchart TD
 
     implement --> review["507-review"]
     review --> commit["507-commit<br/>仅明确要求时"]
+    commit --> release["507-release<br/>仅明确要求发布时"]
 
     inspect["507-inspect"] --> simplify["507-simplify"] --> review
 ```
@@ -82,7 +83,7 @@ flowchart TD
 
 需要改变产品行为或公开契约时退出 `507-simplify`，回到需求与正常实现流程。
 
-## 文档、审查与提交
+## 文档、审查、提交与发布
 
 ### `507-map` 项目地图
 
@@ -94,7 +95,11 @@ flowchart TD
 
 ### `507-commit` Git 提交
 
-用户明确要求 commit（提交）时，轻量复核差异、同步必要产物、运行验证、精确暂存并创建真实本地 Conventional Commit（约定式提交）。默认不 push（推送），不重复完整 `507-review`。
+用户明确要求 commit（提交）时，轻量复核差异、同步必要产物、运行验证、精确暂存并创建真实本地 Conventional Commit（约定式提交）。只做本地提交，不重复完整 `507-review`；推送与对外发布交给 `507-release`。
+
+### `507-release` 对外发布
+
+用户明确要求发布、推送或发版时使用。定版本号、打 tag、推送远端，并按项目实际探测的发布渠道（npm、GitHub Release）发布；版本号由用户决定，每个不可逆对外动作执行前都向用户显式确认。它和 `507-commit` 的分界是可逆性：commit 停在本地提交，release 才触碰远端与公开渠道。
 
 ## 架构审查回路
 
@@ -131,6 +136,7 @@ flowchart TD
 | 主动寻找架构加深机会 | `507-inspect` |
 | 审查某段明确交付 | `507-review` |
 | 明确要求创建 Git 提交 | `507-commit` |
+| 明确要求推送、发布或发版 | `507-release` |
 | 中断、换会话、压缩上下文或转交 | `507-handoff` |
 
 ## 纪律

@@ -4,8 +4,13 @@
 
 ## [Unreleased]
 
+### Added
+
+- 新增 `507-release` 对外发布 skill：承接版本号定档（版本号由用户决定，未指定则显性询问，半模糊指令按 semver 据 `CHANGELOG` 变更类型补全）、打 tag、推送远端，并按项目实际探测 npm、GitHub Release 渠道发布；每个不可逆对外动作执行前向用户显式确认，失败即停不回滚。
+
 ### Changed
 
+- `507-commit` 收缩为只做本地提交，推送与对外发布交给 `507-release`；同步更新 code/README、根 README、全局 AGENTS 模板、术语表，并新增决策档案 0010 记录按可逆性边界拆分的理由。
 - 补全 13 个 skill 的中文口语触发词以提升宿主自动路由命中率：`507-commit`、`507-fix`、`507-test`、`507-map`、`507-handoff`、`507-remix`、`507-research`、`507-explore`、`507-mine`、`507-rednote`、`507-breakdown`、`507-review` 与 `507-simplify`；其中 `507-review` 在保留裸「检查/审查」高频口语入口的同时补充 `review 一下`、`过一遍代码`、`把关` 等带变更语境的精准词，`507-breakdown` 移除与 `507-remix` 撞车的「视频借鉴」。
 
 ## [0.2.1] - 2026-07-17
