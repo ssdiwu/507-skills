@@ -55,10 +55,10 @@ python3 render_rednote.py --spec <rednote-project.json> --output-dir <小红书�
 python3 -m unittest scripts/test_render_rednote.py
 ```
 
-完整烟测会调用本机 Chrome：
+完整烟测会调用本机 Chrome。`TMP_DIR` 由运行环境提供，用于临时输出：
 
 ```bash
 python3 scripts/render_rednote.py \
   --spec scripts/fixtures/sample-project.json \
-  --output-dir /tmp/507-rednote-smoke
+  --output-dir "$TMP_DIR/507-rednote-smoke"
 ```

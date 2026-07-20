@@ -406,8 +406,6 @@ def find_chrome(explicit: str | None) -> str:
     candidates = [
         explicit,
         os.environ.get("CHROME_PATH"),
-        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-        "/Applications/Chromium.app/Contents/MacOS/Chromium",
         shutil.which("google-chrome"),
         shutil.which("google-chrome-stable"),
         shutil.which("chromium"),
