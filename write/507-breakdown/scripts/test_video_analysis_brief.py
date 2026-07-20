@@ -8,7 +8,7 @@ from video_contract import VideoManifest
 
 def workspace(ok:bool):
  ws=Path(tempfile.mkdtemp(prefix="video-brief-"));(ws/"raw"/"video_asr").mkdir(parents=True);(ws/"analysis").mkdir()
- m=VideoManifest(ws);m.data["videoPath"]="/tmp/input.mp4";m.flush()
+ m=VideoManifest(ws);m.data["videoPath"] = str(ws / "input.mp4");m.flush()
  if ok:
   frame=ws/"raw"/"frame.jpg";frame.write_bytes(b"fixture")
   observations=[{"semanticUnit":"u","pts":1,"frame":"raw/frame.jpg","description":"verified frame"}]
