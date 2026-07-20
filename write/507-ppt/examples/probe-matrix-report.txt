@@ -1,0 +1,6 @@
+{"status": "ready", "carrier": "pptx", "reason": "officecli probe", "officecli": true, "installAttempted": false, "browser": "missing-static-html-only", "webgl": "available", "asset": "available"}
+{"status": "fallback", "carrier": "html", "reason": "officecli or asset unavailable", "officecli": false, "installAttempted": false, "browser": "missing-static-html-only", "webgl": "available", "asset": "available"}
+{"status": "ready", "carrier": "pptx", "reason": "officecli probe", "officecli": true, "installAttempted": false, "browser": "missing-static-html-only", "webgl": "available", "asset": "available"}
+{"status": "ready", "carrier": "pptx", "reason": "officecli probe", "officecli": true, "installAttempted": false, "browser": "missing-static-html-only", "webgl": "missing-css-fallback", "asset": "available"}
+{"status": "fallback", "carrier": "html", "reason": "asset unavailable; use semantic fallback", "officecli": true, "installAttempted": false, "browser": "missing-static-html-only", "webgl": "available", "asset": "missing-blocked"}
+{"status": "blocked", "carrier": "pptx", "reason": "asset unavailable", "officecli": true, "installAttempted": false, "browser": "missing-static-html-only", "webgl": "available", "asset": "missing-blocked"}

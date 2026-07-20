@@ -1,0 +1,12 @@
+{
+  "style": "magazine",
+  "carrier": "pptx",
+  "pages": 4,
+  "content": "passed",
+  "styleChecks": "passed",
+  "styleMarkers": [
+    "Menlo",
+    "Georgia"
+  ],
+  "missing": []
+}

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "id": "system-showcase",
+  "language": "zh-CN",
+  "deck": {"title": "视觉系统展示", "audience": "需要交付演示文稿的创作者", "scene": "产品能力演示", "durationMinutes": 16},
+  "slides": [
+    {"id": "cover", "kind": "cover", "goal": "建立主题", "eyebrow": "507-ppt", "title": "视觉系统展示", "subtitle": "同一内容合同，双载体交付", "footer": "公开 fixture", "notes": "介绍视觉系统。"},
+    {"id": "section", "kind": "section", "goal": "转换章节", "eyebrow": "01", "title": "内容关系", "subtitle": "让版式服务判断而非装饰", "notes": "进入组件说明。"},
+    {"id": "image", "kind": "image-text", "goal": "解释图文关系", "eyebrow": "证据", "title": "素材承担一个问题", "body": "图像应证明内容，而不是填满空白。", "caption": "抽象工作台示意", "asset": {"id": "workbench", "alt": "包含文件、编辑器和预览区域的抽象工作台示意图"}, "notes": "说明素材职责。"},
+    {"id": "three", "kind": "three-part", "goal": "展示并列结构", "title": "三项并列", "items": [{"label": "意图", "body": "定义要服务的对象。"}, {"label": "证据", "body": "提供可检查的材料。"}, {"label": "交付", "body": "形成可继续编辑的结果。"}], "footer": "每项只承担一个职责。", "notes": "解释三项分工。"},
+    {"id": "comparison", "kind": "comparison", "goal": "比较两种路径", "title": "模板堆与视觉系统", "items": [{"label": "模板堆", "body": "每页单独调整，难以维护一致性。"}, {"label": "视觉系统", "body": "组件与令牌组合，跨载体保持语义。"}], "notes": "强调系统价值。"},
+    {"id": "process", "kind": "process", "goal": "说明流程", "title": "从内容到交付", "items": [{"label": "内容", "body": "确认逐页认知目标。"}, {"label": "组件", "body": "选择内容关系。"}, {"label": "验证", "body": "检查双载体结果。"}], "notes": "解释制作流程。"},
+    {"id": "metric", "kind": "metric", "goal": "突出核心指标", "title": "公开组件", "metric": "8", "body": "首批组件覆盖聚焦、图文、并列、对比、顺序和收束。", "notes": "突出首批范围。"},
+    {"id": "quote", "kind": "quote", "goal": "收束", "quote": "视觉变化必须由内容关系承重。", "attribution": "507-ppt 设计原则", "notes": "以原则收束。"}
+  ]
+}

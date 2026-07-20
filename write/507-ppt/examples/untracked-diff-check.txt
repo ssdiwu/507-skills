@@ -1,0 +1,4 @@
+scope: write/507-ppt
+command: git diff --check
+command: git ls-files --others --exclude-standard -z write/507-ppt | xargs -0 grep -I -nH '[[:blank:]]$'
+result: passed; untracked text files scanned without trailing whitespace

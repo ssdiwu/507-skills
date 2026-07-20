@@ -61,7 +61,7 @@ issue 支持 `draft（对话草稿）→ investigation（调查态）→ ready�
 
 ```text
 素材 / 想法 / research 证据 → mine → fuse ─┬→ forge → rednote（按需）
-                                             └→ stage
+                                             └→ stage → 507-ppt（成熟逐页内容的视觉幻灯片）
 碎片成熟簇 → cast
 
 已确认的人类方案需求 → frame
@@ -118,7 +118,8 @@ issue 支持 `draft（对话草稿）→ investigation（调查态）→ ready�
 | `507-fuse` | 比较竞争解释，把碎片组合成候选 idea |
 | `507-cast` | 把成熟碎片簇聚合成知识库主题页 |
 | `507-forge` | 把已成立创意与证据锻造成可发布书面主稿 |
-| `507-stage` | 把已确认内容编排为讲稿、PPT 或课程现场内容 |
+| `507-stage` | 把已确认内容编排为讲稿、课程或现场讲述逐页内容 |
+| `507-ppt` | 把成熟逐页内容制作并验证为可编辑 `.pptx` 或离线单文件 HTML 视觉幻灯片 |
 | `507-frame` | 把已确认的人类方案需求写成活动、培训、合作或项目方案 |
 | `507-breakdown` | 把一个视频编译成可核验的 `video_completed` 拉片包 |
 | `507-remix` | 从完成拉片包借创作手法，重组为原创视频创作包 |

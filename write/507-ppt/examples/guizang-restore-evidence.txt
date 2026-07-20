@@ -1,0 +1,11 @@
+## discovery scan (find -L SKILLS_DIR) — backup state
+507-ppt
+
+## restore drill: mv backup -> discovery path
+## discovery scan — restored state
+507-ppt
+guizang-ppt-skill
+
+## final: mv discovery path -> backup
+## discovery scan — final backup state
+507-ppt

@@ -1,0 +1,12 @@
+{
+  "style": "swiss",
+  "carrier": "pptx",
+  "pages": 4,
+  "content": "passed",
+  "styleChecks": "passed",
+  "styleMarkers": [
+    "Menlo",
+    "Helvetica"
+  ],
+  "missing": []
+}

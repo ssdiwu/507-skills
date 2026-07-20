@@ -1,0 +1,2 @@
+HTML static contract passed: examples/collaboration-swiss.html
+HTML static contract passed: examples/collaboration-magazine.html

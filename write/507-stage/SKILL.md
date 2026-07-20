@@ -1,6 +1,6 @@
 ---
 name: 507-stage
-description: "现场讲述 skill（讲稿/PPT/课程稿/企业培训）。输入允许多 idea + 多碎片组合（比 forge 灵活），事化真实案例为可落地方法，保留现场口播节奏。和 forge 分工：forge 写出来（书面长文），stage 讲出去（现场口播）。Use when user mentions 写演讲稿, 做演讲稿, 写讲稿, 做 PPT, 打磨 PPT, PPT 逐页稿, 写逐页稿, 课程稿, 写课程稿, 课程分享, 现场分享稿, 现场讲稿, 企业培训, 企业 AI 分享, 案例型企业培训, 分享内容, 演讲内容, 口播稿, 路演稿, 逐页稿, 分享会, 演讲, stage, presentation, slide script, keynote, talk script, course script, corporate training."
+description: "现场讲述 skill（讲稿/PPT逐页内容/课程稿/企业培训）。输入允许多 idea + 多碎片组合（比 forge 灵活），事化真实案例为可落地方法，保留现场口播节奏。和 forge 分工：forge 写出来（书面长文），stage 讲出去（现场口播）。Use when user mentions 写演讲稿, 做演讲稿, 写讲稿, 打磨讲稿, PPT 逐页稿, 写逐页稿, 课程稿, 写课程稿, 课程分享, 现场分享稿, 现场讲稿, 企业培训, 企业 AI 分享, 案例型企业培训, 分享内容, 演讲内容, 口播稿, 路演稿, 逐页稿, 分享会, 演讲, stage, presentation, slide script, keynote, talk script, course script, corporate training."
 ---
 
 # 上台（stage）
@@ -327,5 +327,5 @@ HTML（网页）PPT、时间线、概念图和配图应在课程主线、页面�
 
 - **完成信号**：讲稿/PPT 内容形成可跟随的认知台阶，每页只承担一个推进任务，案例、讲者内容与观众可见内容分离，目标媒介已完成相称验证。
 - **产物**：讲稿、PPT 逐页稿、课程稿或企业培训内容，以及必要的视觉验收记录。
-- **候选出口**：用户意图未定进入 `507-grill`；外部证据或素材不足进入 `507-research` / `507-mine` 后返回；需要把内容改成书面主稿时进入 `507-forge`；需要进一步渲染 PPT/HTML 时进入相应演示制作工作流；现场内容即交付时直接结束。
+- **候选出口**：用户意图未定进入 `507-grill`；外部证据或素材不足进入 `507-research` / `507-mine` 后返回；需要把内容改成书面主稿时进入 `507-forge`；逐页内容已收口、需要进一步制作 HTML 或 `.pptx` 视觉成品时进入 `507-ppt`；现场内容即交付时直接结束。
 - **回退条件**：主线、听众或页面认知目标仍未收口时不进入视觉制作，不用动效和排版替代内容决定。

@@ -1,0 +1,13 @@
+{
+  "style": "magazine",
+  "carrier": "html",
+  "pages": 4,
+  "content": "passed",
+  "styleChecks": "passed",
+  "styleMarkers": [
+    "#71401F",
+    "Georgia,\"Songti SC\",serif",
+    ".quote-box"
+  ],
+  "missing": []
+}
