@@ -19,14 +19,14 @@ if str(SCRIPT_DIR) not in sys.path:
 import render_rednote as renderer
 
 
-def parse_styles(value: str | None) -> list[str]:
+def parse_themes(value: str | None) -> list[str]:
     if not value:
-        return list(renderer.STYLE_PRESETS)
-    styles = [item.strip() for item in value.split(",") if item.strip()]
-    unknown = [item for item in styles if item not in renderer.STYLE_PRESETS]
+        return list(renderer.THEME_PRESETS)
+    themes = [item.strip() for item in value.split(",") if item.strip()]
+    unknown = [item for item in themes if item not in renderer.THEME_PRESETS]
     if unknown:
-        raise SystemExit(f"未知样式：{', '.join(unknown)}")
-    return list(dict.fromkeys(styles))
+        raise SystemExit(f"未知主题：{', '.join(unknown)}")
+    return list(dict.fromkeys(themes))
 
 
 def parse_pages(value: str, page_count: int) -> list[int]:
@@ -40,12 +40,7 @@ def parse_pages(value: str, page_count: int) -> list[int]:
 
 
 def label_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
-    candidates = [
-        "/System/Library/Fonts/PingFang.ttc",
-        "/System/Library/Fonts/STHeiti Medium.ttc",
-        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
-    ]
-    for candidate in candidates:
+    for candidate in ("/System/Library/Fonts/PingFang.ttc", "/System/Library/Fonts/STHeiti Medium.ttc"):
         if Path(candidate).is_file():
             return ImageFont.truetype(candidate, size=size)
     try:
@@ -54,50 +49,59 @@ def label_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
         return ImageFont.load_default()
 
 
-def render_previews(spec: dict, spec_path: Path, styles: list[str], pages: list[int], chrome: str, timeout: float, temp_dir: Path) -> dict[str, list[Path]]:
+def render_previews(spec: dict, spec_path: Path, themes: list[str], pages: list[int], chrome: str, timeout: float, temp_dir: Path) -> dict[str, list[Path]]:
     previews: dict[str, list[Path]] = {}
-    for style in styles:
+    for theme in themes:
         variant = copy.deepcopy(spec)
-        variant["stylePreset"] = style
+        variant["themePreset"] = theme
+        variant["visualSystem"] = renderer.THEME_PRESETS[theme]["system"]
         renderer.validate_spec(variant)
-        html_path = temp_dir / f"{style}.html"
-        html_path.write_text(renderer.render_html(variant, spec_path), encoding="utf-8")
-        previews[style] = []
+        poster_dir = temp_dir / f"{theme}-posters"
+        poster_dir.mkdir(parents=True, exist_ok=True)
+        prepared, _ = renderer.prepare_motion_posters(variant, spec_path, poster_dir)
+        html_path = temp_dir / f"{theme}.html"
+        html_path.write_text(renderer.render_html(prepared, spec_path), encoding="utf-8")
+        audit = renderer.inspect_layout(chrome, html_path.as_uri(), timeout)
+        if audit.failures():
+            raise SystemExit(f"{theme} 预览布局失败：{'；'.join(audit.failures())}")
+        previews[theme] = []
         for page in pages:
-            png_path = temp_dir / f"{style}-{page:02d}.png"
-            jpg_path = temp_dir / f"{style}-{page:02d}.jpg"
-            renderer.render_png(chrome, html_path.as_uri(), page, png_path, timeout)
-            renderer.png_to_jpg(png_path, jpg_path)
-            previews[style].append(jpg_path)
-        print(f"previewed {style}: pages {pages}")
+            png_path = temp_dir / f"{theme}-{page:02d}.png"
+            jpg_path = temp_dir / f"{theme}-{page:02d}.jpg"
+            renderer.render_png(chrome, html_path.as_uri(), f"rednote-{page:02d}", png_path, renderer.CANVASES["rednote"]["css"], timeout)
+            renderer.png_to_jpg(png_path, jpg_path, renderer.CANVASES["rednote"]["output"])
+            previews[theme].append(jpg_path)
+        print(f"previewed {theme}: pages {pages}")
     return previews
 
 
 def build_gallery(previews: dict[str, list[Path]], output: Path) -> tuple[int, int]:
     page_thumb = (180, 240)
     page_gap = 8
-    label_height = 48
+    label_height = 56
     tile_padding = 12
-    tile_width = len(next(iter(previews.values()))) * page_thumb[0] + (len(next(iter(previews.values()))) - 1) * page_gap + tile_padding * 2
+    preview_count = len(next(iter(previews.values())))
+    tile_width = preview_count * page_thumb[0] + (preview_count - 1) * page_gap + tile_padding * 2
     tile_height = page_thumb[1] + label_height + tile_padding * 2
     columns = min(3, len(previews))
     rows = math.ceil(len(previews) / columns)
     gap = 18
-    sheet = Image.new("RGB", (columns * tile_width + (columns + 1) * gap, rows * tile_height + (rows + 1) * gap), "#cfcfca")
+    sheet = Image.new("RGB", (columns * tile_width + (columns + 1) * gap, rows * tile_height + (rows + 1) * gap), "#CFCFCA")
     draw = ImageDraw.Draw(sheet)
-    font = label_font(18)
-    for index, (style, files) in enumerate(previews.items()):
+    font = label_font(17)
+    for index, (theme, files) in enumerate(previews.items()):
         x = gap + (index % columns) * (tile_width + gap)
         y = gap + (index // columns) * (tile_height + gap)
-        draw.rounded_rectangle((x, y, x + tile_width, y + tile_height), radius=12, fill="#ffffff", outline="#8f8f88", width=2)
+        draw.rectangle((x, y, x + tile_width, y + tile_height), fill="#FFFFFF", outline="#8F8F88", width=2)
         for page_index, file in enumerate(files):
             with Image.open(file).convert("RGB") as image:
                 thumb = ImageOps.fit(image, page_thumb, method=Image.Resampling.LANCZOS)
             px = x + tile_padding + page_index * (page_thumb[0] + page_gap)
             py = y + tile_padding
             sheet.paste(thumb, (px, py))
-        label = f"{style} · {renderer.STYLE_LABELS[style]}"
-        draw.text((x + tile_padding, y + tile_padding + page_thumb[1] + 10), label, fill="#1a1a1a", font=font)
+        system = renderer.THEME_PRESETS[theme]["system"]
+        label = f"{system} · {theme} · {renderer.THEME_LABELS[theme]}"
+        draw.text((x + tile_padding, y + tile_padding + page_thumb[1] + 10), label, fill="#1A1A1A", font=font)
     output.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(output, "JPEG", quality=91, optimize=True)
     return sheet.size
@@ -109,35 +113,38 @@ def run(args: argparse.Namespace) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     spec = renderer.load_json(spec_path)
     renderer.validate_spec(spec)
-    styles = parse_styles(args.styles)
+    themes = parse_themes(args.themes)
     pages = parse_pages(args.pages, len(spec["pages"]))
     chrome = renderer.find_chrome(args.chrome)
     temp_root = Path(tempfile.mkdtemp(prefix="rednote-style-gallery-"))
     try:
-        previews = render_previews(spec, spec_path, styles, pages, chrome, args.timeout, temp_root)
+        previews = render_previews(spec, spec_path, themes, pages, chrome, args.timeout, temp_root)
         size = build_gallery(previews, output_dir / "style-gallery.jpg")
     finally:
         shutil.rmtree(temp_root, ignore_errors=True)
     manifest = {
         "sourceSpec": str(spec_path),
         "sourceSpecSha256": renderer.sha256(spec_path),
-        "styles": [{"id": style, "name": renderer.STYLE_LABELS[style]} for style in styles],
+        "variants": [
+            {"visualSystem": renderer.THEME_PRESETS[theme]["system"], "themePreset": theme, "name": renderer.THEME_LABELS[theme]}
+            for theme in themes
+        ],
         "previewPages": pages,
         "gallery": "style-gallery.jpg",
         "gallerySize": list(size),
     }
     (output_dir / "style-gallery.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"outputDir": str(output_dir), "styleCount": len(styles), "gallerySize": size}, ensure_ascii=False))
+    print(json.dumps({"outputDir": str(output_dir), "variantCount": len(themes), "gallerySize": size}, ensure_ascii=False))
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="小红书图文样式预览脚本")
+    parser = argparse.ArgumentParser(description="社交视觉系统与主题预览")
     parser.add_argument("--spec", required=True)
     parser.add_argument("--output-dir", required=True)
-    parser.add_argument("--styles", help="逗号分隔的样式 ID；默认全部")
-    parser.add_argument("--pages", default="1,2", help="每种样式预览哪些页面，默认 1,2")
+    parser.add_argument("--themes", help="逗号分隔的主题 ID；默认全部")
+    parser.add_argument("--pages", default="1,2", help="每种主题预览哪些观点页，默认 1,2")
     parser.add_argument("--chrome")
-    parser.add_argument("--timeout", type=float, default=25.0)
+    parser.add_argument("--timeout", type=float, default=30.0)
     run(parser.parse_args())
 
 

@@ -1,18 +1,16 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.com/rednote/rednote-project.schema.json",
-  "title": "Rednote Project",
+  "title": "Rednote Visual Summary Project",
   "type": "object",
-  "required": ["title", "pages"],
+  "required": ["title", "visualSystem", "themePreset", "excludedContent", "pages"],
   "additionalProperties": false,
   "properties": {
     "title": {"type": "string", "minLength": 1},
     "author": {"type": "string"},
     "avatar": {"type": "string"},
-    "layoutMode": {"enum": ["longform", "cards"]},
-    "stylePreset": {
-      "enum": ["editorial-default", "retro", "newspaper", "mono", "nature", "bluegrad", "autumn", "dark", "morandi", "cyber", "neubrutalism", "vintage-film", "memphis", "editorial", "glass", "bento", "y2k", "pink"]
-    },
+    "visualSystem": {"enum": ["editorial", "swiss"]},
+    "themePreset": {"enum": ["editorial-paper", "editorial-night", "swiss-blue", "swiss-red"]},
     "theme": {
       "type": "object",
       "additionalProperties": false,
@@ -26,25 +24,70 @@
         "line": {"$ref": "#/$defs/color"}
       }
     },
+    "excludedContent": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/excludedItem"}
+    },
     "pages": {
       "type": "array",
       "minItems": 2,
       "maxItems": 20,
       "prefixItems": [{"$ref": "#/$defs/coverPage"}],
       "items": {"$ref": "#/$defs/articlePage"}
+    },
+    "wechatCovers": {
+      "type": "object",
+      "required": ["main", "share"],
+      "additionalProperties": false,
+      "properties": {
+        "main": {"$ref": "#/$defs/wechatCover"},
+        "share": {"$ref": "#/$defs/wechatCover"}
+      }
     }
   },
   "$defs": {
     "color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+    "imagePosition": {
+      "enum": ["center", "top", "bottom", "left", "right", "center top", "center bottom", "left center", "right center"]
+    },
+    "excludedItem": {
+      "type": "object",
+      "required": ["summary", "destination"],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {"type": "string", "minLength": 1},
+        "reason": {"type": "string"},
+        "destination": {"enum": ["postBody", "companionCopy", "series", "notUsed"]}
+      }
+    },
     "coverPage": {
       "type": "object",
-      "required": ["type", "title", "sourceMap"],
+      "required": ["type", "point", "sourceMap", "layout", "title"],
       "additionalProperties": false,
       "properties": {
         "type": {"const": "cover"},
+        "point": {"type": "string", "minLength": 1},
+        "sourceMap": {"type": "string", "minLength": 1},
+        "layout": {"enum": ["type", "split", "image-led"]},
         "kicker": {"type": "string"},
         "title": {"type": "string", "minLength": 1},
+        "subtitle": {"type": "string"},
+        "author": {"type": "string"},
+        "image": {"type": "string"},
+        "imagePosition": {"$ref": "#/$defs/imagePosition"}
+      }
+    },
+    "wechatCover": {
+      "type": "object",
+      "required": ["point", "sourceMap", "layout", "title"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "cover"},
+        "point": {"type": "string", "minLength": 1},
         "sourceMap": {"type": "string", "minLength": 1},
+        "layout": {"enum": ["type", "split", "image-led"]},
+        "kicker": {"type": "string"},
+        "title": {"type": "string", "minLength": 1},
         "subtitle": {"type": "string"},
         "author": {"type": "string"},
         "image": {"type": "string"},
@@ -53,18 +96,15 @@
     },
     "articlePage": {
       "type": "object",
-      "required": ["type", "sourceMap", "blocks"],
+      "required": ["type", "point", "sourceMap", "layout", "blocks"],
       "additionalProperties": false,
       "properties": {
         "type": {"const": "article"},
+        "point": {"type": "string", "minLength": 1},
+        "sourceMap": {"type": "string", "minLength": 1},
+        "layout": {"enum": ["statement", "evidence", "comparison", "steps", "list", "data", "closing"]},
         "heading": {"type": "string", "minLength": 1},
-        "sourceMap": {"type": "string"},
-        "closing": {"type": "boolean"},
-        "blocks": {
-          "type": "array",
-          "minItems": 1,
-          "items": {"$ref": "#/$defs/block"}
-        }
+        "blocks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/block"}}
       }
     },
     "block": {
@@ -72,6 +112,8 @@
         {"$ref": "#/$defs/paragraph"},
         {"$ref": "#/$defs/textBlock"},
         {"$ref": "#/$defs/imageBlock"},
+        {"$ref": "#/$defs/screenshotBlock"},
+        {"$ref": "#/$defs/motionBlock"},
         {"$ref": "#/$defs/cardsBlock"},
         {"$ref": "#/$defs/sequenceBlock"}
       ]
@@ -82,7 +124,7 @@
       "additionalProperties": false,
       "properties": {
         "type": {"const": "paragraph"},
-        "text": {"type": "string"},
+        "text": {"type": "string", "minLength": 1},
         "variant": {"enum": ["body", "lead", "big", "muted"]}
       }
     },
@@ -92,7 +134,7 @@
       "additionalProperties": false,
       "properties": {
         "type": {"enum": ["note", "quote"]},
-        "text": {"type": "string"}
+        "text": {"type": "string", "minLength": 1}
       }
     },
     "imageBlock": {
@@ -101,12 +143,44 @@
       "additionalProperties": false,
       "properties": {
         "type": {"const": "image"},
-        "src": {"type": "string"},
+        "src": {"type": "string", "minLength": 1},
         "alt": {"type": "string"},
         "caption": {"type": "string"},
-        "height": {"type": "integer", "minimum": 120, "maximum": 520},
+        "height": {"type": "integer", "minimum": 120, "maximum": 620},
         "fit": {"enum": ["contain", "cover"]},
         "position": {"$ref": "#/$defs/imagePosition"}
+      }
+    },
+    "screenshotBlock": {
+      "type": "object",
+      "required": ["type", "src"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "screenshot"},
+        "src": {"type": "string", "minLength": 1},
+        "alt": {"type": "string"},
+        "caption": {"type": "string"},
+        "height": {"type": "integer", "minimum": 120, "maximum": 620},
+        "chrome": {"enum": ["none", "browser", "phone"]},
+        "fit": {"enum": ["contain", "cover"]},
+        "position": {"$ref": "#/$defs/imagePosition"}
+      }
+    },
+    "motionBlock": {
+      "type": "object",
+      "required": ["type", "src", "durationSec"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "motion"},
+        "src": {"type": "string", "minLength": 1},
+        "alt": {"type": "string"},
+        "caption": {"type": "string"},
+        "height": {"type": "integer", "minimum": 120, "maximum": 620},
+        "fit": {"enum": ["contain", "cover"]},
+        "position": {"$ref": "#/$defs/imagePosition"},
+        "startSec": {"type": "number", "minimum": 0},
+        "durationSec": {"type": "number", "minimum": 1, "maximum": 5},
+        "posterTimeSec": {"type": "number", "minimum": 0}
       }
     },
     "cardsBlock": {
@@ -115,12 +189,7 @@
       "additionalProperties": false,
       "properties": {
         "type": {"const": "cards"},
-        "items": {
-          "type": "array",
-          "minItems": 1,
-          "maxItems": 3,
-          "items": {"$ref": "#/$defs/item"}
-        }
+        "items": {"type": "array", "minItems": 1, "maxItems": 3, "items": {"$ref": "#/$defs/item"}}
       }
     },
     "sequenceBlock": {
@@ -129,16 +198,8 @@
       "additionalProperties": false,
       "properties": {
         "type": {"enum": ["flow", "timeline"]},
-        "items": {
-          "type": "array",
-          "minItems": 2,
-          "maxItems": 5,
-          "items": {"$ref": "#/$defs/item"}
-        }
+        "items": {"type": "array", "minItems": 2, "maxItems": 5, "items": {"$ref": "#/$defs/item"}}
       }
-    },
-    "imagePosition": {
-      "enum": ["center", "top", "bottom", "left", "right", "center top", "center bottom", "left center", "right center"]
     },
     "item": {
       "type": "object",
@@ -149,10 +210,7 @@
         "text": {"type": "string"},
         "tone": {"enum": ["green", "blue", "purple", "red"]}
       },
-      "anyOf": [
-        {"required": ["title"]},
-        {"required": ["text"]}
-      ]
+      "anyOf": [{"required": ["title"]}, {"required": ["text"]}]
     }
   }
 }

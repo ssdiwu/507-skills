@@ -1,6 +1,6 @@
-# Rednote Project Spec
+# Rednote Visual Summary Project Spec
 
-`rednote-project.json` 是脚本消费的机器规格。完整约束见 `../assets/rednote-project.schema.json`。
+`rednote-project.json` 是脚本消费的机器规格。完整结构约束见 `../assets/rednote-project.schema.json`。
 
 ## 最小示例
 
@@ -8,24 +8,33 @@
 {
   "title": "作品标题",
   "author": "示例作者",
-  "avatar": "assets/avatar.png",
-  "layoutMode": "longform",
-  "stylePreset": "newspaper",
+  "visualSystem": "editorial",
+  "themePreset": "editorial-paper",
+  "excludedContent": [
+    {
+      "summary": "完整命令说明",
+      "reason": "不适合进入观点图卡",
+      "destination": "companionCopy"
+    }
+  ],
   "pages": [
     {
       "type": "cover",
-      "kicker": "眉题",
+      "point": "中心判断与阅读承诺",
+      "sourceMap": "P1 / 标题与中心判断",
+      "layout": "split",
       "title": "封面主标题",
-      "sourceMap": "M1 / 标题与中心判断",
       "subtitle": "封面副标题",
       "image": "assets/cover.png"
     },
     {
       "type": "article",
-      "heading": "正文页标题",
-      "sourceMap": "M2 / 主稿第 3–4 段 / 论证链第 1 步",
+      "point": "本页唯一观点",
+      "sourceMap": "P2 / 主稿第 3–4 段",
+      "layout": "statement",
+      "heading": "观众可见标题",
       "blocks": [
-        {"type": "paragraph", "variant": "lead", "text": "正文。"},
+        {"type": "paragraph", "variant": "lead", "text": "支持本页观点的必要说明。"},
         {"type": "quote", "text": "本页关键判断。"}
       ]
     }
@@ -33,49 +42,80 @@
 }
 ```
 
-## 分页模式
+## 顶层合同
 
-- `layoutMode: longform`（默认）：`pages` 只描述章节和段落顺序。浏览器按实际字号、图片高度和安全区自动填满物理页；章节标题与第一段作为整体排版，但只在这组内容放不下时换页，不强制章节另起一页。最终页数见 `render-manifest.json`。
-- `layoutMode: cards`：`pages` 与最终图片一一对应，适合清单、流程、对比等“一页一观点”内容。
+- `visualSystem`：`editorial` 或 `swiss`，整组只使用一套。
+- `themePreset`：必须属于当前视觉系统；可选值见 [`styles.md`](styles.md)。
+- `theme`：只覆盖七个颜色变量，不改变视觉系统和页面结构。
+- `excludedContent`：必填数组，可以为空；每项记录未进入图卡的重要内容及去向。
+- `pages`：第一项是封面，后续每项是一张显式观点页，不再自动做长文分页。
+- `wechatCovers`：可选；出现时必须同时提供 `main` 与 `share`。
 
-长文不得为了控制页数提前把段落切成稀疏小页。封面和每个正文逻辑块都必须填写 `sourceMap`，其中写入它承接的保真清单 `M` 编号；脚本会把映射带入实际物理页与渲染清单。`closing: true` 会绑定最后两段与结论框，并对倒数页面做密度再平衡，避免结论或图片孤悬。
+旧 `layoutMode` 和 `stylePreset` 已移除。渲染器遇到旧字段会明确失败，不静默兼容。
 
-## 样式
+## 页面合同
 
-- `stylePreset` 选择整套外观；可选值与适用场景见 [`styles.md`](styles.md)。
-- 未填写时使用 `editorial-default`。
-- 同一项目只选一个主样式；换样式不改逻辑文案。
-- `theme` 只用于覆盖颜色变量，不替代样式预设。
+封面与正文都必须填写：
 
-## 页面类型
+- `point`：本页唯一观点；封面填写中心判断与阅读承诺。
+- `sourceMap`：观点和关键证据的来源位置。
+- `layout`：当前页面结构。
 
-- `cover`：封面。支持眉题、主标题、副标题、作者和主图；必须填写 `sourceMap`。
-- `article`：正文页。`heading` 可选；有标题表示章节首页，省略标题表示承接上一页的长文续页；必须填写 `sourceMap`。
+封面布局：`type`、`split`、`image-led`。
 
-长文默认按章节连续跨页，不要为了每个物理页都显示标题而填写 `heading`。只有清单、流程、对比等独立卡片页才适合每页标题。
+正文布局：`statement`、`evidence`、`comparison`、`steps`、`list`、`data`、`closing`。
+
+`heading` 可以比 `point` 更适合读者阅读，但不能引入第二个观点。每个正文页必须有至少一个 `blocks` 内容块。
+
+## 未入选内容
+
+`excludedContent[].destination` 使用固定值：
+
+- `postBody`：帖子正文。
+- `companionCopy`：配套文案或附件说明。
+- `series`：后续系列。
+- `notUsed`：明确不采用。
 
 ## 内容块
 
-- `paragraph`：普通段落；`variant` 可为 `body`、`lead`、`big`、`muted`。
-- `note`：浅色提示块。
-- `quote`：深色结论块。
-- `image`：本地图片；支持 `height`、`fit`、`position`、`caption`。
-- `cards`：1–3 个卡片；适合对比、阶段或并列信息。
-- `flow`：2–4 个顺序节点。
-- `timeline`：2–5 个时间/演化节点。
+- `paragraph`：普通文字；`variant` 可为 `body`、`lead`、`big`、`muted`。
+- `note` / `quote`：提示和关键判断。
+- `image`：普通照片或视觉证据；显式设置 `fit` 与 `position`。
+- `screenshot`：界面、网页、终端或代码截图；`chrome` 可为 `none`、`browser`、`phone`。
+- `motion`：动态图片槽；必须提供用户选定的本地短视频和 `durationSec`。
+- `cards`：1–3 项并列信息。
+- `flow` / `timeline`：2–5 项步骤或演化节点。
 
-文字支持少量安全标记：
+`motion` 的 `durationSec` 必须在 1–5 秒，`posterTimeSec` 必须位于 `startSec` 与片段结束之间。每页最多一个动态图片槽。
 
-- `**文字**`：加粗。
-- `==文字==`：绿色强调。
-- `` `文字` ``：行内代码。
+## 公众号封面对
 
-不接受任意 HTML。图片只接受本地相对/绝对路径或 `data:` URI，不接受 `http://` / `https://`。
+```json
+{
+  "wechatCovers": {
+    "main": {
+      "point": "同一中心判断",
+      "sourceMap": "P1 / 主封面",
+      "layout": "split",
+      "title": "接近完整的标题",
+      "image": "assets/cover.png"
+    },
+    "share": {
+      "point": "同一中心判断",
+      "sourceMap": "P1 / 分享封面",
+      "layout": "type",
+      "title": "更短的方形标题"
+    }
+  }
+}
+```
 
-## 图片路径
+`main` 与 `share` 分别构图，不能把 21:9 机械裁成 1:1。
 
-相对路径以 `rednote-project.json` 所在目录为起点。为了让作品可迁移，优先把头像和证据图复制到作品目录，再写相对路径。
+## 本地素材
+
+图片、截图、视频和头像使用相对或绝对本地路径；相对路径以 `rednote-project.json` 所在目录为起点。图片可以使用 `data:` URI，远程 `http://` / `https://` URL 不接受。
 
 ## 局部重渲染
 
-完成过一次全量渲染后，若只修改局部页面且页数、主题、头像等全局配置未变化，可传 `--pages 4,6,7`。页码按 `pages` 数组从 1 开始，包括封面；联系表和渲染清单会基于全部页面重建。页数或全局视觉变化必须全量重渲染。
+只有纯静态小红书图卡可以使用 `--pages 3,5`。未选页面的规格、页数和全局配置必须与上一份 manifest 一致；含动态图片槽或公众号封面对时必须全量重渲染。

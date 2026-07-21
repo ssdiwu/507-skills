@@ -1,22 +1,33 @@
-# 小红书图卡脚本
+# 社交视觉包脚本
 
-`render_rednote.py` 与 `render_style_gallery.py` 是 `507-rednote` 的内部执行脚本，不是独立产品。
+`render_rednote.py` 与 `render_style_gallery.py` 是 `507-rednote` 的内部执行脚本，不是独立产品，也不负责安装环境依赖。
 
 ## 运行条件
 
+静态图卡和公众号封面对：
+
 - Python 3.10+
 - Pillow
-- 本机 Google Chrome / Chromium；也可通过 `CHROME_PATH` 或 `--chrome` 指定
+- 本机 Google Chrome / Chromium；可通过 `CHROME_PATH` 或 `--chrome` 指定
 
-安装 Pillow：
+动态图片槽额外需要：
+
+- `ffmpeg` 与 `ffprobe`
+- macOS 和 `makelive` 0.6.2+，用于 Live Photo `.pvt` 打包
+
+参考安装命令：
 
 ```bash
 python3 -m pip install Pillow
+brew install ffmpeg
+uv tool install makelive==0.6.2
 ```
 
-## 样式预览
+脚本不会执行这些安装命令。外部工具的来源与许可证记录见 [`../third-party-notices.md`](../third-party-notices.md)。
 
-用户未指定样式时，先渲染全部 18 套外观的“封面 + 一页正文”联系表：
+## 视觉系统预览
+
+未指定视觉系统和主题时，渲染全部“封面 + 一页正文”候选：
 
 ```bash
 python3 render_style_gallery.py \
@@ -24,41 +35,60 @@ python3 render_style_gallery.py \
   --output-dir <小红书目录>/style-preview
 ```
 
-可用 `--styles newspaper,editorial,mono` 缩小候选。完整样式与选择建议见 `../references/styles.md`。
+可用 `--themes editorial-paper,swiss-blue` 缩小候选。预览会按主题自动切换对应视觉系统，不改观点文案。
 
 ## 正式渲染
 
 ```bash
-python3 render_rednote.py --spec <rednote-project.json> --output-dir <小红书目录>
+python3 render_rednote.py \
+  --spec <rednote-project.json> \
+  --output-dir <小红书目录>
 ```
 
-完成过一次全量渲染后，仅 `layoutMode: cards` 的显式卡片页、且页数/主题/头像未变化时可局部重渲染：
+有动态图片槽、且 `makelive` 不在 PATH 时：
 
 ```bash
-python3 render_rednote.py --spec <rednote-project.json> --output-dir <小红书目录> --pages 3,5
+python3 render_rednote.py \
+  --spec <rednote-project.json> \
+  --output-dir <小红书目录> \
+  --makelive /absolute/path/to/makelive
 ```
 
-长文任一逻辑块变化都可能让后续物理页位移，必须全量重渲染；脚本会拒绝对已变化的长文规格执行局部渲染。
+纯静态项目完成过一次全量渲染后，可以局部重渲染：
 
-脚本会：
+```bash
+python3 render_rednote.py \
+  --spec <rednote-project.json> \
+  --output-dir <小红书目录> \
+  --pages 3,5
+```
 
-1. 校验 JSON 输入、本地素材、`stylePreset`，以及封面和正文逻辑块的 `sourceMap` 保真映射。
-2. 按选定样式把图片转为 `data:` URI，生成不依赖外部资源的 `rednote.html`。
-3. 长文模式按真实排版高度自动把逻辑段落装入物理页；卡片模式保持显式逐页。
-4. 用 750×1000 CSS 像素、2 倍设备比例渲染为 1500×2000 JPG。
-5. 检查页面溢出、动态页数、尺寸和文件完整性。
-6. 生成 `contact-sheet.jpg` 与包含物理页来源映射的 `render-manifest.json`。
+未选页面的规格或全局配置变化时，脚本会拒绝局部渲染。含动态图片槽或公众号封面对时必须全量渲染。
 
-测试：
+## 脚本负责
+
+1. 校验视觉摘要、观点、来源映射、排除内容去向、视觉系统、主题与页面布局。
+2. 把本地静态素材和动态首帧内嵌到单文件 `rednote.html`。
+3. 用真实浏览器检查溢出、字号下限和标题间距。
+4. 导出 1500×2000 小红书 JPG、联系表和新鲜度 manifest。
+5. 按需导出 2100×900、1080×1080 公众号封面对和组合预览。
+6. 用 `ffprobe` 校验短视频，以 `ffmpeg` 抽首帧并合成整卡 MOV。
+7. 调用外部 `makelive --pvt` 生成 Live Photo 包；缺失或失败时不写完成 manifest。
+
+## 测试
+
+单元测试：
 
 ```bash
 python3 -m unittest scripts/test_render_rednote.py
 ```
 
-完整烟测会调用本机 Chrome。`TMP_DIR` 由运行环境提供，用于临时输出：
+静态与公众号集成烟测：
 
 ```bash
 python3 scripts/render_rednote.py \
   --spec scripts/fixtures/sample-project.json \
   --output-dir "$TMP_DIR/507-rednote-smoke"
 ```
+
+动态图片槽测试会在临时目录用 `ffmpeg` 生成合成视频，不提交二进制 fixture。完整 Live Photo 端到端还需要在 macOS Photos 或 iPhone 发布路径验证 `.pvt` 可识别。

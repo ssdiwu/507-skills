@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import copy
 import hashlib
 import html
 import json
@@ -20,83 +21,97 @@ from pathlib import Path
 
 try:
     from PIL import Image, ImageDraw, ImageFont, ImageOps
-except ImportError as exc:  # pragma: no cover - 运行环境错误
+except ImportError as exc:  # pragma: no cover - runtime dependency
     raise SystemExit("缺少 Pillow：python3 -m pip install Pillow") from exc
 
-CSS_WIDTH = 750
-CSS_HEIGHT = 1000
-OUTPUT_SIZE = (1500, 2000)
-PAGE_TYPES = {"cover", "article"}
-LAYOUT_MODES = {"longform", "cards"}
-BLOCK_TYPES = {"paragraph", "note", "quote", "image", "cards", "flow", "timeline"}
+
+SCALE = 2
+CANVASES = {
+    "rednote": {"css": (750, 1000), "output": (1500, 2000)},
+    "wechat-main": {"css": (1050, 450), "output": (2100, 900)},
+    "wechat-share": {"css": (540, 540), "output": (1080, 1080)},
+}
+VISUAL_SYSTEMS = {"editorial", "swiss"}
+COVER_LAYOUTS = {"type", "split", "image-led"}
+ARTICLE_LAYOUTS = {"statement", "evidence", "comparison", "steps", "list", "data", "closing"}
+BLOCK_TYPES = {"paragraph", "note", "quote", "image", "screenshot", "motion", "cards", "flow", "timeline"}
 TONES = {"green", "blue", "purple", "red"}
-IMAGE_POSITIONS = {"center", "top", "bottom", "left", "right", "center top", "center bottom", "left center", "right center"}
-STYLE_LABELS = {
-    "editorial-default": "编辑文档",
-    "retro": "复古怀旧",
-    "newspaper": "报纸",
-    "mono": "极简黑白",
-    "nature": "自然森系",
-    "bluegrad": "蓝色渐变",
-    "autumn": "秋日暖阳",
-    "dark": "深夜暗色",
-    "morandi": "莫兰迪",
-    "cyber": "赛博朋克",
-    "neubrutalism": "新野蛮主义",
-    "vintage-film": "胶片复古",
-    "memphis": "孟菲斯",
-    "editorial": "杂志排版",
-    "glass": "磨砂玻璃",
-    "bento": "格子布局",
-    "y2k": "千禧复古",
-    "pink": "粉色渐变",
+DESTINATIONS = {"postBody", "companionCopy", "series", "notUsed"}
+IMAGE_POSITIONS = {
+    "center", "top", "bottom", "left", "right", "center top", "center bottom", "left center", "right center"
 }
-STYLE_PRESETS = {
-    "editorial-default": {"paper": "#f2f8ef", "paperAlt": "#eaf4e8", "ink": "#173c2d", "muted": "#6f8679", "accent": "#37a84f", "accentDark": "#246d38", "line": "#a9cfad"},
-    "retro": {"paper": "#F4ECD8", "paperAlt": "#E8DBC0", "ink": "#4A3F35", "muted": "#8B715F", "accent": "#C17F59", "accentDark": "#8B5A3C", "line": "#C9A27F"},
-    "newspaper": {"paper": "#f5f0e8", "paperAlt": "#ede8e0", "ink": "#1a1a1a", "muted": "#665f56", "accent": "#8b0000", "accentDark": "#650000", "line": "#81786d"},
-    "mono": {"paper": "#FFFFFF", "paperAlt": "#F0F0F0", "ink": "#000000", "muted": "#555555", "accent": "#000000", "accentDark": "#000000", "line": "#000000"},
-    "nature": {"paper": "#F0F7F0", "paperAlt": "#E4F0E5", "ink": "#2D4739", "muted": "#6B8172", "accent": "#4CAF50", "accentDark": "#2D6A3F", "line": "#9BC7A0"},
-    "bluegrad": {"paper": "#E3F2FD", "paperAlt": "#BBDEFB", "ink": "#0D4778", "muted": "#557D9F", "accent": "#2196F3", "accentDark": "#1565C0", "line": "#90CAF9"},
-    "autumn": {"paper": "#FFF8F0", "paperAlt": "#FCE7D2", "ink": "#5D4E37", "muted": "#8B735D", "accent": "#E67E22", "accentDark": "#B94E00", "line": "#EFC08E"},
-    "dark": {"paper": "#1a1a2e", "paperAlt": "#262642", "ink": "#e0e0e0", "muted": "#AAA6C5", "accent": "#a78bfa", "accentDark": "#c4b5fd", "line": "#5B4C88"},
-    "morandi": {"paper": "#e8e0d8", "paperAlt": "#DDD2CA", "ink": "#5a5248", "muted": "#82796F", "accent": "#9b8ea0", "accentDark": "#766879", "line": "#B8A8B8"},
-    "cyber": {"paper": "#0d0d1a", "paperAlt": "#17172B", "ink": "#00e5ff", "muted": "#7AAEB6", "accent": "#ff00ff", "accentDark": "#00e5ff", "line": "#5C2C7D"},
-    "neubrutalism": {"paper": "#FFE566", "paperAlt": "#FFFFFF", "ink": "#000000", "muted": "#4A4300", "accent": "#FF3366", "accentDark": "#000000", "line": "#000000"},
-    "vintage-film": {"paper": "#C8A882", "paperAlt": "#D9C1A1", "ink": "#2C1810", "muted": "#6F513E", "accent": "#8B6914", "accentDark": "#5B4000", "line": "#8B6914"},
-    "memphis": {"paper": "#FFFFFF", "paperAlt": "#FFF7D6", "ink": "#1A1A1A", "muted": "#646464", "accent": "#FF3366", "accentDark": "#00A6D6", "line": "#1A1A1A"},
-    "editorial": {"paper": "#FAFAFA", "paperAlt": "#F0F0F0", "ink": "#111111", "muted": "#666666", "accent": "#E63946", "accentDark": "#111111", "line": "#111111"},
-    "glass": {"paper": "#667eea", "paperAlt": "#764ba2", "ink": "#FFFFFF", "muted": "#E1DFF5", "accent": "#FFD700", "accentDark": "#FFF1A8", "line": "#C8C7EF"},
-    "bento": {"paper": "#F5F5F0", "paperAlt": "#E7E7E0", "ink": "#1A1A1A", "muted": "#686860", "accent": "#4ECDC4", "accentDark": "#167C77", "line": "#1A1A1A"},
-    "y2k": {"paper": "#0D0D2B", "paperAlt": "#171743", "ink": "#00FFFF", "muted": "#7BB5C2", "accent": "#FF00FF", "accentDark": "#00FFFF", "line": "#6534A4"},
-    "pink": {"paper": "#FFE5EC", "paperAlt": "#FFF5F7", "ink": "#5D3A4A", "muted": "#8B6574", "accent": "#FF6B9D", "accentDark": "#B43E69", "line": "#FFB3CC"},
+
+THEME_PRESETS = {
+    "editorial-paper": {
+        "label": "纸墨编辑",
+        "system": "editorial",
+        "colors": {"paper": "#F4F0E8", "paperAlt": "#E7DED0", "ink": "#171717", "muted": "#6E665C", "accent": "#A63C32", "accentDark": "#6F231D", "line": "#B8AA9B"},
+    },
+    "editorial-night": {
+        "label": "夜刊",
+        "system": "editorial",
+        "colors": {"paper": "#171717", "paperAlt": "#242321", "ink": "#F1E8D5", "muted": "#B8AE9B", "accent": "#D1A34A", "accentDark": "#F0C76A", "line": "#645B50"},
+    },
+    "swiss-blue": {
+        "label": "信号蓝",
+        "system": "swiss",
+        "colors": {"paper": "#F7F7F4", "paperAlt": "#E7E8E6", "ink": "#0A0A0A", "muted": "#666A6A", "accent": "#1F4ACC", "accentDark": "#16348F", "line": "#A9ADAF"},
+    },
+    "swiss-red": {
+        "label": "编辑红",
+        "system": "swiss",
+        "colors": {"paper": "#FAF9F5", "paperAlt": "#ECEAE4", "ink": "#111111", "muted": "#686762", "accent": "#E23B2D", "accentDark": "#9F251D", "line": "#B3B1AA"},
+    },
 }
-THEME_DEFAULTS = STYLE_PRESETS["editorial-default"]
+THEME_LABELS = {key: value["label"] for key, value in THEME_PRESETS.items()}
+THEME_COLOR_KEYS = set(next(iter(THEME_PRESETS.values()))["colors"])
 
 
 class SectionAuditParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__()
-        self.overflow_pages: list[int] = []
         self.sections: list[dict] = []
+        self.motions: list[dict] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if tag != "section":
-            return
         values = dict(attrs)
-        if not values.get("data-page"):
-            return
-        page_number = int(values["data-page"])
-        classes = (values.get("class") or "").split()
-        self.sections.append({
-            "page": page_number,
-            "type": "cover" if "cover" in classes else "article",
-            "heading": values.get("data-heading") or "",
-            "sourceMap": values.get("data-source-map") or "",
-            "fillRatio": float(values.get("data-fill-ratio") or 1),
-        })
-        if values.get("data-overflow") == "true":
-            self.overflow_pages.append(page_number)
+        if tag == "section" and values.get("data-target"):
+            self.sections.append({
+                "target": values["data-target"],
+                "page": int(values["data-page"]) if values.get("data-page") else None,
+                "type": values.get("data-type", "canvas"),
+                "point": values.get("data-point", ""),
+                "sourceMap": values.get("data-source-map", ""),
+                "layout": values.get("data-layout", ""),
+                "fillRatio": float(values.get("data-fill-ratio") or 0),
+                "minFont": float(values.get("data-min-font") or 999),
+                "titleGap": float(values.get("data-title-gap") or 999),
+                "overflow": values.get("data-overflow") == "true",
+            })
+        if tag == "div" and values.get("data-motion-id") and values.get("data-motion-page"):
+            self.motions.append({
+                "id": values["data-motion-id"],
+                "page": int(values["data-motion-page"]),
+                "x": float(values.get("data-motion-x") or 0),
+                "y": float(values.get("data-motion-y") or 0),
+                "width": float(values.get("data-motion-width") or 0),
+                "height": float(values.get("data-motion-height") or 0),
+            })
+
+    def failures(self) -> list[str]:
+        failures: list[str] = []
+        airy_layouts = {"statement", "type", "image-led"}
+        for section in self.sections:
+            target = section["target"]
+            if section["overflow"]:
+                failures.append(f"{target}: 内容溢出")
+            if section["minFont"] < 15:
+                failures.append(f"{target}: 最小字号 {section['minFont']:.1f}px 低于 15px")
+            if section["titleGap"] < 12:
+                failures.append(f"{target}: 标题与下一内容间距 {section['titleGap']:.1f}px 低于 12px")
+            if target.startswith("rednote-") and section["layout"] not in airy_layouts and section["fillRatio"] < 0.52:
+                failures.append(f"{target}: 内容仅覆盖画布高度的 {section['fillRatio']:.0%}")
+        return failures
 
 
 def die(message: str) -> None:
@@ -133,9 +148,19 @@ def validate_item(item: object, label: str) -> None:
     reject_unknown(item, {"tag", "title", "text", "tone"}, label)
     if not any(isinstance(item.get(key), str) and item[key].strip() for key in ("title", "text")):
         die(f"{label} 至少需要 title 或 text")
-    tone = item.get("tone", "green")
-    if tone not in TONES:
-        die(f"{label}.tone 无效：{tone}")
+    if item.get("tone", "green") not in TONES:
+        die(f"{label}.tone 无效：{item.get('tone')}")
+
+
+def validate_media_fields(block: dict, label: str) -> None:
+    require_text(block.get("src"), f"{label}.src")
+    height = block.get("height", 330)
+    if not isinstance(height, int) or not 120 <= height <= 620:
+        die(f"{label}.height 必须在 120–620")
+    if block.get("fit", "contain") not in {"contain", "cover"}:
+        die(f"{label}.fit 只能是 contain 或 cover")
+    if block.get("position", "center") not in IMAGE_POSITIONS:
+        die(f"{label}.position 无效：{block.get('position')}")
 
 
 def validate_block(block: object, label: str) -> None:
@@ -144,81 +169,131 @@ def validate_block(block: object, label: str) -> None:
     block_type = block.get("type")
     if block_type not in BLOCK_TYPES:
         die(f"{label}.type 无效：{block_type}")
-    allowed_by_type = {
+    allowed = {
         "paragraph": {"type", "text", "variant"},
         "note": {"type", "text"},
         "quote": {"type", "text"},
         "image": {"type", "src", "alt", "caption", "height", "fit", "position"},
+        "screenshot": {"type", "src", "alt", "caption", "height", "chrome", "fit", "position"},
+        "motion": {"type", "src", "alt", "caption", "height", "fit", "position", "startSec", "durationSec", "posterTimeSec"},
         "cards": {"type", "items"},
         "flow": {"type", "items"},
         "timeline": {"type", "items"},
     }
-    reject_unknown(block, allowed_by_type[block_type], label)
+    reject_unknown(block, allowed[block_type], label)
     if block_type in {"paragraph", "note", "quote"}:
         require_text(block.get("text"), f"{label}.text")
     if block_type == "paragraph" and block.get("variant", "body") not in {"body", "lead", "big", "muted"}:
         die(f"{label}.variant 无效：{block.get('variant')}")
-    if block_type == "image":
-        require_text(block.get("src"), f"{label}.src")
-        height = block.get("height", 330)
-        if not isinstance(height, int) or not 120 <= height <= 520:
-            die(f"{label}.height 必须在 120–520")
-        if block.get("fit", "contain") not in {"contain", "cover"}:
-            die(f"{label}.fit 只能是 contain 或 cover")
-        if block.get("position", "center") not in IMAGE_POSITIONS:
-            die(f"{label}.position 无效：{block.get('position')}")
+    if block_type in {"image", "screenshot", "motion"}:
+        validate_media_fields(block, label)
+    if block_type == "screenshot" and block.get("chrome", "none") not in {"none", "browser", "phone"}:
+        die(f"{label}.chrome 无效：{block.get('chrome')}")
+    if block_type == "motion":
+        start = block.get("startSec", 0)
+        duration = block.get("durationSec")
+        poster = block.get("posterTimeSec", start)
+        if not isinstance(start, (int, float)) or start < 0:
+            die(f"{label}.startSec 必须 >= 0")
+        if not isinstance(duration, (int, float)) or not 1 <= duration <= 5:
+            die(f"{label}.durationSec 必须在 1–5 秒")
+        if not isinstance(poster, (int, float)) or poster < start or poster > start + duration:
+            die(f"{label}.posterTimeSec 必须位于选定片段内")
     if block_type in {"cards", "flow", "timeline"}:
         items = block.get("items")
-        limits = {"cards": (1, 3), "flow": (2, 4), "timeline": (2, 5)}[block_type]
+        limits = {"cards": (1, 3), "flow": (2, 5), "timeline": (2, 5)}[block_type]
         if not isinstance(items, list) or not limits[0] <= len(items) <= limits[1]:
             die(f"{label}.items 数量必须在 {limits[0]}–{limits[1]}")
         for index, item in enumerate(items, start=1):
             validate_item(item, f"{label}.items[{index}]")
 
 
+def validate_cover(page: dict, label: str, wechat: bool = False) -> None:
+    allowed = {"type", "point", "sourceMap", "layout", "kicker", "title", "subtitle", "author", "image", "imagePosition"}
+    reject_unknown(page, allowed, label)
+    if not wechat and page.get("type") != "cover":
+        die(f"{label}.type 必须是 cover")
+    if wechat and "type" in page and page.get("type") != "cover":
+        die(f"{label}.type 只能是 cover")
+    require_text(page.get("point"), f"{label}.point")
+    require_text(page.get("sourceMap"), f"{label}.sourceMap")
+    require_text(page.get("title"), f"{label}.title")
+    if page.get("layout") not in COVER_LAYOUTS:
+        die(f"{label}.layout 无效：{page.get('layout')}")
+    if page.get("imagePosition", "center") not in IMAGE_POSITIONS:
+        die(f"{label}.imagePosition 无效：{page.get('imagePosition')}")
+
+
 def validate_spec(spec: dict) -> None:
-    reject_unknown(spec, {"title", "author", "avatar", "layoutMode", "stylePreset", "theme", "pages"}, "project")
+    legacy = sorted(set(spec) & {"layoutMode", "stylePreset"})
+    if legacy:
+        die(f"旧字段 {', '.join(legacy)} 已移除；请迁移为 visualSystem/themePreset 和显式观点页")
+    allowed = {"title", "author", "avatar", "visualSystem", "themePreset", "theme", "excludedContent", "pages", "wechatCovers"}
+    reject_unknown(spec, allowed, "project")
     require_text(spec.get("title"), "title")
-    layout_mode = spec.get("layoutMode", "longform")
-    if layout_mode not in LAYOUT_MODES:
-        die(f"layoutMode 无效：{layout_mode}；可选：{', '.join(LAYOUT_MODES)}")
-    style_preset = spec.get("stylePreset", "editorial-default")
-    if style_preset not in STYLE_PRESETS:
-        die(f"stylePreset 无效：{style_preset}；可选：{', '.join(STYLE_PRESETS)}")
-    pages = spec.get("pages")
-    if not isinstance(pages, list) or not 2 <= len(pages) <= 20:
-        die("pages 数量必须在 2–20")
+    system = spec.get("visualSystem")
+    if system not in VISUAL_SYSTEMS:
+        die("visualSystem 必须是 editorial 或 swiss")
+    preset = spec.get("themePreset")
+    if preset not in THEME_PRESETS:
+        die(f"themePreset 无效：{preset}")
+    if THEME_PRESETS[preset]["system"] != system:
+        die(f"themePreset {preset} 不属于 visualSystem {system}")
     theme = spec.get("theme", {})
     if not isinstance(theme, dict):
         die("theme 必须是 object")
-    reject_unknown(theme, set(THEME_DEFAULTS), "theme")
+    reject_unknown(theme, THEME_COLOR_KEYS, "theme")
     for key, value in theme.items():
         if not isinstance(value, str) or not re.fullmatch(r"#[0-9A-Fa-f]{6}", value):
             die(f"theme.{key} 必须是 #RRGGBB")
-    if not isinstance(pages[0], dict) or pages[0].get("type") != "cover":
-        die("pages[1] 必须是唯一封面 cover")
+    excluded = spec.get("excludedContent")
+    if not isinstance(excluded, list):
+        die("excludedContent 必须是 array，可以为空")
+    for index, item in enumerate(excluded, start=1):
+        label = f"excludedContent[{index}]"
+        if not isinstance(item, dict):
+            die(f"{label} 必须是 object")
+        reject_unknown(item, {"summary", "reason", "destination"}, label)
+        require_text(item.get("summary"), f"{label}.summary")
+        if item.get("destination") not in DESTINATIONS:
+            die(f"{label}.destination 无效：{item.get('destination')}")
+    pages = spec.get("pages")
+    if not isinstance(pages, list) or not 2 <= len(pages) <= 20:
+        die("pages 数量必须在 2–20")
     for page_index, page in enumerate(pages, start=1):
         label = f"pages[{page_index}]"
-        if not isinstance(page, dict) or page.get("type") not in PAGE_TYPES:
-            die(f"{label}.type 必须是 cover 或 article")
-        if page["type"] == "cover":
-            if page_index != 1:
-                die(f"{label} 不得再次使用 cover")
-            reject_unknown(page, {"type", "kicker", "title", "sourceMap", "subtitle", "author", "image", "imagePosition"}, label)
-            require_text(page.get("title"), f"{label}.title")
-            require_text(page.get("sourceMap"), f"{label}.sourceMap")
-            if page.get("imagePosition", "center") not in IMAGE_POSITIONS:
-                die(f"{label}.imagePosition 无效：{page.get('imagePosition')}")
-        else:
-            reject_unknown(page, {"type", "heading", "sourceMap", "closing", "blocks"}, label)
-            if "heading" in page:
-                require_text(page.get("heading"), f"{label}.heading")
-            require_text(page.get("sourceMap"), f"{label}.sourceMap")
-            blocks = page.get("blocks")
-            if not isinstance(blocks, list) or not blocks:
-                die(f"{label}.blocks 至少需要一项")
-            for block_index, block in enumerate(blocks, start=1):
-                validate_block(block, f"{label}.blocks[{block_index}]")
+        if not isinstance(page, dict):
+            die(f"{label} 必须是 object")
+        if page_index == 1:
+            validate_cover(page, label)
+            continue
+        if page.get("type") != "article":
+            die(f"{label}.type 必须是 article")
+        reject_unknown(page, {"type", "point", "sourceMap", "layout", "heading", "blocks"}, label)
+        require_text(page.get("point"), f"{label}.point")
+        require_text(page.get("sourceMap"), f"{label}.sourceMap")
+        if page.get("layout") not in ARTICLE_LAYOUTS:
+            die(f"{label}.layout 无效：{page.get('layout')}")
+        if "heading" in page:
+            require_text(page.get("heading"), f"{label}.heading")
+        blocks = page.get("blocks")
+        if not isinstance(blocks, list) or not blocks:
+            die(f"{label}.blocks 至少需要一项")
+        motions = 0
+        for block_index, block in enumerate(blocks, start=1):
+            validate_block(block, f"{label}.blocks[{block_index}]")
+            motions += int(block.get("type") == "motion")
+        if motions > 1:
+            die(f"{label} 每页最多一个 motion")
+    covers = spec.get("wechatCovers")
+    if covers is not None:
+        if not isinstance(covers, dict):
+            die("wechatCovers 必须是 object")
+        reject_unknown(covers, {"main", "share"}, "wechatCovers")
+        if set(covers) != {"main", "share"}:
+            die("wechatCovers 必须同时提供 main 和 share")
+        validate_cover(covers["main"], "wechatCovers.main", wechat=True)
+        validate_cover(covers["share"], "wechatCovers.share", wechat=True)
 
 
 def rich_text(value: object) -> str:
@@ -229,21 +304,93 @@ def rich_text(value: object) -> str:
     return escaped.replace("\n", "<br>")
 
 
+def resolve_asset_path(value: str, spec_dir: Path, label: str) -> Path:
+    if value.startswith(("http://", "https://", "data:")):
+        die(f"{label} 只接受本地文件路径：{value}")
+    path = Path(value).expanduser()
+    if not path.is_absolute():
+        path = (spec_dir / path).resolve()
+    if not path.is_file():
+        die(f"{label} 不存在：{path}")
+    return path
+
+
 def asset_data_uri(value: str | None, spec_dir: Path) -> str | None:
     if not value:
         return None
     if value.startswith("data:"):
         return value
-    if value.startswith(("http://", "https://")):
-        die(f"不接受远程图片 URL：{value}")
-    path = Path(value).expanduser()
-    if not path.is_absolute():
-        path = (spec_dir / path).resolve()
-    if not path.is_file():
-        die(f"图片不存在：{path}")
+    path = resolve_asset_path(value, spec_dir, "图片")
     mime = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
     encoded = base64.b64encode(path.read_bytes()).decode("ascii")
     return f"data:{mime};base64,{encoded}"
+
+
+def run_command(command: list[str], label: str) -> subprocess.CompletedProcess[str]:
+    result = subprocess.run(command, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        details = (result.stderr or result.stdout)[-1600:]
+        die(f"{label} 失败：{details}")
+    return result
+
+
+def find_binary(name: str, explicit: str | None = None) -> str:
+    candidate = explicit or shutil.which(name)
+    if not candidate or not Path(candidate).is_file():
+        die(f"找不到 {name}；请先安装并加入 PATH")
+    return str(candidate)
+
+
+def probe_video(ffprobe: str, path: Path) -> dict:
+    result = run_command([
+        ffprobe, "-v", "error", "-select_streams", "v:0",
+        "-show_entries", "stream=codec_type,width,height:format=duration", "-of", "json", str(path),
+    ], "ffprobe")
+    data = json.loads(result.stdout)
+    streams = data.get("streams") or []
+    if not streams or streams[0].get("codec_type") != "video":
+        die(f"视频没有可用画面流：{path}")
+    try:
+        duration = float(data["format"]["duration"])
+    except (KeyError, TypeError, ValueError):
+        die(f"无法读取视频时长：{path}")
+    return {"duration": duration, "width": streams[0].get("width"), "height": streams[0].get("height")}
+
+
+def prepare_motion_posters(spec: dict, spec_path: Path, temp_dir: Path, ffmpeg_path: str | None = None, ffprobe_path: str | None = None) -> tuple[dict, list[dict]]:
+    prepared = copy.deepcopy(spec)
+    motions: list[dict] = []
+    motion_pages = [page for page in prepared["pages"] if page.get("type") == "article" and any(block.get("type") == "motion" for block in page["blocks"])]
+    if not motion_pages:
+        return prepared, motions
+    ffmpeg = find_binary("ffmpeg", ffmpeg_path)
+    ffprobe = find_binary("ffprobe", ffprobe_path)
+    for page_number, page in enumerate(prepared["pages"], start=1):
+        for block_index, block in enumerate(page.get("blocks", []), start=1):
+            if block.get("type") != "motion":
+                continue
+            source = resolve_asset_path(block["src"], spec_path.parent, "motion.src")
+            metadata = probe_video(ffprobe, source)
+            start = float(block.get("startSec", 0))
+            duration = float(block["durationSec"])
+            poster_time = float(block.get("posterTimeSec", start))
+            if start + duration > metadata["duration"] + 0.05:
+                die(f"第 {page_number} 页视频片段超出源视频时长 {metadata['duration']:.3f}s")
+            poster_path = temp_dir / f"motion-poster-{page_number:02d}.jpg"
+            run_command([
+                ffmpeg, "-y", "-ss", f"{poster_time:.3f}", "-i", str(source),
+                "-frames:v", "1", "-q:v", "2", str(poster_path),
+            ], f"第 {page_number} 页首帧提取")
+            motion_id = f"motion-{page_number:02d}-{block_index:02d}"
+            block["_poster"] = str(poster_path)
+            block["_motionId"] = motion_id
+            motions.append({
+                "id": motion_id, "page": page_number, "source": source,
+                "startSec": start, "durationSec": duration,
+                "fit": block.get("fit", "cover"), "position": block.get("position", "center"),
+                "sourceMetadata": metadata,
+            })
+    return prepared, motions
 
 
 def render_item(item: dict, class_name: str = "card") -> str:
@@ -254,150 +401,108 @@ def render_item(item: dict, class_name: str = "card") -> str:
     return f'<div class="{class_name} tone-{tone}">{tag}{title}{text}</div>'
 
 
+def render_media_block(block: dict, spec_dir: Path) -> str:
+    block_type = block["type"]
+    source = block.get("_poster") if block_type == "motion" else block["src"]
+    src = asset_data_uri(source, spec_dir)
+    alt = html.escape(block.get("alt", ""), quote=True)
+    fit = html.escape(block.get("fit", "contain"), quote=True)
+    position = html.escape(block.get("position", "center"), quote=True)
+    height = block.get("height", 330)
+    caption = f'<div class="caption">{rich_text(block["caption"])}</div>' if block.get("caption") else ""
+    image = f'<img class="media-frame" src="{src}" alt="{alt}" style="height:{height}px;object-fit:{fit};object-position:{position}">'
+    if block_type == "image":
+        return f'<figure class="image-block">{image}{caption}</figure>'
+    if block_type == "screenshot":
+        chrome = html.escape(block.get("chrome", "none"), quote=True)
+        return f'<figure class="screenshot-block chrome-{chrome}">{image}{caption}</figure>'
+    motion_id = html.escape(block.get("_motionId", ""), quote=True)
+    if not motion_id:
+        die("motion 必须先经过首帧准备再渲染")
+    image = image.replace('class="media-frame"', 'class="media-frame motion-frame"')
+    return f'<div class="motion-block" data-motion-id="{motion_id}">{image}{caption}</div>'
+
+
 def render_block(block: dict, spec_dir: Path) -> str:
     block_type = block["type"]
     if block_type == "paragraph":
-        variant = block.get("variant", "body")
-        return f'<p class="paragraph {variant}">{rich_text(block["text"])}</p>'
+        return f'<p class="paragraph {block.get("variant", "body")}">{rich_text(block["text"])}</p>'
     if block_type in {"note", "quote"}:
         return f'<div class="{block_type}">{rich_text(block["text"])}</div>'
-    if block_type == "image":
-        src = asset_data_uri(block["src"], spec_dir)
-        alt = html.escape(block.get("alt", ""), quote=True)
-        fit = block.get("fit", "contain")
-        position = html.escape(block.get("position", "center"), quote=True)
-        height = block.get("height", 330)
-        caption = f'<div class="caption">{rich_text(block["caption"])}</div>' if block.get("caption") else ""
-        return f'<div class="image-block"><img src="{src}" alt="{alt}" style="height:{height}px;object-fit:{fit};object-position:{position}">{caption}</div>'
+    if block_type in {"image", "screenshot", "motion"}:
+        return render_media_block(block, spec_dir)
     if block_type == "cards":
         cards = "".join(render_item(item) for item in block["items"])
         return f'<div class="cards cols-{len(block["items"])}">{cards}</div>'
     if block_type == "flow":
-        parts: list[str] = []
-        for index, item in enumerate(block["items"]):
-            if index:
-                parts.append('<div class="flow-arrow">→</div>')
-            parts.append(render_item(item, "flow-card"))
-        return f'<div class="flow">{"".join(parts)}</div>'
+        parts = "".join(render_item(item, "flow-card") for item in block["items"])
+        return f'<div class="flow">{parts}</div>'
     items = "".join(render_item(item, "timeline-item") for item in block["items"])
     return f'<div class="timeline">{items}</div>'
 
 
-def render_cover(page: dict, spec: dict, spec_dir: Path, avatar: str | None) -> str:
+def render_cover(page: dict, spec: dict, spec_dir: Path, avatar: str | None, target: str = "rednote-01") -> str:
     image = asset_data_uri(page.get("image"), spec_dir)
-    image_position = html.escape(page.get("imagePosition", "center"), quote=True)
-    source_map = html.escape(page.get("sourceMap", ""), quote=True)
-    cover_image = f'<img class="cover-image" src="{image}" alt="" style="object-position:{image_position}">' if image else ""
-    no_image = " no-image" if not image else ""
+    position = html.escape(page.get("imagePosition", "center"), quote=True)
+    media = f'<img class="cover-image" src="{image}" alt="" style="object-position:{position}">' if image else ""
     kicker = f'<div class="kicker">{rich_text(page["kicker"])}</div>' if page.get("kicker") else ""
     subtitle = f'<div class="cover-sub">{rich_text(page["subtitle"])}</div>' if page.get("subtitle") else ""
     author = page.get("author") or spec.get("author", "")
     sign = f'<div class="cover-sign">{rich_text(author)}</div>' if author else ""
     avatar_html = f'<img class="avatar cover-avatar" src="{avatar}" alt="">' if avatar else ""
+    no_image = " no-image" if not image else ""
     return (
-        f'<section class="page cover{no_image}" data-page="1" data-heading="{html.escape(page["title"], quote=True)}" data-source-map="{source_map}">{cover_image}'
-        f'<div class="cover-body">{kicker}<h1>{rich_text(page["title"])}</h1>{subtitle}{sign}</div>'
-        f'{avatar_html}</section>'
+        f'<section class="canvas rednote page cover layout-{page["layout"]}{no_image}" data-target="{target}" data-page="1" '
+        f'data-type="cover" data-point="{html.escape(page["point"], quote=True)}" '
+        f'data-source-map="{html.escape(page["sourceMap"], quote=True)}" data-layout="{page["layout"]}">'
+        f'{media}<div class="cover-body">{kicker}<h1>{rich_text(page["title"])}</h1>{subtitle}{sign}</div>{avatar_html}</section>'
     )
 
 
-def render_article(page: dict, page_index: int, body_number: int, spec_dir: Path, avatar: str | None) -> str:
+def render_article(page: dict, page_index: int, spec_dir: Path, avatar: str | None) -> str:
     blocks = "".join(render_block(block, spec_dir) for block in page["blocks"])
-    closing = " closing" if page.get("closing") else ""
-    continuation = " continuation" if not page.get("heading") else ""
-    heading = f'<h2>{rich_text(page["heading"])}</h2>' if page.get("heading") else ""
-    source_map = html.escape(page.get("sourceMap", ""), quote=True)
-    heading_attr = html.escape(page.get("heading", ""), quote=True)
+    heading = page.get("heading") or page["point"]
     avatar_html = f'<img class="avatar" src="{avatar}" alt="">' if avatar else ""
     return (
-        f'<section class="page article{closing}{continuation}" data-page="{page_index}" data-heading="{heading_attr}" data-source-map="{source_map}">'
-        f'<div class="topbar"><span class="mark">✦</span><span class="pageno">{body_number:02d}</span></div>'
-        f'{heading}<div class="blocks">{blocks}</div>{avatar_html}</section>'
+        f'<section class="canvas rednote page article layout-{page["layout"]}" data-target="rednote-{page_index:02d}" '
+        f'data-page="{page_index}" data-type="article" data-point="{html.escape(page["point"], quote=True)}" '
+        f'data-source-map="{html.escape(page["sourceMap"], quote=True)}" data-layout="{page["layout"]}">'
+        f'<div class="topbar"><span class="mark">{html.escape(page["layout"].upper())}</span><span class="pageno">{page_index - 1:02d}</span></div>'
+        f'<h2>{rich_text(heading)}</h2><div class="blocks">{blocks}</div>{avatar_html}</section>'
     )
 
 
-def render_flow_source(pages: list[dict], spec_dir: Path) -> str:
-    units: list[str] = []
-    for page in pages:
-        source_map = html.escape(page.get("sourceMap", ""), quote=True)
-        closing = "true" if page.get("closing") else "false"
-        blocks = list(page["blocks"])
-        if page.get("closing"):
-            heading_value = page.get("heading", "")
-            heading_attr = html.escape(heading_value, quote=True)
-            heading_html = f'<h2>{rich_text(heading_value)}</h2>' if heading_value else ""
-            prefix = blocks[:-3] if len(blocks) > 3 else []
-            if prefix:
-                first_prefix = render_block(prefix[0], spec_dir)
-                chapter_class = " chapter-start" if heading_value else ""
-                units.append(
-                    f'<div class="flow-unit{chapter_class}" data-heading="{heading_attr}" data-source-map="{source_map}" data-closing="true">'
-                    f'{heading_html}{first_prefix}</div>'
-                )
-                for block in prefix[1:]:
-                    units.append(
-                        f'<div class="flow-unit" data-heading="" data-source-map="{source_map}" data-closing="true">'
-                        f'{render_block(block, spec_dir)}</div>'
-                    )
-                heading_attr = ""
-                heading_html = ""
-            closing_blocks = "".join(render_block(block, spec_dir) for block in blocks[len(prefix):])
-            chapter_class = " chapter-start" if heading_html else ""
-            units.append(
-                f'<div class="flow-unit closing-group{chapter_class}" data-heading="{heading_attr}" data-source-map="{source_map}" data-closing="true">'
-                f'{heading_html}{closing_blocks}</div>'
-            )
-            continue
-        if page.get("heading"):
-            heading = html.escape(page["heading"], quote=True)
-            first_block = render_block(blocks.pop(0), spec_dir)
-            units.append(
-                f'<div class="flow-unit chapter-start" data-heading="{heading}" data-source-map="{source_map}" data-closing="{closing}">'
-                f'<h2>{rich_text(page["heading"])}</h2>{first_block}</div>'
-            )
-        for block in blocks:
-            units.append(
-                f'<div class="flow-unit" data-heading="" data-source-map="{source_map}" data-closing="{closing}">'
-                f'{render_block(block, spec_dir)}</div>'
-            )
-    return f'<div id="flow-source">{"".join(units)}</div>'
-
-
-def render_flow_template(avatar: str | None) -> str:
-    avatar_html = f'<img class="avatar" src="{avatar}" alt="">' if avatar else ""
+def render_wechat_cover(page: dict, spec: dict, spec_dir: Path, avatar: str | None, target: str) -> str:
+    image = asset_data_uri(page.get("image"), spec_dir)
+    position = html.escape(page.get("imagePosition", "center"), quote=True)
+    media = f'<img class="wechat-image" src="{image}" alt="" style="object-position:{position}">' if image else ""
+    kicker = f'<div class="kicker">{rich_text(page["kicker"])}</div>' if page.get("kicker") else ""
+    subtitle = f'<div class="wechat-sub">{rich_text(page["subtitle"])}</div>' if page.get("subtitle") else ""
+    author = page.get("author") or spec.get("author", "")
+    sign = f'<div class="cover-sign">{rich_text(author)}</div>' if author else ""
+    avatar_html = f'<img class="avatar cover-avatar" src="{avatar}" alt="">' if avatar else ""
     return (
-        '<template id="flow-page-template"><section class="page article continuation" data-page="" data-heading="" data-source-map="">'
-        '<div class="topbar"><span class="mark">✦</span><span class="pageno"></span></div>'
-        f'<div class="flow-content"></div>{avatar_html}</section></template>'
+        f'<section class="canvas {target} layout-{page["layout"]}" data-target="{target}" data-type="wechat-cover" '
+        f'data-point="{html.escape(page["point"], quote=True)}" data-source-map="{html.escape(page["sourceMap"], quote=True)}" '
+        f'data-layout="{page["layout"]}">{media}<div class="wechat-body">{kicker}<h1>{rich_text(page["title"])}</h1>'
+        f'{subtitle}{sign}</div>{avatar_html}</section>'
     )
 
 
 def render_html(spec: dict, spec_path: Path) -> str:
     spec_dir = spec_path.parent
     avatar = asset_data_uri(spec.get("avatar"), spec_dir)
-    layout_mode = spec.get("layoutMode", "longform")
-    style_preset = spec.get("stylePreset", "editorial-default")
-    theme = {**STYLE_PRESETS[style_preset], **spec.get("theme", {})}
-    theme_css = "\n".join(f"  --{re.sub(r'([A-Z])', lambda m: '-' + m.group(1).lower(), key)}: {value};" for key, value in theme.items())
-    if layout_mode == "cards":
-        sections: list[str] = []
-        body_number = 0
-        for page_index, page in enumerate(spec["pages"], start=1):
-            if page["type"] == "cover":
-                sections.append(render_cover(page, spec, spec_dir, avatar))
-            else:
-                body_number += 1
-                sections.append(render_article(page, page_index, body_number, spec_dir, avatar))
-    else:
-        sections = [
-            render_cover(spec["pages"][0], spec, spec_dir, avatar),
-            render_flow_source(spec["pages"][1:], spec_dir),
-            render_flow_template(avatar),
-        ]
-    title = html.escape(spec["title"], quote=True)
-    return (HTML_TEMPLATE.replace("{{TITLE}}", title)
-            .replace("{{STYLE}}", html.escape(style_preset, quote=True))
-            .replace("{{LAYOUT}}", html.escape(layout_mode, quote=True))
+    preset = spec["themePreset"]
+    colors = {**THEME_PRESETS[preset]["colors"], **spec.get("theme", {})}
+    theme_css = "\n".join(f"  --{re.sub(r'([A-Z])', lambda m: '-' + m.group(1).lower(), key)}: {value};" for key, value in colors.items())
+    sections = [render_cover(spec["pages"][0], spec, spec_dir, avatar)]
+    sections.extend(render_article(page, index, spec_dir, avatar) for index, page in enumerate(spec["pages"][1:], start=2))
+    if spec.get("wechatCovers"):
+        sections.append(render_wechat_cover(spec["wechatCovers"]["main"], spec, spec_dir, avatar, "wechat-main"))
+        sections.append(render_wechat_cover(spec["wechatCovers"]["share"], spec, spec_dir, avatar, "wechat-share"))
+    return (HTML_TEMPLATE.replace("{{TITLE}}", html.escape(spec["title"], quote=True))
+            .replace("{{SYSTEM}}", spec["visualSystem"])
+            .replace("{{PRESET}}", preset)
             .replace("{{THEME}}", theme_css)
             .replace("{{SECTIONS}}", "\n".join(sections)))
 
@@ -406,10 +511,11 @@ def find_chrome(explicit: str | None) -> str:
     candidates = [
         explicit,
         os.environ.get("CHROME_PATH"),
-        shutil.which("google-chrome"),
-        shutil.which("google-chrome-stable"),
-        shutil.which("chromium"),
-        shutil.which("chromium-browser"),
+        shutil.which("google-chrome"), shutil.which("google-chrome-stable"),
+        shutil.which("chromium"), shutil.which("chromium-browser"),
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        str(Path.home() / "Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
+        "/Applications/Chromium.app/Contents/MacOS/Chromium",
     ]
     for candidate in candidates:
         if candidate and Path(candidate).is_file():
@@ -417,20 +523,12 @@ def find_chrome(explicit: str | None) -> str:
     die("找不到 Chrome / Chromium；请设置 CHROME_PATH 或传 --chrome")
 
 
-def base_chrome_command(chrome: str, profile: Path) -> list[str]:
+def base_chrome_command(chrome: str, profile: Path, css_size: tuple[int, int]) -> list[str]:
     return [
-        chrome,
-        "--headless=new",
-        "--disable-gpu",
-        "--hide-scrollbars",
-        "--disable-background-networking",
-        "--disable-component-update",
-        "--disable-sync",
-        "--no-first-run",
-        "--no-default-browser-check",
-        "--metrics-recording-only",
-        "--force-device-scale-factor=2",
-        f"--window-size={CSS_WIDTH},{CSS_HEIGHT}",
+        chrome, "--headless=new", "--disable-gpu", "--hide-scrollbars",
+        "--disable-background-networking", "--disable-component-update", "--disable-sync",
+        "--no-first-run", "--no-default-browser-check", "--metrics-recording-only",
+        f"--force-device-scale-factor={SCALE}", f"--window-size={css_size[0]},{css_size[1]}",
         f"--user-data-dir={profile}",
     ]
 
@@ -439,27 +537,21 @@ def inspect_layout(chrome: str, html_uri: str, timeout: float) -> SectionAuditPa
     profile = Path(tempfile.mkdtemp(prefix="rednote-audit-"))
     dump_path = profile / "dump.html"
     log_path = profile / "chrome.log"
-    command = base_chrome_command(chrome, profile) + ["--dump-dom", html_uri]
+    command = base_chrome_command(chrome, profile, (1200, 1200)) + ["--dump-dom", html_uri]
     process: subprocess.Popen | None = None
     try:
         with dump_path.open("wb") as output, log_path.open("wb") as log:
             process = subprocess.Popen(command, stdout=output, stderr=log, start_new_session=True)
             deadline = time.time() + timeout
-            last_size = -1
-            stable = 0
             while time.time() < deadline:
-                if dump_path.exists() and dump_path.stat().st_size > 0:
-                    size = dump_path.stat().st_size
-                    stable = stable + 1 if size == last_size else 0
-                    last_size = size
-                    if stable >= 3 and b"</html>" in dump_path.read_bytes()[-2048:]:
-                        break
                 if process.poll() is not None:
+                    break
+                if dump_path.exists() and dump_path.stat().st_size and b"</html>" in dump_path.read_bytes()[-2048:]:
                     break
                 time.sleep(0.2)
         if not dump_path.exists() or b"</html>" not in dump_path.read_bytes()[-2048:]:
             details = log_path.read_text(encoding="utf-8", errors="ignore")[-1200:]
-            die(f"Chrome 溢出检查失败或超时：{details}")
+            die(f"Chrome 布局检查失败或超时：{details}")
         parser = SectionAuditParser()
         parser.feed(dump_path.read_text(encoding="utf-8", errors="ignore"))
         return parser
@@ -476,14 +568,11 @@ def inspect_layout(chrome: str, html_uri: str, timeout: float) -> SectionAuditPa
         shutil.rmtree(profile, ignore_errors=True)
 
 
-def audit_overflow(chrome: str, html_uri: str, timeout: float) -> list[int]:
-    return inspect_layout(chrome, html_uri, timeout).overflow_pages
-
-
-def render_png(chrome: str, html_uri: str, page_number: int, output: Path, timeout: float) -> None:
-    profile = Path(tempfile.mkdtemp(prefix=f"rednote-page-{page_number:02d}-"))
+def render_png(chrome: str, html_uri: str, target: str, output: Path, css_size: tuple[int, int], timeout: float) -> None:
+    profile = Path(tempfile.mkdtemp(prefix=f"rednote-{target}-"))
     log_path = output.with_suffix(".chrome.log")
-    command = base_chrome_command(chrome, profile) + [f"--screenshot={output}", f"{html_uri}?page={page_number}"]
+    command = base_chrome_command(chrome, profile, css_size) + [f"--screenshot={output}", f"{html_uri}?target={target}"]
+    process: subprocess.Popen | None = None
     try:
         with log_path.open("wb") as log:
             process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
@@ -502,27 +591,37 @@ def render_png(chrome: str, html_uri: str, page_number: int, output: Path, timeo
                 time.sleep(0.2)
             if not output.exists() or output.stat().st_size == 0:
                 details = log_path.read_text(encoding="utf-8", errors="ignore")[-1200:]
-                die(f"第 {page_number} 页渲染失败：{details}")
-            if process.poll() is None:
-                try:
-                    os.killpg(process.pid, signal.SIGTERM)
-                    process.wait(timeout=2)
-                except (ProcessLookupError, subprocess.TimeoutExpired):
-                    try:
-                        os.killpg(process.pid, signal.SIGKILL)
-                    except ProcessLookupError:
-                        pass
+                die(f"{target} 渲染失败：{details}")
     finally:
+        if process and process.poll() is None:
+            try:
+                os.killpg(process.pid, signal.SIGTERM)
+                process.wait(timeout=2)
+            except (ProcessLookupError, subprocess.TimeoutExpired):
+                try:
+                    os.killpg(process.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
         log_path.unlink(missing_ok=True)
         shutil.rmtree(profile, ignore_errors=True)
 
 
-def png_to_jpg(png_path: Path, jpg_path: Path) -> None:
+def png_to_jpg(png_path: Path, jpg_path: Path, output_size: tuple[int, int]) -> None:
     with Image.open(png_path).convert("RGB") as image:
-        if image.size != OUTPUT_SIZE:
-            die(f"渲染尺寸错误：{png_path}={image.size}，应为 {OUTPUT_SIZE}")
+        if image.size != output_size:
+            die(f"渲染尺寸错误：{png_path}={image.size}，应为 {output_size}")
         image.save(jpg_path, "JPEG", quality=93, optimize=True, progressive=True)
     png_path.unlink()
+
+
+def label_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
+    for candidate in ("/System/Library/Fonts/PingFang.ttc", "/System/Library/Fonts/STHeiti Medium.ttc"):
+        if Path(candidate).is_file():
+            return ImageFont.truetype(candidate, size=size)
+    try:
+        return ImageFont.load_default(size=size)
+    except TypeError:
+        return ImageFont.load_default()
 
 
 def build_contact_sheet(files: list[Path], output: Path) -> None:
@@ -531,27 +630,29 @@ def build_contact_sheet(files: list[Path], output: Path) -> None:
     columns = min(4, len(files))
     rows = math.ceil(len(files) / columns)
     gap = 18
-    sheet = Image.new(
-        "RGB",
-        (columns * thumb[0] + (columns + 1) * gap, rows * (thumb[1] + label_height) + (rows + 1) * gap),
-        "#cececa",
-    )
+    sheet = Image.new("RGB", (columns * thumb[0] + (columns + 1) * gap, rows * (thumb[1] + label_height) + (rows + 1) * gap), "#CECECA")
     draw = ImageDraw.Draw(sheet)
-    try:
-        font = ImageFont.load_default(size=20)
-    except TypeError:  # Pillow < 10.1
-        font = ImageFont.load_default()
+    font = label_font(20)
     for index, file in enumerate(files):
         with Image.open(file).convert("RGB") as image:
-            if image.size != OUTPUT_SIZE:
-                die(f"图片尺寸错误：{file}={image.size}")
             tile = ImageOps.fit(image, thumb, method=Image.Resampling.LANCZOS)
         x = gap + (index % columns) * (thumb[0] + gap)
         y = gap + (index // columns) * (thumb[1] + label_height + gap)
         sheet.paste(tile, (x, y))
-        draw.rectangle((x, y + thumb[1], x + thumb[0], y + thumb[1] + label_height), fill="#17251e")
+        draw.rectangle((x, y + thumb[1], x + thumb[0], y + thumb[1] + label_height), fill="#171717")
         draw.text((x + 10, y + thumb[1] + 5), f"PAGE {index + 1:02d}", fill="white", font=font)
     sheet.save(output, "JPEG", quality=90, optimize=True)
+
+
+def build_wechat_preview(main_path: Path, share_path: Path, output: Path) -> tuple[int, int]:
+    canvas = Image.new("RGB", (2400, 1200), "#E5E5E1")
+    with Image.open(main_path).convert("RGB") as main_image, Image.open(share_path).convert("RGB") as share_image:
+        main_image.thumbnail((1450, 720), Image.Resampling.LANCZOS)
+        share_image.thumbnail((760, 760), Image.Resampling.LANCZOS)
+        canvas.paste(main_image, (80, (1200 - main_image.height) // 2))
+        canvas.paste(share_image, (1600, (1200 - share_image.height) // 2))
+    canvas.save(output, "JPEG", quality=91, optimize=True)
+    return canvas.size
 
 
 def parse_pages(value: str | None, page_count: int) -> list[int]:
@@ -574,60 +675,168 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def write_manifest(output_dir: Path, spec_path: Path, spec: dict, files: list[Path], selected_pages: list[int], page_map: list[dict]) -> None:
+def sha256_path(path: Path) -> str:
+    if path.is_file():
+        return sha256(path)
+    digest = hashlib.sha256()
+    for child in sorted(item for item in path.rglob("*") if item.is_file()):
+        digest.update(str(child.relative_to(path)).encode())
+        digest.update(bytes.fromhex(sha256(child)))
+    return digest.hexdigest()
+
+
+def hash_json(value: object) -> str:
+    return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def global_spec_hash(spec: dict) -> str:
+    return hash_json({key: spec.get(key) for key in ("title", "author", "avatar", "visualSystem", "themePreset", "theme", "excludedContent", "wechatCovers")})
+
+
+def collect_source_assets(spec: dict, spec_path: Path) -> list[dict]:
+    entries: list[dict] = []
+
+    def add(role: str, value: str | None) -> None:
+        if not value:
+            return
+        if value.startswith("data:"):
+            entries.append({"role": role, "source": "data-uri", "sha256": hashlib.sha256(value.encode()).hexdigest()})
+            return
+        path = resolve_asset_path(value, spec_path.parent, role)
+        entries.append({"role": role, "source": value, "sha256": sha256(path)})
+
+    add("avatar", spec.get("avatar"))
+    for page_index, page in enumerate(spec["pages"], start=1):
+        add(f"pages[{page_index}].image", page.get("image"))
+        for block_index, block in enumerate(page.get("blocks", []), start=1):
+            if block.get("type") in {"image", "screenshot", "motion"}:
+                add(f"pages[{page_index}].blocks[{block_index}].src", block.get("src"))
+    for name, cover in (spec.get("wechatCovers") or {}).items():
+        add(f"wechatCovers.{name}.image", cover.get("image"))
+    return entries
+
+
+def page_map_from_spec(spec: dict) -> list[dict]:
+    return [
+        {"page": index, "type": page["type"], "point": page["point"], "sourceMap": page["sourceMap"], "layout": page["layout"], "pageSpecSha256": hash_json(page)}
+        for index, page in enumerate(spec["pages"], start=1)
+    ]
+
+
+def validate_partial_render(spec: dict, output_dir: Path, selected: list[int], source_assets: list[dict]) -> None:
+    manifest_path = output_dir / "render-manifest.json"
+    if not manifest_path.is_file():
+        die("局部重渲染前必须先完成一次全量渲染")
+    previous = load_json(manifest_path)
+    current_map = page_map_from_spec(spec)
+    if previous.get("globalSpecSha256") != global_spec_hash(spec):
+        die("全局视觉或载体规格已变化，请执行全量渲染")
+    if previous.get("sourceAssetsSha256") != hash_json(source_assets):
+        die("源图片或视频内容已变化，请执行全量渲染")
+    if previous.get("pageCount") != len(current_map):
+        die("页数已变化，请执行全量渲染")
+    old_by_page = {item["page"]: item for item in previous.get("pageMap", [])}
+    for item in current_map:
+        if item["page"] not in selected and old_by_page.get(item["page"], {}).get("pageSpecSha256") != item["pageSpecSha256"]:
+            die(f"未选中的第 {item['page']} 页规格也已变化，请执行全量渲染")
+
+
+def crop_expressions(position: str) -> tuple[str, str]:
+    horizontal = "0" if "left" in position else "iw-ow" if "right" in position else "(iw-ow)/2"
+    vertical = "0" if "top" in position else "ih-oh" if "bottom" in position else "(ih-oh)/2"
+    return horizontal, vertical
+
+
+def compose_motion_video(ffmpeg: str, base_jpg: Path, motion: dict, geometry: dict, output: Path) -> None:
+    width = max(2, round(geometry["width"] * SCALE / 2) * 2)
+    height = max(2, round(geometry["height"] * SCALE / 2) * 2)
+    x = max(0, round(geometry["x"] * SCALE))
+    y = max(0, round(geometry["y"] * SCALE))
+    if motion["fit"] == "contain":
+        slot = f"scale={width}:{height}:force_original_aspect_ratio=decrease,pad={width}:{height}:(ow-iw)/2:(oh-ih)/2:color=white"
+    else:
+        crop_x, crop_y = crop_expressions(motion["position"])
+        slot = f"scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}:{crop_x}:{crop_y}"
+    filters = f"[1:v]{slot},setsar=1[slot];[0:v][slot]overlay={x}:{y}:shortest=1,format=yuv420p[v]"
+    run_command([
+        ffmpeg, "-y", "-loop", "1", "-i", str(base_jpg),
+        "-ss", f"{motion['startSec']:.3f}", "-t", f"{motion['durationSec']:.3f}", "-i", str(motion["source"]),
+        "-filter_complex", filters, "-map", "[v]", "-an", "-r", "30", "-t", f"{motion['durationSec']:.3f}",
+        "-c:v", "libx264", "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(output),
+    ], f"第 {motion['page']} 页动态卡片合成")
+
+
+def find_makelive(explicit: str | None) -> str:
+    candidate = explicit or shutil.which("makelive")
+    if not candidate or not Path(candidate).is_file():
+        die("存在 motion 但找不到 makelive；请安装 makelive 0.6.2+ 并传 --makelive")
+    return str(candidate)
+
+
+def package_live_photo(makelive: str, key_photo: Path, movie: Path) -> tuple[Path, str]:
+    expected = key_photo.with_suffix(".pvt")
+    if expected.is_dir():
+        shutil.rmtree(expected)
+    elif expected.exists():
+        expected.unlink()
+    before = set(key_photo.parent.glob("*.pvt"))
+    run_command([makelive, "--pvt", "--manual", str(key_photo), str(movie)], "Live Photo 打包")
+    created = sorted(set(key_photo.parent.glob("*.pvt")) - before, key=lambda path: path.stat().st_mtime, reverse=True)
+    package = expected if expected.exists() else created[0] if created else None
+    if package is None:
+        die("makelive 已返回成功，但未找到生成的 .pvt 包")
+    images = sorted(path for path in package.iterdir() if path.suffix.lower() in {".jpg", ".jpeg", ".heic"})
+    movies = sorted(path for path in package.iterdir() if path.suffix.lower() in {".mov", ".mp4"})
+    if len(images) != 1 or len(movies) != 1:
+        die(f"Live Photo 包内容无效：images={len(images)} movies={len(movies)}")
+    check = run_command([makelive, "--check", "--manual", str(images[0]), str(movies[0])], "Live Photo 配对检查")
+    match = re.search(r"are Live Photos:\s*(\S+)", check.stdout)
+    if not match:
+        die("makelive 未确认 .pvt 内的 JPG/MOV 是有效 Live Photo 配对")
+    return package, match.group(1)
+
+
+def artifact(kind: str, path: Path, output_dir: Path, dimensions: tuple[int, int] | None = None) -> dict:
+    item = {"kind": kind, "path": str(path.relative_to(output_dir)), "sha256": sha256_path(path)}
+    if dimensions:
+        item["dimensions"] = list(dimensions)
+    return item
+
+
+def binary_version(command: str) -> str:
+    result = subprocess.run([command, "-version"], capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        result = subprocess.run([command, "--version"], capture_output=True, text=True, check=False)
+    return (result.stdout or result.stderr).splitlines()[0][:200] if (result.stdout or result.stderr) else "unknown"
+
+
+def write_manifest(output_dir: Path, spec_path: Path, spec: dict, artifacts: list[dict], selected_pages: list[int], motion_records: list[dict], tools: dict, source_assets: list[dict] | None = None) -> None:
+    source_assets = collect_source_assets(spec, spec_path) if source_assets is None else source_assets
     manifest = {
         "status": "rendered",
         "sourceSpec": str(spec_path),
         "sourceSpecSha256": sha256(spec_path),
-        "layoutMode": spec.get("layoutMode", "longform"),
-        "stylePreset": spec.get("stylePreset", "editorial-default"),
+        "globalSpecSha256": global_spec_hash(spec),
+        "sourceAssets": source_assets,
+        "sourceAssetsSha256": hash_json(source_assets),
+        "visualSystem": spec["visualSystem"],
+        "themePreset": spec["themePreset"],
+        "pageCount": len(spec["pages"]),
+        "renderedPages": selected_pages,
+        "pageMap": page_map_from_spec(spec),
+        "excludedContent": spec["excludedContent"],
         "html": "rednote.html",
         "htmlSha256": sha256(output_dir / "rednote.html"),
-        "pageCount": len(files),
-        "dimensions": list(OUTPUT_SIZE),
-        "renderedPages": selected_pages,
-        "contactSheet": "contact-sheet.jpg",
-        "pageMap": page_map,
-        "files": [
-            {"page": index, "path": str(file.relative_to(output_dir)), "sha256": sha256(file)}
-            for index, file in enumerate(files, start=1)
-        ],
+        "artifacts": artifacts,
+        "motion": motion_records,
+        "tools": tools,
     }
     (output_dir / "render-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def run(args: argparse.Namespace) -> None:
-    spec_path = Path(args.spec).expanduser().resolve()
-    output_dir = Path(args.output_dir).expanduser().resolve()
+def render_static_targets(args: argparse.Namespace, spec: dict, html_path: Path, chrome: str, output_dir: Path, selected_pages: list[int]) -> tuple[list[Path], list[dict]]:
     pages_dir = output_dir / "pages"
-    output_dir.mkdir(parents=True, exist_ok=True)
     pages_dir.mkdir(parents=True, exist_ok=True)
-
-    spec = load_json(spec_path)
-    validate_spec(spec)
-    html_text = render_html(spec, spec_path)
-    html_path = output_dir / "rednote.html"
-    html_path.write_text(html_text, encoding="utf-8")
-
-    chrome = find_chrome(args.chrome)
-    html_uri = html_path.resolve().as_uri()
-    layout = inspect_layout(chrome, html_uri, args.timeout)
-    if layout.overflow_pages:
-        die(f"页面内容溢出，请先压缩文案或调整块高度：{layout.overflow_pages}")
-    page_map = sorted(layout.sections, key=lambda item: item["page"])
-    page_count = len(page_map)
-    if [item["page"] for item in page_map] != list(range(1, page_count + 1)):
-        die("渲染后的物理页码不连续")
-    if args.pages:
-        manifest_path = output_dir / "render-manifest.json"
-        if not manifest_path.is_file():
-            die("局部重渲染前必须先完成一次全量渲染")
-        previous = load_json(manifest_path)
-        if previous.get("pageCount") != page_count:
-            die("自动分页结果已变化，不能局部重渲染；请执行全量渲染")
-        if spec.get("layoutMode", "longform") == "longform" and previous.get("sourceSpecSha256") != sha256(spec_path):
-            die("长文逻辑规格已变化，后续物理页可能整体位移；请执行全量渲染")
-    selected_pages = parse_pages(args.pages, page_count)
     if not args.pages:
         for old in pages_dir.glob("rednote_page_*.*"):
             old.unlink()
@@ -635,26 +844,127 @@ def run(args: argparse.Namespace) -> None:
         png_path = pages_dir / f"rednote_page_{page_number:02d}.png"
         jpg_path = pages_dir / f"rednote_page_{page_number:02d}.jpg"
         png_path.unlink(missing_ok=True)
-        render_png(chrome, html_uri, page_number, png_path, args.timeout)
-        png_to_jpg(png_path, jpg_path)
+        render_png(chrome, html_path.as_uri(), f"rednote-{page_number:02d}", png_path, CANVASES["rednote"]["css"], args.timeout)
+        png_to_jpg(png_path, jpg_path, CANVASES["rednote"]["output"])
         print(f"rendered page {page_number:02d}: {jpg_path}")
-
-    files = [pages_dir / f"rednote_page_{index:02d}.jpg" for index in range(1, page_count + 1)]
+    files = [pages_dir / f"rednote_page_{index:02d}.jpg" for index in range(1, len(spec["pages"]) + 1)]
     missing = [str(file) for file in files if not file.is_file()]
     if missing:
         die("局部重渲染前缺少其他页面：\n" + "\n".join(missing))
-    build_contact_sheet(files, output_dir / "contact-sheet.jpg")
-    write_manifest(output_dir, spec_path, spec, files, selected_pages, page_map)
-    print(json.dumps({"outputDir": str(output_dir), "pages": page_count, "dimensions": OUTPUT_SIZE}, ensure_ascii=False))
+    contact = output_dir / "contact-sheet.jpg"
+    build_contact_sheet(files, contact)
+    artifacts = [artifact("rednote-page", file, output_dir, CANVASES["rednote"]["output"]) for file in files]
+    artifacts.append(artifact("rednote-contact-sheet", contact, output_dir))
+    return files, artifacts
+
+
+def render_wechat_targets(args: argparse.Namespace, spec: dict, html_path: Path, chrome: str, output_dir: Path) -> list[dict]:
+    wechat_dir = output_dir / "wechat"
+    if not args.pages and wechat_dir.is_dir():
+        for old in wechat_dir.glob("wechat-*.*"):
+            old.unlink()
+    if not spec.get("wechatCovers"):
+        return []
+    wechat_dir.mkdir(parents=True, exist_ok=True)
+    rendered: dict[str, Path] = {}
+    artifacts: list[dict] = []
+    for target, filename in (("wechat-main", "wechat-main.jpg"), ("wechat-share", "wechat-share.jpg")):
+        png = wechat_dir / filename.replace(".jpg", ".png")
+        jpg = wechat_dir / filename
+        render_png(chrome, html_path.as_uri(), target, png, CANVASES[target]["css"], args.timeout)
+        png_to_jpg(png, jpg, CANVASES[target]["output"])
+        rendered[target] = jpg
+        artifacts.append(artifact(target, jpg, output_dir, CANVASES[target]["output"]))
+    preview = wechat_dir / "wechat-cover-pair.jpg"
+    preview_size = build_wechat_preview(rendered["wechat-main"], rendered["wechat-share"], preview)
+    artifacts.append(artifact("wechat-cover-pair", preview, output_dir, preview_size))
+    return artifacts
+
+
+def render_motion_targets(args: argparse.Namespace, motions: list[dict], layout: SectionAuditParser, page_files: list[Path], output_dir: Path) -> tuple[list[dict], list[dict], dict]:
+    motion_dir = output_dir / "motion"
+    if not args.pages and motion_dir.is_dir():
+        for old in motion_dir.glob("rednote_page_*_live.*"):
+            shutil.rmtree(old) if old.is_dir() else old.unlink()
+    if not motions:
+        return [], [], {}
+    ffmpeg = find_binary("ffmpeg", args.ffmpeg)
+    makelive = find_makelive(args.makelive)
+    motion_dir.mkdir(parents=True, exist_ok=True)
+    artifacts: list[dict] = []
+    records: list[dict] = []
+    geometry_by_id = {item["id"]: item for item in layout.motions}
+    for motion in motions:
+        geometry = geometry_by_id.get(motion["id"])
+        if not geometry or geometry["width"] <= 0 or geometry["height"] <= 0:
+            die(f"未获得第 {motion['page']} 页动态图片槽的真实布局坐标")
+        stem = f"rednote_page_{motion['page']:02d}_live"
+        key_photo = motion_dir / f"{stem}.jpg"
+        movie = motion_dir / f"{stem}.mov"
+        shutil.copy2(page_files[motion["page"] - 1], key_photo)
+        compose_motion_video(ffmpeg, key_photo, motion, geometry, movie)
+        package, asset_id = package_live_photo(makelive, key_photo, movie)
+        artifacts.extend([
+            artifact("live-photo-key", key_photo, output_dir, CANVASES["rednote"]["output"]),
+            artifact("live-photo-mov", movie, output_dir, CANVASES["rednote"]["output"]),
+            artifact("live-photo-package", package, output_dir),
+        ])
+        records.append({
+            "status": "verified", "assetId": asset_id, "page": motion["page"], "slot": motion["id"],
+            "source": str(motion["source"]), "sourceSha256": sha256(motion["source"]),
+            "startSec": motion["startSec"], "durationSec": motion["durationSec"],
+            "geometry": geometry, "keyPhoto": str(key_photo.relative_to(output_dir)),
+            "movie": str(movie.relative_to(output_dir)), "package": str(package.relative_to(output_dir)),
+        })
+    return records, artifacts, {"ffmpeg": binary_version(ffmpeg), "makelive": binary_version(makelive)}
+
+
+def run(args: argparse.Namespace) -> None:
+    spec_path = Path(args.spec).expanduser().resolve()
+    output_dir = Path(args.output_dir).expanduser().resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
+    spec = load_json(spec_path)
+    validate_spec(spec)
+    source_assets = collect_source_assets(spec, spec_path)
+    has_motion = any(block.get("type") == "motion" for page in spec["pages"] for block in page.get("blocks", []))
+    if args.pages and (has_motion or spec.get("wechatCovers")):
+        die("含动态图片槽或公众号封面对时必须全量渲染")
+    selected_pages = parse_pages(args.pages, len(spec["pages"]))
+    if args.pages:
+        validate_partial_render(spec, output_dir, selected_pages, source_assets)
+    with tempfile.TemporaryDirectory(prefix="rednote-motion-") as temp:
+        prepared, motions = prepare_motion_posters(spec, spec_path, Path(temp), args.ffmpeg, args.ffprobe)
+        html_path = output_dir / "rednote.html"
+        html_path.write_text(render_html(prepared, spec_path), encoding="utf-8")
+        chrome = find_chrome(args.chrome)
+        layout = inspect_layout(chrome, html_path.as_uri(), args.timeout)
+        failures = layout.failures()
+        expected_targets = {f"rednote-{index:02d}" for index in range(1, len(spec["pages"]) + 1)}
+        actual_targets = {item["target"] for item in layout.sections if item["target"].startswith("rednote-")}
+        if actual_targets != expected_targets:
+            die(f"HTML 观点页与规格不一致：expected={sorted(expected_targets)} actual={sorted(actual_targets)}")
+        if failures:
+            die("浏览器布局检查失败：\n" + "\n".join(failures))
+        page_files, artifacts = render_static_targets(args, spec, html_path, chrome, output_dir, selected_pages)
+        artifacts.extend(render_wechat_targets(args, spec, html_path, chrome, output_dir))
+        motion_records, motion_artifacts, media_tools = render_motion_targets(args, motions, layout, page_files, output_dir)
+        artifacts.extend(motion_artifacts)
+        artifacts.insert(0, artifact("single-file-html", html_path, output_dir))
+        tools = {"chrome": binary_version(chrome), **media_tools}
+        write_manifest(output_dir, spec_path, spec, artifacts, selected_pages, motion_records, tools, source_assets)
+    print(json.dumps({"outputDir": str(output_dir), "pages": len(spec["pages"]), "visualSystem": spec["visualSystem"], "themePreset": spec["themePreset"]}, ensure_ascii=False))
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="小红书图文渲染脚本")
+    parser = argparse.ArgumentParser(description="社交视觉包渲染脚本")
     parser.add_argument("--spec", required=True, help="rednote-project.json")
     parser.add_argument("--output-dir", required=True, help="作品下的小红书目录")
-    parser.add_argument("--pages", help="只重渲染指定页，例如 3,5,7")
+    parser.add_argument("--pages", help="只重渲染静态图卡指定页，例如 3,5")
     parser.add_argument("--chrome", help="Chrome / Chromium 可执行文件")
-    parser.add_argument("--timeout", type=float, default=25.0, help="每次浏览器操作超时秒数")
+    parser.add_argument("--ffmpeg", help="ffmpeg 可执行文件")
+    parser.add_argument("--ffprobe", help="ffprobe 可执行文件")
+    parser.add_argument("--makelive", help="makelive 0.6.2+ 可执行文件")
+    parser.add_argument("--timeout", type=float, default=30.0, help="每次浏览器操作超时秒数")
     run(parser.parse_args())
 
 
@@ -667,297 +977,138 @@ HTML_TEMPLATE = r'''<!doctype html>
 <style>
 :root {
 {{THEME}}
-  --grid: color-mix(in srgb, var(--accent) 8%, transparent);
-  --shadow: 0 20px 60px rgba(22,60,44,.14);
 }
-* { box-sizing: border-box; }
-html, body { margin: 0; min-height: 100%; }
-body { background:#d8d8d4; color:var(--ink); font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif; -webkit-font-smoothing:antialiased; }
-.deck { display:grid; grid-template-columns:repeat(auto-fit,750px); justify-content:center; gap:32px; padding:32px; }
-.page { position:relative; width:750px; height:1000px; overflow:hidden; padding:62px 64px 58px; background-color:var(--paper); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:42px 42px; box-shadow:var(--shadow); }
-.page::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 72% 20%,rgba(255,255,255,.52),transparent 34%); }
-.page > * { position:relative; z-index:1; }
-.topbar { height:76px; display:flex; align-items:flex-start; justify-content:space-between; border-bottom:2px solid var(--line); margin-bottom:36px; }
-.article.continuation .topbar { margin-bottom:24px; }
-.article.continuation .blocks { padding-top:2px; }
-#flow-source,#flow-page-template { display:none; }
-.flow-content { display:grid; gap:17px; }
-.flow-unit { display:grid; gap:17px; }
-.flow-unit > * { margin:0; }
-.flow-unit.chapter-start h2 { margin:0; }
-.mark { color:var(--accent); font-size:28px; font-weight:900; line-height:1; }
-.pageno { min-width:58px; padding:10px 14px; border-radius:16px; color:var(--accent); background:color-mix(in srgb,var(--accent) 12%,transparent); font-size:25px; font-weight:800; text-align:center; }
-.avatar { position:absolute; right:40px; bottom:32px; z-index:3; width:62px; height:68px; object-fit:contain; image-rendering:pixelated; }
-h1,h2,h3,p { margin-top:0; }
-h1 { margin-bottom:24px; font-size:66px; line-height:1.12; letter-spacing:-.04em; }
-h2 { margin-bottom:26px; color:var(--accent); font-size:43px; line-height:1.2; letter-spacing:-.025em; }
-h3 { margin-bottom:10px; font-size:25px; line-height:1.3; }
-p { margin-bottom:18px; font-size:24px; line-height:1.56; letter-spacing:.01em; }
-strong,.accent { color:var(--accent-dark); font-weight:900; }
-code { padding:2px 7px; border-radius:7px; background:rgba(0,0,0,.07); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em; }
+* { box-sizing:border-box; }
+html,body { margin:0; min-height:100%; }
+body { background:#D8D8D4; color:var(--ink); font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; -webkit-font-smoothing:antialiased; }
+.deck { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:32px; padding:32px; }
+.canvas { position:relative; overflow:hidden; flex:none; background:var(--paper); color:var(--ink); }
+.rednote { width:750px; height:1000px; }
+.wechat-main { width:1050px; height:450px; }
+.wechat-share { width:540px; height:540px; }
+.page { padding:58px 62px 52px; }
+.page::before,.wechat-main::before,.wechat-share::before { content:""; position:absolute; inset:0; pointer-events:none; }
+.visual-editorial .page::before,.visual-editorial .wechat-main::before,.visual-editorial .wechat-share::before { background-image:repeating-linear-gradient(0deg,transparent,transparent 31px,color-mix(in srgb,var(--line) 16%,transparent) 32px); }
+.visual-swiss .page::before,.visual-swiss .wechat-main::before,.visual-swiss .wechat-share::before { background-image:linear-gradient(90deg,transparent 74px,color-mix(in srgb,var(--line) 18%,transparent) 75px,transparent 76px); background-size:150px 100%; }
+.canvas > * { position:relative; z-index:1; }
+h1,h2,h3,p,figure { margin:0; }
+h1,h2 { letter-spacing:0; overflow-wrap:anywhere; }
+h1 { font-size:70px; line-height:1.12; }
+h2 { font-size:48px; line-height:1.18; margin-bottom:26px; }
+h3 { font-size:26px; line-height:1.28; margin-bottom:8px; }
+p { font-size:24px; line-height:1.52; }
+strong,.accent { color:var(--accent-dark); font-weight:800; }
+code { padding:2px 7px; background:var(--paper-alt); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em; }
+.visual-editorial { font-family:"Songti SC","Noto Serif CJK SC",serif; }
+.visual-editorial p,.visual-editorial .note,.visual-editorial .card { font-family:"PingFang SC","Microsoft YaHei",sans-serif; }
+.visual-editorial h1,.visual-editorial h2 { font-weight:500; }
+.visual-swiss { font-family:Inter,"Helvetica Neue","PingFang SC",sans-serif; }
+.visual-swiss h1 { font-weight:300; }
+.visual-swiss h2 { font-weight:400; }
+.theme-editorial-night .canvas { background:var(--paper); }
+.topbar { height:68px; display:flex; align-items:flex-start; justify-content:space-between; border-bottom:2px solid var(--line); margin-bottom:30px; }
+.mark { color:var(--accent); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:15px; font-weight:700; }
+.pageno { min-width:52px; padding:8px 11px; color:var(--paper); background:var(--ink); font-size:20px; text-align:center; }
 .blocks { display:grid; gap:17px; }
-.blocks > * { margin:0; }
-.paragraph.lead { font-size:30px; line-height:1.5; }
-.paragraph.big { font-size:36px; line-height:1.36; font-weight:800; }
-.paragraph.muted { color:var(--muted); font-size:20px; }
-.note { padding:18px 22px; border-left:6px solid var(--accent); border-radius:0 18px 18px 0; background:rgba(255,255,255,.68); font-size:21px; line-height:1.55; }
-.quote { padding:24px 27px; border-radius:24px; background:var(--ink); color:#fff; font-size:33px; line-height:1.38; font-weight:800; text-align:center; }
-.image-block img { display:block; width:100%; border:2px solid color-mix(in srgb,var(--ink) 15%,transparent); border-radius:22px; background:#fff; box-shadow:0 12px 32px rgba(23,60,45,.12); }
-.caption { margin-top:9px; color:var(--muted); font-size:16px; line-height:1.4; }
-.cards { display:grid; gap:16px; }
+.paragraph.lead { font-size:30px; line-height:1.46; }
+.paragraph.big { font-size:38px; line-height:1.3; font-weight:700; }
+.paragraph.muted { color:var(--muted); font-size:19px; }
+.note { padding:17px 20px; border-left:5px solid var(--accent); background:var(--paper-alt); font-size:21px; line-height:1.5; }
+.quote { padding:22px 24px; border-top:3px solid var(--ink); border-bottom:3px solid var(--ink); font-size:31px; line-height:1.38; font-weight:700; }
+.image-block img,.screenshot-block img,.motion-block img { display:block; width:100%; border:1px solid var(--line); background:#FFF; }
+.visual-editorial .image-block img { border-radius:4px; }
+.screenshot-block { padding:18px; background:var(--paper-alt); border:1px solid var(--line); }
+.screenshot-block.chrome-browser::before { content:"●  ●  ●"; display:block; height:28px; color:var(--muted); font-size:12px; letter-spacing:8px; }
+.screenshot-block.chrome-phone { max-width:72%; margin-inline:auto; padding:12px; border:8px solid var(--ink); border-radius:8px; }
+.caption { margin-top:8px; color:var(--muted); font-size:15px; line-height:1.4; }
+.cards { display:grid; gap:14px; }
 .cards.cols-2 { grid-template-columns:repeat(2,1fr); }
 .cards.cols-3 { grid-template-columns:repeat(3,1fr); }
-.card,.flow-card { padding:21px 22px; border:2px solid var(--line); border-radius:21px; background:rgba(255,255,255,.7); }
-.card p,.flow-card p { margin:0; font-size:19px; line-height:1.48; }
-.card h3,.flow-card h3 { margin-bottom:8px; }
-.chip { display:inline-block; margin-bottom:10px; padding:6px 12px; border-radius:999px; color:var(--accent-dark); background:color-mix(in srgb,var(--accent) 16%,white); font-size:16px; font-weight:800; }
-.tone-blue { border-color:#a8caec; background:#edf6ff; } .chip.blue { color:#0b5da8; background:#dcecff; }
-.tone-purple { border-color:#c8baf1; background:#f2efff; } .chip.purple { color:#5433b0; background:#e9e2ff; }
-.tone-red { border-color:#e5b5b2; background:#fff0ef; } .chip.red { color:#9e3939; background:#f9e1df; }
-.flow { display:flex; gap:11px; align-items:stretch; }
-.flow-card { flex:1; min-width:0; padding:18px 16px; }
-.flow-arrow { display:grid; place-items:center; flex:0 0 28px; color:var(--accent); font-size:34px; font-weight:900; }
-.timeline { position:relative; margin-left:12px; padding-left:34px; display:grid; gap:16px; }
-.timeline::before { content:""; position:absolute; left:8px; top:8px; bottom:8px; width:3px; background:linear-gradient(var(--accent),#1479e8,#6f4cd6); }
+.card,.flow-card { padding:18px 19px; border:1px solid var(--line); background:var(--paper-alt); }
+.card p,.flow-card p { font-size:18px; line-height:1.45; }
+.chip { display:inline-block; margin-bottom:9px; padding:4px 8px; color:var(--accent-dark); border:1px solid var(--accent); font-size:15px; font-weight:700; }
+.flow { display:grid; gap:12px; }
+.flow-card { border-left:5px solid var(--accent); }
+.timeline { position:relative; padding-left:30px; display:grid; gap:16px; }
+.timeline::before { content:""; position:absolute; left:7px; top:7px; bottom:7px; width:2px; background:var(--accent); }
+.timeline-item::before { content:""; position:absolute; left:-29px; margin-top:7px; width:14px; height:14px; background:var(--accent); }
 .timeline-item { position:relative; }
-.timeline-item::before { content:""; position:absolute; left:-34px; top:7px; width:16px; height:16px; border-radius:50%; border:4px solid var(--paper); background:var(--accent); box-shadow:0 0 0 2px var(--line); }
-.timeline-item p { margin:0; color:var(--muted); font-size:19px; }
-.closing .quote { font-size:37px; }
+.timeline-item p { color:var(--muted); font-size:18px; }
+.layout-statement h2 { font-size:62px; max-width:600px; }
+.layout-statement .blocks { margin-top:70px; }
+.layout-evidence .media-frame,.layout-evidence .screenshot-block { max-height:520px; }
+.layout-comparison .cards { grid-template-columns:repeat(2,1fr); }
+.layout-steps .blocks { min-height:600px; }
+.layout-steps .flow { height:100%; grid-template-rows:repeat(auto-fit,minmax(120px,1fr)); }
+.layout-steps .flow-card { min-height:120px; }
+.layout-data .cards { grid-template-columns:repeat(3,1fr); }
+.layout-closing h2 { font-size:58px; }
+.layout-closing .quote { margin-top:50px; font-size:36px; }
+.avatar { position:absolute; right:34px; bottom:26px; width:56px; height:60px; object-fit:contain; }
 .cover { padding:0; }
-.cover::after { display:none; }
-.cover-image { display:block; width:100%; height:425px; object-fit:cover; }
-.cover-body { height:575px; padding:52px 66px 56px; background-color:var(--paper); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:42px 42px; }
-.cover.no-image .cover-body { height:1000px; padding-top:155px; }
-.kicker { margin-bottom:24px; color:var(--accent-dark); font-size:18px; font-weight:800; letter-spacing:.08em; }
-.cover h1 { max-width:620px; font-size:72px; }
-.cover-sub { padding-top:22px; border-top:2px solid var(--line); color:var(--accent-dark); font-size:30px; line-height:1.45; font-weight:800; }
-.cover-sign { position:absolute; left:66px; bottom:54px; color:var(--muted); font-size:20px; font-weight:700; }
-.cover-avatar { width:94px; height:104px; right:48px; bottom:38px; }
-/* Self-contained style presets bundled with 507-rednote. */
-.theme-retro { font-family:"Noto Serif SC","Songti SC",serif; }
-.theme-retro .page,.theme-retro .cover-body { background-color:var(--paper); background-image:radial-gradient(circle at 25px 25px,rgba(139,90,60,.12) 1px,transparent 1.5px); background-size:50px 50px; }
-.theme-retro .topbar { border-bottom-style:dashed; }
-.theme-retro h2 { font-family:"Noto Serif SC","Songti SC",serif; border-bottom:2px dashed var(--accent-dark); padding-bottom:10px; }
-.theme-retro .quote { color:var(--accent-dark); background:rgba(193,127,89,.12); border:4px double var(--accent); font-family:"Noto Serif SC","Songti SC",serif; }
-.theme-retro .cover h1 { color:var(--accent-dark); font-family:"Noto Serif SC","Songti SC",serif; text-decoration:underline; text-decoration-color:var(--accent); }
-
-.theme-newspaper { font-family:"Noto Serif SC","Songti SC",serif; }
-.theme-newspaper .page,.theme-newspaper .cover-body { background-color:var(--paper); background-image:repeating-linear-gradient(0deg,transparent,transparent 41px,rgba(0,0,0,.045) 41px,rgba(0,0,0,.045) 42px); }
-.theme-newspaper .topbar { border-bottom:3px double var(--ink); }
-.theme-newspaper .pageno { color:var(--ink); background:transparent; border-radius:0; }
-.theme-newspaper h2 { color:var(--accent); font-family:"Noto Serif SC","Songti SC",serif; border-bottom:2px solid var(--ink); padding-bottom:10px; }
-.theme-newspaper .note { background:rgba(139,0,0,.05); border-left-color:var(--accent); border-radius:0; }
-.theme-newspaper .quote { color:var(--ink); background:transparent; border:3px double var(--ink); border-radius:0; font-family:"Noto Serif SC","Songti SC",serif; }
-.theme-newspaper .cover h1 { color:var(--ink); font-family:"Noto Serif SC","Songti SC",serif; border-bottom:3px double var(--ink); padding-bottom:16px; }
-
-.theme-mono { font-family:Inter,"PingFang SC",monospace; }
-.theme-mono .page,.theme-mono .cover-body { background:#fff; background-image:none; }
-.theme-mono .topbar { border-bottom:5px solid #000; }
-.theme-mono .pageno { color:#fff; background:#000; border-radius:0; }
-.theme-mono h2 { display:block; color:#fff; background:#000; padding:12px 16px; font-family:Inter,"PingFang SC",sans-serif; }
-.theme-mono .note { color:#000; background:#fff; border:3px solid #000; border-left-width:8px; border-radius:0; }
-.theme-mono .quote { color:#fff; background:#000; border:3px solid #000; border-radius:0; }
-.theme-mono .card,.theme-mono .flow-card,.theme-mono .image-block img { border:4px solid #000; border-radius:0; box-shadow:none; }
-.theme-mono .cover h1 { color:#000; border-top:5px solid #000; border-bottom:5px solid #000; padding:22px 0; text-transform:uppercase; }
-
-.theme-nature .page,.theme-nature .cover-body { background-color:var(--paper); background-image:linear-gradient(90deg,rgba(76,175,80,.04) 1px,transparent 1px),linear-gradient(rgba(76,175,80,.04) 1px,transparent 1px); background-size:28px 28px; }
-.theme-nature .quote { background:var(--accent-dark); }
-
-.theme-bluegrad .page,.theme-bluegrad .cover-body { background:linear-gradient(180deg,var(--paper) 0%,var(--paper-alt) 100%); }
-.theme-bluegrad h2,.theme-bluegrad .cover h1 { color:var(--accent-dark); }
-.theme-bluegrad .quote { background:linear-gradient(135deg,#1976D2,#42A5F5); }
-.theme-bluegrad .note { background:rgba(255,255,255,.48); }
-
-.theme-autumn { font-family:"Noto Serif SC","Songti SC",serif; }
-.theme-autumn .page,.theme-autumn .cover-body { background-color:var(--paper); background-image:radial-gradient(circle at 85% 15%,rgba(230,126,34,.12),transparent 28%); }
-.theme-autumn h2 { font-family:"Noto Serif SC","Songti SC",serif; border-bottom:3px solid var(--accent); padding-bottom:10px; }
-.theme-autumn .quote { background:var(--accent); }
-.theme-autumn .cover h1 { color:var(--accent-dark); font-family:"Noto Serif SC","Songti SC",serif; }
-
-.theme-dark .page,.theme-dark .cover-body { background:#1a1a2e; background-image:radial-gradient(circle at 75% 20%,rgba(124,58,237,.18),transparent 32%); }
-.theme-dark .note,.theme-dark .card,.theme-dark .flow-card { color:var(--ink); background:rgba(255,255,255,.08); }
-.theme-dark .quote { color:#fff; background:#5B3BB5; }
-.theme-dark code { background:rgba(255,255,255,.12); }
-.theme-dark .cover h1 { color:var(--accent); }
-
-.theme-morandi { font-family:"Noto Serif SC","Songti SC",serif; }
-.theme-morandi .page,.theme-morandi .cover-body { background:var(--paper); background-image:linear-gradient(135deg,rgba(255,255,255,.16),transparent 55%); }
-.theme-morandi h2 { font-family:"Noto Serif SC","Songti SC",serif; font-weight:600; border-bottom:1px solid var(--line); padding-bottom:9px; }
-.theme-morandi .quote { color:var(--ink); background:rgba(155,142,160,.18); border-left:5px solid var(--accent); font-style:italic; }
-.theme-morandi .cover h1 { color:var(--accent-dark); font-family:"Noto Serif SC","Songti SC",serif; letter-spacing:.03em; }
-
-.theme-cyber { font-family:Inter,"PingFang SC",monospace; }
-.theme-cyber .page,.theme-cyber .cover-body { background:#0d0d1a; background-image:linear-gradient(rgba(0,229,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.06) 1px,transparent 1px); background-size:30px 30px; }
-.theme-cyber .topbar { border-bottom-color:#00e5ff; }
-.theme-cyber h2 { color:#00e5ff; text-shadow:0 0 12px rgba(0,229,255,.5); border-left:5px solid #ff00ff; padding-left:14px; }
-.theme-cyber .note,.theme-cyber .card,.theme-cyber .flow-card { color:#00e5ff; background:rgba(0,229,255,.06); border-color:rgba(0,229,255,.45); }
-.theme-cyber .quote { color:#00e5ff; background:rgba(255,0,255,.12); border:2px solid #ff00ff; box-shadow:0 0 18px rgba(255,0,255,.25); }
-.theme-cyber .cover h1 { color:#00e5ff; text-shadow:0 0 14px #00e5ff; }
-
-.theme-neubrutalism .page,.theme-neubrutalism .cover-body { background:#FFE566; background-image:none; }
-.theme-neubrutalism .topbar { border-bottom:5px solid #000; }
-.theme-neubrutalism .pageno { color:#fff; background:#FF3366; border:3px solid #000; border-radius:0; box-shadow:4px 4px 0 #000; }
-.theme-neubrutalism h2 { color:#000; border-bottom:6px solid #000; padding-bottom:9px; text-shadow:3px 3px 0 #FF3366; }
-.theme-neubrutalism .note,.theme-neubrutalism .card,.theme-neubrutalism .flow-card { color:#000; background:#fff; border:4px solid #000; border-radius:0; box-shadow:6px 6px 0 #000; }
-.theme-neubrutalism .quote { color:#fff; background:#000; border:4px solid #000; border-radius:0; box-shadow:7px 7px 0 #FF3366; }
-.theme-neubrutalism .cover h1 { color:#000; border:6px solid #000; padding:14px; box-shadow:9px 9px 0 #FF3366; }
-
-.theme-vintage-film { font-family:"Noto Serif SC","Songti SC",serif; }
-.theme-vintage-film .page,.theme-vintage-film .cover-body { background-color:#C8A882; background-image:repeating-radial-gradient(circle at 0 0,rgba(44,24,16,.05) 0,rgba(44,24,16,.05) 1px,transparent 1px,transparent 4px); }
-.theme-vintage-film h2 { color:var(--ink); font-family:"Noto Serif SC","Songti SC",serif; border-bottom:3px solid var(--accent); padding-bottom:9px; }
-.theme-vintage-film .quote { color:var(--ink); background:rgba(255,255,255,.18); border:5px double var(--accent); }
-.theme-vintage-film .cover h1 { color:var(--ink); font-family:"Noto Serif SC","Songti SC",serif; border:7px solid var(--accent); padding:12px; }
-
-.theme-memphis .page,.theme-memphis .cover-body { background-color:#fff; background-image:radial-gradient(circle at 12px 12px,rgba(255,51,102,.22) 3px,transparent 3.5px),radial-gradient(circle at 42px 42px,rgba(0,191,255,.18) 3px,transparent 3.5px); background-size:60px 60px; }
-.theme-memphis .topbar { border-bottom:3px solid #1A1A1A; }
-.theme-memphis .pageno { color:#fff; background:#00BFFF; border:2px solid #1A1A1A; border-radius:0; }
-.theme-memphis h2 { color:#00A6D6; border-bottom:3px solid #1A1A1A; padding-bottom:9px; }
-.theme-memphis .note,.theme-memphis .card,.theme-memphis .flow-card { background:rgba(255,255,255,.9); border:3px solid #1A1A1A; border-radius:5px; }
-.theme-memphis .quote { background:#1A1A1A; color:#fff; border-radius:5px; box-shadow:7px 7px 0 #FF3366; }
-.theme-memphis .cover h1 { color:#FF3366; border:3px solid #1A1A1A; padding:12px; background:rgba(255,255,255,.88); }
-
-.theme-editorial .page,.theme-editorial .cover-body { background:#FAFAFA; background-image:linear-gradient(90deg,transparent 63px,rgba(17,17,17,.055) 64px,transparent 65px); background-size:128px 100%; }
-.theme-editorial .topbar { border-bottom:4px solid #111; }
-.theme-editorial .pageno { color:#fff; background:#111; border-radius:0; }
-.theme-editorial h2 { color:#111; border-left:8px solid #E63946; padding-left:18px; }
-.theme-editorial .note { color:#333; background:#F0F0F0; border-left-color:#111; border-radius:0; }
-.theme-editorial .quote { color:#111; background:transparent; border-top:6px solid #111; border-bottom:6px solid #111; border-radius:0; text-align:left; }
-.theme-editorial .cover h1 { color:#111; border-left:10px solid #E63946; padding-left:20px; }
-
-.theme-glass .page,.theme-glass .cover-body { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); background-image:radial-gradient(circle at 20% 15%,rgba(255,255,255,.20),transparent 30%),linear-gradient(135deg,#667eea,#764ba2); }
-.theme-glass .topbar { border-bottom-color:rgba(255,255,255,.38); }
-.theme-glass .pageno { color:#FFD700; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.35); }
-.theme-glass h2 { color:#FFD700; text-shadow:0 2px 8px rgba(0,0,0,.22); }
-.theme-glass .note,.theme-glass .card,.theme-glass .flow-card { color:#fff; background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.3); backdrop-filter:blur(10px); }
-.theme-glass .quote { color:#241B48; background:#FFD700; }
-.theme-glass .cover h1 { color:#fff; text-shadow:0 3px 12px rgba(0,0,0,.28); }
-
-.theme-bento .page,.theme-bento .cover-body { background:#F5F5F0; background-image:none; }
-.theme-bento .topbar { margin:-62px -64px 36px; height:106px; padding:34px 64px 0; color:#fff; background:#1A1A1A; border-bottom:0; }
-.theme-bento .pageno { color:#1A1A1A; background:#4ECDC4; border-radius:8px; }
-.theme-bento h2 { color:#1A1A1A; border-bottom:5px solid #4ECDC4; padding-bottom:10px; }
-.theme-bento .note,.theme-bento .card,.theme-bento .flow-card { background:#fff; border:0; border-radius:18px; box-shadow:0 7px 0 #DADAD2; }
-.theme-bento .quote { color:#fff; background:#1A1A1A; border-radius:18px; }
-.theme-bento .cover h1 { color:#1A1A1A; border-bottom:7px solid #4ECDC4; padding-bottom:14px; }
-
-.theme-y2k { font-family:Inter,"PingFang SC",monospace; }
-.theme-y2k .page,.theme-y2k .cover-body { background:#0D0D2B; background-image:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,255,255,.06) 39px,rgba(0,255,255,.06) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,0,255,.05) 39px,rgba(255,0,255,.05) 40px); }
-.theme-y2k .topbar { border-bottom-color:#FF00FF; }
-.theme-y2k h2 { color:#00FFFF; border:2px solid #FF00FF; padding:11px; text-shadow:0 0 10px #00FFFF; }
-.theme-y2k .note,.theme-y2k .card,.theme-y2k .flow-card { color:#00FFFF; background:rgba(255,0,255,.08); border-color:#FF00FF; }
-.theme-y2k .quote { color:#0D0D2B; background:#00FFFF; border:4px solid #FF00FF; border-radius:0; box-shadow:7px 7px 0 #FF00FF; }
-.theme-y2k .cover h1 { color:#FF00FF; text-shadow:0 0 14px #FF00FF; border:3px solid #00FFFF; padding:12px; }
-
-.theme-pink .page,.theme-pink .cover-body { background:linear-gradient(135deg,#FFE5EC 0%,#FFF5F7 100%); }
-.theme-pink h2 { color:#FF6B9D; }
-.theme-pink .note { background:rgba(255,255,255,.56); border-left-color:#FF6B9D; }
-.theme-pink .quote { color:#fff; background:linear-gradient(135deg,#FF6B9D,#FF8FB1); }
-.theme-pink .cover h1 { color:#FF6B9D; text-shadow:3px 3px 0 rgba(255,107,157,.13); }
-
-body.single { background:#fff; padding:0; overflow:hidden; }
+.cover-image { display:block; width:100%; height:430px; object-fit:cover; }
+.cover-body { height:570px; padding:50px 64px; display:flex; flex-direction:column; background:var(--paper); }
+.cover.no-image .cover-body { height:1000px; padding-top:130px; }
+.kicker { margin-bottom:22px; color:var(--accent); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:16px; font-weight:700; text-transform:uppercase; }
+.cover-sub,.wechat-sub { margin-top:24px; padding-top:20px; border-top:2px solid var(--line); color:var(--muted); font-size:27px; line-height:1.4; }
+.cover-sign { margin-top:auto; color:var(--muted); font-size:18px; font-weight:700; }
+.cover-avatar { width:82px; height:88px; }
+.cover.layout-type .cover-image { display:none; }
+.cover.layout-type .cover-body { height:1000px; padding-top:150px; }
+.cover.layout-image-led .cover-image { height:1000px; }
+.cover.layout-image-led .cover-body { position:absolute; inset:auto 0 0; height:auto; min-height:360px; color:#FFF; background:color-mix(in srgb,var(--ink) 78%,transparent); }
+.cover.layout-image-led .cover-sub,.cover.layout-image-led .cover-sign { color:#EEE; border-color:#DDD; }
+.wechat-main .wechat-image,.wechat-share .wechat-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.wechat-body { position:relative; height:100%; display:flex; flex-direction:column; padding:46px 58px; background:var(--paper); }
+.wechat-main.layout-split .wechat-body { width:57%; border-right:2px solid var(--line); }
+.wechat-main.layout-split .wechat-image { left:57%; width:43%; }
+.wechat-main h1 { max-width:720px; font-size:58px; }
+.wechat-share h1 { font-size:52px; }
+.wechat-share .wechat-body { padding:52px; justify-content:center; }
+.wechat-share .cover-sign { margin-top:26px; }
+.wechat-main.layout-image-led .wechat-body,.wechat-share.layout-image-led .wechat-body { color:#FFF; background:color-mix(in srgb,var(--ink) 76%,transparent); }
+.wechat-main.layout-image-led .wechat-body { width:58%; }
+.wechat-share.layout-image-led .wechat-body { position:absolute; inset:auto 0 0; height:auto; min-height:52%; justify-content:flex-end; }
+.wechat-main.layout-type .wechat-image,.wechat-share.layout-type .wechat-image { display:none; }
+body.single { background:#FFF; overflow:hidden; }
 body.single .deck { display:block; padding:0; }
-body.single .page { display:none; box-shadow:none; }
-body.single .page.selected { display:block; }
+body.single .canvas { display:none; }
+body.single .canvas.selected { display:block; }
 </style>
 </head>
-<body class="theme-{{STYLE}} layout-{{LAYOUT}}">
+<body class="visual-{{SYSTEM}} theme-{{PRESET}}">
 <main class="deck">{{SECTIONS}}</main>
 <script>
 (function () {
-  function buildLongformPages() {
-    if (!document.body.classList.contains('layout-longform')) return;
-    var source = document.getElementById('flow-source');
-    var template = document.getElementById('flow-page-template');
-    var deck = document.querySelector('.deck');
-    var current = null;
-    var pageNumber = 2;
-    var bodyNumber = 1;
-    function createPage() {
-      var page = template.content.firstElementChild.cloneNode(true);
-      page.dataset.page = String(pageNumber++);
-      page.querySelector('.pageno').textContent = String(bodyNumber++).padStart(2, '0');
-      deck.insertBefore(page, source);
-      return page;
-    }
-    function contentOf(page) { return page.querySelector('.flow-content'); }
-    Array.from(source.children).forEach(function (unit) {
-      if (!current) current = createPage();
-      var clone = unit.cloneNode(true);
-      contentOf(current).appendChild(clone);
-      if (current.scrollHeight > current.clientHeight + 1) {
-        clone.remove();
-        if (!contentOf(current).children.length) {
-          contentOf(current).appendChild(clone);
-          current.dataset.overflow = 'true';
-        } else {
-          current = createPage();
-          contentOf(current).appendChild(clone);
-          if (current.scrollHeight > current.clientHeight + 1) current.dataset.overflow = 'true';
-        }
-      }
-    });
-    function fillRatioOf(page) {
-      var content = contentOf(page);
-      if (!content.lastElementChild) return 0;
-      var pageRect = page.getBoundingClientRect();
-      var contentRect = content.getBoundingClientRect();
-      var lastRect = content.lastElementChild.getBoundingClientRect();
-      var safeBottom = page.clientHeight - parseFloat(getComputedStyle(page).paddingBottom || 0);
-      return (lastRect.bottom - contentRect.top) / (safeBottom - (contentRect.top - pageRect.top));
-    }
-    var articlePages = Array.from(deck.querySelectorAll('section.article'));
-    articlePages.forEach(function (closingPage, index) {
-      if (!closingPage.querySelector('.closing-group') || index < 2) return;
-      var previous = articlePages[index - 1];
-      var donor = articlePages[index - 2];
-      var previousContent = contentOf(previous);
-      var donorContent = contentOf(donor);
-      var difference = Math.abs(fillRatioOf(donor) - fillRatioOf(previous));
-      while (donorContent.children.length > 1) {
-        var candidate = donorContent.lastElementChild;
-        previousContent.insertBefore(candidate, previousContent.firstElementChild);
-        var nextDifference = Math.abs(fillRatioOf(donor) - fillRatioOf(previous));
-        if (previous.scrollHeight > previous.clientHeight + 1 || nextDifference >= difference) {
-          donorContent.appendChild(candidate);
-          break;
-        }
-        difference = nextDifference;
-      }
-    });
-    Array.from(deck.querySelectorAll('section.article')).forEach(function (page) {
-      var units = Array.from(page.querySelectorAll('.flow-unit'));
-      var headingUnit = units.find(function (unit) { return unit.dataset.heading; });
-      var maps = [];
-      units.forEach(function (unit) {
-        if (unit.dataset.sourceMap && !maps.includes(unit.dataset.sourceMap)) maps.push(unit.dataset.sourceMap);
-        if (unit.dataset.closing === 'true') page.classList.add('closing');
-      });
-      page.dataset.sourceMap = maps.join(' | ');
-      page.dataset.heading = headingUnit ? headingUnit.dataset.heading : '';
-      page.classList.toggle('continuation', !(units[0] && units[0].dataset.heading));
-    });
-    source.remove();
-    template.remove();
+  function directText(node) {
+    return Array.from(node.childNodes).some(function (child) { return child.nodeType === 3 && child.textContent.trim(); });
   }
-  buildLongformPages();
-  document.querySelectorAll('.page').forEach(function (node) {
-    if (node.scrollHeight > node.clientHeight + 1) node.dataset.overflow = 'true';
-    else if (!node.dataset.overflow) node.dataset.overflow = 'false';
-    var content = node.querySelector('.flow-content, .blocks');
-    if (content && content.lastElementChild) {
-      var pageRect = node.getBoundingClientRect();
-      var contentRect = content.getBoundingClientRect();
-      var lastRect = content.lastElementChild.getBoundingClientRect();
-      var safeBottom = node.clientHeight - parseFloat(getComputedStyle(node).paddingBottom || 0);
-      var used = lastRect.bottom - contentRect.top;
-      var available = safeBottom - (contentRect.top - pageRect.top);
-      node.dataset.fillRatio = String(Math.max(0, Math.min(1, used / available)).toFixed(3));
-    } else node.dataset.fillRatio = '1.000';
+  document.querySelectorAll('.canvas').forEach(function (canvas) {
+    canvas.dataset.overflow = String(canvas.scrollHeight > canvas.clientHeight + 1 || canvas.scrollWidth > canvas.clientWidth + 1);
+    var textNodes = Array.from(canvas.querySelectorAll('h1,h2,h3,p,.note,.quote,.caption,.kicker,.cover-sub,.wechat-sub,.cover-sign,.chip'));
+    var fonts = textNodes.filter(directText).map(function (node) { return parseFloat(getComputedStyle(node).fontSize) || 999; });
+    canvas.dataset.minFont = String(fonts.length ? Math.min.apply(null, fonts) : 999);
+    var title = canvas.querySelector('h1,h2');
+    var content = title && (title.nextElementSibling || canvas.querySelector('.blocks'));
+    canvas.dataset.titleGap = String(title && content ? Math.max(0, content.getBoundingClientRect().top - title.getBoundingClientRect().bottom) : 999);
+    var children = Array.from(canvas.children).filter(function (node) { return !node.classList.contains('avatar'); });
+    var bottom = children.reduce(function (value, node) { return Math.max(value, node.getBoundingClientRect().bottom - canvas.getBoundingClientRect().top); }, 0);
+    canvas.dataset.fillRatio = String(Math.max(0, Math.min(1, bottom / canvas.clientHeight)).toFixed(3));
+    canvas.querySelectorAll('.motion-block').forEach(function (block) {
+      var frame = block.querySelector('.motion-frame');
+      var pageRect = canvas.getBoundingClientRect();
+      var rect = frame.getBoundingClientRect();
+      block.dataset.motionPage = canvas.dataset.page || '';
+      block.dataset.motionX = String(rect.left - pageRect.left);
+      block.dataset.motionY = String(rect.top - pageRect.top);
+      block.dataset.motionWidth = String(rect.width);
+      block.dataset.motionHeight = String(rect.height);
+    });
   });
-  var page = Number(new URLSearchParams(location.search).get('page') || 0);
-  if (page > 0) {
+  var target = new URLSearchParams(location.search).get('target');
+  if (target) {
     document.body.classList.add('single');
-    var selected = document.querySelector('.page[data-page="' + page + '"]');
+    var selected = document.querySelector('.canvas[data-target="' + target + '"]');
     if (selected) selected.classList.add('selected');
   }
 })();

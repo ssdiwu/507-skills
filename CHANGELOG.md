@@ -7,10 +7,16 @@
 ### Added
 
 - 新增 `507-ppt` 视觉幻灯片 skill：消费 `507-stage` 成熟逐页内容，以八个页面组件和六个独立设计方向生成可编辑 `.pptx` 或离线单文件 HTML；交付来源/notice、notes/alt、浏览器退化与 OpenXML 验证证据。
+- `507-rednote` 新增编辑杂志 / 瑞士国际主义双视觉系统、动态图片槽 Live Photo 打包，以及独立构图的公众号 `21:9 + 1:1` 封面对。
 
 ### Changed
 
 - `507-release` 将逐个不可逆动作确认改为单次发布流程内持续有效的范围授权：用户明确点名的 tag、push 与发布渠道不再重复询问；仅在范围或发布身份变化、外部状态不确定及高风险恢复时重新确认，并允许核验后的幂等瞬时网络失败有限重试一次。
+- `507-rednote` 以“一页一个观点”的视觉摘要取代连续长文自动分页；入选观点保留来源映射，未入选的重要内容记录去向，并以真实浏览器布局、媒体状态和多载体产物清单作为交付硬门。
+
+### Breaking
+
+- `507-rednote` 移除公开的 `layoutMode` / `stylePreset` 合同和长文双模式；旧 `rednote-project.json` 必须迁移为 `visualSystem`、`themePreset`、`excludedContent` 与逐页 `point/sourceMap/layout`。
 
 ## [0.2.2] - 2026-07-19
 

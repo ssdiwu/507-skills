@@ -1,67 +1,97 @@
 {
-  "title": "小红书图卡烟测",
+  "title": "社交视觉包烟测",
   "author": "示例作者",
   "avatar": "sample.svg",
-  "layoutMode": "longform",
-  "stylePreset": "newspaper",
+  "visualSystem": "editorial",
+  "themePreset": "editorial-paper",
+  "excludedContent": [
+    {
+      "summary": "完整渲染命令说明",
+      "reason": "不适合进入观点图卡",
+      "destination": "companionCopy"
+    }
+  ],
   "pages": [
     {
       "type": "cover",
-      "kicker": "REDNOTE",
-      "title": "把一篇文章做成图片文章",
-      "sourceMap": "M1 / 标题与中心判断",
-      "subtitle": "先锁判断，再做分页",
+      "point": "先选观点，再做视觉表达",
+      "sourceMap": "P1 / 标题与中心判断",
+      "layout": "split",
+      "kicker": "REDNOTE · VISUAL SUMMARY",
+      "title": "把文章提炼成观点图卡",
+      "subtitle": "一页只推进一个理解任务",
       "image": "sample.svg",
       "imagePosition": "center"
     },
     {
       "type": "article",
+      "point": "每页只能有一个主观点",
+      "sourceMap": "P2 / 主稿第 2–3 段",
+      "layout": "statement",
       "heading": "页面不是素材容器",
-      "sourceMap": "M2 / 论证链第 1 步",
       "blocks": [
-        {"type": "paragraph", "variant": "lead", "text": "每一页只承担一个推进任务。"},
-        {"type": "paragraph", "text": "可以缩短句子，也可以调整顺序，但不能借平台适配之名更换中心判断。"},
-        {"type": "note", "text": "连续两页映射不回原文，就该暂停返工。"},
-        {"type": "quote", "text": "局部都合理，不代表整篇成立。"}
+        {"type": "paragraph", "variant": "lead", "text": "例子、步骤和数据都只能服务本页观点。"},
+        {"type": "quote", "text": "局部都合理，不代表整组成立。"}
       ]
     },
     {
       "type": "article",
-      "sourceMap": "M3 / 论证链第 2 步（续页）",
+      "point": "截图是证据，不是装饰",
+      "sourceMap": "P3 / 本地证据图",
+      "layout": "evidence",
+      "heading": "让真实界面承担证明",
       "blocks": [
-        {"type": "image", "src": "sample.svg", "alt": "本地测试图", "height": 300, "fit": "contain", "position": "center", "caption": "素材由本地路径内嵌。"},
-        {"type": "cards", "items": [
-          {"tag": "证据", "title": "证明事实", "text": "截图只承担事实锚定。", "tone": "blue"},
-          {"tag": "判断", "title": "推进论证", "text": "文字负责解释它意味着什么。", "tone": "green"}
+        {"type": "screenshot", "src": "sample.svg", "alt": "本地测试截图", "height": 360, "chrome": "browser", "fit": "contain", "position": "center", "caption": "素材由本地路径内嵌。"},
+        {"type": "paragraph", "text": "截图保持完整可读，文字只解释它意味着什么。"}
+      ]
+    },
+    {
+      "type": "article",
+      "point": "视觉摘要来自明确选择",
+      "sourceMap": "P4 / 主稿第 4–6 段",
+      "layout": "steps",
+      "heading": "从主稿走到最终图卡",
+      "blocks": [
+        {"type": "flow", "items": [
+          {"title": "中心判断", "text": "确定整组要成立什么", "tag": "判断", "tone": "blue"},
+          {"title": "入选观点", "text": "每页只保留一个主张", "tag": "选择", "tone": "purple"},
+          {"title": "视觉证据", "text": "按内容形状选择布局", "tag": "表达", "tone": "green"}
         ]}
       ]
     },
     {
       "type": "article",
-      "heading": "从主稿走到最终图卡",
-      "sourceMap": "M4 / 论证链第 3 步",
-      "blocks": [
-        {"type": "flow", "items": [
-          {"title": "主稿", "text": "锁定中心判断", "tone": "blue"},
-          {"title": "逻辑文案", "text": "映射论证台阶", "tone": "purple"},
-          {"title": "图卡", "text": "渲染并复核", "tone": "green"}
-        ]},
-        {"type": "quote", "text": "文案确认后，渲染阶段不临时改字。"}
-      ]
-    },
-    {
-      "type": "article",
-      "heading": "交付前仍要看联系表",
-      "sourceMap": "M5 / 结论",
-      "closing": true,
+      "point": "交付必须同时通过自动与视觉检查",
+      "sourceMap": "P5 / 结论",
+      "layout": "closing",
+      "heading": "导出完成不等于作品完成",
       "blocks": [
         {"type": "timeline", "items": [
           {"title": "先看全局", "text": "密度与节奏是否稳定。", "tone": "green"},
-          {"title": "再查原图", "text": "尺寸、裁切和隐私是否安全。", "tone": "blue"},
-          {"title": "最后回归", "text": "是否仍服务于中心判断。", "tone": "purple"}
+          {"title": "再查证据", "text": "尺寸、裁切和隐私是否安全。", "tone": "blue"},
+          {"title": "最后回归", "text": "每页是否仍服务中心判断。", "tone": "purple"}
         ]},
-        {"type": "quote", "text": "图全部导出，不等于作品已经完成。"}
+        {"type": "quote", "text": "规格、产物和清单必须来自同一版本。"}
       ]
     }
-  ]
+  ],
+  "wechatCovers": {
+    "main": {
+      "point": "先选观点，再做视觉表达",
+      "sourceMap": "P1 / 公众号主封面",
+      "layout": "split",
+      "kicker": "VISUAL SUMMARY",
+      "title": "把文章提炼成观点图卡",
+      "subtitle": "一页只推进一个理解任务",
+      "image": "sample.svg",
+      "imagePosition": "center"
+    },
+    "share": {
+      "point": "先选观点，再做视觉表达",
+      "sourceMap": "P1 / 公众号分享封面",
+      "layout": "type",
+      "kicker": "REDNOTE",
+      "title": "文章变观点图卡"
+    }
+  }
 }
