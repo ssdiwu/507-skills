@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-07-26
+
 ### Added
 
 - 新增 `507-narrate` 本地配音 skill：使用已授权且已在 Voicebox 确认的声音档案，通过 REST API 动态选择 engine / model size，生成单段或分段 WAV，等待异步 SSE 终态，并以真实音频帧、哈希和 timing manifest 向 `507-video` 交接。
