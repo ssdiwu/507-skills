@@ -1,6 +1,6 @@
 ---
 name: 507-remix
-description: "视频借鉴重组 skill。只消费一个或多个 video_completed 的 507-breakdown 拉片包，提取可借鉴的结构、叙事、镜头、字幕与节奏模式，明确不借内容和身份，再重组为原创视频创作包与工具无关的 prompt-pack.json；不读取原视频、不做取证、不直接渲染成片。Use when user mentions 视频借鉴重组, 借鉴视频, 仿照这个视频, 视频二创, 二创, 视频重组, 原创创作包, 借这个视频的手法, remix, video remake, recombine."
+description: "视频借鉴重组 skill。只消费一个或多个 video_completed 的 507-breakdown 拉片包，提取可借鉴的结构、叙事、镜头、字幕与节奏模式，明确不借内容和身份，再重组为原创视频创作包与工具无关的 prompt-pack.json；需要进入成片时补齐 507-video 可消费的制作交接，不读取原视频、不做取证、不直接渲染。Use when user mentions 视频借鉴重组, 借鉴视频, 仿照这个视频, 视频二创, 二创, 视频重组, 原创创作包, 借这个视频的手法, remix, video remake, recombine."
 ---
 
 # 视频借鉴重组（remix）
@@ -50,6 +50,13 @@ prompt-pack.json
 - `style-lock.md`：后续执行应保持的视听模式；
 - `prompt-pack.json`：符合 `assets/prompt-pack.schema.json` 的工具无关创作蓝图，不包含来源包与模型绑定信息。
 
+当用户目标是继续制作成片时，现有文件还要承担 `507-video` 交接：
+
+- `brief.md` 补齐受众、平台、目标时长、画幅、核心主张、声音来源、事实与隐私边界；
+- `storyboard.md` 每个节拍补齐叙事任务、旁白/声音意图、观众可见画面、证据目标、素材缺口和转场；
+- `style-lock.md` 补齐色板、字体、构图家族、信息密度、动效语言和明确避免项；
+- `prompt-pack.json` 继续保持工具无关，不新增 Remotion、模型、来源路径或本机字段。
+
 ## 工作流程
 
 1. 校验每个输入包的四个文件及 `video_completed` 状态。
@@ -70,7 +77,7 @@ python3 scripts/video_remake.py run \
   --output-dir 03-作品/<选题>/视频
 ```
 
-6. 从人读版和机器版两侧验收；不直接把生成包交给视频执行器。
+6. 从人读版和机器版两侧验收；若出口是 `507-video`，先按上面的制作交接补齐人读文件，再交付，不把脚本初始输出直接当成完整制作合同。
 
 ## 验收
 
@@ -80,12 +87,13 @@ python3 scripts/video_remake.py run \
 - storyboard 每个节拍服务当前原创主题，来源片段只作手法参考；
 - prompt pack 不含原视频逐句内容、人物/品牌仿冒要求、来源路径或模型专属字段；
 - 目标、结构、storyboard、style lock 与 prompt pack 前后一致。
+- 出口为 `507-video` 时，brief、storyboard 与 style lock 已补齐制作交接字段；缺声音、素材、证据或隐私边界时保留缺口，不伪造已确认状态。
 
 ## 完成与接力
 
 - **完成信号**：原创创作包通过输入契约、完整性、一致性与原创边界验收。
 - **产物**：人读版创作包和工具无关 `prompt-pack.json`；不包含最终视频。
-- **候选出口**：需要补拉片证据时返回 `507-breakdown`；主题或内容材料不足时进入 `507-mine` / `507-fuse` / `507-grill` 后返回；创作包成熟后进入相应视频制作、剪辑或生成工作流；只需蓝图时直接结束。
+- **候选出口**：需要补拉片证据时返回 `507-breakdown`；主题或内容材料不足时进入 `507-mine` / `507-fuse` / `507-grill` 后返回；视频旁白未成熟时进入 `507-stage`；制作交接成熟后进入 `507-video`；只需蓝图时直接结束。
 - **回退条件**：来源包不完整、目标未确认或只能通过复制来源内容才能成立时停止，不生成伪原创包。
 
 ## 红线

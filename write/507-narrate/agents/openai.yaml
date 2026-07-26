@@ -1,0 +1,4 @@
+interface:
+  display_name: "507 本地配音"
+  short_description: "用已授权的本地声音档案生成并验证带真实时长的配音包"
+  default_prompt: "Use $507-narrate to turn my approved narration into verified local audio with an authorized Voicebox profile."

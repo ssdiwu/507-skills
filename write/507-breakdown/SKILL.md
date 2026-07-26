@@ -1,12 +1,14 @@
 ---
 name: 507-breakdown
-description: "视频拉片 skill：将一个视频经 MiniMax-M3 整段理解、本地文本定位、受限视觉搜索、自适应抽帧与图片证据回写核验，产出可供 remix 消费的 video_* 拉片包。Use when user mentions 拉片, 拆视频, 视频拆解, 分析视频, 逐帧分析, 分镜, 视频取证, 怎么剪, 视频结构分析, breakdown, video breakdown, transcript extraction. 只需要普通视频总结时，选择当前环境可用的视频理解或总结能力，不走本 skill。"
+description: "视频拉片 skill：将一个参考视频经 MiniMax-M3 整段理解、本地文本定位、受限视觉搜索、自适应抽帧与图片证据回写核验，产出可供 remix 消费的 video_* 拉片包。Use when user mentions 拉片, 拆视频, 视频拆解, 分析视频, 逐帧分析, 分镜, 视频取证, 怎么剪, 视频结构分析, breakdown, video breakdown, transcript extraction. 只需要普通视频总结，或只想把自己的录像作为成片素材时，不走本 skill。"
 compatibility: "Requires Python 3.10+, ffmpeg/ffprobe, faster-whisper, and MiniMax_API_KEY; yt-dlp for URLs and Tesseract for optional OCR."
 ---
 
 # 视频拉片（breakdown）
 
 把一个视频编译成可核验、可复用的拉片包。它不是快速总结：MiniMax-M3 先理解整段视频，本地证据再确认关键时间与画面。
+
+这个 skill 面向**参考视频取证**。用户自己的录像、截图或配音只需要进入成片时，由 `507-video` 直接做素材核验和制作；不要为了登记素材先跑完整拉片。
 
 ## 输入与产物
 
@@ -56,5 +58,5 @@ python3 scripts/video_validate_breakdown.py --workspace 05-视频拉片/<video-i
 
 - **完成信号**：validator（校验器）通过，`raw/video_manifest.json` 为 `video_completed`，最终时间窗均有本地证据，降级路径与限制已记录。
 - **产物**：`05-视频拉片/<video-id>/` 下可核验、可复用的新 `video_*` 拉片包。
-- **候选出口**：需要挖内容判断、观点或写作碎片时进入 `507-mine`；需要借鉴叙事、镜头、字幕或节奏手法时进入 `507-remix`；两类目标同时存在时可分别接力；只需要拉片证据时直接结束。
+- **候选出口**：需要挖内容判断、观点或写作碎片时进入 `507-mine`；需要借鉴叙事、镜头、字幕或节奏手法时进入 `507-remix`；两类目标同时存在时可分别接力；成熟创作包再由 `507-remix` 交给 `507-video`，不要把原始拉片包直接当制作合同；只需要拉片证据时直接结束。
 - **回退条件**：M3、图片理解或本地证据不足时保留未完成工作区并报告限制，不标记 `video_completed`，也不把不完整包交给下游。

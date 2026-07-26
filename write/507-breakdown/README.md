@@ -2,6 +2,8 @@
 
 `507-breakdown` 将单个视频编译为可复核的拉片包：MiniMax-M3 仅给整段语义参考；ASR/OCR 命中才会定位语义窗口，PTS 与 scene-cut 只提供本地视觉搜索点。抽帧按窗口证据调整密度，并在图片理解后核验。
 
+它用于参考视频取证，不是成片素材导入器。用户自己的录像、截图或配音只需要参与制作时，直接由 `507-video` 核验并登记素材；需要借鉴参考片手法时才走 `507-breakdown → 507-remix → 507-video`。
+
 ## 完成契约
 
 只有 `video_validate_breakdown.py --workspace <workspace>` 通过后，工作区才是 `video_completed`，可由 `507-remix` 消费。

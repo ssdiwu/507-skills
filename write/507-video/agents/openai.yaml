@@ -1,0 +1,4 @@
+interface:
+  display_name: "507 视频制作"
+  short_description: "把成熟内容与授权素材制作成经审片和验证的本地视频母版"
+  default_prompt: "Use $507-video to turn my confirmed video brief and authorized assets into a reviewed, verified local master video."

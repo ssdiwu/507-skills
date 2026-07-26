@@ -1,0 +1,14 @@
+{
+  "language": "zh",
+  "preset": "daily",
+  "sections": [
+    {
+      "id": "first",
+      "text": "这是第一段本地配音测试。"
+    },
+    {
+      "id": "second",
+      "text": "这是第二段本地配音测试。"
+    }
+  ]
+}

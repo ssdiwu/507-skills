@@ -14,3 +14,5 @@ video_breakdown.json
 ```bash
 python3 video_remake.py run --pull-dir <completed-pull-dir> --project-name <name> --theme <theme> --platform <platform> --duration <duration> --style <style> --output-dir <works-dir>
 ```
+
+脚本生成创作包骨架；若出口是视频成片，agent 还需按 `../SKILL.md` 补齐人读文件的制作交接字段，再交给 `507-video`。脚本不向 `prompt-pack.json` 写入具体视频引擎或本机路径。

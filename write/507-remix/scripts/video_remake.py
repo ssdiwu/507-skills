@@ -340,7 +340,7 @@ def write_project_readme(path: Path, project_name: str, theme: str, platform: st
 3. **`structure.md`**：结构节拍顺序（hook / pain-points / reframing / walkthrough / methodology / cta）。
 4. **`storyboard.md`**：每个节拍的目标、画面参考、备注。
 5. **`style-lock.md`**：后续执行层须优先保持的视听语言与模式。
-6. **`prompt-pack.json`**：工具无关的结构化创作蓝图，供后续执行器消费（不含 `sources` 字段、不绑定模型）。
+6. **`prompt-pack.json`**：工具无关的结构化创作蓝图（不含 `sources` 字段、不绑定模型）。
 
 ## 借鉴项与锁定项
 
@@ -379,7 +379,7 @@ def write_project_readme(path: Path, project_name: str, theme: str, platform: st
 
 - 需要调整创作方向：重跑 `video_remake.py run` 并传新的主题/平台/时长/风格或 include/exclude 参数。创作包归宿为 `03-作品/{{选题}}/视频/`。
 - 需要重新合并不同拉片包：多 `--pull-dir` 重新运行。
-- 需要进后续执行层（如生图、生视频）：把 `prompt-pack.json` 喂给对应工具，注意其是工具无关的。
+- 需要继续制作成片：先在 `brief.md`、`storyboard.md` 与 `style-lock.md` 补齐声音/时间来源、画面证据、素材/授权缺口、事实和隐私边界，再交给 `507-video`；`prompt-pack.json` 继续保持工具无关。
 """
     path.write_text(content, encoding="utf-8")
 

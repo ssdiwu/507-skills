@@ -7,9 +7,11 @@
 3. [`../code/README.md`](../code/README.md)：代码工作流及其接力关系。
 4. [`../common/README.md`](../common/README.md)：通用 skill（智能体技能）的职责。
 5. [`507-rednote产品需求.md`](507-rednote产品需求.md)：`507-rednote` 视觉摘要、动态图片槽与公众号封面对的已实现需求和验收基准。
-6. 各 skill 目录的 `SKILL.md`：触发词、操作步骤、输入输出与限制。
-7. [`术语表.md`](术语表.md)：定义本仓库稳定使用的项目语言。
-8. [`决策档案/`](决策档案/README.md)：记录难逆转、缺少上下文会令人困惑且存在真实权衡的项目决策。
+6. [`../write/507-video/references/production-contract.md`](../write/507-video/references/production-contract.md)：视频制作合同、素材清单与时间基准的当前约束。
+7. [`../write/507-narrate/README.md`](../write/507-narrate/README.md)：本地配音、Voicebox REST 接入、模型选择与配音包约束。
+8. 各 skill 目录的 `SKILL.md`：触发词、操作步骤、输入输出与限制。
+9. [`术语表.md`](术语表.md)：定义本仓库稳定使用的项目语言。
+10. [`决策档案/`](决策档案/README.md)：记录难逆转、缺少上下文会令人困惑且存在真实权衡的项目决策。
 
 各 skill 内部的 `doc/`、`references/` 与 `README.md` 仅解释该 skill 的局部实现或方法，不覆盖其上级工作流边界。历史 Git（版本控制）记录用于追溯，不作为当前行为规范。
 
