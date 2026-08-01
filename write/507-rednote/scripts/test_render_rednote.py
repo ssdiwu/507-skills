@@ -7,6 +7,7 @@ import unittest
 from argparse import Namespace
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -20,19 +21,57 @@ class RenderRednoteTests(unittest.TestCase):
     def setUp(self):
         self.spec_path = SCRIPT_DIR / "fixtures" / "sample-project.json"
         self.spec = json.loads(self.spec_path.read_text(encoding="utf-8"))
+        self.article_spec_path = SCRIPT_DIR / "fixtures" / "sample-article-project.json"
+        self.article_spec = json.loads(self.article_spec_path.read_text(encoding="utf-8"))
 
     def test_fixture_is_valid_and_renders_self_contained_multi_canvas_html(self):
         renderer.validate_spec(self.spec)
         output = renderer.render_html(self.spec, self.spec_path)
         self.assertIn("data:image/svg+xml;base64,", output)
         self.assertNotIn("sample.svg", output)
-        self.assertIn('class="visual-editorial theme-editorial-paper"', output)
+        self.assertIn('class="mode-summary visual-editorial theme-editorial-paper"', output)
         self.assertIn('data-target="rednote-01"', output)
         self.assertIn('data-point="每页只能有一个主观点"', output)
         self.assertIn('data-layout="statement"', output)
         self.assertIn('data-target="wechat-main"', output)
         self.assertIn('data-target="wechat-share"', output)
         self.assertNotIn("layout-longform", output)
+
+    def test_article_mode_renders_plain_reading_pages_without_card_chrome(self):
+        renderer.validate_spec(self.article_spec)
+        output = renderer.render_html(self.article_spec, self.article_spec_path)
+        self.assertIn('class="mode-article visual-swiss theme-swiss-blue"', output)
+        self.assertIn('class="canvas rednote-article page article article-flow"', output)
+        self.assertIn('class="article-heading"', output)
+        self.assertIn('class="article-list"', output)
+        self.assertIn('.mode-article .article-flow .blocks > :last-child { margin-bottom:0; }', output)
+        article = output.split('data-target="rednote-02"', 1)[1].split('</section>', 1)[0]
+        self.assertNotIn('class="topbar"', article)
+        self.assertNotIn('class="avatar"', article)
+        self.assertNotIn('class="pageno"', article)
+        self.assertEqual(renderer.page_canvas(self.article_spec, 1)["output"], (1500, 2000))
+        self.assertEqual(renderer.page_canvas(self.article_spec, 2)["output"], (1440, 2400))
+
+    def test_article_page_tail_uses_canvas_padding_without_double_counting_last_block_margin(self):
+        output = renderer.render_html(self.article_spec, self.article_spec_path)
+        self.assertIn('.mode-article .article-flow { padding:58px 56px 70px;', output)
+        self.assertIn('.mode-article .article-flow .blocks > :last-child { margin-bottom:0; }', output)
+
+    def test_article_mode_rejects_summary_page_contract_and_exclusions(self):
+        spec = copy.deepcopy(self.article_spec)
+        spec["pages"][1]["point"] = "不应该存在的逐页观点"
+        with self.assertRaisesRegex(SystemExit, "未知字段"):
+            renderer.validate_spec(spec)
+        spec = copy.deepcopy(self.article_spec)
+        spec["excludedContent"] = [{"summary": "删掉一段", "destination": "notUsed"}]
+        with self.assertRaisesRegex(SystemExit, "必须为空"):
+            renderer.validate_spec(spec)
+
+    def test_mode_is_explicit(self):
+        spec = copy.deepcopy(self.spec)
+        del spec["mode"]
+        with self.assertRaisesRegex(SystemExit, "mode"):
+            renderer.validate_spec(spec)
 
     def test_rejects_legacy_layout_and_style_fields_with_migration_message(self):
         for field in ("layoutMode", "stylePreset"):
@@ -172,6 +211,7 @@ class RenderRednoteTests(unittest.TestCase):
             artifacts = [renderer.artifact("rednote-page", page, output_dir, (1500, 2000))]
             renderer.write_manifest(output_dir, spec_path, self.spec, artifacts, [1], [], {"chrome": "test"}, [])
             manifest = json.loads((output_dir / "render-manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["mode"], "summary")
             self.assertEqual(manifest["visualSystem"], "editorial")
             self.assertEqual(manifest["themePreset"], "editorial-paper")
             self.assertEqual(manifest["pageMap"][1]["point"], "每页只能有一个主观点")
@@ -192,6 +232,40 @@ class RenderRednoteTests(unittest.TestCase):
             changed["pages"][2]["point"] = "另一个观点"
             with self.assertRaisesRegex(SystemExit, "第 3 页"):
                 renderer.validate_partial_render(changed, output_dir, [2], [])
+
+    def test_full_render_removes_stale_page_files_before_writing_current_pages(self):
+        with TemporaryDirectory() as tmp:
+            output_dir = Path(tmp)
+            pages_dir = output_dir / "pages"
+            pages_dir.mkdir()
+            stale = pages_dir / "rednote_page_99.jpg"
+            stale.write_bytes(b"stale")
+            html_path = output_dir / "rednote.html"
+
+            def fake_render_png(_chrome, _url, _target, path, _canvas, _timeout):
+                path.write_bytes(b"png")
+
+            def fake_png_to_jpg(_png, jpg, _size):
+                jpg.write_bytes(b"jpg")
+
+            def fake_contact_sheet(_files, path):
+                path.write_bytes(b"contact")
+
+            args = Namespace(pages=None, timeout=1)
+            selected = list(range(1, len(self.article_spec["pages"]) + 1))
+            with (
+                patch.object(renderer, "render_png", side_effect=fake_render_png),
+                patch.object(renderer, "png_to_jpg", side_effect=fake_png_to_jpg),
+                patch.object(renderer, "build_contact_sheet", side_effect=fake_contact_sheet),
+            ):
+                files, _artifacts = renderer.render_static_targets(
+                    args, self.article_spec, html_path, "chrome", output_dir, selected
+                )
+
+            self.assertFalse(stale.exists())
+            self.assertEqual([path.name for path in files], [
+                f"rednote_page_{page:02d}.jpg" for page in selected
+            ])
 
     def test_wechat_pair_preview_has_stable_dimensions(self):
         with TemporaryDirectory() as tmp:

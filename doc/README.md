@@ -6,7 +6,7 @@
 2. [`../write/README.md`](../write/README.md)：写作工作流及其接力关系。
 3. [`../code/README.md`](../code/README.md)：代码工作流及其接力关系。
 4. [`../common/README.md`](../common/README.md)：通用 skill（智能体技能）的职责。
-5. [`507-rednote产品需求.md`](507-rednote产品需求.md)：`507-rednote` 视觉摘要、动态图片槽与公众号封面对的已实现需求和验收基准。
+5. [`507-rednote产品需求.md`](507-rednote产品需求.md)：`507-rednote` 连续文章、视觉摘要、动态图片槽与公众号封面对的当前需求和验收基准。
 6. [`../write/507-video/references/production-contract.md`](../write/507-video/references/production-contract.md)：视频制作合同、素材清单与时间基准的当前约束。
 7. [`../write/507-narrate/README.md`](../write/507-narrate/README.md)：本地配音、Voicebox REST 接入、模型选择与配音包约束。
 8. 各 skill 目录的 `SKILL.md`：触发词、操作步骤、输入输出与限制。

@@ -1,0 +1,71 @@
+{
+  "mode": "article",
+  "title": "连续文章图文烟测",
+  "author": "示例作者",
+  "avatar": "sample.svg",
+  "visualSystem": "swiss",
+  "themePreset": "swiss-blue",
+  "excludedContent": [],
+  "pages": [
+    {
+      "type": "cover",
+      "point": "一篇文章，而不是一组观点卡",
+      "sourceMap": "主稿标题",
+      "layout": "type",
+      "kicker": "ARTICLE · REDNOTE",
+      "title": "把原文排成可以连续阅读的图文",
+      "subtitle": "页面只是文章画布的切片"
+    },
+    {
+      "type": "article",
+      "sourceMap": "主稿第 1–5 段与图 1",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "正文先沿用原来的段落、措辞和推进顺序。物理页面只承载一段阅读长度，不需要重新概括成本页观点。"
+        },
+        {
+          "type": "heading",
+          "text": "原文标题可以出现在页面中段"
+        },
+        {
+          "type": "paragraph",
+          "text": "标题属于文章结构，不属于图卡模板。没有原文标题时，不自动补分类标签、页码、金句框或重复署名。"
+        },
+        {
+          "type": "screenshot",
+          "src": "sample.svg",
+          "alt": "本地测试证据图",
+          "height": 300,
+          "chrome": "none",
+          "fit": "contain",
+          "position": "center",
+          "caption": "证据在论证发生的位置进入正文。"
+        }
+      ]
+    },
+    {
+      "type": "article",
+      "sourceMap": "主稿第 6–9 段",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "分页不承担观点闭合，也不为了填满页面新增总结。文章较长时，页数由可读字号和实际内容自然决定。"
+        },
+        {
+          "type": "list",
+          "items": [
+            "保留原文顺序和全部可见内容。",
+            "正文不重复封面的视觉身份。",
+            "图片作为证据嵌入，而不是另做装饰海报。",
+            "尾页可以留白，不用额外行动号召填满。"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "最终验收看整篇是否能在手机上持续阅读，而不是每一页单独看起来像不像一张设计卡。"
+        }
+      ]
+    }
+  ]
+}

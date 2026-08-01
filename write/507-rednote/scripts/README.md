@@ -65,12 +65,14 @@ python3 render_rednote.py \
 
 未选页面的规格或全局配置变化时，脚本会拒绝局部渲染。含动态图片槽或公众号封面对时必须全量渲染。
 
+文章模式的物理 `pages` 必须在正式渲染前已经由连续正文经真实浏览器布局重排完成；脚本不会把字符数估算、旧页分组或临时候选当成页数变化。页数变化必须全量渲染，脚本会先清除旧页，再重建联系表和 manifest（清单）。
+
 ## 脚本负责
 
-1. 校验全文图文或视觉摘要规格、页面任务、来源映射、排除内容去向、视觉系统、主题与页面布局；全文逐段覆盖仍由 Agent 在渲染前后单独核验。
+1. 校验文章模式或视觉摘要规格、来源映射、排除内容去向、视觉系统与主题；文章模式拒绝逐页观点、布局和摘要结构，全文逐段覆盖仍由 Agent 在渲染前后单独核验。
 2. 把本地静态素材和动态首帧内嵌到单文件 `rednote.html`。
-3. 用真实浏览器检查溢出、字号下限和标题间距。
-4. 导出 1500×2000 小红书 JPG、联系表和新鲜度 manifest。
+3. 用真实浏览器检查溢出、字号下限和标题间距；文章页尾由画布底部留白统一控制，最后一个内容块的外边距不再重复计入溢出。
+4. 文章模式导出 1500×2000 封面与 1440×2400 正文，摘要模式导出 1500×2000 图卡，并生成不裁切页面的联系表与新鲜度 manifest；全量渲染会清除超出当前页数的旧页面。
 5. 按需导出 2100×900、1080×1080 公众号封面对和组合预览。
 6. 用 `ffprobe` 校验短视频，以 `ffmpeg` 抽首帧并合成整卡 MOV。
 7. 调用外部 `makelive --pvt` 生成 Live Photo 包；缺失或失败时不写完成 manifest。
@@ -89,6 +91,14 @@ python3 -m unittest scripts/test_render_rednote.py
 python3 scripts/render_rednote.py \
   --spec scripts/fixtures/sample-project.json \
   --output-dir "$TMP_DIR/507-rednote-smoke"
+```
+
+文章模式集成烟测：
+
+```bash
+python3 scripts/render_rednote.py \
+  --spec scripts/fixtures/sample-article-project.json \
+  --output-dir "$TMP_DIR/507-rednote-article-smoke"
 ```
 
 动态图片槽测试会在临时目录用 `ffmpeg` 生成合成视频，不提交二进制 fixture。完整 Live Photo 端到端还需要在 macOS Photos 或 iPhone 发布路径验证 `.pvt` 可识别。

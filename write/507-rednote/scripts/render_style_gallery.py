@@ -68,15 +68,16 @@ def render_previews(spec: dict, spec_path: Path, themes: list[str], pages: list[
         for page in pages:
             png_path = temp_dir / f"{theme}-{page:02d}.png"
             jpg_path = temp_dir / f"{theme}-{page:02d}.jpg"
-            renderer.render_png(chrome, html_path.as_uri(), f"rednote-{page:02d}", png_path, renderer.CANVASES["rednote"]["css"], timeout)
-            renderer.png_to_jpg(png_path, jpg_path, renderer.CANVASES["rednote"]["output"])
+            canvas = renderer.page_canvas(variant, page)
+            renderer.render_png(chrome, html_path.as_uri(), f"rednote-{page:02d}", png_path, canvas["css"], timeout)
+            renderer.png_to_jpg(png_path, jpg_path, canvas["output"])
             previews[theme].append(jpg_path)
         print(f"previewed {theme}: pages {pages}")
     return previews
 
 
 def build_gallery(previews: dict[str, list[Path]], output: Path) -> tuple[int, int]:
-    page_thumb = (180, 240)
+    page_thumb = (180, 300)
     page_gap = 8
     label_height = 56
     tile_padding = 12
@@ -95,7 +96,9 @@ def build_gallery(previews: dict[str, list[Path]], output: Path) -> tuple[int, i
         draw.rectangle((x, y, x + tile_width, y + tile_height), fill="#FFFFFF", outline="#8F8F88", width=2)
         for page_index, file in enumerate(files):
             with Image.open(file).convert("RGB") as image:
-                thumb = ImageOps.fit(image, page_thumb, method=Image.Resampling.LANCZOS)
+                fitted = ImageOps.contain(image, page_thumb, method=Image.Resampling.LANCZOS)
+                thumb = Image.new("RGB", page_thumb, "#F7F7F4")
+                thumb.paste(fitted, ((page_thumb[0] - fitted.width) // 2, (page_thumb[1] - fitted.height) // 2))
             px = x + tile_padding + page_index * (page_thumb[0] + page_gap)
             py = y + tile_padding
             sheet.paste(thumb, (px, py))

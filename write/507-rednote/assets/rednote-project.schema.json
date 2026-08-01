@@ -1,11 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.com/rednote/rednote-project.schema.json",
-  "title": "Rednote Visual Summary Project",
+  "title": "Rednote Article or Visual Summary Project",
   "type": "object",
-  "required": ["title", "visualSystem", "themePreset", "excludedContent", "pages"],
+  "required": ["mode", "title", "visualSystem", "themePreset", "excludedContent", "pages"],
   "additionalProperties": false,
   "properties": {
+    "mode": {"enum": ["article", "summary"]},
     "title": {"type": "string", "minLength": 1},
     "author": {"type": "string"},
     "avatar": {"type": "string"},
@@ -31,9 +32,7 @@
     "pages": {
       "type": "array",
       "minItems": 2,
-      "maxItems": 20,
-      "prefixItems": [{"$ref": "#/$defs/coverPage"}],
-      "items": {"$ref": "#/$defs/articlePage"}
+      "maxItems": 20
     },
     "wechatCovers": {
       "type": "object",
@@ -45,6 +44,31 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": {"properties": {"mode": {"const": "summary"}}},
+      "then": {
+        "properties": {
+          "pages": {
+            "prefixItems": [{"$ref": "#/$defs/coverPage"}],
+            "items": {"$ref": "#/$defs/articlePage"}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"mode": {"const": "article"}}},
+      "then": {
+        "properties": {
+          "excludedContent": {"maxItems": 0},
+          "pages": {
+            "prefixItems": [{"$ref": "#/$defs/coverPage"}],
+            "items": {"$ref": "#/$defs/articleFlowPage"}
+          }
+        }
+      }
+    }
+  ],
   "$defs": {
     "color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
     "imagePosition": {
@@ -107,15 +131,42 @@
         "blocks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/block"}}
       }
     },
+    "articleFlowPage": {
+      "type": "object",
+      "required": ["type", "sourceMap", "blocks"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "article"},
+        "sourceMap": {"type": "string", "minLength": 1},
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/articleFlowBlock"}
+        }
+      }
+    },
     "block": {
       "oneOf": [
         {"$ref": "#/$defs/paragraph"},
+        {"$ref": "#/$defs/headingBlock"},
+        {"$ref": "#/$defs/listBlock"},
         {"$ref": "#/$defs/textBlock"},
         {"$ref": "#/$defs/imageBlock"},
         {"$ref": "#/$defs/screenshotBlock"},
         {"$ref": "#/$defs/motionBlock"},
         {"$ref": "#/$defs/cardsBlock"},
         {"$ref": "#/$defs/sequenceBlock"}
+      ]
+    },
+    "articleFlowBlock": {
+      "oneOf": [
+        {"$ref": "#/$defs/paragraph"},
+        {"$ref": "#/$defs/headingBlock"},
+        {"$ref": "#/$defs/listBlock"},
+        {"$ref": "#/$defs/textBlock"},
+        {"$ref": "#/$defs/imageBlock"},
+        {"$ref": "#/$defs/screenshotBlock"},
+        {"$ref": "#/$defs/motionBlock"}
       ]
     },
     "paragraph": {
@@ -126,6 +177,31 @@
         "type": {"const": "paragraph"},
         "text": {"type": "string", "minLength": 1},
         "variant": {"enum": ["body", "lead", "big", "muted"]}
+      }
+    },
+    "headingBlock": {
+      "type": "object",
+      "required": ["type", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "heading"},
+        "text": {"type": "string", "minLength": 1},
+        "level": {"enum": [2, 3]}
+      }
+    },
+    "listBlock": {
+      "type": "object",
+      "required": ["type", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"const": "list"},
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "ordered": {"type": "boolean"}
       }
     },
     "textBlock": {

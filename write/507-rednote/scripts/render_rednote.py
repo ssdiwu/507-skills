@@ -28,13 +28,16 @@ except ImportError as exc:  # pragma: no cover - runtime dependency
 SCALE = 2
 CANVASES = {
     "rednote": {"css": (750, 1000), "output": (1500, 2000)},
+    "rednote-article": {"css": (720, 1200), "output": (1440, 2400)},
     "wechat-main": {"css": (1050, 450), "output": (2100, 900)},
     "wechat-share": {"css": (540, 540), "output": (1080, 1080)},
 }
+MODES = {"article", "summary"}
 VISUAL_SYSTEMS = {"editorial", "swiss"}
 COVER_LAYOUTS = {"type", "split", "image-led"}
 ARTICLE_LAYOUTS = {"statement", "evidence", "comparison", "steps", "list", "data", "closing"}
-BLOCK_TYPES = {"paragraph", "note", "quote", "image", "screenshot", "motion", "cards", "flow", "timeline"}
+BLOCK_TYPES = {"paragraph", "heading", "list", "note", "quote", "image", "screenshot", "motion", "cards", "flow", "timeline"}
+ARTICLE_FLOW_BLOCK_TYPES = {"paragraph", "heading", "list", "note", "quote", "image", "screenshot", "motion"}
 TONES = {"green", "blue", "purple", "red"}
 DESTINATIONS = {"postBody", "companionCopy", "series", "notUsed"}
 IMAGE_POSITIONS = {
@@ -100,7 +103,7 @@ class SectionAuditParser(HTMLParser):
 
     def failures(self) -> list[str]:
         failures: list[str] = []
-        airy_layouts = {"statement", "type", "image-led"}
+        airy_layouts = {"statement", "type", "image-led", "article-flow"}
         for section in self.sections:
             target = section["target"]
             if section["overflow"]:
@@ -171,6 +174,8 @@ def validate_block(block: object, label: str) -> None:
         die(f"{label}.type 无效：{block_type}")
     allowed = {
         "paragraph": {"type", "text", "variant"},
+        "heading": {"type", "text", "level"},
+        "list": {"type", "items", "ordered"},
         "note": {"type", "text"},
         "quote": {"type", "text"},
         "image": {"type", "src", "alt", "caption", "height", "fit", "position"},
@@ -181,10 +186,20 @@ def validate_block(block: object, label: str) -> None:
         "timeline": {"type", "items"},
     }
     reject_unknown(block, allowed[block_type], label)
-    if block_type in {"paragraph", "note", "quote"}:
+    if block_type in {"paragraph", "heading", "note", "quote"}:
         require_text(block.get("text"), f"{label}.text")
     if block_type == "paragraph" and block.get("variant", "body") not in {"body", "lead", "big", "muted"}:
         die(f"{label}.variant 无效：{block.get('variant')}")
+    if block_type == "heading" and block.get("level", 2) not in {2, 3}:
+        die(f"{label}.level 只能是 2 或 3")
+    if block_type == "list":
+        items = block.get("items")
+        if not isinstance(items, list) or not 1 <= len(items) <= 12:
+            die(f"{label}.items 数量必须在 1–12")
+        for index, item in enumerate(items, start=1):
+            require_text(item, f"{label}.items[{index}]")
+        if not isinstance(block.get("ordered", False), bool):
+            die(f"{label}.ordered 必须是 boolean")
     if block_type in {"image", "screenshot", "motion"}:
         validate_media_fields(block, label)
     if block_type == "screenshot" and block.get("chrome", "none") not in {"none", "browser", "phone"}:
@@ -227,9 +242,12 @@ def validate_cover(page: dict, label: str, wechat: bool = False) -> None:
 def validate_spec(spec: dict) -> None:
     legacy = sorted(set(spec) & {"layoutMode", "stylePreset"})
     if legacy:
-        die(f"旧字段 {', '.join(legacy)} 已移除；请迁移为 visualSystem/themePreset 和显式观点页")
-    allowed = {"title", "author", "avatar", "visualSystem", "themePreset", "theme", "excludedContent", "pages", "wechatCovers"}
+        die(f"旧字段 {', '.join(legacy)} 已移除；请迁移为 mode、visualSystem、themePreset 和显式内容页")
+    allowed = {"mode", "title", "author", "avatar", "visualSystem", "themePreset", "theme", "excludedContent", "pages", "wechatCovers"}
     reject_unknown(spec, allowed, "project")
+    mode = spec.get("mode")
+    if mode not in MODES:
+        die("mode 必须是 article 或 summary")
     require_text(spec.get("title"), "title")
     system = spec.get("visualSystem")
     if system not in VISUAL_SYSTEMS:
@@ -257,6 +275,8 @@ def validate_spec(spec: dict) -> None:
         require_text(item.get("summary"), f"{label}.summary")
         if item.get("destination") not in DESTINATIONS:
             die(f"{label}.destination 无效：{item.get('destination')}")
+    if mode == "article" and excluded:
+        die("article 模式必须完整承载原文，excludedContent 必须为空")
     pages = spec.get("pages")
     if not isinstance(pages, list) or not 2 <= len(pages) <= 20:
         die("pages 数量必须在 2–20")
@@ -269,19 +289,25 @@ def validate_spec(spec: dict) -> None:
             continue
         if page.get("type") != "article":
             die(f"{label}.type 必须是 article")
-        reject_unknown(page, {"type", "point", "sourceMap", "layout", "heading", "blocks"}, label)
-        require_text(page.get("point"), f"{label}.point")
-        require_text(page.get("sourceMap"), f"{label}.sourceMap")
-        if page.get("layout") not in ARTICLE_LAYOUTS:
-            die(f"{label}.layout 无效：{page.get('layout')}")
-        if "heading" in page:
-            require_text(page.get("heading"), f"{label}.heading")
+        if mode == "summary":
+            reject_unknown(page, {"type", "point", "sourceMap", "layout", "heading", "blocks"}, label)
+            require_text(page.get("point"), f"{label}.point")
+            require_text(page.get("sourceMap"), f"{label}.sourceMap")
+            if page.get("layout") not in ARTICLE_LAYOUTS:
+                die(f"{label}.layout 无效：{page.get('layout')}")
+            if "heading" in page:
+                require_text(page.get("heading"), f"{label}.heading")
+        else:
+            reject_unknown(page, {"type", "sourceMap", "blocks"}, label)
+            require_text(page.get("sourceMap"), f"{label}.sourceMap")
         blocks = page.get("blocks")
         if not isinstance(blocks, list) or not blocks:
             die(f"{label}.blocks 至少需要一项")
         motions = 0
         for block_index, block in enumerate(blocks, start=1):
             validate_block(block, f"{label}.blocks[{block_index}]")
+            if mode == "article" and block.get("type") not in ARTICLE_FLOW_BLOCK_TYPES:
+                die(f"{label}.blocks[{block_index}] 的 {block.get('type')} 属于视觉摘要结构，article 模式不接受")
             motions += int(block.get("type") == "motion")
         if motions > 1:
             die(f"{label} 每页最多一个 motion")
@@ -427,6 +453,13 @@ def render_block(block: dict, spec_dir: Path) -> str:
     block_type = block["type"]
     if block_type == "paragraph":
         return f'<p class="paragraph {block.get("variant", "body")}">{rich_text(block["text"])}</p>'
+    if block_type == "heading":
+        level = block.get("level", 2)
+        return f'<h{level} class="article-heading">{rich_text(block["text"])}</h{level}>'
+    if block_type == "list":
+        tag = "ol" if block.get("ordered", False) else "ul"
+        items = "".join(f"<li>{rich_text(item)}</li>" for item in block["items"])
+        return f'<{tag} class="article-list">{items}</{tag}>'
     if block_type in {"note", "quote"}:
         return f'<div class="{block_type}">{rich_text(block["text"])}</div>'
     if block_type in {"image", "screenshot", "motion"}:
@@ -459,8 +492,15 @@ def render_cover(page: dict, spec: dict, spec_dir: Path, avatar: str | None, tar
     )
 
 
-def render_article(page: dict, page_index: int, spec_dir: Path, avatar: str | None) -> str:
+def render_article(page: dict, page_index: int, spec_dir: Path, avatar: str | None, mode: str) -> str:
     blocks = "".join(render_block(block, spec_dir) for block in page["blocks"])
+    if mode == "article":
+        return (
+            f'<section class="canvas rednote-article page article article-flow" data-target="rednote-{page_index:02d}" '
+            f'data-page="{page_index}" data-type="article" data-point="" '
+            f'data-source-map="{html.escape(page["sourceMap"], quote=True)}" data-layout="article-flow">'
+            f'<div class="blocks">{blocks}</div></section>'
+        )
     heading = page.get("heading") or page["point"]
     avatar_html = f'<img class="avatar" src="{avatar}" alt="">' if avatar else ""
     return (
@@ -496,13 +536,14 @@ def render_html(spec: dict, spec_path: Path) -> str:
     colors = {**THEME_PRESETS[preset]["colors"], **spec.get("theme", {})}
     theme_css = "\n".join(f"  --{re.sub(r'([A-Z])', lambda m: '-' + m.group(1).lower(), key)}: {value};" for key, value in colors.items())
     sections = [render_cover(spec["pages"][0], spec, spec_dir, avatar)]
-    sections.extend(render_article(page, index, spec_dir, avatar) for index, page in enumerate(spec["pages"][1:], start=2))
+    sections.extend(render_article(page, index, spec_dir, avatar, spec["mode"]) for index, page in enumerate(spec["pages"][1:], start=2))
     if spec.get("wechatCovers"):
         sections.append(render_wechat_cover(spec["wechatCovers"]["main"], spec, spec_dir, avatar, "wechat-main"))
         sections.append(render_wechat_cover(spec["wechatCovers"]["share"], spec, spec_dir, avatar, "wechat-share"))
     return (HTML_TEMPLATE.replace("{{TITLE}}", html.escape(spec["title"], quote=True))
             .replace("{{SYSTEM}}", spec["visualSystem"])
             .replace("{{PRESET}}", preset)
+            .replace("{{MODE}}", spec["mode"])
             .replace("{{THEME}}", theme_css)
             .replace("{{SECTIONS}}", "\n".join(sections)))
 
@@ -625,7 +666,7 @@ def label_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
 
 
 def build_contact_sheet(files: list[Path], output: Path) -> None:
-    thumb = (300, 400)
+    thumb = (300, 500)
     label_height = 34
     columns = min(4, len(files))
     rows = math.ceil(len(files) / columns)
@@ -635,7 +676,9 @@ def build_contact_sheet(files: list[Path], output: Path) -> None:
     font = label_font(20)
     for index, file in enumerate(files):
         with Image.open(file).convert("RGB") as image:
-            tile = ImageOps.fit(image, thumb, method=Image.Resampling.LANCZOS)
+            fitted = ImageOps.contain(image, thumb, method=Image.Resampling.LANCZOS)
+            tile = Image.new("RGB", thumb, "#F7F7F4")
+            tile.paste(fitted, ((thumb[0] - fitted.width) // 2, (thumb[1] - fitted.height) // 2))
         x = gap + (index % columns) * (thumb[0] + gap)
         y = gap + (index // columns) * (thumb[1] + label_height + gap)
         sheet.paste(tile, (x, y))
@@ -690,7 +733,7 @@ def hash_json(value: object) -> str:
 
 
 def global_spec_hash(spec: dict) -> str:
-    return hash_json({key: spec.get(key) for key in ("title", "author", "avatar", "visualSystem", "themePreset", "theme", "excludedContent", "wechatCovers")})
+    return hash_json({key: spec.get(key) for key in ("mode", "title", "author", "avatar", "visualSystem", "themePreset", "theme", "excludedContent", "wechatCovers")})
 
 
 def collect_source_assets(spec: dict, spec_path: Path) -> list[dict]:
@@ -717,10 +760,27 @@ def collect_source_assets(spec: dict, spec_path: Path) -> list[dict]:
 
 
 def page_map_from_spec(spec: dict) -> list[dict]:
-    return [
-        {"page": index, "type": page["type"], "point": page["point"], "sourceMap": page["sourceMap"], "layout": page["layout"], "pageSpecSha256": hash_json(page)}
-        for index, page in enumerate(spec["pages"], start=1)
-    ]
+    result: list[dict] = []
+    for index, page in enumerate(spec["pages"], start=1):
+        item = {
+            "page": index,
+            "type": page["type"],
+            "sourceMap": page["sourceMap"],
+            "pageSpecSha256": hash_json(page),
+        }
+        if index == 1 or spec["mode"] == "summary":
+            item["point"] = page["point"]
+            item["layout"] = page["layout"]
+        else:
+            item["layout"] = "article-flow"
+        result.append(item)
+    return result
+
+
+def page_canvas(spec: dict, page_number: int) -> dict:
+    if spec["mode"] == "article" and page_number > 1:
+        return CANVASES["rednote-article"]
+    return CANVASES["rednote"]
 
 
 def validate_partial_render(spec: dict, output_dir: Path, selected: list[int], source_assets: list[dict]) -> None:
@@ -803,6 +863,11 @@ def artifact(kind: str, path: Path, output_dir: Path, dimensions: tuple[int, int
     return item
 
 
+def image_dimensions(path: Path) -> tuple[int, int]:
+    with Image.open(path) as image:
+        return image.size
+
+
 def binary_version(command: str) -> str:
     result = subprocess.run([command, "-version"], capture_output=True, text=True, check=False)
     if result.returncode != 0:
@@ -819,6 +884,7 @@ def write_manifest(output_dir: Path, spec_path: Path, spec: dict, artifacts: lis
         "globalSpecSha256": global_spec_hash(spec),
         "sourceAssets": source_assets,
         "sourceAssetsSha256": hash_json(source_assets),
+        "mode": spec["mode"],
         "visualSystem": spec["visualSystem"],
         "themePreset": spec["themePreset"],
         "pageCount": len(spec["pages"]),
@@ -844,8 +910,9 @@ def render_static_targets(args: argparse.Namespace, spec: dict, html_path: Path,
         png_path = pages_dir / f"rednote_page_{page_number:02d}.png"
         jpg_path = pages_dir / f"rednote_page_{page_number:02d}.jpg"
         png_path.unlink(missing_ok=True)
-        render_png(chrome, html_path.as_uri(), f"rednote-{page_number:02d}", png_path, CANVASES["rednote"]["css"], args.timeout)
-        png_to_jpg(png_path, jpg_path, CANVASES["rednote"]["output"])
+        canvas = page_canvas(spec, page_number)
+        render_png(chrome, html_path.as_uri(), f"rednote-{page_number:02d}", png_path, canvas["css"], args.timeout)
+        png_to_jpg(png_path, jpg_path, canvas["output"])
         print(f"rendered page {page_number:02d}: {jpg_path}")
     files = [pages_dir / f"rednote_page_{index:02d}.jpg" for index in range(1, len(spec["pages"]) + 1)]
     missing = [str(file) for file in files if not file.is_file()]
@@ -853,7 +920,7 @@ def render_static_targets(args: argparse.Namespace, spec: dict, html_path: Path,
         die("局部重渲染前缺少其他页面：\n" + "\n".join(missing))
     contact = output_dir / "contact-sheet.jpg"
     build_contact_sheet(files, contact)
-    artifacts = [artifact("rednote-page", file, output_dir, CANVASES["rednote"]["output"]) for file in files]
+    artifacts = [artifact("rednote-page", file, output_dir, page_canvas(spec, index)["output"]) for index, file in enumerate(files, start=1)]
     artifacts.append(artifact("rednote-contact-sheet", contact, output_dir))
     return files, artifacts
 
@@ -904,9 +971,10 @@ def render_motion_targets(args: argparse.Namespace, motions: list[dict], layout:
         shutil.copy2(page_files[motion["page"] - 1], key_photo)
         compose_motion_video(ffmpeg, key_photo, motion, geometry, movie)
         package, asset_id = package_live_photo(makelive, key_photo, movie)
+        live_dimensions = image_dimensions(key_photo)
         artifacts.extend([
-            artifact("live-photo-key", key_photo, output_dir, CANVASES["rednote"]["output"]),
-            artifact("live-photo-mov", movie, output_dir, CANVASES["rednote"]["output"]),
+            artifact("live-photo-key", key_photo, output_dir, live_dimensions),
+            artifact("live-photo-mov", movie, output_dir, live_dimensions),
             artifact("live-photo-package", package, output_dir),
         ])
         records.append({
@@ -952,7 +1020,7 @@ def run(args: argparse.Namespace) -> None:
         artifacts.insert(0, artifact("single-file-html", html_path, output_dir))
         tools = {"chrome": binary_version(chrome), **media_tools}
         write_manifest(output_dir, spec_path, spec, artifacts, selected_pages, motion_records, tools, source_assets)
-    print(json.dumps({"outputDir": str(output_dir), "pages": len(spec["pages"]), "visualSystem": spec["visualSystem"], "themePreset": spec["themePreset"]}, ensure_ascii=False))
+    print(json.dumps({"outputDir": str(output_dir), "pages": len(spec["pages"]), "mode": spec["mode"], "visualSystem": spec["visualSystem"], "themePreset": spec["themePreset"]}, ensure_ascii=False))
 
 
 def main() -> None:
@@ -984,6 +1052,7 @@ body { background:#D8D8D4; color:var(--ink); font-family:"PingFang SC","Hiragino
 .deck { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:32px; padding:32px; }
 .canvas { position:relative; overflow:hidden; flex:none; background:var(--paper); color:var(--ink); }
 .rednote { width:750px; height:1000px; }
+.rednote-article { width:720px; height:1200px; }
 .wechat-main { width:1050px; height:450px; }
 .wechat-share { width:540px; height:540px; }
 .page { padding:58px 62px 52px; }
@@ -1044,6 +1113,34 @@ code { padding:2px 7px; background:var(--paper-alt); font-family:ui-monospace,SF
 .layout-data .cards { grid-template-columns:repeat(3,1fr); }
 .layout-closing h2 { font-size:58px; }
 .layout-closing .quote { margin-top:50px; font-size:36px; }
+.mode-article .article-flow { padding:58px 56px 70px; background:#F7F7F7; color:#4A4A4A; font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; }
+.mode-article .article-flow::before { background:none; }
+.mode-article .article-flow .blocks { display:block; }
+.mode-article .article-flow .blocks > :last-child { margin-bottom:0; }
+.mode-article .article-flow .paragraph,
+.mode-article .article-flow .paragraph.lead,
+.mode-article .article-flow .paragraph.big,
+.mode-article .article-flow .paragraph.muted { margin:0 0 27px; color:#4A4A4A; font-size:24px; line-height:1.72; font-weight:400; }
+.mode-article .article-flow .article-heading { position:relative; margin:38px 0 28px; padding:0 38px 20px 0; border-bottom:2px solid #303030; color:#303030; font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; font-size:34px; line-height:1.24; font-weight:750; }
+.mode-article .article-flow .article-heading:first-child { margin-top:0; }
+.mode-article .article-flow .article-heading::after { content:"＋"; position:absolute; right:0; bottom:13px; font-size:28px; font-weight:400; }
+.mode-article .article-flow h3.article-heading { border-bottom:0; font-size:28px; }
+.mode-article .article-flow h3.article-heading::after { display:none; }
+.mode-article .article-flow .article-list { margin:4px 0 30px; padding:0; list-style:none; counter-reset:item; }
+.mode-article .article-flow .article-list li { position:relative; margin:0 0 24px; padding:0 0 0 34px; border-left:2px solid #3F3F3F; font-size:24px; line-height:1.65; }
+.mode-article .article-flow .article-list li::before { content:"＋"; position:absolute; left:-5px; top:-2px; transform:translateX(-100%); color:#3F3F3F; }
+.mode-article .article-flow ol.article-list { counter-reset:article-item; }
+.mode-article .article-flow ol.article-list li::before { content:counter(article-item) "."; counter-increment:article-item; }
+.mode-article .article-flow .image-block,
+.mode-article .article-flow .screenshot-block,
+.mode-article .article-flow .motion-block { margin:10px 0 30px; padding:0; border:0; background:transparent; }
+.mode-article .article-flow .image-block img,
+.mode-article .article-flow .screenshot-block img,
+.mode-article .article-flow .motion-block img { border:0; background:transparent; }
+.mode-article .article-flow .screenshot-block.chrome-browser::before { display:none; }
+.mode-article .article-flow .caption { margin-top:10px; color:#777; font-size:16px; line-height:1.5; }
+.mode-article .article-flow .note,
+.mode-article .article-flow .quote { margin:8px 0 30px; padding:0 0 0 22px; border:0; border-left:3px solid #444; background:transparent; color:#3F3F3F; font-size:24px; line-height:1.65; font-weight:400; }
 .avatar { position:absolute; right:34px; bottom:26px; width:56px; height:60px; object-fit:contain; }
 .cover { padding:0; }
 .cover-image { display:block; width:100%; height:430px; object-fit:cover; }
@@ -1076,7 +1173,7 @@ body.single .canvas { display:none; }
 body.single .canvas.selected { display:block; }
 </style>
 </head>
-<body class="visual-{{SYSTEM}} theme-{{PRESET}}">
+<body class="mode-{{MODE}} visual-{{SYSTEM}} theme-{{PRESET}}">
 <main class="deck">{{SECTIONS}}</main>
 <script>
 (function () {
@@ -1085,7 +1182,7 @@ body.single .canvas.selected { display:block; }
   }
   document.querySelectorAll('.canvas').forEach(function (canvas) {
     canvas.dataset.overflow = String(canvas.scrollHeight > canvas.clientHeight + 1 || canvas.scrollWidth > canvas.clientWidth + 1);
-    var textNodes = Array.from(canvas.querySelectorAll('h1,h2,h3,p,.note,.quote,.caption,.kicker,.cover-sub,.wechat-sub,.cover-sign,.chip'));
+    var textNodes = Array.from(canvas.querySelectorAll('h1,h2,h3,p,li,.note,.quote,.caption,.kicker,.cover-sub,.wechat-sub,.cover-sign,.chip'));
     var fonts = textNodes.filter(directText).map(function (node) { return parseFloat(getComputedStyle(node).fontSize) || 999; });
     canvas.dataset.minFont = String(fonts.length ? Math.min.apply(null, fonts) : 999);
     var title = canvas.querySelector('h1,h2');
