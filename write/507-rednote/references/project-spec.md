@@ -1,4 +1,4 @@
-# Rednote Visual Summary Project Spec
+# Rednote Project Spec
 
 `rednote-project.json` 是脚本消费的机器规格。完整结构约束见 `../assets/rednote-project.schema.json`。
 
@@ -47,8 +47,8 @@
 - `visualSystem`：`editorial` 或 `swiss`，整组只使用一套。
 - `themePreset`：必须属于当前视觉系统；可选值见 [`styles.md`](styles.md)。
 - `theme`：只覆盖七个颜色变量，不改变视觉系统和页面结构。
-- `excludedContent`：必填数组，可以为空；每项记录未进入图卡的重要内容及去向。
-- `pages`：第一项是封面，后续每项是一张显式观点页，不再自动做长文分页。
+- `excludedContent`：必填数组。全文模式必须为空；摘要模式每项记录未进入图卡的重要内容及去向。
+- `pages`：第一项是封面，后续每项是一张显式内容页。渲染器不自动改写或分页；全文模式由 Agent 先按原文顺序形成显式连续页，摘要模式形成显式观点页。
 - `wechatCovers`：可选；出现时必须同时提供 `main` 与 `share`。
 
 旧 `layoutMode` 和 `stylePreset` 已移除。渲染器遇到旧字段会明确失败，不静默兼容。
@@ -57,17 +57,19 @@
 
 封面与正文都必须填写：
 
-- `point`：本页唯一观点；封面填写中心判断与阅读承诺。
-- `sourceMap`：观点和关键证据的来源位置。
+- `point`：摘要模式填写本页唯一观点；全文模式填写本页连续段落的阅读任务，不替代原文。
+- `sourceMap`：当前页原文段落、观点和关键证据的来源位置。
 - `layout`：当前页面结构。
 
 封面布局：`type`、`split`、`image-led`。
 
 正文布局：`statement`、`evidence`、`comparison`、`steps`、`list`、`data`、`closing`。
 
-`heading` 可以比 `point` 更适合读者阅读，但不能引入第二个观点。每个正文页必须有至少一个 `blocks` 内容块。
+`heading` 可以比 `point` 更适合读者阅读。摘要模式不能引入第二个观点；全文模式只能使用原小节标题或不改变论证的分页导读，不能拿新标题改写原意。每个正文页必须有至少一个 `blocks` 内容块。
 
 ## 未入选内容
+
+全文模式不允许未入选内容，`excludedContent` 必须为 `[]`。以下去向只适用于摘要模式：
 
 `excludedContent[].destination` 使用固定值：
 
