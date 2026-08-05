@@ -21,7 +21,8 @@ flowchart TD
     ready -->|"先追踪调查"| investigation["507-issue<br/>investigation"]
     ready -->|"直接执行工单"| issue["507-issue<br/>ready"]
     ready -->|"轻任务无需载体"| implement["正常实现 / 专门实现 skill"]
-    investigation -->|"explore / research / prototype / grill 后原位升级"| issue
+    investigation -->|"证据充分，需耐久产品规格"| prd
+    investigation -->|"无需独立 PRD，原位升级"| issue
     prd --> issue
     prd --> implement
     issue --> implement
@@ -57,11 +58,11 @@ flowchart TD
 
 ### `507-prd` 产品需求文档
 
-把已确认的具体产品需求沉淀成 PRD（产品需求文档），回答解决什么问题、给谁、表现为什么行为、怎么验收。测试接缝由 agent 根据现有公开接口和用户路径自行设计并告知用户；只有它改变产品取舍时才返回 grill。轻任务可跳过。
+把已确认的具体产品需求沉淀成 PRD（产品需求文档），回答解决什么问题、给谁、表现为什么行为、怎么验收。它既可承接 grill，也可承接 investigation issue 收敛后的结论；先更新项目既有规格入口，采用编号文档标准且没有既有入口时默认进入 `doc/40-版本实施方案/`。测试接缝由 agent 根据现有公开接口和用户路径自行设计并告知用户；只有它改变产品取舍时才返回 grill。轻任务可跳过。
 
 ### `507-issue` GitHub Issue
 
-同一 issue 支持 `draft → investigation → ready` 生命周期：调查态先承载问题、未知和证据动作，通过评论保留调查轨迹并持续更新正文；事实与决策充分后原位升级为 ready，才成为可直接领取的执行合同。每个远程状态都按仓库规范设置并核验标签与负责人。
+同一 issue 支持 `draft → investigation → ready` 生命周期：调查态先承载问题、未知和证据动作，通过评论保留调查与决定变化历史并持续更新正文；事实与决策充分后原位升级为 ready，才成为可直接领取的执行合同。已有 PRD / 实施方案时，issue 只保留领取摘要并回链唯一完整规格。每个远程状态都按仓库规范设置并核验标签与负责人。
 
 ## 专门实现任务
 
@@ -87,7 +88,7 @@ flowchart TD
 
 ### `507-map` 项目地图
 
-以当前代码为证据，创建或校准根/分层 README、`doc/README.md` 和地图结构。它读取代码但只修改地图文档，不接管业务代码、术语、决策、路线图或变更日志。
+以当前代码为证据，创建或校准根/分层 README、`doc/README.md` 和地图结构。它维护文档职责、当前权威、PRD / 实施方案入口与归档边界，但只修改地图文档，不接管业务代码、术语、决策、路线图或变更日志。
 
 ### `507-review` 交付审查
 
