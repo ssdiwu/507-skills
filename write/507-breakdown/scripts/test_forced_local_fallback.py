@@ -11,7 +11,8 @@ env={**os.environ,"MiniMax_API_KEY":""}
 r=subprocess.run([sys.executable,str(S/"video_pull.py"),"run","--video",str(video),"--output-dir",str(ws),"--title-hint","fb","--force-local-fallback"],capture_output=True,text=True,env=env)
 # image step must fail because key is empty
 assert r.returncode!=0,(r.stdout+r.stderr)[-500:]
-manifest=json.load(open(next(ws.glob("*/raw/video_manifest.json"))))
+manifest_path=next(ws.glob(".video-pull-candidate-*/fb/raw/video_manifest.json"))
+manifest=json.loads(manifest_path.read_text(encoding="utf-8"))
 assert manifest.get("analysisMode")=="forced_local_fallback",manifest
 assert manifest.get("status")!="video_completed"
 print("PASS: forced-local-fallback skips M3, requires image key")

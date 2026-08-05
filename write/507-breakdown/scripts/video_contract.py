@@ -82,6 +82,16 @@ class VideoManifest:
         self.data["updatedAt"] = utc_now()
         self.path.write_text(json.dumps(self.data, ensure_ascii=False, indent=2), encoding="utf-8")
 
+    def workspace_ref(self, path: str | Path) -> str:
+        candidate = Path(path)
+        try:
+            return str(candidate.relative_to(self.workspace))
+        except ValueError:
+            return str(candidate)
+
+    def resolve_path(self, value: str | Path) -> Path:
+        return self.workspace / Path(value)
+
     def set_status(self, status: str) -> None:
         self.data["status"] = status
         self.flush()
@@ -95,7 +105,7 @@ class VideoManifest:
     def step(self, name: str, status: str, detail: str, output: str | None = None, **extra: Any) -> None:
         result: dict[str, Any] = {"status": status, "detail": detail, "at": utc_now()}
         if output:
-            result["output"] = output
+            result["output"] = self.workspace_ref(output)
         result.update(extra)
         self.data.setdefault("steps", {})[name] = result
         self.flush()

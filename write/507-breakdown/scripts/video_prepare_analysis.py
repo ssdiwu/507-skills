@@ -28,7 +28,7 @@ def main()->int:
  (ws/VIDEO_META).write_text(f"# Video Meta\n\n- `title`：{title}\n- status: `{STATUS_ANALYSIS_READY}`\n- analysis_mode: `{m.data.get('analysisMode')}`\n- semantic_source: `{m.data.get('semanticSource')}`\n- manifest: `raw/video_manifest.json`\n",encoding="utf-8")
  (ws/VIDEO_BREAKDOWN_MD).write_text("# Video Breakdown\n\n> 最终结论必须由本地 ASR、OCR、PTS 帧和 scene-cut 证据核验；M3 时间与顺序仅为参考。\n\n## 一句话主旨\n\n（待填写）\n\n## 时间轴拆解\n\n（待填写）\n",encoding="utf-8")
  (ws/VIDEO_BREAKDOWN_JSON).write_text(json.dumps({"videoType":"","oneLineThesis":"","structure":[],"visualLanguage":{"camera":[],"editing":[],"subtitle":[],"ui":[]},"segments":[]},ensure_ascii=False,indent=2),encoding="utf-8")
- brief={"semanticReference":understanding,"localization":locations,"frameObservations":observations,"transcriptPath":str(transcript_path)}
+ brief={"semanticReference":understanding,"localization":locations,"frameObservations":observations,"transcriptPath":m.workspace_ref(transcript_path)}
  out=analysis/"video_analysis_brief.json";out.write_text(json.dumps(brief,ensure_ascii=False,indent=2),encoding="utf-8")
  (analysis/"video_analysis_brief.md").write_text("# Video Analysis Brief\n\n> M3 语义参考与本地证据索引；不直接等于最终拉片。\n\n```json\n"+json.dumps(brief,ensure_ascii=False,indent=2)+"\n```\n",encoding="utf-8")
  m.step("video_analysis_brief","success","已生成最终分析输入",str(out));m.set_status(STATUS_ANALYSIS_READY);print(out);return 0

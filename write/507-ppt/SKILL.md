@@ -2,7 +2,7 @@
 name: 507-ppt
 description: 原创视觉幻灯片制作：把已收口的逐页内容用可组合页面组件与设计令牌生成可编辑 .pptx 或独立单文件 HTML，并完成双载体验证。Use when user mentions 制作 PPT、生成 pptx、做成幻灯片、做 HTML deck、网页演示、slides rendering、presentation visual design、瑞士风 PPT、杂志风 PPT；内容仍需编排、讲稿或逐页稿未收口时使用 507-stage，不使用本 skill。
 license: MIT
-compatibility: 生成 .pptx 需要已可用的 officecli；生成 HTML 需要可写文件系统。HTML 的浏览器截图、交互和动态验证需要本机 Chrome/Chromium 或等价浏览器。
+compatibility: 生成 .pptx（PowerPoint 演示文稿）及逐页截图内容验证需要已可用的 officecli（办公文档命令行工具）与 Pillow（图像处理库）；生成 HTML（网页）需要可写文件系统。HTML（网页）的浏览器截图、交互和动态验证需要本机 Chrome/Chromium（浏览器）或等价浏览器。
 ---
 
 # 视觉幻灯片（507-ppt）
@@ -47,7 +47,7 @@ compatibility: 生成 .pptx 需要已可用的 officecli；生成 HTML 需要可
 - 每页写入 speaker notes；图片写入有意义的 alt text；
 - 分别设置中文、拉丁和等宽字体角色；
 - 按风格合同制作，不将 HTML 结构机械翻译为 PowerPoint；
-- `save` 或 `close` 后运行 schema、format issues、notes、alt text 与逐页截图检查。
+- 只在同目录候选文件中生成，执行 `close`（关闭）后运行 `schema`（结构模式）、`format issues`（格式问题）、`notes`（讲者备注）、`alt text`（替代文本）与逐页截图内容检查；全部通过才原子替换已有 `.pptx`（PowerPoint 演示文稿），失败时保留上一版。
 
 PPTX 规则、命令、样例与验证参考 [PPTX recipe](references/pptx-recipes.md)。
 

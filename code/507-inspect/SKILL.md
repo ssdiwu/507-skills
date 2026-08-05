@@ -3,7 +3,7 @@ name: 507-inspect
 description: "不围绕某次交付 diff，只读检查代码库的模块形状、接缝与架构摩擦，产出证据候选报告交给 507-simplify。Use when user says 架构审查, 代码体检, 找重构机会, 浅模块改深, 找接缝, inspect architecture, codebase architecture review, refactor opportunity. 明确变更范围的交付 review 使用 507-review。"
 ---
 
-# 架构审查（inspect）
+# inspect（架构审查）
 
 只读检查代码库，找出真实的架构摩擦与“加深机会”：让小接口隐藏更多行为，减少调用者跳转，集中变更并改善可测性。`507-inspect` 只报告、不修改；完整候选报告交给 `507-simplify`，由后者建立行为基线、验证、修改或带证据关闭。
 
@@ -43,8 +43,9 @@ description: "不围绕某次交付 diff，只读检查代码库的模块形状�
 - 理解一个概念必须在多个浅模块间反复跳转；
 - 接口与实现几乎一样复杂，调用者承担了本应隐藏的流程；
 - 为了测试硬抽纯函数，但真正风险藏在调用顺序或接缝组合；
-- 模块跨接缝泄漏内部假设，或 adapter 没有真实变化；
+- 模块跨接缝泄漏内部假设，或 `adapter`（适配器）没有真实变化；
 - 重复、透传、职责分散导致错误修复无法集中；
+- 经指定范围、调用链、配置入口与存量数据检查确认无真实消费者的旧内部入口、兼容分支、重复配置或永久双轨仍在增加维护成本；
 - 关键路径没有测试，或按当前接口难以建立可靠验证信号。
 
 使用删除测试：删除模块后，若复杂度消失且没有在调用处重现，它可能只是透传；若复杂度会在多个调用处重现，它可能正在提供深度和杠杆。不要机械套规则。
@@ -54,25 +55,26 @@ description: "不围绕某次交付 diff，只读检查代码库的模块形状�
 每个候选一张卡，至少包含：
 
 ```md
-### Candidate <稳定编号>: <简洁标题>
-- files_and_modules: <涉及文件、符号、module 与调用者>
-- code_observation: <可定位的代码事实、调用路径、测试事实或复现现象>
-- confidence: <High | Medium | Low>
-- confidence_basis: <为何达到该等级；仍缺什么证据>
-- friction: <调用者或维护者承受的具体摩擦>
-- deletion_test: <删除后复杂度消失，还是会在调用处重现；证据是什么>
-- seam_observation: <现有 seam/adapter 与真实变化；没有则写无>
-- deepening_direction: <白话描述可探索的内部加深方向，不指定实现步骤>
-- locality_and_leverage: <预期如何集中修改、复用行为、改善测试>
-- public_behavior_constraint: <必须保持的公开 API、契约和可观察行为>
-- design_constraints: <已经确认的依赖、边界和不可违反条件>
-- decision_status: <工程细节可自行收口 / 尚需用户决策；需要时引用 grill 共识>
-- verification_gap: <需要 `507-simplify` 建立的基线或验证信号>
-- recommendation: <Strong | Worth exploring | Speculative>
-- status: <待 507-simplify 验证>
+### Candidate（候选项） <稳定编号>: <简洁标题>
+- files_and_modules（文件与模块）: <涉及文件、符号、module（模块）与调用者>
+- code_observation（代码观察）: <可定位的代码事实、调用路径、测试事实或复现现象>
+- confidence（置信度）: <High（高） | Medium（中） | Low（低）>
+- confidence_basis（置信依据）: <为何达到该等级；仍缺什么证据>
+- friction（摩擦）: <调用者或维护者承受的具体摩擦>
+- deletion_test（删除测试）: <删除后复杂度消失，还是会在调用处重现；证据是什么>
+- seam_observation（接缝观察）: <现有 seam（接缝）/adapter（适配器）与真实变化；没有则写无>
+- consumer_evidence（消费者证据）: <检查范围、入口类型与当前消费者；确认无消费者时写清检索范围和结果>
+- deepening_direction（加深方向）: <白话描述可探索的内部加深方向，不指定实现步骤>
+- locality_and_leverage（局部性与杠杆）: <预期如何集中修改、复用行为、改善测试>
+- public_behavior_constraint（公开行为约束）: <必须保持的公开 API（接口）、契约和可观察行为>
+- design_constraints（设计约束）: <已经确认的依赖、边界和不可违反条件>
+- decision_status（决策状态）: <工程细节可自行收口 / 尚需用户决策；需要时引用 grill（决策追问）共识>
+- verification_gap（验证缺口）: <需要 `507-simplify` 建立的基线或验证信号>
+- recommendation（推荐等级）: <Strong（强推荐） | Worth exploring（值得探索） | Speculative（推测性）>
+- status（状态）: <待 `507-simplify` 验证>
 ```
 
-`deepening_direction` 只描述方向，不在 `507-inspect` 阶段拍板具体接口或修改方案。任何“收益”必须连接到 locality、leverage、depth 或验证面，不能只写“更优雅”。
+`deepening_direction`（加深方向）只描述方向，不在 `507-inspect` 阶段拍板具体接口或修改方案。任何“收益”必须连接到 `locality`（局部性）、`leverage`（杠杆）、`depth`（深度）或验证面，不能只写“更优雅”。
 
 ## 工作流程
 
@@ -126,6 +128,7 @@ description: "不围绕某次交付 diff，只读检查代码库的模块形状�
 - [ ] 全部探索都在声明范围内，工作区没有写入。
 - [ ] 每张卡都有可定位的代码观察证据。
 - [ ] 每张卡都有置信等级及等级依据。
+- [ ] 涉及旧入口、兼容路径或双轨的卡片已有消费者证据。
 - [ ] 每张卡都说明公开行为不变量、设计约束、决策状态和 `507-simplify` 所需验证缺口。
 - [ ] 报告包含全部候选、关闭/不建议项及未检查范围。
 - [ ] 已明确把完整报告交给 `507-simplify`，没有把 `507-inspect` 变成修改入口。

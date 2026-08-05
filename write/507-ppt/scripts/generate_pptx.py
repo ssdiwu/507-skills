@@ -4,7 +4,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
 from design_system import DIRECTIONS, direction, validate_deck
@@ -78,10 +81,66 @@ def render_slide(file: Path, page: int, slide: dict, theme: dict[str, str], deck
         add_shape(file, page, slide["body"], "13cm", "6cm", "11cm", "2.4cm", 20, theme["ink"], theme)
     else:
         run("set", str(file), f"/slide[{page}]", "--prop", f"background={theme['ink']}")
-        add_shape(file, page, "“", "1cm", "1cm", "3cm", "2.5cm", 80, theme["accent"], theme, font="title")
+        add_shape(file, page, "“", "1cm", "1cm", "3cm", "3cm", 80, theme["accent"], theme, font="title")
         add_shape(file, page, slide["quote"], "3cm", "6cm", "22cm", "3.5cm", 38, theme["paper"], theme, font="title", bold=True)
         add_shape(file, page, slide["attribution"], "3cm", "12cm", "12cm", ".5cm", 12, theme["accent"], theme)
     add_note(file, page, slide.get("notes") or "无讲者备注")
+
+
+def render_deck(data: dict, theme: dict[str, str], output: Path) -> None:
+    run("create", str(output))
+    for _ in data["slides"]:
+        run("add", str(output), "/", "--type", "slide", "--prop", f"background={theme['paper']}")
+    total = len(data["slides"])
+    for page, slide in enumerate(data["slides"], start=1):
+        render_slide(output, page, slide, theme, data["deck"]["title"], total)
+    run("save", str(output))
+    run("close", str(output))
+
+
+def close_quietly(path: Path) -> None:
+    subprocess.run(
+        ["officecli", "close", str(path)],
+        check=False,
+        text=True,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+
+
+def validate_candidate(candidate: Path, input_path: Path, style: str) -> None:
+    screenshots = candidate.parent / "screenshots"
+    subprocess.run(
+        [
+            sys.executable,
+            str(Path(__file__).with_name("validate_pptx.py")),
+            str(candidate),
+            "--fixture",
+            str(input_path),
+            "--style",
+            style,
+            "--screenshots-dir",
+            str(screenshots),
+        ],
+        check=True,
+        text=True,
+    )
+
+
+def publish_pptx(data: dict, input_path: Path, style: str, output: Path) -> None:
+    if output.suffix.lower() != ".pptx":
+        raise SystemExit("输出路径必须以 .pptx 结尾")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    theme = direction(style)
+    with tempfile.TemporaryDirectory(prefix=f".{output.stem}-candidate-", dir=output.parent) as temp:
+        candidate = Path(temp) / output.name
+        try:
+            render_deck(data, theme, candidate)
+            validate_candidate(candidate, input_path, style)
+            os.replace(candidate, output)
+        finally:
+            if candidate.exists():
+                close_quietly(candidate)
 
 
 def main() -> None:
@@ -96,17 +155,7 @@ def main() -> None:
         raise SystemExit("invalid mature slide content:\n- " + "\n- ".join(errors))
     if not WORKBENCH.is_file():
         raise SystemExit("local workbench asset missing")
-    theme = direction(args.style)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    if args.output.exists():
-        args.output.unlink()
-    run("create", str(args.output))
-    for _ in data["slides"]:
-        run("add", str(args.output), "/", "--type", "slide", "--prop", f"background={theme['paper']}")
-    total = len(data["slides"])
-    for page, slide in enumerate(data["slides"], start=1):
-        render_slide(args.output, page, slide, theme, data["deck"]["title"], total)
-    run("save", str(args.output))
+    publish_pptx(data, args.input, args.style, args.output)
 
 
 if __name__ == "__main__":

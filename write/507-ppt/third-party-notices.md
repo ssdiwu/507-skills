@@ -18,9 +18,9 @@
 
 | 名称 | 版本 | 来源 | 许可证状态 | 用途 | notice |
 | --- | --- | --- | --- | --- | --- |
-| `officecli` | 1.0.139 | `https://d.officecli.ai`（官方安装源） | 商业 CLI，未附带公开 OSS LICENSE 文件；作为外部工具调用 | 生成/验证 `.pptx`（schema、issues、notes、alt、截图） | 产物不依赖；`.pptx` 可在标准 Office 编辑器独立打开 |
+| `officecli`（办公文档命令行工具） | 1.0.143 | `https://d.officecli.ai`（官方安装源） | 商业 CLI（命令行工具），未附带公开 OSS LICENSE（开源软件许可证）文件；作为外部工具调用 | 生成/验证 `.pptx`（PowerPoint 演示文稿）的 schema（结构模式）、issues（问题）、notes（讲者备注）、alt（替代文本）与截图 | 产物不依赖；`.pptx`（PowerPoint 演示文稿）可在标准 Office（办公软件）编辑器独立打开 |
 | `browser-act-cli` | 0.1.30 | PyPI `browser-act-cli`、`https://www.browseract.com` | PyPI METADATA 未声明 License 字段；作为外部 CLI 调用 | HTML 浏览器交互与 a11y 断言 | 产物不依赖；HTML 可离线打开 |
-| Pillow | 12.1.0 | PyPI `Pillow` | HPND / PIL License（本地安装元数据） | 生成四象限 contact sheet；不嵌入 HTML/PPTX | 仅开发工具；不随产物分发 |
+| Pillow（图像处理库） | 12.1.0 | PyPI（Python 包索引）`Pillow`（安装包） | HPND / PIL License（许可证，本地安装元数据） | 检查逐页截图内容并生成四象限 contact sheet（联系表）；不嵌入 HTML（网页）/PPTX（PowerPoint 演示文稿） | 仅开发工具；不随产物分发 |
 | Google Chrome | 150.0.7871.125 | 系统浏览器 | Google 专有软件 | HTML 截图与退化/响应式测试 | 产物不依赖；HTML 可离线打开 |
 
 不明许可证的项不得内嵌进产物；上表工具仅作环境工具使用，不改变交付物的许可证状态。

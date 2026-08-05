@@ -31,11 +31,16 @@ VIDEO_ASR_PYTHON=/path/to/python python3 video_pull.py run --video <url-or-path>
 
 脚本不读取、source 或打印 `~/.zshrc`。M3 失败默认使拉片失败；`--force-local-fallback` 只跳过 M3 **整段视频理解**，图片理解仍需 `MiniMax_API_KEY`。
 
+`video_pull.py run`（视频拉片运行命令）在隐藏候选父目录中生成同名工作区，清单中的工作区内路径统一保存为相对路径。候选达到 `video_analysis_ready`（视频分析就绪）后才替换正式工作区；失败时正式工作区不变，错误会报告保留的候选路径。`--force`（强制覆盖参数）遇到 `video_completed`（视频完成）工作区时拒绝覆盖。
+
 ## 验证
 
 ```bash
 # ASR Python 选择和依赖状态回归
 python3 test_video_pull_runtime.py
+
+# --force 候选生成、安全切换和完成包保护
+python3 test_video_pull_force.py
 
 # 静态合成 M3 契约 fixture 校验（无需 API key）
 python3 test_understanding_fixtures.py

@@ -45,6 +45,8 @@ python3 scripts/video_pull.py run --video <url-or-path> --output-dir 05-视频�
 python3 scripts/video_validate_breakdown.py --workspace 05-视频拉片/<video-id>
 ```
 
+流水线先在同一输出目录的隔离候选工作区运行，达到 `video_analysis_ready`（视频分析就绪）后才切换到正式路径；失败时已有工作区保持不变，候选目录作为诊断证据报告。`--force`（强制覆盖参数）不覆盖已经是 `video_completed`（视频完成）的完成包，需要重做时使用新的 `--title-hint`（标题提示参数）。
+
 MiniMax-M3 为默认必经步骤。显式 `--force-local-fallback` 只跳过 M3 **整段视频理解**，但图片理解仍需 `MiniMax_API_KEY`；未导出密钥时无法完成拉片。
 
 设计与真实 smoke evidence 见 [`doc/README.md`](doc/README.md)。

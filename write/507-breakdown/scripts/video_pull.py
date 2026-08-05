@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Public orchestrator for the required video breakdown lifecycle."""
 from __future__ import annotations
-import argparse,json,os,shutil,subprocess,sys
+import argparse,json,os,shutil,subprocess,sys,tempfile
 from pathlib import Path
-from video_contract import (RAW_ASR_DIR,RAW_SCENECUT_DIR,RAW_VIDEO_DIR,STATUS_ACQUIRED,STATUS_FAILED,STATUS_SEMANTIC_FAILED,VideoManifest,ensure_dir,video_hash)
+from video_contract import (RAW_ASR_DIR,RAW_SCENECUT_DIR,RAW_VIDEO_DIR,STATUS_ACQUIRED,STATUS_ANALYSIS_READY,STATUS_COMPLETED,STATUS_FAILED,STATUS_SEMANTIC_FAILED,VideoManifest,ensure_dir,video_hash)
 
 def slugify(value:str)->str:
  import re
@@ -58,6 +58,29 @@ def scene_cut(video:Path,manifest:VideoManifest)->None:
  manifest.step("video_scene_cut","success",f"scene-cut 索引完成，共 {len(frames)} 帧（含 PTS）",str(idx_path))
 def call(name:str,ws:Path,*extra:str)->None:
  run([sys.executable,str(Path(__file__).with_name(name)),"--workspace",str(ws),*extra])
+def workspace_status(ws:Path)->str|None:
+ path=ws/"raw"/"video_manifest.json"
+ if not path.is_file():return None
+ try:return json.loads(path.read_text(encoding="utf-8")).get("status")
+ except (OSError,json.JSONDecodeError):return None
+def remove_path(path:Path)->None:
+ if path.is_dir() and not path.is_symlink():shutil.rmtree(path)
+ else:path.unlink(missing_ok=True)
+def promote_workspace(candidate:Path,target:Path)->None:
+ backup_root=Path(tempfile.mkdtemp(prefix=".video-pull-backup-",dir=target.parent));backup=backup_root/target.name
+ moved_old=False;installed=False
+ try:
+  if target.exists():os.replace(target,backup);moved_old=True
+  os.replace(candidate,target);installed=True
+ except BaseException as publish_error:
+  try:
+   if installed and target.exists():remove_path(target)
+   if moved_old and backup.exists():os.replace(backup,target)
+  except BaseException as rollback_error:
+   raise RuntimeError(f"候选工作区发布失败且旧工作区恢复失败；备份保留在：{backup}") from rollback_error
+  shutil.rmtree(backup_root,ignore_errors=True)
+  raise publish_error
+ shutil.rmtree(backup_root,ignore_errors=True)
 def main()->int:
  p=argparse.ArgumentParser(description="视频拉片流水线")
  sub=p.add_subparsers(dest="command");r=sub.add_parser("run");r.add_argument("--video",required=True);r.add_argument("--output-dir",default="./05-视频拉片");r.add_argument("--title-hint");r.add_argument("--lang");r.add_argument("--asr-python",help="运行 faster-whisper 的 Python 可执行文件");r.add_argument("--force",action="store_true");r.add_argument("--force-local-fallback",action="store_true")
@@ -67,23 +90,25 @@ def main()->int:
   python=asr_python_candidate(a.asr_python);available=asr_python_available(python)
   print({"ffmpeg":shutil.which("ffmpeg") is not None,"ffprobe":shutil.which("ffprobe") is not None,"yt_dlp":shutil.which("yt-dlp") is not None,"tesseract":shutil.which("tesseract") is not None,"asr_python":str(python),"asr_python_exists":available,"faster_whisper":python_has_module(python,"faster_whisper") if available else False,"minimax_key":bool(os.getenv("MiniMax_API_KEY"))});return 0
  if a.command!="run":p.print_help();return 1
- root=Path(a.output_dir).expanduser().resolve();ws=root/slugify(a.title_hint or Path(a.video).stem)
+ root=Path(a.output_dir).expanduser().resolve();root.mkdir(parents=True,exist_ok=True);ws=root/slugify(a.title_hint or Path(a.video).stem)
  if ws.exists() and not a.force: raise SystemExit(f"工作区已存在：{ws}；使用 --force 覆盖")
- if ws.exists():shutil.rmtree(ws)
- ensure_dir(ws/"raw");m=VideoManifest(ws);m.data["videoInput"]=a.video;m.flush()
+ if ws.exists() and workspace_status(ws)==STATUS_COMPLETED: raise SystemExit(f"工作区已是 video_completed，不能用 video_analysis_ready 候选覆盖：{ws}；请使用新的 --title-hint")
+ candidate_parent=Path(tempfile.mkdtemp(prefix=".video-pull-candidate-",dir=root));candidate_ws=candidate_parent/ws.name
+ ensure_dir(candidate_ws/"raw");m=VideoManifest(candidate_ws);m.data["videoInput"]=a.video;m.flush()
+ if a.force_local_fallback:m.set_mode("forced_local_fallback","local_frames_asr",["未使用 MiniMax-M3 整段语义理解"])
  try:
-  video=acquire(a.video,m);m.data["videoPath"]=str(video);m.data["videoHash"]=video_hash(video);m.set_status(STATUS_ACQUIRED);m.step("video_acquisition","success","视频取得",str(video))
+  video=acquire(a.video,m);m.data["videoPath"]=m.workspace_ref(video);m.data["videoHash"]=video_hash(video);m.set_status(STATUS_ACQUIRED);m.step("video_acquisition","success","视频取得",str(video))
   asr(video,m,a.lang,a.asr_python);scene_cut(video,m)
-  if a.force_local_fallback:
-   m.set_mode("forced_local_fallback","local_frames_asr",["未使用 MiniMax-M3 整段语义理解"])
-  else:
-   try: call("video_understand_minimax.py",ws)
+  if not a.force_local_fallback:
+   try: call("video_understand_minimax.py",candidate_ws)
    except Exception:
     m.set_status(STATUS_SEMANTIC_FAILED);raise
-  call("video_locate_segments.py",ws);call("video_extract_adaptive_frames.py",ws);call("video_describe_key_frames.py",ws);call("video_prepare_analysis.py",ws)
-  print(ws)
+  call("video_locate_segments.py",candidate_ws);call("video_extract_adaptive_frames.py",candidate_ws);call("video_describe_key_frames.py",candidate_ws);call("video_prepare_analysis.py",candidate_ws)
+  completed=VideoManifest.load(candidate_ws)
+  if completed.data.get("status")!=STATUS_ANALYSIS_READY:raise RuntimeError(f"候选工作区未达到 {STATUS_ANALYSIS_READY}：{completed.data.get('status')}")
  except Exception as exc:
   if m.data.get("status")!=STATUS_SEMANTIC_FAILED:m.set_status(STATUS_FAILED)
-  m.note(str(exc));raise
+  m.note(str(exc));print(f"候选工作区失败，旧工作区未改动；诊断证据保留在：{candidate_ws}",file=sys.stderr);raise
+ promote_workspace(candidate_ws,ws);shutil.rmtree(candidate_parent,ignore_errors=True);print(ws)
  return 0
 if __name__=="__main__":raise SystemExit(main())

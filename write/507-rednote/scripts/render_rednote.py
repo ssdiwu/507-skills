@@ -14,6 +14,7 @@ import re
 import shutil
 import signal
 import subprocess
+import sys
 import tempfile
 import time
 from html.parser import HTMLParser
@@ -412,6 +413,7 @@ def prepare_motion_posters(spec: dict, spec_path: Path, temp_dir: Path, ffmpeg_p
             block["_motionId"] = motion_id
             motions.append({
                 "id": motion_id, "page": page_number, "source": source,
+                "sourceRef": portable_source_reference(block["src"], spec_path.parent),
                 "startSec": start, "durationSec": duration,
                 "fit": block.get("fit", "cover"), "position": block.get("position", "center"),
                 "sourceMetadata": metadata,
@@ -732,6 +734,16 @@ def hash_json(value: object) -> str:
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
+def portable_source_reference(value: str | Path, root: Path) -> str:
+    raw = str(value)
+    path = Path(raw).expanduser()
+    resolved = path.resolve() if path.is_absolute() else (root / path).resolve()
+    try:
+        return str(resolved.relative_to(root.resolve()))
+    except ValueError:
+        return f"external-file:{path.name}"
+
+
 def global_spec_hash(spec: dict) -> str:
     return hash_json({key: spec.get(key) for key in ("mode", "title", "author", "avatar", "visualSystem", "themePreset", "theme", "excludedContent", "wechatCovers")})
 
@@ -746,7 +758,11 @@ def collect_source_assets(spec: dict, spec_path: Path) -> list[dict]:
             entries.append({"role": role, "source": "data-uri", "sha256": hashlib.sha256(value.encode()).hexdigest()})
             return
         path = resolve_asset_path(value, spec_path.parent, role)
-        entries.append({"role": role, "source": value, "sha256": sha256(path)})
+        entries.append({
+            "role": role,
+            "source": portable_source_reference(value, spec_path.parent),
+            "sha256": sha256(path),
+        })
 
     add("avatar", spec.get("avatar"))
     for page_index, page in enumerate(spec["pages"], start=1):
@@ -875,11 +891,11 @@ def binary_version(command: str) -> str:
     return (result.stdout or result.stderr).splitlines()[0][:200] if (result.stdout or result.stderr) else "unknown"
 
 
-def write_manifest(output_dir: Path, spec_path: Path, spec: dict, artifacts: list[dict], selected_pages: list[int], motion_records: list[dict], tools: dict, source_assets: list[dict] | None = None) -> None:
+def write_manifest(output_dir: Path, spec_path: Path, spec: dict, artifacts: list[dict], selected_pages: list[int], motion_records: list[dict], tools: dict, source_assets: list[dict] | None = None, source_root: Path | None = None) -> None:
     source_assets = collect_source_assets(spec, spec_path) if source_assets is None else source_assets
     manifest = {
         "status": "rendered",
-        "sourceSpec": str(spec_path),
+        "sourceSpec": portable_source_reference(spec_path, source_root or output_dir),
         "sourceSpecSha256": sha256(spec_path),
         "globalSpecSha256": global_spec_hash(spec),
         "sourceAssets": source_assets,
@@ -898,6 +914,118 @@ def write_manifest(output_dir: Path, spec_path: Path, spec: dict, artifacts: lis
         "tools": tools,
     }
     (output_dir / "render-manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+class PublishRollbackError(RuntimeError):
+    pass
+
+
+def remove_managed_path(path: Path) -> None:
+    if path.is_dir() and not path.is_symlink():
+        shutil.rmtree(path)
+    else:
+        path.unlink(missing_ok=True)
+
+
+def managed_paths(root: Path) -> set[Path]:
+    paths = {
+        Path("rednote.html"),
+        Path("contact-sheet.jpg"),
+        Path("render-manifest.json"),
+    }
+    for directory, pattern in (
+        ("pages", "rednote_page_*.*"),
+        ("wechat", "wechat-*.*"),
+        ("motion", "rednote_page_*_live.*"),
+    ):
+        base = root / directory
+        if base.is_dir():
+            paths.update(path.relative_to(root) for path in base.glob(pattern))
+    return paths
+
+
+def partial_managed_paths(candidate_dir: Path, selected_pages: list[int]) -> set[Path]:
+    paths = {Path("rednote.html"), Path("contact-sheet.jpg"), Path("render-manifest.json")}
+    pages_dir = candidate_dir / "pages"
+    for page in selected_pages:
+        paths.update(path.relative_to(candidate_dir) for path in pages_dir.glob(f"rednote_page_{page:02d}.*"))
+    return paths
+
+
+def validate_candidate_bundle(candidate_dir: Path, spec_path: Path, spec: dict, selected_pages: list[int], source_root: Path | None = None) -> None:
+    manifest = load_json(candidate_dir / "render-manifest.json")
+    source_references = [manifest.get("sourceSpec", "")]
+    source_references.extend(item.get("source", "") for item in manifest.get("sourceAssets", []))
+    source_references.extend(item.get("source", "") for item in manifest.get("motion", []))
+    if any(reference and Path(reference).expanduser().is_absolute() for reference in source_references):
+        die("候选清单不得记录本机绝对来源路径")
+    if manifest.get("sourceSpec") != portable_source_reference(spec_path, source_root or candidate_dir):
+        die("候选清单的 sourceSpec（来源规格）未指向原始规格")
+    if manifest.get("renderedPages") != selected_pages:
+        die("候选清单的 renderedPages 与本次渲染范围不一致")
+    if manifest.get("pageCount") != len(spec["pages"]):
+        die("候选清单页数与规格不一致")
+    if str(candidate_dir) in json.dumps(manifest, ensure_ascii=False):
+        die("候选清单不得记录候选暂存路径")
+    for page in range(1, len(spec["pages"]) + 1):
+        if not (candidate_dir / "pages" / f"rednote_page_{page:02d}.jpg").is_file():
+            die(f"候选产物缺少第 {page} 页")
+    for item in manifest.get("artifacts", []):
+        relative = Path(item.get("path", ""))
+        if relative.is_absolute() or not relative.parts or ".." in relative.parts:
+            die(f"候选清单包含不安全产物路径：{relative}")
+        target = candidate_dir / relative
+        if not target.exists() or sha256_path(target) != item.get("sha256"):
+            die(f"候选产物缺失或摘要不一致：{relative}")
+
+
+def publish_managed_paths(candidate_dir: Path, output_dir: Path, paths: set[Path]) -> None:
+    backup_dir = candidate_dir / ".publish-backup"
+    moved_old: list[Path] = []
+    installed: list[Path] = []
+    ordered = sorted(path for path in paths if path != Path("render-manifest.json"))
+    if Path("render-manifest.json") in paths:
+        ordered.append(Path("render-manifest.json"))
+    try:
+        for relative in ordered:
+            source = candidate_dir / relative
+            target = output_dir / relative
+            backup = backup_dir / relative
+            if target.exists():
+                backup.parent.mkdir(parents=True, exist_ok=True)
+                os.replace(target, backup)
+                moved_old.append(relative)
+            if source.exists():
+                target.parent.mkdir(parents=True, exist_ok=True)
+                os.replace(source, target)
+                installed.append(relative)
+    except BaseException as publish_error:
+        try:
+            for relative in reversed(installed):
+                target = output_dir / relative
+                if target.exists():
+                    remove_managed_path(target)
+            for relative in reversed(moved_old):
+                backup = backup_dir / relative
+                target = output_dir / relative
+                if backup.exists():
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    os.replace(backup, target)
+        except BaseException as rollback_error:
+            raise PublishRollbackError(f"产物发布失败且上一版恢复失败；恢复材料保留在：{backup_dir}") from rollback_error
+        raise publish_error
+    shutil.rmtree(backup_dir, ignore_errors=True)
+
+
+def seed_partial_pages(output_dir: Path, candidate_dir: Path, selected_pages: list[int], page_count: int) -> None:
+    pages_dir = candidate_dir / "pages"
+    pages_dir.mkdir(parents=True, exist_ok=True)
+    for page in range(1, page_count + 1):
+        if page in selected_pages:
+            continue
+        source = output_dir / "pages" / f"rednote_page_{page:02d}.jpg"
+        if source.is_file():
+            shutil.copy2(source, pages_dir / source.name)
 
 
 def render_static_targets(args: argparse.Namespace, spec: dict, html_path: Path, chrome: str, output_dir: Path, selected_pages: list[int]) -> tuple[list[Path], list[dict]]:
@@ -979,7 +1107,7 @@ def render_motion_targets(args: argparse.Namespace, motions: list[dict], layout:
         ])
         records.append({
             "status": "verified", "assetId": asset_id, "page": motion["page"], "slot": motion["id"],
-            "source": str(motion["source"]), "sourceSha256": sha256(motion["source"]),
+            "source": motion["sourceRef"], "sourceSha256": sha256(motion["source"]),
             "startSec": motion["startSec"], "durationSec": motion["durationSec"],
             "geometry": geometry, "keyPhoto": str(key_photo.relative_to(output_dir)),
             "movie": str(movie.relative_to(output_dir)), "package": str(package.relative_to(output_dir)),
@@ -1000,26 +1128,41 @@ def run(args: argparse.Namespace) -> None:
     selected_pages = parse_pages(args.pages, len(spec["pages"]))
     if args.pages:
         validate_partial_render(spec, output_dir, selected_pages, source_assets)
-    with tempfile.TemporaryDirectory(prefix="rednote-motion-") as temp:
-        prepared, motions = prepare_motion_posters(spec, spec_path, Path(temp), args.ffmpeg, args.ffprobe)
-        html_path = output_dir / "rednote.html"
-        html_path.write_text(render_html(prepared, spec_path), encoding="utf-8")
-        chrome = find_chrome(args.chrome)
-        layout = inspect_layout(chrome, html_path.as_uri(), args.timeout)
-        failures = layout.failures()
-        expected_targets = {f"rednote-{index:02d}" for index in range(1, len(spec["pages"]) + 1)}
-        actual_targets = {item["target"] for item in layout.sections if item["target"].startswith("rednote-")}
-        if actual_targets != expected_targets:
-            die(f"HTML 观点页与规格不一致：expected={sorted(expected_targets)} actual={sorted(actual_targets)}")
-        if failures:
-            die("浏览器布局检查失败：\n" + "\n".join(failures))
-        page_files, artifacts = render_static_targets(args, spec, html_path, chrome, output_dir, selected_pages)
-        artifacts.extend(render_wechat_targets(args, spec, html_path, chrome, output_dir))
-        motion_records, motion_artifacts, media_tools = render_motion_targets(args, motions, layout, page_files, output_dir)
-        artifacts.extend(motion_artifacts)
-        artifacts.insert(0, artifact("single-file-html", html_path, output_dir))
-        tools = {"chrome": binary_version(chrome), **media_tools}
-        write_manifest(output_dir, spec_path, spec, artifacts, selected_pages, motion_records, tools, source_assets)
+    candidate_dir = Path(tempfile.mkdtemp(prefix=f".{output_dir.name}-candidate-", dir=output_dir.parent))
+    if args.pages:
+        seed_partial_pages(output_dir, candidate_dir, selected_pages, len(spec["pages"]))
+    try:
+        with tempfile.TemporaryDirectory(prefix="rednote-motion-") as temp:
+            prepared, motions = prepare_motion_posters(spec, spec_path, Path(temp), args.ffmpeg, args.ffprobe)
+            html_path = candidate_dir / "rednote.html"
+            html_path.write_text(render_html(prepared, spec_path), encoding="utf-8")
+            chrome = find_chrome(args.chrome)
+            layout = inspect_layout(chrome, html_path.as_uri(), args.timeout)
+            failures = layout.failures()
+            expected_targets = {f"rednote-{index:02d}" for index in range(1, len(spec["pages"]) + 1)}
+            actual_targets = {item["target"] for item in layout.sections if item["target"].startswith("rednote-")}
+            if actual_targets != expected_targets:
+                die(f"HTML 观点页与规格不一致：expected={sorted(expected_targets)} actual={sorted(actual_targets)}")
+            if failures:
+                die("浏览器布局检查失败：\n" + "\n".join(failures))
+            page_files, artifacts = render_static_targets(args, spec, html_path, chrome, candidate_dir, selected_pages)
+            artifacts.extend(render_wechat_targets(args, spec, html_path, chrome, candidate_dir))
+            motion_records, motion_artifacts, media_tools = render_motion_targets(args, motions, layout, page_files, candidate_dir)
+            artifacts.extend(motion_artifacts)
+            artifacts.insert(0, artifact("single-file-html", html_path, candidate_dir))
+            tools = {"chrome": binary_version(chrome), **media_tools}
+            write_manifest(candidate_dir, spec_path, spec, artifacts, selected_pages, motion_records, tools, source_assets, output_dir)
+            validate_candidate_bundle(candidate_dir, spec_path, spec, selected_pages, output_dir)
+        paths = partial_managed_paths(candidate_dir, selected_pages) if args.pages else managed_paths(candidate_dir) | managed_paths(output_dir)
+        publish_managed_paths(candidate_dir, output_dir, paths)
+    except PublishRollbackError:
+        print(f"候选产物与恢复材料保留在：{candidate_dir}", file=sys.stderr)
+        raise
+    except BaseException:
+        shutil.rmtree(candidate_dir, ignore_errors=True)
+        raise
+    else:
+        shutil.rmtree(candidate_dir, ignore_errors=True)
     print(json.dumps({"outputDir": str(output_dir), "pages": len(spec["pages"]), "mode": spec["mode"], "visualSystem": spec["visualSystem"], "themePreset": spec["themePreset"]}, ensure_ascii=False))
 
 

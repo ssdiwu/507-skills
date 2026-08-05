@@ -35,7 +35,7 @@ def ocr_index(ws:Path,coarse:list[dict],manifest:VideoManifest):
 def main():
  p=argparse.ArgumentParser(description="本地语义锚点定位");p.add_argument("--workspace",required=True);p.add_argument("--interval",type=float,default=10);a=p.parse_args();
  if a.interval<=0: raise SystemExit("--interval 必须为正数")
- ws=Path(a.workspace).expanduser().resolve();m=VideoManifest.load(ws);video=Path(m.data["videoPath"]);d=ws/"raw"/RAW_LOCATOR_DIR;ensure_dir(d);total=duration(video);coarse=[]
+ ws=Path(a.workspace).expanduser().resolve();m=VideoManifest.load(ws);video=m.resolve_path(m.data["videoPath"]);d=ws/"raw"/RAW_LOCATOR_DIR;ensure_dir(d);total=duration(video);coarse=[]
  for t in [round(i*a.interval,3) for i in range(int((max(total-0.001,0))//a.interval)+1)]:
   path=d/f"video_frame_{int(t*1000):010d}.jpg"
   if frame_at(video,path,t): coarse.append({"pts":t,"frame":str(path.relative_to(ws))})

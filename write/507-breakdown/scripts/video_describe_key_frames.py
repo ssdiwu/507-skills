@@ -86,7 +86,7 @@ def main()->int:
     if not items:
         manifest.step("video_key_frame_images","failed","没有可供图片理解的自适应关键帧")
         raise SystemExit("没有可供图片理解的自适应关键帧")
-    apply_visual_matches(ws,items,Path(manifest.data["videoPath"]))
+    apply_visual_matches(ws,items,manifest.resolve_path(manifest.data["videoPath"]))
     locations=json.loads((ws/ANALYSIS_DIR/"video_locations.json").read_text(encoding="utf-8"))
     unresolved=[u.get("id") for u in locations.get("semanticUnits",[]) if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("visualAnchors") or u.get("reference",{}).get("spokenAnchors"))]
     if unresolved:

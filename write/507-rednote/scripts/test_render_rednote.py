@@ -211,12 +211,59 @@ class RenderRednoteTests(unittest.TestCase):
             artifacts = [renderer.artifact("rednote-page", page, output_dir, (1500, 2000))]
             renderer.write_manifest(output_dir, spec_path, self.spec, artifacts, [1], [], {"chrome": "test"}, [])
             manifest = json.loads((output_dir / "render-manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["sourceSpec"], "rednote-project.json")
             self.assertEqual(manifest["mode"], "summary")
             self.assertEqual(manifest["visualSystem"], "editorial")
             self.assertEqual(manifest["themePreset"], "editorial-paper")
             self.assertEqual(manifest["pageMap"][1]["point"], "每页只能有一个主观点")
             self.assertEqual(manifest["excludedContent"], self.spec["excludedContent"])
             self.assertEqual(manifest["artifacts"][0]["dimensions"], [1500, 2000])
+
+    def test_source_references_do_not_persist_machine_absolute_paths(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            spec_dir = root / "project"
+            spec_dir.mkdir()
+            bundled = spec_dir / "assets" / "clip.mp4"
+            bundled.parent.mkdir()
+            bundled.write_bytes(b"bundled")
+            external = root / "external" / "clip.mp4"
+            external.parent.mkdir()
+            external.write_bytes(b"external")
+
+            self.assertEqual(
+                renderer.portable_source_reference(bundled, spec_dir),
+                "assets/clip.mp4",
+            )
+            self.assertEqual(
+                renderer.portable_source_reference(external, spec_dir),
+                "external-file:clip.mp4",
+            )
+            self.assertEqual(
+                renderer.portable_source_reference("assets/clip.mp4", spec_dir),
+                "assets/clip.mp4",
+            )
+
+    def test_candidate_validation_rejects_absolute_source_reference(self):
+        with TemporaryDirectory() as tmp:
+            candidate_dir = Path(tmp)
+            manifest = {
+                "sourceSpec": str(self.article_spec_path.resolve()),
+                "sourceAssets": [],
+                "motion": [],
+            }
+            (candidate_dir / "render-manifest.json").write_text(
+                json.dumps(manifest),
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(SystemExit, "本机绝对来源路径"):
+                renderer.validate_candidate_bundle(
+                    candidate_dir,
+                    self.article_spec_path,
+                    self.article_spec,
+                    list(range(1, len(self.article_spec["pages"]) + 1)),
+                )
 
     def test_partial_render_rejects_changed_unselected_page(self):
         with TemporaryDirectory() as tmp:
@@ -232,6 +279,165 @@ class RenderRednoteTests(unittest.TestCase):
             changed["pages"][2]["point"] = "另一个观点"
             with self.assertRaisesRegex(SystemExit, "第 3 页"):
                 renderer.validate_partial_render(changed, output_dir, [2], [])
+
+    def test_full_render_failure_preserves_previous_bundle(self):
+        with TemporaryDirectory(prefix="rednote-atomic-") as tmp:
+            output_dir = Path(tmp) / "output"
+            pages_dir = output_dir / "pages"
+            pages_dir.mkdir(parents=True)
+            (output_dir / "rednote.html").write_bytes(b"old-html")
+            (output_dir / "contact-sheet.jpg").write_bytes(b"old-contact")
+            (output_dir / "render-manifest.json").write_bytes(b"old-manifest")
+            (pages_dir / "rednote_page_01.jpg").write_bytes(b"old-page")
+
+            args = Namespace(
+                spec=str(self.article_spec_path), output_dir=str(output_dir), pages=None,
+                chrome=None, ffmpeg=None, ffprobe=None, makelive=None, timeout=1,
+            )
+            before = {
+                path.relative_to(output_dir): path.read_bytes()
+                for path in output_dir.rglob("*") if path.is_file()
+            }
+            with (
+                patch.object(renderer, "find_chrome", return_value="chrome"),
+                patch.object(renderer, "inspect_layout", side_effect=RuntimeError("synthetic render failure")),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "synthetic render failure"):
+                    renderer.run(args)
+
+            after = {
+                path.relative_to(output_dir): path.read_bytes()
+                for path in output_dir.rglob("*") if path.is_file()
+            }
+            self.assertEqual(after, before)
+
+    def test_partial_render_failure_preserves_previous_bundle(self):
+        with TemporaryDirectory(prefix="rednote-atomic-") as tmp:
+            output_dir = Path(tmp) / "output"
+            pages_dir = output_dir / "pages"
+            pages_dir.mkdir(parents=True)
+            source_assets = renderer.collect_source_assets(self.article_spec, self.article_spec_path)
+            previous_manifest = {
+                "globalSpecSha256": renderer.global_spec_hash(self.article_spec),
+                "sourceAssetsSha256": renderer.hash_json(source_assets),
+                "pageCount": len(self.article_spec["pages"]),
+                "pageMap": renderer.page_map_from_spec(self.article_spec),
+            }
+            (output_dir / "rednote.html").write_bytes(b"old-html")
+            (output_dir / "contact-sheet.jpg").write_bytes(b"old-contact")
+            (output_dir / "render-manifest.json").write_text(json.dumps(previous_manifest), encoding="utf-8")
+            for page in range(1, len(self.article_spec["pages"]) + 1):
+                (pages_dir / f"rednote_page_{page:02d}.jpg").write_bytes(f"old-{page}".encode())
+
+            args = Namespace(
+                spec=str(self.article_spec_path), output_dir=str(output_dir), pages="2",
+                chrome=None, ffmpeg=None, ffprobe=None, makelive=None, timeout=1,
+            )
+            before = {
+                path.relative_to(output_dir): path.read_bytes()
+                for path in output_dir.rglob("*") if path.is_file()
+            }
+            with (
+                patch.object(renderer, "find_chrome", return_value="chrome"),
+                patch.object(renderer, "inspect_layout", side_effect=RuntimeError("synthetic render failure")),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "synthetic render failure"):
+                    renderer.run(args)
+
+            after = {
+                path.relative_to(output_dir): path.read_bytes()
+                for path in output_dir.rglob("*") if path.is_file()
+            }
+            self.assertEqual(after, before)
+
+    def test_full_publish_replaces_only_managed_outputs(self):
+        with TemporaryDirectory(prefix="rednote-publish-") as tmp:
+            root = Path(tmp)
+            output_dir = root / "output"
+            candidate_dir = root / "candidate"
+            (output_dir / "pages").mkdir(parents=True)
+            (candidate_dir / "pages").mkdir(parents=True)
+            (output_dir / "pages" / "rednote_page_99.jpg").write_bytes(b"stale")
+            (output_dir / "pages" / "notes.txt").write_bytes(b"keep")
+            (output_dir / "rednote.html").write_bytes(b"old")
+            (candidate_dir / "rednote.html").write_bytes(b"new")
+            (candidate_dir / "contact-sheet.jpg").write_bytes(b"contact")
+            (candidate_dir / "render-manifest.json").write_bytes(b"manifest")
+            (candidate_dir / "pages" / "rednote_page_01.jpg").write_bytes(b"page")
+
+            paths = renderer.managed_paths(candidate_dir) | renderer.managed_paths(output_dir)
+            renderer.publish_managed_paths(candidate_dir, output_dir, paths)
+
+            self.assertEqual((output_dir / "rednote.html").read_bytes(), b"new")
+            self.assertEqual((output_dir / "pages" / "rednote_page_01.jpg").read_bytes(), b"page")
+            self.assertFalse((output_dir / "pages" / "rednote_page_99.jpg").exists())
+            self.assertEqual((output_dir / "pages" / "notes.txt").read_bytes(), b"keep")
+
+    def test_publish_failure_restores_previous_managed_outputs(self):
+        with TemporaryDirectory(prefix="rednote-publish-") as tmp:
+            root = Path(tmp)
+            output_dir = root / "output"
+            candidate_dir = root / "candidate"
+            output_dir.mkdir()
+            candidate_dir.mkdir()
+            (output_dir / "contact-sheet.jpg").write_bytes(b"old-contact")
+            (output_dir / "rednote.html").write_bytes(b"old-html")
+            (candidate_dir / "contact-sheet.jpg").write_bytes(b"new-contact")
+            (candidate_dir / "rednote.html").write_bytes(b"new-html")
+            original_replace = renderer.os.replace
+
+            def fail_candidate_install(source, target):
+                if Path(source) == candidate_dir / "rednote.html":
+                    raise OSError("synthetic publish failure")
+                return original_replace(source, target)
+
+            with patch.object(renderer.os, "replace", side_effect=fail_candidate_install):
+                with self.assertRaisesRegex(OSError, "synthetic publish failure"):
+                    renderer.publish_managed_paths(candidate_dir, output_dir, renderer.managed_paths(candidate_dir))
+
+            self.assertEqual((output_dir / "contact-sheet.jpg").read_bytes(), b"old-contact")
+            self.assertEqual((output_dir / "rednote.html").read_bytes(), b"old-html")
+
+    def test_partial_publish_replaces_selected_page_and_manifest_last(self):
+        with TemporaryDirectory(prefix="rednote-publish-") as tmp:
+            root = Path(tmp)
+            output_dir = root / "output"
+            candidate_dir = root / "candidate"
+            (output_dir / "pages").mkdir(parents=True)
+            (candidate_dir / "pages").mkdir(parents=True)
+            for page in range(1, 4):
+                (output_dir / "pages" / f"rednote_page_{page:02d}.jpg").write_bytes(
+                    f"old-{page}".encode()
+                )
+            (output_dir / "rednote.html").write_bytes(b"old-html")
+            (output_dir / "contact-sheet.jpg").write_bytes(b"old-contact")
+            (output_dir / "render-manifest.json").write_bytes(b"old-manifest")
+            (candidate_dir / "pages" / "rednote_page_02.jpg").write_bytes(b"new-2")
+            (candidate_dir / "rednote.html").write_bytes(b"new-html")
+            (candidate_dir / "contact-sheet.jpg").write_bytes(b"new-contact")
+            (candidate_dir / "render-manifest.json").write_bytes(b"new-manifest")
+
+            original_replace = renderer.os.replace
+            installs = []
+
+            def record_replace(source, target):
+                source_path = Path(source)
+                target_path = Path(target)
+                if source_path.is_relative_to(candidate_dir) and ".publish-backup" not in source_path.parts:
+                    installs.append(target_path.relative_to(output_dir))
+                return original_replace(source, target)
+
+            paths = renderer.partial_managed_paths(candidate_dir, [2])
+            with patch.object(renderer.os, "replace", side_effect=record_replace):
+                renderer.publish_managed_paths(candidate_dir, output_dir, paths)
+
+            self.assertEqual((output_dir / "pages" / "rednote_page_01.jpg").read_bytes(), b"old-1")
+            self.assertEqual((output_dir / "pages" / "rednote_page_02.jpg").read_bytes(), b"new-2")
+            self.assertEqual((output_dir / "pages" / "rednote_page_03.jpg").read_bytes(), b"old-3")
+            self.assertEqual((output_dir / "rednote.html").read_bytes(), b"new-html")
+            self.assertEqual((output_dir / "contact-sheet.jpg").read_bytes(), b"new-contact")
+            self.assertEqual((output_dir / "render-manifest.json").read_bytes(), b"new-manifest")
+            self.assertEqual(installs[-1], Path("render-manifest.json"))
 
     def test_full_render_removes_stale_page_files_before_writing_current_pages(self):
         with TemporaryDirectory() as tmp:

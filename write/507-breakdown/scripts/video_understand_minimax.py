@@ -186,7 +186,7 @@ def main() -> int:
         manifest.set_status(STATUS_SEMANTIC_FAILED)
         manifest.step("video_understanding_minimax", "failed", "未设置 MiniMax_API_KEY")
         raise SystemExit("MiniMax_API_KEY 未导出；脚本不会读取 ~/.zshrc")
-    video_path = Path(manifest.data.get("videoPath") or "")
+    video_path = manifest.resolve_path(manifest.data.get("videoPath") or "")
     try:
         ref = streamed_upload(args.base_url, api_key, video_path)
         result = analyze(args.base_url, api_key, args.model, ref, args.fps, args.thinking)

@@ -74,7 +74,7 @@ def main()->int:
   unit_ids=[u.get("id") for u in units]
   originals=json.loads(understanding.read_text(encoding="utf-8")).get("semanticUnits",[])
   if not ids or len(ids)!=len(set(ids)) or len(unit_ids)!=len(set(unit_ids)) or unit_ids!=ids or any(u.get("reference")!=originals[i] for i,u in enumerate(units)): fail("定位语义单元与 M3 输出不一致")
- duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(m.data["videoPath"])],text=True).strip())
+ duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=nk=1:nw=1",str(m.resolve_path(m.data["videoPath"]))],text=True).strip())
  def valid_window(w): return isinstance(w,dict) and isinstance(w.get("start"),(int,float)) and isinstance(w.get("end"),(int,float)) and math.isfinite(w["start"]) and math.isfinite(w["end"]) and 0<=w["start"]<w["end"]<=duration and isinstance(w.get("evidence"),str) and w["evidence"] in {"asr","ocr","image_visual_anchor"}
  invalid=[u.get("id") for u in units if u.get("localizationStatus") not in {"localized","unresolved"} or (u.get("localizationStatus")=="localized" and (not u.get("candidateWindows") or not all(valid_window(w) for w in u["candidateWindows"])))]
  unresolved=[u.get("id") for u in units if u.get("localizationStatus")=="unresolved" and (u.get("reference",{}).get("spokenAnchors") or u.get("reference",{}).get("visualAnchors"))]

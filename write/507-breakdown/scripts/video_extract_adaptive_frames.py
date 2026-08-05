@@ -21,7 +21,7 @@ def main()->int:
     a=p.parse_args()
     if a.fps<=0: raise SystemExit("--fps 必须为正数")
     if a.max_frames_per_window<=0: raise SystemExit("--max-frames-per-window 必须为正数")
-    ws=Path(a.workspace).expanduser().resolve(); manifest=VideoManifest.load(ws); video=Path(manifest.data["videoPath"])
+    ws=Path(a.workspace).expanduser().resolve(); manifest=VideoManifest.load(ws); video=manifest.resolve_path(manifest.data["videoPath"])
     locations=json.loads((ws/ANALYSIS_DIR/"video_locations.json").read_text(encoding="utf-8")); out_dir=ws/"raw"/RAW_ADAPTIVE_DIR;ensure_dir(out_dir)
     observations=[]; seen=set()
     for unit in locations.get("semanticUnits",[]):

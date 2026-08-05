@@ -3,10 +3,12 @@
   "carrier": "pptx",
   "pages": 4,
   "content": "passed",
-  "styleChecks": "passed",
-  "styleMarkers": [
-    "Menlo",
-    "Georgia"
+  "direction": "杂志风",
+  "components": [
+    "cover",
+    "image-text",
+    "three-part",
+    "quote"
   ],
   "missing": []
 }
