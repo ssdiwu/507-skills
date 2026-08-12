@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.2.5] - 2026-08-12
+
 ### Changed
 
 - `507-grill` 的复杂决策控制台统一改用 Mermaid：仅使用当前终端渲染器支持的 `graph/flowchart`、`stateDiagram`、`classDiagram`、`erDiagram` 与 `sequenceDiagram`，不再生成 ASCII 图；`gantt`、`pie`、`gitGraph`、`mindmap`、`timeline`、`journey` 等未支持类型改用 flowchart 或结构化文字/表格，简单单题继续普通追问。
