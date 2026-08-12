@@ -15,4 +15,16 @@ video_breakdown.json
 python3 video_remake.py run --pull-dir <completed-pull-dir> --project-name <name> --theme <theme> --platform <platform> --duration <duration> --style <style> --output-dir <works-dir>
 ```
 
-脚本生成创作包骨架；若出口是视频成片，agent 还需按 `../SKILL.md` 补齐人读文件的制作交接字段，再交给 `507-video`。脚本不向 `prompt-pack.json` 写入具体视频引擎或本机路径。
+脚本生成以下原创创作包骨架：
+
+```text
+README.md
+brief.md
+borrow-map.md
+structure.md
+storyboard.md
+style-lock.md
+prompt-pack.json
+```
+
+若出口是视频成片，agent 还需按 `../SKILL.md` 补齐 `brief.md`、`storyboard.md` 与 `style-lock.md` 的制作交接字段，再交给 `507-video`。脚本不向 `prompt-pack.json` 写入具体视频引擎或本机路径。
