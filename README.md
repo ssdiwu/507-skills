@@ -167,7 +167,7 @@ skill 的 `description`（描述）保留常用动作词，宿主可按用户意
 
 ## 配套 Agent 配置
 
-[`templates/AGENTS.global.example.md`](templates/AGENTS.global.example.md) 提供可选的全局 Agent 行为规范示例。只有目标宿主支持 `AGENTS.md` 或等价规则文件、且使用者希望采用这套协作纪律时才需要参考；它不是安装 skill 的前提，也不是 Agent Skills 规范的一部分。按宿主能力补充本地调度规则时，不要把个人称呼、机器路径、私有仓库或凭据同步回公开仓库。
+[`templates/AGENTS.global.example.md`](templates/AGENTS.global.example.md) 提供可选的全局 Agent 行为规范示例。只有目标宿主支持 `AGENTS.md` 或等价规则文件、且使用者希望采用这套协作纪律时才需要参考；`507-setup` 只会在用户明确指定目标后使用它生成候选，不会自动覆盖现有配置。按宿主能力补充本地调度规则时，不要把个人称呼、机器路径、私有仓库或凭据同步回公开仓库。
 
 项目局部约束始终优先于全局习惯。
 
