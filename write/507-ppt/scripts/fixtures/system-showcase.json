@@ -1,16 +1,26 @@
 {
-  "version": 2,
+  "version": 3,
   "id": "system-showcase",
   "language": "zh-CN",
-  "deck": {"title": "视觉系统展示", "audience": "需要交付演示文稿的创作者", "scene": "产品能力演示", "durationMinutes": 16},
+  "deck": {
+    "title": "三轴视觉系统展示",
+    "audience": "需要交付演示文稿的创作者",
+    "scene": "产品能力演示",
+    "durationMinutes": 24
+  },
   "slides": [
-    {"id": "cover", "kind": "cover", "goal": "建立主题", "eyebrow": "507-ppt", "title": "视觉系统展示", "subtitle": "同一内容合同，双载体交付", "footer": "公开 fixture", "notes": "介绍视觉系统。"},
-    {"id": "section", "kind": "section", "goal": "转换章节", "eyebrow": "01", "title": "内容关系", "subtitle": "让版式服务判断而非装饰", "notes": "进入组件说明。"},
-    {"id": "image", "kind": "image-text", "goal": "解释图文关系", "eyebrow": "证据", "title": "素材承担一个问题", "body": "图像应证明内容，而不是填满空白。", "caption": "抽象工作台示意", "asset": {"id": "workbench", "alt": "包含文件、编辑器和预览区域的抽象工作台示意图"}, "notes": "说明素材职责。"},
-    {"id": "three", "kind": "three-part", "goal": "展示并列结构", "title": "三项并列", "items": [{"label": "意图", "body": "定义要服务的对象。"}, {"label": "证据", "body": "提供可检查的材料。"}, {"label": "交付", "body": "形成可继续编辑的结果。"}], "footer": "每项只承担一个职责。", "notes": "解释三项分工。"},
-    {"id": "comparison", "kind": "comparison", "goal": "比较两种路径", "title": "模板堆与视觉系统", "items": [{"label": "模板堆", "body": "每页单独调整，难以维护一致性。"}, {"label": "视觉系统", "body": "组件与令牌组合，跨载体保持语义。"}], "notes": "强调系统价值。"},
-    {"id": "process", "kind": "process", "goal": "说明流程", "title": "从内容到交付", "items": [{"label": "内容", "body": "确认逐页认知目标。"}, {"label": "组件", "body": "选择内容关系。"}, {"label": "验证", "body": "检查双载体结果。"}], "notes": "解释制作流程。"},
-    {"id": "metric", "kind": "metric", "goal": "突出核心指标", "title": "公开组件", "metric": "8", "body": "首批组件覆盖聚焦、图文、并列、对比、顺序和收束。", "notes": "突出首批范围。"},
-    {"id": "quote", "kind": "quote", "goal": "收束", "quote": "视觉变化必须由内容关系承重。", "attribution": "507-ppt 设计原则", "notes": "以原则收束。"}
+    {"id": "cover", "component": "cover", "goal": "建立主题", "eyebrow": "507-ppt", "title": "三轴视觉系统", "subtitle": "语义组件 × 设计语言 × 视觉呈现", "footer": "公开 fixture", "notes": "介绍三轴系统。"},
+    {"id": "section", "component": "section", "goal": "转换章节", "eyebrow": "01", "title": "内容关系", "subtitle": "组件决定这一页要说明什么", "notes": "进入组件说明。"},
+    {"id": "closing", "component": "closing", "goal": "推动下一步", "title": "先看原型，再锁定整套", "body": "跨候选混合后必须重新确认合并原型。", "cta": "进入视觉制作", "notes": "说明下一步。"},
+    {"id": "statement", "component": "statement", "goal": "突出判断", "eyebrow": "原则", "title": "自由组合，不等于任意叠加", "body": "兼容矩阵与真实载体共同约束组合。", "notes": "强调组合边界。"},
+    {"id": "collection", "component": "collection", "goal": "展示并列结构", "title": "三个独立维度", "items": [{"label": "组件", "body": "承载内容关系。"}, {"label": "设计语言", "body": "维持整套表达。"}, {"label": "视觉呈现", "body": "决定页面如何被看见。"}], "notes": "解释三项分工。"},
+    {"id": "comparison", "component": "comparison", "goal": "比较两种路径", "title": "模板堆与组合系统", "items": [{"label": "模板堆", "body": "每个名字绑定一整套实现。"}, {"label": "组合系统", "body": "三个维度按内容动态组合。"}], "notes": "强调系统价值。"},
+    {"id": "sequence", "component": "sequence", "goal": "说明制作顺序", "title": "从内容到成品", "items": [{"label": "推荐", "body": "Agent 基于内容提出候选。"}, {"label": "原型", "body": "使用代表页验证组合。"}, {"label": "锁定", "body": "确认后生成完整双载体。"}], "notes": "解释制作流程。"},
+    {"id": "relationship", "component": "relationship", "goal": "解释三轴关系", "title": "组件、语言与呈现相互独立", "nodes": [{"id": "component", "label": "组件"}, {"id": "language", "label": "设计语言"}, {"id": "presentation", "label": "视觉呈现"}, {"id": "artifact", "label": "页面成品"}], "edges": [{"from": "component", "to": "artifact", "label": "语义"}, {"from": "language", "to": "artifact", "label": "规则"}, {"from": "presentation", "to": "artifact", "label": "表现"}], "notes": "说明三个输入共同形成页面。"},
+    {"id": "media", "component": "media-evidence", "goal": "解释素材证据", "eyebrow": "证据", "title": "素材承担一个问题", "body": "图像应证明内容，而不是填满空白。", "assets": [{"id": "workbench", "role": "ui", "path": "assets/workbench.svg", "alt": "包含文件、编辑器和预览区域的抽象工作台示意图", "caption": "抽象工作台示意"}], "notes": "说明素材职责。"},
+    {"id": "quote", "component": "quote", "goal": "引用原则", "quote": "视觉变化必须由内容关系承重。", "attribution": "507-ppt 设计原则", "notes": "引用原则，不承担 closing。"},
+    {"id": "metric", "component": {"type": "data-evidence", "subtype": "metric"}, "goal": "突出核心指标", "title": "语义叶组件", "data": {"value": "13", "label": "首批语义叶组件", "context": "数据证据保留 metric、chart、table 三个子类型。", "source": "507-ppt registry"}, "notes": "突出首批范围。"},
+    {"id": "chart", "component": {"type": "data-evidence", "subtype": "chart"}, "goal": "比较三轴注册数量", "title": "六种语言，八类呈现", "data": {"chartType": "bar", "categories": ["设计语言", "视觉呈现"], "series": [{"name": "注册数量", "values": [6, 8]}], "scale": {"min": 0, "max": 8}, "source": "当前 507-ppt 三轴注册表"}, "notes": "说明设计语言与视觉呈现是两个独立维度。"},
+    {"id": "table", "component": {"type": "data-evidence", "subtype": "table"}, "goal": "逐项查找设计语言能力", "title": "六种设计语言当前能力", "data": {"columns": ["方向", "状态", "当前能力"], "rows": [["Swiss", "可组合", "网格与层级"], ["Magazine", "可组合", "编辑栅格"], ["Cobalt", "可组合", "产品模块"], ["Clay", "可组合", "温暖叙事"], ["Forest", "可组合", "研究层级"], ["Noir", "可组合", "强声明"]], "source": "当前 507-ppt registry"}, "notes": "逐项说明六种设计语言均可与兼容呈现组合。"}
   ]
 }

@@ -1,0 +1,265 @@
+{
+  "version": 2,
+  "inputId": "system-showcase",
+  "inputSha256": "b9e37a0d1082db539fae39d3d37a0681234e073b7417c80f486525f984e25309",
+  "carrier": "pptx",
+  "artifact": "system-showcase.pptx",
+  "sha256": "1f33712ca4dfeef1f6244d1e9ea74ffd55d1fbfea69534cc5f4d42c20c650cec",
+  "visualPlan": "system-showcase.visual-plan.json",
+  "visualPlanSha256": "c189d09513e216b770b93471ff906e7253964efe362bebe57e0fbb0429ed6468",
+  "language": {
+    "id": "precision-modern",
+    "variant": "default"
+  },
+  "prototypeStatus": "approved",
+  "prototypeEvidence": [
+    {
+      "kind": "prototype-manifest",
+      "path": "system-prototypes/approved-prototype-manifest.json",
+      "sha256": "d12fd1badec673ecf7faa4b197a8c0b099236696d18a9576718b0337ab528a7a"
+    },
+    {
+      "kind": "prototype-contact-sheet",
+      "path": "system-prototypes/contact-sheet.png",
+      "sha256": "bc9f8c9c0f5cd26a45b974555661162feeae259ba2a5d7576da98947bd9b3342"
+    }
+  ],
+  "pages": [
+    {
+      "id": "cover",
+      "component": "cover",
+      "presentation": "type-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-1.png",
+      "screenshotSha256": "c54a74a13a325eeabbb1736ea6541c4460de4a221cd923eda17e0488c4b8fb8f"
+    },
+    {
+      "id": "section",
+      "component": "section",
+      "presentation": "editorial-print-led",
+      "treatment": "section-emphasis",
+      "carrierSupport": "adapted",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-2.png",
+      "screenshotSha256": "d69e23f2d305a063c805c294160c3d50fa4fe94e0b55e34fdf2546c43a014d7f"
+    },
+    {
+      "id": "closing",
+      "component": "closing",
+      "presentation": "type-led",
+      "treatment": "inverse",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-3.png",
+      "screenshotSha256": "6b6e59945b6d902c6fbf10f2fbfdbb839d4973a5eb4cc4d8795c67ccfa7634d0"
+    },
+    {
+      "id": "statement",
+      "component": "statement",
+      "presentation": "type-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-4.png",
+      "screenshotSha256": "8d3608d647f73ff18c85fa9245a1e3b02920f628bbdbe1edad836959bd5ba47d"
+    },
+    {
+      "id": "collection",
+      "component": "collection",
+      "presentation": "panel-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-5.png",
+      "screenshotSha256": "896ca636b12b19eba7974ed5c7754534e97dd887e3d7f995bd51bc530ed53b64"
+    },
+    {
+      "id": "comparison",
+      "component": "comparison",
+      "presentation": "schematic-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-6.png",
+      "screenshotSha256": "30ea6d005543c5c7bbb840c03d7cbccef2ca48c18ec14f484f4e3ec185dbc7ad"
+    },
+    {
+      "id": "sequence",
+      "component": "sequence",
+      "presentation": "schematic-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-7.png",
+      "screenshotSha256": "bb333a6facec8891b1d958e6e293b5ca1132414ec3c5ccb78506c14e9b3a0c45"
+    },
+    {
+      "id": "relationship",
+      "component": "relationship",
+      "presentation": "schematic-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-8.png",
+      "screenshotSha256": "13de01a2bf6ea86c6a4eb97b276b7794160cd697d654885a92440aa92a7af7e0"
+    },
+    {
+      "id": "media",
+      "component": "media-evidence",
+      "presentation": "photo-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "provided",
+      "assets": [
+        "workbench"
+      ],
+      "screenshot": "system-showcase-pptx-evidence/slide-9.png",
+      "screenshotSha256": "ec311d28408639f9e2fdbb9c5feae8874bfec74c5e44c83b622b460188e7bd31"
+    },
+    {
+      "id": "quote",
+      "component": "quote",
+      "presentation": "editorial-print-led",
+      "treatment": "inverse",
+      "carrierSupport": "adapted",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-10.png",
+      "screenshotSha256": "93f58250858ad848329df6ae6937f5347b98376ee3f361c54bdea02e15a21b04"
+    },
+    {
+      "id": "metric",
+      "component": "metric",
+      "presentation": "data-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-11.png",
+      "screenshotSha256": "306456645518500d9c143e43500babfe6f0119c9edb19d32e769df8874f603ca"
+    },
+    {
+      "id": "chart",
+      "component": "chart",
+      "presentation": "data-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-12.png",
+      "screenshotSha256": "4a07a23045d80a37e953a21883944fab8233a9850c27f5ca91ad6285d4152fd4"
+    },
+    {
+      "id": "table",
+      "component": "table",
+      "presentation": "data-led",
+      "treatment": "dense",
+      "carrierSupport": "native",
+      "suppressedDecorations": [
+        "background-grid",
+        "decorative-rules"
+      ],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-pptx-evidence/slide-13.png",
+      "screenshotSha256": "3b8a06f4bbc93054d2ad9aaf8d2db3db49847f33d45cb1aa23ecec402ba3d4ad"
+    }
+  ],
+  "assets": [
+    {
+      "id": "workbench",
+      "path": "../assets/workbench.svg",
+      "alt": "包含文件、编辑器和预览区域的抽象工作台示意图",
+      "sha256": "afeef431bd5dbdd13b61c8443ae0838517c043219a16f39ad82323bc97218fd8"
+    }
+  ],
+  "notices": [
+    "../third-party-notices.md"
+  ],
+  "verification": [
+    {
+      "name": "system-showcase-pptx-axis-content",
+      "kind": "axis-content",
+      "status": "passed",
+      "evidence": "system-showcase-pptx-axis-content.json",
+      "evidenceSha256": "836408d1003eab00b9d1e73d1f667d02538b188ac577bb84007977e2755cc053"
+    }
+  ],
+  "screenshots": [
+    "system-showcase-pptx-evidence/slide-1.png",
+    "system-showcase-pptx-evidence/slide-2.png",
+    "system-showcase-pptx-evidence/slide-3.png",
+    "system-showcase-pptx-evidence/slide-4.png",
+    "system-showcase-pptx-evidence/slide-5.png",
+    "system-showcase-pptx-evidence/slide-6.png",
+    "system-showcase-pptx-evidence/slide-7.png",
+    "system-showcase-pptx-evidence/slide-8.png",
+    "system-showcase-pptx-evidence/slide-9.png",
+    "system-showcase-pptx-evidence/slide-10.png",
+    "system-showcase-pptx-evidence/slide-11.png",
+    "system-showcase-pptx-evidence/slide-12.png",
+    "system-showcase-pptx-evidence/slide-13.png"
+  ],
+  "degradations": [
+    {
+      "pageId": "section",
+      "reason": "editorial-print-led uses carrier-adapted editable primitives"
+    },
+    {
+      "pageId": "quote",
+      "reason": "editorial-print-led uses carrier-adapted editable primitives"
+    }
+  ],
+  "capabilities": {
+    "supportMatrix": "system-showcase-support-matrix.json",
+    "supportMatrixSha256": "35d5081f0ad667027c13bac0526af4ca5826989f7935ac49ae5e12f9a1012588"
+  }
+}

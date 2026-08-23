@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "inputId": "system-showcase",
+  "inputSha256": "b3b823a40a6be3f8a2113a76c7edc45cf4398143543daa8a4b573c973be5febe",
+  "targets": [
+    "html",
+    "pptx"
+  ],
+  "preset": "magazine",
+  "language": {
+    "id": "editorial-archive",
+    "variant": "default"
+  },
+  "prototype": {
+    "mode": "adaptive",
+    "status": "candidate",
+    "candidateId": "C",
+    "representativeSlides": [
+      "cover",
+      "table",
+      "media"
+    ],
+    "rationale": "用编辑规则、印刷节奏与素材主导建立叙事层次。"
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "presentation": "editorial-print-led",
+      "treatment": "default",
+      "textFlow": {}
+    },
+    {
+      "id": "media",
+      "presentation": "photo-led",
+      "treatment": "default",
+      "textFlow": {}
+    },
+    {
+      "id": "table",
+      "presentation": "editorial-print-led",
+      "treatment": "dense",
+      "textFlow": {}
+    }
+  ]
+}

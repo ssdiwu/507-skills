@@ -1,80 +1,80 @@
 ---
 name: 507-ppt
-description: 原创视觉幻灯片制作：把已收口的逐页内容用可组合页面组件与设计令牌生成可编辑 .pptx 或独立单文件 HTML，并完成双载体验证。Use when user mentions 制作 PPT、生成 pptx、做成幻灯片、做 HTML deck、网页演示、slides rendering、presentation visual design、瑞士风 PPT、杂志风 PPT；内容仍需编排、讲稿或逐页稿未收口时使用 507-stage，不使用本 skill。
+description: 原创视觉幻灯片制作：把成熟逐页内容用语义组件、设计语言与视觉呈现动态组合，先以真实内容原型确认，再生成并验证可编辑 .pptx 或离线单文件 HTML。Use when user mentions 制作 PPT、生成 pptx、做成幻灯片、做 HTML deck、网页演示、slides rendering、presentation visual design、瑞士风 PPT、杂志风 PPT；内容仍需编排、讲稿或逐页稿未收口时使用 507-stage，不使用本 skill。
 license: MIT
-compatibility: 生成 .pptx（PowerPoint 演示文稿）及逐页截图内容验证需要已可用的 officecli（办公文档命令行工具）与 Pillow（图像处理库）；生成 HTML（网页）需要可写文件系统。HTML（网页）的浏览器截图、交互和动态验证需要本机 Chrome/Chromium（浏览器）或等价浏览器。
 ---
 
 # 视觉幻灯片（507-ppt）
 
-将**成熟逐页内容包**制作为可演示、可验证的视觉成品。支持可编辑 `.pptx` 与离线单文件 HTML；页面组件、配色、字体、形状与密度令牌组成独立视觉系统，并在两种载体上保持内容映射与风格辨识。
+将**成熟逐页内容包**制作为可演示、可验证的视觉成品。内容语义与视觉选择分开：内容包声明每页组件，独立 `visual-plan` 声明整套设计语言、逐页视觉呈现、受控 treatment（处理方式）与换行提示；HTML 和 `.pptx` 消费同一份计划。
 
-先读 [工作流合同](references/workflow-contract.md)、[视觉系统合同](references/design-system.md)、[风格合同](references/style-contracts.md) 和 [来源与许可证合同](references/provenance.md)。它们是本 skill 的实现边界。
+先读 [工作流合同](references/workflow-contract.md)、[三轴视觉系统](references/design-system.md)、[组合与视觉质量合同](references/style-contracts.md)、[中文排版合同](references/typography.md)和[来源合同](references/provenance.md)。
+
+## 运行条件
+
+生成 `.pptx` 及逐页截图验证需要已可用的 officecli 与 Pillow；生成 HTML 需要可写文件系统，浏览器交互与视觉验证需要 Chrome/Chromium 或等价浏览器。本 Skill 不自动安装这些依赖。
 
 ## 不覆盖什么
 
-- 不写讲稿、不决定演讲主线、不把草稿硬排成幻灯片；内容未收口返回 `507-stage`。
-- 不制作小红书图卡；该任务进入 `507-rednote`。
+- 不写讲稿、不决定演讲主线；内容未收口返回 `507-stage`。
+- 不制作小红书图卡，不登录、上传或发布。
 - 不支持 legacy `.ppt`；只输出 `.pptx` 或单文件 HTML。
 - 不自动安装 officecli、浏览器、字体或第三方依赖。
-- 不复制任何受限外部演示 skill 的模板、样式、脚本、版式、验证器或资产。
+- 不复制外部演示 Skill 的模板、代码、版式、字体或资产；外部项目只提供带版本的研究证据。
+- 不把 PPTX 模板填充、截图重建、旧 PPT 转网页或旁白视频顺带并入本轮视觉制作。
 
 ## 输入门
 
-开始前检查成熟逐页内容包是否具备：页面认知目标、观众可见内容、speaker notes 或无备注声明、受众/场景/时长，以及有授权的素材。
+成熟逐页内容包必须具备页面认知目标、观众可见内容、notes（讲者备注）或无备注声明、受众、场景、时长和素材授权。组件属于内容语义，不能由视觉计划改写。
 
-若缺其中任一项：说明缺口并返回 `507-stage`，不以视觉选择替代内容决定。
+每个 `media-evidence` 素材都必须有唯一 ID、真实本地 path、alt 与明确授权；最终产物遇到缺失路径直接失败，不能把项目占位图伪装成用户素材。PPTX 与 HTML 均真实消费 1～3 个素材。
 
-## 载体与设计方向选择
+旧 `kind` 内容可在一轮迁移期内标准化为 v3；新内容只写语义组件。`metric / chart / table` 共享 `data-evidence` 家族，但保持独立输入、渲染和验收，不能互相降级。
 
-1. 用户已指定 `.pptx` 或 HTML：优先遵守。
-2. 未指定：探测 officecli；可用则优先 `.pptx`，不可用则生成单文件 HTML。
-3. 用户指定 `.pptx` 但 officecli 不可用：报告能力缺失，等待用户提供环境或改选 HTML；不自动安装。
-4. 用户未指定方向：根据内容推荐——事实、产品、分析和方法论优先 `swiss` / `cobalt` / `forest`；叙事、品牌、人文、设计和观点表达优先 `magazine` / `clay`；需要强声明时选 `noir`。
-5. 方向与载体只定义实现，不改变已经确认的页面认知目标和内容边界；公开组件与方向必须同时可用于 HTML 与 `.pptx`。
+## 三轴组合与载体
 
-## 制作流程
+1. **语义组件**回答“这页承担什么内容关系”。
+2. **设计语言**回答“整套如何说话”：字体角色、色彩行为、网格、轮廓、层次、间距和动效性格。一套 deck 只有一个基础语言；单页只能使用注册过的 `default / inverse / section-emphasis / dense` treatment，不能直接覆写 raw token。
+3. **视觉呈现**回答“这一页如何被看见”，可逐页变化，但必须通过组件兼容矩阵。
 
-### 1. 建立产物计划
+命名样式只是已验证组合 preset，不是底层能力。自由组合不等于所有笛卡尔积自动有效；组件自身已有强组织手段时抑制重复装饰，例如 `table` 必须关闭背景网格并保留表格规则线。
 
-在目标目录创建或更新产物清单，记录：输入内容版本、载体、风格、页面映射、素材授权/替代文本、验证状态和失败回退。
+核心组合同时提供 HTML 与可编辑 `.pptx`；`adapted（适配实现）`必须记录降级，`unsupported（不支持）`禁止生成。扩展呈现不得伪装成核心双载体能力。
 
-### 2. 生成 `.pptx`
+## 自适应视觉原型
 
-仅在 officecli 已可用时执行：
+用户没有锁定成熟 preset 时，Agent 根据内容、受众、场景、密度、素材与目标载体推荐 2～3 组真正不同的“组件处理 × 设计语言 × 视觉呈现”组合，并用真实内容制作代表页原型：封面、可见文字最密页、首个数据或素材页。
 
-- 使用 `officecli help` 核对属性，不猜命令；
-- 每页写入 speaker notes；图片写入有意义的 alt text；
-- 分别设置中文、拉丁和等宽字体角色；
-- 按风格合同制作，不将 HTML 结构机械翻译为 PowerPoint；
-- 只在同目录候选文件中生成，执行 `close`（关闭）后运行 `schema`（结构模式）、`format issues`（格式问题）、`notes`（讲者备注）、`alt text`（替代文本）与逐页截图内容检查；全部通过才原子替换已有 `.pptx`（PowerPoint 演示文稿），失败时保留上一版。
+- 用户已点名已验证 preset 或明确要求快速生成时可以跳过，但 visual-plan 必须记录原因。
+- 用户可整组选中或跨候选混合；混合后必须先生成并确认合并原型，再生成整套。
+- 原型属于本 Skill 的标准视觉探索阶段，不等于独立 `507-prototype`；只有一个具体技术未知需要可丢弃验证时才进入后者。
+- 目标是 `.pptx` 时，可先用 HTML 总览判断方向，但锁定前必须生成真实 PPTX 代表页截图。
+- `approved` 不是可手填字符串：visual-plan 必须回链带 SHA-256 的 approved prototype manifest、选中候选、代表页、候选 artifact/plan 与联系表；任一文件变化都会让审批失效。
 
-PPTX 规则、命令、样例与验证参考 [PPTX recipe](references/pptx-recipes.md)。
+## 中文语义换行硬规则
 
-### 3. 生成 HTML
+- 能在一行容纳时保持一行，不为了造型主动拆成两行。
+- 必须换行时，只在词语或语义短语边界换行；不得拆开术语、专名、英文词、数字与单位。
+- 避免闭标点出现在行首、开标点留在行末，也不留下孤立的一两个字尾行。
+- `text-wrap: balance / pretty` 只作辅助，不能替代语义短语提示。
+- HTML 用不可断短语与边界换行点；PPTX 只按同一组短语写显式软换行。短语自身放不下时扩大容器或失败，不继续缩字或拆词。
+- `textFlow` 使用零基 JSON Pointer，可覆盖 `/items/0/label`、`/nodes/0/label`、`/assets/0/caption`、chart category/series 与 `/data/rows/0/2` 等嵌套可见文字；不可见 notes/goal 不进入该合同。
+- 以最终 HTML / PPTX 真实尺寸与逐页截图验收；自动 issues 为零不等于换行成立。
 
-HTML 必须是离线可打开的单文件：
+## 制作与验证
 
-- DOM 保留所有标题、正文、图表说明和导航语义；WebGL/Canvas 只做装饰；
-- 提供键盘、滚轮、触控和可聚焦按钮/索引导航；
-- 支持无 WebGL、失败 JS、静态模式和 `prefers-reduced-motion`；
-- 内嵌的第三方代码必须经许可证核验、保留 notice，并在来源清单记录；
-- 运行结构、交互、视觉、响应式、无障碍和退化检查。
+1. 校验并标准化内容包，建立或读取独立 visual-plan；support、suppression 与 degradation 由注册表计算，不能手填为通过。
+2. 完成所需视觉原型与当前版本确认，再生成整套候选；content v3 没有 visual-plan 或显式 preset 时必须停止，不能静默默认 Swiss。
+3. HTML 先以 `--candidate-only` 生成隔离候选；浏览器逐页用无转场 capture 模式核对当前 ID、关键文字、overflow、短语、mobile、reduced-motion、故障退化和截图哈希，再由 `promote_html.py` 原子晋升候选与 evidence。仅静态检查不能替换旧成品。
+4. PPTX 必须使用可编辑文字、shape、picture、原生 chart/table 和 notes，不用截图冒充结构化数据。
+5. 两种载体都在隔离候选中生成；自动、视觉、来源与换行检查通过后才替换已有产物。验证失败保留上一版。chart/table 使用原生对象；多序列柱图使用独立分组轨道，不把多个数值挤进同一宽度。
+6. manifest v2 记录内容哈希、visual-plan、prototype evidence、设计语言、逐页组件/呈现/treatment、载体支持、抑制项、降级、notes/alt、来源与截图证据；builder 与 validator 都重新调用 resolver，并复读绑定 artifact/input/plan 哈希且所有 checks 为 passed 的机器报告。旧 manifest v1 只作兼容读回。
 
-HTML runtime、版式和验证规则参考 [HTML recipe](references/html-recipes.md)。
-
-### 4. 交付与回退
-
-交付产物本身和验证清单：载体、风格、页面数、素材/alt、notes、验证命令、结果、已知降级。
-
-- officecli 缺失：仅在用户未锁定 `.pptx` 时退到 HTML；
-- 浏览器或 WebGL 缺失：保留可读静态 HTML，并报告未完成的视觉验证；
-- 字体或素材缺失：不伪装为已验证，使用已授权 fallback 或停在缺口；
-- 验证失败：保留失败证据，最小修复后重跑，不修改测试阈值来掩盖问题。
+载体命令与细节见 [HTML recipe](references/html-recipes.md)、[PPTX recipe](references/pptx-recipes.md)和[验证计划](references/verification-plan.md)。
 
 ## 完成与接力
 
-- **完成信号**：产物可打开；内容与输入包逐页对应；选择的风格可辨识；该载体要求的自动与视觉检查通过；产物清单与验证记录齐全。
-- **产物**：`.pptx` 或单文件 HTML、素材和来源/notice（如有）、产物清单、验证报告、联系表或逐页截图。
-- **候选出口**：用户进行视觉迭代时继续本 skill；内容需要调整时回 `507-stage`；成品可直接交付；将书面主稿改为社媒图文时进入 `507-rednote`。
-- **回退条件**：内容未收口、来源/授权不清、用户要求的载体能力缺失或验证未通过时，不宣称完成。
+- **完成信号**：内容语义未被视觉改写；当前 visual-plan 和原型选择可追溯；目标载体可打开；组合可辨识；中文换行、notes、alt、来源、自动与逐页视觉检查通过；适配降级已明示。
+- **产物**：`.pptx` 或单文件 HTML、visual-plan、prototype 证据、manifest v2、素材/notice、验证报告与逐页截图或联系表。
+- **候选出口**：视觉迭代继续本 Skill；内容需调整返回 `507-stage`；成品可直接交付；社媒图文进入 `507-rednote`。
+- **回退条件**：内容未收口、组合未确认、素材授权不清、载体不支持、中文换行或验证未通过时，不宣称完成。

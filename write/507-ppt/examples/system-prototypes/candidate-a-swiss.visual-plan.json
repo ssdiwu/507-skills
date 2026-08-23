@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "inputId": "system-showcase",
+  "inputSha256": "b3b823a40a6be3f8a2113a76c7edc45cf4398143543daa8a4b573c973be5febe",
+  "targets": [
+    "html",
+    "pptx"
+  ],
+  "preset": "swiss",
+  "language": {
+    "id": "precision-modern",
+    "variant": "default"
+  },
+  "prototype": {
+    "mode": "adaptive",
+    "status": "candidate",
+    "candidateId": "A",
+    "representativeSlides": [
+      "cover",
+      "table",
+      "media"
+    ],
+    "rationale": "优先显示严谨层级、关系结构与数据证据。"
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "presentation": "type-led",
+      "treatment": "default",
+      "textFlow": {}
+    },
+    {
+      "id": "media",
+      "presentation": "photo-led",
+      "treatment": "default",
+      "textFlow": {}
+    },
+    {
+      "id": "table",
+      "presentation": "data-led",
+      "treatment": "dense",
+      "textFlow": {}
+    }
+  ]
+}

@@ -1,13 +1,48 @@
 {
-  "style": "magazine",
+  "version": 1,
+  "kind": "axis-content",
+  "status": "passed",
+  "failures": [],
+  "subject": {
+    "inputId": "collaboration-baseline",
+    "inputSha256": "42d3cfe30df5912cc7f00a7fcf48de72be8a1d08df6b3e7fc8e6302a0d5302b1",
+    "visualPlanSha256": "generated-legacy-plan",
+    "artifactSha256": "3d5f2d70775dd59f7d615addab9622dd22203f87d4f305dee2963897d939f93d",
+    "carrier": "html"
+  },
+  "checks": [
+    {
+      "name": "per-slide-content",
+      "status": "passed"
+    },
+    {
+      "name": "three-axis-markers",
+      "status": "passed"
+    }
+  ],
+  "preset": "magazine",
+  "language": "editorial-archive",
   "carrier": "html",
   "pages": 4,
   "content": "passed",
-  "styleChecks": "passed",
-  "styleMarkers": [
-    "#71401F",
-    "Georgia,\"Songti SC\",serif",
-    ".quote-box"
+  "components": [
+    "cover",
+    "media-evidence",
+    "collection",
+    "quote"
   ],
-  "missing": []
+  "presentations": [
+    "type-led",
+    "photo-led",
+    "panel-led",
+    "type-led"
+  ],
+  "carrierSupport": [
+    "native",
+    "native",
+    "native",
+    "native"
+  ],
+  "missing": [],
+  "carrierEvidence": {}
 }

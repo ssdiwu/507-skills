@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "inputId": "presentation-pairwise",
+  "inputSha256": "a6c1f8598300a84f9651d0a7716b55ad4c0341a01d83bd2bb6d24a5502d4a58a",
+  "targets": ["html", "pptx"],
+  "language": {"id": "precision-modern", "variant": "default"},
+  "prototype": {
+    "mode": "deterministic-regression",
+    "status": "skipped",
+    "skipReason": "registered presentation pairwise verification fixture"
+  },
+  "slides": [
+    {"id": "type", "presentation": "type-led", "treatment": "default", "textFlow": {"/title": {"units": ["文字本身", "就是主视觉"], "lines": ["文字本身就是主视觉"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "panel", "presentation": "panel-led", "treatment": "dense", "textFlow": {}},
+    {"id": "data", "presentation": "data-led", "treatment": "default", "textFlow": {"/title": {"units": ["数据关系", "保持可编辑"], "lines": ["数据关系保持可编辑"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "schematic", "presentation": "schematic-led", "treatment": "default", "textFlow": {}},
+    {"id": "photo", "presentation": "photo-led", "treatment": "default", "textFlow": {"/title": {"units": ["素材占据", "主要画幅"], "lines": ["素材占据主要画幅"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "ui", "presentation": "ui-product-led", "treatment": "dense", "textFlow": {"/title": {"units": ["界面进入", "产品框架"], "lines": ["界面进入产品框架"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "editorial", "presentation": "editorial-print-led", "treatment": "inverse", "textFlow": {"/quote": {"units": ["规则线只服务层级，", "不与内容争夺主角。"], "lines": ["规则线只服务层级，", "不与内容争夺主角。"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "hand-drawn", "presentation": "hand-drawn-explainer", "treatment": "section-emphasis", "textFlow": {}}
+  ]
+}

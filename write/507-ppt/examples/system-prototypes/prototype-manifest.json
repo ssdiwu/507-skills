@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "inputId": "system-showcase",
+  "input": "prototype-content.json",
+  "inputSha256": "b3b823a40a6be3f8a2113a76c7edc45cf4398143543daa8a4b573c973be5febe",
+  "representativeSlides": [
+    "cover",
+    "table",
+    "media"
+  ],
+  "candidates": [
+    {
+      "id": "A",
+      "preset": "swiss",
+      "language": "precision-modern",
+      "rationale": "优先显示严谨层级、关系结构与数据证据。",
+      "presentations": [
+        "type-led",
+        "photo-led",
+        "data-led"
+      ],
+      "carrierSupport": {
+        "html": [
+          "native",
+          "native",
+          "native"
+        ],
+        "pptx": [
+          "native",
+          "native",
+          "native"
+        ]
+      },
+      "artifact": "candidate-a-swiss.html",
+      "artifactSha256": "aecbb555fe308b78fafe8ab68084dc450a0b038e8cac4eba463ad0e9b3b4c362",
+      "visualPlan": "candidate-a-swiss.visual-plan.json",
+      "visualPlanSha256": "d39f979ea546705c45d3c76dc36cb92403b5b5b4c67e495bf95d609d38c40b01"
+    },
+    {
+      "id": "B",
+      "preset": "cobalt",
+      "language": "soft-product",
+      "rationale": "用面板分组与产品界面框架增强模块感和可操作感。",
+      "presentations": [
+        "panel-led",
+        "ui-product-led",
+        "panel-led"
+      ],
+      "carrierSupport": {
+        "html": [
+          "native",
+          "native",
+          "native"
+        ],
+        "pptx": [
+          "native",
+          "native",
+          "native"
+        ]
+      },
+      "artifact": "candidate-b-cobalt.html",
+      "artifactSha256": "5f94caa9f367d07ef592b4ac9af302d66950520be924716d93033c0998d43bc9",
+      "visualPlan": "candidate-b-cobalt.visual-plan.json",
+      "visualPlanSha256": "8b0e6659be4ecb697f71e04029b90b04f4ab50bb05d6929b29be031d55e6c7ac"
+    },
+    {
+      "id": "C",
+      "preset": "magazine",
+      "language": "editorial-archive",
+      "rationale": "用编辑规则、印刷节奏与素材主导建立叙事层次。",
+      "presentations": [
+        "editorial-print-led",
+        "photo-led",
+        "editorial-print-led"
+      ],
+      "carrierSupport": {
+        "html": [
+          "native",
+          "native",
+          "native"
+        ],
+        "pptx": [
+          "adapted",
+          "native",
+          "adapted"
+        ]
+      },
+      "artifact": "candidate-c-magazine.html",
+      "artifactSha256": "b4d2757170e48a452932d1b0b98b2195070d7b401e25e61b86c622a803fe4b06",
+      "visualPlan": "candidate-c-magazine.visual-plan.json",
+      "visualPlanSha256": "8ee44c50575d9d5af33f8d88537507b03af1c599aa680e294a8ac1e83c154e5b"
+    }
+  ],
+  "status": "awaiting-user-selection"
+}

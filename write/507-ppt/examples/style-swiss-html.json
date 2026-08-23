@@ -1,13 +1,48 @@
 {
-  "style": "swiss",
+  "version": 1,
+  "kind": "axis-content",
+  "status": "passed",
+  "failures": [],
+  "subject": {
+    "inputId": "collaboration-baseline",
+    "inputSha256": "42d3cfe30df5912cc7f00a7fcf48de72be8a1d08df6b3e7fc8e6302a0d5302b1",
+    "visualPlanSha256": "generated-legacy-plan",
+    "artifactSha256": "ca269f5b1f355069d52ab3bfb65b63751f9f176ff2624d001c83964d5c238c99",
+    "carrier": "html"
+  },
+  "checks": [
+    {
+      "name": "per-slide-content",
+      "status": "passed"
+    },
+    {
+      "name": "three-axis-markers",
+      "status": "passed"
+    }
+  ],
+  "preset": "swiss",
+  "language": "precision-modern",
   "carrier": "html",
   "pages": 4,
   "content": "passed",
-  "styleChecks": "passed",
-  "styleMarkers": [
-    "#002FA7",
-    "Arial,sans-serif",
-    "grid-template-columns:repeat(3,1fr)"
+  "components": [
+    "cover",
+    "media-evidence",
+    "collection",
+    "quote"
   ],
-  "missing": []
+  "presentations": [
+    "type-led",
+    "photo-led",
+    "panel-led",
+    "type-led"
+  ],
+  "carrierSupport": [
+    "native",
+    "native",
+    "native",
+    "native"
+  ],
+  "missing": [],
+  "carrierEvidence": {}
 }

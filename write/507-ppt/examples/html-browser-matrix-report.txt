@@ -1,1 +1,1 @@
-HTML browser navigation/static/failure/no-webgl/reduced-motion/a11y matrix passed
+Legacy HTML navigation/static/failure/reduced-motion/a11y matrix passed with ego-browser and Chrome 150

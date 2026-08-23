@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "kind": "axis-content",
+  "status": "passed",
+  "failures": [],
+  "subject": {
+    "inputId": "presentation-pairwise",
+    "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",
+    "visualPlanSha256": "6db3edca1563ee1414f9f023d4dce28924a9003342da86e7ffb1d009b89ff14b",
+    "artifactSha256": "5d0f69c951df3e641db2845d158fb4e4c2ece336a21502c762e31c5da7071426",
+    "carrier": "html"
+  },
+  "checks": [
+    {
+      "name": "per-slide-content",
+      "status": "passed"
+    },
+    {
+      "name": "three-axis-markers",
+      "status": "passed"
+    }
+  ],
+  "preset": null,
+  "language": "precision-modern",
+  "carrier": "html",
+  "pages": 8,
+  "content": "passed",
+  "components": [
+    "cover",
+    "collection",
+    "chart",
+    "relationship",
+    "media-evidence",
+    "media-evidence",
+    "quote",
+    "sequence"
+  ],
+  "presentations": [
+    "type-led",
+    "panel-led",
+    "data-led",
+    "schematic-led",
+    "photo-led",
+    "ui-product-led",
+    "editorial-print-led",
+    "hand-drawn-explainer"
+  ],
+  "carrierSupport": [
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native"
+  ],
+  "missing": [],
+  "carrierEvidence": {}
+}

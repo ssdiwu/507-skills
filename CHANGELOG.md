@@ -6,6 +6,7 @@
 
 ### Added
 
+- `507-ppt` 新增三轴视觉系统：content v3 以 13 个语义叶组件保存内容，visual-plan v1 独立组合 6 个设计语言、8 类视觉呈现与 4 种受控 treatment，manifest v2 保存 resolver、prototype、载体和验证证据；默认按真实内容推荐 2～3 组候选，用户选择后以带哈希的 approved prototype manifest 锁定，目标包含 PPTX 时同时绑定真实候选 PPTX 与代表页截图。新增 13 组件 showcase、8 呈现 pairwise 双载体压测、原生 chart/table、多序列 chart、1～3 素材页和 nested JSON Pointer 中文语义换行；PPT Master 与 Frontend Slides 仅作为固定提交的研究证据，不引入其模板、代码、字体或资产。
 - `507-video` 新增 `product-promo` profile（产品宣传片条件制作合同）：当真实产品页面与功能状态是主要画面证据时，从产品事实和设计令牌建立 styleframe（静态风格帧），先做必须展示功能到可选镜头语法的映射，分镜放行后再采集真实页面，并按音乐是否承担时间基准分别处理 BGM（背景音乐）与 SFX（音效），最终渲染确认前完成独立关键帧终检；参考视频取证与手法重组仍归 `507-breakdown` / `507-remix`，用户参与度继续由 `507-grill` 和已有上游合同控制，剪映 / CapCut 可编辑工程仍是独立下游候选；本次只独立重写 Video Shotcraft 的通用机制，不引入其模板、镜头源码、音频或运行时。
 - 新增 `507-prospect` 创作采访 skill：在 `mine` 之前以非诱导、按材料可问边界自适应成组的采访显化作者尚未表达的一手材料；同一材料单元优先连续叙述，每轮集中询问信息增益最高的 2～3 个独立缺口，依赖上一答时才逐题，并产出会话级作者材料交接。
 - `507-forge` 新增初稿后才读取的书面主稿逐遍审计，以及只读 `check_prose.py`：检查材料与说话位置、段落推进、中文呼吸、事实边界和结尾，并按密度提醒对比句、名词化、连词、标点、短段、重复开场与多套借喻。
@@ -13,10 +14,16 @@
 
 ### Changed
 
+- `507-ppt` 将 `swiss / magazine / cobalt / clay / forest / noir` 从底层样式枚举降为兼容 preset；自由组合只开放渲染器真实消费的组件 × 呈现组合，HTML 与 PPTX 分别标记 native/adapted，table 强制抑制背景网格与重复规则线。content v3 不再静默默认 Swiss，必须提供 visual-plan 或显式 preset；legacy v1 与 `--style` 保留一轮兼容。HTML 改为 candidate → 无转场逐页浏览器报告 → `promote_html.py` 原子晋升，PPTX 继续在完整验证后原子替换；缺失素材直接失败，不再用项目占位图冒充用户素材。
 - `507-setup` 现在可在用户明确指定目标后建立或校准全局 `AGENTS.md`，并继续为选定项目建立事实驱动的项目级规则；全局示例同步采用最新的范围、验证与失败恢复纪律，仍保留完整标准包中的技能路由与项目级分工。
 - 写作流程、`507-mine` 与 `507-grill` 明确分开三类动作：`prospect` 生成作者材料，`mine` 判断并沉淀已表达材料，`grill` 只确认用户拥有的真实取舍；`prospect` 与 `grill` 可以共享 frontier 和独立问题批量调度，但不共享候选答案、推荐或产物；`forge` / `stage` 遇到尚未表达的作者材料时可调用 `prospect` 并在完成后返回，创作采访也不绑定录音、转写或特定宿主产品。
 - 写作主链把材料承重分配到五个职责：`prospect` 显化作者关系与信息来路，`mine` 区分独立材料和重复改写，`fuse` 判断材料能承载的作品范围，`forge` 按篇幅完成书面审计，`stage` 按页数、时长与现场媒介完成口播审计；材料不足时缩小作品或返回对应上游，不用用途推演和重复解释填满体量。
 - `507-forge` 增加解释推进与保护性表达审计：需要修正旧解释时通过可观察缺口、单一区分、同案重跑和迁移／反例校准推进；交付前先保护事实、关系、责任主体与术语，再清理模板腔，同时保留作者有意的反问、重复、括号补刀和不均匀节奏；明确请求去 AI 味或模板变体难以定位时，可按需加载带来源与 MIT 许可的中文高风险表达信号库，不把词条当成机械禁用表。
+
+### Fixed
+
+- `507-ppt` 修正中文标题、正文、item、node、caption、chart 与 table cell 的换行：宽度足够时恢复单行，只在 phrase 边界换行，拒绝拆词、孤立一两个字尾行和超过 `maxLines`；PPTX 对显式 textFlow 关闭 Office 自动拆词，并逐页读回软换行。
+- `507-ppt` 修正交付证据可被误报的问题：HTML 截图禁用转场并绑定 current page/overflow/profile/真实行数与截图 SHA-256，PPTX 逐页绑定截图、原生 chart/table/picture 与 notes/alt；manifest builder 和 validator 均重算 support/suppression/degradation，复读机器报告、support matrix 与 prototype evidence，拒绝假 `passed`、假 `native`、错页截图或陈旧哈希。
 
 ## [0.2.5] - 2026-08-12
 

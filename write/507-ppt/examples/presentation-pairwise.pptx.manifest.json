@@ -1,0 +1,198 @@
+{
+  "version": 2,
+  "inputId": "presentation-pairwise",
+  "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",
+  "carrier": "pptx",
+  "artifact": "presentation-pairwise.pptx",
+  "sha256": "c1ecf2b2e1d85f8e22df05e89483eee9f0a18bd420d32a0c7166184260dc3e6e",
+  "visualPlan": "presentation-pairwise.visual-plan.json",
+  "visualPlanSha256": "6db3edca1563ee1414f9f023d4dce28924a9003342da86e7ffb1d009b89ff14b",
+  "language": {
+    "id": "precision-modern",
+    "variant": "default"
+  },
+  "prototypeStatus": "skipped",
+  "prototypeEvidence": [],
+  "pages": [
+    {
+      "id": "type",
+      "component": "cover",
+      "presentation": "type-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "presentation-pairwise-pptx-evidence/slide-1.png",
+      "screenshotSha256": "f71c325c7560f7ac29a7701707567e842101158bc4b6167fa1c971475da906cc"
+    },
+    {
+      "id": "panel",
+      "component": "collection",
+      "presentation": "panel-led",
+      "treatment": "dense",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "presentation-pairwise-pptx-evidence/slide-2.png",
+      "screenshotSha256": "0a5841574b52cf0ef165fc75f6ffe9206a43caa83054276f18483dbee3aba1c3"
+    },
+    {
+      "id": "data",
+      "component": "chart",
+      "presentation": "data-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "presentation-pairwise-pptx-evidence/slide-3.png",
+      "screenshotSha256": "abab464a3a511f4d985ded111351ab0d94d1444f483a2540d60ca8e048c2f79e"
+    },
+    {
+      "id": "schematic",
+      "component": "relationship",
+      "presentation": "schematic-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "presentation-pairwise-pptx-evidence/slide-4.png",
+      "screenshotSha256": "98c4026795c78bafeda0ee598c0b6ca0002fa051f31116f390e45f80899945e6"
+    },
+    {
+      "id": "photo",
+      "component": "media-evidence",
+      "presentation": "photo-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "provided",
+      "assets": [
+        "photo-workbench"
+      ],
+      "screenshot": "presentation-pairwise-pptx-evidence/slide-5.png",
+      "screenshotSha256": "2ec470f1da5c9ba348e359afa9fc6c88561bc969ea6d8377f3148ad7c801e87c"
+    },
+    {
+      "id": "ui",
+      "component": "media-evidence",
+      "presentation": "ui-product-led",
+      "treatment": "dense",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "provided",
+      "assets": [
+        "ui-workbench",
+        "ui-editor",
+        "ui-preview"
+      ],
+      "screenshot": "presentation-pairwise-pptx-evidence/slide-6.png",
+      "screenshotSha256": "2bd680722b493bdd04c97c6e77324252819e7343fda7362d3cbe0a9aed6e6c3b"
+    },
+    {
+      "id": "editorial",
+      "component": "quote",
+      "presentation": "editorial-print-led",
+      "treatment": "inverse",
+      "carrierSupport": "adapted",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "presentation-pairwise-pptx-evidence/slide-7.png",
+      "screenshotSha256": "dab08cc6e81e4dd422e84e111e7358d5c53faae035d0d46ce17387e5ff0de6f6"
+    },
+    {
+      "id": "hand-drawn",
+      "component": "sequence",
+      "presentation": "hand-drawn-explainer",
+      "treatment": "section-emphasis",
+      "carrierSupport": "adapted",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "presentation-pairwise-pptx-evidence/slide-8.png",
+      "screenshotSha256": "1cc1d0c8f6d504852fbcb83fa4264eccb0e4d2540971f38b1bcd5c8b947b12a9"
+    }
+  ],
+  "assets": [
+    {
+      "id": "photo-workbench",
+      "path": "../assets/workbench.svg",
+      "alt": "抽象工作台视觉证据",
+      "sha256": "afeef431bd5dbdd13b61c8443ae0838517c043219a16f39ad82323bc97218fd8"
+    },
+    {
+      "id": "ui-workbench",
+      "path": "../assets/workbench.svg",
+      "alt": "包含文件、编辑器和预览区的抽象产品界面",
+      "sha256": "afeef431bd5dbdd13b61c8443ae0838517c043219a16f39ad82323bc97218fd8"
+    },
+    {
+      "id": "ui-editor",
+      "path": "../assets/workbench.svg",
+      "alt": "抽象产品界面的编辑器状态",
+      "sha256": "afeef431bd5dbdd13b61c8443ae0838517c043219a16f39ad82323bc97218fd8"
+    },
+    {
+      "id": "ui-preview",
+      "path": "../assets/workbench.svg",
+      "alt": "抽象产品界面的预览状态",
+      "sha256": "afeef431bd5dbdd13b61c8443ae0838517c043219a16f39ad82323bc97218fd8"
+    }
+  ],
+  "notices": [
+    "../third-party-notices.md"
+  ],
+  "verification": [
+    {
+      "name": "presentation-pairwise-pptx-axis-content",
+      "kind": "axis-content",
+      "status": "passed",
+      "evidence": "presentation-pairwise-pptx-axis-content.json",
+      "evidenceSha256": "28cb98e4039ef42282ec18681f2ff0d99cfb40938e4c2722a0b4a2b1cc8e387d"
+    }
+  ],
+  "screenshots": [
+    "presentation-pairwise-pptx-evidence/slide-1.png",
+    "presentation-pairwise-pptx-evidence/slide-2.png",
+    "presentation-pairwise-pptx-evidence/slide-3.png",
+    "presentation-pairwise-pptx-evidence/slide-4.png",
+    "presentation-pairwise-pptx-evidence/slide-5.png",
+    "presentation-pairwise-pptx-evidence/slide-6.png",
+    "presentation-pairwise-pptx-evidence/slide-7.png",
+    "presentation-pairwise-pptx-evidence/slide-8.png"
+  ],
+  "degradations": [
+    {
+      "pageId": "editorial",
+      "reason": "editorial-print-led uses carrier-adapted editable primitives"
+    },
+    {
+      "pageId": "hand-drawn",
+      "reason": "hand-drawn-explainer uses carrier-adapted editable primitives"
+    }
+  ],
+  "capabilities": {
+    "supportMatrix": "presentation-pairwise-support-matrix.json",
+    "supportMatrixSha256": "5f10f9d6aee43d83226d8a98be74c68886ce139b6b2e4b75927a2eafe51d4f94"
+  }
+}

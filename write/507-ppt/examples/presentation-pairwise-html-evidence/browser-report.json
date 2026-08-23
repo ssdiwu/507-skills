@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "kind": "html-browser",
+  "status": "passed",
+  "failures": [],
+  "subject": {
+    "inputId": "presentation-pairwise",
+    "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",
+    "visualPlanSha256": "6db3edca1563ee1414f9f023d4dce28924a9003342da86e7ffb1d009b89ff14b",
+    "artifactSha256": "5d0f69c951df3e641db2845d158fb4e4c2ece336a21502c762e31c5da7071426",
+    "carrier": "html"
+  },
+  "checks": [
+    {
+      "name": "all-pages-settled",
+      "status": "passed"
+    },
+    {
+      "name": "responsive-and-fallback-profiles",
+      "status": "passed"
+    }
+  ],
+  "profiles": {
+    "desktop": {
+      "status": "passed"
+    },
+    "mobile": {
+      "status": "passed",
+      "overflow": "pass",
+      "responsive": "pass",
+      "phraseOverflow": []
+    },
+    "reducedMotion": {
+      "status": "passed",
+      "motion": "reduced",
+      "hero": "none",
+      "transitionMs": 0
+    },
+    "failureFallback": {
+      "status": "passed",
+      "staticClass": true,
+      "visible": 8
+    },
+    "resizeRecovery": {
+      "status": "passed",
+      "narrowLines": 2,
+      "wideLines": 1
+    }
+  },
+  "pages": [
+    {
+      "id": "type",
+      "index": 0,
+      "currentId": "type",
+      "statusText": "1 / 8",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "TYPE\n\n文字本身就是主视觉\n\n层级、留白与单一强调共同承重",
+      "screenshot": "slide-1.png",
+      "screenshotSha256": "54428f4a559f5eb120e2aa95329f91735a69dddf7234bb55eb9d5a99900e4fc6",
+      "status": "passed",
+      "textFlows": {
+        "/title": {
+          "lines": 1,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "panel",
+      "index": 1,
+      "currentId": "panel",
+      "statusText": "2 / 8",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "面板服务分组\n输入\n\n保持内容边界。\n\n处理\n\n用容器表达分组。\n\n输出\n\n保留阅读顺序。",
+      "screenshot": "slide-2.png",
+      "screenshotSha256": "070631b2d5f953f7a2cc457fab36a615a8397ed73070fe0070795ade06d60dac",
+      "status": "passed",
+      "textFlows": {}
+    },
+    {
+      "id": "data",
+      "index": 2,
+      "currentId": "data",
+      "statusText": "3 / 8",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "数据关系保持可编辑\nHTML\n2\nPPTX\n2\n2\n原生支持\n适配支持\n507-ppt presentation registry",
+      "screenshot": "slide-3.png",
+      "screenshotSha256": "acd64a39dcfe22226bf6201ad86516d0255a683012de02da5f8962e469634c42",
+      "status": "passed",
+      "textFlows": {
+        "/title": {
+          "lines": 1,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "schematic",
+      "index": 3,
+      "currentId": "schematic",
+      "statusText": "4 / 8",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "三条规则形成一页\n语义\n语言\n呈现\n页面\nsemantic → page\n内容关系\nlanguage → page\n整套规则\npresentation → page\n单页表现",
+      "screenshot": "slide-4.png",
+      "screenshotSha256": "b132e4e661dbb240d000d13ef64d913e2432c690e6b72248c95bad0b9b6281a4",
+      "status": "passed",
+      "textFlows": {}
+    },
+    {
+      "id": "photo",
+      "index": 4,
+      "currentId": "photo",
+      "statusText": "5 / 8",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "PHOTO\n\n素材占据主要画幅\n\n图片负责证明，而不是装饰空白。\n\n摄影主导的证据位置",
+      "screenshot": "slide-5.png",
+      "screenshotSha256": "5542d5853d88632cfae9925d43ba2d13d59645b9892045ed1a5813e2e360a387",
+      "status": "passed",
+      "textFlows": {
+        "/title": {
+          "lines": 2,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "ui",
+      "index": 5,
+      "currentId": "ui",
+      "statusText": "6 / 8",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "UI\n\n界面进入产品框架\n\n边框、留白与 caption 说明这是产品证据。\n\n产品界面主导的证据位置\n编辑状态\n预览状态",
+      "screenshot": "slide-6.png",
+      "screenshotSha256": "209481dbce577dfc441602e0ee4df6df5206ed98dfb11330d9b35af9bec92270",
+      "status": "passed",
+      "textFlows": {
+        "/title": {
+          "lines": 1,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "editorial",
+      "index": 6,
+      "currentId": "editorial",
+      "statusText": "7 / 8",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "“\n规则线只服务层级，不与内容争夺主角。\n507-ppt 组合质量合同",
+      "screenshot": "slide-7.png",
+      "screenshotSha256": "5ade008d371116d8ad759be50e224bd9603574845f02d19d1ef28b2bd2c3ebf2",
+      "status": "passed",
+      "textFlows": {
+        "/quote": {
+          "lines": 2,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "hand-drawn",
+      "index": 7,
+      "currentId": "hand-drawn",
+      "statusText": "8 / 8",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "从判断走到交付\n01\n看内容\n\n识别页面关系。\n\n02\n做原型\n\n比较真实组合。\n\n03\n再生成\n\n保留确认证据。",
+      "screenshot": "slide-8.png",
+      "screenshotSha256": "ec205fc995e112f29e0209ed3091642773f4f057c0fb72a087fb2bf6a0f95730",
+      "status": "passed",
+      "textFlows": {}
+    }
+  ]
+}

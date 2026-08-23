@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "kind": "axis-content",
+  "status": "passed",
+  "failures": [],
+  "subject": {
+    "inputId": "presentation-pairwise",
+    "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",
+    "visualPlanSha256": "6db3edca1563ee1414f9f023d4dce28924a9003342da86e7ffb1d009b89ff14b",
+    "artifactSha256": "c1ecf2b2e1d85f8e22df05e89483eee9f0a18bd420d32a0c7166184260dc3e6e",
+    "carrier": "pptx"
+  },
+  "checks": [
+    {
+      "name": "per-slide-content",
+      "status": "passed"
+    },
+    {
+      "name": "three-axis-markers",
+      "status": "passed"
+    },
+    {
+      "name": "schema",
+      "status": "passed"
+    },
+    {
+      "name": "issues",
+      "status": "passed"
+    },
+    {
+      "name": "alt",
+      "status": "passed"
+    },
+    {
+      "name": "native-data-objects",
+      "status": "passed"
+    },
+    {
+      "name": "screenshots",
+      "status": "passed"
+    }
+  ],
+  "preset": null,
+  "language": "precision-modern",
+  "carrier": "pptx",
+  "pages": 8,
+  "content": "passed",
+  "components": [
+    "cover",
+    "collection",
+    "chart",
+    "relationship",
+    "media-evidence",
+    "media-evidence",
+    "quote",
+    "sequence"
+  ],
+  "presentations": [
+    "type-led",
+    "panel-led",
+    "data-led",
+    "schematic-led",
+    "photo-led",
+    "ui-product-led",
+    "editorial-print-led",
+    "hand-drawn-explainer"
+  ],
+  "carrierSupport": [
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "adapted",
+    "adapted"
+  ],
+  "missing": [],
+  "carrierEvidence": {
+    "schema": "passed",
+    "issues": 0,
+    "alt": "passed",
+    "nativeCharts": 1,
+    "nativeTables": 0,
+    "nativePictures": 4,
+    "screenshots": 8
+  }
+}

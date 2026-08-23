@@ -1,1 +1,84 @@
-{"version":1,"inputId":"collaboration-baseline","style":"magazine","carrier":"html","artifact":"collaboration-magazine.html","sha256":"369adc171e2972cba32a30dc5acae515060238a35ed29e283d3f99dca0a816dd","pages":[{"id":"cover","notes":true,"assets":[],"altStatus":"not-applicable","screenshot":"screenshots/html-magazine/slide-1.png"},{"id":"harness","notes":true,"assets":[],"altStatus":"not-applicable","screenshot":"screenshots/html-magazine/slide-2.png"},{"id":"responsibility","notes":true,"assets":[],"altStatus":"not-applicable","screenshot":"screenshots/html-magazine/slide-3.png"},{"id":"quote","notes":true,"assets":[],"altStatus":"not-applicable","screenshot":"screenshots/html-magazine/slide-4.png"}],"assets":[],"notices":["../third-party-notices.md"],"verification":[{"name":"html-static-contract","status":"passed","evidence":"html-static-contract-report.txt"},{"name":"html-browser-matrix","status":"passed","evidence":"html-browser-matrix-report.txt"},{"name":"style-content","status":"passed","evidence":"style-magazine-html.json"}],"screenshots":["screenshots/html-magazine/slide-1.png","screenshots/html-magazine/slide-2.png","screenshots/html-magazine/slide-3.png","screenshots/html-magazine/slide-4.png","screenshots/html-magazine/normal.png","screenshots/html-magazine/reduced-mobile.png","screenshots/html-magazine/no-js.png"],"inputSha256":"42d3cfe30df5912cc7f00a7fcf48de72be8a1d08df6b3e7fc8e6302a0d5302b1","degradations":["static=1 vertical readable fallback","no-webgl=1 Canvas hidden with semantic deck","fail-js=1 pre-initialization fallback","fail-init=1 post-initialization error fallback","fail-after=1 post-navigation error clears transform and exposes all pages","reduced=1 reduced-motion static fallback","prefers-reduced-motion media fallback"],"generatedAt":"2026-07-20T08:52:21.257516+00:00","capabilities":{"browser":"browser-act 0.1.30 + Chrome 150.0.7871.125","webgl":"Canvas 2D with CSS/static fallback","fallbackMatrix":"probe-matrix-report.txt"}}
+{
+  "version": 1,
+  "inputId": "collaboration-baseline",
+  "style": "magazine",
+  "carrier": "html",
+  "artifact": "collaboration-magazine.html",
+  "sha256": "3d5f2d70775dd59f7d615addab9622dd22203f87d4f305dee2963897d939f93d",
+  "pages": [
+    {
+      "id": "cover",
+      "notes": true,
+      "assets": [],
+      "altStatus": "not-applicable",
+      "screenshot": "screenshots/html-magazine/slide-1.png"
+    },
+    {
+      "id": "harness",
+      "notes": true,
+      "assets": [],
+      "altStatus": "not-applicable",
+      "screenshot": "screenshots/html-magazine/slide-2.png"
+    },
+    {
+      "id": "responsibility",
+      "notes": true,
+      "assets": [],
+      "altStatus": "not-applicable",
+      "screenshot": "screenshots/html-magazine/slide-3.png"
+    },
+    {
+      "id": "quote",
+      "notes": true,
+      "assets": [],
+      "altStatus": "not-applicable",
+      "screenshot": "screenshots/html-magazine/slide-4.png"
+    }
+  ],
+  "assets": [],
+  "notices": [
+    "../third-party-notices.md"
+  ],
+  "verification": [
+    {
+      "name": "html-static-contract",
+      "status": "passed",
+      "evidence": "html-static-contract-report.txt"
+    },
+    {
+      "name": "html-browser-matrix",
+      "status": "passed",
+      "evidence": "html-browser-matrix-report.txt"
+    },
+    {
+      "name": "style-content",
+      "status": "passed",
+      "evidence": "style-magazine-html.json"
+    }
+  ],
+  "screenshots": [
+    "screenshots/html-magazine/slide-1.png",
+    "screenshots/html-magazine/slide-2.png",
+    "screenshots/html-magazine/slide-3.png",
+    "screenshots/html-magazine/slide-4.png",
+    "screenshots/html-magazine/normal.png",
+    "screenshots/html-magazine/reduced-mobile.png",
+    "screenshots/html-magazine/no-js.png"
+  ],
+  "inputSha256": "42d3cfe30df5912cc7f00a7fcf48de72be8a1d08df6b3e7fc8e6302a0d5302b1",
+  "degradations": [
+    "static=1 vertical readable fallback",
+    "no-webgl=1 Canvas hidden with semantic deck",
+    "fail-js=1 pre-initialization fallback",
+    "fail-init=1 post-initialization error fallback",
+    "fail-after=1 post-navigation error clears transform and exposes all pages",
+    "reduced=1 reduced-motion static fallback",
+    "prefers-reduced-motion media fallback"
+  ],
+  "generatedAt": "2026-08-24T00:36:32+08:00",
+  "capabilities": {
+    "browser": "ego-browser + Chrome 150.0.0.0",
+    "webgl": "Canvas 2D with CSS/static fallback",
+    "fallbackMatrix": "probe-matrix-report.txt"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "version": 3,
+  "id": "system-showcase",
+  "language": "zh-CN",
+  "deck": {
+    "title": "三轴视觉系统展示",
+    "audience": "需要交付演示文稿的创作者",
+    "scene": "产品能力演示",
+    "durationMinutes": 24
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "component": "cover",
+      "goal": "建立主题",
+      "eyebrow": "507-ppt",
+      "title": "三轴视觉系统",
+      "subtitle": "语义组件 × 设计语言 × 视觉呈现",
+      "footer": "公开 fixture",
+      "notes": "介绍三轴系统。"
+    },
+    {
+      "id": "media",
+      "component": "media-evidence",
+      "goal": "解释素材证据",
+      "eyebrow": "证据",
+      "title": "素材承担一个问题",
+      "body": "图像应证明内容，而不是填满空白。",
+      "assets": [
+        {
+          "id": "workbench",
+          "role": "ui",
+          "path": "assets/workbench.svg",
+          "alt": "包含文件、编辑器和预览区域的抽象工作台示意图",
+          "caption": "抽象工作台示意"
+        }
+      ],
+      "notes": "说明素材职责。"
+    },
+    {
+      "id": "table",
+      "component": "table",
+      "goal": "逐项查找设计语言能力",
+      "title": "六种设计语言当前能力",
+      "data": {
+        "columns": [
+          "方向",
+          "状态",
+          "当前能力"
+        ],
+        "rows": [
+          [
+            "Swiss",
+            "可组合",
+            "网格与层级"
+          ],
+          [
+            "Magazine",
+            "可组合",
+            "编辑栅格"
+          ],
+          [
+            "Cobalt",
+            "可组合",
+            "产品模块"
+          ],
+          [
+            "Clay",
+            "可组合",
+            "温暖叙事"
+          ],
+          [
+            "Forest",
+            "可组合",
+            "研究层级"
+          ],
+          [
+            "Noir",
+            "可组合",
+            "强声明"
+          ]
+        ],
+        "source": "当前 507-ppt registry"
+      },
+      "notes": "逐项说明六种设计语言均可与兼容呈现组合。"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "kind": "axis-content",
+  "status": "passed",
+  "failures": [],
+  "subject": {
+    "inputId": "system-showcase",
+    "inputSha256": "b9e37a0d1082db539fae39d3d37a0681234e073b7417c80f486525f984e25309",
+    "visualPlanSha256": "c189d09513e216b770b93471ff906e7253964efe362bebe57e0fbb0429ed6468",
+    "artifactSha256": "e09ec9697f7134905306ec1e655a60b21e7ab87021f33579b8551567e00196a1",
+    "carrier": "html"
+  },
+  "checks": [
+    {
+      "name": "per-slide-content",
+      "status": "passed"
+    },
+    {
+      "name": "three-axis-markers",
+      "status": "passed"
+    }
+  ],
+  "preset": "swiss",
+  "language": "precision-modern",
+  "carrier": "html",
+  "pages": 13,
+  "content": "passed",
+  "components": [
+    "cover",
+    "section",
+    "closing",
+    "statement",
+    "collection",
+    "comparison",
+    "sequence",
+    "relationship",
+    "media-evidence",
+    "quote",
+    "metric",
+    "chart",
+    "table"
+  ],
+  "presentations": [
+    "type-led",
+    "editorial-print-led",
+    "type-led",
+    "type-led",
+    "panel-led",
+    "schematic-led",
+    "schematic-led",
+    "schematic-led",
+    "photo-led",
+    "editorial-print-led",
+    "data-led",
+    "data-led",
+    "data-led"
+  ],
+  "carrierSupport": [
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native"
+  ],
+  "missing": [],
+  "carrierEvidence": {}
+}

@@ -1,67 +1,67 @@
 # 分层验证与样例计划
 
-验证按输入、载体、视觉和来源分层执行。任何层失败都保留证据并停止宣称完成；修复后从失败层重跑，不以放宽阈值替代修复。
+验证按内容、visual-plan、组合解析、载体、视觉、换行与来源分层。任何层失败都停止宣称完成；不通过修改阈值掩盖失败。
 
-## 共享 fixture
+## Fixture 角色
 
-使用一个公开、无版权争议的成熟逐页内容包，至少含：
+- `collaboration-baseline.json`：旧 v1 内容和 `--style` preset 的兼容回归；
+- `system-showcase.json`：content v3，覆盖 13 个语义叶组件、中文、data/media/relationship；
+- `system-showcase.visual-plan.json`：三轴、受控 treatment、中文短语与 adapted 页；
+- `presentation-pairwise.json + visual-plan`：八类视觉呈现与四种 treatment 的真实双载体代表页；
+- 原型测试：代表页选择、2～3 候选、混合后合并原型；
+- 中文换行测试：宽度足够保持单行，宽度不足只在 phrase units 边界换行。
 
-1. 封面/问题；
-2. 图文解释；
-3. 数据或三项结构；
-4. 引用或收束；
-5. 每页 speaker notes；
-6. 一张有替代文本的本地图片或原创几何图。
+## 单元与组合解析
 
-`collaboration-baseline.json` 必须输出四份成品：瑞士 HTML、瑞士 `.pptx`、杂志 HTML、杂志 `.pptx`。`system-showcase.json` 必须覆盖每个公开页面组件；`test_design_system.py` 必须覆盖每个公开设计方向的令牌完整性与 HTML 映射。公开方向在 `.pptx` 的方向映射由 `validate_pptx.py --style` 与 `check_style_content.py` 定向复验。
+1. 每个组件至少有一个 preferred 核心呈现；每个呈现至少有消费者；
+2. 每个允许组合解析为唯一 support/suppression/degradation；禁止组合报错；
+3. 一套 deck 只能有一个基础语言，单页 raw token override 拒绝；
+4. `metric/chart/table` 字段、渲染和验收互不降级；
+5. table 在所有组合中抑制背景网格和重复线；
+6. 旧 kind/preset 标准化后 ID、顺序、文字、notes、alt 不变；
+7. 顶层与 nested JSON Pointer 的 phrase units/lines 拼接等于原文，且只在 units 边界断行；
+8. 缺失素材、伪造 fallback、未渲染的 photo/UI 组合与超过 3 个素材均失败；
+9. 多序列 bar 使用独立轨道/series，并覆盖 0、最大值与 2～3 series；
+10. manifest v1 兼容；v2 对 resolver support/suppression/degradation、prototype 链、support matrix 与 verification report 篡改严格拒绝。
 
-fixture 放在 `scripts/fixtures/`，不得使用私密项目、未经授权截图或外部 AGPL 资产。
-
-## 产物 manifest
-
-每次生成写入 JSON manifest，至少包含：
-
-- `inputId`、输入内容哈希、风格、载体、生成时间；
-- 页数、每页内容 ID、notes 状态、图片 alt 状态；
-- 本地素材哈希、第三方 notice 引用；
-- 执行的验证、版本/浏览器/officecli 能力、结果和已知降级；
-- 逐页截图或联系表的相对路径。
-
-manifest 不是内容真相源；它只证明给定输入到给定产物的可复验链路。
-
-## HTML 验证矩阵
+## HTML
 
 | 层 | 断言 | 证据 |
 | --- | --- | --- |
-| 结构 | slide ID 唯一、索引连续、标题/语义/alt 完整、无未声明远程资源 | 结构检查 JSON |
-| 交互 | 键盘、按钮、滚轮、触控、页码状态与边界一致 | 浏览器自动测试 |
-| 视觉 | 固定桌面、平板、移动视口无裁切/重叠/空白异常 | 截图、联系表、必要 diff |
-| 退化 | 静态、无 WebGL、JS 失败、减少动态仍可读可导航 | 四组截图和断言 |
-| 无障碍 | 键盘焦点、ARIA 标签/当前页通知、文字对比度达到 AA | a11y/contrast 报告 |
-| 来源 | 无受限代码/资产、依赖均有宽松许可证 notice | 来源扫描和 `third-party-notices.md` |
+| 三轴 | data component/presentation/language/treatment/support 齐全 | DOM 报告 |
+| 结构 | slide ID、顺序、标题、table、chart、alt 完整 | 静态检查 |
+| 交互 | 键盘、按钮、滚轮、触控、页码与焦点成立 | 浏览器检查 |
+| 视觉 | `instant=1` 后 current ID、页码、offset 与截图一致；桌面/移动无裁切重叠 | 逐页截图/联系表 |
+| 换行 | 单行优先、phrase 不拆、标点与尾行自然 | DOM rect + 截图 |
+| 退化 | static、无 JS、减少动态仍保留内容 | 多模式截图 |
+| 来源 | 无远程资源，嵌入资产/notice 可查 | 来源扫描 |
 
-动态截图必须使用固定种子或固定时间步，避免视觉回归因随机帧抖动。
+移动端完整画幅但小字不可读时只能报告“构图预览”，不能称移动阅读通过。
 
-## PPTX 验证矩阵
+## PPTX
 
 | 层 | 断言 | 证据 |
 | --- | --- | --- |
-| 结构 | 文件可重新打开，OpenXML schema 有效 | `officecli validate` |
-| 格式 | 无未豁免 overflow、裁切或格式 issue | `officecli view issues` |
-| 内容 | 页面文本/映射与输入一致 | outline/text 对照 |
-| 讲者与素材 | 每页 notes；图片有有意义 alt text | notes/picture 查询 |
-| 可读性 | 字体角色、最小字号、图片比例与风格合同成立 | annotated 输出和逐页截图 |
-| 可编辑性 | shape/picture/text 可由 officecli 读回 | DOM 查询与 fresh read-back |
+| 结构 | OpenXML schema 有效、零 format issues | officecli validate/issues |
+| 内容 | ID/文字/notes/alt 与输入一致 | text/query/read-back |
+| 数据 | chart/table 是原生对象，categories/series/rows 可读回 | officecli query/get |
+| 语言 | 字体角色、主题色、受控 treatment 和适配呈现成立 | query + 逐页截图 |
+| 换行 | 只在 phrase lines 处软换行，无拆词/无限缩字 | plan + screenshot |
+| 证据 | 验证截图保留在最终 evidence 目录；报告绑定 artifact/input/plan hash | manifest 回链 |
+
+## 双载体与 pairwise
+
+不生成无意义的全笛卡尔积成品。Resolver 对所有注册的组件 × 呈现 × 基础语言 × 载体组合执行全矩阵检查；13 页 showcase 覆盖全部组件，8 页 pairwise fixture 覆盖全部呈现与四种 treatment，高风险组合另做定向样例。HTML/PPTX 对同一内容与 visual-plan 保持页面映射与可见文本，adapted 页显式记录差异。
+
+## 原型门
+
+- 候选使用同一真实内容；
+- 代表页覆盖封面、最密页、data/media；
+- 推荐理由和目标载体支持可见；
+- approved manifest 绑定候选 artifact/plan、选中项、代表页、联系表与全部 SHA-256；目标含 PPTX 时另绑定真实候选 PPTX 和每张代表页截图；
+- 混合候选后必须生成合并 plan 与合并原型；
+- 目标为 PPTX 时，锁定前必须有真实 PPTX 代表页截图。
 
 ## 执行顺序
 
-1. 运行静态结构/来源检查；
-2. 分别生成 HTML 与 `.pptx`；
-3. 运行各载体自动验证；
-4. 生成固定视口/逐页截图与四象限联系表；
-5. fresh T3 重跑定向测试、检查 diff 与产物；
-6. 由 T1 对高风险来源、交付边界和视觉收敛做独立审核。
-
-## 停用 guizang 的门槛
-
-仅当四象限样例全部通过上述检查、来源审核没有 AGPL 污染、phase_check 批准且恢复演练已写入 manifest 时，才可把它移动到不被技能发现的可逆备份位置。
+静态 schema/来源 → 组合 resolver → 原型审批 manifest → HTML/PPTX 候选 → 自动验证 → 无转场逐页截图与 phrase 检查 → 机器报告 → 原子晋升 → manifest v2 → 独立 review。旧产物只在新候选与 evidence 全部通过后替换。

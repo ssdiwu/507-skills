@@ -1,0 +1,263 @@
+{
+  "version": 2,
+  "inputId": "system-showcase",
+  "inputSha256": "b9e37a0d1082db539fae39d3d37a0681234e073b7417c80f486525f984e25309",
+  "carrier": "html",
+  "artifact": "system-showcase.html",
+  "sha256": "e09ec9697f7134905306ec1e655a60b21e7ab87021f33579b8551567e00196a1",
+  "visualPlan": "system-showcase.visual-plan.json",
+  "visualPlanSha256": "c189d09513e216b770b93471ff906e7253964efe362bebe57e0fbb0429ed6468",
+  "language": {
+    "id": "precision-modern",
+    "variant": "default"
+  },
+  "prototypeStatus": "approved",
+  "prototypeEvidence": [
+    {
+      "kind": "prototype-manifest",
+      "path": "system-prototypes/approved-prototype-manifest.json",
+      "sha256": "d12fd1badec673ecf7faa4b197a8c0b099236696d18a9576718b0337ab528a7a"
+    },
+    {
+      "kind": "prototype-contact-sheet",
+      "path": "system-prototypes/contact-sheet.png",
+      "sha256": "bc9f8c9c0f5cd26a45b974555661162feeae259ba2a5d7576da98947bd9b3342"
+    }
+  ],
+  "pages": [
+    {
+      "id": "cover",
+      "component": "cover",
+      "presentation": "type-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-1.png",
+      "screenshotSha256": "b334cc8e845403c72e1b53ccd553f6a44f6c610c4f0877a53ba8045c3c5c6ed1"
+    },
+    {
+      "id": "section",
+      "component": "section",
+      "presentation": "editorial-print-led",
+      "treatment": "section-emphasis",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-2.png",
+      "screenshotSha256": "090cac54f99ac29ad4eb7c6ae5edb71475dd617af9bbed083f83f913270545c6"
+    },
+    {
+      "id": "closing",
+      "component": "closing",
+      "presentation": "type-led",
+      "treatment": "inverse",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-3.png",
+      "screenshotSha256": "677953fdcb62c2d8738240e6d9eef1a9896bfd619eb044c780b90a9baebbfed2"
+    },
+    {
+      "id": "statement",
+      "component": "statement",
+      "presentation": "type-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-4.png",
+      "screenshotSha256": "cd884e24d90108913c866c8bdaa0d928d1821aee78488336d2f99cc14ed007fb"
+    },
+    {
+      "id": "collection",
+      "component": "collection",
+      "presentation": "panel-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-5.png",
+      "screenshotSha256": "5c56d65e32ae6d366a2c2447002c6d6be84f24fe1d12c20019abf44331c472f7"
+    },
+    {
+      "id": "comparison",
+      "component": "comparison",
+      "presentation": "schematic-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-6.png",
+      "screenshotSha256": "72f71bced5d9ed33728bb72e6aab8ede588f07da8c2f277062baf18227d64ba5"
+    },
+    {
+      "id": "sequence",
+      "component": "sequence",
+      "presentation": "schematic-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-7.png",
+      "screenshotSha256": "ae6fe7e82aa1d4fd6ca845b48ea4a3fded339d3d76a8b1c51933b556abd5623b"
+    },
+    {
+      "id": "relationship",
+      "component": "relationship",
+      "presentation": "schematic-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-8.png",
+      "screenshotSha256": "fc20a25936707ea0dff55a0d5b39f24dcc6902309193ec23fe19fae9198ce8b3"
+    },
+    {
+      "id": "media",
+      "component": "media-evidence",
+      "presentation": "photo-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "provided",
+      "assets": [
+        "workbench"
+      ],
+      "screenshot": "system-showcase-html-evidence/slide-9.png",
+      "screenshotSha256": "c383fee3003f4c0ed42e174ae47c09ad6beeb3896f3d9b0e0a444a8269cc2788"
+    },
+    {
+      "id": "quote",
+      "component": "quote",
+      "presentation": "editorial-print-led",
+      "treatment": "inverse",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-10.png",
+      "screenshotSha256": "00f7ce0a16515c01bc5c4f1092afcb8dbb341361bdb09f5a9a8f8bdce1d8a456"
+    },
+    {
+      "id": "metric",
+      "component": "metric",
+      "presentation": "data-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-11.png",
+      "screenshotSha256": "8c25e5b87fe99127d5f24660db1f2fb88d9f9d471c468983bbaab56ac5f8ced8"
+    },
+    {
+      "id": "chart",
+      "component": "chart",
+      "presentation": "data-led",
+      "treatment": "default",
+      "carrierSupport": "native",
+      "suppressedDecorations": [],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-12.png",
+      "screenshotSha256": "e16accab502581ebc2946b973965639f87eb86ca60dc3b2771b29845685c4623"
+    },
+    {
+      "id": "table",
+      "component": "table",
+      "presentation": "data-led",
+      "treatment": "dense",
+      "carrierSupport": "native",
+      "suppressedDecorations": [
+        "background-grid",
+        "decorative-rules"
+      ],
+      "textFlowStatus": "screenshot-verified",
+      "notesStatus": "provided",
+      "altStatus": "not-applicable",
+      "assets": [],
+      "screenshot": "system-showcase-html-evidence/slide-13.png",
+      "screenshotSha256": "75ffadfae4eb7bb5df218e844e6df2d3e67fa4998947e6942f01263061ffc163"
+    }
+  ],
+  "assets": [
+    {
+      "id": "workbench",
+      "path": "../assets/workbench.svg",
+      "alt": "包含文件、编辑器和预览区域的抽象工作台示意图",
+      "sha256": "afeef431bd5dbdd13b61c8443ae0838517c043219a16f39ad82323bc97218fd8"
+    }
+  ],
+  "notices": [
+    "../third-party-notices.md"
+  ],
+  "verification": [
+    {
+      "name": "system-showcase-html-axis-content",
+      "kind": "axis-content",
+      "status": "passed",
+      "evidence": "system-showcase-html-axis-content.json",
+      "evidenceSha256": "39d27d1cfb3f22fb66e6472a8e44b5142e787735be19d134685410160e43489f"
+    },
+    {
+      "name": "browser-report",
+      "kind": "html-browser",
+      "status": "passed",
+      "evidence": "system-showcase-html-evidence/browser-report.json",
+      "evidenceSha256": "59f1cdade076f59216616197f7b981bef3c027650d017ace0a318f58d96c3cb7"
+    }
+  ],
+  "screenshots": [
+    "system-showcase-html-evidence/slide-1.png",
+    "system-showcase-html-evidence/slide-2.png",
+    "system-showcase-html-evidence/slide-3.png",
+    "system-showcase-html-evidence/slide-4.png",
+    "system-showcase-html-evidence/slide-5.png",
+    "system-showcase-html-evidence/slide-6.png",
+    "system-showcase-html-evidence/slide-7.png",
+    "system-showcase-html-evidence/slide-8.png",
+    "system-showcase-html-evidence/slide-9.png",
+    "system-showcase-html-evidence/slide-10.png",
+    "system-showcase-html-evidence/slide-11.png",
+    "system-showcase-html-evidence/slide-12.png",
+    "system-showcase-html-evidence/slide-13.png"
+  ],
+  "degradations": [],
+  "capabilities": {
+    "supportMatrix": "system-showcase-support-matrix.json",
+    "supportMatrixSha256": "35d5081f0ad667027c13bac0526af4ca5826989f7935ac49ae5e12f9a1012588"
+  }
+}

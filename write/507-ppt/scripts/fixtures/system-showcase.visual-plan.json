@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "inputId": "system-showcase",
+  "inputSha256": "2246833bcc63d09bc5983f088d5f11027dfaca1805769ac4fa19087522793403",
+  "targets": ["html", "pptx"],
+  "preset": "swiss",
+  "language": {"id": "precision-modern", "variant": "default"},
+  "prototype": {
+    "mode": "adaptive",
+    "status": "approved",
+    "manifest": "examples/system-prototypes/approved-prototype-manifest.json",
+    "manifestSha256": "d12fd1badec673ecf7faa4b197a8c0b099236696d18a9576718b0337ab528a7a",
+    "representativeSlides": ["cover", "table", "media"],
+    "candidates": [
+      {"id": "A", "preset": "swiss", "language": "precision-modern"},
+      {"id": "B", "preset": "cobalt", "language": "soft-product"},
+      {"id": "C", "preset": "magazine", "language": "editorial-archive"}
+    ],
+    "selectedCandidate": "A",
+    "mixedFrom": []
+  },
+  "slides": [
+    {"id": "cover", "presentation": "type-led", "treatment": "default", "textFlow": {"/title": {"units": ["三轴", "视觉系统"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "section", "presentation": "editorial-print-led", "treatment": "section-emphasis", "textFlow": {}},
+    {"id": "closing", "presentation": "type-led", "treatment": "inverse", "textFlow": {"/title": {"units": ["先看原型，", "再锁定整套"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "statement", "presentation": "type-led", "treatment": "default", "textFlow": {"/title": {"units": ["自由组合，", "不等于任意叠加"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "collection", "presentation": "panel-led", "treatment": "default", "textFlow": {}},
+    {"id": "comparison", "presentation": "schematic-led", "treatment": "default", "textFlow": {}},
+    {"id": "sequence", "presentation": "schematic-led", "treatment": "default", "textFlow": {}},
+    {"id": "relationship", "presentation": "schematic-led", "treatment": "default", "textFlow": {}},
+    {"id": "media", "presentation": "photo-led", "treatment": "default", "textFlow": {"/body": {"units": ["图像应证明内容，", "而不是填满空白。"], "lines": ["图像应证明内容，", "而不是填满空白。"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "quote", "presentation": "editorial-print-led", "treatment": "inverse", "textFlow": {"/quote": {"units": ["视觉变化", "必须由内容关系", "承重。"], "lines": ["视觉变化必须由内容关系承重。"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "metric", "presentation": "data-led", "treatment": "default", "textFlow": {}},
+    {"id": "chart", "presentation": "data-led", "treatment": "default", "textFlow": {"/title": {"units": ["六种语言，", "八类呈现"], "lines": ["六种语言，", "八类呈现"], "preferSingleLine": true, "maxLines": 2}}},
+    {"id": "table", "presentation": "data-led", "treatment": "dense", "textFlow": {"/data/rows/0/2": {"units": ["网格与层级"], "lines": ["网格与层级"], "preferSingleLine": true, "maxLines": 1}}}
+  ]
+}

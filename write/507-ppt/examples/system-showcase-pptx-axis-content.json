@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "kind": "axis-content",
+  "status": "passed",
+  "failures": [],
+  "subject": {
+    "inputId": "system-showcase",
+    "inputSha256": "b9e37a0d1082db539fae39d3d37a0681234e073b7417c80f486525f984e25309",
+    "visualPlanSha256": "c189d09513e216b770b93471ff906e7253964efe362bebe57e0fbb0429ed6468",
+    "artifactSha256": "1f33712ca4dfeef1f6244d1e9ea74ffd55d1fbfea69534cc5f4d42c20c650cec",
+    "carrier": "pptx"
+  },
+  "checks": [
+    {
+      "name": "per-slide-content",
+      "status": "passed"
+    },
+    {
+      "name": "three-axis-markers",
+      "status": "passed"
+    },
+    {
+      "name": "schema",
+      "status": "passed"
+    },
+    {
+      "name": "issues",
+      "status": "passed"
+    },
+    {
+      "name": "alt",
+      "status": "passed"
+    },
+    {
+      "name": "native-data-objects",
+      "status": "passed"
+    },
+    {
+      "name": "screenshots",
+      "status": "passed"
+    }
+  ],
+  "preset": "swiss",
+  "language": "precision-modern",
+  "carrier": "pptx",
+  "pages": 13,
+  "content": "passed",
+  "components": [
+    "cover",
+    "section",
+    "closing",
+    "statement",
+    "collection",
+    "comparison",
+    "sequence",
+    "relationship",
+    "media-evidence",
+    "quote",
+    "metric",
+    "chart",
+    "table"
+  ],
+  "presentations": [
+    "type-led",
+    "editorial-print-led",
+    "type-led",
+    "type-led",
+    "panel-led",
+    "schematic-led",
+    "schematic-led",
+    "schematic-led",
+    "photo-led",
+    "editorial-print-led",
+    "data-led",
+    "data-led",
+    "data-led"
+  ],
+  "carrierSupport": [
+    "native",
+    "adapted",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "native",
+    "adapted",
+    "native",
+    "native",
+    "native"
+  ],
+  "missing": [],
+  "carrierEvidence": {
+    "schema": "passed",
+    "issues": 0,
+    "alt": "passed",
+    "nativeCharts": 1,
+    "nativeTables": 1,
+    "nativePictures": 1,
+    "screenshots": 13
+  }
+}

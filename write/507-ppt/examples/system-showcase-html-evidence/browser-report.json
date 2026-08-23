@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "kind": "html-browser",
+  "status": "passed",
+  "failures": [],
+  "subject": {
+    "inputId": "system-showcase",
+    "inputSha256": "b9e37a0d1082db539fae39d3d37a0681234e073b7417c80f486525f984e25309",
+    "visualPlanSha256": "c189d09513e216b770b93471ff906e7253964efe362bebe57e0fbb0429ed6468",
+    "artifactSha256": "e09ec9697f7134905306ec1e655a60b21e7ab87021f33579b8551567e00196a1",
+    "carrier": "html"
+  },
+  "checks": [
+    {
+      "name": "all-pages-settled",
+      "status": "passed"
+    },
+    {
+      "name": "responsive-and-fallback-profiles",
+      "status": "passed"
+    }
+  ],
+  "profiles": {
+    "desktop": {
+      "status": "passed"
+    },
+    "mobile": {
+      "status": "passed",
+      "overflow": "pass",
+      "responsive": "pass",
+      "phraseOverflow": []
+    },
+    "reducedMotion": {
+      "status": "passed",
+      "motion": "reduced",
+      "hero": "none",
+      "transitionMs": 0
+    },
+    "failureFallback": {
+      "status": "passed",
+      "staticClass": true,
+      "visible": 13
+    },
+    "resizeRecovery": {
+      "status": "passed",
+      "narrowLines": 1,
+      "wideLines": 1
+    }
+  },
+  "pages": [
+    {
+      "id": "cover",
+      "index": 0,
+      "currentId": "cover",
+      "statusText": "1 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "507-ppt\n\n三轴视觉系统\n\n语义组件 × 设计语言 × 视觉呈现\n\n公开 fixture",
+      "screenshot": "slide-1.png",
+      "screenshotSha256": "b334cc8e845403c72e1b53ccd553f6a44f6c610c4f0877a53ba8045c3c5c6ed1",
+      "status": "passed",
+      "textFlows": {
+        "/title": {
+          "lines": 1,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "section",
+      "index": 1,
+      "currentId": "section",
+      "statusText": "2 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "01\n\n内容关系\n\n组件决定这一页要说明什么",
+      "screenshot": "slide-2.png",
+      "screenshotSha256": "090cac54f99ac29ad4eb7c6ae5edb71475dd617af9bbed083f83f913270545c6",
+      "status": "passed",
+      "textFlows": {}
+    },
+    {
+      "id": "closing",
+      "index": 2,
+      "currentId": "closing",
+      "statusText": "3 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "先看原型，再锁定整套\n\n跨候选混合后必须重新确认合并原型。\n\n进入视觉制作",
+      "screenshot": "slide-3.png",
+      "screenshotSha256": "677953fdcb62c2d8738240e6d9eef1a9896bfd619eb044c780b90a9baebbfed2",
+      "status": "passed",
+      "textFlows": {
+        "/title": {
+          "lines": 1,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "statement",
+      "index": 3,
+      "currentId": "statement",
+      "statusText": "4 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "原则\n\n自由组合，不等于任意叠加\n\n兼容矩阵与真实载体共同约束组合。",
+      "screenshot": "slide-4.png",
+      "screenshotSha256": "cd884e24d90108913c866c8bdaa0d928d1821aee78488336d2f99cc14ed007fb",
+      "status": "passed",
+      "textFlows": {
+        "/title": {
+          "lines": 2,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "collection",
+      "index": 4,
+      "currentId": "collection",
+      "statusText": "5 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "三个独立维度\n组件\n\n承载内容关系。\n\n设计语言\n\n维持整套表达。\n\n视觉呈现\n\n决定页面如何被看见。",
+      "screenshot": "slide-5.png",
+      "screenshotSha256": "5c56d65e32ae6d366a2c2447002c6d6be84f24fe1d12c20019abf44331c472f7",
+      "status": "passed",
+      "textFlows": {}
+    },
+    {
+      "id": "comparison",
+      "index": 5,
+      "currentId": "comparison",
+      "statusText": "6 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "模板堆与组合系统\n模板堆\n\n每个名字绑定一整套实现。\n\n组合系统\n\n三个维度按内容动态组合。",
+      "screenshot": "slide-6.png",
+      "screenshotSha256": "72f71bced5d9ed33728bb72e6aab8ede588f07da8c2f277062baf18227d64ba5",
+      "status": "passed",
+      "textFlows": {}
+    },
+    {
+      "id": "sequence",
+      "index": 6,
+      "currentId": "sequence",
+      "statusText": "7 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "从内容到成品\n01\n推荐\n\nAgent 基于内容提出候选。\n\n02\n原型\n\n使用代表页验证组合。\n\n03\n锁定\n\n确认后生成完整双载体。",
+      "screenshot": "slide-7.png",
+      "screenshotSha256": "ae6fe7e82aa1d4fd6ca845b48ea4a3fded339d3d76a8b1c51933b556abd5623b",
+      "status": "passed",
+      "textFlows": {}
+    },
+    {
+      "id": "relationship",
+      "index": 7,
+      "currentId": "relationship",
+      "statusText": "8 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "组件、语言与呈现相互独立\n组件\n设计语言\n视觉呈现\n页面成品\ncomponent → artifact\n语义\nlanguage → artifact\n规则\npresentation → artifact\n表现",
+      "screenshot": "slide-8.png",
+      "screenshotSha256": "fc20a25936707ea0dff55a0d5b39f24dcc6902309193ec23fe19fae9198ce8b3",
+      "status": "passed",
+      "textFlows": {}
+    },
+    {
+      "id": "media",
+      "index": 8,
+      "currentId": "media",
+      "statusText": "9 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "证据\n\n素材承担一个问题\n\n图像应证明内容，而不是填满空白。\n\n抽象工作台示意",
+      "screenshot": "slide-9.png",
+      "screenshotSha256": "c383fee3003f4c0ed42e174ae47c09ad6beeb3896f3d9b0e0a444a8269cc2788",
+      "status": "passed",
+      "textFlows": {
+        "/body": {
+          "lines": 2,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "quote",
+      "index": 9,
+      "currentId": "quote",
+      "statusText": "10 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "“\n视觉变化必须由内容关系承重。\n507-ppt 设计原则",
+      "screenshot": "slide-10.png",
+      "screenshotSha256": "00f7ce0a16515c01bc5c4f1092afcb8dbb341361bdb09f5a9a8f8bdce1d8a456",
+      "status": "passed",
+      "textFlows": {
+        "/quote": {
+          "lines": 1,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "metric",
+      "index": 10,
+      "currentId": "metric",
+      "statusText": "11 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "语义叶组件\n13\n首批语义叶组件\n\n数据证据保留 metric、chart、table 三个子类型。\n\n507-ppt registry",
+      "screenshot": "slide-11.png",
+      "screenshotSha256": "8c25e5b87fe99127d5f24660db1f2fb88d9f9d471c468983bbaab56ac5f8ced8",
+      "status": "passed",
+      "textFlows": {}
+    },
+    {
+      "id": "chart",
+      "index": 11,
+      "currentId": "chart",
+      "statusText": "12 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "六种语言，八类呈现\n设计语言\n6\n视觉呈现\n8\n注册数量\n当前 507-ppt 三轴注册表",
+      "screenshot": "slide-12.png",
+      "screenshotSha256": "e16accab502581ebc2946b973965639f87eb86ca60dc3b2771b29845685c4623",
+      "status": "passed",
+      "textFlows": {
+        "/title": {
+          "lines": 1,
+          "maxLines": 2,
+          "status": "passed"
+        }
+      }
+    },
+    {
+      "id": "table",
+      "index": 12,
+      "currentId": "table",
+      "statusText": "13 / 13",
+      "settled": true,
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "phraseOverflow": [],
+      "text": "六种设计语言当前能力\n方向\t状态\t当前能力\nSwiss\t可组合\t网格与层级\nMagazine\t可组合\t编辑栅格\nCobalt\t可组合\t产品模块\nClay\t可组合\t温暖叙事\nForest\t可组合\t研究层级\nNoir\t可组合\t强声明\n当前 507-ppt registry",
+      "screenshot": "slide-13.png",
+      "screenshotSha256": "75ffadfae4eb7bb5df218e844e6df2d3e67fa4998947e6942f01263061ffc163",
+      "status": "passed",
+      "textFlows": {
+        "/data/rows/0/2": {
+          "lines": 1,
+          "maxLines": 1,
+          "status": "passed"
+        }
+      }
+    }
+  ]
+}

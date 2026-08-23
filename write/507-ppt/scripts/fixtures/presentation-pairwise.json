@@ -1,0 +1,133 @@
+{
+  "version": 3,
+  "id": "presentation-pairwise",
+  "language": "zh-CN",
+  "deck": {
+    "title": "八类视觉呈现压测",
+    "audience": "507-ppt 维护者",
+    "scene": "双载体呈现回归",
+    "durationMinutes": 8
+  },
+  "slides": [
+    {
+      "id": "type",
+      "component": "cover",
+      "goal": "验证字体主导",
+      "eyebrow": "TYPE",
+      "title": "文字本身就是主视觉",
+      "subtitle": "层级、留白与单一强调共同承重",
+      "notes": "验证 type-led。"
+    },
+    {
+      "id": "panel",
+      "component": "collection",
+      "goal": "验证面板主导",
+      "title": "面板服务分组",
+      "items": [
+        {"label": "输入", "body": "保持内容边界。"},
+        {"label": "处理", "body": "用容器表达分组。"},
+        {"label": "输出", "body": "保留阅读顺序。"}
+      ],
+      "notes": "验证 panel-led。"
+    },
+    {
+      "id": "data",
+      "component": {"type": "data-evidence", "subtype": "chart"},
+      "goal": "验证数据主导",
+      "title": "数据关系保持可编辑",
+      "data": {
+        "chartType": "bar",
+        "categories": ["HTML", "PPTX"],
+        "series": [
+          {"name": "原生支持", "values": [2, 2]},
+          {"name": "适配支持", "values": [0, 2]}
+        ],
+        "scale": {"min": 0, "max": 3},
+        "source": "507-ppt presentation registry"
+      },
+      "notes": "验证 data-led 与原生 chart。"
+    },
+    {
+      "id": "schematic",
+      "component": "relationship",
+      "goal": "验证示意图主导",
+      "title": "三条规则形成一页",
+      "nodes": [
+        {"id": "semantic", "label": "语义"},
+        {"id": "language", "label": "语言"},
+        {"id": "presentation", "label": "呈现"},
+        {"id": "page", "label": "页面"}
+      ],
+      "edges": [
+        {"from": "semantic", "to": "page", "label": "内容关系"},
+        {"from": "language", "to": "page", "label": "整套规则"},
+        {"from": "presentation", "to": "page", "label": "单页表现"}
+      ],
+      "notes": "验证 schematic-led。"
+    },
+    {
+      "id": "photo",
+      "component": "media-evidence",
+      "goal": "验证摄影主导",
+      "eyebrow": "PHOTO",
+      "title": "素材占据主要画幅",
+      "body": "图片负责证明，而不是装饰空白。",
+      "assets": [{
+        "id": "photo-workbench",
+        "role": "photo",
+        "path": "assets/workbench.svg",
+        "alt": "抽象工作台视觉证据",
+        "caption": "摄影主导的证据位置"
+      }],
+      "notes": "验证 photo-led。"
+    },
+    {
+      "id": "ui",
+      "component": "media-evidence",
+      "goal": "验证产品界面主导",
+      "eyebrow": "UI",
+      "title": "界面进入产品框架",
+      "body": "边框、留白与 caption 说明这是产品证据。",
+      "assets": [{
+        "id": "ui-workbench",
+        "role": "ui",
+        "path": "assets/workbench.svg",
+        "alt": "包含文件、编辑器和预览区的抽象产品界面",
+        "caption": "产品界面主导的证据位置"
+      }, {
+        "id": "ui-editor",
+        "role": "ui",
+        "path": "assets/workbench.svg",
+        "alt": "抽象产品界面的编辑器状态",
+        "caption": "编辑状态"
+      }, {
+        "id": "ui-preview",
+        "role": "ui",
+        "path": "assets/workbench.svg",
+        "alt": "抽象产品界面的预览状态",
+        "caption": "预览状态"
+      }],
+      "notes": "验证 ui-product-led。"
+    },
+    {
+      "id": "editorial",
+      "component": "quote",
+      "goal": "验证编辑印刷主导",
+      "quote": "规则线只服务层级，不与内容争夺主角。",
+      "attribution": "507-ppt 组合质量合同",
+      "notes": "验证 editorial-print-led 的 PPTX 适配。"
+    },
+    {
+      "id": "hand-drawn",
+      "component": "sequence",
+      "goal": "验证手绘解释主导",
+      "title": "从判断走到交付",
+      "items": [
+        {"label": "看内容", "body": "识别页面关系。"},
+        {"label": "做原型", "body": "比较真实组合。"},
+        {"label": "再生成", "body": "保留确认证据。"}
+      ],
+      "notes": "验证 hand-drawn-explainer 的 PPTX 适配。"
+    }
+  ]
+}

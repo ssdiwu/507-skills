@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "inputId": "presentation-pairwise",
+  "language": {
+    "id": "precision-modern",
+    "variant": "default"
+  },
+  "prototypeStatus": "skipped",
+  "carriers": {
+    "html": {
+      "summary": {
+        "native": 8
+      },
+      "pages": [
+        {
+          "id": "type",
+          "component": "cover",
+          "presentation": "type-led",
+          "treatment": "default",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "panel",
+          "component": "collection",
+          "presentation": "panel-led",
+          "treatment": "dense",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "data",
+          "component": "chart",
+          "presentation": "data-led",
+          "treatment": "default",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "schematic",
+          "component": "relationship",
+          "presentation": "schematic-led",
+          "treatment": "default",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "photo",
+          "component": "media-evidence",
+          "presentation": "photo-led",
+          "treatment": "default",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "ui",
+          "component": "media-evidence",
+          "presentation": "ui-product-led",
+          "treatment": "dense",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "editorial",
+          "component": "quote",
+          "presentation": "editorial-print-led",
+          "treatment": "inverse",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "hand-drawn",
+          "component": "sequence",
+          "presentation": "hand-drawn-explainer",
+          "treatment": "section-emphasis",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        }
+      ]
+    },
+    "pptx": {
+      "summary": {
+        "adapted": 2,
+        "native": 6
+      },
+      "pages": [
+        {
+          "id": "type",
+          "component": "cover",
+          "presentation": "type-led",
+          "treatment": "default",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "panel",
+          "component": "collection",
+          "presentation": "panel-led",
+          "treatment": "dense",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "data",
+          "component": "chart",
+          "presentation": "data-led",
+          "treatment": "default",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "schematic",
+          "component": "relationship",
+          "presentation": "schematic-led",
+          "treatment": "default",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "photo",
+          "component": "media-evidence",
+          "presentation": "photo-led",
+          "treatment": "default",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "ui",
+          "component": "media-evidence",
+          "presentation": "ui-product-led",
+          "treatment": "dense",
+          "compatibility": "preferred",
+          "carrierSupport": "native",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "editorial",
+          "component": "quote",
+          "presentation": "editorial-print-led",
+          "treatment": "inverse",
+          "compatibility": "preferred",
+          "carrierSupport": "adapted",
+          "suppressedDecorations": []
+        },
+        {
+          "id": "hand-drawn",
+          "component": "sequence",
+          "presentation": "hand-drawn-explainer",
+          "treatment": "section-emphasis",
+          "compatibility": "preferred",
+          "carrierSupport": "adapted",
+          "suppressedDecorations": []
+        }
+      ]
+    }
+  }
+}
