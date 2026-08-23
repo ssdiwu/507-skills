@@ -1,6 +1,6 @@
 # Remotion 制作与验收
 
-仅在项目使用 Remotion、进入 Studio、修改 composition 或准备渲染时读取。先遵循项目当前 Remotion 版本与[官方 Agent Skills](https://www.remotion.dev/docs/ai/skills)；不把旧快照写成永久 API 事实。
+仅在项目使用 Remotion、进入 Studio、修改 composition 或准备渲染时读取。先遵循项目当前 Remotion 版本与[官方 Agent Skills](https://www.remotion.dev/docs/ai/skills)；不把旧快照写成永久 API 事实。项目记录 `productionProfile: product-promo` 时，同时遵循[产品宣传片 profile](product-promo-profile.md)。
 
 ## 官方 skill 按需路由
 
@@ -53,6 +53,8 @@
 3. 生成覆盖开头、各场景中点、转场、高潮和结尾的关键帧或联系表。
 4. 记录审片版本、主时间基准和已知限制。
 
+产品宣传片在请求最终渲染确认前，还要按条件 profile 对最新低成本整片预览完成独立关键帧终检。终检发现导致观众所见 / 所听变化的问题时，修复后重新进入 Studio；旧确认不跨版本继承。
+
 向用户交付审片入口时同时说明：
 
 - 当前看的是哪个 composition/版本；
@@ -78,6 +80,7 @@
 
 - Studio 可播放且结构/运行检查通过；
 - 联系表或关键帧已经实际查看；
+- 已启用条件 profile 的项目已完成对应独立终检，且不存在尚未回到 Studio 确认的修复；
 - 时间基准与 composition duration 一致；
 - 当前版本不存在用户未处理的调整要求；
 - 用户明确要求渲染当前版本。

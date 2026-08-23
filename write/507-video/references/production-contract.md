@@ -18,6 +18,12 @@
 
 用户已经在 brief、storyboard、style lock 或项目 README 中回答的内容直接引用，不再复制成第二事实源。
 
+## 条件制作 profile
+
+通用合同只锁定所有视频都必须成立的字段；特定片种需要新增可验证约束时，使用条件 profile 扩展现有 brief、style lock、storyboard、素材清单和审片记录，不新增总控 skill 或重复状态源。
+
+当目标是用网站、桌面端或移动端产品的真实页面与功能状态制作宣传片时，在项目现有入口记录 `productionProfile: product-promo`，并读取[产品宣传片 profile](product-promo-profile.md)。它追加产品事实源、必须展示功能、设计令牌到 styleframe、功能到镜头映射、真实页面采集、可选镜头语法、音频节拍条件和独立关键帧终检；通用时间基准、Studio 审片门与本地母版停止点保持不变。
+
 ## 分镜最小字段
 
 每个节拍至少写清：
