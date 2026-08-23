@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.2.6] - 2026-08-24
+
 ### Added
 
 - `507-ppt` 新增三轴视觉系统：content v3 以 13 个语义叶组件保存内容，visual-plan v1 独立组合 6 个设计语言、8 类视觉呈现与 4 种受控 treatment，manifest v2 保存 resolver、prototype、载体和验证证据；默认按真实内容推荐 2～3 组候选，用户选择后以带哈希的 approved prototype manifest 锁定，目标包含 PPTX 时同时绑定真实候选 PPTX 与代表页截图。新增 13 组件 showcase、8 呈现 pairwise 双载体压测、原生 chart/table、多序列 chart、1～3 素材页和 nested JSON Pointer 中文语义换行；PPT Master 与 Frontend Slides 仅作为固定提交的研究证据，不引入其模板、代码、字体或资产。
