@@ -9,10 +9,12 @@
 - `text_layout.py`：HTML/PPTX 共用的 phrase-aware（短语感知）换行校验与输出。
 - `generate_prototypes.py` / `finalize_prototype.py`：先生成 2～3 个 candidate，再把用户选择、候选 artifact/plan、联系表和 SHA-256 固化为 approved prototype manifest。
 - `generate_html.py`：只生成静态通过的 content v3 候选；`promote_html.py` 校验 `html-browser` 报告后原子晋升候选与 evidence。
+- `browser_tools.py` / `html_browser_evidence.py`：发现 PATH 或 macOS 应用目录中的 Chrome，经 CDP 实测当前 v3 的交互、视口、无 JavaScript、故障退化、table suppression、短语行数与逐页 PNG，并写带工具版本的 browser report。
 - `generate_pptx.py`：用同一 content/plan 生成、完整验证并原子替换 PPTX；`--prototype-candidate` 只用于代表页。
 - `build_support_matrix.py`：从同一 content 与 visual-plan 解析双载体 support、抑制项和适配摘要。
 - `verification_report.py`：检查绑定 input/plan/artifact hash、逐项 passed 的机器报告。
-- `build_manifest.py` / `validate_manifest.py`：都从 resolver 重算 support/suppression/degradation，并验证报告、原型与 support matrix 哈希；v1 只保留读回兼容。
+- `build_manifest.py` / `validate_manifest.py`：都从 resolver 重算 support/suppression/degradation，并验证报告、原型与 support matrix 哈希；输入、plan、artifact、assets、screenshots、reports 必须位于 manifest package root 内，builder 在同目录候选 manifest 上自验后才替换目标；v1 只保留读回兼容。
+- `artifact_evidence.py`：拒绝 carrier 与后缀/格式不一致的 HTML/PPTX，以及伪造、过小或空白的 PNG 证据。
 - `validate_html.py` / `validate_pptx.py`：检查载体结构、内容映射、notes、alt、原生 chart/table、主题、字体和证据。
 - `check_style_content.py`：输出当前组合与输入内容的可读映射报告，不把 preset 当底层样式分类。
 
@@ -42,6 +44,12 @@ python3 generate_pptx.py \
   --plan fixtures/system-showcase.visual-plan.json \
   --output ../examples/system-showcase.pptx
 
+python3 html_browser_evidence.py \
+  --artifact /tmp/system-showcase.candidate.html \
+  --input fixtures/system-showcase.json \
+  --plan fixtures/system-showcase.visual-plan.json \
+  --output-dir /tmp/system-showcase-browser-evidence
+
 python3 build_support_matrix.py \
   --input fixtures/system-showcase.json \
   --plan fixtures/system-showcase.visual-plan.json \
@@ -62,6 +70,6 @@ python3 -B -m unittest discover -s . -p 'test_*.py' -v
 bash test_html.sh
 ```
 
-`test_html.sh` 在浏览器不可用时仍执行静态合同与内容映射检查；真实交付还必须按 `../references/verification-plan.md` 在最终载体上完成视觉、交互和中文换行验收。
+默认回归不把浏览器缺失当作通过；`test_html.sh` 会发现 macOS `/Applications` 中的 Chrome，并实际运行 showcase/pairwise。只有显式设置 `ALLOW_NO_BROWSER=1` 才允许静态层结束，输出会清楚标记浏览器证据未测试；该模式不能替代按 `../references/verification-plan.md` 完成的最终载体验收。
 
 脚本不负责决定内容、风格或素材授权；这些由输入合同与 `SKILL.md`（技能说明）约束。所有脚本必须声明运行条件、输入、输出、失败码和最小测试命令；运行时代码、依赖和资产必须在 `../third-party-notices.md`（第三方来源声明）与 `manifest`（清单）中有来源记录。

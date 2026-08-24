@@ -4,7 +4,7 @@
   "style": "swiss",
   "carrier": "html",
   "artifact": "collaboration-swiss.html",
-  "sha256": "ca269f5b1f355069d52ab3bfb65b63751f9f176ff2624d001c83964d5c238c99",
+  "sha256": "a778d05b691df1b10fcdbf6ff1952910ddbc0477514297de0bd67106eb61dbd2",
   "pages": [
     {
       "id": "cover",
@@ -46,9 +46,9 @@
       "evidence": "html-static-contract-report.txt"
     },
     {
-      "name": "html-browser-matrix",
+      "name": "html-browser-evidence",
       "status": "passed",
-      "evidence": "html-browser-matrix-report.txt"
+      "evidence": "screenshots/html-swiss/browser-report.json"
     },
     {
       "name": "style-content",
@@ -61,24 +61,19 @@
     "screenshots/html-swiss/slide-2.png",
     "screenshots/html-swiss/slide-3.png",
     "screenshots/html-swiss/slide-4.png",
-    "screenshots/html-swiss/normal.png",
-    "screenshots/html-swiss/reduced-mobile.png",
-    "screenshots/html-swiss/no-js.png"
+    "screenshots/html-swiss/no-javascript.png",
+    "screenshots/html-swiss/contact-sheet.png"
   ],
   "inputSha256": "42d3cfe30df5912cc7f00a7fcf48de72be8a1d08df6b3e7fc8e6302a0d5302b1",
   "degradations": [
     "static=1 vertical readable fallback",
-    "no-webgl=1 Canvas hidden with semantic deck",
-    "fail-js=1 pre-initialization fallback",
-    "fail-init=1 post-initialization error fallback",
+    "JavaScript-disabled vertical readable fallback",
     "fail-after=1 post-navigation error clears transform and exposes all pages",
-    "reduced=1 reduced-motion static fallback",
-    "prefers-reduced-motion media fallback"
+    "reduced-motion static fallback"
   ],
-  "generatedAt": "2026-08-24T00:36:32+08:00",
+  "generatedAt": "2026-08-23T20:59:39Z",
   "capabilities": {
-    "browser": "ego-browser + Chrome 150.0.0.0",
-    "webgl": "Canvas 2D with CSS/static fallback",
+    "browser": "html_browser_evidence.py + Google Chrome 151.0.7922.170",
     "fallbackMatrix": "probe-matrix-report.txt"
   }
 }

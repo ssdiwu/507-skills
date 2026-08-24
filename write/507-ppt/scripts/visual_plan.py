@@ -7,6 +7,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
+from artifact_evidence import validate_artifact, validate_png
 from design_system import COMPONENTS, PRESETS, TREATMENTS, normalize_deck, preferred_presentation, preset, resolve_combination, visible_strings, visible_text_paths
 from text_layout import validate_text_flow
 
@@ -129,8 +130,15 @@ def _validate_prototype(prototype: Any, *, allow_candidate: bool = False) -> lis
         if prototype.get("selectedCandidate") not in candidate_ids:
             return ["approved prototype selectedCandidate must exist in candidates"]
     mixed = prototype.get("mixedFrom") or []
-    if mixed and not prototype.get("mergedPrototype"):
-        return ["mixed prototype requires mergedPrototype"]
+    if mixed:
+        candidates = prototype.get("candidates") or []
+        candidate_ids = [item.get("id") for item in candidates if isinstance(item, dict)]
+        if not isinstance(mixed, list) or not 2 <= len(mixed) <= 3 or len(set(mixed)) != len(mixed) or not set(mixed).issubset(set(candidate_ids)):
+            return ["mixed prototype requires 2-3 distinct existing candidate ids"]
+        merged = prototype.get("mergedPrototype")
+        required_merged = ("artifact", "artifactSha256", "visualPlan", "visualPlanSha256", "evidence", "evidenceSha256")
+        if not isinstance(merged, dict) or any(not merged.get(key) for key in required_merged):
+            return ["mixed prototype requires bound merged artifact, visual plan, evidence, and hashes"]
     return []
 
 
@@ -151,6 +159,20 @@ def _prototype_manifest(prototype: dict[str, Any]) -> tuple[dict[str, Any] | Non
     except (OSError, json.JSONDecodeError):
         return None, path, ["approved prototype manifest is unreadable"]
     return manifest, path, []
+
+
+def _bound_prototype_file(root: Path, value: Any, expected_hash: Any, label: str) -> tuple[Path | None, list[str]]:
+    if not isinstance(value, str) or not value or not isinstance(expected_hash, str):
+        return None, [f"{label} binding is incomplete"]
+    relative = Path(value)
+    path = (root / relative).resolve()
+    if relative.is_absolute() or root.resolve() not in path.parents:
+        return None, [f"{label} path escapes prototype package"]
+    if not path.is_file():
+        return path, [f"{label} is missing"]
+    if hashlib.sha256(path.read_bytes()).hexdigest() != expected_hash:
+        return path, [f"{label} hash mismatch"]
+    return path, []
 
 
 def validate_plan(plan: Any, data: dict[str, Any], carrier: str | None = None, *, allow_candidate: bool = False) -> list[str]:
@@ -200,29 +222,68 @@ def validate_plan(plan: Any, data: dict[str, Any], carrier: str | None = None, *
             if [item.get("id") for item in manifest_candidates] != [item.get("id") for item in prototype.get("candidates") or []]:
                 errors.append("approved prototype candidate ids differ from manifest")
             selected = next((item for item in manifest_candidates if item.get("id") == prototype.get("selectedCandidate")), None)
+            reference_plan: dict[str, Any] | None = None
             if selected is None:
                 errors.append("approved prototype selected candidate is absent from manifest")
             else:
                 selected_artifact_path = prototype_path.parent / str(selected.get("artifact") or "")
                 if not selected_artifact_path.is_file() or hashlib.sha256(selected_artifact_path.read_bytes()).hexdigest() != selected.get("artifactSha256"):
                     errors.append("approved prototype selected artifact is missing or stale")
+                else:
+                    try:
+                        validate_artifact(selected_artifact_path, "html")
+                    except ValueError as error:
+                        errors.append(str(error))
                 selected_plan_path = prototype_path.parent / str(selected.get("visualPlan") or "")
                 if not selected_plan_path.is_file() or hashlib.sha256(selected_plan_path.read_bytes()).hexdigest() != selected.get("visualPlanSha256"):
                     errors.append("approved prototype selected visual plan is missing or stale")
                 else:
                     selected_plan = json.loads(selected_plan_path.read_text(encoding="utf-8"))
-                    if selected_plan.get("language") != plan.get("language"):
-                        errors.append("approved prototype selected language differs from final plan")
-                    selected_visuals = {item.get("id"): item for item in selected_plan.get("slides") or []}
-                    final_visuals = {item.get("id"): item for item in plan_slides}
-                    for slide_id in representative_ids:
-                        selected_visual = selected_visuals.get(slide_id) or {}
-                        final_visual = final_visuals.get(slide_id) or {}
-                        if (selected_visual.get("presentation"), selected_visual.get("treatment", "default")) != (final_visual.get("presentation"), final_visual.get("treatment", "default")):
-                            errors.append(f"approved prototype representative slide differs from final plan: {slide_id}")
+                    reference_plan = selected_plan
+            mixed = prototype.get("mixedFrom") or []
+            if mixed:
+                merged = prototype.get("mergedPrototype") or {}
+                if prototype_manifest.get("mixedFrom") != mixed or prototype_manifest.get("mergedPrototype") != merged:
+                    errors.append("approved merged prototype differs from manifest")
+                merged_artifact, merged_errors = _bound_prototype_file(prototype_path.parent, merged.get("artifact"), merged.get("artifactSha256"), "approved merged prototype artifact")
+                errors.extend(merged_errors)
+                if merged_artifact is not None and not merged_errors:
+                    try:
+                        validate_artifact(merged_artifact, "html")
+                    except ValueError as error:
+                        errors.append(str(error))
+                merged_plan_path, merged_plan_errors = _bound_prototype_file(prototype_path.parent, merged.get("visualPlan"), merged.get("visualPlanSha256"), "approved merged prototype visual plan")
+                errors.extend(merged_plan_errors)
+                merged_evidence, merged_evidence_errors = _bound_prototype_file(prototype_path.parent, merged.get("evidence"), merged.get("evidenceSha256"), "approved merged prototype evidence")
+                errors.extend(merged_evidence_errors)
+                if merged_evidence is not None and not merged_evidence_errors:
+                    try:
+                        validate_png(merged_evidence, "approved merged prototype evidence")
+                    except ValueError as error:
+                        errors.append(str(error))
+                if merged_plan_path is not None and not merged_plan_errors:
+                    try:
+                        reference_plan = json.loads(merged_plan_path.read_text(encoding="utf-8"))
+                    except (OSError, json.JSONDecodeError):
+                        errors.append("approved merged prototype visual plan is unreadable")
+            if reference_plan is not None:
+                if reference_plan.get("language") != plan.get("language"):
+                    errors.append("approved prototype language differs from final plan")
+                reference_visuals = {item.get("id"): item for item in reference_plan.get("slides") or []}
+                final_visuals = {item.get("id"): item for item in plan_slides}
+                for slide_id in representative_ids:
+                    reference_visual = reference_visuals.get(slide_id) or {}
+                    final_visual = final_visuals.get(slide_id) or {}
+                    if (reference_visual.get("presentation"), reference_visual.get("treatment", "default")) != (final_visual.get("presentation"), final_visual.get("treatment", "default")):
+                        errors.append(f"approved prototype representative slide differs from final plan: {slide_id}")
             contact_sheet = prototype_path.parent / str(prototype_manifest.get("evidence") or "")
             if not contact_sheet.is_file() or hashlib.sha256(contact_sheet.read_bytes()).hexdigest() != prototype_manifest.get("evidenceSha256"):
                 errors.append("approved prototype contact-sheet evidence is missing or stale")
+            else:
+                try:
+                    validate_png(contact_sheet, "approved prototype contact-sheet evidence")
+                except ValueError as error:
+                    errors.append(str(error))
             target_evidence = prototype_manifest.get("targetEvidence") or {}
             for target in plan.get("targets") or []:
                 evidence = target_evidence.get(target)
@@ -233,8 +294,17 @@ def validate_plan(plan: Any, data: dict[str, Any], carrier: str | None = None, *
                 target_plan_path = prototype_path.parent / str(evidence.get("visualPlan") or "")
                 if not artifact_path.is_file() or hashlib.sha256(artifact_path.read_bytes()).hexdigest() != evidence.get("artifactSha256"):
                     errors.append(f"approved prototype {target} artifact is missing or stale")
+                else:
+                    try:
+                        validate_artifact(artifact_path, target)
+                    except ValueError as error:
+                        errors.append(str(error))
                 if not target_plan_path.is_file() or hashlib.sha256(target_plan_path.read_bytes()).hexdigest() != evidence.get("visualPlanSha256"):
                     errors.append(f"approved prototype {target} plan is missing or stale")
+                if mixed:
+                    merged = prototype.get("mergedPrototype") or {}
+                    if evidence.get("visualPlan") != merged.get("visualPlan") or evidence.get("visualPlanSha256") != merged.get("visualPlanSha256"):
+                        errors.append(f"approved mixed prototype {target} evidence must use merged visual plan")
                 if target == "pptx":
                     screenshots = evidence.get("screenshots") or []
                     if len(screenshots) != len(representative_ids):
@@ -243,6 +313,11 @@ def validate_plan(plan: Any, data: dict[str, Any], carrier: str | None = None, *
                         screenshot_path = prototype_path.parent / str(screenshot.get("path") or "")
                         if not screenshot_path.is_file() or hashlib.sha256(screenshot_path.read_bytes()).hexdigest() != screenshot.get("sha256"):
                             errors.append("approved prototype PPTX screenshot is missing or stale")
+                        else:
+                            try:
+                                validate_png(screenshot_path, "approved prototype PPTX screenshot")
+                            except ValueError as error:
+                                errors.append(str(error))
     for slide, visual in zip(normalized["slides"], plan_slides, strict=True):
         if not isinstance(visual, dict):
             errors.append(f"visual plan entry for {slide['id']} must be an object")

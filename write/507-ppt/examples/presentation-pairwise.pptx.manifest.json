@@ -1,6 +1,7 @@
 {
   "version": 2,
   "inputId": "presentation-pairwise",
+  "input": "../scripts/fixtures/presentation-pairwise.json",
   "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",
   "carrier": "pptx",
   "artifact": "presentation-pairwise.pptx",
@@ -168,7 +169,7 @@
       "kind": "axis-content",
       "status": "passed",
       "evidence": "presentation-pairwise-pptx-axis-content.json",
-      "evidenceSha256": "28cb98e4039ef42282ec18681f2ff0d99cfb40938e4c2722a0b4a2b1cc8e387d"
+      "evidenceSha256": "22271256a719d7aa1a71ae6131d5f08b1c4bbd0366fed2fd138867b3427a753d"
     }
   ],
   "screenshots": [

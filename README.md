@@ -189,6 +189,17 @@ skill 的 `description`（描述）保留常用动作词，宿主可按用户意
 
 本仓库不包含任何 API key（接口密钥）、账号 Cookie（会话凭据）、个人 vault（知识库）或客户材料。详见 [`SECURITY.md`](SECURITY.md)。
 
+## 测试
+
+仓库根的确定性回归入口会显式运行各目录单测、无需真实 API 的 Breakdown 脚本、当前 PPT HTML 浏览器证据、Video 条件合同、PPT manifest 与 provenance 校验：
+
+```bash
+python3 -m pip install -r requirements-test.txt
+python3 scripts/test_all.py
+```
+
+默认要求 Chrome/Chromium、FFmpeg 与 FFprobe；只有明确接受静态 HTML 检查时才使用 `--allow-missing-browser`。MiniMax 真实 adapter/E2E、Voicebox 授权生成、officecli 完整 PPTX 生成和 Live Photo 设备验收是独立外部门，不包含在离线绿灯中。
+
 ## 贡献与发布
 
 - 贡献方式见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。

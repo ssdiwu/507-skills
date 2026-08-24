@@ -7,6 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 
+from artifact_evidence import validate_artifact, validate_png
 from design_system import DESIGN_LANGUAGES, PRESETS, normalize_deck
 from verification_report import validate_report
 from visual_plan import expected_degradations, resolved_manifest_pages, text_flow_limits, validate_plan
@@ -48,17 +49,21 @@ def fixture_for(input_id: str) -> Path:
     return fixture
 
 
-def validate_common(required: tuple[str, ...]) -> tuple[Path, dict]:
+def validate_common(required: tuple[str, ...], *, require_bound_input: bool = False) -> tuple[Path, dict]:
     for key in required:
         if key not in data:
             raise SystemExit(f"missing manifest field: {key}")
     if data["carrier"] not in ("html", "pptx"):
         raise SystemExit("unknown carrier")
     artifact = require_file(data["artifact"], "artifact")
+    try:
+        validate_artifact(artifact, data["carrier"])
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
     expected = data.get("sha256", data.get("artifactSha256"))
     if not expected or digest(artifact) != expected:
         raise SystemExit("artifact hash mismatch")
-    fixture = fixture_for(data["inputId"])
+    fixture = require_file(data["input"], "input") if require_bound_input else fixture_for(data["inputId"])
     if digest(fixture) != data["inputSha256"]:
         raise SystemExit("input hash mismatch")
     source = json.loads(fixture.read_text(encoding="utf-8"))
@@ -83,7 +88,11 @@ def validate_assets_and_evidence(matrix_key: str) -> None:
         if not set(page["assets"]).issubset(asset_ids):
             raise SystemExit(f"page asset mapping invalid: {page['id']}")
         if page.get("screenshot"):
-            require_file(page["screenshot"], f"page screenshot {page['id']}")
+            screenshot = require_file(page["screenshot"], f"page screenshot {page['id']}")
+            try:
+                validate_png(screenshot, f"page {page['id']} screenshot")
+            except ValueError as error:
+                raise SystemExit(str(error)) from error
     for notice in data["notices"]:
         require_file(notice, "notice")
     for verification in data["verification"]:
@@ -93,7 +102,11 @@ def validate_assets_and_evidence(matrix_key: str) -> None:
         if verification.get("evidenceSha256") and digest(evidence) != verification["evidenceSha256"]:
             raise SystemExit("verification evidence hash mismatch")
     for screenshot in data["screenshots"]:
-        require_file(screenshot, "screenshot")
+        screenshot_path = require_file(screenshot, "screenshot")
+        try:
+            validate_png(screenshot_path, "screenshot")
+        except ValueError as error:
+            raise SystemExit(str(error)) from error
     matrix = data.get("capabilities", {}).get(matrix_key)
     if not matrix:
         raise SystemExit(f"{matrix_key} evidence missing")
@@ -110,7 +123,7 @@ if version == 1:
             raise SystemExit("legacy page mapping incomplete")
     validate_assets_and_evidence("fallbackMatrix")
 elif version == 2:
-    _, source = validate_common(("version", "inputId", "inputSha256", "carrier", "artifact", "sha256", "visualPlan", "visualPlanSha256", "language", "prototypeStatus", "prototypeEvidence", "pages", "assets", "notices", "verification", "screenshots", "degradations"))
+    _, source = validate_common(("version", "inputId", "input", "inputSha256", "carrier", "artifact", "sha256", "visualPlan", "visualPlanSha256", "language", "prototypeStatus", "prototypeEvidence", "pages", "assets", "notices", "verification", "screenshots", "degradations"), require_bound_input=True)
     language_id = (data.get("language") or {}).get("id")
     if language_id not in DESIGN_LANGUAGES:
         raise SystemExit("unknown design language")
@@ -153,6 +166,11 @@ elif version == 2:
             path = require_file(item.get("path") or "", item.get("kind") or "prototype evidence")
             if digest(path) != item.get("sha256"):
                 raise SystemExit("prototype evidence hash mismatch")
+            if item.get("kind") == "prototype-contact-sheet":
+                try:
+                    validate_png(path, "prototype contact-sheet evidence")
+                except ValueError as error:
+                    raise SystemExit(str(error)) from error
             prototype_hashes[item["kind"]] = item["sha256"]
         approved_path = (Path(__file__).resolve().parents[1] / plan["prototype"]["manifest"]).resolve()
         approved = json.loads(approved_path.read_text(encoding="utf-8"))
@@ -169,7 +187,14 @@ elif version == 2:
     for verification in data["verification"]:
         evidence = require_file(verification["evidence"], "verification evidence")
         try:
-            report = validate_report(evidence, expected_subject, [slide["id"] for slide in normalized["slides"]], text_flow_limits(plan))
+            report = validate_report(
+                evidence,
+                expected_subject,
+                [slide["id"] for slide in normalized["slides"]],
+                text_flow_limits(plan),
+                {slide["id"]: slide["component"] for slide in normalized["slides"]},
+                sum(len(slide.get("assets") or []) for slide in normalized["slides"]),
+            )
         except ValueError as error:
             raise SystemExit(str(error)) from error
         if verification.get("kind") != report["kind"] or verification.get("status") != report["status"] or digest(evidence) != verification.get("evidenceSha256"):

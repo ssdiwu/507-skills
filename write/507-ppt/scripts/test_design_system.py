@@ -53,6 +53,24 @@ class DesignSystemTests(unittest.TestCase):
             self.assertIn(item["carriers"]["html"], {"native", "adapted"})
             self.assertIn(item["carriers"]["pptx"], {"native", "adapted"})
 
+    def test_public_component_presentation_matrix_does_not_drift(self) -> None:
+        expected = {
+            "cover": {"type-led", "panel-led", "editorial-print-led"},
+            "section": {"type-led", "panel-led", "editorial-print-led"},
+            "closing": {"type-led", "panel-led", "editorial-print-led"},
+            "statement": {"type-led", "panel-led", "editorial-print-led"},
+            "collection": {"panel-led", "schematic-led", "editorial-print-led", "hand-drawn-explainer"},
+            "comparison": {"panel-led", "schematic-led", "editorial-print-led", "hand-drawn-explainer"},
+            "sequence": {"panel-led", "schematic-led", "editorial-print-led", "hand-drawn-explainer"},
+            "relationship": {"panel-led", "schematic-led", "hand-drawn-explainer"},
+            "media-evidence": {"photo-led", "ui-product-led"},
+            "quote": {"type-led", "editorial-print-led"},
+            "metric": {"data-led", "panel-led"},
+            "chart": {"data-led", "panel-led", "editorial-print-led"},
+            "table": {"data-led", "panel-led", "editorial-print-led"},
+        }
+        self.assertEqual({name: set(item["presentations"]) for name, item in COMPONENTS.items()}, expected)
+
     def test_registered_combination_matrix_resolves_for_both_carriers(self) -> None:
         slides = {slide["component"]: slide for slide in normalize_deck(self.showcase)["slides"]}
         resolved = 0
@@ -117,6 +135,40 @@ class DesignSystemTests(unittest.TestCase):
         html = render_chart(slide, {"textFlow": {}})
         self.assertEqual(html.count('class="bar-track"'), 4)
 
+    def test_three_series_bar_chart_preserves_zero_and_maximum_boundaries(self) -> None:
+        slide = {
+            "title": "三序列",
+            "data": {
+                "chartType": "bar",
+                "categories": ["A", "B"],
+                "series": [
+                    {"name": "一", "values": [0, 6]},
+                    {"name": "二", "values": [2, 4]},
+                    {"name": "三", "values": [3, 5]},
+                ],
+                "scale": {"min": 0, "max": 6},
+            },
+        }
+        html = render_chart(slide, {"textFlow": {}})
+        self.assertEqual(html.count('class="bar-track"'), 6)
+        self.assertIn("--value:0.000000", html)
+        self.assertIn("--value:1.000000", html)
+        self.assertIn("series-3", html)
+
+    def test_line_chart_renders_every_series_and_category(self) -> None:
+        slide = {
+            "title": "趋势",
+            "data": {
+                "chartType": "line",
+                "categories": ["一月", "二月", "三月"],
+                "series": [{"name": "基线", "values": [1, 2, 3]}, {"name": "当前", "values": [2, 4, 5]}],
+            },
+        }
+        html = render_chart(slide, {"textFlow": {}})
+        self.assertEqual(html.count("<polyline"), 2)
+        for value in ("一月", "二月", "三月", "基线", "当前"):
+            self.assertIn(value, html)
+
     def test_legacy_fixture_normalizes_without_changing_identity(self) -> None:
         raw = json.loads(LEGACY.read_text(encoding="utf-8"))
         normalized = normalize_deck(raw)
@@ -179,6 +231,20 @@ class DesignSystemTests(unittest.TestCase):
     def test_approved_plan_requires_a_bound_prototype_manifest(self) -> None:
         plan = plan_for_preset(self.showcase, "swiss", prototype_status="approved")
         self.assertTrue(any("approved prototype" in error for error in validate_plan(plan, self.showcase)))
+
+    def test_mixed_plan_rejects_unbound_merged_prototype(self) -> None:
+        plan = deepcopy(self.plan)
+        plan["prototype"]["mixedFrom"] = ["A", "B"]
+        plan["prototype"]["mergedPrototype"] = {
+            "artifact": "does-not-exist.html",
+            "artifactSha256": "0" * 64,
+            "visualPlan": "does-not-exist.visual-plan.json",
+            "visualPlanSha256": "0" * 64,
+            "evidence": "does-not-exist.png",
+            "evidenceSha256": "0" * 64,
+        }
+        errors = validate_plan(plan, self.showcase)
+        self.assertTrue(any("merged prototype" in error and "missing" in error for error in errors), errors)
 
     def test_prototype_candidates_change_language_and_page_treatment(self) -> None:
         normalized = normalize_deck(self.showcase)

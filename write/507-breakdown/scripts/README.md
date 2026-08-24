@@ -48,6 +48,14 @@ python3 test_understanding_fixtures.py
 # 图片响应带 Markdown JSON 围栏的回归测试（无需 API key）
 python3 test_image_response_parser.py
 
+# 其余确定性解析、定位、抽帧、分析简报与 fallback 回归（均无需真实 API）
+python3 test_minimax_json_parser.py
+python3 test_video_adaptive_frames.py
+python3 test_video_analysis_brief.py
+python3 test_video_localization.py
+python3 test_visual_relocalization.py
+python3 test_forced_local_fallback.py
+
 # 严格真实 M3 上传 smoke test（默认生成 8 秒输入；需要 key）
 export MiniMax_API_KEY=...
 python3 test_minimax_adapter.py
@@ -58,3 +66,5 @@ python3 test_minimax_adapter.py --no-key
 # 默认全链路：M3 → 定位 → 帧 → 图片 → validator → remix
 python3 test_video_pipeline_e2e.py
 ```
+
+仓库根 `python3 scripts/test_all.py` 会显式运行上述全部无需真实 API 的检查；真实 M3 adapter 与全链路 E2E 仍单独列为外部集成门，不会被离线绿灯冒充。

@@ -11,11 +11,12 @@ args = parser.parse_args()
 content = args.file.read_text(encoding="utf-8")
 
 required = (
-    '<canvas id="hero"', 'role="region"', 'aria-live="polite"', "touchstart", "wheel",
+    'role="region"', 'aria-live="polite"', "touchstart", "wheel",
     "prefers-reduced-motion", '<main id="deck"', "flex:0 0 100vw", ".js #deck",
     "data-component=", "data-presentation=", "data-language=", "data-support=",
     ".phrase{white-space:nowrap}", "prefer-single-line-intent", "fitPhrases()", "checkOverflow()", "addEventListener('resize'",
     'class="speaker-notes" hidden', ".instant #deck{transition:none}", "params.has('instant')", ".bar-group",
+    'id="audit-report"', "auditSnapshot()", ".suppress-background-grid::before{background:none!important}",
 )
 for token in required:
     if token not in content:

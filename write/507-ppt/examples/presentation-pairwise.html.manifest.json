@@ -1,10 +1,11 @@
 {
   "version": 2,
   "inputId": "presentation-pairwise",
+  "input": "../scripts/fixtures/presentation-pairwise.json",
   "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",
   "carrier": "html",
   "artifact": "presentation-pairwise.html",
-  "sha256": "5d0f69c951df3e641db2845d158fb4e4c2ece336a21502c762e31c5da7071426",
+  "sha256": "4686a7ca71a3f707f18b7cc6f7b9574f21c254b9c31ac017a17b7028b95d7de6",
   "visualPlan": "presentation-pairwise.visual-plan.json",
   "visualPlanSha256": "6db3edca1563ee1414f9f023d4dce28924a9003342da86e7ffb1d009b89ff14b",
   "language": {
@@ -26,7 +27,7 @@
       "altStatus": "not-applicable",
       "assets": [],
       "screenshot": "presentation-pairwise-html-evidence/slide-1.png",
-      "screenshotSha256": "54428f4a559f5eb120e2aa95329f91735a69dddf7234bb55eb9d5a99900e4fc6"
+      "screenshotSha256": "7529277f25758c38f92507768b080ffb85212df5552cd20b563b575975d56145"
     },
     {
       "id": "panel",
@@ -40,7 +41,7 @@
       "altStatus": "not-applicable",
       "assets": [],
       "screenshot": "presentation-pairwise-html-evidence/slide-2.png",
-      "screenshotSha256": "070631b2d5f953f7a2cc457fab36a615a8397ed73070fe0070795ade06d60dac"
+      "screenshotSha256": "8e9b16ad7e7b1fd39a80e304219ef102532a6647dc642aec23283556ad5d8af8"
     },
     {
       "id": "data",
@@ -54,7 +55,7 @@
       "altStatus": "not-applicable",
       "assets": [],
       "screenshot": "presentation-pairwise-html-evidence/slide-3.png",
-      "screenshotSha256": "acd64a39dcfe22226bf6201ad86516d0255a683012de02da5f8962e469634c42"
+      "screenshotSha256": "eac58412c858babd67420a003535b01a898cc316c1e03caad950f2abd083bbae"
     },
     {
       "id": "schematic",
@@ -68,7 +69,7 @@
       "altStatus": "not-applicable",
       "assets": [],
       "screenshot": "presentation-pairwise-html-evidence/slide-4.png",
-      "screenshotSha256": "b132e4e661dbb240d000d13ef64d913e2432c690e6b72248c95bad0b9b6281a4"
+      "screenshotSha256": "a29de4ddc63891b25df885204a71ad3e9c151fee8f5ff15334aa9b194b3f997d"
     },
     {
       "id": "photo",
@@ -84,7 +85,7 @@
         "photo-workbench"
       ],
       "screenshot": "presentation-pairwise-html-evidence/slide-5.png",
-      "screenshotSha256": "5542d5853d88632cfae9925d43ba2d13d59645b9892045ed1a5813e2e360a387"
+      "screenshotSha256": "191992bbd366a2c29dcac0da40a5e0c0f9c767732057d70df7532c8e70b0b9c1"
     },
     {
       "id": "ui",
@@ -102,7 +103,7 @@
         "ui-preview"
       ],
       "screenshot": "presentation-pairwise-html-evidence/slide-6.png",
-      "screenshotSha256": "209481dbce577dfc441602e0ee4df6df5206ed98dfb11330d9b35af9bec92270"
+      "screenshotSha256": "21ddee9ccb4d8a0a321ae353a1b6e512b2aa62a447f251126414e95e7ac5ded3"
     },
     {
       "id": "editorial",
@@ -116,7 +117,7 @@
       "altStatus": "not-applicable",
       "assets": [],
       "screenshot": "presentation-pairwise-html-evidence/slide-7.png",
-      "screenshotSha256": "5ade008d371116d8ad759be50e224bd9603574845f02d19d1ef28b2bd2c3ebf2"
+      "screenshotSha256": "7de10492222bd781ad2a12de062d91145e09eaf984b2ce097d0b9cfbb8a7f8a7"
     },
     {
       "id": "hand-drawn",
@@ -130,7 +131,7 @@
       "altStatus": "not-applicable",
       "assets": [],
       "screenshot": "presentation-pairwise-html-evidence/slide-8.png",
-      "screenshotSha256": "ec205fc995e112f29e0209ed3091642773f4f057c0fb72a087fb2bf6a0f95730"
+      "screenshotSha256": "932a318fdebe3aa19ae9e4745bd8e61d7e2597d16b24997f5ab02a7befb9c5d9"
     }
   ],
   "assets": [
@@ -168,14 +169,14 @@
       "kind": "axis-content",
       "status": "passed",
       "evidence": "presentation-pairwise-html-axis-content.json",
-      "evidenceSha256": "1b47d173363c5e887df7e9fbfc30627dfc8c33e71006cfc411bbc5c52a3efd2b"
+      "evidenceSha256": "d1bcb05718e60287c161e13daf77bc601980f0cf92a5124f75c54fd37e6b2247"
     },
     {
       "name": "browser-report",
       "kind": "html-browser",
       "status": "passed",
       "evidence": "presentation-pairwise-html-evidence/browser-report.json",
-      "evidenceSha256": "4a0c588aad5f3d57c14c3c874adedb8c1e01e2a17adb4f8478aba4deb46e9a38"
+      "evidenceSha256": "58db6afd53633c27b09f65a1349eca6e871d36375e15a5ac4532f84ad2b1f85f"
     }
   ],
   "screenshots": [

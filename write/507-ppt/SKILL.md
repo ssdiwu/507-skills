@@ -12,7 +12,7 @@ license: MIT
 
 ## 运行条件
 
-生成 `.pptx` 及逐页截图验证需要已可用的 officecli 与 Pillow；生成 HTML 需要可写文件系统，浏览器交互与视觉验证需要 Chrome/Chromium 或等价浏览器。本 Skill 不自动安装这些依赖。
+生成 `.pptx` 及逐页截图验证需要已可用的 officecli 与 Pillow；生成 HTML 需要可写文件系统，浏览器交互与视觉验证需要 Chrome/Chromium、Pillow 与 `websockets`（用于 Chrome DevTools Protocol）。本 Skill 不自动安装这些依赖。
 
 ## 不覆盖什么
 
@@ -65,7 +65,7 @@ license: MIT
 
 1. 校验并标准化内容包，建立或读取独立 visual-plan；support、suppression 与 degradation 由注册表计算，不能手填为通过。
 2. 完成所需视觉原型与当前版本确认，再生成整套候选；content v3 没有 visual-plan 或显式 preset 时必须停止，不能静默默认 Swiss。
-3. HTML 先以 `--candidate-only` 生成隔离候选；浏览器逐页用无转场 capture 模式核对当前 ID、关键文字、overflow、短语、mobile、reduced-motion、故障退化和截图哈希，再由 `promote_html.py` 原子晋升候选与 evidence。仅静态检查不能替换旧成品。
+3. HTML 先以 `--candidate-only` 生成隔离候选；`html_browser_evidence.py` 逐页用无转场 capture 模式核对当前 ID、关键文字、overflow、短语、table 背景抑制、按钮/键盘/滚轮/触控、mobile、无 JavaScript、reduced-motion、故障退化和真实 PNG 截图哈希，再由 `promote_html.py` 原子晋升候选与 evidence。仅静态检查不能替换旧成品。
 4. PPTX 必须使用可编辑文字、shape、picture、原生 chart/table 和 notes，不用截图冒充结构化数据。
 5. 两种载体都在隔离候选中生成；自动、视觉、来源与换行检查通过后才替换已有产物。验证失败保留上一版。chart/table 使用原生对象；多序列柱图使用独立分组轨道，不把多个数值挤进同一宽度。
 6. manifest v2 记录内容哈希、visual-plan、prototype evidence、设计语言、逐页组件/呈现/treatment、载体支持、抑制项、降级、notes/alt、来源与截图证据；builder 与 validator 都重新调用 resolver，并复读绑定 artifact/input/plan 哈希且所有 checks 为 passed 的机器报告。旧 manifest v1 只作兼容读回。

@@ -38,7 +38,7 @@ visual-plan 的 `inputSha256` 针对 normalize 后的 canonical content v3；man
 
 先在同目录隔离候选中生成。HTML 的 `generate_html.py --candidate-only` 不触碰当前成品；浏览器用 `instant=1` 禁用转场，逐页核对 current ID、页码、offset、overflow、短语与截图 hash，并在 mobile / reduced-motion / failure fallback 全部通过后，由 `promote_html.py` 原子晋升候选和 evidence。PPTX schema、零 issues、notes、alt、原生 chart/table 逐页 read-back、逐页截图与中文换行通过后才替换，并保留 evidence。
 
-验证报告使用机器合同，绑定 input、visual-plan 与 artifact 哈希；任一 check/profile/page 为 failed 时，builder 和 validator 都拒绝 manifest。Manifest 的 support、suppression 与 degradation 由 resolver 重新计算，不信任手填状态。
+验证报告由载体对应的真实验证入口生成并使用机器合同，绑定 input、visual-plan 与 artifact 哈希及 producer 源码哈希；任一 check/profile/page 为 failed、截图不是有效 PNG、载体格式不匹配、输入/plan/artifact/evidence 越出交付包根目录或 producer 元数据缺失时，builder 和 validator 都拒绝 manifest。Manifest builder 先在同目录候选 manifest 上自验，失败时保留旧 manifest。Manifest 的 support、suppression 与 degradation 由 resolver 重新计算，不信任手填状态。
 
 ## 相邻 Skill
 

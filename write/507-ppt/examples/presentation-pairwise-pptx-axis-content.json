@@ -3,6 +3,15 @@
   "kind": "axis-content",
   "status": "passed",
   "failures": [],
+  "producer": {
+    "name": "check_style_content.py",
+    "sourceSha256": "918e4c888f5e4ec943fd09a7af25f87e36db817f360f45f7031e38ec4d3c7eed",
+    "generatedAt": "2026-08-24T01:02:03.464136+00:00",
+    "gitRevision": "c902b2e741fa7063bcdfd28baa752ffcd37125f5",
+    "worktreeStatus": "dirty",
+    "tool": "officecli",
+    "toolVersion": "1.0.143"
+  },
   "subject": {
     "inputId": "presentation-pairwise",
     "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",

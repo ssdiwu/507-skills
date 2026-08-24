@@ -27,6 +27,8 @@
 4. 计算产物和本地素材 SHA-256；
 5. 将检查结果写入产物 manifest。
 
+`python3 scripts/validate_provenance.py --check examples/provenance-report.json` 会把当前扫描结果、notice 哈希、生成器源码哈希与已提交报告逐项比较；新增、删除或哈希变化都会失败。需要更新证据时显式使用 `--output` 重建，报告同时记录生成时间、Git revision、工作区状态和实际工具版本。工作区为 dirty（有未提交改动）时，源码哈希是可复验身份，Git revision 仅表示所基于的最近提交。
+
 范围检查只能说明当前仓库和产物的记录完整性；它不替代版权、许可证兼容或法律意见。
 
 ## 外部研究证据与实现边界

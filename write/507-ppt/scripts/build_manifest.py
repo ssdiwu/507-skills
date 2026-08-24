@@ -6,8 +6,13 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
+import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
+from artifact_evidence import validate_artifact, validate_png
 from design_system import normalize_deck
 from verification_report import validate_report
 from visual_plan import expected_degradations, resolved_manifest_pages, text_flow_limits, validate_plan
@@ -31,9 +36,21 @@ def main() -> None:
     parser.add_argument("--fallback-matrix", type=Path, help="deprecated alias for --support-matrix")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    output_root = args.output.parent.resolve()
+    package_root = output_root.parent
+
+    def relative(path: Path, label: str) -> str:
+        resolved = path.resolve()
+        if resolved != package_root and package_root not in resolved.parents:
+            raise SystemExit(f"{label} must stay within manifest package root: {package_root}")
+        return os.path.relpath(resolved, output_root)
+
     support_matrix = args.support_matrix or args.fallback_matrix
     if support_matrix is None:
         raise SystemExit("--support-matrix is required")
+    for path, label in ((args.input, "input"), (args.plan, "visual plan"), (args.artifact, "artifact"), (support_matrix, "support matrix")):
+        relative(path, label)
     raw = json.loads(args.input.read_text(encoding="utf-8"))
     content = normalize_deck(raw)
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
@@ -49,23 +66,23 @@ def main() -> None:
     normalized_matrix_pages = [{key: page.get(key) for key in contract} for page, contract in zip(matrix_pages, page_contracts, strict=False)]
     if matrix.get("inputId") != content["id"] or matrix.get("language") != plan["language"] or len(matrix_pages) != len(page_contracts) or normalized_matrix_pages != page_contracts:
         raise SystemExit("support matrix differs from resolver output")
-    output_root = args.output.parent.resolve()
-
-    def relative(path: Path) -> str:
-        return os.path.relpath(path.resolve(), output_root)
+    try:
+        validate_artifact(args.artifact, args.carrier)
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
 
     assets: list[dict[str, str]] = []
     asset_ids: set[str] = set()
     for slide in content["slides"]:
         for asset in slide.get("assets") or []:
             raw_path = asset.get("path")
-            candidates = [(ROOT / str(raw_path)).resolve(), (args.input.parent / str(raw_path)).resolve()] if raw_path else []
+            candidates = [(args.input.parent / str(raw_path)).resolve(), (ROOT / str(raw_path)).resolve()] if raw_path else []
             path = next((candidate for candidate in candidates if candidate.is_file()), None)
             if path is None:
                 raise SystemExit(f"asset file missing: {raw_path}")
             if asset["id"] in asset_ids:
                 raise SystemExit(f"duplicate asset id: {asset['id']}")
-            assets.append({"id": asset["id"], "path": relative(path), "alt": asset["alt"], "sha256": digest(path)})
+            assets.append({"id": asset["id"], "path": relative(path, f"asset {asset['id']}"), "alt": asset["alt"], "sha256": digest(path)})
             asset_ids.add(asset["id"])
     pages: list[dict[str, object]] = []
     degradations = expected_degradations(plan, raw, args.carrier)
@@ -74,7 +91,11 @@ def main() -> None:
         screenshot = args.screenshots_dir / f"slide-{index}.png"
         if not screenshot.is_file():
             raise SystemExit(f"visual evidence missing for page {slide['id']}: {screenshot}")
-        screenshot_value = relative(screenshot)
+        try:
+            validate_png(screenshot, f"page {slide['id']} screenshot")
+        except ValueError as error:
+            raise SystemExit(str(error)) from error
+        screenshot_value = relative(screenshot, f"page {slide['id']} screenshot")
         screenshots.append(screenshot_value)
         page_assets = [asset["id"] for asset in slide.get("assets") or [] if asset.get("id") in asset_ids]
         page = dict(contract)
@@ -94,10 +115,17 @@ def main() -> None:
     verification = []
     for path in args.verification:
         try:
-            report = validate_report(path, expected_subject, [slide["id"] for slide in content["slides"]], text_flow_limits(plan))
+            report = validate_report(
+                path,
+                expected_subject,
+                [slide["id"] for slide in content["slides"]],
+                text_flow_limits(plan),
+                {slide["id"]: slide["component"] for slide in content["slides"]},
+                sum(len(slide.get("assets") or []) for slide in content["slides"]),
+            )
         except ValueError as error:
             raise SystemExit(str(error)) from error
-        verification.append({"name": path.stem, "kind": report["kind"], "status": report["status"], "evidence": relative(path), "evidenceSha256": digest(path)})
+        verification.append({"name": path.stem, "kind": report["kind"], "status": report["status"], "evidence": relative(path, "verification report"), "evidenceSha256": digest(path)})
     required_kinds = {"axis-content", "html-browser"} if args.carrier == "html" else {"axis-content"}
     if not required_kinds.issubset({item["kind"] for item in verification}):
         raise SystemExit("required verification report kinds are missing")
@@ -107,19 +135,35 @@ def main() -> None:
         approved = json.loads(prototype_manifest.read_text(encoding="utf-8"))
         contact_sheet = prototype_manifest.parent / approved["evidence"]
         prototype_evidence = [
-            {"kind": "prototype-manifest", "path": relative(prototype_manifest), "sha256": digest(prototype_manifest)},
-            {"kind": "prototype-contact-sheet", "path": relative(contact_sheet), "sha256": digest(contact_sheet)},
+            {"kind": "prototype-manifest", "path": relative(prototype_manifest, "prototype manifest"), "sha256": digest(prototype_manifest)},
+            {"kind": "prototype-contact-sheet", "path": relative(contact_sheet, "prototype contact sheet"), "sha256": digest(contact_sheet)},
         ]
+    notice_source = ROOT / "third-party-notices.md"
+    if package_root in notice_source.resolve().parents:
+        notice_path = notice_source
+    else:
+        notice_path = output_root / "third-party-notices.md"
+        if notice_path.exists() and notice_path.read_bytes() != notice_source.read_bytes():
+            raise SystemExit(f"portable notice destination already contains different content: {notice_path}")
+        if not notice_path.exists():
+            shutil.copy2(notice_source, notice_path)
     manifest = {
-        "version": 2, "inputId": content["id"], "inputSha256": digest(args.input), "carrier": args.carrier,
-        "artifact": relative(args.artifact), "sha256": digest(args.artifact), "visualPlan": relative(args.plan), "visualPlanSha256": digest(args.plan),
+        "version": 2, "inputId": content["id"], "input": relative(args.input, "input"), "inputSha256": digest(args.input), "carrier": args.carrier,
+        "artifact": relative(args.artifact, "artifact"), "sha256": digest(args.artifact), "visualPlan": relative(args.plan, "visual plan"), "visualPlanSha256": digest(args.plan),
         "language": plan["language"], "prototypeStatus": plan["prototype"]["status"], "prototypeEvidence": prototype_evidence, "pages": pages, "assets": assets,
-        "notices": [relative(ROOT / "third-party-notices.md")],
+        "notices": [relative(notice_path, "notice")],
         "verification": verification,
-        "screenshots": screenshots, "degradations": degradations, "capabilities": {"supportMatrix": relative(support_matrix), "supportMatrixSha256": digest(support_matrix)},
+        "screenshots": screenshots, "degradations": degradations, "capabilities": {"supportMatrix": relative(support_matrix, "support matrix"), "supportMatrixSha256": digest(support_matrix)},
     }
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    handle = tempfile.NamedTemporaryFile(prefix=f".{args.output.name}-", suffix=".json", dir=args.output.parent, delete=False)
+    candidate = Path(handle.name)
+    handle.close()
+    try:
+        candidate.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        subprocess.run([sys.executable, str(Path(__file__).with_name("validate_manifest.py")), str(candidate)], check=True, text=True)
+        os.replace(candidate, args.output)
+    finally:
+        candidate.unlink(missing_ok=True)
     print(f"manifest v2 built: {args.output}")
 
 

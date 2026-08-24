@@ -32,7 +32,7 @@
         ]
       },
       "artifact": "candidate-a-swiss.html",
-      "artifactSha256": "aecbb555fe308b78fafe8ab68084dc450a0b038e8cac4eba463ad0e9b3b4c362",
+      "artifactSha256": "7b376fe00ce036b8fb5732bf81b8796e55f617d0b7fbacb20e2cab4b2f960dbc",
       "visualPlan": "candidate-a-swiss.visual-plan.json",
       "visualPlanSha256": "d39f979ea546705c45d3c76dc36cb92403b5b5b4c67e495bf95d609d38c40b01"
     },
@@ -59,7 +59,7 @@
         ]
       },
       "artifact": "candidate-b-cobalt.html",
-      "artifactSha256": "5f94caa9f367d07ef592b4ac9af302d66950520be924716d93033c0998d43bc9",
+      "artifactSha256": "0a5d8dd8633eccf1b1467911564be1ba9a5fd49ee8f4f307c7320feb70357b72",
       "visualPlan": "candidate-b-cobalt.visual-plan.json",
       "visualPlanSha256": "8b0e6659be4ecb697f71e04029b90b04f4ab50bb05d6929b29be031d55e6c7ac"
     },
@@ -86,7 +86,7 @@
         ]
       },
       "artifact": "candidate-c-magazine.html",
-      "artifactSha256": "b4d2757170e48a452932d1b0b98b2195070d7b401e25e61b86c622a803fe4b06",
+      "artifactSha256": "cb370c9ba3c81a0e482a1a7d87ed354251d3d35347dc724307d39636403a0164",
       "visualPlan": "candidate-c-magazine.visual-plan.json",
       "visualPlanSha256": "8ee44c50575d9d5af33f8d88537507b03af1c599aa680e294a8ac1e83c154e5b"
     }

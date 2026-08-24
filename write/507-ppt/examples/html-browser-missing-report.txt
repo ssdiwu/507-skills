@@ -1,3 +1,0 @@
-HTML static contract passed: examples/collaboration-swiss.html
-HTML static contract passed: examples/collaboration-magazine.html
-HTML static fallback: browser unavailable; screenshot and browser assertions skipped

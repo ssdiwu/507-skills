@@ -1,0 +1,172 @@
+{
+  "version": 1,
+  "kind": "html-browser",
+  "status": "passed",
+  "failures": [],
+  "producer": {
+    "name": "html_browser_evidence.py",
+    "sourceSha256": "d27a75059a5414075441b50648730d595abf35208000adffcb79ea4b411e6215",
+    "browser": "Google Chrome",
+    "browserVersion": "Google Chrome 151.0.7922.170",
+    "generatedAt": "2026-08-24T01:01:34.370062+00:00",
+    "gitRevision": "c902b2e741fa7063bcdfd28baa752ffcd37125f5",
+    "worktreeStatus": "dirty"
+  },
+  "subject": {
+    "inputId": "collaboration-baseline",
+    "inputSha256": "42d3cfe30df5912cc7f00a7fcf48de72be8a1d08df6b3e7fc8e6302a0d5302b1",
+    "visualPlanSha256": "d5f51f27546d662ee2e7190a530b53fd826b51edb20da38adb5ba3b17640b8e9",
+    "artifactSha256": "5067445ba0353aea0577993b98a24527dd78d258f5d425f8bd2a973ad9d05844",
+    "carrier": "html"
+  },
+  "checks": [
+    {
+      "name": "all-pages-settled",
+      "status": "passed"
+    },
+    {
+      "name": "responsive-fallback-and-interactions",
+      "status": "passed"
+    }
+  ],
+  "profiles": {
+    "desktop": {
+      "status": "passed"
+    },
+    "mobile": {
+      "status": "passed",
+      "overflow": "pass",
+      "overflowSlides": [],
+      "responsive": "pass",
+      "phraseOverflow": []
+    },
+    "reducedMotion": {
+      "status": "passed",
+      "motion": "reduced",
+      "transitionMs": 0,
+      "staticClass": false
+    },
+    "failureFallback": {
+      "status": "passed",
+      "staticClass": true,
+      "visible": 4,
+      "deckTransform": "none",
+      "currentId": "harness",
+      "statusText": "2 / 4"
+    },
+    "resizeRecovery": {
+      "status": "passed",
+      "path": null,
+      "narrowLines": 1,
+      "wideLines": 1
+    },
+    "noJavaScript": {
+      "status": "passed",
+      "visible": 4,
+      "scrollHeight": 3600,
+      "viewport": 900,
+      "pagesHaveViewportHeight": true,
+      "containsTitle": true,
+      "screenshot": "no-javascript.png",
+      "screenshotSha256": "46266b0cf234d517a45f2c640d868e2e8c8ec90c5859e16e42943e20dc48df33"
+    },
+    "interactions": {
+      "button": true,
+      "keyboard": true,
+      "wheel": true,
+      "touch": true,
+      "focus": true,
+      "status": "passed"
+    }
+  },
+  "pages": [
+    {
+      "currentId": "cover",
+      "statusText": "1 / 4",
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "overflowSlides": [],
+      "phraseOverflow": [],
+      "textFlows": {},
+      "tableBackground": null,
+      "staticClass": false,
+      "visible": 1,
+      "motion": "full",
+      "responsive": "pass",
+      "id": "cover",
+      "index": 0,
+      "settled": true,
+      "text": "关于协作，先说一件最重要的事\n\n从会用到会协作\n\n让 AI 帮你把想法做出来\n\n20 分钟 · 公开示例",
+      "screenshot": "slide-1.png",
+      "screenshotSha256": "a848d3fd28ebb74553850cbf55c0e8d9641bd9f44e5795c06ddf242f58d5b3fc",
+      "status": "passed"
+    },
+    {
+      "currentId": "harness",
+      "statusText": "2 / 4",
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "overflowSlides": [],
+      "phraseOverflow": [],
+      "textFlows": {},
+      "tableBackground": null,
+      "staticClass": false,
+      "visible": 1,
+      "motion": "full",
+      "responsive": "pass",
+      "id": "harness",
+      "index": 1,
+      "settled": true,
+      "text": "执行环境\n\n能动手的地方\n\n能看见项目、改动文件、运行结果并回看反馈，AI 才能从顾问进入施工现场。\n\n文件 / 编辑 / 预览同处一屏",
+      "screenshot": "slide-2.png",
+      "screenshotSha256": "2b63af226492695f04ac611499e3d3b3a367c27f7ba2fa5d130506f08e20b3a9",
+      "status": "passed"
+    },
+    {
+      "currentId": "responsibility",
+      "statusText": "3 / 4",
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "overflowSlides": [],
+      "phraseOverflow": [],
+      "textFlows": {},
+      "tableBackground": null,
+      "staticClass": false,
+      "visible": 1,
+      "motion": "full",
+      "responsive": "pass",
+      "id": "responsibility",
+      "index": 2,
+      "settled": true,
+      "text": "三件 AI 不能替你拥有的事\n意图\n\n你希望这次成果服务谁、解决什么。\n\n责任\n\n哪些边界不能越过、谁负责拍板。\n\n验收\n\n什么结果才算真的能交付。\n\nAI 负责生成、尝试、执行；人负责方向、边界与完成。",
+      "screenshot": "slide-3.png",
+      "screenshotSha256": "8acd67dafd97755b5e921246662aa3c1177560392b04b981ba7c0c60c3a31012",
+      "status": "passed"
+    },
+    {
+      "currentId": "quote",
+      "statusText": "4 / 4",
+      "transitionMs": 0,
+      "offsetErrorPx": 0,
+      "overflow": "pass",
+      "overflowSlides": [],
+      "phraseOverflow": [],
+      "textFlows": {},
+      "tableBackground": null,
+      "staticClass": false,
+      "visible": 1,
+      "motion": "full",
+      "responsive": "pass",
+      "id": "quote",
+      "index": 3,
+      "settled": true,
+      "text": "“\n它的第一版，是给你改的，不是给你用的。\n关于协作 · 第一节",
+      "screenshot": "slide-4.png",
+      "screenshotSha256": "9d5bd427fc39a2d9fbd3013b68c90b7f928db9192f494270b01e9fa0d7c02ec6",
+      "status": "passed"
+    }
+  ]
+}

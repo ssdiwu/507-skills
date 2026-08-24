@@ -3,11 +3,19 @@
   "kind": "axis-content",
   "status": "passed",
   "failures": [],
+  "producer": {
+    "name": "check_style_content.py",
+    "sourceSha256": "918e4c888f5e4ec943fd09a7af25f87e36db817f360f45f7031e38ec4d3c7eed",
+    "generatedAt": "2026-08-24T01:01:58.077934+00:00",
+    "gitRevision": "c902b2e741fa7063bcdfd28baa752ffcd37125f5",
+    "worktreeStatus": "dirty",
+    "tool": "python"
+  },
   "subject": {
     "inputId": "collaboration-baseline",
     "inputSha256": "42d3cfe30df5912cc7f00a7fcf48de72be8a1d08df6b3e7fc8e6302a0d5302b1",
     "visualPlanSha256": "generated-legacy-plan",
-    "artifactSha256": "3d5f2d70775dd59f7d615addab9622dd22203f87d4f305dee2963897d939f93d",
+    "artifactSha256": "5067445ba0353aea0577993b98a24527dd78d258f5d425f8bd2a973ad9d05844",
     "carrier": "html"
   },
   "checks": [

@@ -4,16 +4,48 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import hashlib
 import html
 import json
 import re
 import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 
 from design_system import PRESETS, language, normalize_deck, visible_strings
 from visual_plan import load_plan, resolved_pages, validate_plan
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def command_output(command: list[str]) -> str:
+    try:
+        result = subprocess.run(command, check=True, text=True, capture_output=True)
+    except (OSError, subprocess.CalledProcessError):
+        return "unavailable"
+    return (result.stdout or result.stderr).strip()
+
+
+def source_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def producer(carrier: str) -> dict[str, str]:
+    revision = command_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"])
+    status = command_output(["git", "-C", str(ROOT), "status", "--porcelain"])
+    result = {
+        "name": "check_style_content.py",
+        "sourceSha256": source_sha256(Path(__file__)),
+        "generatedAt": datetime.now(timezone.utc).isoformat(),
+        "gitRevision": revision,
+        "worktreeStatus": "dirty" if status and status != "unavailable" else "clean" if status == "" else "unknown",
+        "tool": "officecli" if carrier == "pptx" else "python",
+    }
+    if carrier == "pptx":
+        result["toolVersion"] = command_output(["officecli", "--version"])
+    return result
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--preset", choices=PRESETS)
 parser.add_argument("--style", choices=PRESETS, help="deprecated alias for --preset")
@@ -115,6 +147,7 @@ report = {
     "kind": "axis-content",
     "status": "passed",
     "failures": [],
+    "producer": producer(args.carrier),
     "subject": {"inputId": fixture["id"], "inputSha256": input_sha, "visualPlanSha256": plan_sha, "artifactSha256": artifact_sha, "carrier": args.carrier},
     "checks": checks,
     "preset": plan.get("preset"), "language": language_id, "carrier": args.carrier, "pages": len(fixture["slides"]), "content": "passed",

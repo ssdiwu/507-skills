@@ -9,6 +9,12 @@ python3 scripts/generate_html.py \
   --candidate-only \
   --output /tmp/system-showcase.candidate.html
 
+python3 scripts/html_browser_evidence.py \
+  --artifact /tmp/system-showcase.candidate.html \
+  --input scripts/fixtures/system-showcase.json \
+  --plan scripts/fixtures/system-showcase.visual-plan.json \
+  --output-dir /tmp/system-showcase-browser-evidence
+
 python3 scripts/promote_html.py \
   --candidate /tmp/system-showcase.candidate.html \
   --input scripts/fixtures/system-showcase.json \
@@ -47,4 +53,4 @@ python3 scripts/validate_html.py examples/system-showcase.html
 bash scripts/test_html.sh
 ```
 
-浏览器矩阵逐页使用 `?instant=1&slide=N`，只有 current ID、status、零转场、offset、overflow、phrase、每个 `maxLines` 路径的真实行数、截图 hash 和全部 profile 真实字段都通过才生成 `html-browser` 报告。移动端完整画幅不等于文本阅读通过；若字号不足，只能报告为构图预览。
+浏览器矩阵经 Chrome DevTools Protocol 操作真实页面：逐页使用无转场状态，检查 current ID、status、offset、overflow、phrase、每个 `maxLines` 路径的真实行数、table 伪元素背景、按钮/键盘/滚轮/触控、无 JavaScript、mobile、reduced-motion 与 failure fallback。每张证据必须是可读取、非空白的真实 PNG；报告同时记录 Chrome 版本、生成时间、Git revision 与工作区状态。移动端完整画幅不等于文本阅读通过；若字号不足，只能报告为构图预览。

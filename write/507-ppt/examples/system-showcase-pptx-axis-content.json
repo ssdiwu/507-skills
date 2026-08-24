@@ -3,10 +3,19 @@
   "kind": "axis-content",
   "status": "passed",
   "failures": [],
+  "producer": {
+    "name": "check_style_content.py",
+    "sourceSha256": "918e4c888f5e4ec943fd09a7af25f87e36db817f360f45f7031e38ec4d3c7eed",
+    "generatedAt": "2026-08-24T01:02:00.901490+00:00",
+    "gitRevision": "c902b2e741fa7063bcdfd28baa752ffcd37125f5",
+    "worktreeStatus": "dirty",
+    "tool": "officecli",
+    "toolVersion": "1.0.143"
+  },
   "subject": {
     "inputId": "system-showcase",
     "inputSha256": "b9e37a0d1082db539fae39d3d37a0681234e073b7417c80f486525f984e25309",
-    "visualPlanSha256": "c189d09513e216b770b93471ff906e7253964efe362bebe57e0fbb0429ed6468",
+    "visualPlanSha256": "d5c873ec4d2d63109fd8c8f56d27a03828539a3a6f706cede051cc82ddb1794e",
     "artifactSha256": "1f33712ca4dfeef1f6244d1e9ea74ffd55d1fbfea69534cc5f4d42c20c650cec",
     "carrier": "pptx"
   },

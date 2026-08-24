@@ -19,8 +19,8 @@
 | 名称 | 版本 | 来源 | 许可证状态 | 用途 | notice |
 | --- | --- | --- | --- | --- | --- |
 | `officecli`（办公文档命令行工具） | 1.0.143 | `https://d.officecli.ai`（官方安装源） | 商业 CLI（命令行工具），未附带公开 OSS LICENSE（开源软件许可证）文件；作为外部工具调用 | 生成/验证 `.pptx`（PowerPoint 演示文稿）的 schema（结构模式）、issues（问题）、notes（讲者备注）、alt（替代文本）与截图 | 产物不依赖；`.pptx`（PowerPoint 演示文稿）可在标准 Office（办公软件）编辑器独立打开 |
-| `browser-act-cli` | 0.1.30 | PyPI `browser-act-cli`、`https://www.browseract.com` | PyPI METADATA 未声明 License 字段；作为外部 CLI 调用 | HTML 浏览器交互与 a11y 断言 | 产物不依赖；HTML 可离线打开 |
 | Pillow（图像处理库） | 12.1.0 | PyPI（Python 包索引）`Pillow`（安装包） | HPND / PIL License（许可证，本地安装元数据） | 检查逐页截图内容并生成四象限 contact sheet（联系表）；不嵌入 HTML（网页）/PPTX（PowerPoint 演示文稿） | 仅开发工具；不随产物分发 |
-| Google Chrome | 150.0.7871.125 | 系统浏览器 | Google 专有软件 | HTML 截图与退化/响应式测试 | 产物不依赖；HTML 可离线打开 |
+| `websockets`（WebSocket 客户端） | 16.0 | PyPI（Python 包索引）`websockets`（安装包） | BSD-3-Clause | 通过 Chrome DevTools Protocol 执行 HTML 交互、视口和截图验收；不嵌入产物 | 仅开发工具；HTML 可离线打开 |
+| Google Chrome | 151.0.7922.170 | 系统浏览器 | Google 专有软件 | HTML 截图、交互、无 JavaScript、退化、响应式与换行测试 | 产物不依赖；实际证据版本写入 browser report 与 provenance report |
 
 不明许可证的项不得内嵌进产物；上表工具仅作环境工具使用，不改变交付物的许可证状态。

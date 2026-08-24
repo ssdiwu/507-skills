@@ -8,6 +8,8 @@
 
 - 新增 `507-taste` 视觉方向收敛 skill。视觉决策没有可自动判定的成功条件——判据在用户脑子里，且往往只能在看见时被认出——因此不做一步到位生成，改为把反馈循环改造成高带宽、低成本、可重复的采样：先取只有用户才有的观点（性格、为谁、冻结哪一秒），一次铺开九个结构差异极大的粗稿，每轮固定收集「留两个、弃一个（最讨厌）」，从保留项与淘汰项两侧提取轴；方向确认后才拆元素层、做可现场切换的组合台、跑可机械判定的检查（小尺寸还原、灰度分离、明度阶梯等）。明确禁止在方向未定时精修，禁止用同一张图换装饰冒充不同方向。已在 `code/README.md` 与根 `README.md` 的代码线流程、速查表和路由表登记，与 `507-prototype`（回答单个可观察未知）划清边界。
 
+- 新增仓库级 `scripts/test_all.py` 与 CI 确定性门禁，显式运行各技能单测、全部无需真实 API 的 Breakdown 回归、Video 产品宣传片条件合同、PPT v3 浏览器证据、manifest 与 provenance；真实 MiniMax、Voicebox、officecli 全生成和设备验收继续作为独立外部门。
+
 ### Changed
 
 - 全局 `AGENTS.md` 模板在「沟通」中新增可视化默认：顺序、状态、层级、依赖或多方交互优先使用 `Mermaid（图表语法）`，并列属性与精确映射使用表格，一句话能说清的关系不画图，图后只点读图重点，无法渲染时退回结构化文字或表格。此前可视化只存在于 `507-explain` 与 `507-grill` 两个 skill 内部，其余横向与交付 skill 无任何指引。
@@ -15,6 +17,13 @@
 - `507-explain` 的示意口径统一到 `507-grill`：不再把 `ASCII（字符图）` 作为 Mermaid 的渲染回退，改为退回结构化文字或表格，并同样限定为渲染器支持的 `flowchart`、`state`、`class`、`ER` 与 `sequence` 五类图；小型层级改用结构化列表。全仓库不再存在“允许 ASCII”与“禁止 ASCII”两套并存口径。
 
 - `507-stage` 补充材料状态、作者判断和系列载体纪律：已排除方向不被润色补回；界面、反馈与演示先区分已核验、课堂准备与待检查；系列内容按真实承重材料分配结构，不套用同名章节与统一收尾。
+
+### Fixed
+
+- `507-ppt` 修复测试和证据假绿：manifest 现在绑定真实输入路径，并拒绝载体/文件格式不一致、非 PNG/过小/空白截图与缺失 producer 元数据；混合候选必须绑定合并 artifact、visual-plan、视觉证据及哈希，且代表页必须与最终 plan 一致。
+- `507-ppt` 以 Chrome DevTools Protocol 浏览器证据入口替换过期的 `browser-act` / Canvas-WebGL 测试，自动发现 macOS Chrome，真实覆盖当前 showcase/pairwise 的按钮、键盘、滚轮、触控、无 JavaScript、mobile、reduced-motion、故障退化、中文行数与 table 背景抑制；同时修正移动端编辑引语页横向溢出。
+- 重建可检查的 PPT provenance 合同，记录生成时间、Git revision、工作区状态和实际工具版本；修正 Breakdown 漏列回归、RedNote 烟测未定义临时目录与 Narrate 恒过式 fixture 测试。
+
 ## [0.2.6] - 2026-08-24
 
 ### Added

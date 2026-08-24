@@ -1,12 +1,13 @@
 {
   "version": 2,
   "inputId": "system-showcase",
+  "input": "../scripts/fixtures/system-showcase.json",
   "inputSha256": "b9e37a0d1082db539fae39d3d37a0681234e073b7417c80f486525f984e25309",
   "carrier": "pptx",
   "artifact": "system-showcase.pptx",
   "sha256": "1f33712ca4dfeef1f6244d1e9ea74ffd55d1fbfea69534cc5f4d42c20c650cec",
   "visualPlan": "system-showcase.visual-plan.json",
-  "visualPlanSha256": "c189d09513e216b770b93471ff906e7253964efe362bebe57e0fbb0429ed6468",
+  "visualPlanSha256": "d5c873ec4d2d63109fd8c8f56d27a03828539a3a6f706cede051cc82ddb1794e",
   "language": {
     "id": "precision-modern",
     "variant": "default"
@@ -16,7 +17,7 @@
     {
       "kind": "prototype-manifest",
       "path": "system-prototypes/approved-prototype-manifest.json",
-      "sha256": "d12fd1badec673ecf7faa4b197a8c0b099236696d18a9576718b0337ab528a7a"
+      "sha256": "9e07f0802e31ed55006c6d17ef628ae020a268d8a731fa5e4f9fab7e211fa2bd"
     },
     {
       "kind": "prototype-contact-sheet",
@@ -230,7 +231,7 @@
       "kind": "axis-content",
       "status": "passed",
       "evidence": "system-showcase-pptx-axis-content.json",
-      "evidenceSha256": "836408d1003eab00b9d1e73d1f667d02538b188ac577bb84007977e2755cc053"
+      "evidenceSha256": "601f3674bfec1b89bffc5878ad3d9a78193acd5046276dfb8c2e5f8b03b32527"
     }
   ],
   "screenshots": [

@@ -219,14 +219,18 @@ class VoiceboxNarrateTests(unittest.TestCase):
             self.assertEqual(generate.call_count, 0)
             self.assertFalse((output_dir / "narration-manifest.json").exists())
 
-    def test_batch_fixture_shape_is_json_serializable(self) -> None:
-        package = {
-            "language": "zh",
-            "engine": "qwen",
-            "model_size": "1.7B",
-            "sections": [{"id": "hook", "text": "第一段。"}],
-        }
-        self.assertIn("sections", json.loads(json.dumps(package, ensure_ascii=False)))
+    def test_batch_fixture_is_loaded_by_production_parser(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "sections.json"
+            path.write_text(json.dumps({
+                "language": "zh",
+                "engine": "qwen",
+                "model_size": "1.7B",
+                "sections": [{"id": "hook", "text": "第一段。"}],
+            }, ensure_ascii=False), encoding="utf-8")
+            config, sections = subject.load_batch_input(path)
+        self.assertEqual(config["language"], "zh")
+        self.assertEqual(sections, [{"id": "hook", "text": "第一段。"}])
 
 
 if __name__ == "__main__":

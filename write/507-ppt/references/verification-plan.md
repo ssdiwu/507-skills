@@ -64,4 +64,4 @@
 
 ## 执行顺序
 
-静态 schema/来源 → 组合 resolver → 原型审批 manifest → HTML/PPTX 候选 → 自动验证 → 无转场逐页截图与 phrase 检查 → 机器报告 → 原子晋升 → manifest v2 → 独立 review。旧产物只在新候选与 evidence 全部通过后替换。
+静态 schema/来源 → 组合 resolver → 原型审批 manifest → HTML/PPTX 候选 → 自动验证 → CDP 真实交互、无 JavaScript、无转场逐页 PNG 与 phrase/table 计算样式检查 → 带工具/版本/时间/Git revision 的机器报告 → 原子晋升 → manifest v2 → 独立 review。旧产物只在新候选与 evidence 全部通过后替换。

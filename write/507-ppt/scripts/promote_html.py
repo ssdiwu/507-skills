@@ -9,6 +9,7 @@ import shutil
 import tempfile
 from pathlib import Path
 
+from artifact_evidence import validate_artifact
 from design_system import normalize_deck
 from verification_report import digest, validate_report
 from visual_plan import text_flow_limits
@@ -26,6 +27,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.candidate.suffix.lower() != ".html" or not args.candidate.is_file():
         raise SystemExit("candidate must be an existing HTML file")
+    try:
+        validate_artifact(args.candidate, "html")
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
     raw = json.loads(args.input.read_text(encoding="utf-8"))
     content = normalize_deck(raw)
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
@@ -35,7 +40,14 @@ def main() -> None:
         "artifactSha256": digest(args.candidate), "carrier": "html",
     }
     try:
-        validate_report(report_path, subject, [slide["id"] for slide in content["slides"]], text_flow_limits(plan))
+        validate_report(
+            report_path,
+            subject,
+            [slide["id"] for slide in content["slides"]],
+            text_flow_limits(plan),
+            {slide["id"]: slide["component"] for slide in content["slides"]},
+            sum(len(slide.get("assets") or []) for slide in content["slides"]),
+        )
     except ValueError as error:
         raise SystemExit(str(error)) from error
     if args.evidence_dir.exists():

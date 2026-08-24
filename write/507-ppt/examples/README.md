@@ -9,6 +9,6 @@
 - `system-prototypes/`：同一真实内容的 3 个 candidate、联系表与 `approved-prototype-manifest.json`，展示推荐—选择—哈希绑定；混合时必须另建合并原型再批准。
 - `system-showcase.*.manifest.json`、`presentation-pairwise.*.manifest.json` 与 evidence/report 文件：逐页记录输入、计划、组合、载体支持、截图、中文换行和验证结果。
 
-`test_html.sh` 只在临时目录重建静态合同，不覆盖这些已验收样例。HTML evidence 内的 `browser-report.json` 绑定成品/内容/计划哈希，并逐页验证无转场 capture、mobile、reduced-motion 与 JS failure；PPTX 通过 officecli 生成并保留逐页 evidence 截图，不能用截图冒充可编辑 chart/table。
+`test_html.sh` 在临时目录重建当前 v3，并用真实 Chrome 覆盖 showcase/pairwise 的逐页无转场 capture、交互、mobile、无 JavaScript、reduced-motion、JS failure、中文行数与 table 背景抑制。HTML evidence 内的 `browser-report.json` 绑定成品/内容/计划哈希和 producer 环境；PPTX 通过 officecli 生成并保留逐页 evidence 截图，不能用截图冒充可编辑 chart/table。
 
 样例只使用公开 fixture 和项目内原创 CSS/SVG 素材；任何实际第三方素材必须在 `../third-party-notices.md` 和对应 manifest 中登记。

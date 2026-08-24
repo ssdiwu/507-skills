@@ -9,7 +9,7 @@
 - `scripts/design_system.py`：13 个语义叶组件、6 个基础语言、8 个呈现族、旧 preset 与兼容矩阵；
 - `scripts/visual_plan.py`：visual-plan v1、组合解析、原型代表页与旧入口映射；
 - `scripts/text_layout.py`：HTML/PPTX 共用 phrase-aware（短语感知）换行合同；
-- `scripts/generate_html.py / promote_html.py / generate_pptx.py`：HTML 候选—浏览器证据—晋升，以及完整验证后原子替换的 PPTX；
+- `scripts/generate_html.py / html_browser_evidence.py / promote_html.py / generate_pptx.py`：HTML 候选—真实浏览器证据—晋升，以及完整验证后原子替换的 PPTX；
 - `scripts/generate_prototypes.py / finalize_prototype.py`：2～3 个真实内容候选与用户选择的哈希化批准链；
 - `examples/`：legacy 兼容样例、13 组件 showcase、8 呈现 pairwise 压测与三轴双载体证据。
 
@@ -31,3 +31,5 @@ python3 scripts/generate_pptx.py --input scripts/fixtures/system-showcase.json -
 ```
 
 HTML 检查语义、交互、响应式、退化、phrase 换行和来源；PPTX 检查 schema、issues、notes、alt、原生 chart/table、字体、主题色、逐页截图与 evidence 保留。最终 manifest v2 要求每页都有 `screenshot-verified` 换行证据。具体说明见对应 reference 与 `scripts/README.md`。
+
+`test_html.sh` 默认必须找到 Chrome/Chromium，并实际覆盖当前 13 页 showcase 与 8 页 pairwise；浏览器缺失时会失败。只想显式运行静态层时使用 `ALLOW_NO_BROWSER=1 bash scripts/test_html.sh`，该结果不能作为 HTML 成品验收。

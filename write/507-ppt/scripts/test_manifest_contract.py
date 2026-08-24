@@ -8,9 +8,13 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+import zipfile
 from pathlib import Path
 
+from PIL import Image, ImageDraw
+
 from design_system import normalize_deck
+from artifact_evidence import validate_artifact
 from visual_plan import expected_degradations, resolved_manifest_pages
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +29,14 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def write_test_png(path: Path, label: str) -> None:
+    image = Image.new("RGB", (640, 360), "#f4f1e8")
+    draw = ImageDraw.Draw(image)
+    draw.rectangle((32, 32, 608, 328), fill="#26354a")
+    draw.text((64, 64), label, fill="#f4f1e8")
+    image.save(path, format="PNG")
+
+
 class ManifestContractTests(unittest.TestCase):
     def scaffold(self, source: Path) -> tuple[Path, Path, dict]:
         temporary = tempfile.TemporaryDirectory()
@@ -36,8 +48,8 @@ class ManifestContractTests(unittest.TestCase):
         examples.mkdir()
         fixture = fixtures / source.name
         shutil.copyfile(source, fixture)
-        artifact = examples / "showcase.html"
-        artifact.write_text("<!doctype html><title>showcase</title>", encoding="utf-8")
+        artifact = examples / "showcase.pptx"
+        shutil.copyfile(ROOT / "examples/system-showcase.pptx", artifact)
         (examples / "report.txt").write_text("passed\n", encoding="utf-8")
         (examples / "matrix.txt").write_text("passed\n", encoding="utf-8")
         return examples, fixture, json.loads(source.read_text(encoding="utf-8"))
@@ -47,7 +59,7 @@ class ManifestContractTests(unittest.TestCase):
 
     def valid_v2(self) -> tuple[Path, dict]:
         examples, fixture, raw = self.scaffold(SHOWCASE)
-        artifact = examples / "showcase.html"
+        artifact = examples / "showcase.pptx"
         plan_path = examples / "showcase.visual-plan.json"
         shutil.copyfile(SHOWCASE_PLAN, plan_path)
         plan = json.loads(plan_path.read_text(encoding="utf-8"))
@@ -57,7 +69,7 @@ class ManifestContractTests(unittest.TestCase):
         pages = []
         for index, (slide, contract) in enumerate(zip(content["slides"], expected, strict=True), start=1):
             screenshot = f"slide-{index}.png"
-            (examples / screenshot).write_bytes(b"png")
+            write_test_png(examples / screenshot, f"slide {index}")
             screenshots.append(screenshot)
             page = dict(contract)
             page.update({
@@ -79,10 +91,15 @@ class ManifestContractTests(unittest.TestCase):
         support.write_text(json.dumps({"version": 1, "inputId": "system-showcase", "language": plan["language"], "carriers": {"pptx": {"pages": [{**page, "compatibility": "preferred"} for page in expected]}}}), encoding="utf-8")
         subject = {"inputId": "system-showcase", "inputSha256": digest(fixture), "visualPlanSha256": digest(plan_path), "artifactSha256": digest(artifact), "carrier": "pptx"}
         report = examples / "report.json"
-        report.write_text(json.dumps({"version": 1, "kind": "axis-content", "status": "passed", "failures": [], "subject": subject, "checks": [{"name": "contract", "status": "passed"}]}), encoding="utf-8")
+        report.write_text(json.dumps({
+            "version": 1, "kind": "axis-content", "status": "passed", "failures": [],
+            "producer": {"name": "check_style_content.py", "sourceSha256": digest(ROOT / "scripts/check_style_content.py"), "generatedAt": "2026-08-24T00:00:00Z", "gitRevision": "test", "tool": "officecli", "toolVersion": "test"},
+            "subject": subject, "checks": [{"name": "contract", "status": "passed"}],
+            "carrierEvidence": {"schema": "passed", "issues": 0, "alt": "passed", "nativeCharts": 1, "nativeTables": 1, "nativePictures": 1, "screenshots": len(content["slides"])},
+        }), encoding="utf-8")
         approved_data = json.loads(APPROVED.read_text(encoding="utf-8"))
         manifest = {
-            "version": 2, "inputId": "system-showcase", "inputSha256": digest(fixture), "carrier": "pptx", "artifact": "showcase.html", "sha256": digest(artifact),
+            "version": 2, "inputId": "system-showcase", "input": "../scripts/fixtures/system-showcase.json", "inputSha256": digest(fixture), "carrier": "pptx", "artifact": "showcase.pptx", "sha256": digest(artifact),
             "visualPlan": "showcase.visual-plan.json", "visualPlanSha256": digest(plan_path), "language": plan["language"], "prototypeStatus": "approved",
             "prototypeEvidence": [
                 {"kind": "prototype-manifest", "path": prototype_manifest.name, "sha256": plan["prototype"]["manifestSha256"]},
@@ -98,6 +115,7 @@ class ManifestContractTests(unittest.TestCase):
     def test_legacy_v1_still_validates(self) -> None:
         examples, fixture, raw = self.scaffold(LEGACY)
         artifact = examples / "showcase.html"
+        artifact.write_text('<!doctype html><main id="deck"><section class="slide">legacy</section></main>', encoding="utf-8")
         manifest = {
             "version": 1, "inputId": "collaboration-baseline", "inputSha256": digest(fixture), "style": "forest", "carrier": "html",
             "artifact": "showcase.html", "sha256": digest(artifact),
@@ -116,6 +134,38 @@ class ManifestContractTests(unittest.TestCase):
         path.write_text(json.dumps(manifest), encoding="utf-8")
         result = self.validate(path)
         self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_v2_rejects_artifact_extension_that_disagrees_with_carrier(self) -> None:
+        examples, manifest = self.valid_v2()
+        source = examples / manifest["artifact"]
+        disguised = examples / "showcase.html"
+        shutil.copyfile(source, disguised)
+        manifest["artifact"] = disguised.name
+        path = examples / "wrong-carrier.manifest.json"
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        result = self.validate(path)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("artifact format", result.stderr)
+
+    def test_pptx_artifact_rejects_a_zip_without_openxml_relationships(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            artifact = Path(temporary) / "fake.pptx"
+            with zipfile.ZipFile(artifact, "w") as archive:
+                archive.writestr("[Content_Types].xml", "<Types/>")
+                archive.writestr("ppt/presentation.xml", "<presentation/>")
+            with self.assertRaisesRegex(ValueError, "package is incomplete"):
+                validate_artifact(artifact, "pptx")
+
+    def test_v2_rejects_non_image_screenshot_even_when_hash_matches(self) -> None:
+        examples, manifest = self.valid_v2()
+        screenshot = examples / manifest["pages"][0]["screenshot"]
+        screenshot.write_bytes(b"not a png")
+        manifest["pages"][0]["screenshotSha256"] = digest(screenshot)
+        path = examples / "fake-screenshot.manifest.json"
+        path.write_text(json.dumps(manifest), encoding="utf-8")
+        result = self.validate(path)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("PNG", result.stderr)
 
     def test_v2_rejects_support_suppression_and_degradation_tampering(self) -> None:
         mutations = (

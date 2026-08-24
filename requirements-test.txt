@@ -1,0 +1,2 @@
+Pillow==12.1.0
+websockets==16.0

@@ -3,11 +3,19 @@
   "kind": "axis-content",
   "status": "passed",
   "failures": [],
+  "producer": {
+    "name": "check_style_content.py",
+    "sourceSha256": "918e4c888f5e4ec943fd09a7af25f87e36db817f360f45f7031e38ec4d3c7eed",
+    "generatedAt": "2026-08-24T01:02:01.127060+00:00",
+    "gitRevision": "c902b2e741fa7063bcdfd28baa752ffcd37125f5",
+    "worktreeStatus": "dirty",
+    "tool": "python"
+  },
   "subject": {
     "inputId": "presentation-pairwise",
     "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",
     "visualPlanSha256": "6db3edca1563ee1414f9f023d4dce28924a9003342da86e7ffb1d009b89ff14b",
-    "artifactSha256": "5d0f69c951df3e641db2845d158fb4e4c2ece336a21502c762e31c5da7071426",
+    "artifactSha256": "4686a7ca71a3f707f18b7cc6f7b9574f21c254b9c31ac017a17b7028b95d7de6",
     "carrier": "html"
   },
   "checks": [

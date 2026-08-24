@@ -90,17 +90,19 @@ python3 -m unittest scripts/test_render_rednote.py
 静态与公众号集成烟测：
 
 ```bash
+rednote_smoke_dir="$(mktemp -d)"
 python3 scripts/render_rednote.py \
   --spec scripts/fixtures/sample-project.json \
-  --output-dir "$TMP_DIR/507-rednote-smoke"
+  --output-dir "$rednote_smoke_dir/507-rednote-smoke"
 ```
 
 文章模式集成烟测：
 
 ```bash
+rednote_article_smoke_dir="$(mktemp -d)"
 python3 scripts/render_rednote.py \
   --spec scripts/fixtures/sample-article-project.json \
-  --output-dir "$TMP_DIR/507-rednote-article-smoke"
+  --output-dir "$rednote_article_smoke_dir/507-rednote-article-smoke"
 ```
 
 动态图片槽测试会在临时目录用 `ffmpeg` 生成合成视频，不提交二进制 fixture。完整 Live Photo 端到端还需要在 macOS Photos 或 iPhone 发布路径验证 `.pvt` 可识别。
