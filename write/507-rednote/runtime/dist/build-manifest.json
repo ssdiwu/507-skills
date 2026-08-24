@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "inputs": [
+    {
+      "path": "fonts/OFL-Source-Han-Sans.txt",
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "fonts/OFL-Source-Han-Serif.txt",
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    },
+    {
+      "path": "fonts/SourceHanSansCN-VF.otf.woff2",
+      "sha256": "7087698d52240614659957608d8c4ad446759aee3208409dc9f566412e7af8f4"
+    },
+    {
+      "path": "fonts/SourceHanSerifCN-VF.otf.woff2",
+      "sha256": "808cb3203bb9cdd6b166a8a656a0c7608a7dc2a31c41c2cd0374550cae445471"
+    },
+    {
+      "path": "index.html",
+      "sha256": "bec70c9eb9d7031a4778275a2f1c8f525bb96d302f260c8562b94fbf97fe0a51"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "fa008ee7bbfc2f33f9ee365d934ec05f59c8c96c946ee2664b540ec73c569d47"
+    },
+    {
+      "path": "package.json",
+      "sha256": "8deb5e2f7e94a4ead652aed80cfcab8ff324ce479f70b290f50e9f35e4fbe0ed"
+    },
+    {
+      "path": "src/app.js",
+      "sha256": "e5e229d3ac8bcdc6aa65ede93ccda7cba93028e8e8a7035d94e8b9d45d3f6bd2"
+    },
+    {
+      "path": "src/asset-url.js",
+      "sha256": "3e1773a725548e34a6d505a8e95c32239c57d8267d4dbe87eacbbeacabb57226"
+    },
+    {
+      "path": "src/design-system.js",
+      "sha256": "a34c40724e2b853ed039459a64899dd6448e44549a5e31a8d8fd7e8c473038ac"
+    },
+    {
+      "path": "src/flowchart.js",
+      "sha256": "15b85488774c7ab48def1235ff97d678433037eefac78dca54d9658788ee730e"
+    },
+    {
+      "path": "src/markdown.js",
+      "sha256": "71e60d0683f740b691ffdb57923ea6847dbed0b7c5ab3c29fa41e0389763d127"
+    },
+    {
+      "path": "src/paginator.js",
+      "sha256": "e709f11b196bc551191169257dc0ee5a178a6dc34343d5e49ae7055328f4e05c"
+    },
+    {
+      "path": "src/save-queue.js",
+      "sha256": "9aec90fc40fdf94014d89034f34cedb03066ca1c215aa7971bbdcfd3d09960e4"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "1d3b0f62218f627daf157c96f13a9e9c0de7b344b33656cd1550a8b8a3a01574"
+    }
+  ],
+  "bundle": {
+    "path": "dist/app.js",
+    "sha256": "697a5aa1a839398cf75f7810effb586f5196ca311ae5ce91e76d6d707c9e2346",
+    "bytes": 113725
+  }
+}

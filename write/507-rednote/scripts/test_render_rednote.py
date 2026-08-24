@@ -50,7 +50,7 @@ class RenderRednoteTests(unittest.TestCase):
         self.assertNotIn('class="avatar"', article)
         self.assertNotIn('class="pageno"', article)
         self.assertEqual(renderer.page_canvas(self.article_spec, 1)["output"], (1500, 2000))
-        self.assertEqual(renderer.page_canvas(self.article_spec, 2)["output"], (1440, 2400))
+        self.assertEqual(renderer.page_canvas(self.article_spec, 2)["output"], (1500, 2000))
 
     def test_article_page_tail_uses_canvas_padding_without_double_counting_last_block_margin(self):
         output = renderer.render_html(self.article_spec, self.article_spec_path)

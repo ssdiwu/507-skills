@@ -1,6 +1,41 @@
 # 社交视觉包脚本
 
-`render_rednote.py` 与 `render_style_gallery.py` 是 `507-rednote` 的内部执行脚本，不是独立产品，也不负责安装环境依赖。
+`serve_rednote.py` 是当前 article 模式的本地动态工作台、真实 DOM 分页与同源导出入口。`render_rednote.py` 与 `render_style_gallery.py` 暂时保留旧规格迁移、动态媒体和公众号封面对后处理，不再是 article 默认分页入口。脚本不负责安装环境依赖。
+
+## 动态工作台
+
+macOS 使用者可以直接双击上级目录的 `open-rednote.command`，选择包含 `raw.md` 的作品目录。`runtime/index.html` 不是独立工作台入口；直接打开时只显示正确启动说明。
+
+```bash
+python3 serve_rednote.py \
+  --project <作品目录>/小红书 \
+  --source <作品目录>/raw.md
+```
+
+工作台只绑定 `127.0.0.1`，自动选择端口并打开浏览器。它在作品目录维护 `content.md`、`visual-plan.json` 和 `paged-content.json`；左侧内容和右侧视觉状态自动原子保存。封面和正文图片均通过本地工作台上传到当前作品 `assets/`：封面写入视觉计划，正文同时在光标处插入标准 Markdown 图片语法。图片不会发送到外部服务。思源黑体/宋体 WOFF2 与许可证随 runtime 本地提供，服务启动时校验固定 SHA-256；字体缺失或变化时停止，不回退系统字体。
+
+使用同一 runtime 跳过人工预览直接导出：
+
+```bash
+python3 serve_rednote.py \
+  --project <作品目录>/小红书 \
+  --source <作品目录>/raw.md \
+  --export jpg
+```
+
+可选格式为 `jpg`、`png`、`pdf`。预览和导出统一使用 750×1000 CSS PageShell，经 2× 浏览器截图得到 1500×2000 页面。
+
+runtime bundle 已随 Skill 提交，普通使用不需要 Node。只有维护前端源码时才进入 `../runtime/` 运行 `npm install` 与 `npm run build`。
+
+## 旧文章规格迁移
+
+```bash
+python3 migrate_rednote_project.py \
+  --spec <作品目录>/小红书/rednote-project.json \
+  --output-dir <作品目录>/小红书
+```
+
+迁移器只处理可以无损还原为 Markdown 的 article 规格，默认拒绝覆盖已有 `content.md` / `visual-plan.json`。含 motion 或 summary 观点选择时停止并要求人工迁移，不把媒体或排除内容静默丢掉。
 
 ## 运行条件
 
@@ -74,7 +109,7 @@ python3 render_rednote.py \
 1. 校验文章模式或视觉摘要规格、来源映射、排除内容去向、视觉系统与主题；文章模式拒绝逐页观点、布局和摘要结构，全文逐段覆盖仍由 Agent 在渲染前后单独核验。
 2. 把本地静态素材和动态首帧内嵌到单文件 `rednote.html`。
 3. 用真实浏览器检查溢出、字号下限和标题间距；文章页尾由画布底部留白统一控制，最后一个内容块的外边距不再重复计入溢出。
-4. 文章模式导出 1500×2000 封面与 1440×2400 正文，摘要模式导出 1500×2000 图卡，并生成不裁切页面的联系表与新鲜度 manifest；全量渲染会清除超出当前页数的旧页面。
+4. 小红书封面、文章正文和摘要图卡统一导出为 1500×2000，并生成不裁切页面的联系表与新鲜度 manifest；全量渲染会清除超出当前页数的旧页面。
 5. 按需导出 2100×900、1080×1080 公众号封面对和组合预览。
 6. 用 `ffprobe` 校验短视频，以 `ffmpeg` 抽首帧并合成整卡 MOV。
 7. 调用外部 `makelive --pvt` 生成 Live Photo 包；缺失或失败时不写完成 manifest。

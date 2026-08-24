@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/507-rednote/paged-content.schema.json",
+  "title": "507 RedNote Compiled Pagination",
+  "type": "object",
+  "required": ["schemaVersion", "status", "mode", "inputs", "canvas", "pageCount", "pages"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "status": {"enum": ["compiled", "invalid"]},
+    "mode": {"enum": ["article", "summary"]},
+    "inputs": {
+      "type": "object",
+      "required": ["contentSha256", "visualPlanSha256", "runtimeVersion", "runtimeSha256", "assetSetSha256", "fontSet"],
+      "additionalProperties": false,
+      "properties": {
+        "contentSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "visualPlanSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "runtimeVersion": {"type": "string", "minLength": 1},
+        "runtimeSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "assetSetSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "fontSet": {"type": "string", "minLength": 1}
+      }
+    },
+    "canvas": {
+      "type": "object",
+      "required": ["width", "height", "cssWidth", "cssHeight"],
+      "additionalProperties": false,
+      "properties": {
+        "width": {"const": 1500},
+        "height": {"const": 2000},
+        "cssWidth": {"const": 750},
+        "cssHeight": {"const": 1000}
+      }
+    },
+    "pageCount": {"type": "integer", "minimum": 1},
+    "validationIssues": {"type": "array", "items": {"type": "string"}},
+    "pages": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "role", "break", "sourceRange", "contentText", "chromeText", "fragments", "validation"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^page-[0-9]{3}$"},
+          "role": {"enum": ["cover", "body"]},
+          "break": {
+            "type": "object",
+            "required": ["kind"],
+            "additionalProperties": false,
+            "properties": {"kind": {"enum": ["natural", "forced", "component-continuation"]}}
+          },
+          "sourceRange": {"$ref": "#/$defs/range"},
+          "contentText": {"type": "string"},
+          "chromeText": {"type": "array", "items": {"type": "string"}},
+          "fragments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["componentId", "type", "part", "sourceRange", "visibleText", "repeated", "geometry"],
+              "properties": {
+                "componentId": {"type": "string"},
+                "type": {"type": "string"},
+                "part": {"enum": ["whole", "start", "middle", "end"]},
+                "sourceRange": {"$ref": "#/$defs/range"},
+                "visibleText": {"type": "string"},
+                "repeated": {"type": "boolean"},
+                "geometry": {"$ref": "#/$defs/geometry"}
+              },
+              "additionalProperties": true
+            }
+          },
+          "validation": {
+            "type": "object",
+            "required": ["overflow", "maxBottom", "contentHeight"],
+            "additionalProperties": false,
+            "properties": {
+              "overflow": {"type": "boolean"},
+              "maxBottom": {"type": "number"},
+              "contentHeight": {"type": "number"}
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "range": {
+      "type": "object",
+      "required": ["start", "end"],
+      "additionalProperties": false,
+      "properties": {"start": {"type": "integer", "minimum": 0}, "end": {"type": "integer", "minimum": 0}}
+    },
+    "geometry": {
+      "type": "object",
+      "required": ["x", "y", "width", "height"],
+      "additionalProperties": false,
+      "properties": {
+        "x": {"type": "number"}, "y": {"type": "number"}, "width": {"type": "number", "minimum": 0}, "height": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

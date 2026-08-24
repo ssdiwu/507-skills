@@ -29,7 +29,7 @@ except ImportError as exc:  # pragma: no cover - runtime dependency
 SCALE = 2
 CANVASES = {
     "rednote": {"css": (750, 1000), "output": (1500, 2000)},
-    "rednote-article": {"css": (720, 1200), "output": (1440, 2400)},
+    "rednote-article": {"css": (750, 1000), "output": (1500, 2000)},
     "wechat-main": {"css": (1050, 450), "output": (2100, 900)},
     "wechat-share": {"css": (540, 540), "output": (1080, 1080)},
 }
@@ -668,7 +668,7 @@ def label_font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
 
 
 def build_contact_sheet(files: list[Path], output: Path) -> None:
-    thumb = (300, 500)
+    thumb = (300, 400)
     label_height = 34
     columns = min(4, len(files))
     rows = math.ceil(len(files) / columns)
@@ -1195,7 +1195,7 @@ body { background:#D8D8D4; color:var(--ink); font-family:"PingFang SC","Hiragino
 .deck { display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start; gap:32px; padding:32px; }
 .canvas { position:relative; overflow:hidden; flex:none; background:var(--paper); color:var(--ink); }
 .rednote { width:750px; height:1000px; }
-.rednote-article { width:720px; height:1200px; }
+.rednote-article { width:750px; height:1000px; }
 .wechat-main { width:1050px; height:450px; }
 .wechat-share { width:540px; height:540px; }
 .page { padding:58px 62px 52px; }

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/507-rednote/visual-plan.schema.json",
+  "title": "507 RedNote Visual Plan",
+  "type": "object",
+  "required": ["schemaVersion", "mode", "designLanguage", "palette", "presentations", "typography", "pageChrome", "cover"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "mode": {"enum": ["article", "summary"]},
+    "presetId": {"type": ["string", "null"]},
+    "designLanguage": {"enum": ["precision-modern", "editorial-archive", "soft-product", "warm-narrative", "research-organic", "bold-statement"]},
+    "palette": {
+      "type": "object",
+      "required": ["paper", "paperAlt", "ink", "muted", "accent", "line"],
+      "additionalProperties": false,
+      "properties": {
+        "paper": {"type": "string", "minLength": 1},
+        "paperAlt": {"type": "string", "minLength": 1},
+        "ink": {"type": "string", "minLength": 1},
+        "muted": {"type": "string", "minLength": 1},
+        "accent": {"type": "string", "minLength": 1},
+        "line": {"type": "string", "minLength": 1}
+      }
+    },
+    "presentations": {
+      "type": "object",
+      "required": ["cover", "heading", "paragraph", "quote", "list", "code", "table", "diagram", "media", "hr"],
+      "additionalProperties": false,
+      "properties": {
+        "cover": {"enum": ["type-led", "panel-led", "editorial-print-led", "illustration-led"]},
+        "heading": {"enum": ["type-led", "editorial-print-led"]},
+        "paragraph": {"enum": ["type-led", "editorial-print-led"]},
+        "quote": {"enum": ["type-led", "panel-led", "editorial-print-led"]},
+        "list": {"enum": ["type-led", "panel-led", "editorial-print-led"]},
+        "code": {"enum": ["panel-led", "editorial-print-led"]},
+        "table": {"enum": ["data-led", "panel-led", "editorial-print-led"]},
+        "diagram": {"enum": ["schematic-led", "hand-drawn-explainer"]},
+        "media": {"enum": ["photo-led", "ui-product-led"]},
+        "hr": {"const": "editorial-print-led"}
+      }
+    },
+    "treatments": {
+      "type": "object",
+      "additionalProperties": {"enum": ["default", "inverse", "section-emphasis", "dense"]}
+    },
+    "typography": {
+      "type": "object",
+      "required": ["fontFamily", "bodySize", "lineHeight", "characterWidth", "pageMargin"],
+      "additionalProperties": false,
+      "properties": {
+        "fontFamily": {"enum": ["source-han-sans", "source-han-serif"]},
+        "bodySize": {"type": "number", "minimum": 24, "maximum": 38},
+        "lineHeight": {"type": "number", "minimum": 1.45, "maximum": 1.9},
+        "characterWidth": {"type": "number", "minimum": 0.94, "maximum": 1.08},
+        "pageMargin": {"type": "number", "minimum": 44, "maximum": 88}
+      }
+    },
+    "pageChrome": {
+      "type": "object",
+      "required": ["showPageNumber", "showDate", "showAuthor"],
+      "additionalProperties": false,
+      "properties": {
+        "showPageNumber": {"type": "boolean"},
+        "showDate": {"type": "boolean"},
+        "date": {"type": "string"},
+        "showAuthor": {"type": "boolean"},
+        "author": {"type": "string"}
+      }
+    },
+    "cover": {
+      "type": "object",
+      "required": ["title", "subtitle", "image", "author"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {"type": "string"},
+        "subtitle": {"type": "string"},
+        "image": {"type": "string"},
+        "author": {"type": "string"}
+      }
+    }
+  }
+}

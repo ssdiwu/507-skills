@@ -1,72 +1,66 @@
-# 社交图卡视觉系统与主题
+# 小红书三轴视觉系统
 
-视觉系统决定排版语言，主题预设决定配色与材质，页面布局承接观点形状。三者不能混为一个 `stylePreset`。
+底层模型是：
 
-## 文章模式的正文基线
+```text
+语义组件 × 设计语言 × 视觉呈现 → 最终连续 DOM → 3:4 页面
+```
 
-文章模式先服从阅读，再服从视觉系统。封面可以使用下述编辑杂志或瑞士国际主义语言，正文则固定采用安静的连续文章版式：
+文章模式中的物理页不是语义组件；视觉呈现绑定内容块，最终页面只负责承载阅读长度。
 
-- 1500×2000 独立封面；1440×2400 正文阅读页。
-- 浅色纸面、深灰正文、大字号、宽行距和稳定页边距。
-- 不重复封面头像、署名、页码、分类标签、网格、卡片或装饰页眉。
-- 只有原文小节标题形成粗体层级和分隔线；标题可以位于页面中段。
-- 图片和截图在原文论证位置近全宽显示，边框与设备壳只在证据本身需要时出现。
-- 页面不要求独立表达一个观点；尾页可以自然留白。
+## 语义组件
 
-视觉系统在文章模式中只影响封面和有限的颜色、字体气质，不把摘要模式的页面结构带入正文。
+| 家族 | 组件 |
+| --- | --- |
+| identity | cover |
+| flow | heading、paragraph、list、quote、code、hr |
+| data-evidence | metric、chart、table |
+| relation | sequence、relationship、受控 Mermaid flowchart |
+| media-evidence | image、screenshot、motion |
 
-## 编辑杂志（editorial）
+语义组件来自 `content.md` 的实际 Markdown。runtime 不把普通正文擅自转成 cards、流程或数据图。
 
-适合叙事、观察、人物、生活方式和图片证据，也可以用于需要慢节奏解释的技术复盘。
+## 设计语言
 
-- 宋体/衬线展示标题，正文保持安静可读。
-- 纸张、墨色、细线、图片井、引语和边注式层级。
-- 大标题使用常规字重，不靠粗黑喊话。
-- 截图作为证据时仍保持完整可读，不强行做照片式裁切。
+- `precision-modern`：严格网格、锐利轮廓与精密层级。
+- `editorial-archive`：暖纸、编辑栏栅格与细规则线。
+- `soft-product`：舒展模块、人文层级与柔和状态色。
+- `warm-narrative`：非对称节奏、暖色与纸面叙事感。
+- `research-organic`：研究型层级、克制自然色与低装饰。
+- `bold-statement`：黑白高对比、粗规则线与单一红色强调。
 
-| 主题 ID | 名称 | 适合内容 |
-| --- | --- | --- |
-| `editorial-paper` | 纸墨编辑 | 通用叙事、观察、文章改编、事实解释 |
-| `editorial-night` | 夜刊 | 深色照片、夜间场景、影视或沉浸式叙事 |
+一组只使用一种基础语言。色彩行为、轮廓、层次与间距由语言统一决定。设计语言是可被多套外观复用的底层语法，不等于用户看到的一套完整样式，也不再暗中替换具体字体。
 
-## 瑞士国际主义（swiss）
+## 字体与字符占用宽度
 
-适合数据、比较、流程、清单、产品判断和明确结论，也可以用于可量化的旅行或生活记录。
+| ID | 界面名称 | 本地文件 | 许可证 | 默认角色 |
+| --- | --- | --- | --- | --- |
+| `source-han-sans` | 思源黑体 | `SourceHanSansCN-VF.otf.woff2` | SIL OFL 1.1 | 默认连续阅读 |
+| `source-han-serif` | 思源宋体 | `SourceHanSerifCN-VF.otf.woff2` | SIL OFL 1.1 | 可选编辑阅读 |
 
-- 无衬线字体、严格左对齐、直角模块、发丝线和单一强调色。
-- 大标题字重更轻，小标签字重更实。
-- 图片和截图是证据块，不添加圆润 SaaS 卡片、阴影或装饰图形。
-- 一组只使用一个强调色。
+字体选择独立于 preset；同一字体、字号、行距、字符占用宽度和组件内宽成立时，切换只改变颜色/表面效果的 preset 不应因系统字体 fallback 产生额外换行。正文、引语和列表共同消费 `bodySize` 与 `lineHeight`。
 
-| 主题 ID | 名称 | 适合内容 |
-| --- | --- | --- |
-| `swiss-blue` | 信号蓝 | 产品、技术、方法、系统说明 |
-| `swiss-red` | 编辑红 | 新闻判断、警示、对比、强结论 |
+`characterWidth` 取 0.94～1.08，runtime 将它换算成 -0.06em～0.08em 的 `letter-spacing`，因此真实改变字符占用的横向空间并进入 DOM 分页。它不是字形横向拉伸；当前两套字体只有 weight 轴，不伪造不存在的 width 轴。
 
-## 页面布局
+## 视觉呈现
 
-封面：
+| 组件 | 推荐呈现 |
+| --- | --- |
+| cover | type-led、panel-led、editorial-print-led、illustration-led |
+| heading / paragraph | type-led、editorial-print-led |
+| list / code | type-led、panel-led、editorial-print-led |
+| table / chart | data-led、panel-led、editorial-print-led |
+| sequence / relationship | schematic-led、hand-drawn-explainer |
+| image / screenshot | photo-led、ui-product-led |
 
-- `type`：文字主导，适合没有必要图片或标题本身足够强。
-- `split`：文字与图片分区，适合大多数证据型封面。
-- `image-led`：图片主导，只用于存在明确安静区和安全文字位置的素材。
+组件已有强组织手段时抑制重复装饰，例如 table 保留自己的行列规则，不叠加背景网格。
 
-正文：
+## Treatment 与 preset
 
-- `statement`：核心判断或转折。
-- `evidence`：截图、照片或真实产物承担主要证明。
-- `comparison`：两个方向、前后状态或利弊对照。
-- `steps`：顺序过程。
-- `list`：清单或并列原则。
-- `data`：数字、排名或结构化事实。
-- `closing`：回到中心判断的结尾。
+`default / inverse / section-emphasis / dense` 是受控 treatment，不是第四轴。`preset` 保存经过真实内容验证的设计语言、具体 palette、组件呈现和 treatment 组合；它是用户一键选择的完整成品外观，但 runtime 仍保存完整三轴状态。多套 preset 可以共用一种设计语言，例如“当前编辑红”“深夜暗色”“新野蛮主义”都使用 `bold-statement`，但具体配色和表面效果不同。
 
-## 选择纪律
+当前工作台提供 19 套可选 preset：当前编辑红、复古怀旧、报纸、极简黑白、自然森系、蓝色信号、秋日暖阳、深夜暗色、莫兰迪、赛博朋克、新野蛮主义、胶片复古、孟菲斯、杂志排版、磨砂柔光、格子布局、千禧复古、粉色层次和田野笔记。六种设计语言只出现在高级设置中，不构成“只有六个视觉方向”的上限；高级设置还允许逐组件调整第三轴，调整后 `presetId` 为空并保存为当前自定义组合。同一语言下的 preset 必须在具体配色之外至少改变一项组件呈现或 treatment，不能只换名称。每套 preset 必须同时在封面、最密正文页、首个表格/流程图/图片页和整组联系表中成立后，才能标记为已验证。
 
-- 同一组只使用一个视觉系统和一个主题预设。
-- 用户未指定时，样式联系表同时比较两种视觉系统的封面与一页正文。
-- 文章模式正文不逐页选择布局；摘要模式页面布局才由观点和证据形状决定，不为了展示模板而套结构。
-- 只改颜色时使用顶层 `theme` 覆盖，不新增主题 ID。
-- 最终判断必须同时看封面、最密正文页、证据页、整组联系表和手机缩略图。
+## Page chrome
 
-`visualSystem` 确定排版形状与字体语言，`themePreset` 选择系统内的配色与材质；顶层 `theme` 可覆盖 `paper`、`paperAlt`、`ink`、`muted`、`accent`、`accentDark`、`line` 七个颜色变量。只改配色时不新造视觉系统。
+页码、日期和作者识别是可关闭的载体装饰，独立于三轴和正文覆盖。它们可以改变正文可用高度，因此变化后必须重新分页。
