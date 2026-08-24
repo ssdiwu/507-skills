@@ -46,7 +46,7 @@ flowchart TD
 ### 代码与产品
 
 ```text
-explore / research / prototype / grill（均按需）
+explore / research / prototype / taste / grill（均按需）
                     ↓
         PRD / issue / 直接实施（按耐久载体需要选择）
                     ↓
@@ -106,6 +106,7 @@ issue 支持 `draft（对话草稿）→ investigation（调查态）→ ready�
 | `507-setup` | 初始化项目工作规范或执行全量规范巡检 |
 | `507-prototype` | 用成本可控的可丢弃原型获得前置证据与 verdict |
 | `507-prd` | 把已确认的具体产品需求沉淀成唯一可验证规格；无既有入口时按项目文档标准进入 `doc/40-版本实施方案/` |
+| `507-taste` | 视觉方向没有自动判据时，先取观点再铺开粗稿，靠淘汰收敛；方向定了才分层、精修与机械验收 |
 | `507-issue` | 草拟、创建和维护调查态到执行态的 GitHub issue 生命周期；评论留历史，正文与回链维护当前真相 |
 | `507-fix` | 建反馈环，最小修复 bug、报错、回归或冲突 |
 | `507-test` | 测试是主任务时补测、运行和缩小失败范围 |
