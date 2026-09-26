@@ -40,3 +40,20 @@ jobs:
           google-chrome --version
       - name: Run deterministic repository checks
         run: python scripts/test_all.py
+      - name: Capture PPTX renderer diagnostics on failure
+        if: failure()
+        continue-on-error: true
+        run: |
+          mkdir -p "$RUNNER_TEMP/pptx-diagnostics"
+          fc-list :lang=zh family file > "$RUNNER_TEMP/pptx-diagnostics/chinese-fonts.txt"
+          fc-match 'PingFang SC' > "$RUNNER_TEMP/pptx-diagnostics/font-match.txt"
+          google-chrome --version > "$RUNNER_TEMP/pptx-diagnostics/browser.txt"
+          officecli view write/507-ppt/examples/system-prototypes/candidate-a-swiss.pptx screenshot \
+            --start 1 --end 1 -o "$RUNNER_TEMP/pptx-diagnostics/cover.png"
+      - name: Retain PPTX renderer failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pptx-renderer-diagnostics-python-${{ matrix.python-version }}
+          path: ${{ runner.temp }}/pptx-diagnostics
+          retention-days: 7
