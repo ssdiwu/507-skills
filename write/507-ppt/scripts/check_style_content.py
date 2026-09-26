@@ -119,7 +119,12 @@ if args.carrier == "pptx":
     issues = subprocess.run(["officecli", "view", str(args.artifact), "issues"], check=True, text=True, capture_output=True).stdout
     missing_alt = subprocess.run(["officecli", "query", str(args.artifact), "picture:no-alt"], check=True, text=True, capture_output=True).stdout
     if "Validation passed" not in schema or "Found 0 issue(s)" not in issues or missing_alt.strip():
-        raise SystemExit("PPTX structure, issues, or alt evidence failed")
+        raise SystemExit(
+            "PPTX structure, issues, or alt evidence failed\n"
+            f"Structure: {schema.strip()}\n"
+            f"Issues: {issues.strip()}\n"
+            f"Missing alt: {missing_alt.strip()}"
+        )
     chart_paths = [line for line in subprocess.run(["officecli", "query", str(args.artifact), "chart"], check=True, text=True, capture_output=True).stdout.splitlines() if line.strip()]
     table_paths = [line for line in subprocess.run(["officecli", "query", str(args.artifact), "table"], check=True, text=True, capture_output=True).stdout.splitlines() if line.strip()]
     picture_paths = [line for line in subprocess.run(["officecli", "query", str(args.artifact), "picture"], check=True, text=True, capture_output=True).stdout.splitlines() if line.strip()]
