@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- GitHub 自动检查显式使用 `requirements-test.txt` 计算 Python 依赖缓存，修复默认查找 `requirements.txt` / `pyproject.toml` 而在测试开始前失败的问题。
+
 ## [0.2.7] - 2026-09-26
 
 ### Added
