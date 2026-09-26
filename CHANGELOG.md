@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.2.7] - 2026-09-26
+
 ### Added
 
 - `507-rednote` 新增可由 Skill 直接启动的离线本地工作台：左侧编辑并自动保存 `content.md`，中间以响应式网格连续预览全部 3:4 页面，右侧保存视觉与排版状态；新增只读 `paged-content.json`、视觉/分页 schema、macOS 双击启动器和旧 article 规格一次性迁移器。
