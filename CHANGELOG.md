@@ -7,6 +7,7 @@
 ### Fixed
 
 - GitHub 自动检查显式使用 `requirements-test.txt` 计算 Python 依赖缓存，修复默认查找 `requirements.txt` / `pyproject.toml` 而在测试开始前失败的问题。
+- CI 补齐 PPTX 清单测试实际依赖的 officecli 1.0.149，并校验官方 Linux 二进制摘要；测试构造失败时显示子命令输出，保留全部内容和产物断言。同步默认测试依赖与工具来源说明。
 
 ## [0.2.7] - 2026-09-26
 

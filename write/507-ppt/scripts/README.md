@@ -65,6 +65,8 @@ content v3 缺少 `--plan` 或显式 `--preset` 时失败；无参数 Swiss 只�
 
 ## 回归入口
 
+清单构造测试会用 `officecli` 读取并验证已有 PPTX 样例，因此默认回归也要求该工具可用；CI 安装固定的 1.0.149 版本并核对官方发布摘要。这与重新生成完整 PPTX 的外部验收门分开，子命令失败时会显示其输出以便定位环境缺口。
+
 ```bash
 python3 -B -m unittest discover -s . -p 'test_*.py' -v
 bash test_html.sh

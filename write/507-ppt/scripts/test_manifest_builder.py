@@ -43,15 +43,17 @@ class ManifestBuilderTests(unittest.TestCase):
         for screenshot in sorted((PROTOTYPE / "candidate-a-swiss-pptx-evidence").glob("slide-*.png")):
             shutil.copyfile(screenshot, evidence / screenshot.name)
         matrix = examples / "support.json"
-        subprocess.run([
+        result = subprocess.run([
             "python3", "-B", str(ROOT / "scripts/build_support_matrix.py"), "--input", str(input_path),
             "--plan", str(plan_path), "--output", str(matrix),
-        ], check=True, capture_output=True, text=True)
+        ], check=False, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         report = examples / "axis.json"
-        subprocess.run([
+        result = subprocess.run([
             "python3", "-B", str(ROOT / "scripts/check_style_content.py"), "--fixture", str(input_path), "--plan", str(plan_path),
             "--carrier", "pptx", "--artifact", str(artifact), "--screenshots-dir", str(evidence), "--output", str(report),
-        ], check=True, capture_output=True, text=True)
+        ], check=False, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         return examples, input_path, plan_path, artifact, evidence, report
 
     def run_builder(self, examples: Path, input_path: Path, plan_path: Path, artifact: Path, evidence: Path, report: Path) -> subprocess.CompletedProcess[str]:

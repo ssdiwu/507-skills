@@ -198,7 +198,7 @@ python3 -m pip install -r requirements-test.txt
 python3 scripts/test_all.py
 ```
 
-默认要求 Chrome/Chromium、FFmpeg 与 FFprobe；只有明确接受静态 HTML 检查时才使用 `--allow-missing-browser`。MiniMax 真实 adapter/E2E、Voicebox 授权生成、officecli 完整 PPTX 生成和 Live Photo 设备验收是独立外部门，不包含在离线绿灯中。
+默认要求 Chrome/Chromium、FFmpeg、FFprobe 和 officecli；officecli 用于 PPTX 清单测试读取与验证已提交样例，CI 固定为 1.0.149 并校验下载摘要。只有明确接受静态 HTML 检查时才使用 `--allow-missing-browser`。MiniMax 真实 adapter/E2E、Voicebox 授权生成、officecli 完整 PPTX 生成和 Live Photo 设备验收是独立外部门，不包含在离线绿灯中。
 
 ## 贡献与发布
 
