@@ -68,6 +68,8 @@ content v3 缺少 `--plan` 或显式 `--preset` 时失败；无参数 Swiss 只�
 
 默认回归要求 `officecli`、Pillow、Chrome/Chromium 与 `websockets` 可用；CI 安装固定的 officecli 1.0.149 并核对官方发布摘要。清单构造测试读取已有 PPTX 样例，不修补输入；`test_pptx_svg.py` 另行运行真实生成流程、真实 SVG 栅格化和损坏媒体反例。子命令失败显示原始输出。完整作品在目标 Office 查看器中的逐页视觉验收仍是独立门，不能用自动回归替代。
 
+中文 fixture 的 Linux 渲染环境显式安装 `fonts-noto-cjk`，避免无中文字体时生成缺字方框。CI 保留公开 candidate A 的现场封面截图、对应 PPTX 摘要、字体清单/包版本和浏览器版本 7 天；这是该原件在该环境的读回证据，不冒充测试中临时生成文件的原始失败截图。墨色比例检查只作视觉异常信号，不代替文字完整性或目标查看器验收，不能靠降低阈值掩盖缺字。
+
 ```bash
 python3 -B -m unittest discover -s . -p 'test_*.py' -v
 python3 -B -m unittest test_pptx_svg -v

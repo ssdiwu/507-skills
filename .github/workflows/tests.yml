@@ -36,22 +36,25 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements-test.txt
           sudo apt-get update
-          sudo apt-get install --yes ffmpeg
+          sudo apt-get install --yes ffmpeg fonts-noto-cjk
+          fc-match ':lang=zh-cn'
           google-chrome --version
       - name: Run deterministic repository checks
         run: python scripts/test_all.py
-      - name: Capture PPTX renderer diagnostics on failure
-        if: failure()
+      - name: Capture PPTX renderer environment evidence
+        if: always()
         continue-on-error: true
         run: |
           mkdir -p "$RUNNER_TEMP/pptx-diagnostics"
           fc-list :lang=zh family file > "$RUNNER_TEMP/pptx-diagnostics/chinese-fonts.txt"
           fc-match 'PingFang SC' > "$RUNNER_TEMP/pptx-diagnostics/font-match.txt"
+          dpkg-query --show --showformat='${Version}\n' fonts-noto-cjk > "$RUNNER_TEMP/pptx-diagnostics/font-package-version.txt"
           google-chrome --version > "$RUNNER_TEMP/pptx-diagnostics/browser.txt"
+          sha256sum write/507-ppt/examples/system-prototypes/candidate-a-swiss.pptx > "$RUNNER_TEMP/pptx-diagnostics/artifact-sha256.txt"
           officecli view write/507-ppt/examples/system-prototypes/candidate-a-swiss.pptx screenshot \
             --start 1 --end 1 -o "$RUNNER_TEMP/pptx-diagnostics/cover.png"
-      - name: Retain PPTX renderer failure evidence
-        if: failure()
+      - name: Retain PPTX renderer environment evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pptx-renderer-diagnostics-python-${{ matrix.python-version }}

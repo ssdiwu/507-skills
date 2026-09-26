@@ -22,5 +22,6 @@
 | Pillow（图像处理库） | 12.1.0 | PyPI（Python 包索引）`Pillow`（安装包） | HPND / PIL License（许可证，本地安装元数据） | 检查逐页截图内容并生成四象限 contact sheet（联系表）；不嵌入 HTML（网页）/PPTX（PowerPoint 演示文稿） | 仅开发工具；不随产物分发 |
 | `websockets`（WebSocket 客户端） | 16.0 | PyPI（Python 包索引）`websockets`（安装包） | BSD-3-Clause | 通过 Chrome DevTools Protocol 执行 HTML 验收及 SVG 备用 PNG 生成；不嵌入产物 | 仅开发工具；HTML 可离线打开 |
 | Google Chrome | 154.0.8037.57（本次 PPTX 备用图与 showcase 证据） | 系统浏览器 | Google 专有软件 | HTML 截图、交互、退化、换行测试及 SVG 栅格化 | 产物不依赖；各批证据的实际版本写入 browser report 与 provenance report |
+| Noto CJK 字体 | Ubuntu `fonts-noto-cjk` 包；实际安装版本见 CI 渲染证据中的 `font-package-version.txt` | [上游项目](https://github.com/notofonts/noto-cjk)；Ubuntu 系统包源 | SIL Open Font License 1.1（[Sans](https://github.com/notofonts/noto-cjk/blob/main/Sans/LICENSE)、[Serif](https://github.com/notofonts/noto-cjk/blob/main/Serif/LICENSE)） | Linux CI 的中文渲染与 SVG 栅格化备用字体 | 仅安装于 CI 环境；不复制或嵌入 PPTX/HTML，字体清单随 CI 证据保留 |
 
 不明许可证的项不得内嵌进产物；上表工具仅作环境工具使用，不改变交付物的许可证状态。

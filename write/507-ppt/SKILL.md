@@ -12,7 +12,7 @@ license: MIT
 
 ## 运行条件
 
-生成 `.pptx` 及逐页截图验证需要已可用的 officecli 与 Pillow；含 SVG 素材时还需要 Chrome/Chromium 与 `websockets` 生成真实 PNG 备用图。生成 HTML 需要可写文件系统，浏览器交互与视觉验证需要 Chrome/Chromium、Pillow 与 `websockets`（用于 Chrome DevTools Protocol）。本 Skill 不自动安装这些依赖。
+生成 `.pptx` 及逐页截图验证需要已可用的 officecli 与 Pillow；含 SVG 素材时还需要 Chrome/Chromium 与 `websockets` 生成真实 PNG 备用图。生成 HTML 需要可写文件系统，浏览器交互与视觉验证需要 Chrome/Chromium、Pillow 与 `websockets`（用于 Chrome DevTools Protocol）。渲染环境必须有覆盖内容语言的字体；缺字方框不能当作成功截图。本 Skill 不自动安装这些依赖。
 
 ## 不覆盖什么
 

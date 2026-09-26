@@ -1,11 +1,11 @@
 {
   "status": "passed",
-  "generatedAt": "2026-09-26T03:52:12.019360+00:00",
-  "gitRevision": "452d40552967c34631fec3325822b4779d7bf3ca",
+  "generatedAt": "2026-09-26T04:04:40.596334+00:00",
+  "gitRevision": "98eeef91c4ece762319f6a1d661c042c077d1422",
   "worktreeStatus": "dirty",
   "generatorSha256": "1bb8d85a34223f4084c7272c76809e49495956f7ec1cf8e81c12ce2dc2b0b40c",
   "noticeLedger": "third-party-notices.md",
-  "noticeLedgerSha256": "ddb4fe8c12381991cea9d550e5c37debfa31df6536c225c713479c2a6e87ae50",
+  "noticeLedgerSha256": "851df097a61b942c268ebfbb506cc955313d447409beed9c09fa4d0c9617076f",
   "allowedEmbeddedLicenses": [
     "Apache-2.0",
     "BSD",
