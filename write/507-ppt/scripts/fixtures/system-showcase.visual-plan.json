@@ -9,7 +9,7 @@
     "mode": "adaptive",
     "status": "approved",
     "manifest": "examples/system-prototypes/approved-prototype-manifest.json",
-    "manifestSha256": "9e07f0802e31ed55006c6d17ef628ae020a268d8a731fa5e4f9fab7e211fa2bd",
+    "manifestSha256": "86d9e430fed81722bbf03f092d3b9b25abcb5f93338267d27e09b7fa4cebc479",
     "representativeSlides": ["cover", "table", "media"],
     "candidates": [
       {"id": "A", "preset": "swiss", "language": "precision-modern"},

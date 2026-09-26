@@ -5,9 +5,9 @@
   "inputSha256": "b9e37a0d1082db539fae39d3d37a0681234e073b7417c80f486525f984e25309",
   "carrier": "pptx",
   "artifact": "system-showcase.pptx",
-  "sha256": "1f33712ca4dfeef1f6244d1e9ea74ffd55d1fbfea69534cc5f4d42c20c650cec",
+  "sha256": "841518093d1b8d8d85c048237c4c6aa567ccba5363653ef5533a73cf420f2892",
   "visualPlan": "system-showcase.visual-plan.json",
-  "visualPlanSha256": "d5c873ec4d2d63109fd8c8f56d27a03828539a3a6f706cede051cc82ddb1794e",
+  "visualPlanSha256": "2aa05e1a6f3e7a75d62884d55c973e894fedecbf98ac89d939a68ee5d3a5d1ae",
   "language": {
     "id": "precision-modern",
     "variant": "default"
@@ -17,7 +17,7 @@
     {
       "kind": "prototype-manifest",
       "path": "system-prototypes/approved-prototype-manifest.json",
-      "sha256": "9e07f0802e31ed55006c6d17ef628ae020a268d8a731fa5e4f9fab7e211fa2bd"
+      "sha256": "86d9e430fed81722bbf03f092d3b9b25abcb5f93338267d27e09b7fa4cebc479"
     },
     {
       "kind": "prototype-contact-sheet",
@@ -152,7 +152,7 @@
         "workbench"
       ],
       "screenshot": "system-showcase-pptx-evidence/slide-9.png",
-      "screenshotSha256": "ec311d28408639f9e2fdbb9c5feae8874bfec74c5e44c83b622b460188e7bd31"
+      "screenshotSha256": "cb2ef08d94a5dfac2b7d88152e1c264a30129912ee7ff68c2c9214c67c0e93a9"
     },
     {
       "id": "quote",
@@ -231,7 +231,7 @@
       "kind": "axis-content",
       "status": "passed",
       "evidence": "system-showcase-pptx-axis-content.json",
-      "evidenceSha256": "601f3674bfec1b89bffc5878ad3d9a78193acd5046276dfb8c2e5f8b03b32527"
+      "evidenceSha256": "bb83d9b611ee444b9a69d2e68b5aa141d4a96293c8e37dde79516e1d518aa324"
     }
   ],
   "screenshots": [

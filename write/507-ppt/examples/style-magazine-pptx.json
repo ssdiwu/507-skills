@@ -1,14 +1,85 @@
 {
-  "style": "magazine",
+  "version": 1,
+  "kind": "axis-content",
+  "status": "passed",
+  "failures": [],
+  "producer": {
+    "name": "check_style_content.py",
+    "sourceSha256": "d941345e2bd867f7c05bf3df1c6150020a4ea053c2ccb87cebcbbe2b406a8b84",
+    "generatedAt": "2026-09-26T03:51:51.084400+00:00",
+    "gitRevision": "452d40552967c34631fec3325822b4779d7bf3ca",
+    "worktreeStatus": "dirty",
+    "tool": "officecli",
+    "toolVersion": "1.0.149"
+  },
+  "subject": {
+    "inputId": "collaboration-baseline",
+    "inputSha256": "42d3cfe30df5912cc7f00a7fcf48de72be8a1d08df6b3e7fc8e6302a0d5302b1",
+    "visualPlanSha256": "generated-legacy-plan",
+    "artifactSha256": "23311bc1ab73fb68db26b2ef2eae4324f0b1d89da87917588bf6ec2d71526eb3",
+    "carrier": "pptx"
+  },
+  "checks": [
+    {
+      "name": "per-slide-content",
+      "status": "passed"
+    },
+    {
+      "name": "three-axis-markers",
+      "status": "passed"
+    },
+    {
+      "name": "schema",
+      "status": "passed"
+    },
+    {
+      "name": "issues",
+      "status": "passed"
+    },
+    {
+      "name": "alt",
+      "status": "passed"
+    },
+    {
+      "name": "native-data-objects",
+      "status": "passed"
+    },
+    {
+      "name": "screenshots",
+      "status": "passed"
+    }
+  ],
+  "preset": "magazine",
+  "language": "editorial-archive",
   "carrier": "pptx",
   "pages": 4,
   "content": "passed",
-  "direction": "杂志风",
   "components": [
     "cover",
-    "image-text",
-    "three-part",
+    "media-evidence",
+    "collection",
     "quote"
   ],
-  "missing": []
+  "presentations": [
+    "type-led",
+    "photo-led",
+    "panel-led",
+    "type-led"
+  ],
+  "carrierSupport": [
+    "native",
+    "native",
+    "native",
+    "native"
+  ],
+  "missing": [],
+  "carrierEvidence": {
+    "schema": "passed",
+    "issues": 0,
+    "alt": "passed",
+    "nativeCharts": 0,
+    "nativeTables": 0,
+    "nativePictures": 1,
+    "screenshots": 4
+  }
 }

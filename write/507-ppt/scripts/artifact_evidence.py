@@ -6,6 +6,7 @@ from xml.etree import ElementTree
 from pathlib import Path
 
 from PIL import Image, ImageStat, UnidentifiedImageError
+from pptx_svg import validate_svg_fallbacks
 
 
 def validate_artifact(path: Path, carrier: str) -> None:
@@ -49,6 +50,7 @@ def validate_artifact(path: Path, carrier: str) -> None:
     slide_ids = [item for item in presentation.iter() if item.tag.endswith("sldId")]
     if len(office_relationships) != 1 or not presentation_content_type or len(slide_ids) != len(slide_names):
         raise ValueError(f"PPTX artifact package relationships or slide mapping are incomplete: {path}")
+    validate_svg_fallbacks(path)
 
 
 def validate_png(path: Path, label: str = "screenshot", *, minimum_size: tuple[int, int] = (320, 180)) -> None:

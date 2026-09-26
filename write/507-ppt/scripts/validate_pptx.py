@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 from pathlib import Path
+from pptx_svg import validate_svg_fallbacks
 
 from PIL import Image, ImageStat, UnidentifiedImageError
 
@@ -80,6 +81,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.file.suffix != ".pptx" or not args.file.is_file():
         raise SystemExit("expected an existing .pptx file")
+    try:
+        validate_svg_fallbacks(args.file)
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
     raw = json.loads(args.fixture.read_text(encoding="utf-8"))
     errors = validate_deck(raw)
     if errors:

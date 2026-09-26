@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import hashlib
 import html
 import json
 import re
@@ -14,6 +13,7 @@ from pathlib import Path
 
 from design_system import PRESETS, language, normalize_deck, visible_strings
 from visual_plan import load_plan, resolved_pages, validate_plan
+from pptx_svg import validate_svg_fallbacks
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -68,6 +68,7 @@ if errors:
     raise SystemExit("invalid visual plan: " + "; ".join(errors))
 pages = resolved_pages(plan, raw, args.carrier)
 if args.carrier == "pptx":
+    validate_svg_fallbacks(args.artifact)
     content = subprocess.run(["officecli", "view", str(args.artifact), "text"], check=True, text=True, capture_output=True).stdout
     page_text = {
         int(number): re.sub(r"\s+", "", body)

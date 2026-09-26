@@ -21,7 +21,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: requirements-test.txt
-      - name: Install officecli for PPTX fixture readback
+      - name: Install officecli for PPTX readback and generation
         run: |
           curl -fsSL --retry 3 \
             https://github.com/iOfficeAI/OfficeCLI/releases/download/v1.0.149/officecli-linux-x64 \

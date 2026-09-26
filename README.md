@@ -198,7 +198,7 @@ python3 -m pip install -r requirements-test.txt
 python3 scripts/test_all.py
 ```
 
-默认要求 Chrome/Chromium、FFmpeg、FFprobe 和 officecli；officecli 用于 PPTX 清单测试读取与验证已提交样例，CI 固定为 1.0.149 并校验下载摘要。只有明确接受静态 HTML 检查时才使用 `--allow-missing-browser`。MiniMax 真实 adapter/E2E、Voicebox 授权生成、officecli 完整 PPTX 生成和 Live Photo 设备验收是独立外部门，不包含在离线绿灯中。
+默认要求 Chrome/Chromium、FFmpeg、FFprobe 和 officecli；officecli 用于 PPTX 清单读回和真实代表页生成，CI 固定为 1.0.149 并校验下载摘要。PPT 媒体检查直接验证已提交原件，生成回归验证真实 SVG/PNG 备用图和新截图，不在测试副本中修补坏样例。只有明确接受静态 HTML 检查时才使用 `--allow-missing-browser`。MiniMax 真实 adapter/E2E、Voicebox 授权生成、完整 PPTX 在目标 Office 查看器中的逐页视觉验收和 Live Photo 设备验收是独立外部门，不包含在离线绿灯中。
 
 ## 贡献与发布
 

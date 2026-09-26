@@ -17,6 +17,7 @@ from typing import Any
 
 from design_system import PRESETS, language, normalize_deck, validate_deck
 from text_layout import pptx_text
+from pptx_svg import image_aspect_ratio, prepare_svg_fallbacks
 from visual_plan import load_plan, resolved_pages, text_at, validate_plan
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -122,6 +123,13 @@ def add_picture(file: Path, page: int, asset: dict[str, Any], input_path: Path, 
     source = next((path for path in candidates if path.is_file()), None)
     if source is None:
         raise FileNotFoundError(f"asset not found: {raw}")
+    # A layout slot is not permission to stretch the source picture.
+    ratio = image_aspect_ratio(source)
+    left, top, width, height = (float(value.removesuffix("cm")) for value in (x, y, w, h))
+    fitted_width = min(width, height * ratio)
+    fitted_height = fitted_width / ratio
+    x, y = f"{left + (width - fitted_width) / 2:g}cm", f"{top + (height - fitted_height) / 2:g}cm"
+    w, h = f"{fitted_width:g}cm", f"{fitted_height:g}cm"
     run("add", str(file), f"/slide[{page}]", "--type", "picture", "--prop", f"src={source}", "--prop", f"x={x}", "--prop", f"y={y}", "--prop", f"width={w}", "--prop", f"height={h}", "--prop", f"alt={asset['alt']}")
 
 
@@ -296,6 +304,7 @@ def render_deck(data: dict[str, Any], plan: dict[str, Any], input_path: Path, ou
         render_slide(output, page, slide, visual, base_language, normalized["deck"]["title"], total, input_path)
     run("save", str(output))
     run("close", str(output))
+    prepare_svg_fallbacks(output)
 
 
 def close_quietly(path: Path) -> None:

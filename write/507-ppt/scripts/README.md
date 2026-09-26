@@ -11,6 +11,7 @@
 - `generate_html.py`：只生成静态通过的 content v3 候选；`promote_html.py` 校验 `html-browser` 报告后原子晋升候选与 evidence。
 - `browser_tools.py` / `html_browser_evidence.py`：发现 PATH 或 macOS 应用目录中的 Chrome，经 CDP 实测当前 v3 的交互、视口、无 JavaScript、故障退化、table suppression、短语行数与逐页 PNG，并写带工具版本的 browser report。
 - `generate_pptx.py`：用同一 content/plan 生成、完整验证并原子替换 PPTX；`--prototype-candidate` 只用于代表页。
+- `pptx_svg.py`：图片按原比例完整放入布局槽；关闭 PPTX 候选后，用 Chrome/Chromium 与 `websockets` 把内嵌 SVG 真实渲染为 PNG 备用图，保留 SVG 主图。拒绝外部依赖、共享图片冲突、占位/透明/损坏或比例错误的备用图；CLI 只读检查，失败返回非零状态。
 - `build_support_matrix.py`：从同一 content 与 visual-plan 解析双载体 support、抑制项和适配摘要。
 - `verification_report.py`：检查绑定 input/plan/artifact hash、逐项 passed 的机器报告。
 - `build_manifest.py` / `validate_manifest.py`：都从 resolver 重算 support/suppression/degradation，并验证报告、原型与 support matrix 哈希；输入、plan、artifact、assets、screenshots、reports 必须位于 manifest package root 内，builder 在同目录候选 manifest 上自验后才替换目标；v1 只保留读回兼容。
@@ -65,10 +66,12 @@ content v3 缺少 `--plan` 或显式 `--preset` 时失败；无参数 Swiss 只�
 
 ## 回归入口
 
-清单构造测试会用 `officecli` 读取并验证已有 PPTX 样例，因此默认回归也要求该工具可用；CI 安装固定的 1.0.149 版本并核对官方发布摘要。这与重新生成完整 PPTX 的外部验收门分开，子命令失败时会显示其输出以便定位环境缺口。
+默认回归要求 `officecli`、Pillow、Chrome/Chromium 与 `websockets` 可用；CI 安装固定的 officecli 1.0.149 并核对官方发布摘要。清单构造测试读取已有 PPTX 样例，不修补输入；`test_pptx_svg.py` 另行运行真实生成流程、真实 SVG 栅格化和损坏媒体反例。子命令失败显示原始输出。完整作品在目标 Office 查看器中的逐页视觉验收仍是独立门，不能用自动回归替代。
 
 ```bash
 python3 -B -m unittest discover -s . -p 'test_*.py' -v
+python3 -B -m unittest test_pptx_svg -v
+python3 -B pptx_svg.py ../examples/system-prototypes/candidate-a-swiss.pptx
 bash test_html.sh
 ```
 

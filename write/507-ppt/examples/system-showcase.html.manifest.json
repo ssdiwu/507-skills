@@ -7,7 +7,7 @@
   "artifact": "system-showcase.html",
   "sha256": "10b7646562e53d7c408af23944935df330eda7426d50e2dd7f3e3ad0d62ac1f1",
   "visualPlan": "system-showcase.visual-plan.json",
-  "visualPlanSha256": "d5c873ec4d2d63109fd8c8f56d27a03828539a3a6f706cede051cc82ddb1794e",
+  "visualPlanSha256": "2aa05e1a6f3e7a75d62884d55c973e894fedecbf98ac89d939a68ee5d3a5d1ae",
   "language": {
     "id": "precision-modern",
     "variant": "default"
@@ -17,7 +17,7 @@
     {
       "kind": "prototype-manifest",
       "path": "system-prototypes/approved-prototype-manifest.json",
-      "sha256": "9e07f0802e31ed55006c6d17ef628ae020a268d8a731fa5e4f9fab7e211fa2bd"
+      "sha256": "86d9e430fed81722bbf03f092d3b9b25abcb5f93338267d27e09b7fa4cebc479"
     },
     {
       "kind": "prototype-contact-sheet",
@@ -231,14 +231,14 @@
       "kind": "axis-content",
       "status": "passed",
       "evidence": "system-showcase-html-axis-content.json",
-      "evidenceSha256": "e2e9b78f26a95fcaf68c707a59e13efbbd96ca8205088f82c03d9c0330c08e7f"
+      "evidenceSha256": "0f9f9f49b1f7262221227f2c8fb9d4c69c6c6277de9d5ca4692d2ced6f02a689"
     },
     {
       "name": "browser-report",
       "kind": "html-browser",
       "status": "passed",
       "evidence": "system-showcase-html-evidence/browser-report.json",
-      "evidenceSha256": "63238d160a1cb94a1c3ab9e47651b328064f596ecf78b8f55d4d6a35c641974b"
+      "evidenceSha256": "a580139e31ae062e72d1d494d3c007f22dc9f6305c81a370d666754882e1cba6"
     }
   ],
   "screenshots": [

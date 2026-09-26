@@ -110,7 +110,7 @@
     },
     "pptx": {
       "artifact": "candidate-a-swiss.pptx",
-      "artifactSha256": "efa843d7fca75694dd934f0c5116360d19de3d14d61c9fd525498834f71d288e",
+      "artifactSha256": "7cd5efd92ef7daeb05b0c4550924e2cb94d48c8dbe8b5c5bf015f7c26db9df36",
       "visualPlan": "candidate-a-swiss.visual-plan.json",
       "visualPlanSha256": "d39f979ea546705c45d3c76dc36cb92403b5b5b4c67e495bf95d609d38c40b01",
       "screenshots": [
@@ -120,7 +120,7 @@
         },
         {
           "path": "candidate-a-swiss-pptx-evidence/slide-2.png",
-          "sha256": "294c44c604a0ceb3d3ce2f87d29d2f3ca185be6a8a561665916105e2745a230f"
+          "sha256": "af310e52b05749cc3a65f89586b691155a2b8f2bb98cba05cb3f9e04109ebec4"
         },
         {
           "path": "candidate-a-swiss-pptx-evidence/slide-3.png",

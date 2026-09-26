@@ -48,6 +48,8 @@ def checks() -> list[Check]:
     ]
     result.extend(Check(name, (python, "-B", filename), breakdown) for name, filename in standalone_breakdown)
     result.append(Check("Breakdown MiniMax no-key contract", (python, "-B", "test_minimax_adapter.py", "--no-key"), breakdown))
+    pptx_samples = sorted((ROOT / "write/507-ppt/examples").rglob("*.pptx"))
+    result.append(Check("PPT checked-in SVG media quality", (python, "-B", "write/507-ppt/scripts/pptx_svg.py", *(str(path) for path in pptx_samples))))
     for manifest in sorted((ROOT / "write/507-ppt/examples").glob("*.manifest.json")):
         result.append(Check(f"PPT manifest {manifest.name}", (python, "-B", "write/507-ppt/scripts/validate_manifest.py", str(manifest))))
     result.append(Check("PPT provenance report", (python, "-B", "write/507-ppt/scripts/validate_provenance.py", "--check", "write/507-ppt/examples/provenance-report.json")))
@@ -69,7 +71,7 @@ def main() -> None:
         result = subprocess.run(check.command, cwd=check.cwd, env=environment, text=True)
         if result.returncode != 0:
             failures.append(f"{check.name} (exit {result.returncode})")
-    print("\nExternal gates not run: MiniMax live adapter/E2E, Voicebox authorized generation, officecli full PPTX generation, Live Photo device acceptance.")
+    print("\nExternal gates not run: MiniMax live adapter/E2E, Voicebox authorized generation, full-deck PPTX visual acceptance in native viewers, Live Photo device acceptance.")
     if failures:
         raise SystemExit("deterministic test failures:\n- " + "\n- ".join(failures))
     print("All deterministic repository checks passed.")

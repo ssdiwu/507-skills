@@ -5,7 +5,7 @@
   "inputSha256": "eb410f4e6f018ef5a2e43ddb9b4579c19e1b524e1064fe52d8ffa1abbac87d86",
   "carrier": "pptx",
   "artifact": "presentation-pairwise.pptx",
-  "sha256": "c1ecf2b2e1d85f8e22df05e89483eee9f0a18bd420d32a0c7166184260dc3e6e",
+  "sha256": "e30797b35c2a5a474c40924d7ce095e7cb65da3a6d5455539f48893d9b97a762",
   "visualPlan": "presentation-pairwise.visual-plan.json",
   "visualPlanSha256": "6db3edca1563ee1414f9f023d4dce28924a9003342da86e7ffb1d009b89ff14b",
   "language": {
@@ -85,7 +85,7 @@
         "photo-workbench"
       ],
       "screenshot": "presentation-pairwise-pptx-evidence/slide-5.png",
-      "screenshotSha256": "2ec470f1da5c9ba348e359afa9fc6c88561bc969ea6d8377f3148ad7c801e87c"
+      "screenshotSha256": "1d86bc758e2199483c6367e81f51e3284ee9ee96c6925642a8d7a9e4fa578c03"
     },
     {
       "id": "ui",
@@ -103,7 +103,7 @@
         "ui-preview"
       ],
       "screenshot": "presentation-pairwise-pptx-evidence/slide-6.png",
-      "screenshotSha256": "2bd680722b493bdd04c97c6e77324252819e7343fda7362d3cbe0a9aed6e6c3b"
+      "screenshotSha256": "27cdc28b29873e234b7553d8e2f8b218a400d7c5c75aafa751deca3ed248e304"
     },
     {
       "id": "editorial",
@@ -169,7 +169,7 @@
       "kind": "axis-content",
       "status": "passed",
       "evidence": "presentation-pairwise-pptx-axis-content.json",
-      "evidenceSha256": "22271256a719d7aa1a71ae6131d5f08b1c4bbd0366fed2fd138867b3427a753d"
+      "evidenceSha256": "f6791915d996465d7ddadbdb8d54ac6045582c2ae6da9896834b2c3d85f70908"
     }
   ],
   "screenshots": [
