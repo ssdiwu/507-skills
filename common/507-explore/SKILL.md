@@ -1,6 +1,6 @@
 ---
 name: 507-explore
-description: "项目探索：面对尚未看清问题形状、无法安全规划或不知道从哪里开始的项目问题，先读取项目规则、既有共识与现实证据，在临时会话中区分已知、未知、当前 frontier 与证据边界；路径尚不确定时形成带证据的可验证候选，只读推进一个当前可解决问题，并路由到 explain、research、grill、prototype、规格或执行。Use when user mentions 探索一下, 先看看怎么回事, 先别做, 先理清, 梳理一下, 搞清楚状况, 摸清楚, 不知道从哪开始, 这个问题在哪, 帮我看懂这个项目, 上手这个项目, 这段代码怎么工作, explore, investigate this project, orient me, locate the problem, understand this codebase, explain this code."
+description: "项目探索：面对尚未看清问题形状、无法安全规划或不知道从哪里开始的项目问题，先读取项目规则、既有共识与现实证据，在临时会话中区分已知、未知、当前 frontier 与证据边界；路径尚不确定时形成带证据的可验证候选，只读推进当前可解决问题，按需追踪具体代码行为改动的影响，并路由到 explain、research、grill、prototype、规格或执行。Use when user mentions 探索一下, 先看看怎么回事, 先别做, 先理清, 梳理一下, 搞清楚状况, 摸清楚, 不知道从哪开始, 这个问题在哪, 帮我看懂这个项目, 上手这个项目, 这段代码怎么工作, explore, investigate this project, orient me, locate the problem, understand this codebase, explain this code."
 ---
 
 # 项目探索（`explore`）
@@ -42,6 +42,10 @@ description: "项目探索：面对尚未看清问题形状、无法安全规划
 3. **建立首个快照**：列出已知、未知、当前可推进边界与证据边界；只能从局部判断时明确标注已读范围。
 4. **推进当前可推进边界**：读取证据或做只读验证；得到新事实后重新计算已知、未知和下一可推进边界。
 5. **形成候选或路由**：若多条技术路径仍会改变下一步，基于已核验证据写出可验证候选；若事实已经足够，直接选择下一专门动作。概念不懂转 `507-explain`，外部机制转 `507-research`，用户决策转 `507-grill`，需看见后判断转 `507-prototype`，已足够清楚则进入规格、工单或正常实施。
+
+## 具体代码行为的影响调查
+
+用户已有明确行为改动，但不同入口、提交副作用或状态恢复的影响尚不清楚时，读取 [代码影响调查](references/code-impact.md)。逐入口追到校验、正式提交、状态所有者、持久化与恢复，把必要影响和证据缺口并入当前快照；已有充分证据时直接复用。保持只读，不维护第二份功能索引，不替用户定义产品行为，也不把一般项目探索都变成完整影响矩阵。
 
 ## 会话输出
 
