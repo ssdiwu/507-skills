@@ -1,0 +1,27 @@
+{
+  "audit_date": "2026-10-03",
+  "active_inventory_files_preserved": 88,
+  "active_skill_files_preserved": 32,
+  "local_artifact_links_checked": 10,
+  "patch_apply_check": "passed without applying",
+  "patch_findings": [
+    "PA-01",
+    "PA-02",
+    "PA-03"
+  ],
+  "patch_files": 3,
+  "patch_hunks": 4,
+  "flag_findings": [
+    "PA-04",
+    "PA-05",
+    "PA-06",
+    "PA-07"
+  ],
+  "runtime_commands_from_audited_prompts_executed": false,
+  "model_behavior_ab_test_run": false,
+  "business_tests_run": false,
+  "network_model_requests_run": false,
+  "active_skills_modified": false,
+  "global_installation_changed": false,
+  "committed_or_pushed": false
+}

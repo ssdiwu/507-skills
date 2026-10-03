@@ -1,0 +1,17 @@
+[
+  {
+    "path": "common/507-grill/SKILL.md",
+    "baseline_sha256": "dbe7cc5f6d133971abf0b0c32369d701d3ca9aef942176dde3bb362abe5f8cd9",
+    "candidate_sha256": "5ef9cd52f85286b1ad87ad73ffb513ab325a0c9b1c349d4f6229408dda6cd262"
+  },
+  {
+    "path": "write/507-frame/SKILL.md",
+    "baseline_sha256": "2c1164f96ff419f357c35597dd5f717287809bcc18e690c78c290b78b167af82",
+    "candidate_sha256": "127ed2af61a630b6861543260bb3933ad5523cf12f949c78d8970afe1413b7a6"
+  },
+  {
+    "path": "code/507-release/SKILL.md",
+    "baseline_sha256": "f44e3e42c2f775e4dc861d45d817605145b1fcde2ebf012269537b0d244ebe10",
+    "candidate_sha256": "1ec4a778875f5b2f616e997c2b6bbe913391740f1c42fca9e3cb7c256725fa58"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "一个术语敲定就当场写进": [
+    {
+      "path": "common/507-grill/SKILL.md",
+      "line": 185
+    }
+  ],
+  "对齐过程中确定的术语当场沉淀": [
+    {
+      "path": "common/507-grill/SKILL.md",
+      "line": 8
+    }
+  ],
+  "每一节先迭代到用户认可": [
+    {
+      "path": "write/507-frame/SKILL.md",
+      "line": 257
+    }
+  ],
+  "git push origin --tags": [
+    {
+      "path": "code/507-release/SKILL.md",
+      "line": 72
+    }
+  ]
+}

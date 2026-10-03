@@ -1,0 +1,682 @@
+[
+  {
+    "path": "AGENTS.md",
+    "role": "instructions",
+    "lines": 37,
+    "characters": 1314,
+    "sha256": "f2e7f1ac2b9ce9d9aff33b77d7e4c923ad27af5d87058db85bb7e0d6065f7e27"
+  },
+  {
+    "path": "CONTRIBUTING.md",
+    "role": "documentation",
+    "lines": 29,
+    "characters": 671,
+    "sha256": "f0d9146debc8f3d64d87486250ee47f85197eaafbeca993a2910fb543eeee97c"
+  },
+  {
+    "path": "README.md",
+    "role": "documentation",
+    "lines": 210,
+    "characters": 7498,
+    "sha256": "c7ecc4a3eafd6cc37fe9dbc9b42846030fcb72e95f386289d21e5c51b8c465c2"
+  },
+  {
+    "path": "code/507-commit/SKILL.md",
+    "role": "skill",
+    "lines": 86,
+    "characters": 2089,
+    "sha256": "3b10fedb67465de1f282c1a5e074c8f6c57e1cda4d59d22d51db438a4ae3d303",
+    "description_characters": 186,
+    "trigger_list_items": 10
+  },
+  {
+    "path": "code/507-fix/SKILL.md",
+    "role": "skill",
+    "lines": 89,
+    "characters": 1917,
+    "sha256": "2b5b5e24d3acbb06e6f10399aaa4930dc82bdf50c05f5d35e1e9a4421492521f",
+    "description_characters": 175,
+    "trigger_list_items": 15
+  },
+  {
+    "path": "code/507-inspect/SKILL.md",
+    "role": "skill",
+    "lines": 141,
+    "characters": 4313,
+    "sha256": "8d22b4cba1159057c38f5545431012490a5924333a5ae84d74449b9fe3a5cc7e",
+    "description_characters": 215,
+    "trigger_list_items": 8
+  },
+  {
+    "path": "code/507-issue/SKILL.md",
+    "role": "skill",
+    "lines": 192,
+    "characters": 5448,
+    "sha256": "7c68d27ad6b9ffcb46a07cc5ad169e60b3ba884d3665d69d82b05e1bbc6cbc30",
+    "description_characters": 341,
+    "trigger_list_items": 12
+  },
+  {
+    "path": "code/507-map/SKILL.md",
+    "role": "skill",
+    "lines": 90,
+    "characters": 2085,
+    "sha256": "856f4c8a594fd8095cb1140bc66fbfd0897fc31e6bc5e607a86135a57c7df3c4",
+    "description_characters": 177,
+    "trigger_list_items": 12
+  },
+  {
+    "path": "code/507-prd/SKILL.md",
+    "role": "skill",
+    "lines": 138,
+    "characters": 4524,
+    "sha256": "19ad21ca7d72adbe85747bf16a6a2c14acef67c08862fd448d7444fb96ae9f5e",
+    "description_characters": 285,
+    "trigger_list_items": 10
+  },
+  {
+    "path": "code/507-prototype/SKILL.md",
+    "role": "skill",
+    "lines": 94,
+    "characters": 2325,
+    "sha256": "aa7149b70c9ec8df868a5a0028fb0f3b984f3e9b69184290d01121634efba5a3",
+    "description_characters": 277,
+    "trigger_list_items": 13
+  },
+  {
+    "path": "code/507-release/SKILL.md",
+    "role": "skill",
+    "lines": 107,
+    "characters": 3772,
+    "sha256": "f44e3e42c2f775e4dc861d45d817605145b1fcde2ebf012269537b0d244ebe10",
+    "description_characters": 236,
+    "trigger_list_items": 14
+  },
+  {
+    "path": "code/507-review/SKILL.md",
+    "role": "skill",
+    "lines": 106,
+    "characters": 2346,
+    "sha256": "c4472a39d7b35ba6e02b73e72fca3f4109df3a608c158469be238a944f266e48",
+    "description_characters": 215,
+    "trigger_list_items": 13
+  },
+  {
+    "path": "code/507-setup/SKILL.md",
+    "role": "skill",
+    "lines": 147,
+    "characters": 4207,
+    "sha256": "edbe8601e352464a8529cf75bc9165206b08f28ca1f1e251e150177076c6ba5b",
+    "description_characters": 238,
+    "trigger_list_items": 9
+  },
+  {
+    "path": "code/507-setup/references/project-standard.md",
+    "role": "reference",
+    "lines": 215,
+    "characters": 4899,
+    "sha256": "e58a956a4b22d0f805b7eecf7e554cb6377c88f2eeb18e3935f9225b1582860e"
+  },
+  {
+    "path": "code/507-simplify/SKILL.md",
+    "role": "skill",
+    "lines": 162,
+    "characters": 4763,
+    "sha256": "3eb94cfa03cefcd08462c4295249b5820ff042e96a71ce054d16c1cab785bb9f",
+    "description_characters": 205,
+    "trigger_list_items": 11
+  },
+  {
+    "path": "code/507-taste/SKILL.md",
+    "role": "skill",
+    "lines": 142,
+    "characters": 3564,
+    "sha256": "1b2f213943fbed3636cb623f9eaf8859893db066c4017a8bf4d50bbbaa54d851",
+    "description_characters": 329,
+    "trigger_list_items": 19
+  },
+  {
+    "path": "code/507-tdd/SKILL.md",
+    "role": "skill",
+    "lines": 75,
+    "characters": 1477,
+    "sha256": "bcabf2bd5bd363de8f413ed2254ab27ad397a657f7ffa64056ae48108478a72d",
+    "description_characters": 144,
+    "trigger_list_items": 6
+  },
+  {
+    "path": "code/507-test/SKILL.md",
+    "role": "skill",
+    "lines": 61,
+    "characters": 1486,
+    "sha256": "641fb521845ac9cfc748499572332e3ed9facc4af9616279d48bf6c0c5c6ea3a",
+    "description_characters": 159,
+    "trigger_list_items": 12
+  },
+  {
+    "path": "code/README.md",
+    "role": "documentation",
+    "lines": 156,
+    "characters": 4917,
+    "sha256": "cc328bd93fdf89f14c1ff3e52268527110ccb01da77f79df0966daa9ddee756c"
+  },
+  {
+    "path": "common/507-explain/SKILL.md",
+    "role": "skill",
+    "lines": 114,
+    "characters": 3609,
+    "sha256": "1c4ec6d1f9a79ab304ae8c3e36f94884c4f1bc8d926f023ca572bf66aaba25c3",
+    "description_characters": 399,
+    "trigger_list_items": 16
+  },
+  {
+    "path": "common/507-explore/SKILL.md",
+    "role": "skill",
+    "lines": 100,
+    "characters": 3073,
+    "sha256": "1d50b492d241e0b2fbdd5bddf7e0363d227aed817031ac0c66b7f2e820830734",
+    "description_characters": 387,
+    "trigger_list_items": 18
+  },
+  {
+    "path": "common/507-grill/SKILL.md",
+    "role": "skill",
+    "lines": 272,
+    "characters": 8900,
+    "sha256": "dbe7cc5f6d133971abf0b0c32369d701d3ca9aef942176dde3bb362abe5f8cd9",
+    "description_characters": 449,
+    "trigger_list_items": 19
+  },
+  {
+    "path": "common/507-handoff/SKILL.md",
+    "role": "skill",
+    "lines": 88,
+    "characters": 1384,
+    "sha256": "a81777f7d438fa47476adf97d6941e7af2126261c5633fb16d9cd887e9406952",
+    "description_characters": 141,
+    "trigger_list_items": 10
+  },
+  {
+    "path": "common/507-research/SKILL.md",
+    "role": "skill",
+    "lines": 105,
+    "characters": 2960,
+    "sha256": "a125a5768454e84fa2c5d870135676400eec79d15b800d6c5ab91588a8d2f292",
+    "description_characters": 314,
+    "trigger_list_items": 19
+  },
+  {
+    "path": "common/README.md",
+    "role": "documentation",
+    "lines": 66,
+    "characters": 2429,
+    "sha256": "3ebbd60bec74b283f2e589cd01d1f5324779d0d50a338c3c381a134bf0e1f136"
+  },
+  {
+    "path": "doc/README.md",
+    "role": "documentation",
+    "lines": 22,
+    "characters": 1353,
+    "sha256": "70f41f3ecd5b7babeba898e12954633f4c27f8bd71235750e9605f8d873a7fa0"
+  },
+  {
+    "path": "templates/AGENTS.global.example.md",
+    "role": "documentation",
+    "lines": 30,
+    "characters": 1350,
+    "sha256": "fa2337176422f4038fa0744d27b1ea100a12cbc52df58d7222c7cef575948f02"
+  },
+  {
+    "path": "write/507-breakdown/AGENTS.md",
+    "role": "instructions",
+    "lines": 17,
+    "characters": 440,
+    "sha256": "35eb21c0fc69e707c8d40a4c2473ea199e9c4914addffa32934d0c1260039052"
+  },
+  {
+    "path": "write/507-breakdown/README.md",
+    "role": "documentation",
+    "lines": 52,
+    "characters": 1638,
+    "sha256": "2b663e6d735a20261eede8df9573d1b46329b4ac93c5715c7bf3c94395bed65a"
+  },
+  {
+    "path": "write/507-breakdown/SKILL.md",
+    "role": "skill",
+    "lines": 64,
+    "characters": 2497,
+    "sha256": "b9f1a1b1eba50895524310260000a13bf6f0ce322557e3b052192673306ac8b1",
+    "description_characters": 255,
+    "trigger_list_items": 14
+  },
+  {
+    "path": "write/507-breakdown/doc/README.md",
+    "role": "documentation",
+    "lines": 9,
+    "characters": 352,
+    "sha256": "661cb09fe1ac0f47b40380b3f0d6467fd3811a08c5d5bb79b6513294e777f1ed"
+  },
+  {
+    "path": "write/507-breakdown/references/analysis-playbook.md",
+    "role": "reference",
+    "lines": 15,
+    "characters": 559,
+    "sha256": "f50c1bb6d052bfe570559e902a776a0f17be3783f8f75443ae1d8e892ed7194f"
+  },
+  {
+    "path": "write/507-breakdown/references/pull-method.md",
+    "role": "reference",
+    "lines": 17,
+    "characters": 419,
+    "sha256": "bcb01c4c4657513c67c5fdf3c8999ab369adae79a32623f11f9df722c4510f12"
+  },
+  {
+    "path": "write/507-breakdown/references/tag-vocabulary.md",
+    "role": "reference",
+    "lines": 93,
+    "characters": 2478,
+    "sha256": "10f296ebe090f1d48f5a12b25e0c0d040409c1277e7a5f837688a9378f6d34c1"
+  },
+  {
+    "path": "write/507-breakdown/scripts/README.md",
+    "role": "documentation",
+    "lines": 70,
+    "characters": 2240,
+    "sha256": "c7f823ad1dae28d2274949fbc8d6c836b15a54acf98b4c65484d490c737da7b3"
+  },
+  {
+    "path": "write/507-cast/SKILL.md",
+    "role": "skill",
+    "lines": 110,
+    "characters": 3223,
+    "sha256": "f41f1c278931740ea00527d2ba286037a20d31ef91d3f26ab61977fcef885dfb",
+    "description_characters": 291,
+    "trigger_list_items": 16
+  },
+  {
+    "path": "write/507-forge/SKILL.md",
+    "role": "skill",
+    "lines": 143,
+    "characters": 7579,
+    "sha256": "24c01cfb4504461eb52adc45e92da04dbb567673315d8fbf13934d0f9566ce93",
+    "description_characters": 393,
+    "trigger_list_items": 17
+  },
+  {
+    "path": "write/507-forge/references/chinese-expression-risk-signals.md",
+    "role": "reference",
+    "lines": 353,
+    "characters": 6493,
+    "sha256": "4ef814f933982404866a86a57902a13f80cd8254d18daeffcfae90ccdf608b32"
+  },
+  {
+    "path": "write/507-forge/references/prose-revision.md",
+    "role": "reference",
+    "lines": 98,
+    "characters": 2269,
+    "sha256": "b6b5949e38dbce970ef4f341d5fc7354c8f858ee382f6134e88952a001120ba5"
+  },
+  {
+    "path": "write/507-forge/references/title-promises.md",
+    "role": "reference",
+    "lines": 28,
+    "characters": 1346,
+    "sha256": "c00db6ff838f2bfd2a507fc3232054e1d72d3757fe39f167cd1b5885e9d25445"
+  },
+  {
+    "path": "write/507-forge/scripts/README.md",
+    "role": "documentation",
+    "lines": 29,
+    "characters": 680,
+    "sha256": "59c903ad6ba85710b08a60411aed84fc215a0318f844fea15dd9bea6d3c0349c"
+  },
+  {
+    "path": "write/507-frame/SKILL.md",
+    "role": "skill",
+    "lines": 273,
+    "characters": 5770,
+    "sha256": "2c1164f96ff419f357c35597dd5f717287809bcc18e690c78c290b78b167af82",
+    "description_characters": 284,
+    "trigger_list_items": 15
+  },
+  {
+    "path": "write/507-fuse/SKILL.md",
+    "role": "skill",
+    "lines": 127,
+    "characters": 5285,
+    "sha256": "409b386ac7740b82622105ab9d8c15361564b6db276e9b863ad530331e319ce2",
+    "description_characters": 386,
+    "trigger_list_items": 21
+  },
+  {
+    "path": "write/507-fuse/references/选题判断.md",
+    "role": "reference",
+    "lines": 50,
+    "characters": 983,
+    "sha256": "d865dd7c1c5c57cb849621a23b2a0dc73716416d37bb125658a7428eecc8a688"
+  },
+  {
+    "path": "write/507-mine/SKILL.md",
+    "role": "skill",
+    "lines": 99,
+    "characters": 2734,
+    "sha256": "b4e3b393690a55dfc36a895957661547900bd99bdfbde7c5258d9a62e45e7c11",
+    "description_characters": 316,
+    "trigger_list_items": 15
+  },
+  {
+    "path": "write/507-narrate/README.md",
+    "role": "documentation",
+    "lines": 65,
+    "characters": 1928,
+    "sha256": "c83eb48987cf7e1d0525bfae951f657485ecb3ac3a8f529d44e62ae284d3ddec"
+  },
+  {
+    "path": "write/507-narrate/SKILL.md",
+    "role": "skill",
+    "lines": 88,
+    "characters": 2930,
+    "sha256": "2b7b0a1227b35a1d02e793e1f17addcef05a376be1e861d6e2807b679ee55220",
+    "description_characters": 276,
+    "trigger_list_items": 14
+  },
+  {
+    "path": "write/507-narrate/agents/openai.yaml",
+    "role": "config",
+    "lines": 4,
+    "characters": 217,
+    "sha256": "88b89d6c570190a21dc7533e97c38295c037f54fab694ca177ae3058303da89a"
+  },
+  {
+    "path": "write/507-narrate/scripts/README.md",
+    "role": "documentation",
+    "lines": 72,
+    "characters": 2023,
+    "sha256": "43967a0a25671feda2445e522ec516083e65127a683a5c3d2544474c1ab79621"
+  },
+  {
+    "path": "write/507-ppt/README.md",
+    "role": "documentation",
+    "lines": 35,
+    "characters": 1760,
+    "sha256": "efad5c44c99b2737073b7e5c3f1a0d9ab408d62cba89f4f7a27df4f82af07ee0"
+  },
+  {
+    "path": "write/507-ppt/SKILL.md",
+    "role": "skill",
+    "lines": 92,
+    "characters": 4563,
+    "sha256": "0d2212f025b6bb0e412d3305bc6eb6d1b0bb6d601ba169c00d06509a304aaac9",
+    "description_characters": 238,
+    "trigger_list_items": 11
+  },
+  {
+    "path": "write/507-ppt/references/artifact-manifest.md",
+    "role": "reference",
+    "lines": 55,
+    "characters": 2450,
+    "sha256": "609e0cb4edb53e06357708e92b23b6232896f2a80653e9638b3df8f155dcb236"
+  },
+  {
+    "path": "write/507-ppt/references/design-system.md",
+    "role": "reference",
+    "lines": 87,
+    "characters": 3190,
+    "sha256": "54494d360f2cd79b1fc495cf575eff5d990e374ca2a0bc8ee0fbd23c3070a9da"
+  },
+  {
+    "path": "write/507-ppt/references/html-recipes.md",
+    "role": "reference",
+    "lines": 56,
+    "characters": 2093,
+    "sha256": "aaa14b604e97706f358dd8532f2ecd8724dec28bab9d6c028d29d56ce6348d33"
+  },
+  {
+    "path": "write/507-ppt/references/pptx-recipes.md",
+    "role": "reference",
+    "lines": 42,
+    "characters": 1622,
+    "sha256": "28734dc760354e2eb6d8febcb2002144a22008ec8b808a13d8d1cfb6f0c1375a"
+  },
+  {
+    "path": "write/507-ppt/references/provenance.md",
+    "role": "reference",
+    "lines": 43,
+    "characters": 1324,
+    "sha256": "33fa6e28562b251a40716cce6f1a3cd6f3e8b7b4af582137db7c5e35260e9889"
+  },
+  {
+    "path": "write/507-ppt/references/style-contracts.md",
+    "role": "reference",
+    "lines": 43,
+    "characters": 1386,
+    "sha256": "db81f0a3547f96fe32e920904e44f7e0a2beb1542dd19d55ccb36ac028576e45"
+  },
+  {
+    "path": "write/507-ppt/references/typography.md",
+    "role": "reference",
+    "lines": 55,
+    "characters": 1643,
+    "sha256": "d0a1de9f674ca4912debc487afad7f018e0d33c0b7e5e89a4b48df4da2aed47d"
+  },
+  {
+    "path": "write/507-ppt/references/verification-plan.md",
+    "role": "reference",
+    "lines": 78,
+    "characters": 3067,
+    "sha256": "25115a0490ed76ecc25b8799dc23fb3ebb97f78150f56a6ceb8b07ba5f9f0ff4"
+  },
+  {
+    "path": "write/507-ppt/references/workflow-contract.md",
+    "role": "reference",
+    "lines": 54,
+    "characters": 2267,
+    "sha256": "8703edae64c456b8ee5853d7a95f47f960caa6e833f6f8a666a16dfbfe4c942f"
+  },
+  {
+    "path": "write/507-ppt/scripts/README.md",
+    "role": "documentation",
+    "lines": 82,
+    "characters": 4682,
+    "sha256": "aab6b51d2d0716520d1371e17375d21cb6e382ec0e59550fcac94430839e3089"
+  },
+  {
+    "path": "write/507-prospect/SKILL.md",
+    "role": "skill",
+    "lines": 123,
+    "characters": 4909,
+    "sha256": "9b6a35ee2b51e7aa00a35cd0e2b60aa49a075749b059512ead5fea8383a625ab",
+    "description_characters": 475,
+    "trigger_list_items": 11
+  },
+  {
+    "path": "write/507-rednote/README.md",
+    "role": "documentation",
+    "lines": 19,
+    "characters": 1135,
+    "sha256": "07dce8ad4126a489fa3aa98b158c07dec117396712bbd1bfc509b4c70d8b09f7"
+  },
+  {
+    "path": "write/507-rednote/SKILL.md",
+    "role": "skill",
+    "lines": 147,
+    "characters": 5574,
+    "sha256": "c9d2c5017188bc679aa582bf1b4aa7f048542a5541f6befdc1863a8ce52b4fa4",
+    "description_characters": 252,
+    "trigger_list_items": 13
+  },
+  {
+    "path": "write/507-rednote/references/copy-spec.md",
+    "role": "reference",
+    "lines": 23,
+    "characters": 812,
+    "sha256": "57c480e4e5ccf1399c972d96dab9d6c8108e4ecf55ba05752e252622031fc5ec"
+  },
+  {
+    "path": "write/507-rednote/references/project-spec.md",
+    "role": "reference",
+    "lines": 37,
+    "characters": 961,
+    "sha256": "6d8e71c08b19548a42234111a220d75149aac2b3dd5245bdbc8137b85d9b8fcb"
+  },
+  {
+    "path": "write/507-rednote/references/styles.md",
+    "role": "reference",
+    "lines": 66,
+    "characters": 2342,
+    "sha256": "d759d903d60d1fa5139c0b274b57f047ca125c9aa84305b96a36ed25a1b81a15"
+  },
+  {
+    "path": "write/507-rednote/references/visual-review.md",
+    "role": "reference",
+    "lines": 53,
+    "characters": 1620,
+    "sha256": "1d9ed6d746fc1b2f2ea0b4d4c11002ef1640bf0ba5ae52c3aefdda6c8a3a5885"
+  },
+  {
+    "path": "write/507-rednote/scripts/README.md",
+    "role": "documentation",
+    "lines": 143,
+    "characters": 3679,
+    "sha256": "465afcacc06308a1fd89c5af1a181aa4760d31376c21c5990908d8bda476ff46"
+  },
+  {
+    "path": "write/507-remix/AGENTS.md",
+    "role": "instructions",
+    "lines": 5,
+    "characters": 266,
+    "sha256": "6c243256e2e38efad7a96fb265b13c4ff706b8eae3b5db672b39705f57f26a50"
+  },
+  {
+    "path": "write/507-remix/README.md",
+    "role": "documentation",
+    "lines": 9,
+    "characters": 427,
+    "sha256": "13ebfb067cacc86a38d4be00edc22ca1abb1ce1458eb3f52dd12ff3a520df8a8"
+  },
+  {
+    "path": "write/507-remix/SKILL.md",
+    "role": "skill",
+    "lines": 104,
+    "characters": 2852,
+    "sha256": "852348d12d436fd13b32152692090f14943d249bce336680c9dfad8466467279",
+    "description_characters": 284,
+    "trigger_list_items": 11
+  },
+  {
+    "path": "write/507-remix/doc/README.md",
+    "role": "documentation",
+    "lines": 9,
+    "characters": 193,
+    "sha256": "9e6c7207af07b543a4db8dca7832221dde7b64594e00e774e9db39494dde237d"
+  },
+  {
+    "path": "write/507-remix/references/remake-method.md",
+    "role": "reference",
+    "lines": 16,
+    "characters": 460,
+    "sha256": "81fe841f1a648b659379425c4a75f98f9d5ecef8b89bf3320e15cc731ffcf45d"
+  },
+  {
+    "path": "write/507-remix/scripts/README.md",
+    "role": "documentation",
+    "lines": 30,
+    "characters": 670,
+    "sha256": "fe458078031e538a612d7b83682c62be7a7f1b7ad151beaace042cacb31c2998"
+  },
+  {
+    "path": "write/507-stage/SKILL.md",
+    "role": "skill",
+    "lines": 436,
+    "characters": 8668,
+    "sha256": "8f02a8ce90cfe3404b783092fda0852001e9454177e3747a1eb22fac210d5cd4",
+    "description_characters": 450,
+    "trigger_list_items": 33
+  },
+  {
+    "path": "write/507-stage/references/spoken-revision.md",
+    "role": "reference",
+    "lines": 113,
+    "characters": 3912,
+    "sha256": "48f7a213bdbb7eff83c70728b3f33b3b6a5d6fe36e374c4a2b370a7a6d1ede58"
+  },
+  {
+    "path": "write/507-stage/references/video-narration.md",
+    "role": "reference",
+    "lines": 69,
+    "characters": 1437,
+    "sha256": "75589f5d8ce38390a23bd0268cd0d2d5f861a054539e8dd1c51fd7392d9a865a"
+  },
+  {
+    "path": "write/507-stage/scripts/README.md",
+    "role": "documentation",
+    "lines": 29,
+    "characters": 673,
+    "sha256": "e36c0fe2dd6c342663b34d6c75d99479fa7117f6fc29f1c679c4ec9ec33519ff"
+  },
+  {
+    "path": "write/507-video/SKILL.md",
+    "role": "skill",
+    "lines": 96,
+    "characters": 3481,
+    "sha256": "b3771a920fba486c414fb373f188d737198e1c4c41c65960ee6417cc6fa27f2b",
+    "description_characters": 356,
+    "trigger_list_items": 22
+  },
+  {
+    "path": "write/507-video/agents/openai.yaml",
+    "role": "config",
+    "lines": 4,
+    "characters": 224,
+    "sha256": "c88ba7f14d6afb784f5dae74268d777595ddee62febd735348ad37fe36ffd5d5"
+  },
+  {
+    "path": "write/507-video/references/product-promo-profile.md",
+    "role": "reference",
+    "lines": 104,
+    "characters": 4637,
+    "sha256": "50f23681a2800e87aae3d9fed84ac771e34e5c4901bd40142c55f73d1c7d92f3"
+  },
+  {
+    "path": "write/507-video/references/production-contract.md",
+    "role": "reference",
+    "lines": 88,
+    "characters": 2435,
+    "sha256": "1c6f525deb2624788e26e1cc351cfcd9942b8e9510e2a01c327221ede0a8841a"
+  },
+  {
+    "path": "write/507-video/references/remotion-production.md",
+    "role": "reference",
+    "lines": 122,
+    "characters": 2960,
+    "sha256": "380a1b96545f96c646c540d0ff5611dff20be00343d61688791bf0bedb391d04"
+  },
+  {
+    "path": "write/507-video/scripts/README.md",
+    "role": "documentation",
+    "lines": 9,
+    "characters": 248,
+    "sha256": "f075b746a5b82a9f9f402e418b1ccd099c213104392383eb43a8c125b7f7b281"
+  },
+  {
+    "path": "write/README.md",
+    "role": "documentation",
+    "lines": 162,
+    "characters": 7231,
+    "sha256": "a4dc736f734006d2415a326e7a8653d2f89b77a637911ae41e9f843c3f70f5db"
+  },
+  {
+    "path": "write/507-breakdown/scripts/video_understand_minimax.py",
+    "role": "request-builder",
+    "lines": 209,
+    "characters": 9922,
+    "sha256": "c050baaedbba82a8f5fe80af52668dd4ab8ed06cad54b7cb430a51ef3b9411ab"
+  },
+  {
+    "path": "write/507-breakdown/scripts/video_describe_key_frames.py",
+    "role": "request-builder",
+    "lines": 98,
+    "characters": 7197,
+    "sha256": "105db4ccad1322ba23c39d9a74e63c4f0aca6573b5320de539bc10aaf37d2328"
+  }
+]

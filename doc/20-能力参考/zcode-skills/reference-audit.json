@@ -1,0 +1,102 @@
+{
+  "revision": "29628c9acdb81b703bbd4080c207a0e7ce5e276e",
+  "method": "Static path audit against complete pinned Git tree; no source semantics or runtime behavior inferred.",
+  "markdown_links": [
+    {
+      "source": ".agents/skills/feature-boundary-planner/SKILL.md",
+      "target": "references/zcode-feature-graph.yaml",
+      "resolved_upstream_path": ".agents/skills/feature-boundary-planner/references/zcode-feature-graph.yaml",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/feature-boundary-planner/SKILL.md",
+      "target": "references/source-discovery.md",
+      "resolved_upstream_path": ".agents/skills/feature-boundary-planner/references/source-discovery.md",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/feature-boundary-planner/SKILL.md",
+      "target": "../../../docs/skills/feature-boundary-graph.md",
+      "resolved_upstream_path": "docs/skills/feature-boundary-graph.md",
+      "exists_in_revision": false,
+      "archived_locally": false
+    },
+    {
+      "source": ".agents/skills/feature-boundary-planner/SKILL.md",
+      "target": "references/case-planning-template.md",
+      "resolved_upstream_path": ".agents/skills/feature-boundary-planner/references/case-planning-template.md",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/feature-boundary-planner/SKILL.md",
+      "target": "references/impact-brief-template.md",
+      "resolved_upstream_path": ".agents/skills/feature-boundary-planner/references/impact-brief-template.md",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/architecture-governance/SKILL.md",
+      "target": "references/policy-schema.md",
+      "resolved_upstream_path": ".agents/skills/architecture-governance/references/policy-schema.md",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/architecture-governance/SKILL.md",
+      "target": "references/module-contract.md",
+      "resolved_upstream_path": ".agents/skills/architecture-governance/references/module-contract.md",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/architecture-governance/SKILL.md",
+      "target": "references/rule-catalog.md",
+      "resolved_upstream_path": ".agents/skills/architecture-governance/references/rule-catalog.md",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/architecture-governance/SKILL.md",
+      "target": "references/golden-module",
+      "resolved_upstream_path": ".agents/skills/architecture-governance/references/golden-module",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/architecture-governance/SKILL.md",
+      "target": "references/ai-guidance.md",
+      "resolved_upstream_path": ".agents/skills/architecture-governance/references/ai-guidance.md",
+      "exists_in_revision": true,
+      "archived_locally": true
+    },
+    {
+      "source": ".agents/skills/feature-boundary-planner/references/source-discovery.md",
+      "target": "zcode-feature-graph.yaml",
+      "resolved_upstream_path": ".agents/skills/feature-boundary-planner/references/zcode-feature-graph.yaml",
+      "exists_in_revision": true,
+      "archived_locally": true
+    }
+  ],
+  "graph_source_paths": {
+    "unique_count": 39,
+    "missing_from_revision": [],
+    "scope": "file paths only; symbol existence and behavior not checked"
+  },
+  "additional_context": {
+    "architecture_modules": 15,
+    "managed_modules": [
+      "storage"
+    ],
+    "managed_only": true,
+    "inspected_runtime_dependency_names": [
+      "typescript",
+      "yaml"
+    ],
+    "runtime_dependencies_included": false,
+    "graph_file_paths_present": 39,
+    "graph_symbols_or_behavior_verified": false
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "date": "2026-10-03",
+  "status": "pre_commit_verification_snapshot",
+  "snapshot_scope": "Recorded after local contract verification and before thematic commits. File hashes describe that snapshot, not subsequent changelog, documentation, or release updates. Current delivery state is recorded by Git history, tags, and Releases.",
+  "base_head": "19d00d6368dac418b6ef65bad9ff4d3123c6535c",
+  "decisions": {
+    "scope": "ZCode integration and all seven audit findings",
+    "governance": "methods and existing project checks only",
+    "titles": "page purpose; visual stage preserves agreed semantics",
+    "video": "Remotion preferred; existing other engines use equivalent versioned review"
+  },
+  "core_files_changed": 26,
+  "skill_files_changed": 13,
+  "new_method_references": 3,
+  "active_skill_count": 32,
+  "frozen_upstream_files_verified": 26,
+  "markdown_files_checked": 31,
+  "local_links_checked": 119,
+  "untouched_baseline_files_verified": 24,
+  "existing_video_contract_tests": {
+    "baseline": 5,
+    "isolated_candidate": 5,
+    "applied": 5,
+    "meaning": "Existing static contract tests; not media rendering or cross-engine runtime acceptance."
+  },
+  "review": {
+    "method": "507-review in a separate read-only phase by the same executing agent",
+    "result": "No blocking findings within the checked contract scope after repairs",
+    "independent_second_model": false
+  },
+  "diff_check": "passed",
+  "linked_local_skill_entries_verified": [
+    "507-fix",
+    "507-inspect",
+    "507-prd",
+    "507-release",
+    "507-review",
+    "507-setup",
+    "507-simplify",
+    "507-explore",
+    "507-grill",
+    "507-frame",
+    "507-ppt",
+    "507-stage",
+    "507-video"
+  ],
+  "host_hot_reload_verified": false,
+  "behavior_model_replay_run": false,
+  "business_e2e_run": false,
+  "upstream_scripts_executed": false,
+  "global_configuration_written": false,
+  "committed_at_snapshot": false,
+  "pushed_at_snapshot": false,
+  "changes": [
+    {
+      "path": "CHANGELOG.md",
+      "before_sha256": "f927b785de15351a4e2966851b012c043f54d32043766e120b80b22e3fda563c",
+      "after_sha256": "a85d586bdf96763cf91a47a09f5130956edd69ddca9ebdc6ab1e17768f02ff28"
+    },
+    {
+      "path": "README.md",
+      "before_sha256": "c7ecc4a3eafd6cc37fe9dbc9b42846030fcb72e95f386289d21e5c51b8c465c2",
+      "after_sha256": "b971bef34504aa7845630942f6e5c4a8468b617880f09ba7a35bf1e5f71f2014"
+    },
+    {
+      "path": "code/507-fix/SKILL.md",
+      "before_sha256": "2b5b5e24d3acbb06e6f10399aaa4930dc82bdf50c05f5d35e1e9a4421492521f",
+      "after_sha256": "5ae109393d1ef95dd678c08a97b72e3fa85baabeb99815e0bb01643af41ae97c"
+    },
+    {
+      "path": "code/507-inspect/SKILL.md",
+      "before_sha256": "8d22b4cba1159057c38f5545431012490a5924333a5ae84d74449b9fe3a5cc7e",
+      "after_sha256": "911626768a0c493be368683c74f3b91ab3a0a677083c548da04c39799adca48d"
+    },
+    {
+      "path": "code/507-prd/SKILL.md",
+      "before_sha256": "19ad21ca7d72adbe85747bf16a6a2c14acef67c08862fd448d7444fb96ae9f5e",
+      "after_sha256": "40b4bdc4d9791edd704527569552bb71726e62685a0c1c71bb0b80becac37561"
+    },
+    {
+      "path": "code/507-prd/references/behavior-acceptance.md",
+      "before_sha256": null,
+      "after_sha256": "72d151612961a370fde4c3d19966bf1e41e3dbcbe85968ca710d563943c00478"
+    },
+    {
+      "path": "code/507-release/SKILL.md",
+      "before_sha256": "f44e3e42c2f775e4dc861d45d817605145b1fcde2ebf012269537b0d244ebe10",
+      "after_sha256": "f935634e1294cfc0d490912ef3eb6512dd50ed4e4f74d7779e52e70fb83b3673"
+    },
+    {
+      "path": "code/507-review/SKILL.md",
+      "before_sha256": "c4472a39d7b35ba6e02b73e72fca3f4109df3a608c158469be238a944f266e48",
+      "after_sha256": "24f48843daf9fa28e7a1ba3901e8c0f864d996c8d796806f6f8efbd4fa55cd1c"
+    },
+    {
+      "path": "code/507-setup/SKILL.md",
+      "before_sha256": "edbe8601e352464a8529cf75bc9165206b08f28ca1f1e251e150177076c6ba5b",
+      "after_sha256": "009d2552ff38ec96b1c3879511aedba4818e4bac3532f14856287459f5b648c9"
+    },
+    {
+      "path": "code/507-setup/references/project-standard.md",
+      "before_sha256": "e58a956a4b22d0f805b7eecf7e554cb6377c88f2eeb18e3935f9225b1582860e",
+      "after_sha256": "aee01abd4b55d1a41259954731626d69dd9beb86fb7dc23350b6ea17e5268746"
+    },
+    {
+      "path": "code/507-simplify/SKILL.md",
+      "before_sha256": "3eb94cfa03cefcd08462c4295249b5820ff042e96a71ce054d16c1cab785bb9f",
+      "after_sha256": "acb3a800ebec834e2544737dca45c99bf5f548fa9aed05e001e0bba9c631e79c"
+    },
+    {
+      "path": "code/README.md",
+      "before_sha256": "cc328bd93fdf89f14c1ff3e52268527110ccb01da77f79df0966daa9ddee756c",
+      "after_sha256": "b69b01cd2c2dd2095e571534accbf0c9b486458c4e54b168f4750e3165e7caae"
+    },
+    {
+      "path": "common/507-explore/SKILL.md",
+      "before_sha256": "1d50b492d241e0b2fbdd5bddf7e0363d227aed817031ac0c66b7f2e820830734",
+      "after_sha256": "d7d791c4ae3b0a4f5ad4d51e32d9c5e0c439392d8fff24f614d4d20245f149be"
+    },
+    {
+      "path": "common/507-explore/references/code-impact.md",
+      "before_sha256": null,
+      "after_sha256": "6b0063545baa5f73dc6145d910dd1f964ec839ddfd94fc1a4c57ae0b4456c820"
+    },
+    {
+      "path": "common/507-grill/SKILL.md",
+      "before_sha256": "dbe7cc5f6d133971abf0b0c32369d701d3ca9aef942176dde3bb362abe5f8cd9",
+      "after_sha256": "f62d926d4ba85a6161502374a900514c3bee49502b78d5b75f4004048145c890"
+    },
+    {
+      "path": "common/507-grill/references/code-change-design.md",
+      "before_sha256": null,
+      "after_sha256": "fbf4a98a0a5933013477cc6885f1cb059106dcf8eca36fad0a50c5ae94945d5a"
+    },
+    {
+      "path": "common/README.md",
+      "before_sha256": "3ebbd60bec74b283f2e589cd01d1f5324779d0d50a338c3c381a134bf0e1f136",
+      "after_sha256": "477ac6bd278929c9a84b2304fbbb051b35c37555f0955da765e49a6b0956e048"
+    },
+    {
+      "path": "write/507-frame/SKILL.md",
+      "before_sha256": "2c1164f96ff419f357c35597dd5f717287809bcc18e690c78c290b78b167af82",
+      "after_sha256": "6c6f6ab30322a57340d682b4911691aa7eafeb5fd1e2df25e2737c63f953677e"
+    },
+    {
+      "path": "write/507-ppt/SKILL.md",
+      "before_sha256": "0d2212f025b6bb0e412d3305bc6eb6d1b0bb6d601ba169c00d06509a304aaac9",
+      "after_sha256": "efe417cd11ffcb87fd679b756074f4ab5e8f81eee1c198887c085847e3f8b8bd"
+    },
+    {
+      "path": "write/507-ppt/references/workflow-contract.md",
+      "before_sha256": "8703edae64c456b8ee5853d7a95f47f960caa6e833f6f8a666a16dfbfe4c942f",
+      "after_sha256": "755347cd006cd021434ac9de6b536f073651d514db3dd0b392ee246acd5d735a"
+    },
+    {
+      "path": "write/507-stage/SKILL.md",
+      "before_sha256": "8f02a8ce90cfe3404b783092fda0852001e9454177e3747a1eb22fac210d5cd4",
+      "after_sha256": "95d45e1f6ea42c85a9069c29201c0723ad95909b30cc8fe6e61298278bfe5d10"
+    },
+    {
+      "path": "write/507-stage/references/spoken-revision.md",
+      "before_sha256": "48f7a213bdbb7eff83c70728b3f33b3b6a5d6fe36e374c4a2b370a7a6d1ede58",
+      "after_sha256": "8c5464b42b78f2e5e049168ca24a8a92dc96a9eee9c02fde7596082a3f6d5794"
+    },
+    {
+      "path": "write/507-video/SKILL.md",
+      "before_sha256": "b3771a920fba486c414fb373f188d737198e1c4c41c65960ee6417cc6fa27f2b",
+      "after_sha256": "7cf47b8e03bf39f6d6f719fb1e46d7256c36a9a10b78a7f9453f43ca968e14fa"
+    },
+    {
+      "path": "write/507-video/references/product-promo-profile.md",
+      "before_sha256": "50f23681a2800e87aae3d9fed84ac771e34e5c4901bd40142c55f73d1c7d92f3",
+      "after_sha256": "fb37ed4dea075ff2e4328fa52d3fe7ad5515d927f4ca122598e565ac3d72fd7d"
+    },
+    {
+      "path": "write/507-video/references/production-contract.md",
+      "before_sha256": "1c6f525deb2624788e26e1cc351cfcd9942b8e9510e2a01c327221ede0a8841a",
+      "after_sha256": "9eef61942566431a714b8fdcde289fe05729390ff2ff31e21fbda1367c1e430c"
+    },
+    {
+      "path": "write/README.md",
+      "before_sha256": "a4dc736f734006d2415a326e7a8653d2f89b77a637911ae41e9f843c3f70f5db",
+      "after_sha256": "eed7221be067ff37798e4c05cbb8b50f2df35fc57b58bac11548a1dad673fdfd"
+    },
+    {
+      "path": "doc/20-能力参考/README.md",
+      "before_sha256": "c365da5beb26c12098e608688446c7463c71c95896f979bc0b19c52e3658f1af",
+      "after_sha256": "027393a3a16f1915869dc4a58dc95b6fc5f2eb37f59e4479941a66b7dbf30286"
+    },
+    {
+      "path": "doc/20-能力参考/zcode-skills/README.md",
+      "before_sha256": "2615cde5c99f008e5ad69fb23f953fb3808d40726942d0e5d5e1331622f2a082",
+      "after_sha256": "5f8d582f5f9dba1ddeb4e99f7e31b09c61c52b84f18bc44e9927132767a8ddb9"
+    },
+    {
+      "path": "doc/20-能力参考/prompt-audit/2026-10-03/README.md",
+      "before_sha256": "bc7acfc6c66a415e66956feba997d53f0270d65c54d188008c086921bf86e419",
+      "after_sha256": "0e08ec784b6e7bd0113d92e4d5012efaa280b73c0f88631ba9e4d824f06414f6"
+    },
+    {
+      "path": "doc/README.md",
+      "before_sha256": "70f41f3ecd5b7babeba898e12954633f4c27f8bd71235750e9605f8d873a7fa0",
+      "after_sha256": "fc3ff56191c728f433f759c639041bbd875018ca493e8438a86a99c1cb257416"
+    },
+    {
+      "path": "doc/20-能力参考/zcode-skills/融合与验证.md",
+      "before_sha256": null,
+      "after_sha256": "2fc76b5cfafbb83b41e1086290068eb1d8c52ca34bc8c6cf2d105cd2d4ce24b9"
+    }
+  ]
+}

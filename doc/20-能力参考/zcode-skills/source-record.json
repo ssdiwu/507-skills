@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/zai-org/ZCode",
+  "revision": "29628c9acdb81b703bbd4080c207a0e7ce5e276e",
+  "revision_tree_sha1": "e7458be062f467b465abc91509adb0558e023605",
+  "revision_committed_at": "2026-09-24T14:49:06+08:00",
+  "retrieved_on": "2026-10-03",
+  "retrieval_timezone": "Asia/Shanghai",
+  "purpose": "Frozen upstream research sources; not enabled skills or executable project policy.",
+  "upstream_instruction_status": "Reference data only; not host instructions.",
+  "content_modified": false,
+  "license": {
+    "repository_spdx": "Apache-2.0",
+    "copyright": "Copyright 2026 Z.AI Co., Ltd",
+    "files": [
+      "upstream-29628c9acdb81/LICENSE",
+      "upstream-29628c9acdb81/NOTICE.md",
+      "upstream-29628c9acdb81/THIRD-PARTY-NOTICES.md"
+    ],
+    "scope_note": "Upstream skill directories contain no separate license files. Repository notices are preserved without claiming all listed third-party software is included."
+  },
+  "scope": [
+    {
+      "upstream_path": ".agents/skills/architecture-governance",
+      "file_count": 12,
+      "complete_directory": true
+    },
+    {
+      "upstream_path": ".agents/skills/feature-boundary-planner",
+      "file_count": 6,
+      "complete_directory": true
+    },
+    {
+      "upstream_path": "scripts/architecture",
+      "file_count": 4,
+      "complete_directory": true
+    }
+  ],
+  "additional_root_files": [
+    "architecture-policy.yaml",
+    "LICENSE",
+    "NOTICE.md",
+    "THIRD-PARTY-NOTICES.md"
+  ],
+  "file_count": 26,
+  "total_bytes": 2097211,
+  "verification": {
+    "method": "File set and Git blob SHA-1 compared to complete Git tree at pinned revision; each archived file independently SHA-256 hashed.",
+    "complete_upstream_tree_file_count": 7060,
+    "upstream_scripts_executed": false,
+    "runtime_tests_executed": false,
+    "global_skills_enabled": false
+  },
+  "files": [
+    {
+      "upstream_path": ".agents/skills/architecture-governance/SKILL.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/SKILL.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "6e14f668d5977a4807906f8e2926bcaca486d355",
+      "sha256": "49a12dd508923282da77118d06c4f273e7af769d36f52df168c6e2c759010252",
+      "bytes": 5017,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/SKILL.md"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/agents/openai.yaml",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/agents/openai.yaml",
+      "git_mode": "100644",
+      "git_blob_sha1": "b81ba6db364938bb897ce665d947e8d11411991e",
+      "sha256": "c167c48277bcc29c71b216b53053619684960032509bc9b783a2d89263f13cf6",
+      "bytes": 321,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/agents/openai.yaml"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/ai-guidance.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/ai-guidance.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "9cb1ea7286d9582069f8507d0ac2ddfc95ee0ff6",
+      "sha256": "6ad4766ccfb8826a81229c25c67ca6e22be441c43277a62e87cefa992adb9f90",
+      "bytes": 2631,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/ai-guidance.md"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/golden-module/CONTRACT.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/golden-module/CONTRACT.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "ec61ab5fa1e00e8e526587a9dda55a4285e33239",
+      "sha256": "fbd0fe90a8ae2d7d95640bb27ce7655a2a10f67e833dacad98ea571bc5862326",
+      "bytes": 164,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/golden-module/CONTRACT.md"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/golden-module/contract.example.ts",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/golden-module/contract.example.ts",
+      "git_mode": "100644",
+      "git_blob_sha1": "ba43d0d7120c8e0ffcd860655ae3802e9cff1fc9",
+      "sha256": "867e351ba874b6f702da358736d342ccc7accf273dd6ce03504219d902ef7c12",
+      "bytes": 141,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/golden-module/contract.example.ts"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/golden-module/contract.ts",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/golden-module/contract.ts",
+      "git_mode": "100644",
+      "git_blob_sha1": "0cb77774740ba18d47f6d57d84b6075b7e608f99",
+      "sha256": "3e4e1a3957dd840db329d301819e1feb790f9ea7b8266f1c42944aaf87b51e3e",
+      "bytes": 57,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/golden-module/contract.ts"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/golden-module/module.ts",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/golden-module/module.ts",
+      "git_mode": "100644",
+      "git_blob_sha1": "594faa5741b9d0f599438bc833cf60ee5757422b",
+      "sha256": "3ccf4a27630b78429ca446475c510d11f84f61921eec1f25381b9c8e86452c49",
+      "bytes": 141,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/golden-module/module.ts"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/module-contract.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/module-contract.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "da3388299900ecfadadcc7f08cbdea2a34a58176",
+      "sha256": "0438bec547ee62f839e207309c960d1ac78bc8d52f09ae2a2a3616014248e5f5",
+      "bytes": 471,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/module-contract.md"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/policy-schema.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/policy-schema.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "12266525c12850345d6ead8a273d8db878e559e7",
+      "sha256": "adc57fc2ec0105b9951d32c5752aaa51125b0fb395991131b1ab5eec66f1f914",
+      "bytes": 847,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/policy-schema.md"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/rule-catalog.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/rule-catalog.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "9270148738db953db9c63abfb05dc42f663c648d",
+      "sha256": "6f8dfbe161a661bf1a01a4735f3028f696f664e5b86223e113dfdbb2f2105b33",
+      "bytes": 2955,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/rule-catalog.md"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/references/troubleshooting.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/references/troubleshooting.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "0ee2143fdd451864e6bbd945b15669be653442ce",
+      "sha256": "50f839f5992b346cb878f44c30040bb2133e1771c0a238c590162bbf771b04db",
+      "bytes": 1080,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/references/troubleshooting.md"
+    },
+    {
+      "upstream_path": ".agents/skills/architecture-governance/scripts/context-package.mjs",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/architecture-governance/scripts/context-package.mjs",
+      "git_mode": "100644",
+      "git_blob_sha1": "4b4e94bcc5bdb71168e5fbe54aa5a8404f52c221",
+      "sha256": "aeb51f0699a026676cd1d1a221f6ce75cb6d4835540a81895ab03344db967e05",
+      "bytes": 718,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/architecture-governance/scripts/context-package.mjs"
+    },
+    {
+      "upstream_path": ".agents/skills/feature-boundary-planner/SKILL.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/feature-boundary-planner/SKILL.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "edbb594a560cd2d5ab37c217ef8686c3a6a08a7e",
+      "sha256": "73953d8d15591715406dfef390aa71db3c970060e637740e7f755838b9ace127",
+      "bytes": 5789,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/feature-boundary-planner/SKILL.md"
+    },
+    {
+      "upstream_path": ".agents/skills/feature-boundary-planner/agents/openai.yaml",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/feature-boundary-planner/agents/openai.yaml",
+      "git_mode": "100644",
+      "git_blob_sha1": "b79d31501670d04c7877373485a1bd9afa8b90b1",
+      "sha256": "b24406ab0e9f6fac285b03eb6974acf907435c4871eed2edcf54a27d819a8d28",
+      "bytes": 280,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/feature-boundary-planner/agents/openai.yaml"
+    },
+    {
+      "upstream_path": ".agents/skills/feature-boundary-planner/references/case-planning-template.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/feature-boundary-planner/references/case-planning-template.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "31f98f94f92ef87622b384d2c6535a60078e87d0",
+      "sha256": "fa380c98ed791575975bece0070584d05947755ec826a56f53cf927b098d8e04",
+      "bytes": 3542,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/feature-boundary-planner/references/case-planning-template.md"
+    },
+    {
+      "upstream_path": ".agents/skills/feature-boundary-planner/references/impact-brief-template.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/feature-boundary-planner/references/impact-brief-template.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "c7a3deb146c9fbc73b75d2bd35a767a7f0cdc76b",
+      "sha256": "22bd9b6ff834f5115e5ecb653bad061a206206efc492e85c6ca589ff656a6724",
+      "bytes": 5309,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/feature-boundary-planner/references/impact-brief-template.md"
+    },
+    {
+      "upstream_path": ".agents/skills/feature-boundary-planner/references/source-discovery.md",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/feature-boundary-planner/references/source-discovery.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "8e66cec639e098dfbce213ca7a659c21481b8aa4",
+      "sha256": "c1985738bd3cf27a15de3a546dc8683388fb4f00871c3d3e9adddad317ea68f7",
+      "bytes": 3653,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/feature-boundary-planner/references/source-discovery.md"
+    },
+    {
+      "upstream_path": ".agents/skills/feature-boundary-planner/references/zcode-feature-graph.yaml",
+      "local_path": "upstream-29628c9acdb81/.agents/skills/feature-boundary-planner/references/zcode-feature-graph.yaml",
+      "git_mode": "100644",
+      "git_blob_sha1": "bddcb32f05a771862fa2f32c0f9d3a1d11e3b90c",
+      "sha256": "d6579dfcc55d77f8dc13dfcc02f46f1d9851d0e25f6e79e3372ae4390c3ac7aa",
+      "bytes": 21999,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/.agents/skills/feature-boundary-planner/references/zcode-feature-graph.yaml"
+    },
+    {
+      "upstream_path": "LICENSE",
+      "local_path": "upstream-29628c9acdb81/LICENSE",
+      "git_mode": "100644",
+      "git_blob_sha1": "550d8df4cfc74878663a511caa97852f15fd9592",
+      "sha256": "606c36baf38b973227273df12a74930e4b4137280eea835c5cd623aa4553c13b",
+      "bytes": 11344,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/LICENSE"
+    },
+    {
+      "upstream_path": "NOTICE.md",
+      "local_path": "upstream-29628c9acdb81/NOTICE.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "03eb41e08227d51dfcc5f2020406cb9165599aea",
+      "sha256": "cca8e323ad7f3b12167b58fba7d14faf18a2cdc4fa890818058872f6215912bf",
+      "bytes": 27721,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/NOTICE.md"
+    },
+    {
+      "upstream_path": "THIRD-PARTY-NOTICES.md",
+      "local_path": "upstream-29628c9acdb81/THIRD-PARTY-NOTICES.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "64b78e5af1251f7c1519e857f57be7d53143c8d6",
+      "sha256": "874bf7c10bdcadd0df0b50fc782f39f077669c6e41bbdbccd868409cd714dec3",
+      "bytes": 1978939,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/THIRD-PARTY-NOTICES.md"
+    },
+    {
+      "upstream_path": "architecture-policy.yaml",
+      "local_path": "upstream-29628c9acdb81/architecture-policy.yaml",
+      "git_mode": "100644",
+      "git_blob_sha1": "76e26bf751be0f0bb26f225741673b52c0c88492",
+      "sha256": "08cede6dd7c77677b8ca61ef6ad5baa6df35a2d72d2953494f4f1c49715b5216",
+      "bytes": 1681,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/architecture-policy.yaml"
+    },
+    {
+      "upstream_path": "scripts/architecture/architecture-check.mjs",
+      "local_path": "upstream-29628c9acdb81/scripts/architecture/architecture-check.mjs",
+      "git_mode": "100644",
+      "git_blob_sha1": "4b966f7a4f7ebc330e81f15bcc1a97e263baa0e5",
+      "sha256": "90608725a81ad774a4eb760824ab987be906a107e1227416885976f645c45bb8",
+      "bytes": 1143,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/scripts/architecture/architecture-check.mjs"
+    },
+    {
+      "upstream_path": "scripts/architecture/git-file-names.mjs",
+      "local_path": "upstream-29628c9acdb81/scripts/architecture/git-file-names.mjs",
+      "git_mode": "100644",
+      "git_blob_sha1": "468d526f91abbf12ac41a16374c11105f3e3b328",
+      "sha256": "16e6f279aaa41899d00ae4e8db4b729dc06b8a45126bd1a4bf03e94b4e178ea0",
+      "bytes": 1079,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/scripts/architecture/git-file-names.mjs"
+    },
+    {
+      "upstream_path": "scripts/architecture/index.mjs",
+      "local_path": "upstream-29628c9acdb81/scripts/architecture/index.mjs",
+      "git_mode": "100644",
+      "git_blob_sha1": "13d024436fbcf6b0639eca9f53896693630c5272",
+      "sha256": "5f1c7264f58c91ecca2a6439a144d7c5b5348cc9af5bcc9e342f0a1e13f18290",
+      "bytes": 13594,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/scripts/architecture/index.mjs"
+    },
+    {
+      "upstream_path": "scripts/architecture/policy.mjs",
+      "local_path": "upstream-29628c9acdb81/scripts/architecture/policy.mjs",
+      "git_mode": "100644",
+      "git_blob_sha1": "14e6f7982743832ca1a30193b062d82fff54e9c7",
+      "sha256": "1fa782d5001f885b435c421d3577df7cb45f37d66795b37f195c66c95837f944",
+      "bytes": 6595,
+      "source_url": "https://raw.githubusercontent.com/zai-org/ZCode/29628c9acdb81b703bbd4080c207a0e7ce5e276e/scripts/architecture/policy.mjs"
+    }
+  ]
+}
