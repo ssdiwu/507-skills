@@ -1,12 +1,12 @@
 ---
 name: 507-breakdown
-description: "视频拉片 skill：将一个参考视频经 MiniMax-M3 整段理解、本地文本定位、受限视觉搜索、自适应抽帧与图片证据回写核验，产出可供 remix 消费的 video_* 拉片包。Use when user mentions 拉片, 拆视频, 视频拆解, 分析视频, 逐帧分析, 分镜, 视频取证, 怎么剪, 视频结构分析, breakdown, video breakdown, transcript extraction. 只需要普通视频总结，或只想把自己的录像作为成片素材时，不走本 skill。"
+description: "视频拉片 skill：将一个参考视频经 MiniMax-M3 整段理解、本地文本定位、受限视觉搜索、自适应抽帧与图片证据回写核验，产出可供 remix 读取和核验的 video_* 拉片包。Use when user mentions 拉片, 拆视频, 视频拆解, 分析视频, 逐帧分析, 分镜, 视频取证, 怎么剪, 视频结构分析, breakdown, video breakdown, transcript extraction. 只需要普通视频总结，或只想把自己的录像作为成片素材时，不走本 skill。"
 compatibility: "Requires Python 3.10+, ffmpeg/ffprobe, faster-whisper, and MiniMax_API_KEY; yt-dlp for URLs and Tesseract for optional OCR."
 ---
 
 # 视频拉片（breakdown）
 
-把一个视频编译成可核验、可复用的拉片包。它不是快速总结：MiniMax-M3 先理解整段视频，本地证据再确认关键时间与画面。
+Agent 调用脚本取得视频、转写和画面证据，再填写并校验拉片包。MiniMax-M3 先给出整段语义参考，本地证据用于确认关键时间与画面；这项工作不等同于快速总结。
 
 这个 skill 面向**参考视频取证**。用户自己的录像、截图或配音只需要进入成片时，由 `507-video` 直接做素材核验和制作；不要为了登记素材先跑完整拉片。
 
@@ -30,11 +30,13 @@ analysis/video_analysis_brief.md
 
 ## 流程
 
-1. 取得视频与本地 ASR、scene-cut、OCR 证据。
+开始前先按 `README.md` 和 `scripts/README.md` 检查 Python、媒体工具和输入类型所需依赖。MiniMax-M3 与图片理解都需要进程环境中的 `MiniMax_API_KEY`；显式降级也不能省略图片理解的密钥。
+
+1. Agent 调用脚本取得视频及本地 ASR、scene-cut、OCR 证据。
 2. 默认调用 MiniMax-M3 整段理解；从环境变量 `MiniMax_API_KEY` 读取密钥，不读取 `.zshrc`。
 3. 用 ASR/OCR 命中定位语义锚点；每 10 秒 locator、PTS 帧和 scene-cut 仅提供受限视觉搜索点，须由图片锚点命中回写定位。
-4. 对候选窗口有界加密抽帧（默认 2fps），并对关键帧做图片理解；接受带 Markdown（标记语言）围栏的 JSON（数据格式）响应，严格校验回显锚点、肯定可见性与非空证据，但不要求证据逐字复述锚点。
-5. 汇总分析简报；agent 基于本地证据填写最终 `video_breakdown.*`。
+4. 在候选窗口内增加抽帧密度（默认 2fps），再对关键帧做图片理解。脚本接受带 Markdown（标记语言）围栏的 JSON（数据格式）响应，但必须校验回显锚点、对目标可见性的明确确认与非空证据；证据不必逐字复述锚点。
+5. 脚本汇总分析简报，Agent 再根据本地证据填写最终 `video_breakdown.*`。
 6. `video_validate_breakdown.py --workspace ...` 通过后才标记 `video_completed`。
 
 ## 时间红线

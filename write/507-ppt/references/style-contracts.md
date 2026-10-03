@@ -28,7 +28,7 @@
 - `panel-led`：容器服务分组，不让卡片数量等同组件语义。
 - `data-led`：数字关系、尺度、单位和来源可查；chart/table 使用原生可编辑对象。
 - `schematic-led`：节点、边、顺序或层级可读，装饰线不能伪造关系。
-- `photo-led / ui-product-led`：真实授权素材承担证据，图像不是占位装饰。
+- `photo-led / ui-product-led`：真实且已授权的素材用于支持页面主张，图像不是占位装饰。
 - `editorial-print-led`：通过栏、规则线、caption 和节奏成立；PPTX 适配不烘焙不可编辑纹理。
 - `hand-drawn-explainer`：手绘只改变表达语气，不改变关系事实；PPTX 适配必须明示。
 
@@ -40,4 +40,4 @@
 
 ## 载体映射
 
-HTML 与 PPTX 不要求像素相同，但组件、语言、呈现主张与阅读顺序要一致。载体适配必须保留可编辑文本/shape/chart/table/picture；任何简化进入 manifest degradation，不能用“风格相近”掩盖能力缺失。
+HTML 与 PPTX 不要求像素相同，但组件、语言、呈现主张与阅读顺序要一致。载体适配必须保留可编辑文本/shape/chart/table/picture；任何简化都记录到 manifest degradation，让验收者能核对具体差异；不能用“风格相近”掩盖能力缺失。

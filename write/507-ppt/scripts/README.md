@@ -8,7 +8,7 @@
 - `visual_plan.py`：visual-plan v1 的建立、校验、解析与代表页选择；组件兼容、载体支持和降级均从注册表计算。
 - `text_layout.py`：HTML/PPTX 共用的 phrase-aware（短语感知）换行校验与输出。
 - `generate_prototypes.py` / `finalize_prototype.py`：先生成 2～3 个 candidate，再把用户选择、候选 artifact/plan、联系表和 SHA-256 固化为 approved prototype manifest。
-- `generate_html.py`：只生成静态通过的 content v3 候选；`promote_html.py` 校验 `html-browser` 报告后原子晋升候选与 evidence。
+- `generate_html.py`：只生成静态通过的 content v3 候选；`promote_html.py` 校验 `html-browser` 报告后原子替换成品与 evidence。
 - `browser_tools.py` / `html_browser_evidence.py`：发现 PATH 或 macOS 应用目录中的 Chrome，经 CDP 实测当前 v3 的交互、视口、无 JavaScript、故障退化、table suppression、短语行数与逐页 PNG，并写带工具版本的 browser report。
 - `generate_pptx.py`：用同一 content/plan 生成、完整验证并原子替换 PPTX；`--prototype-candidate` 只用于代表页。
 - `pptx_svg.py`：图片按原比例完整放入布局槽；关闭 PPTX 候选后，用 Chrome/Chromium 与 `websockets` 把内嵌 SVG 真实渲染为 PNG 备用图，保留 SVG 主图。拒绝外部依赖、共享图片冲突、占位/透明/损坏或比例错误的备用图；CLI 只读检查，失败返回非零状态。
@@ -20,6 +20,13 @@
 - `check_style_content.py`：输出当前组合与输入内容的可读映射报告，不把 preset 当底层样式分类。
 
 ## 最小工作流
+
+以下命令从 `507-ppt/scripts/` 目录运行。先确认所请求载体的依赖、字体与工具可用；目标包含 PPTX 时必须具备 officecli，SVG 备用图与浏览器证据还需要对应浏览器能力。不要用候选文件存在代替原型确认或验证通过。
+
+visual-plan 的 `prototype.status` 必须是 `approved`，或在用户点名已验证 preset / 明确快速生成时写成带理由的 `skipped`；不允许用缺省状态绕过原型门。
+content v3 缺少 `--plan` 或显式 `--preset` 时失败；无参数 Swiss 只留给 legacy v1 兼容。
+候选包内部计划使用 `candidate`，只允许 `generate_prototypes.py` 的原型渲染路径读取，不能被整套生成或 manifest v2 接受。
+目标载体为 PPTX 时，可对候选计划显式使用 `generate_pptx.py --prototype-candidate` 生成代表页截图；该开关只接受 `candidate` 状态，也不能被最终 manifest 接受。
 
 ```bash
 python3 generate_prototypes.py \
@@ -56,11 +63,6 @@ python3 build_support_matrix.py \
   --plan fixtures/system-showcase.visual-plan.json \
   --output ../examples/system-showcase-support-matrix.json
 ```
-
-visual-plan 的 `prototype.status` 必须是 `approved`，或在用户点名已验证 preset / 明确快速生成时写成带理由的 `skipped`；不允许用缺省状态绕过原型门。
-content v3 缺少 `--plan` 或显式 `--preset` 时失败；无参数 Swiss 只留给 legacy v1 兼容。
-候选包内部计划使用 `candidate`，只允许 `generate_prototypes.py` 的原型渲染路径消费，不能被整套生成或 manifest v2 接受。
-目标载体为 PPTX 时，可对候选计划显式使用 `generate_pptx.py --prototype-candidate` 生成代表页截图；该开关只接受 `candidate` 状态，也不能被最终 manifest 接受。
 
 `generate_pptx.py`（演示文稿生成脚本）在最终输出的同目录候选文件中生成并关闭演示文稿，调用 `validate_pptx.py`（演示文稿验证脚本）完成结构、格式、备注、替代文本与逐页截图内容验证后才原子替换目标；生成或验证失败时已有文件保持不变。原子替换回归入口为 `python3 -m unittest test_generate_pptx.py`（演示文稿原子替换回归命令）。
 

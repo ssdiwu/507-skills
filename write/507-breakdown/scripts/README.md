@@ -7,7 +7,7 @@
 | `video_pull.py` | 公共编排入口：取得视频、ASR、scene-cut、M3、定位、抽帧、图片理解、分析简报 |
 | `video_understand_minimax.py` | MiniMax-M3 Files API + `/anthropic/v1/messages` 整段视频理解 |
 | `video_locate_segments.py` | 10 秒 1 帧定位索引和本地证据候选窗口 |
-| `video_extract_adaptive_frames.py` | 对候选窗口有界加密抽帧 |
+| `video_extract_adaptive_frames.py` | 在候选窗口内增加抽帧密度 |
 | `video_describe_key_frames.py` | 关键帧图片理解 |
 | `video_prepare_analysis.py` | 写 video_* 最终模板与分析简报 |
 | `video_validate_breakdown.py` | 校验最终包并写入 `video_completed` |
@@ -34,6 +34,8 @@ VIDEO_ASR_PYTHON=/path/to/python python3 video_pull.py run --video <url-or-path>
 `video_pull.py run`（视频拉片运行命令）在隐藏候选父目录中生成同名工作区，清单中的工作区内路径统一保存为相对路径。候选达到 `video_analysis_ready`（视频分析就绪）后才替换正式工作区；失败时正式工作区不变，错误会报告保留的候选路径。`--force`（强制覆盖参数）遇到 `video_completed`（视频完成）工作区时拒绝覆盖。
 
 ## 验证
+
+下列命令从本脚本目录运行。无需真实 API 的检查与真实调用分别执行：涉及真实 M3 或 E2E 时，先满足上方依赖和进程环境密钥条件；无 key 失败契约不要求密钥。不能用离线检查结果替代真实调用证据。
 
 ```bash
 # ASR Python 选择和依赖状态回归

@@ -1,6 +1,6 @@
 # HTML recipe
 
-HTML 是离线单文件横向演示。生成器消费 content v3 与 visual-plan v1，只生成静态通过的隔离候选；真实浏览器证据通过后，由独立晋升步骤原子替换当前成品与 evidence。
+HTML 是离线单文件横向演示。生成器读取 content v3 与 visual-plan v1，只生成静态通过的隔离候选；真实浏览器证据通过后，才由独立切换步骤原子替换当前成品与 evidence。下列命令从 `507-ppt/` 目录运行；运行前先满足 `SKILL.md` 的浏览器、字体与相关依赖条件。
 
 ```bash
 python3 scripts/generate_html.py \
@@ -29,7 +29,7 @@ python3 scripts/promote_html.py \
 ## 三轴映射
 
 - slide 保留 `data-component / data-presentation / data-language / data-treatment / data-support`；
-- 组件使用语义 DOM；视觉呈现只改变布局与表现，消费设计语言 CSS token；
+- 组件使用语义 DOM；视觉呈现只改变布局与表现，使用设计语言的 CSS token；
 - compatibility resolver 生成 suppression，例如 table 关闭背景网格；
 - adapted/unsupported 不得由 HTML 自行伪装为 native。
 

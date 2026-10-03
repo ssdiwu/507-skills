@@ -1,12 +1,12 @@
 ---
 name: 507-ppt
-description: 原创视觉幻灯片制作：把成熟逐页内容用语义组件、设计语言与视觉呈现动态组合，先以真实内容原型确认，再生成并验证可编辑 .pptx 或离线单文件 HTML。Use when user mentions 制作 PPT、生成 pptx、做成幻灯片、做 HTML deck、网页演示、slides rendering、presentation visual design、瑞士风 PPT、杂志风 PPT；内容仍需编排、讲稿或逐页稿未收口时使用 507-stage，不使用本 skill。
+description: 原创视觉幻灯片制作：把成熟逐页内容用语义组件、设计语言与视觉呈现动态组合，先以真实内容原型确认，再生成并验证可编辑 .pptx 或离线单文件 HTML。Use when user mentions 制作 PPT、生成 pptx、做成幻灯片、做 HTML deck、网页演示、slides rendering、presentation visual design、瑞士风 PPT、杂志风 PPT；内容仍需编排、讲稿或逐页内容尚未完整确认时使用 507-stage，不使用本 skill。
 license: MIT
 ---
 
 # 视觉幻灯片（507-ppt）
 
-将**成熟逐页内容包**制作为可演示、可验证的视觉成品。内容语义与视觉选择分开：内容包声明每页组件，独立 `visual-plan` 声明整套设计语言、逐页视觉呈现、受控 treatment（处理方式）与换行提示；HTML 和 `.pptx` 消费同一份计划。
+将**成熟逐页内容包**制作为可演示、可验证的视觉成品。内容语义与视觉选择分开：内容包声明每页组件，独立 `visual-plan` 声明整套设计语言、逐页视觉呈现、受控 treatment（处理方式）与换行提示；HTML 和 `.pptx` 生成器读取同一份计划。
 
 先读 [工作流合同](references/workflow-contract.md)、[三轴视觉系统](references/design-system.md)、[组合与视觉质量合同](references/style-contracts.md)、[中文排版合同](references/typography.md)和[来源合同](references/provenance.md)。
 
@@ -16,7 +16,7 @@ license: MIT
 
 ## 不覆盖什么
 
-- 不写讲稿、不决定演讲主线；内容未收口返回 `507-stage`。
+- 不写讲稿、不决定演讲主线；逐页目标、可见内容或备注尚未确认时返回 `507-stage`。
 - 不制作小红书图卡，不登录、上传或发布。
 - 不支持 legacy `.ppt`；只输出 `.pptx` 或单文件 HTML。
 - 不自动安装 officecli、浏览器、字体或第三方依赖。
@@ -27,7 +27,7 @@ license: MIT
 
 成熟逐页内容包必须具备页面认知目标、观众可见内容、notes（讲者备注）或无备注声明、受众、场景、时长和素材授权。组件属于内容语义，不能由视觉计划改写。
 
-每个 `media-evidence` 素材都必须有唯一 ID、真实本地 path、alt 与明确授权；最终产物遇到缺失路径直接失败，不能把项目占位图伪装成用户素材。PPTX 与 HTML 均真实消费 1～3 个素材。
+每个 `media-evidence` 素材都必须有唯一 ID、真实本地 path、alt 与明确授权；最终产物遇到缺失路径直接失败，不能把项目占位图伪装成用户素材。PPTX 与 HTML 均实际使用 1～3 个素材。
 
 旧 `kind` 内容可在一轮迁移期内标准化为 v3；新内容只写语义组件。`metric / chart / table` 共享 `data-evidence` 家族，但保持独立输入、渲染和验收，不能互相降级。
 
@@ -71,13 +71,13 @@ license: MIT
 
 反模式：用另一种模板掩盖模板——全套手写体"装人味"、把口号换成口语对仗，都是换皮不是去味。去 AI 味的方向是回到事实与证据，不是换风格。
 
-同步纪律：标题或文案改动先更新当前内容真相源，再同步本次已请求且实际承载这些文字的页面、备注、独立讲稿与内容清单。输出 PPTX 时核对其 notesSlides；输出 HTML 时核对其页面及实际使用的备注。已有讲稿仍承载被修改内容时同步更新，不因未请求某种载体而强制生成它，也不为无备注声明制造备注。最终按所请求载体逐页看图验收，构建通过不能代替溢出、遮挡与内容一致性检查。
+同步纪律：标题或文案改动先更新当前唯一内容包或主稿，再同步本次已请求且实际承载这些文字的页面、备注、独立讲稿与内容清单。输出 PPTX 时核对其 notesSlides；输出 HTML 时核对其页面及实际使用的备注。已有讲稿仍承载被修改内容时同步更新，不因未请求某种载体而强制生成它，也不为无备注声明制造备注。最终按所请求载体逐页看图验收，构建通过不能代替溢出、遮挡与内容一致性检查。
 
 ## 制作与验证
 
 1. 校验并标准化内容包，建立或读取独立 visual-plan；support、suppression 与 degradation 由注册表计算，不能手填为通过。
 2. 完成所需视觉原型与当前版本确认，再生成整套候选；content v3 没有 visual-plan 或显式 preset 时必须停止，不能静默默认 Swiss。
-3. HTML 先以 `--candidate-only` 生成隔离候选；`html_browser_evidence.py` 逐页用无转场 capture 模式核对当前 ID、关键文字、overflow、短语、table 背景抑制、按钮/键盘/滚轮/触控、mobile、无 JavaScript、reduced-motion、故障退化和真实 PNG 截图哈希，再由 `promote_html.py` 原子晋升候选与 evidence。仅静态检查不能替换旧成品。
+3. HTML 先以 `--candidate-only` 生成隔离候选。随后运行 `html_browser_evidence.py`，逐页用无转场 capture 模式核对当前 ID、关键文字、overflow、短语、table 背景抑制、按钮/键盘/滚轮/触控、mobile、无 JavaScript、reduced-motion、故障退化和真实 PNG 截图哈希。浏览器检查通过后，再由 `promote_html.py` 原子替换成品与 evidence；仅静态检查不能替换旧成品。
 4. PPTX 必须使用可编辑文字、shape、picture、原生 chart/table 和 notes，不用截图冒充结构化数据。
 5. 本次请求的每种载体都在隔离候选中生成；自动、视觉、来源与换行检查通过后才替换已有产物。验证失败保留上一版。chart/table 使用原生对象；多序列柱图使用独立分组轨道，不把多个数值挤进同一宽度。
 6. manifest v2 记录内容哈希、visual-plan、prototype evidence、设计语言、逐页组件/呈现/treatment、载体支持、抑制项、降级、notes/alt、来源与截图证据；builder 与 validator 都重新调用 resolver，并复读绑定 artifact/input/plan 哈希且所有 checks 为 passed 的机器报告。旧 manifest v1 只作兼容读回。
@@ -89,4 +89,4 @@ license: MIT
 - **完成信号**：内容语义未被视觉改写；当前 visual-plan 和原型选择可追溯；目标载体可打开；组合可辨识；中文换行、notes、alt、来源、自动与逐页视觉检查通过；AI 味自检通过；适配降级已明示。
 - **产物**：`.pptx` 或单文件 HTML、visual-plan、prototype 证据、manifest v2、素材/notice、验证报告与逐页截图或联系表。
 - **候选出口**：视觉迭代继续本 Skill；内容需调整返回 `507-stage`；成品可直接交付；社媒图文进入 `507-rednote`。
-- **回退条件**：内容未收口、组合未确认、素材授权不清、载体不支持、中文换行或验证未通过时，不宣称完成。
+- **回退条件**：逐页内容尚未完整确认、组合未确认、素材授权不清、载体不支持、中文换行或验证未通过时，不宣称完成。

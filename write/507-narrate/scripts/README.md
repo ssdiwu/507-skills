@@ -4,7 +4,7 @@
 
 ## 命令
 
-从 `507-narrate/` 目录运行：
+先满足 [目录说明](../README.md) 中的运行条件。生成前必须已有当前用途的声音授权和人已试听确认的声音档案；读取能力与健康状态不代表获得声音授权。以下命令从 `507-narrate/` 目录运行：
 
 ```bash
 python3 scripts/voicebox_narrate.py health
@@ -41,7 +41,7 @@ python3 scripts/voicebox_narrate.py batch \
 - 服务离线时，macOS 默认执行系统级应用打开动作并等待健康；`--no-auto-start` 可禁止。
 - `generate` 和 `batch` 必须提供 `--authorized-voice`。
 - 输出已存在时退出码为 1；只有 `--force` 才允许替换。
-- 生成任务通过 SSE 等待 terminal status（终态）；失败、取消、超时、下载错误或 WAV 无有效帧均退出 1。
+- 客户端通过 SSE 等待生成任务进入 terminal status（终态）。只有成功终态才下载音频；失败、取消、超时、下载错误或 WAV 无有效帧均退出 1。
 - Voicebox 原始 WAV 会在本地临时目录中通过 FFmpeg `atempo` 做保留音高变速；只有最终 WAV 被写入交付路径。
 - 批量任务逐段写入 partial manifest；全部成功后才把状态改为 `completed`。
 

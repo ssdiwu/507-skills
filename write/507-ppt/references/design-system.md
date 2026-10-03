@@ -58,7 +58,7 @@
 | chart |  | S | P |  |  |  | S |  |
 | table |  | S | P |  |  |  | S |  |
 
-首批只开放渲染器确实消费的组合；例如 photo/UI 目前只服务 `media-evidence`，不能把带素材的 cover 误报为 photo-led。`photo-led` 需要真实素材，`ui-product-led` 需要 `role=ui` 的素材，`data-led` 需要结构化数字。兼容矩阵由 `scripts/design_system.py` 解析，不能手写通过状态。
+首批只开放渲染器已经实现并能按输入生成的组合；例如 photo/UI 目前只服务 `media-evidence`，不能把带素材的 cover 误报为 photo-led。`photo-led` 需要真实素材，`ui-product-led` 需要 `role=ui` 的素材，`data-led` 需要结构化数字。兼容矩阵由 `scripts/design_system.py` 解析，不能手写通过状态。
 
 ## 载体支持
 
@@ -80,7 +80,7 @@ Preset 是已验证的组合便捷入口，不改变底层三轴。Agent 可按�
 ## 不变量
 
 - 页面 ID、顺序、可见内容、notes 与 alt 不随 visual-plan 改变；
-- 同一 visual-plan 同时供 HTML 与 PPTX 消费；
+- HTML 与 PPTX 生成器读取同一份 visual-plan；
 - 组合 support、suppression 和 degradation 由注册表计算；
 - 组件自身的强组织手段优先于装饰，例如 table 抑制背景网格；
 - 中文换行遵循 [排版合同](typography.md)，不能用拆词或无限缩字掩盖布局问题；

@@ -6,6 +6,8 @@
 
 ## 生成
 
+先确认上方环境探测允许生成，且已满足 `SKILL.md` 的依赖与字体条件。以下命令从 `507-ppt/` 目录运行；生成或验证失败时停止替换并保留旧产物。
+
 ```bash
 python3 scripts/generate_pptx.py \
   --input scripts/fixtures/system-showcase.json \
@@ -14,7 +16,7 @@ python3 scripts/generate_pptx.py \
   --output examples/system-showcase.pptx
 ```
 
-旧 `--style swiss` 保留一轮并映射为 preset；新生成优先 `--plan`。生成器先写候选、关闭 resident、运行完整验证，保存逐页截图 evidence 后才替换目标；失败保留旧产物并清理本轮 evidence。
+旧 `--style swiss` 保留一轮并映射为 preset；新生成优先 `--plan`。生成器先写候选并关闭 resident，再运行完整验证，保存逐页截图 evidence 后才替换目标；失败保留旧产物并清理本轮 evidence。
 
 ## 可编辑对象
 

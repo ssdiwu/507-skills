@@ -6,7 +6,7 @@
 语义组件 × 设计语言 × 视觉呈现 → 最终连续 DOM → 3:4 页面
 ```
 
-文章模式中的物理页不是语义组件；视觉呈现绑定内容块，最终页面只负责承载阅读长度。
+文章模式中的物理页不是语义组件；视觉呈现绑定内容块，最终页面只按实际可读高度切分连续内容，不选择观点或改写论证。
 
 ## 语义组件
 
@@ -38,7 +38,7 @@
 | `source-han-sans` | 思源黑体 | `SourceHanSansCN-VF.otf.woff2` | SIL OFL 1.1 | 默认连续阅读 |
 | `source-han-serif` | 思源宋体 | `SourceHanSerifCN-VF.otf.woff2` | SIL OFL 1.1 | 可选编辑阅读 |
 
-字体选择独立于 preset；同一字体、字号、行距、字符占用宽度和组件内宽成立时，切换只改变颜色/表面效果的 preset 不应因系统字体 fallback 产生额外换行。正文、引语和列表共同消费 `bodySize` 与 `lineHeight`。
+字体选择独立于 preset；同一字体、字号、行距、字符占用宽度和组件内宽成立时，切换只改变颜色/表面效果的 preset 不应因系统字体 fallback 产生额外换行。正文、引语和列表共同使用 `bodySize` 与 `lineHeight` 决定其字号和行距。
 
 `characterWidth` 取 0.94～1.08，runtime 将它换算成 -0.06em～0.08em 的 `letter-spacing`，因此真实改变字符占用的横向空间并进入 DOM 分页。它不是字形横向拉伸；当前两套字体只有 weight 轴，不伪造不存在的 width 轴。
 

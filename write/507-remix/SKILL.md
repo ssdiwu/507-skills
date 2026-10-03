@@ -1,6 +1,6 @@
 ---
 name: 507-remix
-description: "视频借鉴重组 skill。只消费一个或多个 video_completed 的 507-breakdown 拉片包，提取可借鉴的结构、叙事、镜头、字幕与节奏模式，明确不借内容和身份，再重组为原创视频创作包与工具无关的 prompt-pack.json；需要进入成片时补齐 507-video 可消费的制作交接，不读取原视频、不做取证、不直接渲染。Use when user mentions 视频借鉴重组, 借鉴视频, 仿照这个视频, 视频二创, 二创, 视频重组, 原创创作包, 借这个视频的手法, remix, video remake, recombine."
+description: "视频借鉴重组 skill。只读取并核对一个或多个 video_completed 的 507-breakdown 拉片包，提取可借鉴的结构、叙事、镜头、字幕与节奏模式，明确不借内容和身份，再重组为原创视频创作包与工具无关的 prompt-pack.json；需要进入成片时补齐 507-video 制作所需的交接信息，不读取原视频、不做取证、不直接渲染。Use when user mentions 视频借鉴重组, 借鉴视频, 仿照这个视频, 视频二创, 二创, 视频重组, 原创创作包, 借这个视频的手法, remix, video remake, recombine."
 ---
 
 # 视频借鉴重组（remix）
@@ -77,7 +77,7 @@ python3 scripts/video_remake.py run \
   --output-dir 03-作品/<选题>/视频
 ```
 
-6. 从人读版和机器版两侧验收；若出口是 `507-video`，先按上面的制作交接补齐人读文件，再交付，不把脚本初始输出直接当成完整制作合同。
+6. Agent 分别检查人读文件和 `prompt-pack.json` 的完整性与一致性。若下一步是 `507-video`，先按上述制作交接补齐人读文件再交付；脚本初始输出只是骨架，不能当作完整制作合同。
 
 ## 验收
 

@@ -1,0 +1,634 @@
+{
+  "checked_on": "2026-10-04",
+  "source_version": "1.0",
+  "skills": [
+    {
+      "skill": "507-commit",
+      "path": "code/507-commit/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-commit/SKILL.md"
+      ],
+      "reason": "把扩大验证的条件写清，不改项目门槛。; 说明简洁服务于识别改动，保留单主题。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-fix",
+      "path": "code/507-fix/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-fix/SKILL.md"
+      ],
+      "reason": "标题明确所需动作。; 明确计数单位与否定范围。; 说明反馈环执行对象，保留修复通过因果要求。; 触发摘要用具体动作。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-inspect",
+      "path": "code/507-inspect/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-inspect/SKILL.md"
+      ],
+      "reason": "摘要明确对象，保留只读和交接。; 明确不就地改是代码修改，不收窄为某种适配机制。; 说明整理哪些约束。; 只读时是设想，不把分析写成删除授权；保留可能。; 核对原权限/范围与两层证据要求，避免润色收窄合同",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-issue",
+      "path": "code/507-issue/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-issue/SKILL.md"
+      ],
+      "reason": "说明载体与执行合同区别，保留只有ready。; 展开自足和耐久，保留必须及禁止。; 说明端到端所指路径，保留拆分边界。; 不把待更新结论说成无条件真相。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-map",
+      "path": "code/507-map/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-map/SKILL.md"
+      ],
+      "reason": "写清内容，不新增制图要求。; 必要内容不等于字数目标。; 明确核对动作，保留必须。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-prd",
+      "path": "code/507-prd/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-prd/SKILL.md"
+      ],
+      "reason": "解释公开接缝，保留已有优先与必要才新增。; 说明证据和场景关系。; 明确工程责任对象。; 说明交接对象。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-prototype",
+      "path": "code/507-prototype/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-prototype/SKILL.md"
+      ],
+      "reason": "展开层名为用途，保留通常。; 明确外壳，保留默认及后续暂留例外。; 展开原核心纪律已有的三种清理方式。; 核对原权限/范围与两层证据要求，避免润色收窄合同",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-release",
+      "path": "code/507-release/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-release/SKILL.md"
+      ],
+      "reason": "说明固定对象及授权前提。; 全部前提在动作前，保留只有、且与最多一次。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-review",
+      "path": "code/507-review/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-review/SKILL.md"
+      ],
+      "reason": "用动作说明审查维度。; 列明比较对象，不把检查写成通过。; 保留真实证据限制。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-setup",
+      "path": "code/507-setup/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-setup/SKILL.md"
+      ],
+      "reason": "展开映射及切换，保留授权范围。; 明确范围与依据的用途。; 最轻指足够支持工作，不按文件数量省条件。; 明确职责和结束位置。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-simplify",
+      "path": "code/507-simplify/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-simplify/SKILL.md"
+      ],
+      "reason": "说明深度与局部性，保留行为不变。; 标题明确第二层动作，正文两层依据不删除。; 展开绿化，保留禁止动作及或关系。; 明确收拢职责；重放含义未唯一限定，保留原词，不猜成重新安排。; 核对原权限/范围与两层证据要求，避免润色收窄合同",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-taste",
+      "path": "code/507-taste/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-taste/SKILL.md"
+      ],
+      "reason": "展开采样和反馈动作，保留人机分工。; 说明比喻指缺少方向依据。; 说明轴所指维度，保留确认。; 分开实际结果与推荐，不新增通过声明。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-tdd",
+      "path": "code/507-tdd/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-tdd/SKILL.md"
+      ],
+      "reason": "保留术语并说明切片单位。; 把比喻标题改成动作。; 解释信号意义，不写成已确认问题。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-test",
+      "path": "code/507-test/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "code/507-test/SKILL.md"
+      ],
+      "reason": "说明验证位置。; 把线索所触发的检查讲明，不当成根因结论。; 核对原权限/范围与两层证据要求，避免润色收窄合同",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-explain",
+      "path": "common/507-explain/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "common/507-explain/SKILL.md"
+      ],
+      "reason": "分开定义与三个术语处理动作，保留必须与三选一。; 解释心智模型所指内容，不宣称读者效果。; 标题指向本段实际处理对象。; 说明识别对象。; 动作与目的对应，保留一个边界的数量。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-explore",
+      "path": "common/507-explore/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "common/507-explore/SKILL.md"
+      ],
+      "reason": "展开结果，保留只读与接力职责。; 说明计算边界是根据事实更新判断。; 保留完成信号中的或关系。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-grill",
+      "path": "common/507-grill/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "common/507-grill/SKILL.md"
+      ],
+      "reason": "展开闸门，保留正文已有写入授权。; 保留必要术语并解释实际差异。; 展开动作、触发与停止，保留强制。; 说明自拟例子的身份，保持用场景明确边界的动作。; 先核查事实，再明确用户指代，不把事实做选择题。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-handoff",
+      "path": "common/507-handoff/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "common/507-handoff/SKILL.md"
+      ],
+      "reason": "说明沉淀与携带范围。; 明确交接中重复劳动的内容。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-research",
+      "path": "common/507-research/SKILL.md",
+      "checked_dimensions": [
+        "trigger",
+        "input/output",
+        "actions",
+        "permissions",
+        "exceptions",
+        "completion/stop/next"
+      ],
+      "modified_files": [
+        "common/507-research/SKILL.md"
+      ],
+      "reason": "展开研究结果与使用方法。; 展开三类比较对象与确定程度。; 展开正文兑现的核对动作。",
+      "protected_unchanged_files": []
+    },
+    {
+      "skill": "507-breakdown",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-breakdown/AGENTS.md",
+        "write/507-breakdown/README.md",
+        "write/507-breakdown/SKILL.md",
+        "write/507-breakdown/doc/README.md",
+        "write/507-breakdown/references/analysis-playbook.md",
+        "write/507-breakdown/references/pull-method.md",
+        "write/507-breakdown/references/tag-vocabulary.md",
+        "write/507-breakdown/scripts/README.md"
+      ],
+      "protected_unchanged_files": [
+        "write/507-breakdown/assets/fixtures/REAL_SMOKE.md",
+        "write/507-breakdown/assets/fixtures/m3_smoke_synthetic_20260711/workspace/analysis/video_understanding_minimax.md"
+      ],
+      "reason": "明确Agent、脚本与模型各自做什么；把抽帧密度、密钥前提、图片可见性与完成状态写成可检查动作。保留10秒、2fps、默认M3、显式降级及完成包保护。",
+      "path": "write/507-breakdown/SKILL.md"
+    },
+    {
+      "skill": "507-cast",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-cast/SKILL.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "说明主题页聚合链接和元信息；分别说明用户组织取舍与Agent机械归类。保留参考下限≥3且不机械计数、图谱/索引同步与不写长文边界。",
+      "path": "write/507-cast/SKILL.md"
+    },
+    {
+      "skill": "507-forge",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-forge/SKILL.md",
+        "write/507-forge/references/chinese-expression-risk-signals.md",
+        "write/507-forge/references/prose-revision.md",
+        "write/507-forge/references/title-promises.md",
+        "write/507-forge/scripts/README.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "把材料支持、主稿来源与发布准备写具体；普通叙述动作前置不覆盖必要操作前提。保留首稿约九成、作者声音、保护项、条件式信号库和两全角空格格式。",
+      "path": "write/507-forge/SKILL.md"
+    },
+    {
+      "skill": "507-frame",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-frame/SKILL.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "将无条件禁词/禁否定改成按信息作用检查，防止删去责任、约数、禁止与来源；说明专业判断不能补造业务事实。保留正式方案职责与已确认/建议/待决分开。",
+      "review_repairs": "独立复核：完整改造排除和路演结果前提在正例中明确保留。",
+      "review_recheck": "passed by /root/review_write_expression; original findings closed",
+      "path": "write/507-frame/SKILL.md"
+    },
+    {
+      "skill": "507-fuse",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-fuse/SKILL.md",
+        "write/507-fuse/references/选题判断.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "明确候选选择、材料支撑与不确定组合标记；保留2～5真实竞争候选、只支持一条时1个、骨架1-3条及不替用户定中心。",
+      "path": "write/507-fuse/SKILL.md"
+    },
+    {
+      "skill": "507-mine",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-mine/SKILL.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "明确读取证据后继续、表述支持依据与交付材料清单；保留至少一项不同才是独立单元、证据身份、去重互链和不判断作品篇幅。",
+      "path": "write/507-mine/SKILL.md"
+    },
+    {
+      "skill": "507-narrate",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-narrate/README.md",
+        "write/507-narrate/SKILL.md",
+        "write/507-narrate/scripts/README.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "前置运行与授权条件，区分返回生成任务、任务完成、下载及结构验收；保留daily/precision、0.6B/1.7B、1.2×、0.5–2.0×、参数优先级与覆盖条件。",
+      "path": "write/507-narrate/SKILL.md"
+    },
+    {
+      "skill": "507-ppt",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-ppt/README.md",
+        "write/507-ppt/SKILL.md",
+        "write/507-ppt/examples/README.md",
+        "write/507-ppt/references/artifact-manifest.md",
+        "write/507-ppt/references/design-system.md",
+        "write/507-ppt/references/html-recipes.md",
+        "write/507-ppt/references/pptx-recipes.md",
+        "write/507-ppt/references/provenance.md",
+        "write/507-ppt/references/style-contracts.md",
+        "write/507-ppt/references/typography.md",
+        "write/507-ppt/references/verification-plan.md",
+        "write/507-ppt/references/workflow-contract.md",
+        "write/507-ppt/scripts/README.md",
+        "write/507-ppt/scripts/fixtures/README.md"
+      ],
+      "protected_unchanged_files": [
+        "write/507-ppt/examples/guizang-backup-log.md",
+        "write/507-ppt/third-party-notices.md"
+      ],
+      "reason": "明确生成器读计划、通过浏览器检查后替换、原型与兼容前提；保留13组件/6语言/8呈现/4treatment、1～3素材、2～3候选、v3/v1/v2、降级和真实逐页检查。",
+      "review_repairs": "独立复核：横向deck限制针对社媒制作输入与输出，不禁止只读参考。",
+      "review_recheck": "passed by /root/review_write_expression; original findings closed",
+      "path": "write/507-ppt/SKILL.md"
+    },
+    {
+      "skill": "507-prospect",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-prospect/SKILL.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "把显化与frontier写成访谈对象、问题选择和材料记录；保留每轮最多2～3、依赖才逐题、许可不等于作者归属、逐字引用与主动终止边界。",
+      "path": "write/507-prospect/SKILL.md"
+    },
+    {
+      "skill": "507-rednote",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-rednote/README.md",
+        "write/507-rednote/SKILL.md",
+        "write/507-rednote/references/copy-spec.md",
+        "write/507-rednote/references/project-spec.md",
+        "write/507-rednote/references/styles.md",
+        "write/507-rednote/references/visual-review.md",
+        "write/507-rednote/scripts/README.md",
+        "write/507-rednote/scripts/fixtures/README.md"
+      ],
+      "protected_unchanged_files": [
+        "write/507-rednote/runtime/THIRD_PARTY_NOTICES.md",
+        "write/507-rednote/scripts/fixtures/sample-runtime-content.md",
+        "write/507-rednote/scripts/fixtures/sample-runtime-summary.md",
+        "write/507-rednote/third-party-notices.md"
+      ],
+      "reason": "明确读取当前文件、runtime重新分页和哈希对应，运行条件移到操作前；保留article默认/summary显式、全字段覆盖、1500×2000、字体版本/范围和可选载体完整门。",
+      "review_repairs": "独立复核：恢复任一分页输入过期条件，正文/计划不构成封闭列表。",
+      "review_recheck": "passed by /root/review_write_expression; original findings closed",
+      "path": "write/507-rednote/SKILL.md"
+    },
+    {
+      "skill": "507-remix",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-remix/AGENTS.md",
+        "write/507-remix/README.md",
+        "write/507-remix/SKILL.md",
+        "write/507-remix/doc/README.md",
+        "write/507-remix/references/remake-method.md",
+        "write/507-remix/scripts/README.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "把读取完成包、生成骨架、补齐人读文件与机器版检查写明确；保留四输入/七输出、video_completed、工具无关与不复制内容/身份/资产。",
+      "path": "write/507-remix/SKILL.md"
+    },
+    {
+      "skill": "507-stage",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-stage/SKILL.md",
+        "write/507-stage/references/spoken-revision.md",
+        "write/507-stage/references/video-narration.md",
+        "write/507-stage/scripts/README.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "明确输入、材料证明与内容确认；必要操作条件在动作前，听众数字裁剪不能损坏执行约束；保留讲者声音、真实/准备/待制状态、约九成首稿和不机械判词。",
+      "path": "write/507-stage/SKILL.md"
+    },
+    {
+      "skill": "507-video",
+      "checked_dimensions": [
+        "触发与非目标",
+        "输入与产物",
+        "执行者与动作",
+        "必要前提与步骤顺序",
+        "默认/条件/否定/例外/时限/强度",
+        "成功/失败/停止",
+        "完成与后续"
+      ],
+      "modified_files": [
+        "write/507-video/SKILL.md",
+        "write/507-video/references/product-promo-profile.md",
+        "write/507-video/references/production-contract.md",
+        "write/507-video/references/remotion-production.md",
+        "write/507-video/scripts/README.md"
+      ],
+      "protected_unchanged_files": [],
+      "reason": "明确制作合同整理、付费授权、事实输入缺口和终检顺序；保留当前版本审片、用户同消息无新改动才最终渲染、独立终检、最小重跑与本地母版停止位置。",
+      "review_repairs": "独立复核：仓库根运行前提放到代码块前，命令不改。",
+      "review_recheck": "passed by /root/review_write_expression; original findings closed",
+      "path": "write/507-video/SKILL.md"
+    }
+  ],
+  "independent_reviews": {
+    "root": "passed",
+    "common_code": "passed after seam scope restored",
+    "write": "passed after all 3 P2 fixes and directory-precondition clarification"
+  },
+  "effect_validation": "作者核对与独立Agent交付审查；未做目标模型对照或真实读者实验"
+}

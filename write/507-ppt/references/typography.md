@@ -40,10 +40,10 @@ visual-plan 可用零基 JSON Pointer 为任意可见文字字段提供 `textFlo
 
 ### PPTX
 
-- `lines` 存在时用 PowerPoint 软换行写入；提供 textFlow 但没有显式 lines 时关闭 Office 自动换行，放不下即调整容器或失败。
+- `lines` 存在时用 PowerPoint 软换行写入；提供 textFlow 但没有显式 lines 时关闭 Office 自动换行；放不下时调整容器或直接失败。
 - 原生 table 建立后逐 cell 回写 text 与 `wrap=false`，因此显式软换行可保留，同时不允许 Office 再把一个 unit 自动拆开。
 - `view issues` 报 overflow 时，Agent 回到 phrase units 重新安排 lines，不能让 PowerPoint 自动在中文词语内部断行。
-- 最终逐页截图检查标题、正文、表格、caption 和 metadata；自动问题为零只证明结构没有报告错误，不证明排版自然。
+- Agent 查看最终逐页截图，检查标题、正文、表格、caption 和 metadata；自动问题为零只证明结构没有报告错误，不证明排版自然。
 
 ## 验收
 

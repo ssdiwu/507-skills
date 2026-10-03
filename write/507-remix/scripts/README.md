@@ -9,13 +9,13 @@ video_breakdown.md
 video_breakdown.json
 ```
 
-旧拉片包文件名不兼容，也没有 fallback（回退）或迁移逻辑。
+旧拉片包文件名不兼容，也没有 fallback（回退）或迁移逻辑。运行前先检查上述四个文件齐全且 manifest 的状态为 `video_completed`；下列命令从本脚本目录运行。
 
 ```bash
 python3 video_remake.py run --pull-dir <completed-pull-dir> --project-name <name> --theme <theme> --platform <platform> --duration <duration> --style <style> --output-dir <works-dir>
 ```
 
-脚本生成以下原创创作包骨架：
+脚本生成以下创作包骨架；Agent 还要根据原主题和借用边界补写并检查内容，文件出现不等于原创合同已经成立：
 
 ```text
 README.md

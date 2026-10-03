@@ -1,8 +1,33 @@
 # 社交视觉包脚本
 
-`serve_rednote.py` 是当前 article 模式的本地动态工作台、真实 DOM 分页与同源导出入口。`render_rednote.py` 与 `render_style_gallery.py` 暂时保留旧规格迁移、动态媒体和公众号封面对后处理，不再是 article 默认分页入口。脚本不负责安装环境依赖。
+`serve_rednote.py` 是当前 article 模式的本地动态工作台、真实 DOM 分页与同源导出入口，即预览与导出使用同一前端程序和分页结果。`render_rednote.py` 与 `render_style_gallery.py` 暂时保留旧规格迁移、动态媒体和公众号封面对后处理，不再是 article 默认分页入口。脚本不负责安装环境依赖。
+
+## 运行条件
+
+静态图卡和公众号封面对：
+
+- Python 3.10+
+- Pillow
+- 本机 Google Chrome / Chromium；可通过 `CHROME_PATH` 或 `--chrome` 指定
+
+动态图片槽额外需要：
+
+- `ffmpeg` 与 `ffprobe`
+- macOS 和 `makelive` 0.6.2+，用于 Live Photo `.pvt` 打包
+
+参考安装命令：
+
+```bash
+python3 -m pip install Pillow
+brew install ffmpeg
+uv tool install makelive==0.6.2
+```
+
+脚本不会执行这些安装命令。外部工具的来源与许可证记录见 [`../third-party-notices.md`](../third-party-notices.md)。
 
 ## 动态工作台
+
+先满足上方运行条件。工作台、迁移、视觉预览和渲染命令从本 `scripts/` 目录运行；“测试”一节带 `scripts/` 前缀的命令从 `507-rednote/` 目录运行。普通使用读取已打包的 runtime，不需要构建前端。
 
 macOS 使用者可以直接双击上级目录的 `open-rednote.command`，选择包含 `raw.md` 的作品目录。`runtime/index.html` 不是独立工作台入口；直接打开时只显示正确启动说明。
 
@@ -36,29 +61,6 @@ python3 migrate_rednote_project.py \
 ```
 
 迁移器只处理可以无损还原为 Markdown 的 article 规格，默认拒绝覆盖已有 `content.md` / `visual-plan.json`。含 motion 或 summary 观点选择时停止并要求人工迁移，不把媒体或排除内容静默丢掉。
-
-## 运行条件
-
-静态图卡和公众号封面对：
-
-- Python 3.10+
-- Pillow
-- 本机 Google Chrome / Chromium；可通过 `CHROME_PATH` 或 `--chrome` 指定
-
-动态图片槽额外需要：
-
-- `ffmpeg` 与 `ffprobe`
-- macOS 和 `makelive` 0.6.2+，用于 Live Photo `.pvt` 打包
-
-参考安装命令：
-
-```bash
-python3 -m pip install Pillow
-brew install ffmpeg
-uv tool install makelive==0.6.2
-```
-
-脚本不会执行这些安装命令。外部工具的来源与许可证记录见 [`../third-party-notices.md`](../third-party-notices.md)。
 
 ## 视觉系统预览
 
@@ -109,7 +111,7 @@ python3 render_rednote.py \
 1. 校验文章模式或视觉摘要规格、来源映射、排除内容去向、视觉系统与主题；文章模式拒绝逐页观点、布局和摘要结构，全文逐段覆盖仍由 Agent 在渲染前后单独核验。
 2. 把本地静态素材和动态首帧内嵌到单文件 `rednote.html`。
 3. 用真实浏览器检查溢出、字号下限和标题间距；文章页尾由画布底部留白统一控制，最后一个内容块的外边距不再重复计入溢出。
-4. 小红书封面、文章正文和摘要图卡统一导出为 1500×2000，并生成不裁切页面的联系表与新鲜度 manifest；全量渲染会清除超出当前页数的旧页面。
+4. 小红书封面、文章正文和摘要图卡统一导出为 1500×2000，并生成不裁切页面的联系表，以及对应当前内容、页面和文件哈希的 manifest；全量渲染会清除超出当前页数的旧页面。
 5. 按需导出 2100×900、1080×1080 公众号封面对和组合预览。
 6. 用 `ffprobe` 校验短视频，以 `ffmpeg` 抽首帧并合成整卡 MOV。
 7. 调用外部 `makelive --pvt` 生成 Live Photo 包；缺失或失败时不写完成 manifest。

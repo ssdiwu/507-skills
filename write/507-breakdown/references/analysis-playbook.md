@@ -6,10 +6,10 @@ MiniMax-M3 提供语义锚点和不完整参考；真实时间只能来自本地
 
 ## Agent 最终填写顺序
 
-1. 阅读 `analysis/video_understanding_minimax.json`（若非 forced fallback）。
+1. 若本轮不是 forced fallback，先阅读 `analysis/video_understanding_minimax.json`。
 2. 阅读 `analysis/video_locations.json` 和 `analysis/video_frame_observations.json`。
 3. 回看 `raw/video_frames_adaptive/`、ASR/OCR 与 scene-cut 证据。
 4. 写 `video_meta.md`、`video_transcript.md`、`video_breakdown.md`、`video_breakdown.json`。
 5. 执行 `video_validate_breakdown.py --workspace ...`。
 
-最终 segment 必须有正向起止时间、台词、视觉变化和封闭词表标签。没有本地证据的观察只能留在分析简报中。
+最终 segment 必须有正向起止时间、台词、视觉变化和封闭词表标签；Agent 要逐项核对这些内容是否有本地证据，不以模板字段已经填满作为完成依据。没有本地证据的观察只能留在分析简报中。

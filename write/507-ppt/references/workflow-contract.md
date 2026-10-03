@@ -4,7 +4,7 @@
 
 进入 `507-ppt` 前，每页至少有认知目标、观众可见内容、notes 或无备注声明，并已确认受众、场景、时长和素材边界。内容仍在争论、事实不足或讲者提示混入页面时返回 `507-stage`，不以视觉原型替代内容决定。
 
-标题在内容阶段按页面任务确定，可以表达问题、判断、动作或资料定位；视觉阶段保留已确定的含义，只做保义缩句、断行与排版。需要改变判断、事实或责任主体时返回内容阶段。内容改动同步当前真相源及本次实际受影响的产物；HTML-only 不要求创建 PPTX 或独立讲稿，无备注声明不要求制造备注。
+标题在内容阶段按页面任务确定，可以表达问题、判断、动作或资料定位；视觉阶段保留已确定的含义，只做保义缩句、断行与排版。需要改变判断、事实或责任主体时返回内容阶段。内容改动同步当前唯一内容包或主稿及本次实际受影响的产物；HTML-only 不要求创建 PPTX 或独立讲稿，无备注声明不要求制造备注。
 
 ## 内容与视觉分离
 
@@ -38,7 +38,7 @@ visual-plan 的 `inputSha256` 针对 normalize 后的 canonical content v3；man
 
 ## 安全制作
 
-先在同目录隔离候选中生成。HTML 的 `generate_html.py --candidate-only` 不触碰当前成品；浏览器用 `instant=1` 禁用转场，逐页核对 current ID、页码、offset、overflow、短语与截图 hash，并在 mobile / reduced-motion / failure fallback 全部通过后，由 `promote_html.py` 原子晋升候选和 evidence。PPTX schema、零 issues、notes、alt、原生 chart/table 逐页 read-back、逐页截图与中文换行通过后才替换，并保留 evidence。
+先在同目录隔离候选中生成，保留当前成品；只有候选的相关检查全部通过，才替换成品。HTML 的 `generate_html.py --candidate-only` 不触碰当前成品；浏览器用 `instant=1` 禁用转场，逐页核对 current ID、页码、offset、overflow、短语与截图 hash，并在 mobile / reduced-motion / failure fallback 全部通过后，由 `promote_html.py` 原子替换成品和 evidence。PPTX schema、零 issues、notes、alt、原生 chart/table 逐页 read-back、逐页截图与中文换行通过后才替换，并保留 evidence。
 
 验证报告由载体对应的真实验证入口生成并使用机器合同，绑定 input、visual-plan 与 artifact 哈希及 producer 源码哈希；任一 check/profile/page 为 failed、截图不是有效 PNG、载体格式不匹配、输入/plan/artifact/evidence 越出交付包根目录或 producer 元数据缺失时，builder 和 validator 都拒绝 manifest。Manifest builder 先在同目录候选 manifest 上自验，失败时保留旧 manifest。Manifest 的 support、suppression 与 degradation 由 resolver 重新计算，不信任手填状态。
 
@@ -49,7 +49,7 @@ visual-plan 的 `inputSha256` 针对 normalize 后的 canonical content v3；man
 | `507-stage` | 讲稿、课程与成熟逐页内容 | 内容包 → `507-ppt` |
 | `507-prototype` | 一个具体技术未知的可丢弃验证 | verdict 返回当前 PPT 对齐或实施；不替代标准视觉候选 |
 | `507-ppt` | visual-plan、原型确认、HTML/PPTX 视觉成品和验证 | 内容缺口返回 stage；成品交付或迭代 |
-| `507-rednote` | 社媒图文改编 | 不消费或生成横向 deck，除非另有改编合同 |
+| `507-rednote` | 社媒图文改编 | 不把横向 deck 作为社媒制作输入，也不生成横向 deck，除非另有改编合同 |
 
 ## 完成与回退
 

@@ -1,6 +1,6 @@
 # 分层验证与样例计划
 
-验证按内容、visual-plan、组合解析、载体、视觉、换行与来源分层。任何层失败都停止宣称完成；不通过修改阈值掩盖失败。
+Agent 分别核对内容、visual-plan、组合解析、载体、视觉、换行与来源，并记录每层实际结果。任何层失败都停止宣称完成；不通过修改阈值掩盖失败。
 
 ## Fixture 角色
 
@@ -13,7 +13,7 @@
 
 ## 单元与组合解析
 
-1. 每个组件至少有一个 preferred 核心呈现；每个呈现至少有消费者；
+1. 每个组件至少有一个 preferred 核心呈现；每个呈现至少有明确使用它的组件或生成器；
 2. 每个允许组合解析为唯一 support/suppression/degradation；禁止组合报错；
 3. 一套 deck 只能有一个基础语言，单页 raw token override 拒绝；
 4. `metric/chart/table` 字段、渲染和验收互不降级；
@@ -75,4 +75,4 @@
 
 ## 执行顺序
 
-静态 schema/来源 → 组合 resolver → 原型审批 manifest → HTML/PPTX 候选 → 自动验证 → CDP 真实交互、无 JavaScript、无转场逐页 PNG 与 phrase/table 计算样式检查 → 带工具/版本/时间/Git revision 的机器报告 → 原子晋升 → manifest v2 → 独立 review。旧产物只在新候选与 evidence 全部通过后替换。
+静态 schema/来源 → 组合 resolver → 原型审批 manifest → HTML/PPTX 候选 → 自动验证 → CDP 真实交互、无 JavaScript、无转场逐页 PNG 与 phrase/table 计算样式检查 → 带工具/版本/时间/Git revision 的机器报告 → 原子替换成品 → manifest v2 → 独立 review。只有新候选与 evidence 全部通过后，才替换旧产物。每一步只报告其实际覆盖范围，不把命令执行完成写成所有层验证通过。

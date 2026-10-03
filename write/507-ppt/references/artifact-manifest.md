@@ -1,6 +1,6 @@
 # 产物 manifest v2
 
-新产物使用 manifest v2；旧 v1 只作兼容读回。Manifest 证明给定内容与 visual-plan 产生了某个经验证产物，不是内容或设计的第二事实源。
+新产物使用 manifest v2；旧 v1 只作兼容读回。Manifest 记录给定内容、visual-plan、产物与已执行验证之间的对应关系，不是内容或设计的第二事实源。
 
 ```json
 {
@@ -52,4 +52,4 @@
 - support matrix 逐页记录 HTML/PPTX 的 native/adapted 状态与抑制项，并以哈希绑定；
 - HTML/PPTX 可有独立 manifest，但必须引用同一内容与 visual-plan。
 
-生成入口为 `scripts/build_manifest.py`，验证入口为 `scripts/validate_manifest.py`。
+生成入口为 `scripts/build_manifest.py`，验证入口为 `scripts/validate_manifest.py`。先完成上述来源、哈希、原型和载体验证条件，再建立最终清单；清单文件存在不能代替这些条件通过。
