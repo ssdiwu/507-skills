@@ -61,20 +61,32 @@ license: MIT
 - `textFlow` 使用零基 JSON Pointer，可覆盖 `/items/0/label`、`/nodes/0/label`、`/assets/0/caption`、chart category/series 与 `/data/rows/0/2` 等嵌套可见文字；不可见 notes/goal 不进入该合同。
 - 以最终 HTML / PPTX 真实尺寸与逐页截图验收；自动 issues 为零不等于换行成立。
 
+## AI 味自检
+
+交付前按三层排查生成器痕迹；任何一层命中都先修再交。
+
+- **视觉层**：与内容无关的 AI 摆拍配图（暖光书桌、咖啡、绿植一类通用场景）、页面上出现"AI 生成 / AI 配图"类标注、一眼可辨的生成器默认皮肤。真实截图、照片与数据证据优先；没有真素材时纯色留白优于摆拍图。
+- **文案层**：无内容依据或连续同构的排比、警句、固定总结陈词和引号体标题。标题沿用内容包已确定的问题、判断、动作或资料定位；真实比较与当事人原话按其内容作用保留。可做保义缩句、断行和排版，不为统一风格把判断标题改成类别标签；需改变含义或主线时返回 `507-stage`。
+- **结构层**：每页同构（大标题 + 卡片 + 金句收尾），详略没有起伏；重点页与过渡页必须有密度差。
+
+反模式：用另一种模板掩盖模板——全套手写体"装人味"、把口号换成口语对仗，都是换皮不是去味。去 AI 味的方向是回到事实与证据，不是换风格。
+
+同步纪律：标题或文案改动先更新当前内容真相源，再同步本次已请求且实际承载这些文字的页面、备注、独立讲稿与内容清单。输出 PPTX 时核对其 notesSlides；输出 HTML 时核对其页面及实际使用的备注。已有讲稿仍承载被修改内容时同步更新，不因未请求某种载体而强制生成它，也不为无备注声明制造备注。最终按所请求载体逐页看图验收，构建通过不能代替溢出、遮挡与内容一致性检查。
+
 ## 制作与验证
 
 1. 校验并标准化内容包，建立或读取独立 visual-plan；support、suppression 与 degradation 由注册表计算，不能手填为通过。
 2. 完成所需视觉原型与当前版本确认，再生成整套候选；content v3 没有 visual-plan 或显式 preset 时必须停止，不能静默默认 Swiss。
 3. HTML 先以 `--candidate-only` 生成隔离候选；`html_browser_evidence.py` 逐页用无转场 capture 模式核对当前 ID、关键文字、overflow、短语、table 背景抑制、按钮/键盘/滚轮/触控、mobile、无 JavaScript、reduced-motion、故障退化和真实 PNG 截图哈希，再由 `promote_html.py` 原子晋升候选与 evidence。仅静态检查不能替换旧成品。
 4. PPTX 必须使用可编辑文字、shape、picture、原生 chart/table 和 notes，不用截图冒充结构化数据。
-5. 两种载体都在隔离候选中生成；自动、视觉、来源与换行检查通过后才替换已有产物。验证失败保留上一版。chart/table 使用原生对象；多序列柱图使用独立分组轨道，不把多个数值挤进同一宽度。
+5. 本次请求的每种载体都在隔离候选中生成；自动、视觉、来源与换行检查通过后才替换已有产物。验证失败保留上一版。chart/table 使用原生对象；多序列柱图使用独立分组轨道，不把多个数值挤进同一宽度。
 6. manifest v2 记录内容哈希、visual-plan、prototype evidence、设计语言、逐页组件/呈现/treatment、载体支持、抑制项、降级、notes/alt、来源与截图证据；builder 与 validator 都重新调用 resolver，并复读绑定 artifact/input/plan 哈希且所有 checks 为 passed 的机器报告。旧 manifest v1 只作兼容读回。
 
 载体命令与细节见 [HTML recipe](references/html-recipes.md)、[PPTX recipe](references/pptx-recipes.md)和[验证计划](references/verification-plan.md)。
 
 ## 完成与接力
 
-- **完成信号**：内容语义未被视觉改写；当前 visual-plan 和原型选择可追溯；目标载体可打开；组合可辨识；中文换行、notes、alt、来源、自动与逐页视觉检查通过；适配降级已明示。
+- **完成信号**：内容语义未被视觉改写；当前 visual-plan 和原型选择可追溯；目标载体可打开；组合可辨识；中文换行、notes、alt、来源、自动与逐页视觉检查通过；AI 味自检通过；适配降级已明示。
 - **产物**：`.pptx` 或单文件 HTML、visual-plan、prototype 证据、manifest v2、素材/notice、验证报告与逐页截图或联系表。
 - **候选出口**：视觉迭代继续本 Skill；内容需调整返回 `507-stage`；成品可直接交付；社媒图文进入 `507-rednote`。
 - **回退条件**：内容未收口、组合未确认、素材授权不清、载体不支持、中文换行或验证未通过时，不宣称完成。
