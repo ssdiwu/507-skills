@@ -1,0 +1,325 @@
+{
+  "date": "2026-10-07",
+  "status": "validation and local integration completed; verification snapshot captured before repository commit",
+  "baseline": {
+    "head": "6ba3c5d300238456e82501aa8dd64ac0d88f7cb7",
+    "source": "Actual uncommitted worktree captured before this round; existing changes preserved.",
+    "skills": 32
+  },
+  "candidate": {
+    "skills": 28,
+    "flows": {
+      "common": 6,
+      "code": 11,
+      "write": 11
+    },
+    "merges": {
+      "test+tdd": "507-test",
+      "commit+release": "507-release",
+      "forge+frame+stage": "507-write"
+    },
+    "retained": "507-review and 507-inspect remain separate with their previously validated shared evidence method."
+  },
+  "review": {
+    "first_pass": {
+      "tool": "ZCode CLI 0.16.9",
+      "exit_code": 0,
+      "model_requests": 18,
+      "scope": "Independent read-only comparison of baseline and candidate, excluding execution records.",
+      "findings_fixed": [
+        "Test-first reference trigger could expand only-tests request into implementation.",
+        "Candidate progress, decision and changelog had stale scope statements.",
+        "Active navigation retained retired bare names.",
+        "Global rule example referenced removed commit entry."
+      ],
+      "final_recheck": {
+        "tool": "ZCode CLI 0.16.9",
+        "exit_code": 0,
+        "model_requests": 7,
+        "previous_warnings_closed": 4,
+        "new_material_findings": 0,
+        "coverage": "Targeted contract, navigation, templates and decision recheck; no forward execution result revalidation."
+      }
+    },
+    "scope": "Static contract review is separate from forward task execution."
+  },
+  "forward_execution": {
+    "case_count": 18,
+    "groups": [
+      {
+        "group": "testing",
+        "cases": [
+          {
+            "case": "test-maintenance-before",
+            "mode": "2 个 unittest 测试通过，停止于测试维护交付；无需生产实现或规格修改。",
+            "changed_files": [
+              "test_labels.py"
+            ],
+            "commands": [
+              {
+                "phase": "maintenance-final",
+                "command": "python3 -B -m unittest -v test_labels",
+                "exit_code": 0
+              }
+            ]
+          },
+          {
+            "case": "test-maintenance-after",
+            "mode": "2 个 unittest 测试通过，停止于测试维护交付；无需生产实现或规格修改。",
+            "changed_files": [
+              "test_labels.py"
+            ],
+            "commands": [
+              {
+                "phase": "maintenance-final",
+                "command": "python3 -B -m unittest -v test_labels",
+                "exit_code": 0
+              }
+            ]
+          },
+          {
+            "case": "test-first-before",
+            "mode": "三个行为切片分别保留有效 RED 与 GREEN；最终 3 个测试方法全绿。实现直接清晰，无需重构。停止于已确认行为实现和本地单元验证；不增加类型扩展、持久化或外部服务。",
+            "changed_files": [
+              "totals.py",
+              "test_totals.py"
+            ],
+            "commands": [
+              {
+                "phase": "slice-1-red",
+                "command": "python3 -B -m unittest -v test_totals.TotalAmountTests.test_empty_list_returns_zero",
+                "exit_code": 1
+              },
+              {
+                "phase": "slice-1-green-and-regression",
+                "command": "python3 -B -m unittest -v test_totals",
+                "exit_code": 0
+              },
+              {
+                "phase": "slice-2-red",
+                "command": "python3 -B -m unittest -v test_totals.TotalAmountTests.test_nonnegative_amounts_return_sum",
+                "exit_code": 1
+              },
+              {
+                "phase": "slice-2-green-and-regression",
+                "command": "python3 -B -m unittest -v test_totals",
+                "exit_code": 0
+              },
+              {
+                "phase": "slice-3-red",
+                "command": "python3 -B -m unittest -v test_totals.TotalAmountTests.test_any_negative_amount_raises_value_error",
+                "exit_code": 1
+              },
+              {
+                "phase": "slice-3-green-and-final-regression",
+                "command": "python3 -B -m unittest -v test_totals",
+                "exit_code": 0
+              }
+            ]
+          },
+          {
+            "case": "test-first-after",
+            "mode": "三个垂直切片均有实际 RED、GREEN；最终 3 个测试方法全绿。代码无需重构，停止于已确认行为实现和本地单元验证。未增加规格外能力。",
+            "changed_files": [
+              "totals.py",
+              "test_totals.py"
+            ],
+            "commands": [
+              {
+                "phase": "slice-1-red",
+                "command": "python3 -B -m unittest -v test_totals.TotalAmountTests.test_empty_list_returns_zero",
+                "exit_code": 1
+              },
+              {
+                "phase": "slice-1-green-and-regression",
+                "command": "python3 -B -m unittest -v test_totals",
+                "exit_code": 0
+              },
+              {
+                "phase": "slice-2-red",
+                "command": "python3 -B -m unittest -v test_totals.TotalAmountTests.test_nonnegative_amounts_return_sum",
+                "exit_code": 1
+              },
+              {
+                "phase": "slice-2-green-and-regression",
+                "command": "python3 -B -m unittest -v test_totals",
+                "exit_code": 0
+              },
+              {
+                "phase": "slice-3-red",
+                "command": "python3 -B -m unittest -v test_totals.TotalAmountTests.test_any_negative_amount_raises_value_error",
+                "exit_code": 1
+              },
+              {
+                "phase": "slice-3-green-and-final-regression",
+                "command": "python3 -B -m unittest -v test_totals",
+                "exit_code": 0
+              }
+            ]
+          },
+          {
+            "case": "test-diagnosis",
+            "mode": "既有测试通过，新回归失败：实际 [a,b,c] 与输入期望 [b,a,c] 不同。根因为 pipeline.py 的 process 返回 sorted(labels)，主动重排标签；分类为生产行为不符合 spec.md 的既定要求。保留失败测试，候选路由 507-fix；本次禁止改生产实现或规格，因此停止于诊断交付，不进入修复。",
+            "changed_files": [
+              "test_pipeline.py"
+            ],
+            "commands": [
+              {
+                "phase": "diagnosis-regression",
+                "command": "python3 -B -m unittest -v test_pipeline",
+                "exit_code": 1
+              }
+            ]
+          },
+          {
+            "case": "test-red-only",
+            "mode": "实际失败栈进入 ready.py 第 2 行，由 ready() 抛 NotImplementedError；不是导入、语法、fixture 或依赖错误，因此是目标行为缺失的有效 RED。只写测试请求已完成，停止，不执行 GREEN、不修改 ready.py 或 spec.md，不声称生产行为已经实现。",
+            "changed_files": [
+              "test_ready.py"
+            ],
+            "commands": [
+              {
+                "phase": "red-only-final",
+                "command": "python3 -B -m unittest -v test_ready",
+                "exit_code": 1
+              }
+            ]
+          }
+        ],
+        "result": "Ordinary tests only changed tests; explicit test-first implemented three behaviors with real RED/GREEN slices; diagnosis and only-tests cases intentionally retained valid failure.",
+        "commands_run": 16,
+        "successful_exits": 8,
+        "intentional_red_or_diagnostic_exits": 8
+      },
+      {
+        "group": "git",
+        "cases": [
+          "git-commit-before",
+          "git-commit-after",
+          "git-message-only",
+          "git-push",
+          "git-tag",
+          "git-conflict"
+        ],
+        "result": "Real local commits only contained data.md and kept unrelated.md; message-only preserved index/history; file-origin main push and local tag were read back; conflicting tag remained unchanged.",
+        "transport": "Local bare repositories only, no network or real account.",
+        "validation_reuse": "Existing evidence matched current content, dependencies and verifier; no verify.py rerun. Ordinary git commit did not bypass hooks; no actual hook was installed."
+      },
+      {
+        "group": "writing",
+        "cases": [
+          {
+            "case": "write-prose-before",
+            "mode": "existing-draft localized polish",
+            "artifact": "draft.md",
+            "sha256": "225ecf51135bb5ce6bae7e130d01b108ecddd7c28ec53ff0bc1b92c1035179bd"
+          },
+          {
+            "case": "write-prose-after",
+            "mode": "prose mode: localized polish",
+            "artifact": "draft.md",
+            "sha256": "225ecf51135bb5ce6bae7e130d01b108ecddd7c28ec53ff0bc1b92c1035179bd"
+          },
+          {
+            "case": "write-proposal",
+            "mode": "proposal mode",
+            "artifact": "proposal.md",
+            "sha256": "01265ed110b62f5dabb716500e701ea8fbd246ea2bf3ed6c0ca2860e885556a8"
+          },
+          {
+            "case": "write-spoken",
+            "mode": "spoken mode: short classroom script",
+            "artifact": "spoken.md",
+            "sha256": "0e962df38b4458b892513b0f44ceb09a702ecaf48cd8e6693b41e95c062c1446"
+          },
+          {
+            "case": "write-content-only",
+            "mode": "spoken mode: three-page content",
+            "artifact": "slides.md",
+            "sha256": "60439e1c74b7897c18edcab659eb20decb9ee1401ce3c659a67ddb71040ac276"
+          },
+          {
+            "case": "write-missing-facts",
+            "mode": "proposal mode: discussion draft",
+            "artifact": "discussion.md",
+            "sha256": "dc78e2968086dec0fe9930ffff54bcac553fe22391a19ca3410fe0b36d970320"
+          }
+        ],
+        "result": "Local polishing was byte-identical before/after and restricted to paragraph 3; roles, quantities, uncertainty and exclusions were preserved; prepared teaching source and content-only scope were preserved; missing facts remained unknown.",
+        "spoken_script_runs": 3,
+        "human_acceptance": "No human read-aloud, listener acceptance or measured five-minute presentation."
+      }
+    ],
+    "parent_readback": {
+      "cases": 18,
+      "unexpected_file_mutations": 0,
+      "git_reference_checks": "All requested and unchanged references independently read back.",
+      "writing_semantics": "Parent read all six full outputs against original source; structural checks do not substitute for this reading."
+    },
+    "comparison_limits": "Sequential before/after by one independent executor per group, with specified skill input; not randomized A/B, host auto-discovery or cross-model generalization."
+  },
+  "structure": {
+    "metadata_skills": 28,
+    "local_markdown_links": 290,
+    "errors": [],
+    "exclusions": [
+      "inline code examples",
+      "RedNote sample-runtime-content.md is a renderer fixture whose local assets are assembled at run time"
+    ],
+    "resource_preservation": [
+      {
+        "before": "write/507-forge/scripts/check_prose.py",
+        "after": "write/507-write/scripts/prose/check_prose.py",
+        "identical": true
+      },
+      {
+        "before": "write/507-forge/scripts/test_check_prose.py",
+        "after": "write/507-write/scripts/prose/test_check_prose.py",
+        "identical": true
+      },
+      {
+        "before": "write/507-stage/scripts/check_spoken.py",
+        "after": "write/507-write/scripts/spoken/check_spoken.py",
+        "identical": true
+      },
+      {
+        "before": "write/507-stage/scripts/test_check_spoken.py",
+        "after": "write/507-write/scripts/spoken/test_check_spoken.py",
+        "identical": true
+      },
+      {
+        "license": "write/507-write/references/prose/shuorenhua-MIT-LICENSE.txt",
+        "identical": true
+      }
+    ],
+    "deterministic_checks": {
+      "prose_regressions": 5,
+      "spoken_regressions": 5,
+      "runner": "Existing test_all.py check definitions invoked at migrated working directories; shared review evidence consistency passed."
+    },
+    "final_live_errors": []
+  },
+  "consumer_migration": {
+    "status": "Identified existing .claude links migrated after validation, with rollback records retained.",
+    "observed": ".claude has existing seven affected symlinks; .agents and .codex have no affected 507 entries and are left disabled.",
+    "unverified": "Unknown external installations and host reload/actual discovery.",
+    "zcode_cli_discovery": {
+      "observed_before_switch": 0,
+      "source": "zcode skills list --json, 33 total other user skills, no 507 entries",
+      "meaning": "CLI model access and read-only review worked via explicit file paths; this is separate from automatic 507 discovery.",
+      "observed_after_switch": 0
+    },
+    "identified_links_verified": true
+  },
+  "limits": [
+    "No latency or token savings claimed; test and prose modes read one extra root/reference layer.",
+    "Real npm/GitHub Release, real network push, installed Git hooks and unchanged media integrations were not exercised.",
+    "Source files, host discovery, commit, push and publication are distinct outcomes."
+  ],
+  "git_delivery": {
+    "recorded_scope": "The forward execution and review recorded here preceded authorization for the main repository commit.",
+    "main_repository_commit": "Subsequent authorized local commit is recorded by Git history; it is separate from the synthetic Git tests.",
+    "main_repository_push": "Not performed in the recorded verification or authorized by the local commit request."
+  },
+  "raw_local_evidence": "Retained in workspace-parent/work/507-skills-next-20261007, separate from public skill instructions."
+}

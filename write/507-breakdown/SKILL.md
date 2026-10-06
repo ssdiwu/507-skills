@@ -1,6 +1,6 @@
 ---
 name: 507-breakdown
-description: "视频拉片 skill：将一个参考视频经 MiniMax-M3 整段理解、本地文本定位、受限视觉搜索、自适应抽帧与图片证据回写核验，产出可供 remix 读取和核验的 video_* 拉片包。Use when user mentions 拉片, 拆视频, 视频拆解, 分析视频, 逐帧分析, 分镜, 视频取证, 怎么剪, 视频结构分析, breakdown, video breakdown, transcript extraction. 只需要普通视频总结，或只想把自己的录像作为成片素材时，不走本 skill。"
+description: "对参考视频进行结构、分镜、节奏与内容取证，产出可核验的拉片包，供后续挖掘或借鉴。普通视频总结、仅把已有录像作为成片素材时不使用。"
 compatibility: "Requires Python 3.10+, ffmpeg/ffprobe, faster-whisper, and MiniMax_API_KEY; yt-dlp for URLs and Tesseract for optional OCR."
 ---
 

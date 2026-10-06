@@ -26,11 +26,13 @@ flowchart TD
     need -->|"外部证据"| research["507-research"]
     need -->|"低成本可观察证据"| prototype["507-prototype"]
     need -->|"用户意图 / 边界 / 风险取舍"| grill["507-grill"]
+    need -->|"创建 / 改写 / 融合技能方法"| skill["507-skill"]
     need -->|"前提已充分"| delivery{"交付类型"}
 
     explore --> need
     explain --> task
     research --> need
+    skill --> task
     prototype --> need
     grill --> delivery
 
@@ -45,51 +47,58 @@ flowchart TD
 
 ### 代码与产品
 
-```text
-explore / research / prototype / taste / grill（均按需）
-                    ↓
-        PRD / issue / 直接实施（按耐久载体需要选择）
-                    ↓
-    fix / test / tdd / simplify / 正常实现
-                    ↓
-              review → commit（明确要求时）→ release（明确要求发布时）
+```mermaid
+flowchart TD
+    context["explore / research / prototype / taste / grill（按需）"] --> carrier["PRD / issue / 直接实施（按需）"]
+    carrier --> work["fix / test（含明确授权的测试先行）/ simplify / 正常实现"]
+    work --> review["507-review"]
+    review -->|"已授权 Git 动作"| release["507-release<br/>本地提交或交付模式"]
 ```
 
 issue 支持 `draft（对话草稿）→ investigation（调查态）→ ready（执行态）`；调查和执行默认共用同一个远程 issue，证据进评论，当前结论回写正文，标签与负责人在每个远程状态都按仓库规范核验。
 
 具体行为改动按需通过现有入口完成影响调查、工程设计与行为验收，方法入口见 [代码工作流](code/README.md)。产品行为变化按项目规则先更新现行规格，小改无需另建完整 PRD 或工单；前提充分后直接实施。架构检查复用目标项目已有能力，并分别报告实际覆盖、新旧违规和未验证部分。
 
+当前阶段、未完成事项、依赖与下一动作见根 [PROGRESS.md](PROGRESS.md)，历史和详细证据由 [doc](doc/README.md) 导航；README 不复制进度正文，具体工单保持自己的状态权威。
+
 `507-setup` 采用统一的[项目启动与迁移标准](code/507-setup/references/project-standard.md)：新项目建立工作依据，已有项目在授权范围内核对有效内容并迁移。README 管定位与入口，AGENTS 管工作规则，DESIGN 管共用设计，GLOSSARY 管词义，spec 管现行功能与验收，doc 管长期依据、说明和规划；按实际用途裁剪，不创建空文件，迁移后退出旧维护路径。
 
 ### 写作与内容
 
-```text
-作者已有但尚未表达的想法 / 亲历 → prospect → 作者材料交接 ┐
-已有想法 / 素材 / research 证据 ───────────────────────┴→ mine → fuse ─┬→ forge → rednote（按需）
-                                                                        └→ stage ─┬→ 507-ppt（成熟逐页内容的视觉幻灯片）
-                                                                                  ├→ narrate（成熟旁白生成本地配音包）→ video
-                                                                                  └→ video（真人配音 / 已有声音 / 无旁白）
-碎片成熟簇 → cast
-
-已确认的人类方案需求 → frame
-
-视频 → breakdown ─┬→ mine（挖内容观点）
-                   └→ remix（借创作手法）→ video（审片、渲染、验收）
-
-已确认视频目标 / 授权素材 / 现有项目 ─────────→ video
+```mermaid
+flowchart LR
+    author["尚未表达的作者材料"] --> prospect["507-prospect"]
+    prospect --> material["作者材料交接"]
+    source["已有想法 / 素材 / research 证据"] --> mine["507-mine"]
+    material --> mine
+    mine --> fuse["507-fuse"]
+    mine --> cast["507-cast"]
+    fuse --> write["507-write<br/>书面 / 方案 / 现场内容"]
+    draft["已有稿件 / 已确认方案或内容"] --> write
+    material -. "补齐既有创作后返回" .-> write
+    write -->|"平台图文"| rednote["507-rednote"]
+    write -->|"成熟逐页内容"| ppt["507-ppt"]
+    write -->|"成熟旁白需本地配音"| narrate["507-narrate"]
+    narrate --> video["507-video"]
+    write -->|"真人声音 / 已有声音 / 无旁白"| video
+    reference["参考视频"] --> breakdown["507-breakdown"]
+    breakdown -->|"内容与观点"| mine
+    breakdown -->|"创作手法"| remix["507-remix"]
+    remix --> video
+    target["已确认视频目标 / 授权素材 / 现有项目"] --> video
 ```
 
 `prospect` 是可跳过的入口；若它由已有创意、主稿或现场内容为了补一手材料而调用，完成后返回调用它的创作动作，不强制进入 `mine`。
 
-`grill` 贯穿需要用户确认的中心判断、方案边界和发布承诺；`frame` 只写面向人的活动、培训、合作或项目方案，具体软件产品规格归 `prd`。已有稿件仅需表达润色时可直接进入 `forge`，保留原意、事实边界与作者声音，不强制补创意卡或走素材链；成文、结构重写与平台改编继续按写作合同推进。
+`grill` 贯穿需要用户确认的中心判断、方案边界和发布承诺；`507-write` 的方案模式只写面向人的活动、培训、合作或项目方案，具体软件产品规格归 `prd`。已有稿件仅需表达润色时可直接进入 `507-write` 的书面模式，保留原意、事实边界与作者声音，不强制补创意卡或走素材链；成文、结构重写与平台改编继续按写作合同推进。
 
 ## 目录
 
 | 目录 | 目的 | 主要入口 |
 | --- | --- | --- |
-| [`common/`](common/README.md) | 跨代码与写作的横向认知、证据、决策和移交能力 | `507-explore`、`507-explain`、`507-research`、`507-grill`、`507-handoff` |
+| [`common/`](common/README.md) | 跨代码与写作的横向认知、证据、决策和移交能力 | `507-explore`、`507-explain`、`507-research`、`507-grill`、`507-handoff`、`507-skill` |
 | [`code/`](code/README.md) | 前置原型证据、产品规格、工单、实现、审查、提交、发布和架构回路 | `507-prototype`、`507-prd`、`507-issue`、`507-fix`、`507-review` 等 |
-| [`write/`](write/README.md) | 从作者材料、素材、观点和视频到文章、讲稿、方案、创作包、审片母版与发布适配 | `507-prospect`、`507-mine`、`507-fuse`、`507-forge`、`507-video` 等 |
+| [`write/`](write/README.md) | 从作者材料、素材、观点和视频到文章、讲稿、方案、创作包、审片母版与发布适配 | `507-prospect`、`507-mine`、`507-fuse`、`507-write`、`507-video` 等 |
 
 领域词义见 [GLOSSARY](GLOSSARY.md)，独立软件产物的现行要求见 [spec](spec/README.md)，长期依据与历史见 [doc 导航](doc/README.md)。
 
@@ -104,24 +113,22 @@ issue 支持 `draft（对话草稿）→ investigation（调查态）→ ready�
 | `507-research` | 核实外部事实与机制，产出可被下一步直接消费的证据交接 |
 | `507-grill` | 先查事实，再沿依赖关系对齐只有用户能够决定的取舍；复杂时用当前渲染器支持的 Mermaid 决策控制台显示 frontier、冲突与阻塞，简单关系使用文字或表格，并把结论路由到唯一当前权威 |
 | `507-handoff` | 中断、换会话或转交时输出脱敏的临时交接摘要 |
+| `507-skill` | 创建、改写、审视或融合技能方法；先判断职责与信息归属，再交付经相称验证的技能合同 |
 
 ### 代码与产品
 
 | Skill | 动作 |
 | --- | --- |
-| `507-setup` | 建立或巡检项目开工依据；新项目初始化、已有项目按新标准迁移，分别报告迁移结果与下一步条件 |
+| `507-setup` | 按请求维护项目依据或导航；覆盖初始化、规范迁移、只读巡检及局部 README／地图维护，分别核对范围与完成证据 |
 | `507-prototype` | 用成本可控的可丢弃原型获得前置证据与 verdict |
 | `507-prd` | 将已确认需求整理为 spec 中的现行行为与验收基准；按授权迁移旧要求，版本交付安排由 doc 承载 |
 | `507-taste` | 视觉方向没有自动判据时，先取观点再铺开粗稿，靠淘汰收敛；方向定了才分层、精修与机械验收 |
 | `507-issue` | 草拟、创建和维护调查态到执行态的 GitHub issue 生命周期；评论留历史，正文与回链维护当前真相 |
 | `507-fix` | 建反馈环，最小修复 bug、报错、回归或冲突 |
-| `507-test` | 测试是主任务时补测、运行和缩小失败范围 |
-| `507-tdd` | 明确 test-first/TDD 时按红绿重构实施 |
+| `507-test` | 按请求维护测试或执行明确授权的测试先行开发，生产修改范围分别核对 |
 | `507-simplify` | 保持外部行为不变，简化内部模块、抽象和接缝 |
-| `507-map` | 依据实现和已确认文档，维护 README、spec/doc 导航及迁移中的入口关系，只修改地图 |
 | `507-review` | 审查明确交付范围的规范、需求与质量 |
-| `507-commit` | 明确要求提交时，验证、精确暂存并创建本地 commit |
-| `507-release` | 按授权处理仅推送、建标签、定版发布或发布已有版本，分别核对前提与实际结果 |
+| `507-release` | 按授权完成本地提交、推送、标签或版本交付，模式前提和实际结果分别核对 |
 | `507-inspect` | 只读寻找架构摩擦并输出完整证据报告 |
 
 ### 写作与内容
@@ -132,11 +139,9 @@ issue 支持 `draft（对话草稿）→ investigation（调查态）→ ready�
 | `507-mine` | 把想法、指定素材或 research 证据变成彼此可区分、带证据身份的可复用碎片与材料单元 |
 | `507-fuse` | 比较竞争解释与材料负载，把碎片组合成带作品边界的候选 idea |
 | `507-cast` | 把成熟碎片簇聚合成知识库主题页 |
-| `507-forge` | 已有稿件按指定范围保真润色；成文、结构重写与平台改编按写作合同、材料承重和写后审计交付书面主稿 |
-| `507-stage` | 建立现场内容合同与讲者模型，先完成接近上台的完整首稿，再按反馈回扫为讲稿、课程或逐页内容 |
+| `507-write` | 按文章、正式方案或现场内容完成成文与修订，保留各模式的素材、作者声音、责任和验收边界 |
 | `507-ppt` | 以“语义组件 × 设计语言 × 视觉呈现”原型选型并制作、验证可编辑 `.pptx` 或离线单文件 HTML |
 | `507-narrate` | 用已授权的本地声音档案把成熟旁白生成并验证为带真实时长的配音包 |
-| `507-frame` | 把已确认的人类方案需求写成活动、培训、合作或项目方案 |
 | `507-breakdown` | 把一个视频编译成可核验的 `video_completed` 拉片包 |
 | `507-remix` | 从完成拉片包借创作手法，重组为原创视频创作包 |
 | `507-video` | 把成熟内容、创作包和授权素材制作为经当前版本审片与技术验收的本地母版；Remotion 使用 Studio，其他已有引擎使用等价预览 |
@@ -158,10 +163,11 @@ git clone https://github.com/ssdiwu/507-skills.git
 
 ## 使用
 
-skill 的 `description`（描述）保留常用动作词，宿主可按用户意图自动加载。例如：
+skill 的 `description`（描述）说明任务动作、适用条件与易混淆边界，宿主可按用户意图自动加载。例如：
 
 - “先看看项目里现在知道什么、还缺什么” → `507-explore`
 - “查清这个外部项目实际怎么做” → `507-research`
+- “把这套已验证方法融入现有技能，或提炼成新技能” → `507-skill`
 - “先别写，采访我，把能一起问的创作材料集中问出来” → `507-prospect`
 - “把这个观点挖成碎片” → `507-mine`
 - “这个假设先做个便宜原型验证” → `507-prototype`
@@ -180,7 +186,7 @@ skill 的 `description`（描述）保留常用动作词，宿主可按用户意
 
 ## 设计原则
 
-1. **一 skill 一动作**：相邻能力靠明确产物和路由接力，不用总控技能吞并。
+1. **一 skill 一项清晰职责**：同一职责中确有产物或权限差异时明确分流；相邻职责靠产物与路由接力，不用总控技能吞并。
 2. **横向能力按需调用**：common 不是前置仪式；事实、理解、证据和决策在哪一层出现，就在哪里调用。
 3. **出口合同显式**：每个 skill 声明完成信号、产物、候选出口与回退条件。
 4. **Agent 负责路由**：用户决定真实意图与取舍，Agent 选择并解释 skill，不把框架学习成本转给用户。
@@ -196,6 +202,8 @@ skill 的 `description`（描述）保留常用动作词，宿主可按用户意
 本仓库不包含任何 API key（接口密钥）、账号 Cookie（会话凭据）、个人 vault（知识库）或客户材料。详见 [`SECURITY.md`](SECURITY.md)。
 
 ## 测试
+
+公共审查方法的随包副本可单独用 `python3 scripts/sync_review_evidence.py --check` 核对；维护者改动唯一源后用 `--write` 同步。
 
 仓库根的确定性回归入口会显式运行各目录单测、无需真实 API 的 Breakdown 脚本、当前 PPT HTML 浏览器证据、Video 条件合同、PPT manifest 与 provenance 校验：
 

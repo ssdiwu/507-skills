@@ -1,0 +1,48 @@
+{
+  "checked_on": "2026-10-06",
+  "sources": [
+    {
+      "kind": "official_guidance",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra#gpt-6-astra-testing-and-verification",
+      "read_scope": "Initiative, instruction following, delegation, testing and verification; model-specific recommendations remain conditional."
+    },
+    {
+      "kind": "author_article",
+      "url": "https://x.com/pvncher/status/2095991462416490862",
+      "title": "Rethinking skills and prompts for GPT-6 Astra",
+      "read_scope": "Full article body plus cover and both example images; normalized body matched user-provided text."
+    },
+    {
+      "kind": "author_official_blog",
+      "url": "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra",
+      "read_scope": "Full article content including textual good/bad examples."
+    },
+    {
+      "kind": "user_supplied_skill",
+      "input_name": "write-a-skill/SKILL.md",
+      "sha256": "b7929f03a03451c4d2d5727fcaa785ebd4789ba8b5945d2747e5367584234b53",
+      "read_scope": "Full skill; integrated as newly written host-neutral contract and conditional references. Original is not redistributed here; no separate source license was supplied."
+    },
+    {
+      "kind": "format_specification",
+      "url": "https://agentskills.io/specification",
+      "read_scope": "Required and optional frontmatter fields; compatibility is a supported optional field."
+    }
+  ],
+  "baseline": {
+    "head": "92a91ebeab4d78d9a3bdc79dd8f4b5f73eab0dc2",
+    "basis": "Current working tree including pre-existing uncommitted work, not HEAD alone."
+  },
+  "scope": {
+    "existing_skill_entries": 32,
+    "new_skill": "common/507-skill",
+    "personal_configuration": "Not part of the repository audit; any local entry migration is separately reported."
+  },
+  "source_material_is_not_an_instruction": true,
+  "integration_baseline": {
+    "head": "0a0afa66146f5841487b8b8f71bb25ff4f02f0e6",
+    "branch": "main",
+    "target_contents_match_original_snapshot": true,
+    "head_change": "Existing forge work was committed while the candidate was being checked; all target contents remained unchanged."
+  }
+}

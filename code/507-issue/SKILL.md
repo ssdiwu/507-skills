@@ -1,6 +1,6 @@
 ---
 name: 507-issue
-description: "创建和维护 GitHub issue 的生命周期。可先在对话中草拟，或以 investigation（调查态）开远程 issue；通过 explore、research、prototype、grill 与按需 PRD 补充事实、决策和耐久规格后，在同一 issue 原位升级为 ready（执行态），作为可被 AI 或协作者领取的执行合同。每个远程状态都按仓库规范设置并核验标签与负责人，除非权限不足。Use when user mentions 写 issue, 开 issue, 草拟 issue, 调查工单, 执行工单, 更新 issue, 转成执行工单, 上传 issue, bug 转 issue, gap 转 issue, GitHub issue, ticket."
+description: "草拟、创建或维护 GitHub issue，包括调查态补证及原位升级为可领取的执行工单。用于用户要求记录或追踪问题，不因发现问题就自动创建远程工单。"
 ---
 
 # GitHub Issue（issue）

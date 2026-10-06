@@ -34,6 +34,7 @@ def checks() -> list[Check]:
         ("breakdown visual relocalization", "test_visual_relocalization.py"),
     )
     result = [
+        Check("Review evidence package consistency", (python, "-B", "scripts/sync_review_evidence.py", "--check")),
         Check("PPT unit and CLI regressions", (python, "-B", "-m", "unittest", "discover", "-s", ".", "-p", "test_*.py", "-v"), ROOT / "write/507-ppt/scripts"),
         Check("PPT HTML browser evidence", ("bash", "scripts/test_html.sh"), ROOT / "write/507-ppt"),
         Check("RedNote regressions", (python, "-B", "-m", "unittest", "-v", "scripts/test_render_rednote.py"), ROOT / "write/507-rednote"),
@@ -41,8 +42,8 @@ def checks() -> list[Check]:
         Check("RedNote runtime JS regressions", ("npm", "test"), ROOT / "write/507-rednote/runtime"),
         Check("RedNote runtime browser and export", (python, "-B", "scripts/test_serve_rednote.py"), ROOT / "write/507-rednote"),
         Check("Narrate regressions", (python, "-B", "-m", "unittest", "-v", "scripts/test_voicebox_narrate.py"), ROOT / "write/507-narrate"),
-        Check("Forge prose audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_prose.py"), ROOT / "write/507-forge/scripts"),
-        Check("Stage spoken audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_spoken.py"), ROOT / "write/507-stage/scripts"),
+        Check("Write prose audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_prose.py"), ROOT / "write/507-write/scripts/prose"),
+        Check("Write spoken audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_spoken.py"), ROOT / "write/507-write/scripts/spoken"),
         Check("Video contract regressions", (python, "-B", "-m", "unittest", "-v", "write/507-video/scripts/test_contract.py")),
         Check("Breakdown atomic publication", (python, "-B", "-m", "unittest", "-v", "test_video_pull_force.py"), breakdown),
     ]

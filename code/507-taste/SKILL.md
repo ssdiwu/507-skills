@@ -1,6 +1,6 @@
 ---
 name: 507-taste
-description: "视觉方向收敛 skill。当目标是「做得对味」而不是「做得对」时使用：先取用户独有的观点，再一次铺开结构差异极大的粗稿，靠淘汰而非微调收敛方向；方向定下来才分层、才精修、才跑机械验收。适用于图标、品牌视觉、界面风格、插画方向、封面等没有自动判据的视觉决策。Use when user mentions 不对味, 感觉不对, 还是不好看, 找找感觉, 先出几个方向, 多给几个方案我挑, 帮我定风格, 视觉方向, 设计图标, 设计头像, 品牌视觉, 定调性, taste, vibe, look and feel, art direction, explore visual directions, moodboard, pick a direction."
+description: "在图标、品牌、界面或插画等视觉方向未定，且需要用户凭真实粗稿选择时使用。通过明显不同的候选与淘汰反馈收敛风格；已有明确方向只需实现时不使用。"
 ---
 
 # 视觉方向收敛（taste）

@@ -1,0 +1,526 @@
+{
+  "scope": "Isolated candidate based on the existing working tree; source bodies, descriptions, direct references and navigation.",
+  "structural": {
+    "structural": [
+      {
+        "path": "code/507-commit/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-fix/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-inspect/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-issue/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-map/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-prd/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-prototype/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-release/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-review/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-setup/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-simplify/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-taste/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-tdd/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "code/507-test/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "common/507-explain/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "common/507-explore/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "common/507-grill/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "common/507-handoff/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "common/507-research/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "common/507-skill/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": null
+      },
+      {
+        "path": "write/507-breakdown/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": false,
+        "bundled_message": "Unexpected key(s) in SKILL.md frontmatter: compatibility. Allowed properties are: allowed-tools, description, license, metadata, name",
+        "baseline_bundled_result": [
+          false,
+          "Unexpected key(s) in SKILL.md frontmatter: compatibility. Allowed properties are: allowed-tools, description, license, metadata, name"
+        ]
+      },
+      {
+        "path": "write/507-cast/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-forge/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-frame/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-fuse/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-mine/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-narrate/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-ppt/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-prospect/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-rednote/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-remix/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-stage/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      },
+      {
+        "path": "write/507-video/SKILL.md",
+        "passed": true,
+        "bundled_validator_passed": true,
+        "bundled_message": "Skill is valid!",
+        "baseline_bundled_result": [
+          true,
+          "Skill is valid!"
+        ]
+      }
+    ],
+    "link_files_checked": 73,
+    "existing_link_gaps": [],
+    "candidate_link_gaps": [],
+    "new_link_gaps": [],
+    "unchanged_bodies": [
+      {
+        "path": "code/507-fix/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-inspect/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-issue/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-map/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-prd/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-prototype/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-release/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-review/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-setup/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-simplify/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-taste/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "code/507-tdd/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "common/507-explain/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "common/507-explore/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "common/507-handoff/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "common/507-research/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-breakdown/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-cast/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-forge/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-fuse/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-mine/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-narrate/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-ppt/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-prospect/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-rednote/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-remix/SKILL.md",
+        "body_unchanged": true
+      },
+      {
+        "path": "write/507-video/SKILL.md",
+        "body_unchanged": true
+      }
+    ],
+    "moved_blocks": [
+      {
+        "reference": "references/slide-content.md",
+        "original_block_preserved": true
+      },
+      {
+        "reference": "references/ai-course.md",
+        "original_block_preserved": true
+      }
+    ]
+  },
+  "description_selection": {
+    "method": "One independent model pass per catalog, fixed requests, answer key withheld. Description-only selection; not host auto-loading or end-to-end execution.",
+    "routing": {
+      "a": {
+        "catalog": "candidate",
+        "correct": 40,
+        "total": 40,
+        "mismatches": []
+      },
+      "b": {
+        "catalog": "baseline",
+        "correct": 40,
+        "total": 40,
+        "mismatches": []
+      }
+    },
+    "description_characters": {
+      "before_32": 9038,
+      "after_32": 2410
+    },
+    "interpretation": "No selection regression observed on these 40 requests. Both catalogs matched the expected selections; no accuracy improvement or token/latency improvement is claimed."
+  },
+  "existing_contract_test": {
+    "command": "python3 write/507-video/scripts/test_contract.py",
+    "passed": 5,
+    "failed": 0
+  },
+  "independent_review": {
+    "full_skill_entries_read": 33,
+    "initial_findings": [
+      {
+        "id": "F1",
+        "severity": "P2",
+        "issue": "grill startup still repeated scope confirmation",
+        "status": "fixed_and_independently_rechecked"
+      },
+      {
+        "id": "F2",
+        "severity": "P2",
+        "issue": "frame overgeneralized beneficiary and co-initiator role rules",
+        "status": "fixed_and_independently_rechecked"
+      }
+    ],
+    "remaining_blockers": 0
+  },
+  "forward_execution": [
+    {
+      "case": "one_off_uppercase",
+      "result": "Recommendation and one-off prompt; no skill created."
+    },
+    {
+      "case": "event_registration_copy",
+      "result": "Skill created in isolation; quick_validate passed; no installation or generated-skill execution."
+    },
+    {
+      "case": "read_only_integration",
+      "result": "Findings and proposal only; protections retained; no source edit."
+    },
+    {
+      "case": "confirmed_joint_workshop",
+      "result": "Proposal created without renewed alignment; roles, beneficiaries, amounts and unknown date preserved."
+    }
+  ],
+  "limits": [
+    "Descriptions selected by an independent model, not by live host loading.",
+    "No cross-model, cross-host, repeated statistical, cost or latency evaluation.",
+    "No unrelated media scripts, paid APIs, real deployment or device acceptance were run."
+  ]
+}

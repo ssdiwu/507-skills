@@ -1,0 +1,46 @@
+{
+  "upstream_commit": "74ace148ded72f7bb3c878b142e4962ae668adf4",
+  "files": [
+    {
+      "source_path": "CLAUDE.md",
+      "stored_path": "CLAUDE.md.original",
+      "git_blob_sha": "2289c916c76ddbfb41155dcbac6c1ba5eff3830c",
+      "sha256": "47a3469a22ac7d355a0a35f1a4784d4cc8fdd53a39e4a8187e42cbc86c34d0a6",
+      "bytes": 13096,
+      "source_url": "https://raw.githubusercontent.com/apple/containerization/74ace148ded72f7bb3c878b142e4962ae668adf4/CLAUDE.md"
+    },
+    {
+      "source_path": "LICENSE",
+      "stored_path": "LICENSE.original",
+      "git_blob_sha": "7a4a3ea2424c09fbe48d455aed1eaa94d9124835",
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+      "bytes": 11357,
+      "source_url": "https://raw.githubusercontent.com/apple/containerization/74ace148ded72f7bb3c878b142e4962ae668adf4/LICENSE"
+    }
+  ],
+  "metrics": {
+    "lines": 91,
+    "nonempty_lines": 63,
+    "inline_code_spans_outside_fences": 230,
+    "lines_with_inline_code_outside_fences": 53
+  },
+  "instructions_executed": false,
+  "license": "Apache-2.0",
+  "attribution": "Apple Inc. and the Containerization project authors",
+  "collected_on": "2026-10-06",
+  "role": "frozen evidence only, not active project or skill instructions",
+  "secondary_sources": {
+    "english_article": "https://medium.com/@n913239/apple-ships-a-claude-md-91-lines-not-one-wasted-what-about-yours-e925cfb65448",
+    "english_read_scope": "selected claims and attribution independently reopened",
+    "chinese_article": "https://mp.weixin.qq.com/s/fSYEjllbIltt4xh0LeK0xg",
+    "chinese_read_scope": "reported read by delegating chat; not independently reopened here",
+    "official_memory": "https://code.claude.com/docs/en/memory",
+    "official_read_scope": "context versus enforcement, instruction length guideline and import context cost independently reopened"
+  },
+  "limits": [
+    "line counts are not rule effectiveness evidence",
+    "article figures and three/six-month deletion anecdotes are not adopted as universal rules",
+    "no independent validation of quoted personalities, model releases or claimed performance",
+    "no Apple build, commands, platform requirements or host hooks executed or imported"
+  ]
+}

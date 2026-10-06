@@ -1,6 +1,6 @@
 ---
 name: 507-prototype
-description: "前置验证与证据 skill。只在一个具体未知能由低成本、可丢弃原型直接观察，且预期学习收益高于制作与清理成本时使用；逻辑/状态问题可做交互式终端原型，UI/视觉问题可做结构差异明显的页面变体。记录证据与 verdict 后删除外壳或明确清理状态，不把原型当半成品。Use when user mentions 做个原型, 做个 demo, 快速验证, 让我玩一下, 试几个设计, 验证状态机, 验证数据模型, mock UI, 可丢弃原型, prototype, throwaway prototype, proof of concept, PoC."
+description: "用低成本、可丢弃原型验证会改变下一步决定的具体未知，适用于逻辑、状态、交互或技术可行性。正式实现更小或原型不能带来有效证据时不使用。"
 ---
 
 # 前置原型验证（prototype）

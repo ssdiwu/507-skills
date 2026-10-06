@@ -1,0 +1,258 @@
+[
+  {
+    "skill": "507-commit",
+    "path": "code/507-commit/SKILL.md",
+    "before_description": "\"Git 提交：在用户明确要求提交时，轻量安全复核变更、精确暂存、运行相关验证并创建真实 Conventional Commit；只做本地提交，推送与对外发布由 507-release 承接。Use when user says commit, 提交, 提交一下, 提交这些改动, 提交代码, Git 提交, commit 一下, 生成并执行提交, 准备提交, 存个档。\"",
+    "after_description": "仅在用户明确要求 Git 提交时，复核授权范围、确认有效验证、精确暂存并创建本地提交。推送、标签和对外发布使用 507-release。",
+    "description_change": "intent_and_boundary",
+    "body_change": "reuse_valid_verification"
+  },
+  {
+    "skill": "507-fix",
+    "path": "code/507-fix/SKILL.md",
+    "before_description": "\"根因修复：已明确存在 bug、报错、崩溃、异常、回归或合并冲突时，先把故障复现为可重复检查的失败信号，再以最小改动修复根因并验证。Use when user says fix, 修一下, 修 bug, 报错了, 崩了, 跑挂了, 有 bug, 修复报错, 合并冲突, 修复冲突, 修不通, debugging, error, crash, regression.\"",
+    "after_description": "修复已明确存在的软件故障、报错、崩溃、行为回归或合并冲突，先复现再修根因并验证。测试资产本身是主任务时使用 507-test；明确测试先行时使用 507-tdd。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-inspect",
+    "path": "code/507-inspect/SKILL.md",
+    "before_description": "\"不围绕某次交付 diff，只读检查模块职责、公开接口、可替换实现的位置和维护困难，产出带代码证据的候选报告交给 507-simplify。Use when user says 架构审查, 代码体检, 找重构机会, 浅模块改深, 找接缝, inspect architecture, codebase architecture review, refactor opportunity. 明确变更范围的交付 review 使用 507-review。\"",
+    "after_description": "只读检查指定代码范围的模块职责、公开接口、实现接缝与维护摩擦，产出带证据的重构候选。围绕某次 commit、branch 或 diff 的交付审查使用 507-review。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-issue",
+    "path": "code/507-issue/SKILL.md",
+    "before_description": "\"创建和维护 GitHub issue 的生命周期。可先在对话中草拟，或以 investigation（调查态）开远程 issue；通过 explore、research、prototype、grill 与按需 PRD 补充事实、决策和耐久规格后，在同一 issue 原位升级为 ready（执行态），作为可被 AI 或协作者领取的执行合同。每个远程状态都按仓库规范设置并核验标签与负责人，除非权限不足。Use when user mentions 写 issue, 开 issue, 草拟 issue, 调查工单, 执行工单, 更新 issue, 转成执行工单, 上传 issue, bug 转 issue, gap 转 issue, GitHub issue, ticket.\"",
+    "after_description": "草拟、创建或维护 GitHub issue，包括调查态补证及原位升级为可领取的执行工单。用于用户要求记录或追踪问题，不因发现问题就自动创建远程工单。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-map",
+    "path": "code/507-map/SKILL.md",
+    "before_description": "\"维护项目地图：以实现和已确认文档为依据，建立或校准 README、spec/doc 导航、目录职责与上下游，并在授权迁移中同步入口和退出旧地图；只修改地图文档。Use when user says map, project map, 梳理项目结构, 项目结构, 更新 README, 补 README, 校准 README, 整理 doc, 整理结构, 文档地图, 目录职责, 分层 README.\"",
+    "after_description": "建立或校准项目 README、spec/doc 导航、目录职责与上下游，或在已授权迁移中切换文档入口。只修改地图；整体规范初始化或迁移使用 507-setup。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-prd",
+    "path": "code/507-prd/SKILL.md",
+    "before_description": "\"把已确认的对话、方案或存量要求整理为当前产品需求与验收基准，优先更新 spec/ 中的对应规格；旧入口按授权迁移，版本交付安排留在 doc/。不拆 issue 工单、不做架构体检。Use when user mentions 写 PRD, 拆 PRD, 做个 PRD, 沉淀 PRD, 形成需求文档, 把刚才整理成需求, 需求规格, 落成 PRD, to-prd, product requirements.\"",
+    "after_description": "把已确认的对话、方案或存量产品要求整理为现行行为与验收规格，优先维护对应 spec。软件产品需求使用本技能；面向人的活动或合作方案使用 507-frame。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-prototype",
+    "path": "code/507-prototype/SKILL.md",
+    "before_description": "\"前置验证与证据 skill。只在一个具体未知能由低成本、可丢弃原型直接观察，且预期学习收益高于制作与清理成本时使用；逻辑/状态问题可做交互式终端原型，UI/视觉问题可做结构差异明显的页面变体。记录证据与 verdict 后删除外壳或明确清理状态，不把原型当半成品。Use when user mentions 做个原型, 做个 demo, 快速验证, 让我玩一下, 试几个设计, 验证状态机, 验证数据模型, mock UI, 可丢弃原型, prototype, throwaway prototype, proof of concept, PoC.\"",
+    "after_description": "用低成本、可丢弃原型验证会改变下一步决定的具体未知，适用于逻辑、状态、交互或技术可行性。正式实现更小或原型不能带来有效证据时不使用。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-release",
+    "path": "code/507-release/SKILL.md",
+    "before_description": "\"对外发布：在用户明确要求推送、打标签或发版时，按授权选择仅推送、仅建标签、定版发布或发布已定版版本；复用已确认范围，不逐步重复询问，不执行未点名渠道。Use when user says release, publish, push, 发版, 发布, 推送, 发包, 打 tag, 升版本, 升级版本号, 发新版本, 上线, 发到 npm, 发 GitHub Release。\"",
+    "after_description": "仅在用户明确要求推送、打标签、定版或发布软件版本时使用，按授权处理对应引用与渠道。普通本地提交使用 507-commit；不承担社交内容发布。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-review",
+    "path": "code/507-review/SKILL.md",
+    "before_description": "\"交付审查：围绕明确的 commit、branch、diff 或路径检查 Standards、Spec 与 Code Quality，只报告问题、证据和路由。Use when user says review this change, code review, review 一下, 检查, 审查, 审查改动, 审查这次改动, 检查提交, 检查分支, 过一遍代码, 把关, 需求符合度, 交付审查. 不用于主动寻找全库架构机会。\"",
+    "after_description": "审查明确的代码或文档变更范围，核对项目规范、需求与有证据的质量风险，只读交付发现与路由。主动寻找全库架构机会使用 507-inspect；外部事实核查使用 507-research。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-setup",
+    "path": "code/507-setup/SKILL.md",
+    "before_description": "\"建立或检查代码项目的开工依据：新项目按标准初始化，已有项目核对有效内容并迁移到新职责与入口；按项目风险裁剪，并可在明确指定目标后校准全局 AGENTS.md。Use when user says 项目初始化, 项目规范巡检, 工作流初始化, 迁移项目规范, 写 AGENTS, 建全局 AGENTS, 校准 AGENTS, project setup, project bootstrap, scaffold. 不用于业务实现或架构体检；专项地图维护使用 507-map。\"",
+    "after_description": "建立或检查代码项目的开工依据：新项目初始化，已有项目核对并迁移规范与入口；明确指定目标后可校准全局 AGENTS.md。局部文档地图维护使用 507-map。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-simplify",
+    "path": "code/507-simplify/SKILL.md",
+    "before_description": "\"在保持公开契约与可观察行为不变的前提下，对指定代码范围或 507-inspect 报告逐项建立证据、修改并验证。可深入内部模块、抽象与接缝；若需要行为变化则停止并路由到需求实施。Use when user mentions simplify, simplify code, 简化, 简化代码, 行为不变重构, 内部简化, 按报告修改, 处理 inspect 报告, 局部重构, 降低复杂度, 收敛架构摩擦。\"",
+    "after_description": "对指定代码范围或 507-inspect 报告实施行为不变的内部简化，逐项建立证据并验证。需要新增能力或改变公开契约、可观察行为时退出并转需求实施。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-taste",
+    "path": "code/507-taste/SKILL.md",
+    "before_description": "\"视觉方向收敛 skill。当目标是「做得对味」而不是「做得对」时使用：先取用户独有的观点，再一次铺开结构差异极大的粗稿，靠淘汰而非微调收敛方向；方向定下来才分层、才精修、才跑机械验收。适用于图标、品牌视觉、界面风格、插画方向、封面等没有自动判据的视觉决策。Use when user mentions 不对味, 感觉不对, 还是不好看, 找找感觉, 先出几个方向, 多给几个方案我挑, 帮我定风格, 视觉方向, 设计图标, 设计头像, 品牌视觉, 定调性, taste, vibe, look and feel, art direction, explore visual directions, moodboard, pick a direction.\"",
+    "after_description": "在图标、品牌、界面或插画等视觉方向未定，且需要用户凭真实粗稿选择时使用。通过明显不同的候选与淘汰反馈收敛风格；已有明确方向只需实现时不使用。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-tdd",
+    "path": "code/507-tdd/SKILL.md",
+    "before_description": "\"测试驱动开发：仅在用户明确要求 test-first、TDD、先写测试或红绿重构时，以垂直切片完成行为测试、最小实现和全绿重构。Use when user says tdd, test-first, 先写测试, 测试驱动, 红绿重构, test driven development.\"",
+    "after_description": "仅在用户明确要求 TDD（测试驱动开发）、test-first（测试先行）、先写测试或红绿重构时使用。按垂直切片完成行为测试、最小实现与全绿重构。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-test",
+    "path": "code/507-test/SKILL.md",
+    "before_description": "\"测试任务：测试本身是主要任务时，用现有框架补行为测试、运行测试、修正过时测试或缩小失败范围；真实生产 bug 转根因修复。Use when user says test, testing, 写测试, 加测试, 补测试, 跑测试, 运行测试, 测试挂了, 测试失败, 修失败测试, 缩小失败范围, coverage.\"",
+    "after_description": "在测试本身是主要任务时，补行为测试、运行测试、修正过时测试或缩小失败范围。真实生产故障修复使用 507-fix，明确测试先行使用 507-tdd。",
+    "description_change": "intent_and_boundary",
+    "body_change": "risk_proportional_checks"
+  },
+  {
+    "skill": "507-explain",
+    "path": "common/507-explain/SKILL.md",
+    "before_description": "\"概念解释：把用户不理解的一个概念、术语、技术名词或相近概念差异讲清楚。最短定义里的名词必须指向用户能辨认的对象；用户无法想象概念所指的事物时，先给具体场景，再从场景提炼定义。引入未解释术语时，必须现在解释、标为暂不展开的黑盒，或删掉并重写；不能留下未说明的术语。解释未成立时按构造、表达、载体三层依次排查，示意优先选用表格或当前渲染器支持的 Mermaid，只有感知型障碍才在临时位置生成视觉件且不进项目。默认不落盘，不负责定位项目未知。Use when user mentions X 是什么意思, 这个概念是什么, 帮我理解一下, 用大白话讲讲, 我不懂这个词, 解释一下这个术语, X 和 Y 有什么区别, 还是不懂, 越解释越乱, 全是新名词, explain concept, explain in plain words, what is X, still confused, ELI5, break down a concept.\"",
+    "after_description": "解释用户不理解的概念、术语或相近概念差异，形成可复述的理解，默认在对话中完成。定位项目代码机制使用 507-explore，系统外部调研使用 507-research。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-explore",
+    "path": "common/507-explore/SKILL.md",
+    "before_description": "\"项目探索：面对尚未看清问题形状、无法安全规划或不知道从哪里开始的项目问题，先读取项目规则、既有共识与现实证据，在临时会话中区分已知、未知、当前 frontier 与证据边界；路径尚不确定时形成带证据的可验证候选，只读推进当前可解决问题，按需追踪具体代码行为改动的影响，并路由到 explain、research、grill、prototype、规格或执行。Use when user mentions 探索一下, 先看看怎么回事, 先别做, 先理清, 梳理一下, 搞清楚状况, 摸清楚, 不知道从哪开始, 这个问题在哪, 帮我看懂这个项目, 上手这个项目, 这段代码怎么工作, explore, investigate this project, orient me, locate the problem, understand this codebase, explain this code.\"",
+    "after_description": "只读探索项目问题、代码机制或改动影响，在现有证据不足以确定下一步时使用。交付已知、未知与可验证候选；通用概念解释和外部资料调研分别使用 explain、research。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-grill",
+    "path": "common/507-grill/SKILL.md",
+    "before_description": "\"实施前对齐的决策树追问（通用，代码/写作都用）。把一个改动/方案的每个决策分支沿依赖关系问到底；每轮只收集 frontier（前置条件已确定）的独立决策，有合适工具时批量收集，否则一次只问一个问题。复杂对齐按需用 Mermaid 显示会话级决策控制台，简单关系使用文字或表格；需要用户决策时必须给出 2–5 个有真实权衡的候选并标出推荐项。确认新结论前，先核对它是否与既有决定冲突，再确定需要保存到哪份当前文档；获授权后更新对应项目文档、PRD、issue、术语表、决策档案或经验笔记；写作判断问透后另行落碎片。Use when user mentions 先对齐一下, 追问一下, 实施前对齐, 帮我把这个方案问透, 这个改动我先聊聊, 把方案问透, 决策对齐, 决策控制台, 我们先聊聊, 对齐一下设计, 把决策树走一遍, 一个问题一个问题问, 拷问一下方案, 质疑一下这个设计, grill, pre-flight review, align before build, decision tree, interrogation.\"",
+    "after_description": "实施或成文前，需要对齐用户意图、范围、权责、体验、成本或风险取舍时使用；也用于用户明确要求把方案问透。先查清可核实事实，已有充分确认时不额外启动对齐。",
+    "description_change": "intent_and_boundary",
+    "body_change": "reuse_confirmed_scope"
+  },
+  {
+    "skill": "507-handoff",
+    "path": "common/507-handoff/SKILL.md",
+    "before_description": "\"会话移交：中断、换会话、压缩上下文或转交给另一 Agent 时，在对话中生成脱敏的临时交接摘要，不写文件。Use when user says handoff, 交接, 交接一下, 移交, 换会话, 换个会话, 转交, 压缩上下文, 上下文太长了, 给下一个 agent 摘要.\"",
+    "after_description": "在中断、换会话、压缩上下文或转交工作时，生成可供接手的脱敏交接摘要。只在对话中输出，不写文件，也不作为普通任务的默认结束步骤。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-research",
+    "path": "common/507-research/SKILL.md",
+    "before_description": "\"通用外部证据入口。研究外部项目、文章、文档、标准、竞品或当前事实，区分已核实事实、来源观点、本项目推断与未知，产出可追溯的 evidence handoff（证据交接）。可独立回答，也可把证据交给 explain、explore、mine、grill、PRD 或 issue；不挖碎片、不替用户做取舍、不直接实施。Use when user mentions 查一下, 搜一下, 帮我查, 调研一下, 研究一下, 调查一下, 查证, 核实, 搜资料, 找资料, 看看这个项目, 看看这篇文章, 外部证据, 竞品, 参考实现, benchmark, research, investigate, verify sources.\"",
+    "after_description": "核实外部项目、文章、文档、标准、竞品或当前事实，并判断对指定目标的借鉴意义。交付可追溯证据，区分事实、来源观点、推断与未知；不直接实施或替用户取舍。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-breakdown",
+    "path": "write/507-breakdown/SKILL.md",
+    "before_description": "\"视频拉片 skill：将一个参考视频经 MiniMax-M3 整段理解、本地文本定位、受限视觉搜索、自适应抽帧与图片证据回写核验，产出可供 remix 读取和核验的 video_* 拉片包。Use when user mentions 拉片, 拆视频, 视频拆解, 分析视频, 逐帧分析, 分镜, 视频取证, 怎么剪, 视频结构分析, breakdown, video breakdown, transcript extraction. 只需要普通视频总结，或只想把自己的录像作为成片素材时，不走本 skill。\"",
+    "after_description": "对参考视频进行结构、分镜、节奏与内容取证，产出可核验的拉片包，供后续挖掘或借鉴。普通视频总结、仅把已有录像作为成片素材时不使用。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-cast",
+    "path": "write/507-cast/SKILL.md",
+    "before_description": "\"写作流的沉淀层（和 fuse 平行）。Agent 根据成熟碎片簇提出主题结构；涉及用户知识组织取舍时先经 grill 确认，再整理成 04-知识库/ 下的系统化主题页。不挖碎片（归 mine）、不产选题候选（归 fuse）。Use when user mentions 沉淀成主题页, 这几个碎片够成知识库页了, 铸个主题页, 浇铸主题页, 系统化沉淀, 把这个主题沉淀一下, 这个主题值得有个页, 知识库页生长, 成熟簇成页, 讨论主题结构, 组织主题页, cast, casting, knowledge base page, topic page, crystallize topic.\"",
+    "after_description": "把成熟碎片簇组织为知识库中的系统化主题页，适用于主题结构与知识沉淀。选题候选使用 507-fuse，书面文章使用 507-forge。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-forge",
+    "path": "write/507-forge/SKILL.md",
+    "before_description": "\"书面作品成文与修订：把已成立的创意、材料和证据写成主稿，重组已有草稿，或保真改编书面平台文案；已有稿件只需润色时，在指定范围内改善表达、保留原意和作者声音，单独说明含义风险。有传播目标时提出标题候选并检查正文兑现。材料、事实、竞争解释与用户取舍分别交给 prospect/mine、research、fuse、grill 后返回。不负责讲稿/PPT、正式方案或视觉排版。Use when user mentions 写篇文章, 写成长文, 改这篇文章, 润色这段稿, 保留原意改顺, 去 AI 味, 重组这篇稿, 收紧全文, 改文章标题, 改编成小红书文案, 写博客, 写公众号文章, 写技术文章, 案例复盘, forge, drafting, polish prose, rewrite article.\"",
+    "after_description": "把成熟创意与材料写成书面文章，或重组、润色已有稿件及保真改编平台文案。局部润色保留原意与作者声音；讲稿、正式方案和视觉排版分别由对应技能负责。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-frame",
+    "path": "write/507-frame/SKILL.md",
+    "before_description": "\"面向人的结构化方案 skill（活动、培训、工作坊、合作提案、项目计划）。输入是已由 grill 确认的需求与边界，产物是推动读者决策或行动的正式方案；信息缺口涉及用户取舍时返回 grill，不在 frame 内追问确认。具体软件产品需求规格归 507-prd。Use when user mentions 写方案, 写计划, 活动方案, 培训方案, 工作坊方案, 合作提案, 项目计划, 结构化文档, 正式提案, frame, proposal, workshop plan, partnership proposal, project plan, brief.\"",
+    "after_description": "根据已确认的目标、受众与边界，起草活动、培训、工作坊、合作或项目方案。缺少实质用户取舍时进入 507-grill；软件产品行为与验收规格使用 507-prd。",
+    "description_change": "intent_and_boundary",
+    "body_change": "confirmed_input_without_mandatory_grill"
+  },
+  {
+    "skill": "507-fuse",
+    "path": "write/507-fuse/SKILL.md",
+    "before_description": "\"写作流的融合层（选题层）。检索 01-碎片/ 既有碎片、本次新碎片及争点材料，比较可竞争解释，判断独立材料能支撑的作品范围，挑时效性/主体性材料作骨架；存在真实竞争解释时产出 2～5 条候选 idea 到 02-创意/候选/，用户拥有的中心判断选择交给 grill。不挖碎片（归 mine）、不写正文（归 forge）、不和 cast 抢沉淀。Use when user mentions 融一下, 融合一下, 熔一下, 这几个碎片能不能成题, 组个选题, 挑骨架, 组合成选题, 把这些碎片融成一个选题, 看看能不能写成一篇, 够不够写一篇, 这个主题够成题了吗, 挑主碎片, 融合成 idea, 产候选选题, 产候选 idea, 挑时效碎片, fuse, melting, fuse fragments, idea candidate, topic fusion.\"",
+    "after_description": "比较既有碎片与证据能支撑的竞争解释，组合为有作品边界的候选选题。用于判断材料能否成题、如何组合；不挖碎片，不写正文，不替用户选择中心判断。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-mine",
+    "path": "write/507-mine/SKILL.md",
+    "before_description": "\"写作流的碎片挖掘入口。把已经表达的用户想法、507-prospect 作者材料交接、现有文章、研究证据或 video_completed 拉片包转成彼此可区分的可复用碎片、观点与材料交接；先查既有知识库做去重和互链，不把同一材料的复述冒充多个独立单元，也不承担作者采访或系统外部调研。证据不足时调用 research 补证后返回；不产选题、不写正文。Use when user mentions 挖一下, 挖碎片, 产碎片, 落碎片, 我有个想法, 记个想法, 这个观点记下来, 拆解吸收, 提取要点, 摘录, 整理观点, 从这篇文章提观点, 拉片后挖内容, content mining, extract fragments.\"",
+    "after_description": "把已表达的想法、文章、研究证据或已完成拉片包整理为可复用碎片与观点，并在既有知识库去重互链。未表达的作者经历使用 507-prospect；不产选题或写正文。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-narrate",
+    "path": "write/507-narrate/SKILL.md",
+    "before_description": "\"本地配音生成：根据成熟旁白或 507-stage 视频旁白内容包，使用已授权且已在 Voicebox 建立的声音档案，通过 REST API 分段生成、验证并交付带真实时长的 WAV 配音与 timing manifest。Use when user mentions 用我的声音配音, 生成配音, AI 配音, TTS 配音, Voicebox 配音, 声音模型选择, 旁白转音频, 批量生成旁白, 配音音频, narrate, voice-over generation. 不用于采集或克隆新声音档案、写旁白、视频制作、MCP 接入或平台发布。\"",
+    "after_description": "用 Voicebox 中已授权且已建立的声音档案，将成熟旁白生成并验证为带真实时长的本地配音包。不采集或克隆新声音，不写旁白，也不制作或发布视频。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-ppt",
+    "path": "write/507-ppt/SKILL.md",
+    "before_description": "原创视觉幻灯片制作：把成熟逐页内容用语义组件、设计语言与视觉呈现动态组合，先以真实内容原型确认，再生成并验证可编辑 .pptx 或离线单文件 HTML。Use when user mentions 制作 PPT、生成 pptx、做成幻灯片、做 HTML deck、网页演示、slides rendering、presentation visual design、瑞士风 PPT、杂志风 PPT；内容仍需编排、讲稿或逐页内容尚未完整确认时使用 507-stage，不使用本 skill。",
+    "after_description": "根据成熟且已确认的逐页内容，制作和验证可编辑 PPTX 或离线单文件 HTML 幻灯片。内容仍需编排时使用 507-stage；不用于小红书图卡。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-prospect",
+    "path": "write/507-prospect/SKILL.md",
+    "before_description": "\"创作采访：作者对主题有亲历、直觉或模糊判断但尚未充分表达时，Agent 通过非诱导采访请作者叙述，再整理成会话中的作者材料交接。按 material frontier（材料可问边界）选择当前能回答的问题；同一材料单元优先连续叙述，彼此独立的缺口每轮最多集中问 2～3 个，依赖上一答时才逐题。交接保留作者已有的说话位置、场景、行动、反馈、原因、判断变化与边界。不查外部事实、不落碎片、不比较或选择选题、不写正文。Use when user mentions 采访我一下把这段经历问出来, 你来采访我聊这个创作主题, 先别写文章先采访我, 快速采访我把创作材料问出来, 能一起问的集中问, 一个问题一个问题问我的经历, 把我的经历问出来, author interview for this piece, interview me about my experience, ask me the independent questions together, ask me about my experience one question at a time.\"",
+    "after_description": "通过非诱导采访，帮助作者表达尚未充分叙述的亲历、直觉或判断，产出会话中的作者材料交接。已有完整材料的提取使用 507-mine；本技能不查外部事实或写正文。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-rednote",
+    "path": "write/507-rednote/SKILL.md",
+    "before_description": "\"把成熟书面作品编辑为小红书图文：默认把原文排成连续文章，用本地动态工作台进行三轴视觉组合、真实 DOM 分页、预览和同源导出；明确要求视觉摘要或一页一个观点时才做提炼。可生成静态图片、Live Photo 和公众号封面对。Use when user mentions 做成小红书, 编辑小红书图文, 小红书图卡, 全文图文, 连续文章, 连续分页, 一页一个观点, 视觉摘要, 实况照片, Live Photo, 公众号封面, rednote cards, xiaohongshu carousel.\"",
+    "after_description": "把成熟文章制作成小红书图文，默认连续全文排版，明确要求摘要时才提炼；也支持 Live Photo 与公众号封面对。正文写作使用 507-forge，不负责账号登录和发布。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-remix",
+    "path": "write/507-remix/SKILL.md",
+    "before_description": "\"视频借鉴重组 skill。只读取并核对一个或多个 video_completed 的 507-breakdown 拉片包，提取可借鉴的结构、叙事、镜头、字幕与节奏模式，明确不借内容和身份，再重组为原创视频创作包与工具无关的 prompt-pack.json；需要进入成片时补齐 507-video 制作所需的交接信息，不读取原视频、不做取证、不直接渲染。Use when user mentions 视频借鉴重组, 借鉴视频, 仿照这个视频, 视频二创, 二创, 视频重组, 原创创作包, 借这个视频的手法, remix, video remake, recombine.\"",
+    "after_description": "读取已完成的拉片包，借鉴结构、叙事、镜头、字幕与节奏，重组为原创视频创作包。原视频取证使用 507-breakdown，成片制作使用 507-video。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  },
+  {
+    "skill": "507-stage",
+    "path": "write/507-stage/SKILL.md",
+    "before_description": "\"现场讲述 skill（讲稿/PPT逐页内容/课程稿/企业培训/视频旁白内容包）。输入允许多 idea + 多碎片组合（比 forge 灵活），按材料负载与讲者位置把真实案例编排为听众能理解并尝试的方法，保留现场口播节奏。和 forge 分工：forge 写出来（书面长文），stage 讲出去（现场或视频口播）。Use when user mentions 写演讲稿, 做演讲稿, 写讲稿, 打磨讲稿, PPT 逐页稿, 写逐页稿, 课程稿, 写课程稿, 课程分享, 现场分享稿, 现场讲稿, 企业培训, 企业 AI 分享, 案例型企业培训, 分享内容, 演讲内容, 口播稿, 视频口播稿, 视频旁白稿, 配音稿, 路演稿, 逐页稿, 分享会, 演讲, stage, presentation, slide script, keynote, talk script, course script, video narration, voice-over script, corporate training.\"",
+    "after_description": "编排演讲稿、课程口播、PPT 逐页内容或视频旁白内容包，适用于现场或视频讲述。保留讲者声音与材料边界；成熟内容的幻灯片视觉制作使用 507-ppt。",
+    "description_change": "intent_and_boundary",
+    "body_change": "conditional_references_and_checks"
+  },
+  {
+    "skill": "507-video",
+    "path": "write/507-video/SKILL.md",
+    "before_description": "\"视频成品制作：根据已确认的视频目标、成熟内容、507-narrate 本地配音包、真人/已有声音、507-remix 原创创作包、现有视频项目与有授权素材，核对并整理制作合同、素材清单、时间线、字幕与音频、产品宣传片页面采集、版本化预览审片（Remotion 使用 Studio）、反馈迭代、明确确认后的渲染和本地母版验收。Use when user mentions 做视频, 制作视频, 产品宣传片, product promo, 剪成视频, 视频成片, 视频剪辑, Remotion 视频, Remotion Studio, 视频预览, 渲染视频, 导出 MP4, 修改现有视频, 重做视频, 重渲染, 视频交付. 不用于生成克隆声音、拉片、选题、主稿写作、参考片重组、可编辑剪辑工程导出、平台登录或发布。\"",
+    "after_description": "根据成熟内容、授权素材或现有项目，制作、修改、预览和导出视频，止于经版本化审片与验收的本地母版。不生成克隆声音、不做参考片取证，也不登录或发布到平台。",
+    "description_change": "intent_and_boundary",
+    "body_change": "none"
+  }
+]

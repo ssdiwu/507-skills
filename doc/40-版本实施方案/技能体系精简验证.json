@@ -1,0 +1,114 @@
+{
+  "checked_on": "2026-10-07",
+  "baseline_head": "6ba3c5d300238456e82501aa8dd64ac0d88f7cb7",
+  "basis": "Existing working tree with all prior edits preserved; isolated candidate before integration.",
+  "scope": [
+    "setup/map merged into setup with scoped modes",
+    "review and inspect retain separate entry points with one evidence-method source and self-contained packaged copies"
+  ],
+  "structural_and_cli_checks": {
+    "metadata": {
+      "skills": 32,
+      "invalid": []
+    },
+    "references": {
+      "files": 78,
+      "links": 109,
+      "missing": []
+    },
+    "package_check": {
+      "exit_code": 0,
+      "stdout": "Evidence method: 2 self-contained copies match common/references/review-evidence.md.\n"
+    },
+    "package_cli_scenarios": [
+      "missing copies rejected without creating files",
+      "write creates valid self-contained copies",
+      "drift rejected without modifying the copy",
+      "regeneration repairs drift and is idempotent"
+    ],
+    "runner_check": {
+      "name": "Review evidence package consistency",
+      "exit_code": 0
+    },
+    "limits": [
+      "No unrelated media or external API tests.",
+      "Metadata and resource checks do not prove model behavior.",
+      "Forward execution and independent review are recorded separately."
+    ]
+  },
+  "forward_scope_checks": {
+    "navigation-before": {
+      "changed_files": [
+        "README.md",
+        "doc/README.md"
+      ],
+      "outside_scope": []
+    },
+    "navigation-after": {
+      "changed_files": [
+        "README.md",
+        "doc/README.md"
+      ],
+      "outside_scope": []
+    },
+    "read-only": {
+      "changed_files": [],
+      "outside_scope": []
+    },
+    "project-maintenance": {
+      "changed_files": [
+        "AGENTS.md",
+        "PROGRESS.md",
+        "README.md",
+        "doc/README.md"
+      ],
+      "outside_scope": []
+    },
+    "global-only": {
+      "changed_files": [
+        "global-rules.md"
+      ],
+      "outside_scope": []
+    },
+    "navigation_outputs_identical": true
+  },
+  "forward_reading_comparison": {
+    "baseline_navigation_method_files": [
+      "code/507-map/SKILL.md"
+    ],
+    "candidate_navigation_method_files": [
+      "code/507-setup/SKILL.md",
+      "code/507-setup/references/navigation.md"
+    ],
+    "project_files_read_in_each_navigation_case": 5,
+    "complete_project_standard_read_in_navigation": false,
+    "outputs_identical": true,
+    "interpretation": "Scope and output equivalence observed. Candidate reads one extra method file; no latency, token or loading-cost reduction is claimed. One independent actor executed the cases in the same context, not a randomized fresh-context comparison."
+  },
+  "independent_review": {
+    "initial_findings": [
+      "stale map responsibility in code README",
+      "old user decision and merge scope in implementation plan"
+    ],
+    "status": "Both fixed and independently rechecked; no remaining blocker found.",
+    "standalone_package_method_links": {
+      "setup": 6,
+      "review": 1,
+      "inspect": 1
+    }
+  },
+  "zcode": {
+    "version": "0.16.9",
+    "attempted": true,
+    "exit_code": 1,
+    "model_request_sent": false,
+    "reason": "Model access is not configured.",
+    "alternative": "Independent available subagents performed semantic review and forward execution."
+  },
+  "limits": [
+    "No live host automatic-discovery acceptance.",
+    "No cross-model comparison or performance/cost benchmark.",
+    "No unrelated media, external API, deployment or device tests.",
+    "No commit, push or publication by this task."
+  ]
+}

@@ -1,0 +1,602 @@
+[
+  {
+    "id": "R01",
+    "request": "先只读看看这个项目的消息保存链是怎样工作的，列清当前实现与还缺的证据。",
+    "expected": "507-explore",
+    "candidate_selection": {
+      "id": "R01",
+      "selected": "507-explore",
+      "reason": "请求只读定位项目代码机制，并区分已有实现与证据缺口。"
+    },
+    "baseline_selection": {
+      "id": "R01",
+      "selected": "507-explore",
+      "reason": "需要只读理解项目代码链路，并梳理当前证据与未知。"
+    }
+  },
+  {
+    "id": "R02",
+    "request": "用具体例子解释缓存与数据库的区别，我不理解这两个概念。",
+    "expected": "507-explain",
+    "candidate_selection": {
+      "id": "R02",
+      "selected": "507-explain",
+      "reason": "请求解释用户不理解的两个概念及其差异。"
+    },
+    "baseline_selection": {
+      "id": "R02",
+      "selected": "507-explain",
+      "reason": "用户明确不理解缓存与数据库，目标是借具体例子解释概念差异。"
+    }
+  },
+  {
+    "id": "R03",
+    "request": "核查这篇外部文章的实验数据与原始论文是否一致，并说明对我们的适用范围。",
+    "expected": "507-research",
+    "candidate_selection": {
+      "id": "R03",
+      "selected": "507-research",
+      "reason": "请求核实外部文章与原始论文，并判断适用范围。"
+    },
+    "baseline_selection": {
+      "id": "R03",
+      "selected": "507-research",
+      "reason": "请求核查外部文章与论文，并交付来源和适用范围证据。"
+    }
+  },
+  {
+    "id": "R04",
+    "request": "实现前把这个订阅方案问透：受众、权限边界和风险承受还需要我决定。",
+    "expected": "507-grill",
+    "candidate_selection": {
+      "id": "R04",
+      "selected": "507-grill",
+      "reason": "实施前仍有受众、权限和风险等用户取舍需要问透。"
+    },
+    "baseline_selection": {
+      "id": "R04",
+      "selected": "507-grill",
+      "reason": "请求在实施前把依赖用户取舍的订阅方案问透。"
+    }
+  },
+  {
+    "id": "R05",
+    "request": "我要换会话，给下一位 agent 一份交接摘要，包含未完成事项和验证边界。",
+    "expected": "507-handoff",
+    "candidate_selection": {
+      "id": "R05",
+      "selected": "507-handoff",
+      "reason": "请求换会话时提供可接手的交接摘要。"
+    },
+    "baseline_selection": {
+      "id": "R05",
+      "selected": "507-handoff",
+      "reason": "换会话时需要向另一 agent 交接状态和验证边界。"
+    }
+  },
+  {
+    "id": "R06",
+    "request": "把这个已有代码项目的规范和文档入口迁移到新的职责划分，并检查是否具备开工条件。",
+    "expected": "507-setup",
+    "candidate_selection": {
+      "id": "R06",
+      "selected": "507-setup",
+      "reason": "请求整体迁移已有项目规范与入口，并检查开工依据。"
+    },
+    "baseline_selection": {
+      "id": "R06",
+      "selected": "507-setup",
+      "reason": "任务涵盖已有代码项目规范迁移、新职责入口与开工依据。"
+    }
+  },
+  {
+    "id": "R07",
+    "request": "我们不确定这个取消状态机能否避免迟到结果覆盖；做一个可丢弃的小原型验证这个问题。",
+    "expected": "507-prototype",
+    "candidate_selection": {
+      "id": "R07",
+      "selected": "507-prototype",
+      "reason": "请求用可丢弃原型验证具体的状态机未知。"
+    },
+    "baseline_selection": {
+      "id": "R07",
+      "selected": "507-prototype",
+      "reason": "存在具体状态机未知，并明确要求可丢弃验证原型。"
+    }
+  },
+  {
+    "id": "R08",
+    "request": "产品头像的视觉方向还没定，先出结构明显不同的粗稿，让我通过淘汰挑方向。",
+    "expected": "507-taste",
+    "candidate_selection": {
+      "id": "R08",
+      "selected": "507-taste",
+      "reason": "视觉方向未定，需要通过明显不同的粗稿与淘汰反馈选择。"
+    },
+    "baseline_selection": {
+      "id": "R08",
+      "selected": "507-taste",
+      "reason": "请求用差异明显的粗稿和淘汰方式收敛头像视觉方向。"
+    }
+  },
+  {
+    "id": "R09",
+    "request": "把刚才已经确认的账户删除行为和验收条件更新到当前产品需求规格。",
+    "expected": "507-prd",
+    "candidate_selection": {
+      "id": "R09",
+      "selected": "507-prd",
+      "reason": "请求把已确认的产品行为和验收条件写入现行规格。"
+    },
+    "baseline_selection": {
+      "id": "R09",
+      "selected": "507-prd",
+      "reason": "请求将已确认行为与验收基准更新为当前产品规格。"
+    }
+  },
+  {
+    "id": "R10",
+    "request": "为这个仍需调查的问题创建 GitHub 调查工单，并把证据回链，暂不写成执行需求。",
+    "expected": "507-issue",
+    "candidate_selection": {
+      "id": "R10",
+      "selected": "507-issue",
+      "reason": "请求创建 GitHub 调查态工单并维护证据。"
+    },
+    "baseline_selection": {
+      "id": "R10",
+      "selected": "507-issue",
+      "reason": "请求创建调查态 GitHub issue，并保留证据回链。"
+    }
+  },
+  {
+    "id": "R11",
+    "request": "新版本点击保存稳定崩溃，日志和复现输入已给你，修复根因并验证。",
+    "expected": "507-fix",
+    "candidate_selection": {
+      "id": "R11",
+      "selected": "507-fix",
+      "reason": "已有可复现的软件崩溃，需要修复根因并验证。"
+    },
+    "baseline_selection": {
+      "id": "R11",
+      "selected": "507-fix",
+      "reason": "存在明确且稳定复现的崩溃，需要根因修复与验证。"
+    }
+  },
+  {
+    "id": "R12",
+    "request": "本次只补已有公开接口的行为测试，沿用当前框架，不修改生产代码。",
+    "expected": "507-test",
+    "candidate_selection": {
+      "id": "R12",
+      "selected": "507-test",
+      "reason": "测试资产是唯一主要任务，仅补现有接口的行为测试。"
+    },
+    "baseline_selection": {
+      "id": "R12",
+      "selected": "507-test",
+      "reason": "主要工作是沿用现有框架补行为测试。"
+    }
+  },
+  {
+    "id": "R13",
+    "request": "请按 test-first 开发这个已经确认的小功能，逐条完成红绿重构。",
+    "expected": "507-tdd",
+    "candidate_selection": {
+      "id": "R13",
+      "selected": "507-tdd",
+      "reason": "用户明确要求 test-first 和红绿重构。"
+    },
+    "baseline_selection": {
+      "id": "R13",
+      "selected": "507-tdd",
+      "reason": "用户明确指定 test-first 与红绿重构流程。"
+    }
+  },
+  {
+    "id": "R14",
+    "request": "按这份 inspect 报告逐项简化内部实现，保持公开行为与数据格式不变。",
+    "expected": "507-simplify",
+    "candidate_selection": {
+      "id": "R14",
+      "selected": "507-simplify",
+      "reason": "请求依据 inspect 报告实施公开行为不变的内部简化。"
+    },
+    "baseline_selection": {
+      "id": "R14",
+      "selected": "507-simplify",
+      "reason": "请求按 inspect 报告实施公开契约和行为不变的简化。"
+    }
+  },
+  {
+    "id": "R15",
+    "request": "校准这个模块的 README 和 doc 导航，只改项目地图，不迁移业务规格或实现。",
+    "expected": "507-map",
+    "candidate_selection": {
+      "id": "R15",
+      "selected": "507-map",
+      "reason": "范围仅为 README 与文档导航等项目地图。"
+    },
+    "baseline_selection": {
+      "id": "R15",
+      "selected": "507-map",
+      "reason": "任务仅校准 README 与文档导航等地图内容。"
+    }
+  },
+  {
+    "id": "R16",
+    "request": "只读审查这个 commit 的需求符合度、项目规范和代码质量，给出带证据的问题。",
+    "expected": "507-review",
+    "candidate_selection": {
+      "id": "R16",
+      "selected": "507-review",
+      "reason": "请求围绕明确 commit 只读审查规范、需求和质量。"
+    },
+    "baseline_selection": {
+      "id": "R16",
+      "selected": "507-review",
+      "reason": "请求围绕明确 commit 检查规范、需求符合度和代码质量。"
+    }
+  },
+  {
+    "id": "R17",
+    "request": "把已经完成的本次改动提交到本地 Git，保留无关改动，不推送。",
+    "expected": "507-commit",
+    "candidate_selection": {
+      "id": "R17",
+      "selected": "507-commit",
+      "reason": "用户明确要求精确范围的本地 Git 提交且不推送。"
+    },
+    "baseline_selection": {
+      "id": "R17",
+      "selected": "507-commit",
+      "reason": "用户明确授权本地 Git 提交，并排除推送。"
+    }
+  },
+  {
+    "id": "R18",
+    "request": "把已经定版的这个软件版本推送并发布到我指定的 npm 渠道，不发布 GitHub Release。",
+    "expected": "507-release",
+    "candidate_selection": {
+      "id": "R18",
+      "selected": "507-release",
+      "reason": "用户明确要求按指定 npm 渠道推送并发布软件版本。"
+    },
+    "baseline_selection": {
+      "id": "R18",
+      "selected": "507-release",
+      "reason": "请求发布已定版软件并限定 npm 渠道。"
+    }
+  },
+  {
+    "id": "R19",
+    "request": "在这个模块范围内做架构体检，找出职责泄漏和难测接缝，只提供候选报告。",
+    "expected": "507-inspect",
+    "candidate_selection": {
+      "id": "R19",
+      "selected": "507-inspect",
+      "reason": "请求检查模块职责与实现接缝，并只交付架构候选报告。"
+    },
+    "baseline_selection": {
+      "id": "R19",
+      "selected": "507-inspect",
+      "reason": "请求在模块范围只读寻找职责与接缝问题，产出候选报告。"
+    }
+  },
+  {
+    "id": "R20",
+    "request": "先别写，采访我这段亲历，把我尚未表达的场景、行动和判断变化问出来。",
+    "expected": "507-prospect",
+    "candidate_selection": {
+      "id": "R20",
+      "selected": "507-prospect",
+      "reason": "需要采访作者尚未充分表达的亲历与判断变化。"
+    },
+    "baseline_selection": {
+      "id": "R20",
+      "selected": "507-prospect",
+      "reason": "用户尚未表达亲历材料，需要创作采访。"
+    }
+  },
+  {
+    "id": "R21",
+    "request": "从这篇指定文章里挖出可复用的观点碎片，先和现有知识库去重，不做选题。",
+    "expected": "507-mine",
+    "candidate_selection": {
+      "id": "R21",
+      "selected": "507-mine",
+      "reason": "请求从已有文章提取可复用碎片并在知识库去重。"
+    },
+    "baseline_selection": {
+      "id": "R21",
+      "selected": "507-mine",
+      "reason": "请求从现有文章提取碎片，并先做知识库去重。"
+    }
+  },
+  {
+    "id": "R22",
+    "request": "这几条现成碎片能否支撑一篇文章？比较竞争解释，组合成候选选题。",
+    "expected": "507-fuse",
+    "candidate_selection": {
+      "id": "R22",
+      "selected": "507-fuse",
+      "reason": "请求比较现成碎片的竞争解释并形成候选选题。"
+    },
+    "baseline_selection": {
+      "id": "R22",
+      "selected": "507-fuse",
+      "reason": "请求判断碎片能否成题，比较解释并组合候选选题。"
+    }
+  },
+  {
+    "id": "R23",
+    "request": "这组碎片已经成熟，按我们确认的组织方式沉淀成知识库主题页。",
+    "expected": "507-cast",
+    "candidate_selection": {
+      "id": "R23",
+      "selected": "507-cast",
+      "reason": "请求把成熟碎片簇沉淀为系统化知识库主题页。"
+    },
+    "baseline_selection": {
+      "id": "R23",
+      "selected": "507-cast",
+      "reason": "成熟碎片及组织方式已确认，目标是沉淀知识库主题页。"
+    }
+  },
+  {
+    "id": "R24",
+    "request": "润色这篇现有书面文章的指定段落，保留原意、事实边界和我的作者声音。",
+    "expected": "507-forge",
+    "candidate_selection": {
+      "id": "R24",
+      "selected": "507-forge",
+      "reason": "请求局部润色书面文章并保留原意与作者声音。"
+    },
+    "baseline_selection": {
+      "id": "R24",
+      "selected": "507-forge",
+      "reason": "请求指定范围的书面稿件润色，并保留原意和作者声音。"
+    }
+  },
+  {
+    "id": "R25",
+    "request": "听众和目标已经确认，请把这些案例编排成一份能现场讲通的分享稿，暂不制作幻灯片文件。",
+    "expected": "507-stage",
+    "candidate_selection": {
+      "id": "R25",
+      "selected": "507-stage",
+      "reason": "请求把案例编排为现场分享稿，尚不制作幻灯片视觉。"
+    },
+    "baseline_selection": {
+      "id": "R25",
+      "selected": "507-stage",
+      "reason": "任务是把案例编排为可以现场讲述的分享稿。"
+    }
+  },
+  {
+    "id": "R26",
+    "request": "逐页内容已经完整确认，制作可编辑的 PPTX 幻灯片并检查实际渲染。",
+    "expected": "507-ppt",
+    "candidate_selection": {
+      "id": "R26",
+      "selected": "507-ppt",
+      "reason": "逐页内容已确认，任务是制作并验证可编辑 PPTX。"
+    },
+    "baseline_selection": {
+      "id": "R26",
+      "selected": "507-ppt",
+      "reason": "成熟逐页内容已确认，需要生成并验证可编辑幻灯片。"
+    }
+  },
+  {
+    "id": "R27",
+    "request": "用 Voicebox 里已经授权和建立的声音档案，为这份成熟旁白生成本地配音。",
+    "expected": "507-narrate",
+    "candidate_selection": {
+      "id": "R27",
+      "selected": "507-narrate",
+      "reason": "请求用 Voicebox 已建立且授权的声音生成本地配音。"
+    },
+    "baseline_selection": {
+      "id": "R27",
+      "selected": "507-narrate",
+      "reason": "Voicebox 已有授权声音，输入为成熟旁白，目标是本地配音。"
+    }
+  },
+  {
+    "id": "R28",
+    "request": "目标、预算、受众、时间与责任已经确认，请一次完成这份合作工作坊正式方案。",
+    "expected": "507-frame",
+    "candidate_selection": {
+      "id": "R28",
+      "selected": "507-frame",
+      "reason": "已确认目标和边界，需要完成面向人的工作坊合作方案。"
+    },
+    "baseline_selection": {
+      "id": "R28",
+      "selected": "507-frame",
+      "reason": "合作工作坊的需求边界已确认，任务是完成正式方案。"
+    }
+  },
+  {
+    "id": "R29",
+    "request": "对这条参考视频做拉片，核验分镜、节奏和字幕证据，形成后续可读取的完成包。",
+    "expected": "507-breakdown",
+    "candidate_selection": {
+      "id": "R29",
+      "selected": "507-breakdown",
+      "reason": "请求对参考视频取证并交付可核验的拉片包。"
+    },
+    "baseline_selection": {
+      "id": "R29",
+      "selected": "507-breakdown",
+      "reason": "任务是参考视频分镜、节奏和字幕取证，并产出拉片包。"
+    }
+  },
+  {
+    "id": "R30",
+    "request": "使用这两个已经完成的拉片包，借创作手法重组为原创视频创作包，不渲染。",
+    "expected": "507-remix",
+    "candidate_selection": {
+      "id": "R30",
+      "selected": "507-remix",
+      "reason": "输入是已完成拉片包，目标是借鉴手法形成原创创作包。"
+    },
+    "baseline_selection": {
+      "id": "R30",
+      "selected": "507-remix",
+      "reason": "请求仅利用已完成拉片包借鉴手法，形成原创创作包。"
+    }
+  },
+  {
+    "id": "R31",
+    "request": "成熟旁白和授权素材都已提供，在已有项目中制作、预览并按确认导出视频。",
+    "expected": "507-video",
+    "candidate_selection": {
+      "id": "R31",
+      "selected": "507-video",
+      "reason": "成熟内容与授权素材齐备，需要在现有项目制作并导出视频。"
+    },
+    "baseline_selection": {
+      "id": "R31",
+      "selected": "507-video",
+      "reason": "需要在现有视频项目中制作、预览，并经确认渲染导出。"
+    }
+  },
+  {
+    "id": "R32",
+    "request": "把这篇成熟长文完整排成连续小红书图文，不做摘要，不发布。",
+    "expected": "507-rednote",
+    "candidate_selection": {
+      "id": "R32",
+      "selected": "507-rednote",
+      "reason": "请求把成熟文章连续全文排成小红书图文。"
+    },
+    "baseline_selection": {
+      "id": "R32",
+      "selected": "507-rednote",
+      "reason": "请求把成熟长文完整排为连续小红书图文。"
+    }
+  },
+  {
+    "id": "R33",
+    "request": "检查这篇文章引用的统计数字是否准确，给我原始来源；不要审查代码。",
+    "expected": "507-research",
+    "candidate_selection": {
+      "id": "R33",
+      "selected": "507-research",
+      "reason": "目标是核实文章中的外部统计事实并追溯原始来源。"
+    },
+    "baseline_selection": {
+      "id": "R33",
+      "selected": "507-research",
+      "reason": "请求核查外部统计事实及原始来源，符合外部证据职责。"
+    }
+  },
+  {
+    "id": "R34",
+    "request": "I need a presentation script from these approved cases; write the spoken content, no slide rendering.",
+    "expected": "507-stage",
+    "candidate_selection": {
+      "id": "R34",
+      "selected": "507-stage",
+      "reason": "请求撰写口述演示稿，明确不制作幻灯片视觉。"
+    },
+    "baseline_selection": {
+      "id": "R34",
+      "selected": "507-stage",
+      "reason": "请求从案例编写口述演示内容，属于现场讲稿编排。"
+    }
+  },
+  {
+    "id": "R35",
+    "request": "Create an editable slide deck from the fully approved page-by-page content; the script is already finished.",
+    "expected": "507-ppt",
+    "candidate_selection": {
+      "id": "R35",
+      "selected": "507-ppt",
+      "reason": "讲稿和逐页内容已完成，任务是制作可编辑幻灯片。"
+    },
+    "baseline_selection": {
+      "id": "R35",
+      "selected": "507-ppt",
+      "reason": "逐页内容和讲稿均已完成，需要制作可编辑幻灯片。"
+    }
+  },
+  {
+    "id": "R36",
+    "request": "把这条视频概括成三句话，我只要普通总结，不需要分镜、逐帧证据或拉片包。",
+    "expected": null,
+    "candidate_selection": {
+      "id": "R36",
+      "selected": null,
+      "reason": "普通视频总结被拉片技能明确排除，其余描述未覆盖此任务。"
+    },
+    "baseline_selection": {
+      "id": "R36",
+      "selected": null,
+      "reason": "普通视频总结被 breakdown 明确排除，其余技能未描述该职责。"
+    }
+  },
+  {
+    "id": "R37",
+    "request": "帮我录入并克隆一个新的声音档案，这里没有已经建立的 Voicebox 声音。",
+    "expected": null,
+    "candidate_selection": {
+      "id": "R37",
+      "selected": null,
+      "reason": "任务是建立并克隆新声音，配音技能明确不承担此范围。"
+    },
+    "baseline_selection": {
+      "id": "R37",
+      "selected": null,
+      "reason": "创建并克隆新声音被 narrate 明确排除，目录中没有相应能力。"
+    }
+  },
+  {
+    "id": "R38",
+    "request": "把这篇已完成文章发布到小红书账号，不涉及软件版本或 Git。",
+    "expected": null,
+    "candidate_selection": {
+      "id": "R38",
+      "selected": null,
+      "reason": "任务是社交账号发布，图文制作和软件发布均明确不覆盖。"
+    },
+    "baseline_selection": {
+      "id": "R38",
+      "selected": null,
+      "reason": "社交账号发布超出图文编辑，release 的版本发布语境也不足以覆盖。"
+    }
+  },
+  {
+    "id": "R39",
+    "request": "把我自己的几段录像作为素材剪成成片，不研究参考视频的手法。",
+    "expected": "507-video",
+    "candidate_selection": {
+      "id": "R39",
+      "selected": "507-video",
+      "reason": "请求把已有录像素材剪成成片，属于视频制作。"
+    },
+    "baseline_selection": {
+      "id": "R39",
+      "selected": "507-video",
+      "reason": "使用自己的已有录像剪辑成片，符合视频成品制作范围。"
+    }
+  },
+  {
+    "id": "R40",
+    "request": "需求与技术方案已经确认，直接实现这个普通业务功能，不需要另外写规格或专门技能。",
+    "expected": null,
+    "candidate_selection": {
+      "id": "R40",
+      "selected": null,
+      "reason": "目录没有覆盖无需专门流程的普通业务功能直接实现技能。"
+    },
+    "baseline_selection": {
+      "id": "R40",
+      "selected": null,
+      "reason": "目录未提供无额外专门流程的普通业务功能实现技能。"
+    }
+  }
+]
