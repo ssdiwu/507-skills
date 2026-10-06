@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-06",
+  "timezone": "Asia/Shanghai",
+  "scope": "paper-polish methods integrated into existing forge text editing; no new skill or stage change.",
+  "source_revision": "207bc6f7a1aa107e544099c2c7cc86816fba9628",
+  "static_checks": {
+    "source_files_verified": 8,
+    "source_directory_complete": true,
+    "source_license_recorded": "CC-BY-NC-SA-4.0",
+    "author_model_unchanged": true,
+    "reasoning_and_picture_evidence_unchanged": true,
+    "local_links_checked": 46,
+    "broken_links": [],
+    "scope_note": "Deterministic source and document checks; no model-quality or reader-acceptance claim.",
+    "authored_diff_whitespace": "passed",
+    "private_original_unchanged": true
+  },
+  "skill_metadata_check": "passed",
+  "existing_prose_checker_tests": {
+    "passed": 5,
+    "failed": 0,
+    "scope": "Unchanged deterministic expression-checker regression; not a semantic-quality score."
+  },
+  "forward_test": {
+    "method": "Two independent agents, one baseline and one candidate, processed the same four raw requests in isolated directories. No expected answer or earlier conclusions were given. Parent model inherited; one execution per variant and case.",
+    "candidate_skill_sha256": "de198a7be98162a8e5ed747f2f091fd9053e7d5c3f6ff3cbe0faaa1dd1b1cd70",
+    "baseline_skill_sha256": "4118b3d84bb4ec28ef1f6c2c007c7d4d99512dd5688135c0b14a7d4b546e1b1b",
+    "cases": [
+      {
+        "id": "real-prose",
+        "source_type": "existing_author_draft",
+        "observed": "Seven paragraphs, the core judgement, the two-product boundary and rhetorical question were retained. Sentence edits stayed within the original propositions.",
+        "candidate_verdict": "pass",
+        "author_acceptance": false,
+        "response_sha256": {
+          "a": "961ca548a432078abba2ef6773772ffda17a46d8af5891eba9958a230138d22f",
+          "b": "eba2e42f6eaf1aff8f31f8a14e5b67c2c8478ca8014631a6ab4a95a7f6b88ea5"
+        }
+      },
+      {
+        "id": "bounded-results",
+        "source_type": "synthetic",
+        "observed": "Date, sample counts, version, error-budget upper bound, status identifiers, uncertainty, causality and customer-acceptance boundaries were retained in the edited body. Original language and paragraph format retained.",
+        "candidate_verdict": "pass",
+        "response_sha256": {
+          "a": "e31527ddd48fda3cf2a38eac4c31f0e2f3d9ee7598407e1223d277514ef7c447",
+          "b": "874bf697dde71f0c157ba81596357f4225e3c9515ad9def564e6474051327cfe"
+        }
+      },
+      {
+        "id": "claim-risk",
+        "source_type": "synthetic",
+        "observed": "Baseline narrowed the conclusion in its delivered body after disclosing the change. Candidate retained the original claim and separated the narrower candidate with original, suggestion, reason and risk.",
+        "candidate_verdict": "pass",
+        "response_sha256": {
+          "a": "3c764d1030fec20f0c9f99c428ba28b442dee319c6c2d7b1e096d18afb6aab3e",
+          "b": "38f192b4bd8f1da549aaa5fd412b76e9e4c998adda490988587476ecf27f6e65"
+        }
+      },
+      {
+        "id": "partial-unreadable",
+        "source_type": "synthetic",
+        "observed": "Readable prose was completed. The formula placeholder stayed in position and the unprocessed formula was explicitly reported.",
+        "candidate_verdict": "pass",
+        "response_sha256": {
+          "a": "e8afee9337b75b4d36e133acc2fa99651bc6cb8fd758b70e198f69efce149d99",
+          "b": "851540993a8da1534f68e4d279c9b4ab41b307b9d783743246d7849ad51948b5"
+        }
+      }
+    ],
+    "extra_writing_artifacts": {
+      "baseline": 8,
+      "candidate": 0
+    },
+    "evaluation_replies_and_private_source_in_repository": false,
+    "manual_semantic_comparison": "Root inspected all eight actual replies, not just the agents run notes."
+  },
+  "review": {
+    "skill": "507-review",
+    "independent": true,
+    "scope": "Seven selected existing-file changes and the new paper-polish reference; isolated baseline and candidate; all eight actual text replies.",
+    "verdict": "no_blocking_findings",
+    "standards": "passed",
+    "spec": "passed",
+    "code_quality": "no_blocking_findings",
+    "report_sha256": "edc5f8be8ef326a0faa991092120eb02a3029d9c9c5c94de07543a4a6eb792d2",
+    "reviewer_modified_candidate_or_repository": false,
+    "limits": [
+      "Four short text cases; not cross-model, long-document chunking or actual-author acceptance."
+    ]
+  },
+  "integration": {
+    "status": "applied_to_working_tree",
+    "selected_existing_files": [
+      "README.md",
+      "write/README.md",
+      "doc/README.md",
+      "doc/20-能力参考/README.md",
+      "CHANGELOG.md",
+      "write/507-forge/SKILL.md",
+      "write/507-forge/references/prose-revision.md"
+    ],
+    "new_reference_file_count": 13,
+    "applied_files_read_back_equal_candidate": true,
+    "preexisting_unrelated_files_hash_unchanged": 15,
+    "private_original_unchanged": true,
+    "shared_skill_link_matches_updated_source": true,
+    "commit_push_release": "not_requested_or_performed"
+  },
+  "limits": [
+    "Four cases with one execution each; not a general quality ranking or latency/token measurement.",
+    "No cross-model comparison, host discovery E2E or real-author acceptance.",
+    "Private source and complete replies remain outside the public repository.",
+    "Long-document chunking is defined in the rule but was not exercised by the four short-text replays."
+  ]
+}

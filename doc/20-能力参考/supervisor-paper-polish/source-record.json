@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/HKUSTDial/Supervisor-Skills",
+  "revision": "207bc6f7a1aa107e544099c2c7cc86816fba9628",
+  "revision_tree_sha1": "2acd2dacac00989d52e491c7c0dd06d7d7fef4f8",
+  "revision_committed_at": "2026-09-05T18:53:22+08:00",
+  "retrieved_on": "2026-10-06",
+  "retrieval_timezone": "Asia/Shanghai",
+  "retrieval_method": "Pinned Git fetch after unauthenticated REST API returned a rate-limit error.",
+  "purpose": "Frozen research sources; not enabled skills or host instructions.",
+  "upstream_instruction_status": "Reference data only; no upstream installation or scripts executed.",
+  "content_modified": false,
+  "declared_license": "CC-BY-NC-SA-4.0",
+  "license_scope": "Frozen upstream originals retain their upstream license and attribution; the repository root license does not replace their license.",
+  "scope": {
+    "skill": "paper-polish",
+    "complete_skill_directory": true,
+    "skill_files": 4,
+    "supporting_root_files": 4,
+    "other_skills_included": false,
+    "handbook_included": false
+  },
+  "file_count": 8,
+  "total_bytes": 68759,
+  "files": [
+    {
+      "upstream_path": "README.md",
+      "local_path": "upstream-207bc6f7a1aa/README.md",
+      "source_url": "https://github.com/HKUSTDial/Supervisor-Skills/blob/207bc6f7a1aa107e544099c2c7cc86816fba9628/README.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "ea056431a013d2fb79f51b4636e3bcb92ace4ffb",
+      "sha256": "964ac0e9fa6ae6a2cbaa595efd11dba4e5a9d051561b48755d54f69aa871a837",
+      "bytes": 15096
+    },
+    {
+      "upstream_path": "skills/README.md",
+      "local_path": "upstream-207bc6f7a1aa/skills/README.md",
+      "source_url": "https://github.com/HKUSTDial/Supervisor-Skills/blob/207bc6f7a1aa107e544099c2c7cc86816fba9628/skills/README.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "b1f2cd75add3f1a9e62a62505003151ec7c82406",
+      "sha256": "ae7eeec4330574fff585b9bd60736652d712cb4df662f23575fa054e18c9d231",
+      "bytes": 22394
+    },
+    {
+      "upstream_path": "skills/paper-polish/SKILL.md",
+      "local_path": "upstream-207bc6f7a1aa/skills/paper-polish/SKILL.md",
+      "source_url": "https://github.com/HKUSTDial/Supervisor-Skills/blob/207bc6f7a1aa107e544099c2c7cc86816fba9628/skills/paper-polish/SKILL.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "51c620067f7b37260cc2497b8907a5b1dcd0121a",
+      "sha256": "fde7964acfea805a399d52da0355dac3139b51be9b2aa456348538c4713f75ce",
+      "bytes": 12311
+    },
+    {
+      "upstream_path": "skills/paper-polish/references/ai-tone-guardrails.md",
+      "local_path": "upstream-207bc6f7a1aa/skills/paper-polish/references/ai-tone-guardrails.md",
+      "source_url": "https://github.com/HKUSTDial/Supervisor-Skills/blob/207bc6f7a1aa107e544099c2c7cc86816fba9628/skills/paper-polish/references/ai-tone-guardrails.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "61507e47816d5118f36354560c56332e141bedbf",
+      "sha256": "11f8570c540c7502aa95ce799c97be3c6e12dd744ccc2ece774126509e015024",
+      "bytes": 4512
+    },
+    {
+      "upstream_path": "skills/paper-polish/references/academic-phrasebank.md",
+      "local_path": "upstream-207bc6f7a1aa/skills/paper-polish/references/academic-phrasebank.md",
+      "source_url": "https://github.com/HKUSTDial/Supervisor-Skills/blob/207bc6f7a1aa107e544099c2c7cc86816fba9628/skills/paper-polish/references/academic-phrasebank.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "fd2055ff4fb36bf35908e5f48f6ab189a3b6f441",
+      "sha256": "4f199bd39c1810453b41388dd9839b570522512c319922f1a11d7a5029706e57",
+      "bytes": 4559
+    },
+    {
+      "upstream_path": "skills/paper-polish/references/section-conventions.md",
+      "local_path": "upstream-207bc6f7a1aa/skills/paper-polish/references/section-conventions.md",
+      "source_url": "https://github.com/HKUSTDial/Supervisor-Skills/blob/207bc6f7a1aa107e544099c2c7cc86816fba9628/skills/paper-polish/references/section-conventions.md",
+      "git_mode": "100644",
+      "git_blob_sha1": "fc341ef2bb4b971bdd46435a55cce31c5d4f63de",
+      "sha256": "83348fb3658aee2a09a9ad35e5b0265240371122442431df5a1efdd86d5d58cb",
+      "bytes": 4395
+    },
+    {
+      "upstream_path": "llms.txt",
+      "local_path": "upstream-207bc6f7a1aa/llms.txt",
+      "source_url": "https://github.com/HKUSTDial/Supervisor-Skills/blob/207bc6f7a1aa107e544099c2c7cc86816fba9628/llms.txt",
+      "git_mode": "100644",
+      "git_blob_sha1": "bc4353b9e6f0b735f4eabd4a941e696761f123e4",
+      "sha256": "443c12120165452f4b20f04bddbea4716a0e63dc82f23263a1df641dd87b1111",
+      "bytes": 4464
+    },
+    {
+      "upstream_path": "LICENSE",
+      "local_path": "upstream-207bc6f7a1aa/LICENSE",
+      "source_url": "https://github.com/HKUSTDial/Supervisor-Skills/blob/207bc6f7a1aa107e544099c2c7cc86816fba9628/LICENSE",
+      "git_mode": "100644",
+      "git_blob_sha1": "54943766e78df82b3cdb76ce2d9ee6c826509aaa",
+      "sha256": "b35c958b79726c115cf817635abcbc2aa1121cae5e9a1c22819f7c44f58fcaf0",
+      "bytes": 1028
+    }
+  ]
+}

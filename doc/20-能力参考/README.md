@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | [ZCode 架构治理与功能边界分析](zcode-skills/README.md) | 两个技能的完整原件、相关治理机制、来源与校验记录，以及现有技能分工比较 | 原件保持冻结；方法已融入现有技能，见[融合与验证](zcode-skills/融合与验证.md) |
 | [507-skills 提示词审计](prompt-audit/2026-10-03/README.md) | 基于 Anthropic 官方 prompt-audit 的仓库审视、来源与范围记录、未应用差异 | 保留审计快照；7 项合同问题已修订，实际模型效果未回放 |
+| [paper-polish 表达润色方法](supervisor-paper-polish/README.md) | 固定版本的完整技能原件、来源与许可、与 forge 的分工比较和融合验证 | 表达润色方法进入 forge；成文与口播职责保留，原件不作为宿主指令 |
 
 已启用技能的当前行为以其 `SKILL.md` 为准；确认后的正式需求进入项目既有规格入口。
 
