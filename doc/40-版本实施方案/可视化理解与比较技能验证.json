@@ -1,0 +1,201 @@
+{
+  "date": "2026-10-10",
+  "scope": "新增 common/507-visualize 与直接导航，保全现有未提交修订；没有宿主安装、业务执行、Git 交付或发布。",
+  "baseline": {
+    "head": "2d415d106453cc37fc570ecc75d7cecbeaba1e9e",
+    "state": "现行工作稿；前轮命名、UI 与其它未提交修订已经存在"
+  },
+  "package": {
+    "path": "common/507-visualize",
+    "files": {
+      "SKILL.md": "09f4cb86602bd7f8371c99d1faf88d4688765a7f6ded1fa69df31a1fc581e4de",
+      "agents/openai.yaml": "cd0b6aca4b2ba44e24847825dc4b4f80caaffc2d39703f9d48b8efcc3e264163",
+      "references/delivery-and-checks.md": "7582164ddf583b4aaaed7eeccb6b7da742f78873ac6d9d719bfb16b8dd21eff0",
+      "references/understanding-model.md": "bc6d3e5918c7751fa0d06eefa1cbb83b7bc78dfbfc89a625ff7c328b56f4a161"
+    },
+    "selfContained": true,
+    "importedRuntimeOrAssets": false
+  },
+  "responsibilityReview": {
+    "method": "独立只读检查当前合同、相邻入口及实际宿主合同",
+    "result": "no_blockers",
+    "resolved": [
+      {
+        "issue": "普通概念讲解与理解工具的触发边界存在交叠",
+        "change": "描述与输入范围限定为关系探索、条件观察、方案对照或独立阅读工具；普通解释继续由 explain 承担",
+        "closure": "定向复核通过"
+      }
+    ]
+  },
+  "selectionCheck": {
+    "method": "独立审查者按自然请求核对选择与停止；静态合同判断，无成品渲染，不是自动发现或模型效果测评",
+    "cases": [
+      {
+        "request": "解释 404，一句话即可",
+        "expected": "直接说明，不制作文件",
+        "result": "passed"
+      },
+      {
+        "request": "解释模型和 agent 的区别，可用必要示意",
+        "expected": "507-explain，最小解释，默认不落盘",
+        "result": "passed"
+      },
+      {
+        "request": "把七十个术语做成本地可点击阅读站",
+        "expected": "507-visualize，网页制作与发布分开",
+        "result": "passed"
+      },
+      {
+        "request": "在对话中调节参数观察已定义的机制",
+        "expected": "507-visualize，核对当前宿主合同",
+        "result": "passed"
+      },
+      {
+        "request": "比较两套方法，点击查看接力条件",
+        "expected": "507-visualize，点选不执行工作流",
+        "result": "passed"
+      },
+      {
+        "request": "修复后台保存故障",
+        "expected": "507-fix，不归理解工具",
+        "result": "passed"
+      },
+      {
+        "request": "制作季度财务正式报告",
+        "expected": "相应分析／报告职责，不归可视化统一入口",
+        "result": "passed"
+      }
+    ]
+  },
+  "forwardExecution": [
+    {
+      "deliverable": "离线工程技能分工阅读站",
+      "inputs": {
+        "type": "八份原始技能说明",
+        "sha256": {
+          "507-explore.md": "bc7782980273c5a26d9a5fa413c385cc26850441917635a0d4b24d150be509f3",
+          "507-fix.md": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a",
+          "507-git.md": "fc1a598d8f4344d619cc58eb6072e09d258cdc751af16f9fdab7e766bd36f6fb",
+          "507-grill.md": "ad0519061f1ebbdb926405f641e93c6965b0ef2501c1233065c01806f88ac1b2",
+          "507-prd.md": "77d3a0153efb35692ac52b94fecbdc2d7241d960f1172dff650bd1790417863d",
+          "507-prototype.md": "e350a1445d8dc721abadd60f6d049dfa7040de579c7f37a68a3f323553ac34f2",
+          "507-review.md": "3e986f852afc0ed073bf9001a39bb950503f49b3814814909addc839c0b0f95c",
+          "507-test.md": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5"
+        }
+      },
+      "method": "隔离执行者仅从候选技能包、自然任务与原始材料制作，未使用现成网站源码；测试者自己的检查另列",
+      "output": {
+        "file": "index.html",
+        "sha256": "dd20ba037bef1a67db785a3d3485330adca1b536d944c0788050485fa05eeb71",
+        "dataSha256": "10b95148beef4bd8d32667cbdb1fa01b691a44ec3a5643628b929a4876476fd1",
+        "objects": 8,
+        "typedConditionalRelations": 57
+      },
+      "selfChecks": {
+        "method": "独立输出目录内的无头 Chrome，以禁网页面目标直接加载 file://；同时核对资料全文与指纹",
+        "reportSha256": "6232b62dd07a95479c0c18fc6b1d93b057e9fa4438be8f6c8323b67aaa91e631",
+        "result": "passed",
+        "covered": [
+          "八项对象与三种阅读视角",
+          "57 条关系的出处定位与返回",
+          "候选接力与阅读历史",
+          "资料外入口与未知位置恢复",
+          "键盘切换和原文展开",
+          "320px 与 390px 的长内容和操作",
+          "直接阅读链接与无远端运行资源"
+        ]
+      },
+      "independentSemanticReview": {
+        "result": "no_blockers",
+        "covered": [
+          "嵌入数据与独立数据文件一致，八份全文与原件一致",
+          "57 条关系对照原文核查类型、方向、条件与出处",
+          "explore／review 只读，测试与 Git 各自授权",
+          "未知入口未补造，历史入口没有成为必经步骤"
+        ]
+      },
+      "ownerBrowserReadback": {
+        "environment": "Ego 浏览器，file:// 直接打开",
+        "result": "passed",
+        "covered": [
+          "选中 review 与详情／条件一致",
+          "关系出处定位到原文第 102 行并可见",
+          "review 到 fix 再返回恢复原对象与后续视角",
+          "浅色桌面与窄屏截图阅读核对"
+        ]
+      }
+    },
+    {
+      "deliverable": "对话中的交付形式比较",
+      "inputs": {
+        "type": "一份明确标为教学模型的原始说明",
+        "sha256": "11e72b6f9952439f392cf687882efc2d1bc76299da0287ee2f79fe99a9f9bf6b"
+      },
+      "method": "另一隔离执行者仅从候选技能包、自然任务与原始说明制作；适配执行时宿主的实际片段合同",
+      "output": {
+        "file": "delivery-choice.html",
+        "sha256": "fcaee8dec6dfdd5bd1fc74977b666419e96fa339e7054ffefef33627cc4b6d82"
+      },
+      "selfChecks": {
+        "method": "静态合同、脚本解析与实际脚本在模拟 DOM 中执行；该层未操作浏览器",
+        "reportSha256": "568248b50b0715453a399e3f9e4f267e60b83e7c520142f8b5df00b0b7d67b50",
+        "result": "passed",
+        "covered": [
+          "选择、结果与按下状态同步",
+          "合法／非法已保存状态与恢复",
+          "加载和状态事件不写回",
+          "保存缺失、抛错或拒绝时本地视图仍可用",
+          "状态体积、元素存在和无业务网络请求"
+        ]
+      },
+      "independentSemanticReview": {
+        "result": "no_blockers",
+        "covered": [
+          "三种载体是用途选择，没有必经次序",
+          "选择不表示创建、执行或发布",
+          "按当前宿主工具样式与状态合同适配"
+        ]
+      },
+      "ownerBrowserReadback": {
+        "environment": "宿主渲染辅助器提供的沙箱预览与 Ego 浏览器；不是正式宿主持久化回执",
+        "result": "passed",
+        "covered": [
+          "点击网页形式改变对应条件与边界",
+          "键盘 Enter 切换静态形式",
+          "约 319 CSS 像素的片段宽度及浅色外观可读"
+        ],
+        "darkTheme": "本轮未验证；父页面深色模拟没有证明沙箱片段实际切换"
+      }
+    }
+  ],
+  "repositoryChecks": {
+    "status": "passed",
+    "packageValidation": "skill-creator 元数据校验通过；四份文件与已审候选逐字一致，包指纹匹配",
+    "navigation": "主线程与独立审查者分别核对 73 个本地链接目标，均存在；根速查与 common 导航一致",
+    "activeSkills": {
+      "common": 8,
+      "code": 11,
+      "write": 11,
+      "total": 30
+    },
+    "previousProgress": "原阶段正文完整保留，只有归档位置、历史说明及相对文档链接调整",
+    "hygiene": "本轮六份导航增量通过 git diff --check；新增文件无行尾空白，范围内未见私有绝对路径或会话引用",
+    "independentCloseout": "整合包、六份直接导航、方法依据、验证记录及前轮归档只读审查未发现阻塞或返修问题",
+    "export": {
+      "file": "507-visualize.zip",
+      "files": 4,
+      "integrity": "与当前完整包逐字一致，压缩包完整性检查通过",
+      "sha256": "0f8e903b370a14512762dd6ef2fd27fb99308272c0df5a53138ec0132f3d22af"
+    },
+    "scope": "没有复跑未变化的媒体、工程或浏览器测试；没有把选择检查当成模型效果评测"
+  },
+  "notVerified": [
+    "真实读者的理解与主观视觉接受",
+    "跨模型或旧版对照的效果／效率提升",
+    "Safari／Firefox、真实触控设备与屏幕阅读器",
+    "正式对话宿主的状态保存回执与跨客户端恢复",
+    "宿主自动发现、安装或启用",
+    "网页联网托管、项目集成、Git 提交、推送或发布"
+  ],
+  "artifactHandling": "两份试用及运行证据保留在本地隔离工作目录，不随公开技能包分发；本记录保存材料与成品指纹，不复制私有路径、宿主实现或现成模板。"
+}

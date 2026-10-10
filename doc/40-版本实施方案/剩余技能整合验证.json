@@ -321,5 +321,7 @@
     "main_repository_commit": "Subsequent authorized local commit is recorded by Git history; it is separate from the synthetic Git tests.",
     "main_repository_push": "Not performed in the recorded verification or authorized by the local commit request."
   },
-  "raw_local_evidence": "Retained in workspace-parent/work/507-skills-next-20261007, separate from public skill instructions."
+  "raw_local_evidence": "Retained in workspace-parent/work/507-skills-next-20261007, separate from public skill instructions.",
+  "recorded_delivery_commit": "2d415d106453cc37fc570ecc75d7cecbeaba1e9e",
+  "historical_path_scope": "Resource and skill paths in this verification refer to the first consolidation committed as 2d415d1 under the temporary 507-write name; the later forge naming repair does not rewrite these execution results."
 }

@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-09",
+  "status": "Methods validated and identified standalone discovery entries retired with complete recoverable originals.",
+  "purpose": "Retire redundant standalone Apple knowledge entry after preserving originals and transferring conditional knowledge into the UI package.",
+  "source_skill_sha256": "adc355f69930e780daeabf06f06a9766161ad6a3cb810e543d0502ed784a542b",
+  "installed_scope": {
+    "originals": 2,
+    "symlink_aliases": 1,
+    "inventory": "identified user skill discovery roots; no original removed before hash-preserved backup and review",
+    "retirement": "two originals archived outside discovery roots and one known alias removed; readback passed"
+  },
+  "method_transfer": {
+    "existing": "containers-and-motion remains the general container/motion reference",
+    "new": "apple-interaction conditionally covers native capabilities, cancellation, velocity handoff, projection, spring parameter semantics, typography and accessibility signals",
+    "calibration": "fixed source numbers, universal material/animation bans and unverified SDK mappings are not activated",
+    "source_coverage": "Complete local source read and official 2018/2023 transcripts used to calibrate motion; not a full revalidation of all source claims."
+  },
+  "consumer_search": "known global skill contracts/configs and workspace AGENTS/SKILL/README/YAML/TOML; no active caller other than original entry metadata found",
+  "prior_evidence": "Previous bounded frontend case evidence applies to unchanged general UI paths; it does not prove new Apple gesture/device implementation.",
+  "not_covered": [
+    "host cached listing refresh and actual automatic selection",
+    "real native gesture/velocity/device execution",
+    "new host UI activation",
+    "other design skill retirement",
+    "Git delivery"
+  ],
+  "independent_review": {
+    "result": "pass; severe 0, warning 0, no blocking finding",
+    "scope": "7 candidate files, complete originals, identity/recovery and known consumer boundary; no native runtime claim"
+  },
+  "checks": {
+    "ui_metadata": "quick_validate passed",
+    "related_local_links": "12 checked, no missing target",
+    "original_and_archived_content": "all original/backup/archive SHA-256 match",
+    "known_paths_absent": true,
+    "other_design_skill_files_preserved": true,
+    "existing_general_ui_case_evidence": "reused within its original unchanged path scope; new gesture guidance not physically tested"
+  }
+}

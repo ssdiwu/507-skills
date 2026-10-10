@@ -1,0 +1,4 @@
+interface:
+  display_name: "技能编写与演进"
+  short_description: "创建、改写与审视技能，核对职责权限、宿主界面元数据和实际可用性"
+  default_prompt: "使用 $507-skill 创建或改写技能，核对职责、权限、界面元数据与验证边界。"

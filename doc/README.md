@@ -1,6 +1,8 @@
 # 文档地图
 
-当下目标、未完成事项与依赖见根 [PROGRESS.md](../PROGRESS.md)。本目录保存依据、安排和历史证据；当前入口收敛候选见[技能体系精简](40-版本实施方案/技能体系精简.md)，上一轮技能编写与入口校准的结果见[审视记录](20-能力参考/prompt-audit/2026-10-06/README.md)。
+当下目标、未完成事项与依赖见根 [PROGRESS.md](../PROGRESS.md)。本目录保存依据、安排和历史证据；前轮入口整合与取舍见[技能体系精简](40-版本实施方案/技能体系精简.md)，产品 UI 职责与来源见[能力比较](20-能力参考/product-ui/README.md)，实际执行与边界见[验证记录](40-版本实施方案/UI能力整合验证.json)。技能编写与入口校准的前轮结果见[审视记录](20-能力参考/prompt-audit/2026-10-06/README.md)。
+
+可视化理解与比较的职责、来源和沉淀方法见[方法记录](20-能力参考/visual-understanding/README.md)，选择、执行与交付检查见[验证记录](40-版本实施方案/可视化理解与比较技能验证.json)。切换前的 UI 阶段状态保留在[历史快照](90-归档/阶段快照/2026-10-09-UI参考原位迭代.md)，当前技能合同仍以各 SKILL.md 为准。
 
 本仓库的当前权威说明以各级 `README.md`（说明文档）与 `SKILL.md`（技能说明）为主：
 
@@ -11,8 +13,8 @@
 5. [`../spec/README.md`](../spec/README.md)：独立软件产物的现行产品与验收要求；当前包含 `507-rednote`。技能合同继续以各 SKILL.md 为准。
 6. [`../write/507-ppt/references/design-system.md`](../write/507-ppt/references/design-system.md)：视觉幻灯片的语义组件、设计语言、视觉呈现、兼容矩阵与载体支持权威。
 7. [`../write/507-video/references/production-contract.md`](../write/507-video/references/production-contract.md)：视频制作合同、素材清单与时间基准的当前约束。
-8. [`../write/507-narrate/README.md`](../write/507-narrate/README.md)：本地配音、Voicebox REST 接入、模型选择与配音包约束。
-9. 各 skill 目录的 `SKILL.md`：触发词、操作步骤、输入输出与限制。
+8. [`../write/507-voiceover/README.md`](../write/507-voiceover/README.md)：本地配音、Voicebox REST 接入、模型选择与配音包约束。
+9. 各 skill 目录的 `SKILL.md`：触发词、操作步骤、输入输出与限制；[507-ui](../code/507-ui/SKILL.md)承接产品界面的设计、范围内实现与实际操作验证，方法来源见[能力比较](20-能力参考/product-ui/README.md)。
 10. [`../GLOSSARY.md`](../GLOSSARY.md)：定义本仓库稳定使用的项目语言。
 11. [`决策档案/`](决策档案/README.md)：记录难逆转、缺少上下文会令人困惑且存在真实权衡的项目决策。
 12. [`20-能力参考/`](20-能力参考/README.md)：固定版本的外部原件、调研证据、许可证与适用边界；当前包含 ZCode 原件、方法融合记录、提示词审计、技能编写与触发／读取审视、Apple项目指令的规则／证据判断，以及 paper-polish 表达润色方法的来源与融合验证；参考材料不替代各技能的现行合同。

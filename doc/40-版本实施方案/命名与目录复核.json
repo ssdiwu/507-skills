@@ -1,0 +1,362 @@
+{
+  "date": "2026-10-07",
+  "baseline_head": "2d415d106453cc37fc570ecc75d7cecbeaba1e9e",
+  "full_skill_main_files_read": 28,
+  "scope": "Main files for all active skills, three full writing-mode methods, key maintenance/delivery/evidence references and current/historical naming decisions. Not an all-script implementation audit or live media/host acceptance.",
+  "candidate_status": "validated and integrated locally; naming changes uncommitted",
+  "folder_judgments": [
+    {
+      "folder": "common",
+      "role": "跨交付类型的认知、取证、取舍、技能维护和移交",
+      "recommendation": "保留横向层；不是固定前置阶段。taste的归属另作建议。"
+    },
+    {
+      "folder": "code",
+      "role": "软件与产品工程",
+      "recommendation": "保留；用中文说明规格、任务、设计依据与交付，不按是否最终写代码分类。"
+    },
+    {
+      "folder": "write",
+      "role": "知识与内容创作",
+      "recommendation": "保留；素材、知识、文本和媒介成品属于同一创作责任链，不按扩展名拆分或强行更换目录。"
+    }
+  ],
+  "naming_rule": "职责域由目录表达；公开入口保持功能或创作家族；模式和参考文件用直接产物名称。功能名允许稳定动词、产物缩写和已确认例外。",
+  "inventory": [
+    {
+      "name_at_baseline": "507-explain",
+      "path_at_baseline": "common/507-explain/SKILL.md",
+      "judgment": "保留",
+      "reason": "通用概念理解，默认对话输出；功能名称和横向归属明确。",
+      "candidate_name": "507-explain"
+    },
+    {
+      "name_at_baseline": "507-explore",
+      "path_at_baseline": "common/507-explore/SKILL.md",
+      "judgment": "保留",
+      "reason": "项目事实与未知的只读探索，区别于概念解释和结构候选。",
+      "candidate_name": "507-explore"
+    },
+    {
+      "name_at_baseline": "507-grill",
+      "path_at_baseline": "common/507-grill/SKILL.md",
+      "judgment": "保留并校准说明",
+      "reason": "既有命名决定保留稳定用户语言；开头应覆盖实施与成文的真实取舍。",
+      "candidate_name": "507-grill"
+    },
+    {
+      "name_at_baseline": "507-handoff",
+      "path_at_baseline": "common/507-handoff/SKILL.md",
+      "judgment": "保留",
+      "reason": "会话状态移交，既有功能词准确，不产生第二事实源。",
+      "candidate_name": "507-handoff"
+    },
+    {
+      "name_at_baseline": "507-research",
+      "path_at_baseline": "common/507-research/SKILL.md",
+      "judgment": "保留",
+      "reason": "外部事实取证，区别于本人材料沉淀与作品生成。",
+      "candidate_name": "507-research"
+    },
+    {
+      "name_at_baseline": "507-skill",
+      "path_at_baseline": "common/507-skill/SKILL.md",
+      "judgment": "保留",
+      "reason": "维护技能合同与可复用方法，属于横向维护；不与普通作品成文混淆。",
+      "candidate_name": "507-skill"
+    },
+    {
+      "name_at_baseline": "507-fix",
+      "path_at_baseline": "code/507-fix/SKILL.md",
+      "judgment": "保留",
+      "reason": "已有故障的根因修复，动作名称与完成位置一致。",
+      "candidate_name": "507-fix"
+    },
+    {
+      "name_at_baseline": "507-inspect",
+      "path_at_baseline": "code/507-inspect/SKILL.md",
+      "judgment": "保留",
+      "reason": "主动发现代码结构摩擦，保持只读候选，不按命名相近合并review。",
+      "candidate_name": "507-inspect"
+    },
+    {
+      "name_at_baseline": "507-issue",
+      "path_at_baseline": "code/507-issue/SKILL.md",
+      "judgment": "保留",
+      "reason": "现有平台术语定位远程追踪与状态，和完整规格有不同权威。",
+      "candidate_name": "507-issue"
+    },
+    {
+      "name_at_baseline": "507-prd",
+      "path_at_baseline": "code/507-prd/SKILL.md",
+      "judgment": "保留",
+      "reason": "产物名称准确定位当前软件行为与验收规格，无需为统一动词改名。",
+      "candidate_name": "507-prd"
+    },
+    {
+      "name_at_baseline": "507-prototype",
+      "path_at_baseline": "code/507-prototype/SKILL.md",
+      "judgment": "保留",
+      "reason": "以可丢弃实现获得工程证据，现有code归属合理；不等同于各视觉包的选型。",
+      "candidate_name": "507-prototype"
+    },
+    {
+      "name_at_baseline": "507-release",
+      "path_at_baseline": "code/507-release/SKILL.md",
+      "judgment": "进一步命名建议",
+      "reason": "现职责包括本地提交、引用、版本与渠道；release只能表达一部分。可评估507-git（限定Git与关联版本交付），本轮不更名。",
+      "candidate_name": "507-release"
+    },
+    {
+      "name_at_baseline": "507-review",
+      "path_at_baseline": "code/507-review/SKILL.md",
+      "judgment": "保留",
+      "reason": "工程及技术文档的交付审查，与inspect的结构候选门槛不同。",
+      "candidate_name": "507-review"
+    },
+    {
+      "name_at_baseline": "507-setup",
+      "path_at_baseline": "code/507-setup/SKILL.md",
+      "judgment": "保留",
+      "reason": "维护软件项目依据与导航，初始化与存量维护共用其标准。",
+      "candidate_name": "507-setup"
+    },
+    {
+      "name_at_baseline": "507-simplify",
+      "path_at_baseline": "code/507-simplify/SKILL.md",
+      "judgment": "保留",
+      "reason": "保持公开行为不变的简化，功能名保留其验收不变量。",
+      "candidate_name": "507-simplify"
+    },
+    {
+      "name_at_baseline": "507-taste",
+      "path_at_baseline": "code/507-taste/SKILL.md",
+      "judgment": "归属建议",
+      "reason": "合同明确覆盖品牌、界面、图标与插画；建议比较移入common与保留code主归属的收益。移动只是组织建议，不是已证实运行缺陷。",
+      "candidate_name": "507-taste"
+    },
+    {
+      "name_at_baseline": "507-test",
+      "path_at_baseline": "code/507-test/SKILL.md",
+      "judgment": "保留",
+      "reason": "测试反馈环是共同职责；普通测试与明确TDD由模式表限制修改权限。",
+      "candidate_name": "507-test"
+    },
+    {
+      "name_at_baseline": "507-breakdown",
+      "path_at_baseline": "write/507-breakdown/SKILL.md",
+      "judgment": "保留",
+      "reason": "影视拉片术语准确，必须有时间与画面证据；不强套冶金词。",
+      "candidate_name": "507-breakdown"
+    },
+    {
+      "name_at_baseline": "507-cast",
+      "path_at_baseline": "write/507-cast/SKILL.md",
+      "judgment": "保留",
+      "reason": "铸造知识入口，与fuse并行；不把主题页改成作品正文。",
+      "candidate_name": "507-cast"
+    },
+    {
+      "name_at_baseline": "507-fuse",
+      "path_at_baseline": "write/507-fuse/SKILL.md",
+      "judgment": "保留",
+      "reason": "将材料熔合为可竞争创意；保留作品范围判断与用户中心判断边界。",
+      "candidate_name": "507-fuse"
+    },
+    {
+      "name_at_baseline": "507-mine",
+      "path_at_baseline": "write/507-mine/SKILL.md",
+      "judgment": "保留",
+      "reason": "从已有素材提取独立碎片，与外部取证和成文不同。",
+      "candidate_name": "507-mine"
+    },
+    {
+      "name_at_baseline": "507-narrate",
+      "path_at_baseline": "write/507-narrate/SKILL.md",
+      "judgment": "可选更精确名称",
+      "reason": "当前产物是实际音频而非旁白文稿，507-voiceover更贴近配音；中文副标题已明确本地配音，本轮不更名。",
+      "candidate_name": "507-narrate"
+    },
+    {
+      "name_at_baseline": "507-ppt",
+      "path_at_baseline": "write/507-ppt/SKILL.md",
+      "judgment": "可选更精确名称",
+      "reason": "产物是PPTX或HTML视觉幻灯片，507-slides更贴合双载体；既有PPT使用语言清楚，无实际误选证据，本轮不更名。",
+      "candidate_name": "507-ppt"
+    },
+    {
+      "name_at_baseline": "507-prospect",
+      "path_at_baseline": "write/507-prospect/SKILL.md",
+      "judgment": "保留",
+      "reason": "创作链探矿，显化未表达作者材料；不移入通用research或grill。",
+      "candidate_name": "507-prospect"
+    },
+    {
+      "name_at_baseline": "507-rednote",
+      "path_at_baseline": "write/507-rednote/SKILL.md",
+      "judgment": "保留",
+      "reason": "小红书是主要工作场景；公众号封面等是有限可选输出，不据此泛化为发布或所有社交媒体。",
+      "candidate_name": "507-rednote"
+    },
+    {
+      "name_at_baseline": "507-remix",
+      "path_at_baseline": "write/507-remix/SKILL.md",
+      "judgment": "保留",
+      "reason": "影视手法重组，产物为原创创作包，区别于取证与最终成片。",
+      "candidate_name": "507-remix"
+    },
+    {
+      "name_at_baseline": "507-video",
+      "path_at_baseline": "write/507-video/SKILL.md",
+      "judgment": "保留",
+      "reason": "用户明确媒介目标与本地母版，目录属于内容制作，并非通用代码实现。",
+      "candidate_name": "507-video"
+    },
+    {
+      "name_at_baseline": "507-write",
+      "path_at_baseline": "write/507-write/SKILL.md",
+      "judgment": "恢复507-forge",
+      "reason": "0007保留稳定创作命名；现聚合的三种方法仍可由forge表示作品成形，保留28项与原方法。",
+      "candidate_name": "507-forge"
+    }
+  ],
+  "findings": [
+    {
+      "id": "N1",
+      "status": "candidate repaired",
+      "evidence": "doc/决策档案/0007-code与common采用功能直译名称.md:5",
+      "finding": "Unified writing used generic write and did not fully preserve the established creative naming family.",
+      "repair": "Restore forge while preserving three method bodies and 28 entries."
+    },
+    {
+      "id": "N2",
+      "status": "candidate clarified; rename remains suggestion",
+      "evidence": "code/507-release/SKILL.md:14; GLOSSARY.md:79",
+      "finding": "Release name underdescribes local commit; glossary incorrectly classified local version/tag preparation as external irreversible action.",
+      "repair": "Clarify glossary around version delivery and independent result evidence; keep actual action permissions."
+    },
+    {
+      "id": "N3",
+      "status": "candidate repaired",
+      "evidence": "code/README.md:165; common/507-grill/SKILL.md:8",
+      "finding": "Navigation still said one skill one action and grill intro still only referred to coding.",
+      "repair": "Align wording to one responsibility with bounded modes and cross-delivery decisions."
+    },
+    {
+      "id": "N4",
+      "status": "suggestion pending targeted verification",
+      "evidence": "write/507-write/SKILL.md:14; write/507-write/references/proposal.md:17",
+      "finding": "Generic polish wording overlaps artifact modes; proposal method excludes content polishing. A future refinement should choose artifact before action.",
+      "repair": "Do not assert observed model failure; consider requests for local proposal/talk polishing before further contract changes."
+    }
+  ],
+  "structure": {
+    "active_skill_count": 28,
+    "entries": [
+      "common/507-explain/SKILL.md",
+      "common/507-explore/SKILL.md",
+      "common/507-grill/SKILL.md",
+      "common/507-handoff/SKILL.md",
+      "common/507-research/SKILL.md",
+      "common/507-skill/SKILL.md",
+      "code/507-fix/SKILL.md",
+      "code/507-inspect/SKILL.md",
+      "code/507-issue/SKILL.md",
+      "code/507-prd/SKILL.md",
+      "code/507-prototype/SKILL.md",
+      "code/507-release/SKILL.md",
+      "code/507-review/SKILL.md",
+      "code/507-setup/SKILL.md",
+      "code/507-simplify/SKILL.md",
+      "code/507-taste/SKILL.md",
+      "code/507-test/SKILL.md",
+      "write/507-breakdown/SKILL.md",
+      "write/507-cast/SKILL.md",
+      "write/507-forge/SKILL.md",
+      "write/507-fuse/SKILL.md",
+      "write/507-mine/SKILL.md",
+      "write/507-narrate/SKILL.md",
+      "write/507-ppt/SKILL.md",
+      "write/507-prospect/SKILL.md",
+      "write/507-rednote/SKILL.md",
+      "write/507-remix/SKILL.md",
+      "write/507-video/SKILL.md"
+    ],
+    "local_markdown_links": 297,
+    "resource_bytes_preserved": [
+      {
+        "resource": "references/prose.md",
+        "identical": true
+      },
+      {
+        "resource": "references/proposal.md",
+        "identical": true
+      },
+      {
+        "resource": "references/spoken.md",
+        "identical": true
+      },
+      {
+        "resource": "references/prose/shuorenhua-MIT-LICENSE.txt",
+        "identical": true
+      },
+      {
+        "resource": "scripts/prose/check_prose.py",
+        "identical": true
+      },
+      {
+        "resource": "scripts/prose/test_check_prose.py",
+        "identical": true
+      },
+      {
+        "resource": "scripts/spoken/check_spoken.py",
+        "identical": true
+      },
+      {
+        "resource": "scripts/spoken/test_check_spoken.py",
+        "identical": true
+      }
+    ],
+    "errors": [],
+    "diff_check_exit_code": 0,
+    "scope": "Static name/path and exact resource preservation; no model routing or host reload acceptance."
+  },
+  "resource_review": {
+    "exact_main_methods_and_scripts": "Three mode bodies, script implementations/tests and MIT license unchanged.",
+    "renamed_reference_text": "Six auxiliary Markdown files only update skill labels or command directories."
+  },
+  "runner_checks": [
+    {
+      "check": "Review evidence package consistency",
+      "exit_code": 0
+    },
+    {
+      "check": "Write prose audit regressions",
+      "exit_code": 0
+    },
+    {
+      "check": "Write spoken audit regressions",
+      "exit_code": 0
+    },
+    {
+      "check": "Video contract regressions",
+      "exit_code": 0
+    }
+  ],
+  "unverified": [
+    "Measured routing precision, cost or latency gains.",
+    "All unchanged runtime scripts, real media generation and human audience acceptance.",
+    "Host reload/actual skill discovery and unknown external installations."
+  ],
+  "git_commit_performed": false,
+  "git_push_performed": false,
+  "independent_review": {
+    "first_model_requests": 38,
+    "recheck_model_requests": 5,
+    "warnings_closed": 1,
+    "information_items_closed": 4,
+    "new_material_findings": 0,
+    "scope": "Independent static contract review; separate from task execution, host reload and measured routing."
+  },
+  "known_consumer_migration": "Existing .claude 507-write link retired and replaced by 507-forge; previously disabled or unknown consumers are not activated."
+}

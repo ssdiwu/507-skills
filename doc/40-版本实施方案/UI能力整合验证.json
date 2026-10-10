@@ -1,0 +1,111 @@
+{
+  "status": "Validated local skill files and isolated sample evidence; uncommitted and not host-activated.",
+  "date": "2026-10-09",
+  "purpose": "Product UI design, authorized implementation and actual rendering/operation verification; no implied product-main changes or host activation.",
+  "baseline_head": "2d415d106453cc37fc570ecc75d7cecbeaba1e9e",
+  "baseline": "Current user-confirmed uncommitted forge/git/voiceover/taste tree, frozen before UI changes.",
+  "counts": {
+    "common": 7,
+    "code": 11,
+    "write": 11,
+    "total": 29
+  },
+  "checks": {
+    "ui_metadata": "quick_validate passed",
+    "main_preserved_before_integration": true,
+    "diff_check": "exit 0",
+    "prior_skill_packages_preserved": true,
+    "prior_package_files": 337,
+    "review_evidence_package_consistency": "two self-contained copies match canonical source",
+    "ui_package_matches_forward_test_package": true,
+    "local_markdown_links": 310,
+    "changed_file_scan": "no private machine path or secret marker in the 13 changed self-authored public paths"
+  },
+  "real_source_cases": {
+    "business_form": {
+      "status": "Independent implementation, actual frontend checks and independent readonly review complete",
+      "scope": "Shared actual choice, single date, revision form and workflow components with anonymous props and manual receipt controls.",
+      "limits": "No complete employee leave flow, published employee calendars, half-day deductions, real role permissions, backend persistence/approval/idempotency/notifications, Safari or real-device acceptance.",
+      "checks": {
+        "logic_tests": "8/8; exit 0",
+        "typecheck_and_vite_build": "exit 0",
+        "browser_action_records": 48,
+        "actual_narrow_viewports": "320x569 and 390x844 CSS pixels; existing browser zoom accounted for"
+      },
+      "results": [
+        "Choice focus/commit and native form values observed; failed save retains valid selection and original text.",
+        "Date draft/cancel/application, invalid/reversed input, keyboard activation, cross-month/year/leap-year and language continuation operated.",
+        "Failure/retry, pending confirmation, requested revision, resubmission and final simulated receipt operated; waiting repeat click does not add a simulated request.",
+        "Actual focus, panel geometry and mobile background scroll failures repaired and retested."
+      ],
+      "basis": "Actual shared controls copied from fixed source; source changes and new frontend range/language components remain in an isolated test copy.",
+      "source_fingerprint_manifest_sha256": "d0c8fd895a6799dcdf445389af11b3cd0a36d3ce1803ee3fa2fc76166a29d92a",
+      "independent_review": {
+        "result": "No evidenced severe or warning finding in frozen isolated source and scoped evidence",
+        "source_file_fingerprints_matched": 24,
+        "independent_browser_observations": 16,
+        "reused_checks": "8/8 logic tests and exit-0 typecheck/build; no unnecessary rerun",
+        "limits": "Actual copied frontend components and manually controlled receipts only, not formal product acceptance"
+      }
+    },
+    "work_composer": {
+      "status": "Independent implementation, actual frontend checks and independent readonly review complete",
+      "scope": "Fixed received component candidate/import closure, formal spec and original caller excerpts; isolated prop/callback fixture.",
+      "limits": "Props and actual component callbacks only. No complete App/session creation, persistent draft recovery, formal input acceptance/lookup, real runtime/provider/window bridge, task/member scope, whole app integration or physical device/IME acceptance.",
+      "checks": {
+        "typecheck": "exit 0",
+        "vite_build": "exit 0",
+        "core_callback_observations": 26,
+        "layout_groups": 8,
+        "target_rendering": "Chinese/English, light/dark, 13/14px; actual CSS viewport 720x480 and narrow component columns",
+        "ime": "Chromium composition/key events through CDP; no real OS input method acceptance",
+        "latest_coexisting_state_rendering": "13px bottom 444.39; 14px bottom 475.07 within 480px target viewport after final copy repair"
+      },
+      "results": [
+        "Primary action, mode choice, menu pause, explicit resume, waiting and unknown outcomes are separately represented.",
+        "Known pending and unknown text identities remain protected; new drafts and still valid runtime controls remain available.",
+        "Keyboard/focus, normal callback paths, reduced motion and synthetic composition conditions were exercised.",
+        "Final typecheck/build and frozen source/built-artifact fingerprints correspond; historic stress copy and extra 16px exploration do not count as final target acceptance."
+      ],
+      "source_fingerprint": "4fbc8839bdd24eaa558d4d37d3e694bf7e757943650c9260a8c100e4fc84c839",
+      "independent_review": {
+        "result": "No evidenced severe or warning finding in frozen isolated source and scoped evidence",
+        "source_files_checked": 16,
+        "build_artifacts_checked": 3,
+        "baseline_files_checked": 7,
+        "public_interface_and_primary_action_shape_preserved": true,
+        "independent_browser_observations": 9,
+        "limits": "Real component operations/callbacks and final constrained rendering only; no formal runtime acceptance."
+      }
+    }
+  },
+  "independent_review": {
+    "method": "507-review independent readonly passes",
+    "skill_contract_and_navigation": "No evidenced blocking findings",
+    "description_selection_cases": 6,
+    "description_selection_scope": "Choice and stopping position only; no actual PPT, brand or backend execution",
+    "isolated_implementation_reviews": "Both bounded cases have source/evidence and independent browser review with no severe or warning finding",
+    "public_record_closure": "Passed final independent readonly closure; severe 0, warning 0, no blocking finding."
+  },
+  "environment_failures": [
+    "Preparation dependency directory moved after consumer link was established; root restored the link to stable runtime location before independent retries.",
+    "Preparation first offline dependency attempt wrote a default npm diagnostic log outside the isolated directory; subsequent cache/log paths were explicitly scoped and the failure retained."
+  ],
+  "not_covered": [
+    "Host skill discovery or automatic invocation",
+    "Installed source skill activation/deactivation",
+    "Product main trees or full APIs",
+    "Actual backend approval/persistence/execution",
+    "Real devices and user visual acceptance",
+    "Git delivery"
+  ],
+  "started_date": "2026-10-08",
+  "completion_date": "2026-10-09",
+  "scope": "Only the product UI skill and its directly related repository navigation/current records. Existing naming work preserved. No product-source integration, global skill installation, Git delivery or credential/permission changes.",
+  "subsequent_revision": {
+    "date": "2026-10-09",
+    "scope": "Apple conditional reference and standalone entry retirement",
+    "evidence_record": "Apple知识归位与入口退役验证.json",
+    "version_boundary": "Original ui_package_matches_forward_test_package check records the first UI stage, before the conditional Apple reference was added; it is not a current byte-identity claim."
+  }
+}

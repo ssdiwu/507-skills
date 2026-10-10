@@ -1,0 +1,130 @@
+{
+  "date": "2026-10-07",
+  "baseline_head": "2d415d106453cc37fc570ecc75d7cecbeaba1e9e",
+  "baseline_scope": "Actual dirty worktree with previous forge repair preserved.",
+  "status": "validated and integrated locally; current and prior naming revisions uncommitted",
+  "selected": {
+    "507-release": "507-git",
+    "507-narrate": "507-voiceover",
+    "code/507-taste": "common/507-taste",
+    "507-ppt": "retained"
+  },
+  "counts": {
+    "common": 7,
+    "code": 10,
+    "write": 11,
+    "total": 28
+  },
+  "git_commit_performed": false,
+  "git_push_performed": false,
+  "structure": {
+    "metadata_counts": {
+      "common": 7,
+      "code": 10,
+      "write": 11
+    },
+    "local_markdown_links": 299,
+    "errors": [],
+    "diff_check_exit_code": 0
+  },
+  "resources": [
+    {
+      "before": "code/507-taste/SKILL.md",
+      "after": "common/507-taste/SKILL.md",
+      "identical": true
+    },
+    {
+      "before": "code/507-release/references/delivery.md",
+      "after": "code/507-git/references/delivery.md",
+      "identical": true
+    },
+    {
+      "before": "write/507-narrate/scripts/voicebox_narrate.py",
+      "after": "write/507-voiceover/scripts/voicebox_narrate.py",
+      "identical": true
+    },
+    {
+      "before": "write/507-narrate/scripts/test_voicebox_narrate.py",
+      "after": "write/507-voiceover/scripts/test_voicebox_narrate.py",
+      "identical": true
+    },
+    {
+      "before": "write/507-narrate/scripts/smoke-sections.json",
+      "after": "write/507-voiceover/scripts/smoke-sections.json",
+      "identical": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Review evidence package consistency",
+      "exit_code": 0,
+      "test_count": null,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "scripts/sync_review_evidence.py",
+        "--check"
+      ],
+      "cwd": "."
+    },
+    {
+      "name": "Voiceover regressions",
+      "exit_code": 0,
+      "test_count": 12,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "scripts/test_voicebox_narrate.py"
+      ],
+      "cwd": "write/507-voiceover"
+    },
+    {
+      "name": "Video contract regressions",
+      "exit_code": 0,
+      "test_count": 5,
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "write/507-video/scripts/test_contract.py"
+      ],
+      "cwd": "."
+    }
+  ],
+  "interface_boundary": {
+    "skill_names": [
+      "507-git",
+      "507-voiceover"
+    ],
+    "taste_method_unchanged": true,
+    "ppt_retained": true,
+    "voicebox_client_id_retained": "507-narrate",
+    "audio_script_and_manifest_format": "unchanged"
+  },
+  "limits": [
+    "No actual Voicebox generation, listener acceptance or identity change.",
+    "No remote Git transport or publication in this migration.",
+    "Static references and package files are separate from host actual loading."
+  ],
+  "independent_review": {
+    "tool": "ZCode CLI",
+    "model_requests": 39,
+    "result": "No blocking findings; contracts and scope preserved.",
+    "scope": "Read-only static comparison, not actual host loading or external service acceptance."
+  },
+  "consumer_migration": {
+    "identified_host": ".claude",
+    "changes": [
+      "507-release to 507-git",
+      "507-narrate to 507-voiceover",
+      "507-taste retargeted from code to common"
+    ],
+    "previously_disabled_hosts": "not activated",
+    "unknown_external_installations": "not claimed migrated"
+  }
+}

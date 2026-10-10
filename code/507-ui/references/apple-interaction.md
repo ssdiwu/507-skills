@@ -1,0 +1,43 @@
+# Apple 交互细节
+
+仅在 Apple 原生界面或确实需要连续手势、速度交接、弹簧、系统排版等细节时读取。一般产品交付使用主合同及已有组件；本参考不要求采用 Apple 视觉风格，也不改变业务状态、修改权限或提交边界。
+
+## 平台与直接操控
+
+原生菜单、选择器和任务容器优先使用平台已有能力，按当前 SDK 与项目支持范围选择；不能只根据外形把 Menu、Sheet、Popover 和确认对话框互换。草稿、即时生效、显式保存与退出仍按具体任务定义，模态关系也跟随平台与场景。
+
+按下即可提供反馈，业务激活仍在合同规定的时点发生。支持拖出取消的按钮不因提前反馈就提前提交。拖拽保留实际抓取偏移，处理指针／手势取消、边界和捕获释放；连续移动不能只依赖最终 swipe 事件。
+
+手势竞争时区分滚动与拖拽方向；需要将单击与双击设为互斥动作时，单击可能要等待辨认，只有任务确实需要时才承担这个成本。阈值跟随平台与实际设备，不移植固定像素数。
+
+## 速度、投射与弹簧
+
+需要自然接续拖拽时，从实际位置与释放速度起步；动画途中改向时保留当前呈现和速度，避免先走旧终点或重置到静止。二维动作按各轴的方向与速度处理，不用单一距离掩盖反向。[Designing Fluid Interfaces](https://developer.apple.com/videos/play/wwdc2018/803/)、[Animate with springs](https://developer.apple.com/videos/play/wwdc2023/10158/)
+
+选择停靠目标时可结合速度预测端点，再限制在合法范围；不要仅凭松手位置决定轻扫结果。预测、吸附和业务提交分别处理，取消不能因为对象已移动就被误报为完成。边界阻力优先复用系统或现有实现，来源公式仅作待核对的示例。[Designing Fluid Interfaces](https://developer.apple.com/videos/play/wwdc2018/803/)
+
+读取实际 API 的速度单位与坐标约定；若需要按剩余距离归一化，先处理距离为零、方向和非有限值，不混用绝对速度与相对速度。原生框架已跟踪速度时继续复用，不重复增加一套跟踪状态。
+
+弹簧不必回弹。Response、感知时长、实际稳定时间和其他库的 duration／bounce 参数不能直接互换；按当前接口及体验调校，不把来源的阻尼或时长表设为产品默认。用户动作也不等待弹簧完全稳定才生效。[Animate with springs](https://developer.apple.com/videos/play/wwdc2023/10158/)
+
+## 空间、材质与文字
+
+过渡保留对象来源和去向，退出有合理返回感；途中改向跟随当前对象。模糊、阴影与位移仅在表达层级有收益时使用，避免因材质动画增加任务等待或降低目标环境性能。
+
+系统文字和光学尺寸优先复用；字号、字重、行距与字距共同表达层级。校核实际文字体系和用户文字大小，不能将大号拉丁标题的负字距统一应用到小字或中文。用项目已有尺度承接文字缩放，不以固定高度裁掉内容。
+
+减少动态效果、减少透明度和提高对比度分别处理，保留等价反馈和可读状态；平台或浏览器支持不足时采用明确可读的降级。声音与触觉仅用于有意义的因果事件，跟随平台能力与用户设置，不能把模拟视觉反馈当成设备触觉已验收。
+
+## 对应验证与进一步依据
+
+按实际改动检查中途反向、快速重抓、释放／取消、焦点与草稿、滚动冲突、文字缩放、材质背景变化及减少动态效果。操作结果、运动连续性与设备反馈分别证明；没有原生运行或实际设备时报告具体边界。
+
+需要精确参数、原生组件行为或版本差异时核对当前官方依据和项目实际类型定义：
+
+- [Apple Motion](https://developer.apple.com/design/human-interface-guidelines/motion)
+- [Apple Typography](https://developer.apple.com/design/human-interface-guidelines/typography)
+- [Apple Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility)
+- [Apple Menus](https://developer.apple.com/design/human-interface-guidelines/menus)
+- [Apple Sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)
+
+此参考独立编写，旧 apple-design 原件以来源备份保全；原件中的固定数值、强制材质、年代归因与具体库参数不会自动成为当前规则。

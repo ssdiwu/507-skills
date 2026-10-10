@@ -1,0 +1,4 @@
+interface:
+  display_name: "可视化理解与比较"
+  short_description: "将概念、资料、机制与方案组织为可探索、可比较且有依据的理解工具"
+  default_prompt: "用 $507-visualize 将这份资料做成可探索、可比较的理解工具，选择适合当前任务的交付形式。"

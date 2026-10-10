@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-09",
+  "status": "Validated existing UI method iteration and bounded isolated evidence; not committed, installed or product-integrated.",
+  "baseline_head": "2d415d106453cc37fc570ecc75d7cecbeaba1e9e",
+  "research_sha256": "737758c2ae71e002d511ffa42706710f47732603cf7536f32f24f1054acedc20",
+  "scope": "Existing UI skill conditional method iteration only; no host activation/product/Git changes",
+  "active_skill_count": 29,
+  "ui_reference_count": 3,
+  "source_calibration": "One new Tab tutorial and three distinct author references; values and suggested tools not generalized",
+  "cases": {
+    "material_tool": {
+      "status": "isolated implementation and targeted repair complete; independent original keyboard path passed on final version",
+      "source_manifest_sha256": "256d82e616b73c574ae8489b73ccac637110d5585bd2b3b6dab1a5182891127e",
+      "source_files_checked": 7,
+      "checks": "Final syntax checks app.js and server.mjs passed; actual browser actions and screenshots recorded",
+      "observed": [
+        "Per-object/view filter, draft and nonzero reading position restored; route help/settings and manual keyboard tabs operated.",
+        "V-1/V-2/V-3 responses associated with correct object/view; older response ignored.",
+        "Operation S-1 waited, remained unconfirmed, queried same identity, partially succeeded and retried only failed stages.",
+        "Reverse operation failed without rolling back current permissions; later simulated confirmation reversed only new reading grants, leaving notifications sent.",
+        "Unsupported or expired reverse capability does not expose an executable undo action; identity/access changes clear old context.",
+        "Desktop narrow view and keyboard failure recovery operated; two repaint-focus issues repaired and rerun on original actions."
+      ],
+      "scope": "New isolated frontend and in-memory local simulation, not original source demos or formal products",
+      "limits": "Clipboard API fulfillment only, no independent readback; actual desktop narrow content width 400, innerWidth 416 due existing browser zoom; mobile pointer mismatch retained; no real device, reader, account/notification/access/backend or source demo acceptance.",
+      "independent_review": {
+        "finite_scope": "Source, original request, recorded results, keyboard and one compound share/reverse path",
+        "observations": 11,
+        "warning": "one initial reproducible P2; 7-line repair, targeted self-retest and fresh independent 3-step closure passed",
+        "remaining_path_result": "Original operation snapshot stays with its object; failed-only retry; reverse leaves pre-existing access and sent notifications unchanged; no new substantive issue",
+        "limits": "Local simulated service and limited browser coverage only",
+        "closure": "Fresh independent agent reloaded final source on p1 and recorded active/focus/tabindex across original path; no product acceptance claim"
+      },
+      "initial_source_manifest_sha256": "e57dfd1f2eec847f3f5d9dc33efde6e0ae798d6a8b15951dc3b7506dc172be78"
+    },
+    "readonly_graph": {
+      "status": "complete; independent assessment only",
+      "scope": "No original material or UI mutation; advice within current readonly and fixed icon scope",
+      "result": "No magnetic node editing adopted without current permission/need; existing action destinations and missing icon evidence explicitly identified",
+      "limits": "Static advice only; no browser, graphic generation or source-demo evaluation"
+    }
+  },
+  "prior_evidence": "Existing unaffected frontend and readonly scope checks reused. Initial e57 manifest is pre-P2-repair; final toy source manifest is 256d82...; original demos/full products not validated.",
+  "independent_review": {
+    "method_contract": "passed; no initial method blocking finding",
+    "implementation_evidence": "finite source/browser review found 1 P2, other checked paths had no substantive finding",
+    "warning_closure": "fresh independent final-version original path passed; initial finding not erased",
+    "final_public_record": "passed; exact warning history, source revisions, local mock, readonly advice and uncovered bounds preserved"
+  },
+  "not_covered": [
+    "source applications and video failure/Undo behavior",
+    "audio/native/backend/real identity validation",
+    "formal product implementation",
+    "host automatic discovery or activation",
+    "commit/push/publish"
+  ],
+  "checks": {
+    "ui_metadata": "quick_validate passed",
+    "sensitive_marker_check": "no private path, source URL token or private key marker in changed public files",
+    "current_changed_paths": 8,
+    "local_markdown_links": 318,
+    "legacy_package_files_preserved": 337,
+    "apple_reference_preserved": true
+  },
+  "failures": [
+    {
+      "source": "independent browser review",
+      "severity": "P2 warning",
+      "signal": "Arrow focus moved without activation; leaving tablist then returning with Shift+Tab enters nonselected tab instead of active tab",
+      "mechanism": "roving tabindex anchor was not restored on leaving the tablist",
+      "response": "Original implementer repairs isolated UI; method specifies existing W3C entry/exit contract; no assertion weakened",
+      "status": "closed on final source by targeted self-check plus fresh independent original-path observation; pre-repair source and failure retained"
+    }
+  ],
+  "material_boundary_exception": {
+    "stage": "post-review repair coordination only",
+    "signal": "Agent inventory returned the completed readonly case answer after original forward task and repair script were finished",
+    "handling": "record preserved; no further team inventory or broad oracle exposure; targeted repair is not treated as a fresh blind evaluation"
+  },
+  "source_version_boundary": {
+    "initial_demo_manifest": "e57dfd1f2eec847f3f5d9dc33efde6e0ae798d6a8b15951dc3b7506dc172be78",
+    "final_demo_manifest": "256d82e616b73c574ae8489b73ccac637110d5585bd2b3b6dab1a5182891127e",
+    "method_change": "One explicit existing APG tab-entry/exit clause was added after independent failure; normal scope and readonly stop paths unchanged"
+  }
+}
