@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-11",
+  "sourceCommit": "9cdd5b218e2de4e0916a7e54a31c3051e55e691c",
+  "remote": "origin/main",
+  "remoteReadback": "9cdd5b218e2de4e0916a7e54a31c3051e55e691c",
+  "state": "源版本已提交并推送，未定版新标签或创建渠道Release",
+  "scope": [
+    "已确认命名迁移与历史归位",
+    "507-ui与507-visualize交付",
+    "507-skill界面元数据目标约定",
+    "直接导航、日志、验证与迁移消费者"
+  ],
+  "checks": {
+    "independentReview": "全部当前差异审查通过，无未解决项",
+    "activeSkills": 30,
+    "directories": {
+      "common": 8,
+      "code": 11,
+      "write": 11
+    },
+    "openaiMetadata": 4,
+    "sharedEvidenceCopies": 2,
+    "voiceoverTests": 12,
+    "forgeProseTests": 5,
+    "forgeSpokenTests": 5,
+    "videoContractTests": 5,
+    "diffCheck": "PASS",
+    "publicSensitivePathScan": "PASS"
+  },
+  "limits": [
+    "未重新运行未改动的全量媒体生成",
+    "未验证真实Voicebox生成、PPT全稿人工验收、宿主发现和用户理解实验",
+    "三层分工与共有库仍未正式迁移",
+    "研究网站未发布"
+  ]
+}
