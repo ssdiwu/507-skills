@@ -19,3 +19,5 @@ lib是当前非Skill资源的唯一维护源，不自行路由或获得写入权
 [task-coordination](methods/task-coordination.md)由coordinate/create/work-update按需消费，承载跨领域局部协作、任务图推进和持续协调；[task_view](components/task-view.md)由coordinate/work-update携带，读取已有记录生成临时网页。记录更新重跑组件，呈现不足先扩组件；不直接手改生成网页，不建另一套人工状态或日志。
 
 2026-10-13按旧30实际消费者补齐研究、原型、架构、行为不变、交互、作者采访、知识入口、媒体、视觉与真实接续方法；共有源28份，脚本9段。资料不自行路由。当前清单投影与实物回执见[组件](components/README.md)，逐项来源与退出见[处置记录](../doc/40-版本实施方案/2026-10-13-旧30能力处置.json)。
+
+507-component按条件消费evidence、behavior-preserving-change、validation与authority-and-return。它在目标产品查库、采用或抽取界面组件，不是修改这里的技能共有库；本目录的资料无入口，也不自行发起该工作。

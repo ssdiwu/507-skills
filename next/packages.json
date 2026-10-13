@@ -969,6 +969,33 @@
           "target": "references/shared/project-navigation.md"
         }
       ]
+    },
+    {
+      "name": "507-component",
+      "source": "next/skills/507-component",
+      "role": "secondary",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/behavior-preserving-change.md",
+          "target": "references/shared/behavior-preserving-change.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        }
+      ]
     }
   ]
 }

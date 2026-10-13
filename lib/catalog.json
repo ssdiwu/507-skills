@@ -66,6 +66,10 @@
         {
           "skillId": "507-material",
           "when": "1. 读取当前指定材料与必要上下文，核对可得范围。需要判断作者、Agent、第三方归属或支持关系时，读[作者与来源](references/shared/author-and-source.md)；基线或外部来源连接不明时读[事实与证据](references/shared/evidence.md)。未读取、未提供和无法核验分别说明。"
+        },
+        {
+          "skillId": "507-component",
+          "when": "目标产品、组件库版本、真实导出或使用关系需核实时查当前源码和用法，不以截图或未查到判不存在。"
         }
       ],
       "relatedAtomIds": [
@@ -301,6 +305,10 @@
         {
           "skillId": "507-retro",
           "when": "提议验证、对照收益或验收方法改变"
+        },
+        {
+          "skillId": "507-component",
+          "when": "核对本次组件采用、导出和调用处的可观察结果；只查或单处保留止于查找证据，不以组件存在称整页通过。"
         }
       ],
       "relatedAtomIds": [
@@ -381,6 +389,10 @@
         {
           "skillId": "507-retro",
           "when": "纠正旧结论、保存改进或完成复盘"
+        },
+        {
+          "skillId": "507-component",
+          "when": "组件采用或抽取完成后交回原页面/功能，承接原授权和未完成，不另建总控或把局部结果当整件完成。"
         }
       ],
       "relatedAtomIds": [
@@ -781,6 +793,10 @@
         {
           "skillId": "507-implement",
           "when": "执行已授权行为不变修改，逐项建立基线、修改或有据关闭"
+        },
+        {
+          "skillId": "507-component",
+          "when": "把已重复界面块归入产品组件库并迁移调用时，锁定原行为及受影响旧/新消费者的有效基线。"
         }
       ],
       "relatedAtomIds": [],
