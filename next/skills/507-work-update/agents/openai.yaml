@@ -1,0 +1,4 @@
+interface:
+  display_name: "工作发现与推进"
+  short_description: "发现、组织和推进现有工作，按权限交回一致结果与接续依据"
+  default_prompt: "使用 $507-work-update 从现有消息与任务出发，完成授权内的工作推进并返回结果。"

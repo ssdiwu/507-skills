@@ -1,0 +1,4 @@
+interface:
+  display_name: "组织成文与修订"
+  short_description: "依据成熟目标和材料写完整正文或局部改稿，保留事实、责任与声音"
+  default_prompt: "使用 $507-compose 按指定目标和修改范围完成正文，保留材料、事实边界与作者声音。"

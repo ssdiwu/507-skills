@@ -1,0 +1,6 @@
+interface:
+  display_name: "理解、解释与证据边界"
+  short_description: "把概念、机制与现象解释清楚，核对原因、关系和证据能支持的范围"
+  default_prompt: "使用 $507-why 解释当前概念或现象，核对机制、竞争解释与证据边界，并返回原任务。"
+policy:
+  allow_implicit_invocation: true

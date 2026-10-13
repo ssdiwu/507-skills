@@ -1,0 +1,650 @@
+{
+  "schema": 1,
+  "status": "DESIGN_REFERENCE_ONLY",
+  "meaning": "16条共有UIUX模式，状态/失败/输入/降级为本次消费者设计建议，不声称原站均已实现。",
+  "patterns": [
+    {
+      "id": "find",
+      "family": "检索与来源",
+      "title": "按使用问题检索",
+      "purpose": "寻找当前问题的解法而非先按外观选库",
+      "when": "用户目标和观察问题明确",
+      "states": "问题→流程/模式/控件/机制维度→候选→证据→回问题",
+      "meaning": "不同观察层次不能都叫组件或技能",
+      "counterexample": "因好看便整库安装",
+      "ownerIds": [
+        "method-design",
+        "method-interaction",
+        "method-visualize"
+      ],
+      "componentIds": [
+        "source.read",
+        "source.index",
+        "web.filter",
+        "web.detail"
+      ],
+      "sourceIds": [
+        "bencho",
+        "annnimate",
+        "refero",
+        "mobbin"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "寻找当前问题的解法而非先按外观选库是否被当前动作兑现。",
+        "用反例核对：因好看便整库安装。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "identity",
+      "family": "检索与来源",
+      "title": "对象、来源与版本可见",
+      "purpose": "多来源、多版本与预览/代码并存",
+      "when": "用户需要辨别同名对象的差别",
+      "states": "列表→对象→对应版本详情→出处",
+      "meaning": "笔记/页面/源码/采用各自成立；版本不重计独立支持",
+      "counterexample": "换版本但保留旧来源标识",
+      "ownerIds": [
+        "method-visualize",
+        "method-interaction"
+      ],
+      "componentIds": [
+        "source.index",
+        "web.detail",
+        "artifact.preview"
+      ],
+      "sourceIds": [
+        "bencho",
+        "ai-elements",
+        "21st"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "多来源、多版本与预览/代码并存是否被当前动作兑现。",
+        "用反例核对：换版本但保留旧来源标识。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "filter",
+      "family": "阅读与关系",
+      "title": "筛选保留输入和对象",
+      "purpose": "缩小集合同时保留比较上下文",
+      "when": "目录、矩阵或多条件比较",
+      "states": "集合→条件→结果/空态→撤销条件",
+      "meaning": "无映射/未取得证据/被筛出/不具备各不同",
+      "counterexample": "筛一个来源便删除其他对照对象",
+      "ownerIds": [
+        "method-visualize",
+        "method-interaction"
+      ],
+      "componentIds": [
+        "web.filter",
+        "table.render",
+        "web.return"
+      ],
+      "sourceIds": [
+        "uiverse",
+        "refero",
+        "prompts"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "缩小集合同时保留比较上下文是否被当前动作兑现。",
+        "用反例核对：筛一个来源便删除其他对照对象。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "return",
+      "family": "阅读与关系",
+      "title": "详情展开与原处返回",
+      "purpose": "密集信息逐步展开且能继续读",
+      "when": "列表、关系图或深链接详情",
+      "states": "列表/图→详情→出处→原对象/筛选/位置",
+      "meaning": "返回阅读不同于恢复执行",
+      "counterexample": "关详情回页首并丢筛选",
+      "ownerIds": [
+        "method-visualize",
+        "method-interaction"
+      ],
+      "componentIds": [
+        "web.detail",
+        "web.return",
+        "page.layout"
+      ],
+      "sourceIds": [
+        "annnimate",
+        "action-video"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "密集信息逐步展开且能继续读是否被当前动作兑现。",
+        "用反例核对：关详情回页首并丢筛选。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "nav",
+      "family": "阅读与关系",
+      "title": "查看节点不执行节点",
+      "purpose": "允许查看任何一步而不伪造进度",
+      "when": "对照流程、教程、计划或工作流",
+      "states": "阅读：未选/选中；执行：独立正式状态",
+      "meaning": "选中/访问过/完成/依赖满足不等价",
+      "counterexample": "点第三步便标前两步完成",
+      "ownerIds": [
+        "method-visualize",
+        "method-interaction"
+      ],
+      "componentIds": [
+        "web.relationship",
+        "diagram.render",
+        "receipt.read",
+        "web.detail"
+      ],
+      "sourceIds": [
+        "ai-elements",
+        "annnimate"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "允许查看任何一步而不伪造进度是否被当前动作兑现。",
+        "用反例核对：点第三步便标前两步完成。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "edges",
+      "family": "阅读与关系",
+      "title": "连接类型、条件与返回",
+      "purpose": "完整表达调用、依赖、并行、引用与返回",
+      "when": "关系模型已成立且图有理解收益",
+      "states": "总览→对象→关系/条件→出处→总览",
+      "meaning": "来源关系不自动成为执行顺序",
+      "counterexample": "为了布局改条件图为单一直线",
+      "ownerIds": [
+        "method-visualize",
+        "method-model"
+      ],
+      "componentIds": [
+        "diagram.render",
+        "web.relationship",
+        "web.detail"
+      ],
+      "sourceIds": [
+        "ai-elements"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "完整表达调用、依赖、并行、引用与返回是否被当前动作兑现。",
+        "用反例核对：为了布局改条件图为单一直线。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "state",
+      "family": "结果与过程",
+      "title": "按正式结果表达状态",
+      "purpose": "让用户知道当前状态及下一合法动作",
+      "when": "异步工具、任务或业务操作",
+      "states": "准备/等待→执行中→成功/失败/未知；取消请求≠已取消",
+      "meaning": "已接收不是任务完成，未响应不是已失败",
+      "counterexample": "动画结束便报成功",
+      "ownerIds": [
+        "method-interaction",
+        "method-model"
+      ],
+      "componentIds": [
+        "receipt.read",
+        "page.layout",
+        "web.detail"
+      ],
+      "sourceIds": [
+        "ai-elements",
+        "receipt-video"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "让用户知道当前状态及下一合法动作是否被当前动作兑现。",
+        "用反例核对：动画结束便报成功。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "receipt",
+      "family": "结果与过程",
+      "title": "结果先反馈、明细后揭示",
+      "purpose": "结果与同一操作详情分层呈现",
+      "when": "保存、提交或导出有正式回执",
+      "states": "正式结果→摘要→关联详情",
+      "meaning": "回执只证明声明的阶段",
+      "counterexample": "已保存被显示为已验收",
+      "ownerIds": [
+        "method-interaction",
+        "method-design"
+      ],
+      "componentIds": [
+        "receipt.read",
+        "web.detail",
+        "page.layout"
+      ],
+      "sourceIds": [
+        "receipt-video",
+        "ai-elements"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "结果与同一操作详情分层呈现是否被当前动作兑现。",
+        "用反例核对：已保存被显示为已验收。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "stream",
+      "family": "结果与过程",
+      "title": "流式片段与终态分层",
+      "purpose": "持续内容不承担全部任务状态",
+      "when": "流式回答或离散步骤",
+      "states": "等待→片段/继续→结束/失败/中断",
+      "meaning": "展示的过程不证明完整真实；引用入口不证明准确",
+      "counterexample": "出现文字就认定整体完成",
+      "ownerIds": [
+        "method-interaction",
+        "method-visualize"
+      ],
+      "componentIds": [
+        "web.detail",
+        "source.index",
+        "page.layout",
+        "receipt.read"
+      ],
+      "sourceIds": [
+        "ai-elements"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "持续内容不承担全部任务状态是否被当前动作兑现。",
+        "用反例核对：出现文字就认定整体完成。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "local",
+      "family": "局部连续性",
+      "title": "操作从稳定触发点展开",
+      "purpose": "少量次级操作保持可追踪",
+      "when": "展开确实降低默认负担",
+      "states": "入口→同一状态控制的子操作组→选择/关闭→原入口",
+      "meaning": "形态连续不证明动作或授权连续",
+      "counterexample": "运动中误触另一动作",
+      "ownerIds": [
+        "method-interaction",
+        "method-design"
+      ],
+      "componentIds": [
+        "page.layout",
+        "theme.apply",
+        "web.assemble"
+      ],
+      "sourceIds": [
+        "action-video",
+        "annnimate"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "少量次级操作保持可追踪是否被当前动作兑现。",
+        "用反例核对：运动中误触另一动作。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "latest",
+      "family": "局部连续性",
+      "title": "快切追踪最新目标",
+      "purpose": "允许动画未结束时再次输入",
+      "when": "标签、抽屉、详情或选中指示",
+      "states": "语义立刻到A；收到B立刻到B，呈现追踪最新",
+      "meaning": "业务状态不等动画，API名不保证体验",
+      "counterexample": "过期动画回调覆盖最新选择",
+      "ownerIds": [
+        "method-interaction",
+        "method-design"
+      ],
+      "componentIds": [
+        "web.assemble",
+        "surface.check"
+      ],
+      "sourceIds": [
+        "jakub",
+        "action-video",
+        "annnimate"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "允许动画未结束时再次输入是否被当前动作兑现。",
+        "用反例核对：过期动画回调覆盖最新选择。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "preview",
+      "family": "局部连续性",
+      "title": "参数、预览、代码同版",
+      "purpose": "调参后不同视图对应同一候选",
+      "when": "组件选择、视觉计划或代码预览",
+      "states": "候选→参数→对应预览→对应代码→恢复",
+      "meaning": "代码可见不证明完整依赖、许可或运行",
+      "counterexample": "调完参数复制默认代码",
+      "ownerIds": [
+        "method-design",
+        "method-interaction"
+      ],
+      "componentIds": [
+        "theme.apply",
+        "artifact.preview",
+        "web.detail",
+        "surface.check"
+      ],
+      "sourceIds": [
+        "bencho",
+        "bits",
+        "motion"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "调参后不同视图对应同一候选是否被当前动作兑现。",
+        "用反例核对：调完参数复制默认代码。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "geometry",
+      "family": "真实呈现",
+      "title": "真实轮廓与视觉重心",
+      "purpose": "在实际内容和尺寸下打磨",
+      "when": "嵌套容器与图标文字控件",
+      "states": "几何基准→实际渲染→局部修正→复看",
+      "meaning": "示例像素不成为全库固定值",
+      "counterexample": "全局照抄圆角和偏移",
+      "ownerIds": [
+        "method-design"
+      ],
+      "componentIds": [
+        "theme.apply",
+        "page.layout",
+        "surface.check"
+      ],
+      "sourceIds": [
+        "jakub",
+        "icons"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "在实际内容和尺寸下打磨是否被当前动作兑现。",
+        "用反例核对：全局照抄圆角和偏移。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "input",
+      "family": "真实呈现",
+      "title": "输入方式与焦点可返回",
+      "purpose": "键盘和触摸完成相同目标",
+      "when": "可点选、菜单、展开或拖拽",
+      "states": "有效入口→焦点/选择→结果→合理位置/返回",
+      "meaning": "鼠标可点不能证明完整可访问",
+      "counterexample": "必读来源只能悬停，图只能拖拽",
+      "ownerIds": [
+        "method-interaction",
+        "method-visualize"
+      ],
+      "componentIds": [
+        "web.assemble",
+        "web.return",
+        "surface.check"
+      ],
+      "sourceIds": [
+        "ai-elements",
+        "annnimate",
+        "action-video"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "键盘和触摸完成相同目标是否被当前动作兑现。",
+        "用反例核对：必读来源只能悬停，图只能拖拽。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "reduced",
+      "family": "真实呈现",
+      "title": "减少动效保留同一操作",
+      "purpose": "不用运动也能读懂结果和层级",
+      "when": "动画承担揭示/选中/反馈",
+      "states": "两种呈现读取同一状态→同一内容/操作",
+      "meaning": "降级不改变业务、步骤或权限",
+      "counterexample": "关动画后详情或回执不出现",
+      "ownerIds": [
+        "method-interaction",
+        "method-design"
+      ],
+      "componentIds": [
+        "theme.apply",
+        "web.assemble",
+        "surface.check"
+      ],
+      "sourceIds": [
+        "jakub",
+        "annnimate",
+        "receipt-video",
+        "transitions"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "不用运动也能读懂结果和层级是否被当前动作兑现。",
+        "用反例核对：关动画后详情或回执不出现。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    },
+    {
+      "id": "adopt",
+      "family": "检索与来源",
+      "title": "具体实现与采用边界",
+      "purpose": "有收益才研究复制/安装",
+      "when": "准备集成而非仅收集灵感",
+      "states": "公开预览→场景候选→版本/依赖/获取→隔离试验→采用/关闭/未知",
+      "meaning": "开源/免费领取/源码/同名跨框架/采用不同",
+      "counterexample": "源码属于你便省略依赖与许可核对",
+      "ownerIds": [
+        "method-design",
+        "method-interaction",
+        "method-research",
+        "method-probe",
+        "method-verify"
+      ],
+      "componentIds": [
+        "source.read",
+        "assets.resolve",
+        "capability.inspect",
+        "artifact.preview",
+        "surface.check"
+      ],
+      "sourceIds": [
+        "uiverse",
+        "21st",
+        "bits",
+        "annnimate"
+      ],
+      "keyboardTouch": "控件名称与语义可辨，键盘/触摸可完成同一目标；关闭/返回有合理焦点，不只靠悬停。",
+      "failure": "失败/未知保留对象与有用输入；快切使过期结果失效，状态绑定当前对象。",
+      "reducedMotion": "直接呈现正确稳定内容、层级与合法操作；不只缩短时长。",
+      "checks": [
+        "有收益才研究复制/安装是否被当前动作兑现。",
+        "用反例核对：源码属于你便省略依赖与许可核对。"
+      ],
+      "status": "DESIGN_REFERENCE_ONLY",
+      "runtimeVerified": false
+    }
+  ],
+  "sources": [
+    {
+      "id": "bencho",
+      "title": "Bencho",
+      "url": "https://bencho.dev/",
+      "category": "交互组件与可调预览",
+      "coverage": "保存笔记记载Asset swap操作；本轮目录和组件随后核对。"
+    },
+    {
+      "id": "ai-elements",
+      "title": "AI Elements",
+      "url": "https://elements.ai-sdk.dev/",
+      "category": "AI状态与组合式工作流",
+      "coverage": "本轮页面与选定组件；前端展示不自动实现执行。"
+    },
+    {
+      "id": "annnimate",
+      "title": "Annnimate",
+      "url": "https://annnimate.com/animations",
+      "category": "按场景的动效组件",
+      "coverage": "保存笔记核对公开预览与获取条件；未取得完整源码。"
+    },
+    {
+      "id": "jakub",
+      "title": "Jakub界面细节",
+      "url": "https://jakub.kr/writing/details-that-make-interfaces-feel-better",
+      "category": "轮廓、重心、可中断",
+      "coverage": "已有笔记文章核对，本轮只作资料参考，不复制示例参数。"
+    },
+    {
+      "id": "action-video",
+      "title": "Action按钮演示",
+      "url": "https://www.xiaohongshu.com/explore/6abda57c000000000a0240af",
+      "category": "局部操作连续展开",
+      "coverage": "保存视频观察；原作者、运行原站与代码未匹配。"
+    },
+    {
+      "id": "receipt-video",
+      "title": "收据揭示演示",
+      "url": "https://www.xiaohongshu.com/explore/6ac3dd160000000014033727",
+      "category": "结果先成立再揭示",
+      "coverage": "保存视频观察；真实业务、失败/未知未验证。"
+    },
+    {
+      "id": "uiverse",
+      "title": "Uiverse",
+      "url": "https://uiverse.io/",
+      "category": "基础控件与代码候选",
+      "coverage": "本轮首页和两个具体组件页面；不作全库许可/源码审计。"
+    },
+    {
+      "id": "21st",
+      "title": "21st Templates",
+      "url": "https://21st.dev/community/templates",
+      "category": "完整页面/模板",
+      "coverage": "本轮目录可见免费/计划/购买标签；不以预览证明可采用。"
+    },
+    {
+      "id": "bits",
+      "title": "React / Vue / Svelte Bits",
+      "url": "https://reactbits.dev/",
+      "category": "可调组件与跨框架候选",
+      "coverage": "本轮各首页和选定组件；同名不表示相同实现。"
+    },
+    {
+      "id": "transitions",
+      "title": "Transitions.dev",
+      "url": "https://transitions.dev/",
+      "category": "明确属性过渡与调参",
+      "coverage": "本轮首页和Studio入口；URL改变与实际预览分别记录。"
+    },
+    {
+      "id": "motion",
+      "title": "Motion Primitives",
+      "url": "https://motion-primitives.com/docs/text-effect",
+      "category": "微交互与组合状态",
+      "coverage": "本轮Text Effect及选定组件入口；未安装。"
+    },
+    {
+      "id": "refero",
+      "title": "Refero",
+      "url": "https://refero.design/",
+      "category": "页面/流程/模式/控件检索",
+      "coverage": "本轮公开首页分类；付费/登录后流程未读取。"
+    },
+    {
+      "id": "mobbin",
+      "title": "Mobbin",
+      "url": "https://mobbin.com/",
+      "category": "应用画面与使用流程",
+      "coverage": "本轮公开首页；计划内具体流程未读取。"
+    },
+    {
+      "id": "prompts",
+      "title": "Design Prompts",
+      "url": "https://www.designprompts.dev/",
+      "category": "风格/字体/主题筛选",
+      "coverage": "本轮目录和Monochrome示例；风格不替代产品判断。"
+    },
+    {
+      "id": "icons",
+      "title": "Remix Icon",
+      "url": "https://remixicon.com/",
+      "category": "图标系统与检索",
+      "coverage": "本轮首页；具体许可和逐图渲染未核验。"
+    },
+    {
+      "id": "colors",
+      "title": "配色工具",
+      "url": "https://www.shejidaren.com/examples/tools/color-scheme/",
+      "category": "颜色组合与真实主题预览",
+      "coverage": "本轮可见浅/深、复原/重做、色盲与导出入口；结果未全验证。"
+    }
+  ]
+}

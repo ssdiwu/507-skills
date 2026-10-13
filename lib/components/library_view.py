@@ -1,0 +1,176 @@
+#!/usr/bin/env python3
+"""Project a library's explicit source manifests; do not infer runtime acceptance."""
+import argparse
+import hashlib
+import json
+from pathlib import Path, PurePosixPath
+import re
+import sys
+
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def pairs(items):
+    result = {}
+    for key, value in items:
+        if key in result:
+            raise ValueError('duplicate JSON key: ' + key)
+        result[key] = value
+    return result
+
+
+def read(path):
+    path = Path(path)
+    if path.is_symlink() or not path.is_file():
+        raise ValueError('expected regular input: ' + str(path))
+    raw = path.read_bytes()
+    if len(raw) > 8 * 1024 * 1024:
+        raise ValueError('input exceeds 8 MiB')
+    return json.loads(raw, object_pairs_hook=pairs), sha(raw)
+
+
+def source(root, relative):
+    if not isinstance(relative, str) or '\\' in relative:
+        raise ValueError('invalid relative source')
+    rel = PurePosixPath(relative)
+    if rel.is_absolute() or '..' in rel.parts or not rel.parts:
+        raise ValueError('unsafe relative source: ' + relative)
+    path = root
+    for part in rel.parts:
+        path /= part
+        if path.is_symlink():
+            raise ValueError('symlink source: ' + relative)
+    if not path.is_file() or not path.resolve().is_relative_to(root.resolve()):
+        raise ValueError('missing source: ' + relative)
+    return path
+
+
+def project(root, packages_path, catalog_path, disposition_path):
+    packages, ph = read(packages_path)
+    catalog, ch = read(catalog_path)
+    decisions, dh = read(disposition_path)
+    entries = packages['skills']
+    names = [e['name'] for e in entries]
+    if len(names) != len(set(names)) or not entries:
+        raise ValueError('duplicate or empty skill identities')
+    rendered = []
+    file_count = shared_count = 0
+    for entry in entries:
+        name, base = entry['name'], entry['source']
+        if entry['role'] not in ('main', 'secondary'):
+            raise ValueError('unknown role')
+        paths = entry['files'] + [r['target'] for r in entry['shared']]
+        if len(paths) != len(set(paths)):
+            raise ValueError('duplicate package files')
+        files = [{'path': base + '/' + p, 'sha256': sha(source(root, base + '/' + p).read_bytes())} for p in paths]
+        raw = source(root, base + '/SKILL.md').read_text()
+        if not re.search(r'^name: ' + re.escape(name) + r'\s*$', raw, re.M):
+            raise ValueError('skill name differs from manifest: ' + name)
+        desc = re.search(r'^description:\s*(.+)$', raw, re.M)
+        if not desc:
+            raise ValueError('missing description')
+        rendered.append({'name': name, 'role': entry['role'], 'source': base + '/SKILL.md',
+                         'description': desc.group(1).strip('"'), 'files': files,
+                         'sharedSources': [r['source'] for r in entry['shared']]})
+        file_count += len(paths)
+        shared_count += len(entry['shared'])
+    resources = []
+    for kind in ('methods', 'components'):
+        for record in catalog[kind]:
+            path = record['source']
+            consumers = [c['skillId'] if isinstance(c, dict) else c for c in record['consumers']]
+            actual = [e['name'] for e in entries if any(r['source'] == path for r in e['shared'])]
+            if set(consumers) != set(actual) or len(consumers) != len(set(consumers)):
+                raise ValueError('resource consumers differ: ' + path)
+            resources.append({'kind': kind, 'source': path, 'title': record.get('title', Path(path).name),
+                              'consumers': consumers, 'sha256': sha(source(root, path).read_bytes())})
+    for kind, predicate in [('methods', lambda p: p.startswith('lib/methods/')), ('components', lambda p: p.endswith('.py'))]:
+        declared = [r['source'] for r in catalog[kind]]
+        expected = {r['source'] for e in entries for r in e['shared'] if predicate(r['source'])}
+        if len(declared) != len(set(declared)) or set(declared) != expected:
+            raise ValueError('catalog must exactly cover registered ' + kind)
+    already = {r['source'] for r in resources}
+    extras = {r['source'] for e in entries for r in e['shared']} - already
+    for path in sorted(extras):
+        file = source(root, path)
+        title = file.read_text().splitlines()[0].lstrip('# ')
+        consumers = [e['name'] for e in entries if any(r['source'] == path for r in e['shared'])]
+        resources.append({'kind': 'references', 'source': path, 'title': title, 'consumers': consumers, 'sha256': sha(file.read_bytes())})
+    if not isinstance(decisions.get('pending'), list) or not isinstance(decisions.get('historicalPlanning'), dict):
+        raise ValueError('invalid pending or historical planning section')
+    for pending in decisions['pending']:
+        if not isinstance(pending, dict) or any(not isinstance(pending.get(k), str) or not pending[k] for k in ['id', 'kind', 'title', 'scope', 'status']):
+            raise ValueError('invalid pending capability fields')
+    rows = decisions['legacy']
+    observed = {p.parent.name for group in ('common', 'code', 'write') for p in (root / group).glob('*/SKILL.md')}
+    if len(rows) != len(observed) or {r['id'] for r in rows} != observed:
+        raise ValueError('legacy decisions must cover the exact source inventory')
+    for row in rows:
+        if row.get('group') not in ('common', 'code', 'write') or row.get('source') != row['group'] + '/' + row['id'] + '/SKILL.md':
+            raise ValueError('legacy source must match identity and group')
+        for key in ['targets', 'consumers', 'retained', 'dropped']:
+            if not isinstance(row.get(key), list):
+                raise ValueError('missing or invalid legacy field: ' + key)
+        if not isinstance(row.get('verification'), str) or not row['verification']:
+            raise ValueError('missing verification boundary')
+        if any(not isinstance(v, str) or not v for v in row['retained']):
+            raise ValueError('invalid retained action')
+        if any(not isinstance(v, dict) or not v.get('mechanism') or not v.get('reason') for v in row['dropped']):
+            raise ValueError('invalid dropped mechanism')
+        if len(row['consumers']) != len(set(row['consumers'])) or len(row['targets']) != len(set(row['targets'])):
+            raise ValueError('duplicate disposition consumer or target')
+        if row['decision'] not in ('retain', 'merge', 'drop') or not row.get('reason'):
+            raise ValueError('missing disposition reason')
+        row['sourceSha256'] = sha(source(root, row['source']).read_bytes())
+        connected = set()
+        for target in row['targets']:
+            source(root, target)
+            supported = {e['name'] for e in entries if target in [e['source'] + '/' + f for f in e['files']] or any(r['source'] == target for r in e['shared'])}
+            active = supported & set(row['consumers'])
+            if not active:
+                raise ValueError('target has no declared current consumer: ' + target)
+            connected.update(active)
+        if set(row['consumers']) != connected:
+            raise ValueError('disposition consumer lacks a target resource')
+        for consumer in row['consumers']:
+            if consumer not in names:
+                raise ValueError('unknown current consumer: ' + consumer)
+        if row['decision'] != 'drop' and (not row['retained'] or not row['targets'] or not row['consumers']):
+            raise ValueError('retained capability lacks a current consumer')
+    package_files = {entry['name'] + '/' + f['path'].removeprefix('next/skills/' + entry['name'] + '/'): f['sha256'] for entry in rendered for f in entry['files']}
+    package_fingerprint = sha(json.dumps(package_files, sort_keys=True, separators=(',', ':')).encode())
+    return {'packageFingerprint': package_fingerprint, 'schema': 1, 'date': decisions['date'], 'status': 'SOURCE_PROJECTED',
+            'inputHashes': {'packages': ph, 'catalog': ch, 'dispositions': dh},
+            'implementation': {'entrypoints': len(entries), 'main': sum(e['role'] == 'main' for e in entries),
+                               'secondary': sum(e['role'] == 'secondary' for e in entries),
+                               'files': file_count, 'sharedCopies': shared_count,
+                               'methodSources': len(catalog['methods']), 'scriptSources': len(catalog['components'])},
+            'skills': rendered, 'resources': resources, 'legacy': rows,
+            'pending': decisions['pending'], 'historicalPlanning': decisions['historicalPlanning'],
+            'limits': ['SOURCE_PROJECTED仅证明清单投影和来源存在，不证明语义充分、安装、自然选择或业务验收。',
+                       '旧入口身份退出与原方法放弃分别记录；待验证不是待实现。']}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--source-root', required=True)
+    parser.add_argument('--packages', required=True)
+    parser.add_argument('--catalog', required=True)
+    parser.add_argument('--dispositions', required=True)
+    args = parser.parse_args()
+    try:
+        root = Path(args.source_root)
+        if root.is_symlink() or not root.is_dir():
+            raise ValueError('expected explicit regular source root')
+        result = project(root, args.packages, args.catalog, args.dispositions)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return 0
+    except (ValueError, KeyError, TypeError, OSError) as exc:
+        print(json.dumps({'status': 'INPUT_ERROR', 'error': str(exc)}, ensure_ascii=False), file=sys.stderr)
+        return 2
+
+
+if __name__ == '__main__':
+    sys.exit(main())

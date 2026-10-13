@@ -1,0 +1,4 @@
+interface:
+  display_name: "行为与验收规格"
+  short_description: "将已确认的软件需求维护为唯一当前行为与验收依据，可直接交回实施。"
+  default_prompt: "使用 $507-spec 将已确认需求整理到当前规格，保留有效条件并明确验收。"

@@ -1,0 +1,974 @@
+{
+  "schema": 1,
+  "system": "507-layered-capabilities",
+  "skills": [
+    {
+      "name": "skill-design",
+      "source": "next/skills/skill-design",
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/question-frontier.md",
+          "target": "references/shared/question-frontier.md"
+        },
+        {
+          "source": "lib/methods/alternatives.md",
+          "target": "references/shared/alternatives.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/clear-expression.md",
+          "target": "references/shared/clear-expression.md"
+        },
+        {
+          "source": "lib/methods/external-research.md",
+          "target": "references/shared/external-research.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/components/library_view.py",
+          "target": "scripts/library_view.py"
+        },
+        {
+          "source": "lib/components/library-view.md",
+          "target": "references/shared/library-view.md"
+        }
+      ],
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/design.md",
+        "references/delivery.md",
+        "references/replay.md"
+      ],
+      "role": "main"
+    },
+    {
+      "name": "507-what",
+      "source": "next/skills/507-what",
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/question-frontier.md",
+          "target": "references/shared/question-frontier.md"
+        },
+        {
+          "source": "lib/methods/alternatives.md",
+          "target": "references/shared/alternatives.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/clear-expression.md",
+          "target": "references/shared/clear-expression.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/conversation.md"
+      ],
+      "role": "main"
+    },
+    {
+      "name": "507-work-update",
+      "source": "next/skills/507-work-update",
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/components/state_diff.py",
+          "target": "scripts/state_diff.py"
+        },
+        {
+          "source": "lib/components/work_view.py",
+          "target": "scripts/work_view.py"
+        },
+        {
+          "source": "lib/methods/task-coordination.md",
+          "target": "references/shared/task-coordination.md"
+        },
+        {
+          "source": "lib/components/task-view.md",
+          "target": "references/shared/task-view.md"
+        },
+        {
+          "source": "lib/components/task_view.py",
+          "target": "scripts/task_view.py"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/process.md",
+        "references/state-views.md"
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-why",
+      "source": "next/skills/507-why",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/explanation.md"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/question-frontier.md",
+          "target": "references/shared/question-frontier.md"
+        },
+        {
+          "source": "lib/methods/alternatives.md",
+          "target": "references/shared/alternatives.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/clear-expression.md",
+          "target": "references/shared/clear-expression.md"
+        },
+        {
+          "source": "lib/methods/external-research.md",
+          "target": "references/shared/external-research.md"
+        },
+        {
+          "source": "lib/methods/visual-understanding.md",
+          "target": "references/shared/visual-understanding.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/probe-lifecycle.md",
+          "target": "references/shared/probe-lifecycle.md"
+        },
+        {
+          "source": "lib/methods/architecture-candidates.md",
+          "target": "references/shared/architecture-candidates.md"
+        },
+        {
+          "source": "lib/methods/explanation-progression.md",
+          "target": "references/shared/explanation-progression.md"
+        },
+        {
+          "source": "lib/methods/media-study.md",
+          "target": "references/shared/media-study.md"
+        }
+      ],
+      "role": "main"
+    },
+    {
+      "name": "507-how",
+      "source": "next/skills/507-how",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/change-strategy.md"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/question-frontier.md",
+          "target": "references/shared/question-frontier.md"
+        },
+        {
+          "source": "lib/methods/alternatives.md",
+          "target": "references/shared/alternatives.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/clear-expression.md",
+          "target": "references/shared/clear-expression.md"
+        },
+        {
+          "source": "lib/methods/external-research.md",
+          "target": "references/shared/external-research.md"
+        },
+        {
+          "source": "lib/methods/visual-understanding.md",
+          "target": "references/shared/visual-understanding.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/probe-lifecycle.md",
+          "target": "references/shared/probe-lifecycle.md"
+        },
+        {
+          "source": "lib/methods/architecture-candidates.md",
+          "target": "references/shared/architecture-candidates.md"
+        },
+        {
+          "source": "lib/methods/behavior-preserving-change.md",
+          "target": "references/shared/behavior-preserving-change.md"
+        }
+      ],
+      "role": "main"
+    },
+    {
+      "name": "507-create",
+      "source": "next/skills/507-create",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/authorship.md"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/question-frontier.md",
+          "target": "references/shared/question-frontier.md"
+        },
+        {
+          "source": "lib/methods/alternatives.md",
+          "target": "references/shared/alternatives.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/clear-expression.md",
+          "target": "references/shared/clear-expression.md"
+        },
+        {
+          "source": "lib/methods/author-and-source.md",
+          "target": "references/shared/author-and-source.md"
+        },
+        {
+          "source": "lib/methods/artifact-contract.md",
+          "target": "references/shared/artifact-contract.md"
+        },
+        {
+          "source": "lib/methods/task-coordination.md",
+          "target": "references/shared/task-coordination.md"
+        },
+        {
+          "source": "lib/methods/external-research.md",
+          "target": "references/shared/external-research.md"
+        },
+        {
+          "source": "lib/methods/visual-direction.md",
+          "target": "references/shared/visual-direction.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/author-interview.md",
+          "target": "references/shared/author-interview.md"
+        },
+        {
+          "source": "lib/methods/media-study.md",
+          "target": "references/shared/media-study.md"
+        },
+        {
+          "source": "lib/methods/media-production.md",
+          "target": "references/shared/media-production.md"
+        },
+        {
+          "source": "lib/components/artifact_receipt.py",
+          "target": "scripts/artifact_receipt.py"
+        },
+        {
+          "source": "lib/components/artifact-receipt.md",
+          "target": "references/shared/artifact-receipt.md"
+        },
+        {
+          "source": "lib/components/media-adapters.md",
+          "target": "references/shared/media-adapters.md"
+        },
+        {
+          "source": "lib/methods/interaction.md",
+          "target": "references/shared/interaction.md"
+        },
+        {
+          "source": "lib/design/interaction-detail.md",
+          "target": "references/shared/interaction-detail.md"
+        },
+        {
+          "source": "lib/design/containers-and-motion.md",
+          "target": "references/shared/containers-and-motion.md"
+        },
+        {
+          "source": "lib/design/apple-interaction.md",
+          "target": "references/shared/apple-interaction.md"
+        }
+      ],
+      "role": "main"
+    },
+    {
+      "name": "507-spec",
+      "source": "next/skills/507-spec",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/behavior-boundaries.md"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/question-frontier.md",
+          "target": "references/shared/question-frontier.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/engineering-evidence.md",
+          "target": "references/shared/engineering-evidence.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-implement",
+      "source": "next/skills/507-implement",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/testing.md"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/engineering-evidence.md",
+          "target": "references/shared/engineering-evidence.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/components/check_run.py",
+          "target": "scripts/check_run.py"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/behavior-preserving-change.md",
+          "target": "references/shared/behavior-preserving-change.md"
+        },
+        {
+          "source": "lib/methods/interaction.md",
+          "target": "references/shared/interaction.md"
+        },
+        {
+          "source": "lib/design/interaction-detail.md",
+          "target": "references/shared/interaction-detail.md"
+        },
+        {
+          "source": "lib/design/containers-and-motion.md",
+          "target": "references/shared/containers-and-motion.md"
+        },
+        {
+          "source": "lib/design/apple-interaction.md",
+          "target": "references/shared/apple-interaction.md"
+        }
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-fix",
+      "source": "next/skills/507-fix",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/engineering-evidence.md",
+          "target": "references/shared/engineering-evidence.md"
+        },
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/components/check_run.py",
+          "target": "scripts/check_run.py"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-review",
+      "source": "next/skills/507-review",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/engineering-evidence.md",
+          "target": "references/shared/engineering-evidence.md"
+        },
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/components/check_run.py",
+          "target": "scripts/check_run.py"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-issue",
+      "source": "next/skills/507-issue",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/platform-write.md"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-coordinate",
+      "source": "next/skills/507-coordinate",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/alternatives.md",
+          "target": "references/shared/alternatives.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/clear-expression.md",
+          "target": "references/shared/clear-expression.md"
+        },
+        {
+          "source": "lib/methods/task-coordination.md",
+          "target": "references/shared/task-coordination.md"
+        },
+        {
+          "source": "lib/components/task-view.md",
+          "target": "references/shared/task-view.md"
+        },
+        {
+          "source": "lib/components/task_view.py",
+          "target": "scripts/task_view.py"
+        },
+        {
+          "source": "lib/methods/visual-understanding.md",
+          "target": "references/shared/visual-understanding.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-deliver",
+      "source": "next/skills/507-deliver",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/actions.md"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/clear-expression.md",
+          "target": "references/shared/clear-expression.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-retro",
+      "source": "next/skills/507-retro",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/alternatives.md",
+          "target": "references/shared/alternatives.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-material",
+      "source": "next/skills/507-material",
+      "shared": [
+        {
+          "source": "lib/methods/author-and-source.md",
+          "target": "references/shared/author-and-source.md"
+        },
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/external-research.md",
+          "target": "references/shared/external-research.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/author-interview.md",
+          "target": "references/shared/author-interview.md"
+        },
+        {
+          "source": "lib/methods/knowledge-organization.md",
+          "target": "references/shared/knowledge-organization.md"
+        },
+        {
+          "source": "lib/methods/media-study.md",
+          "target": "references/shared/media-study.md"
+        }
+      ],
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/material-units.md"
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-compose",
+      "source": "next/skills/507-compose",
+      "shared": [
+        {
+          "source": "lib/methods/author-and-source.md",
+          "target": "references/shared/author-and-source.md"
+        },
+        {
+          "source": "lib/methods/artifact-contract.md",
+          "target": "references/shared/artifact-contract.md"
+        },
+        {
+          "source": "lib/methods/artifact-rendering.md",
+          "target": "references/shared/artifact-rendering.md"
+        },
+        {
+          "source": "lib/components/text-checks.md",
+          "target": "references/shared/text-checks.md"
+        },
+        {
+          "source": "lib/components/check_prose.py",
+          "target": "scripts/check_prose.py"
+        },
+        {
+          "source": "lib/components/check_spoken.py",
+          "target": "scripts/check_spoken.py"
+        },
+        {
+          "source": "lib/components/render_artifact.py",
+          "target": "scripts/render_artifact.py"
+        },
+        {
+          "source": "lib/design/artifact-prompts.md",
+          "target": "references/shared/artifact-prompts.md"
+        },
+        {
+          "source": "lib/methods/visual-direction.md",
+          "target": "references/shared/visual-direction.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/author-interview.md",
+          "target": "references/shared/author-interview.md"
+        },
+        {
+          "source": "lib/methods/explanation-progression.md",
+          "target": "references/shared/explanation-progression.md"
+        },
+        {
+          "source": "lib/methods/media-production.md",
+          "target": "references/shared/media-production.md"
+        },
+        {
+          "source": "lib/components/artifact_receipt.py",
+          "target": "scripts/artifact_receipt.py"
+        },
+        {
+          "source": "lib/components/artifact-receipt.md",
+          "target": "references/shared/artifact-receipt.md"
+        },
+        {
+          "source": "lib/components/media-adapters.md",
+          "target": "references/shared/media-adapters.md"
+        },
+        {
+          "source": "lib/design/target-design.md",
+          "target": "references/shared/target-design.md"
+        },
+        {
+          "source": "lib/methods/title-promises.md",
+          "target": "references/shared/title-promises.md"
+        }
+      ],
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/proposal.md",
+        "references/prose.md",
+        "references/spoken.md"
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-adapt",
+      "source": "next/skills/507-adapt",
+      "shared": [
+        {
+          "source": "lib/methods/author-and-source.md",
+          "target": "references/shared/author-and-source.md"
+        },
+        {
+          "source": "lib/methods/artifact-contract.md",
+          "target": "references/shared/artifact-contract.md"
+        },
+        {
+          "source": "lib/methods/artifact-rendering.md",
+          "target": "references/shared/artifact-rendering.md"
+        },
+        {
+          "source": "lib/design/artifact-prompts.md",
+          "target": "references/shared/artifact-prompts.md"
+        },
+        {
+          "source": "lib/components/text-checks.md",
+          "target": "references/shared/text-checks.md"
+        },
+        {
+          "source": "lib/components/check_prose.py",
+          "target": "scripts/check_prose.py"
+        },
+        {
+          "source": "lib/components/check_spoken.py",
+          "target": "scripts/check_spoken.py"
+        },
+        {
+          "source": "lib/components/render_artifact.py",
+          "target": "scripts/render_artifact.py"
+        },
+        {
+          "source": "lib/methods/visual-understanding.md",
+          "target": "references/shared/visual-understanding.md"
+        },
+        {
+          "source": "lib/methods/visual-direction.md",
+          "target": "references/shared/visual-direction.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/interaction.md",
+          "target": "references/shared/interaction.md"
+        },
+        {
+          "source": "lib/methods/media-study.md",
+          "target": "references/shared/media-study.md"
+        },
+        {
+          "source": "lib/methods/media-production.md",
+          "target": "references/shared/media-production.md"
+        },
+        {
+          "source": "lib/components/artifact_receipt.py",
+          "target": "scripts/artifact_receipt.py"
+        },
+        {
+          "source": "lib/components/artifact-receipt.md",
+          "target": "references/shared/artifact-receipt.md"
+        },
+        {
+          "source": "lib/components/media-adapters.md",
+          "target": "references/shared/media-adapters.md"
+        },
+        {
+          "source": "lib/design/target-design.md",
+          "target": "references/shared/target-design.md"
+        },
+        {
+          "source": "lib/design/interaction-detail.md",
+          "target": "references/shared/interaction-detail.md"
+        },
+        {
+          "source": "lib/design/containers-and-motion.md",
+          "target": "references/shared/containers-and-motion.md"
+        },
+        {
+          "source": "lib/design/apple-interaction.md",
+          "target": "references/shared/apple-interaction.md"
+        },
+        {
+          "source": "lib/methods/title-promises.md",
+          "target": "references/shared/title-promises.md"
+        }
+      ],
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml",
+        "references/reader-and-carrier.md"
+      ],
+      "role": "secondary"
+    },
+    {
+      "name": "507-setup",
+      "source": "next/skills/507-setup",
+      "role": "secondary",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/project-foundation.md",
+          "target": "references/shared/project-foundation.md"
+        },
+        {
+          "source": "lib/methods/project-navigation.md",
+          "target": "references/shared/project-navigation.md"
+        }
+      ]
+    }
+  ]
+}

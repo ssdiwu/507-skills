@@ -1,0 +1,4 @@
+interface:
+  display_name: "可跟进工单"
+  short_description: "保持同一工单的当前结论、调查证据与领取依据，平台写入依具体授权。"
+  default_prompt: "使用 $507-issue 准备或维护可跟进工单，核对状态、验收及已有写入授权。"

@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""Render an explicit content model into a new offline HTML cards, deck or site view."""
+import argparse
+import hashlib
+import html
+import json
+from pathlib import Path
+import shutil
+import sys
+import tempfile
+from urllib.parse import urlsplit
+
+def string(value, field):
+    if not isinstance(value, str):
+        raise ValueError(field+' must be a string')
+    return value
+
+def render(data):
+    if not isinstance(data, dict) or data.get('mode') not in ['cards','deck','site']:
+        raise ValueError('mode must be cards, deck or site')
+    title = string(data.get('title'), 'title')
+    subtitle = string(data.get('subtitle',''), 'subtitle')
+    pages = data.get('pages')
+    if not isinstance(pages, list) or not pages:
+        raise ValueError('pages must be a nonempty array')
+    sources = data.get('sources', [])
+    if not isinstance(sources, list):
+        raise ValueError('sources must be an array')
+    known = {}
+    for s in sources:
+        if not isinstance(s,dict):
+            raise ValueError('source must be an object')
+        key = string(s.get('id'),'source.id')
+        if not key or key in known:
+            raise ValueError('source ids must be nonempty and unique')
+        label = string(s.get('label'),'source.label')
+        url = string(s.get('url',''),'source.url')
+        if url and urlsplit(url).scheme not in ['https','http']:
+            raise ValueError('source URL must use https or http')
+        known[key] = (label,url)
+    esc = lambda x: html.escape(x, quote=True)
+    rendered = []
+    for i,p in enumerate(pages,1):
+        if not isinstance(p,dict):
+            raise ValueError('page must be an object')
+        heading = string(p.get('title'),'page.title')
+        body = string(p.get('body',''),'page.body')
+        bullets = p.get('bullets',[])
+        refs = p.get('sourceIds',[])
+        notes = string(p.get('notes',''),'page.notes')
+        if not isinstance(bullets,list) or not all(isinstance(x,str) for x in bullets):
+            raise ValueError('bullets must be an array of strings')
+        if not isinstance(refs,list) or not all(isinstance(x,str) and x in known for x in refs):
+            raise ValueError('sourceIds must resolve to registered sources')
+        paragraphs = ''.join('<p>'+esc(x)+'</p>' for x in body.split('\n\n') if x)
+        points = '<ul>'+''.join('<li>'+esc(x)+'</li>' for x in bullets)+'</ul>' if bullets else ''
+        references = '<footer>来源：'+ '；'.join('<a href="#s'+str(list(known).index(x))+'">'+esc(known[x][0])+'</a>' for x in refs)+'</footer>' if refs else ''
+        note = '<details><summary>讲述提示</summary><p>'+esc(notes)+'</p></details>' if notes else ''
+        rendered.append(f'<article id="p{i}" tabindex="-1"><span class="number">{i:02}</span><h2>{esc(heading)}</h2>{paragraphs}{points}{references}{note}</article>')
+    ledger = ''.join('<li id="s'+str(i)+'">'+ ('<a href="'+esc(url)+'" rel="noopener noreferrer">'+esc(label)+'</a>' if url else esc(label))+'</li>' for i,(label,url) in enumerate(known.values()))
+    nav = '<nav aria-label="逐页阅读">'+''.join(f'<a href="#p{i}">{i:02}</a>' for i in range(1,len(pages)+1))+'</nav>'
+    style = '''html{scroll-behavior:smooth}*{box-sizing:border-box}body{margin:0;background:#f4f1e9;color:#202a27;font:18px/1.75 system-ui,-apple-system,sans-serif}header,main,aside{max-width:1100px;margin:auto;padding:32px}header h1{font-size:clamp(30px,5vw,62px);line-height:1.2;max-width:22ch}header p{max-width:55ch}nav{display:flex;gap:8px;flex-wrap:wrap}a{color:#235e50;overflow-wrap:anywhere}nav a{padding:5px 12px;border:1px solid #c8cec9;border-radius:6px;text-decoration:none}main{display:grid;gap:24px}article{background:#fffdfa;padding:clamp(24px,4vw,56px);border:1px solid #deded4;min-width:0;scroll-margin-top:20px}h2{font-size:clamp(24px,3vw,38px);line-height:1.4;margin:16px 0 24px;overflow-wrap:anywhere}p,li{overflow-wrap:anywhere;white-space:pre-wrap}p{max-width:65ch}footer{font-size:13px;margin-top:28px;border-top:1px solid #ddd;padding-top:12px}.number{font-size:13px;letter-spacing:.2em;color:#61736b}details{margin-top:20px}summary{cursor:pointer}.cards main{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}.deck article{min-height:60vh}.site article{border-left:5px solid #356554}@media(max-width:480px){header,main,aside{padding:20px}body{font-size:16px}article{padding:24px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{nav,aside{display:none}.cards main{display:block}article{break-after:page;border:none}body{background:white}}'''
+    return '<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+'</title><style>'+style+'</style><body class="'+data['mode']+'"><header><h1>'+esc(title)+'</h1><p>'+esc(subtitle)+'</p>'+nav+'</header><main>'+''.join(rendered)+'</main><aside><h2>来源与阅读依据</h2><ol>'+ledger+'</ol></aside></body></html>'
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--input',type=Path,required=True)
+    parser.add_argument('--out-dir',type=Path,required=True)
+    args = parser.parse_args()
+    stage = None
+    try:
+        raw = args.input.read_bytes()
+        if len(raw)>2*1024*1024:
+            raise ValueError('input exceeds 2 MiB')
+        data = json.loads(raw)
+        content = render(data).encode()
+        out = args.out_dir.absolute()
+        if out.exists() or out.is_symlink():
+            raise ValueError('out-dir already exists; prior artifact is preserved')
+        out.parent.mkdir(parents=True,exist_ok=True)
+        stage = Path(tempfile.mkdtemp(prefix='.artifact-',dir=out.parent))
+        (stage/'index.html').write_bytes(content)
+        (stage/'content.json').write_bytes(raw)
+        receipt = {'schema':1,'mode':data['mode'],'pages':len(data['pages']),
+                   'inputSha256':hashlib.sha256(raw).hexdigest(),'htmlSha256':hashlib.sha256(content).hexdigest(),
+                   'format':'offline HTML','limits':['Not PNG, PPTX or video.','Rendering is not semantic review, author acceptance or publishing.']}
+        (stage/'manifest.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+        stage.rename(out)
+        print(json.dumps({'status':'RENDERED','path':str(out/'index.html'),**receipt},ensure_ascii=False))
+        return 0
+    except (OSError,ValueError,TypeError) as exc:
+        print(json.dumps({'status':'ERROR','error':str(exc)},ensure_ascii=False))
+        return 2
+    finally:
+        if stage is not None and stage.exists():
+            shutil.rmtree(stage)
+
+if __name__ == '__main__':
+    raise SystemExit(main())

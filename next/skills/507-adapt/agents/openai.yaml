@@ -1,0 +1,4 @@
+interface:
+  display_name: "成稿受众与载体适配"
+  short_description: "保留成熟稿的含义和来源，适配读者、载体容量与真实阅读关系"
+  default_prompt: "使用 $507-adapt 将成熟稿适配指定受众与载体，保留作者判断、含义和来源并核对实际输出。"

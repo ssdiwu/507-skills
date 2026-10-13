@@ -1,0 +1,4 @@
+interface:
+  display_name: "任务拆解与情境协调"
+  short_description: "按工程、写作及一般工作情境组织独立结果、依赖和接续，简单任务直达。"
+  default_prompt: "使用 $507-coordinate 围绕已有目标选择必要拆分、依赖推进或持续协调，复用过程记录并核对组合结果。"

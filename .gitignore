@@ -8,3 +8,9 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+# Immutable local candidates; source packages and checks remain versioned
+/next/dist/
+
+# Local host session state
+/.mimosa/
