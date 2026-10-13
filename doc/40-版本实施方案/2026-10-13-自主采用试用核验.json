@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "date": "2026-10-13",
+  "scope": "historical-real-source-isolated-execution",
+  "model": "gpt-6-luna",
+  "skillChainPrescribed": false,
+  "hostNaturalDiscovery": "UNVERIFIED",
+  "bundleFingerprint": "129175d7ea5241421c6490c9b1505665bcbc60489818dc435d374d3c47116b98",
+  "unchangedInstalledSkills": true,
+  "sourceCheck": {
+    "status": "PASS",
+    "skills": 18,
+    "files": 238,
+    "sharedCopies": 184
+  },
+  "privateSourceBodiesPublished": false,
+  "cases": [
+    {
+      "case": "work",
+      "model": [
+        "gpt-6-luna"
+      ],
+      "verdict": "PASS_LOCAL_SCOPE_AFTER_REVIEW",
+      "latestTurnToolCalls": 16,
+      "fullyReturnedEntries": [
+        "507-coordinate",
+        "507-work-update"
+      ],
+      "preservedRounds": [
+        {
+          "id": "work-r1",
+          "verdict": "REQUIRES_REVISION"
+        },
+        {
+          "id": "work-r2",
+          "verdict": "PASS_LOCAL_SCOPE_AFTER_REVIEW"
+        }
+      ]
+    },
+    {
+      "case": "creation",
+      "model": [
+        "gpt-6-luna"
+      ],
+      "verdict": "REQUIRES_REVISION",
+      "latestTurnToolCalls": 121,
+      "fullyReturnedEntries": [
+        "507-implement",
+        "507-review",
+        "507-spec",
+        "ego-browser",
+        "impeccable"
+      ],
+      "preservedRounds": [
+        {
+          "id": "creation-r1",
+          "verdict": "REQUIRES_REVISION"
+        }
+      ]
+    },
+    {
+      "case": "repair",
+      "model": [
+        "gpt-6-luna"
+      ],
+      "verdict": "PASS_LOCAL_FIX_SCOPE_AFTER_REVIEW",
+      "latestTurnToolCalls": 29,
+      "fullyReturnedEntries": [
+        "507-fix"
+      ],
+      "preservedRounds": [
+        {
+          "id": "repair-r1",
+          "verdict": "REQUIRES_REVISION"
+        },
+        {
+          "id": "repair-r2",
+          "verdict": "PASS_LOCAL_FIX_SCOPE_AFTER_REVIEW"
+        }
+      ]
+    },
+    {
+      "case": "writing",
+      "model": [
+        "gpt-6-luna"
+      ],
+      "verdict": "PASS_LOCAL_CONTENT_AND_LIMITED_PRESENTATION",
+      "latestTurnToolCalls": 29,
+      "fullyReturnedEntries": [
+        "507-adapt",
+        "507-compose",
+        "507-create",
+        "ego-browser"
+      ],
+      "preservedRounds": [
+        {
+          "id": "writing-r1",
+          "verdict": "PASS_LOCAL_CONTENT_AND_LIMITED_PRESENTATION"
+        }
+      ]
+    }
+  ],
+  "changes": {
+    "skillImplementation": false,
+    "sharedMethodImplementation": false,
+    "referenceProjectionComponent": true,
+    "perRoundFindingsAndLimits": true,
+    "directGeneratedHtmlEdit": false
+  },
+  "sourceIntegrity": {
+    "historicalProjectFiles": 418,
+    "match": 418
+  },
+  "limits": [
+    "Explicit entry catalogue; no prescribed chain; not formal-host discovery proof.",
+    "Browser operational coordination in prototype and article first rounds; no business-answer feedback.",
+    "Work and repair revised after independent findings; not first autonomous passes.",
+    "Full prototype, complete product UI, real providers, external delivery, author acceptance and release remain unpassed.",
+    "No matched cost or autonomy comparison."
+  ],
+  "report": "../10-架构与运行/6-luna自主采用试用与改动落点.md"
+}

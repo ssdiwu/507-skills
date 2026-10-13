@@ -1,0 +1,27 @@
+{
+  "status": "ONE_SHOT_CONTEXT_PREPARED_NOT_EXTERNAL_AUDIT",
+  "date": "2026-10-12",
+  "delivery": "一次提交完整上下文，文件路径直接进入prompt",
+  "contextBytes": 371503,
+  "embeddedCoreSources": 25,
+  "candidateEntities": 85,
+  "legacyMainLocators": 30,
+  "historicalOutputLocators": 12,
+  "constructedCases": 6,
+  "browserChecks": 17,
+  "responsiveWidths": [
+    1413,
+    768,
+    390
+  ],
+  "absolutePathsChecked": true,
+  "readonlyContextReview": "CORRECTED_SCOPE_COMPLETE",
+  "externalModelInvoked": false,
+  "runtimeSkillChanges": false,
+  "rawPrivateSessionsEmbedded": false,
+  "limits": [
+    "背景有历史结论，不是盲审",
+    "旧30和上游全库正文未全部内嵌，提供定位和覆盖边界",
+    "界面/文件检查不证明技能运行可靠性或真实宿主发现"
+  ]
+}

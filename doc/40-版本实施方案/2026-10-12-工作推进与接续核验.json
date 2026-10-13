@@ -1,0 +1,107 @@
+{
+  "status": "SCOPED_EXECUTION_AND_SITE_PASS_WITH_LIMITS",
+  "date": "2026-10-12",
+  "model": "gpt-6-luna",
+  "effort": "medium",
+  "executors": 2,
+  "independentReaders": 1,
+  "runtimeModelVerified": true,
+  "scope": "指定真实历史材料的隔离工作推进；只凭现有项目文档的读者接续；未进行自然发现、真实平台或原ERP执行",
+  "designSource": "doc/40-版本实施方案/2026-10-12-工作推进与记录方案.json",
+  "designSha256": "ad7c3b30a4ab4c79b0346edff6e612b106b5143978cdeb8338b61d072079aaba",
+  "cases": [
+    {
+      "id": "work",
+      "first": "REJECT: 提醒已过但排序未说明",
+      "revision": "PASS_WITH_LIMITS: 保留日期、16身份/12活跃/4退出或合并，按有效截止排序并完成本地交接简报",
+      "actualTools": "执行者两次运行work_view与state_diff；R2明确传入2026-10-12参考日",
+      "limits": "历史局部基线，不是当前真实任务清单或平台写回"
+    },
+    {
+      "id": "resume",
+      "first": "PASS_WITH_LIMITS: 识别现行三角色/我的工作、四项P2与责任；产出返修工作单",
+      "reads": "包内普通资源及两份项目文档副本；长文聚合输出截断，不声称全文模型可见",
+      "limits": "无源码、原对话、渠道或原工作树写入权；文档复制指纹不是源码冻结"
+    }
+  ],
+  "components": {
+    "baseChecks": 7,
+    "temporalChecks": 3,
+    "result": "PASS",
+    "purpose": "单候选状态派生多视图；日期比较仅支持的日历格式",
+    "policyAndSemanticAuthority": false
+  },
+  "formal": {
+    "skills": 2,
+    "sharedSources": 7,
+    "sharedCopies": 14,
+    "snapshotFiles": 22,
+    "packageCheck": "PASS",
+    "protectedSourceFiles": 134,
+    "changed": 0
+  },
+  "candidate": {
+    "name": "507-work-update",
+    "files": 9,
+    "status": "isolated-only",
+    "newSharedMethod": "工作记录与接续，普通方法候选，未进入正式lib",
+    "newComponent": "work_view.py，具体视图候选",
+    "installed": false,
+    "replacedCurrentLibrary": false,
+    "closure": "9 ordinary files and all local Markdown references PASS"
+  },
+  "site": {
+    "viewCount": 15,
+    "newCases": 2,
+    "newStages": 3,
+    "previousForwardCases": 5,
+    "previousForwardStages": 17,
+    "sources": 21,
+    "atoms": 196,
+    "mappings": 587,
+    "oldGraphs": 8,
+    "newGraphs": 5,
+    "checks": 38,
+    "browserResult": "PASS",
+    "widths": [
+      1413,
+      768,
+      390
+    ],
+    "htmlSha256": "8a063def5dcd3151e1ceb484deda57c4e632573fc5404a26519dadac4cf059bc",
+    "dataSha256": "d6be22bef09767491749764ea4f3c54f34b68418a3074743f55e95667a0ddfbc"
+  },
+  "sourceGuard": {
+    "formalFilesCompared": 134,
+    "formalChanged": [],
+    "firstOutputDrift": [],
+    "inputsMatchRegistration": {
+      "work": true,
+      "resume": true
+    },
+    "previousForwardDataUnchanged": true,
+    "guardHarnessCorrection": "First frozen paths map to runtime/{case}/outputs; initial missing-path diagnostic was a checker path error.",
+    "excludedCacheFiles": 3
+  },
+  "experimentErrors": [
+    "首次独立报告以错误相对路径委托，执行者如实报告未读到；R2依据完整转述反馈，复核者再读原报告。",
+    "网页检查初次选择器有歧义，旧导航断言误用了aria-pressed而实际合同为aria-current；保留原记录，按实际合同重查。",
+    "首次输出指纹检查初次映射少了outputs层，修正路径后原件无漂移。",
+    "独立审读者两次最终文字中的JSON链接路径有笔误；报告实际落盘正确，整合者与网站沿实际文件生成链接。"
+  ],
+  "privateEvidence": "原始输入、会话摘要、模型工具日志审计、候选、输出和审读保留在本地参考站 evidence/work-progress-20261012，不复制私密正文到公开仓库",
+  "finalDocumentationReview": {
+    "status": "PASS_WITH_LIMITS",
+    "blockingFindings": 0,
+    "privateEvidence": "evidence/work-progress-20261012/review/final-closeout.json",
+    "sha256": "a37ca5de4631fa79e66694055fb3b9a3afe62910804caa99593c5c1c79e11f35",
+    "method": "independent source/contract/receipt review; test receipts inspected, not rerun"
+  },
+  "limits": [
+    "无自然宿主发现、独立作者环境硬隔离或整体稳定性/成本收益证明",
+    "未写真实事项/PPT/ERP源码，未发消息；未提交/推送/安装/发布",
+    "字段PASS与日期提示不授予权限，不证明语义或实际业务接受",
+    "只读来源文档在复制时核对指纹，原项目可继续由既有实施者维护",
+    "上一轮创作与修复结果保留，不在本轮重复计为新执行"
+  ]
+}

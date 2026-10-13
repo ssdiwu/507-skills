@@ -1,0 +1,120 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "date": "2026-10-12",
+  "implementation": {
+    "packages": [
+      "507-skill",
+      "507-what",
+      "507-work-update"
+    ],
+    "methodSources": 7,
+    "methodCopies": 17,
+    "componentCopies": 2,
+    "bundleFiles": 31,
+    "currentBundle": "a0b07ba2203d00e9dfb00558bbc5f8ab14aed015172ce55223b5eb6883b74539",
+    "firstBundle": "784129ea90419a4cb997eed0dc00fae30d26597b3bee2015b7493587ff8c3fc5"
+  },
+  "sourceChange": "Only existing evidence method refined after supplied TXT omission; generated copies for three consumers synchronized. Work process remains package-specific.",
+  "tests": {
+    "package": 21,
+    "fieldComponent": 10,
+    "packageCheck": "PASS"
+  },
+  "model": {
+    "requested": "gpt-6-luna",
+    "observed": "gpt-6-luna",
+    "effort": "medium",
+    "executors": 3,
+    "menuSelection": true,
+    "hostDiscovery": false,
+    "cases": {
+      "workA": {
+        "selected": "507-work-update",
+        "first": "scope pass with source-attribution note",
+        "revision": "PASS_WITH_LIMITS"
+      },
+      "workB": {
+        "selected": "507-work-update",
+        "first": "NEEDS_REPAIR: supplied TXT omitted",
+        "revision": "PASS_WITH_LIMITS"
+      },
+      "discussion": {
+        "selected": "507-what",
+        "first": "PASS_SCOPE",
+        "revision": "not run; frozen"
+      }
+    }
+  },
+  "sourceGuard": {
+    "status": "PASS",
+    "firstOutputDrift": [],
+    "runtimeSourceDelta": [
+      {
+        "case": "aims",
+        "file": "skills/507-work-update/references/shared/evidence.md",
+        "allowedRecordedRevision": true
+      },
+      {
+        "case": "hkha",
+        "file": "skills/507-work-update/references/shared/evidence.md",
+        "allowedRecordedRevision": true
+      }
+    ],
+    "oldPackageDelta": [
+      "next/skills/507-skill/references/shared/evidence.md",
+      "next/skills/507-what/references/shared/evidence.md"
+    ],
+    "methodSourceDelta": [
+      "lib/methods/evidence.md"
+    ],
+    "oldSourceSnapshotsRetained": true,
+    "PPTFirstInputAndPackagesFrozen": true
+  },
+  "readingLimits": "Actual tool audit includes broad/truncated reads. One executor read all three entrypoint bodies before choosing; adoption/skipping and reading are distinct.",
+  "independentReview": {
+    "package": "PASS_WITH_NONBLOCKING_NOTE; manifest is explicit Markdown dependency scope",
+    "model": "AIMS/HKHA R2 semantic conclusions pass; copied-source consistency uses corrected report",
+    "metadataCorrection": "Two runtime evidence copies updated, one frozen; original reader claimed all three, actual SHA disagreed.",
+    "finalCloseout": {
+      "verdict": "PASS_WITH_LIMITS",
+      "privateEvidence": "evidence/work-update-integration-20261012/review/final-closeout.json",
+      "sha256": "159536cf9a6053038cb225b23a28a88277bde3db332012db0d41e51c89c333da",
+      "navigationWarning": "current evidence link and three-package label corrected; host natural discovery explicitly unverified"
+    }
+  },
+  "privateEvidence": "evidence/work-update-integration-20261012 in the local reference site; no private source bodies or author paths copied into this public receipt",
+  "site": {
+    "views": 15,
+    "newCases": 3,
+    "newStages": 5,
+    "sourceVersions": 21,
+    "atoms": 196,
+    "mappings": 587,
+    "historicalGraphs": 8,
+    "designGraphs": 5,
+    "browserChecks": 34,
+    "browserResult": "PASS",
+    "cssWidths": [
+      1413,
+      768,
+      390
+    ],
+    "htmlSha256": "ac2ea006f5d0af394bbb82b1e693b90cb4a8737dffc7b5fffbe00260009b9931",
+    "dataSha256": "e1af53bed944df4ae1a2626fbbb025f9f4fb5ce714786c3eb7086bc0adb541af"
+  },
+  "limits": [
+    "Not installed or global replacement; source/package integration only.",
+    "Real historical excerpts and project copies, local preparation only; no live writes, external messages, real media edits or business acceptance.",
+    "Feedback revisions do not prove first-run reliability, causal improvement or reduced cost.",
+    "Current what/skill-design shared copy update checked for closure; their full behavior was not rerun.",
+    "Field policy PASS does not authenticate authority; independent reader claims require exact evidence."
+  ],
+  "terminologyClarification": {
+    "date": "2026-10-12",
+    "meaning": "One 507-skills new version with three internal skill entrypoints; self-contained resources do not imply separate libraries or releases.",
+    "glossarySource": "GLOSSARY.md",
+    "glossarySha256": "f15960f4b3c8cc9c3f84c04f36694aa731bab906e2bae57b860bc9efbfb216d3",
+    "currentSiteSha256": "1dd7c4a0e7f046a2d2510330e5199fc003971bea8560f5fad916a76135480e36",
+    "checks": "source identity PASS; activation/rebuild wording observed; planning glossary data matches source, its closed-detail innerText was not used as visible-content proof; no skill behavior or bundle change"
+  }
+}

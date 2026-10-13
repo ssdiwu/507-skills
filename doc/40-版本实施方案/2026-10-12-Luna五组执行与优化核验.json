@@ -1,0 +1,176 @@
+{
+  "date": "2026-10-12",
+  "status": "SCOPED_COMPLETE_NO_LIBRARY_REPLACEMENT",
+  "scope": "Five purposefully selected real-conversation goals in isolated directories; explicit package adoption, not natural host discovery",
+  "model": {
+    "requested": "gpt-6-luna",
+    "observed": "gpt-6-luna",
+    "effort": "medium",
+    "actors": 12,
+    "executors": 9,
+    "reviewers": 3,
+    "runtimeContextsVerified": true,
+    "runtimeAuditSha256": "7ab78673590f10cbee7dcd9f8874571bfa998fd5a8d34693bd5284f369b556a2"
+  },
+  "displayedStages": 17,
+  "cases": [
+    {
+      "id": "work",
+      "stages": 9,
+      "currentStatus": "指定产物通过；首次仍不稳定",
+      "outputSha256": "a92f1dbe84888336c0f831c72f9a57e333efa817a42869db0d1a719288885b97"
+    },
+    {
+      "id": "creation",
+      "stages": 1,
+      "currentStatus": "文字范围通过",
+      "outputSha256": "2c6dc08d262a4799f872386743d7d29c0374a8a99cec34e4cfccd8171f5d4f19"
+    },
+    {
+      "id": "fix",
+      "stages": 2,
+      "currentStatus": "隔离工程范围通过",
+      "outputSha256": "b2f26adf400f1e5caf0635181bf5b69407d31d2d68b25d78c2dfded4e368d93c"
+    },
+    {
+      "id": "what",
+      "stages": 2,
+      "currentStatus": "直接副本动作通过",
+      "outputSha256": "162f7de2ac5e4414d3aa924e1cde86de1806ba8d0360c251233b49abe70eaca2"
+    },
+    {
+      "id": "skill-design",
+      "stages": 3,
+      "currentStatus": "下游网页通过；历史资料快照",
+      "outputSha256": "a0d40f9812335a07e784b2c36d594c65266172bb840919a02f4c180574477eba"
+    }
+  ],
+  "workFinal": {
+    "verdict": "PASS_WITH_LIMITS",
+    "records": 16,
+    "active": 12,
+    "fieldReceipts": {
+      "state-diff.json": {
+        "status": "PASS",
+        "policySha256": "bc254823ebeb4ed20c76adde1c8e36ebf483ac58d192f87a9941ad428d7ec8a4"
+      },
+      "followup-state-diff.json": {
+        "status": "PASS",
+        "policySha256": "4068c34c74280e7772e7829330193376e9ea4a86426ceec43cfa6e68bcaa5e20"
+      },
+      "semantic-state-diff.json": {
+        "status": "PASS",
+        "policySha256": "4068c34c74280e7772e7829330193376e9ea4a86426ceec43cfa6e68bcaa5e20"
+      },
+      "final-state-diff.json": {
+        "status": "PASS",
+        "policySha256": "4068c34c74280e7772e7829330193376e9ea4a86426ceec43cfa6e68bcaa5e20"
+      }
+    },
+    "quoteAndConditionReviewed": true,
+    "authorityAuthenticityEnforced": false,
+    "truePlatformWrites": false
+  },
+  "engineering": {
+    "checkpoint": "c8716c21128766441653e3141b1b5cac6ba97fe5",
+    "authorFullTests": 132,
+    "authorSyncTests": 14,
+    "independentRestartAndCoordinationProbe": "PASS_WITH_LIMITS",
+    "sameTwoProbesRejectOldSource": true,
+    "formalProjectIntegration": false,
+    "firstAuthorReportFrozenSeparately": true
+  },
+  "formalPackages": {
+    "skills": 2,
+    "files": 22,
+    "sharedCopies": 14,
+    "sourceMethods": 7,
+    "packageCheck": "PASS",
+    "protectedFiles": 134,
+    "mismatches": []
+  },
+  "experimentalArtifacts": {
+    "work-update": "Isolated secondary candidate; not registered or installed",
+    "site-compare": "Output of skill-design and used by another Luna; not a new formal main skill",
+    "sharedMethodParagraph": "Not integrated; future input leakage invalidates one causal comparison; single-input execution still fails"
+  },
+  "browser": {
+    "mainChecks": 56,
+    "mainPass": true,
+    "downstreamChecks": 31,
+    "downstreamPass": true,
+    "cssWidthsMain": [
+      1413,
+      768,
+      390
+    ],
+    "cssWidthsDownstream": [
+      1413,
+      390
+    ],
+    "nativeScreenshotZoomCropIssue": "Observed 90 percent browser zoom; captures adjusted using CDP metrics; not a product failure",
+    "priorRealDisplayIssues": [
+      "Missing jump control fixed",
+      "Chinese fields displayed as empty values, fixed without rewriting originals",
+      "Long evidence paths overflowed narrow screen, scoped CSS wrap fixes it"
+    ],
+    "sourceDecisionDifference": "One comma/semicolon and whitespace difference, same meaning",
+    "auditSection": "Historical received-stage snapshot, current execution separate",
+    "browserReceiptsSha256": [
+      "c136534c84e861da4ee37b44b58b6da6d8c513ac6f8fa5fdb976a9e23a6be4b2",
+      "5a95c1456af1b9a75195c1b3bac0108109ffe15d2cd7429698169493012acef3"
+    ]
+  },
+  "independentReview": {
+    "verdict": "PASS_WITH_LIMITS",
+    "previousStages": [
+      {
+        "report": "site-doc-review.json",
+        "verdict": "PASS_WITH_LIMITS",
+        "sha256": "7cb4b0404bef9282afb4c836b5892a5fe8f6aad0bbd922c7f6c7c2635548ffc4",
+        "scope": "Before final browser receipt; small changelog finding now corrected"
+      },
+      {
+        "report": "closeout-review.json",
+        "verdict": "REJECT",
+        "sha256": "9185612c7f30847ab82baf684454d631579149e70401a3bfb1467ff368b7e7df",
+        "scope": "Public date-requirement excerpt and outdated downstream browser label; both now rephrased/synchronized"
+      }
+    ],
+    "remaining": "No unresolved material finding in this scoped review; platform, natural host discovery, reliability and integration limitations remain listed separately",
+    "finalReport": "final-closeout.json",
+    "finalReportSha256": "eeb81e9a34eb5b9a69d674cc60dac46e3a072f16cecdca644b7a48e51303fa55"
+  },
+  "corrections": [
+    "Original work message did not explicitly clear date; a later actual user message did. Original hidden oracle retained with separate correction.",
+    "Fault requirement permits a different legal repair approach; no artificial requirement for first-round resolution.",
+    "One method trial exposed future input early and cannot support causal improvement.",
+    "Fix input was generated before execution but its initial registration hash was empty; no claim of full prior hash registration."
+  ],
+  "limits": [
+    "First execution is still unstable, feedback repair is distinct from first-pass success",
+    "No random held-out reliability or cost comparison",
+    "No trusted authority channel enforced by component PASS",
+    "No natural host discovery or task execution independent of the author environment",
+    "No real task-store writes/readback, author acceptance, raster cards, publication or current ERP acceptance"
+  ],
+  "git": {
+    "committed": false,
+    "pushed": false,
+    "installed": false,
+    "released": false
+  },
+  "artifact": {
+    "htmlSha256": "cd2a06380f2975bf35be7015dd5bd3a167c7322e448371c63984ba1f373852cf",
+    "studySourceSha256": "5a6a8f476f9bb0e8ccf6b67ecbda46e5545a2d53c2155ec3dd3f30bf15df2e4e",
+    "forwardSourceSha256": "06508826c05de36dd2e589a2230746bd9d8812972afb061d82b66f2f99b95329",
+    "jsSha256": "e00afaa7155d12256860fab77bb1419f6fa9ec0e5b563480b552a74fcbb845bc",
+    "cssSha256": "c54f377f0e7b200d49f7513928fda3bb7d8d5e1665c0b4415a61050a93e11c15",
+    "declaredArtifactLinksPresent": true
+  },
+  "documentLinks": {
+    "checked": 68,
+    "missing": 0,
+    "privateSourceLeaks": 0
+  }
+}

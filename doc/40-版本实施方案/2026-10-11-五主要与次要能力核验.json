@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-11",
+  "status": "PASS_DESIGN_AND_SITE_ONLY",
+  "artifactSha256": "dbb04a170fc87b1198f5be94de7c7098bac854a55a75eaf1f713a157a4758184",
+  "scope": "Five initial main roles; source-backed evaluation of secondary methods, shared components and domain references; no skill implementation migration",
+  "designCounts": {
+    "mainInitiallyConfirmed": 5,
+    "methodCandidates": 32,
+    "componentInterfaceCandidates": 48,
+    "newMethods": 10,
+    "newInterfaces": 8,
+    "evaluationRows": 26,
+    "sourceLocators": 51
+  },
+  "sourceScope": {
+    "originalVersionsPreserved": 21,
+    "originGroupsPreserved": 17,
+    "importedMainFilesPreserved": 168,
+    "selectedAtomsPreserved": 196,
+    "evidenceMappingsPreserved": 587,
+    "fullReadOldMain": 30,
+    "pstackOriginalFullRead": {
+      "skills": 51,
+      "playbooks": 23,
+      "reference": 1
+    },
+    "mattOriginalFullRead": 38,
+    "teamKitOriginalFullRead": 18,
+    "remainingAnisCoverage": "all main structures registered; selected full texts, identity/equality or complete diff reuse; no claim to all large rules"
+  },
+  "independentReview": {
+    "skill": "507-review",
+    "fixedP2": 3,
+    "fixedP3": 1,
+    "openFindings": 0,
+    "finalArtifactSha256": "dbb04a170fc87b1198f5be94de7c7098bac854a55a75eaf1f713a157a4758184",
+    "coverage": "all51 identities/locators; selected key semantics; author/embedded source equality; no independent repetition of all upstream full-text reads"
+  },
+  "browser": {
+    "initialKeyChecks": 15,
+    "initialArtifactSha256": "cf963ccd94cc1479e66163a1bbefcaaf7dff5ed616ec9554379ef6bc743b7182",
+    "finalIncrementChecks": 17,
+    "finalArtifactSha256": "dbb04a170fc87b1198f5be94de7c7098bac854a55a75eaf1f713a157a4758184",
+    "allSevenProfilesVisible": true,
+    "layoutWidths": [
+      1413,
+      390
+    ],
+    "layoutOverflow": false,
+    "limits": "CSS simulation, not real mobile hardware; private screenshots are captured surface only"
+  },
+  "checks": {
+    "originalSourceFingerprints": true,
+    "currentTwoImplementedMainAndSevenMethodsUnchanged": true,
+    "immutable22FileBundleUnchanged": true,
+    "candidateReferencesAndSourceHashes": true,
+    "publicLocalLinksChecked": 77,
+    "publicPrivateLocatorScan": "passed scoped current design/navigation documents",
+    "gitDiffCheck": "passed"
+  },
+  "failureRecovery": [
+    {
+      "signal": "authored evaluation differed from embedded source",
+      "cause": "derived entities shared author-source references",
+      "fix": "deep copy before derivation; assertion preserved"
+    },
+    {
+      "signal": "profile visible but QA substring did not match",
+      "cause": "expected 未运行适配 vs displayed 不是已运行适配",
+      "fix": "corrected test wording; no product change"
+    }
+  ],
+  "notEstablished": [
+    "host installation/discovery or implicit selection",
+    "method/component runtime or business execution",
+    "real media generation/device recognition/hearing/preview acceptance",
+    "cross-model effect and cost efficiency",
+    "commit/push/release"
+  ]
+}

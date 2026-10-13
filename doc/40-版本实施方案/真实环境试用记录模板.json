@@ -1,0 +1,11 @@
+{
+  "purpose": "可选观察记录，沿目标项目已有过程文档归档；不是给执行者的路由指令",
+  "status": "TEMPLATE_NOT_EXECUTED",
+  "task": {"originalRequestReference": null, "inputSha256": null, "project": null, "projectBaseline": null, "authorityReferences": []},
+  "runtime": {"host": null, "hostVersion": null, "actualModel": null, "effort": null, "sessionReference": null, "skillBundleFingerprint": null},
+  "adoption": {"mode": "natural_or_explicit", "discovered": null, "visibleSkillPaths": [], "selected": [], "readFiles": [], "skipped": [], "unknown": []},
+  "work": {"writerAndLocation": null, "actionsReference": null, "artifactReferences": [], "returnedToParentTask": null, "remaining": []},
+  "verification": {"originalAction": null, "actualResultsReference": null, "independentReviewReference": null, "userAcceptance": null, "notCovered": []},
+  "friction": {"symptom": null, "hypothesis": null, "evidence": [], "layer": "unknown", "changeDecision": null},
+  "recovery": {"backupReference": null, "changedPaths": [], "rollbackResult": null}
+}

@@ -1,0 +1,52 @@
+{
+  "status": "PREPARED_NOT_IN_REAL_ENVIRONMENT",
+  "date": "2026-10-12",
+  "skillBundle": "a4ab2beb06b1b71044e95bd7e692e84dcd53f37482a7afbfa5b4ebc80580aa48",
+  "entries": 17,
+  "atoms": 196,
+  "counts": {
+    "explicit": 76,
+    "partial": 52,
+    "unconfirmed": 68
+  },
+  "citations": 678,
+  "consumerAndQuoteChecks": "PASS",
+  "staticIndependentReview": {
+    "model": "gpt-6-luna",
+    "scope": {
+      "atomDefinitions": 196,
+      "assessments": 196,
+      "explicitReviewed": 76,
+      "partialReviewed": 52,
+      "unconfirmedObserved": 68,
+      "distinctCurrentCitationTuplesReviewed": 330,
+      "dedupeKey": [
+        "path",
+        "lineStart",
+        "lineEnd",
+        "excerpt"
+      ]
+    },
+    "overrides": []
+  },
+  "delivery": {
+    "snapshot": "0f944d5b942c2e6ff43499068fc1c2ac06e9f10287d36d8ade92651dd3680cc1",
+    "sha256": "8981ce68b2f389dd90f6e74b27b4c55b6469351024fef68b3eeaa678d6b91d1b",
+    "files": 194,
+    "independentLocationReadback": "PASS",
+    "markdownLinks": 152
+  },
+  "website": {
+    "sha256": "adcb2084fea2ed0e53d08b4564449c9a63322996436e244d2d4fd1eb0bc3f99b",
+    "controls": "PASS",
+    "newAndLegacySeparated": true
+  },
+  "classification": "External atom not adopted is a comparison difference, not a mandatory gap; only actual task failure can establish required capability.",
+  "automaticReadyQueue": "not introduced and not a trial entry requirement",
+  "processRecord": "reuse target project existing process document; no mandatory extra log",
+  "realHostTrial": false,
+  "installed": false,
+  "committed": false,
+  "pushed": false,
+  "released": false
+}

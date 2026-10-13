@@ -1,0 +1,129 @@
+{
+  "schema": 1,
+  "date": "2026-10-12",
+  "library": "507-skills",
+  "status": "LOCAL_SCOPE_VERIFIED_REAL_ENVIRONMENT_NOT_STARTED",
+  "implementation": {
+    "main": 5,
+    "secondary": 12,
+    "methodSources": 12,
+    "scriptSources": 7,
+    "files": 162,
+    "sharedCopies": 110,
+    "bundleFingerprint": "c4bfe1fe4df64b60a42c04ed8960046b30f38e12704cbb81b00e0be3858130df"
+  },
+  "adoptedModes": [
+    "局部协作",
+    "任务图推进",
+    "持续协调"
+  ],
+  "methods": [
+    "lib/methods/task-coordination.md"
+  ],
+  "components": [
+    "lib/components/task_view.py"
+  ],
+  "consumerScope": {
+    "507-coordinate": "跨领域分工、依赖、结果整合与临时网页",
+    "507-create": "作者责任下的必要委托与回交",
+    "507-work-update": "既有工作记录更新、推进与派生网页"
+  },
+  "generationContract": {
+    "businessAuthority": "既有过程记录",
+    "input": "明确JSON任务数组路径或Markdown唯一标题下表格和字段映射",
+    "output": "只读网页、投影与指纹回执",
+    "updates": "记录变化重跑同一组件；缺表达能力扩组件并验证；不手改HTML",
+    "reportedCompletionDoesNotImply": [
+      "作者接受",
+      "验收",
+      "当前授权",
+      "派工"
+    ]
+  },
+  "checks": {
+    "packageTests": {
+      "passed": 22
+    },
+    "componentTests": {
+      "passed": 43,
+      "newTaskViewTests": 16
+    },
+    "referenceGeneratorTests": {
+      "passed": 6,
+      "independentReview": "PASS_WITH_LIMITS"
+    },
+    "mapping": {
+      "atoms": 196,
+      "references": 700,
+      "counts": {
+        "explicit": 79,
+        "partial": 47,
+        "unconfirmed": 70
+      },
+      "newSourceExcerptsReviewed": 55
+    },
+    "luna": {
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "case": "受控写作，非正式会话原话重放",
+      "steps": [
+        "从既有记录生成",
+        "仅报告更新后再生成且未把自报变验收",
+        "单句润色直接成文不造图或网页"
+      ],
+      "resources": "当前实际随包副本，未依赖作者根"
+    },
+    "independentScope": {
+      "frozenFiles": 201,
+      "hashesMatched": true,
+      "blockers": false,
+      "browserSeparate": true
+    },
+    "browser": {
+      "desktop": true,
+      "narrowViewport": 390,
+      "contentWidth": 373,
+      "actualPaths": [
+        "搜索",
+        "状态/负责人筛选",
+        "前置/后续点击",
+        "来源/验收分别显示",
+        "三情境/记录循环",
+        "实例链接",
+        "旧流程导航"
+      ]
+    },
+    "portableSnapshot": {
+      "files": 205,
+      "skillFiles": 162,
+      "sharedCopies": 110,
+      "markdownLinks": 165,
+      "readBackOutsideAuthorRoot": true,
+      "snapshotFingerprint": "c114142ce6a5ee74c89e46ca73d02459c0887c9280e28fa2841bf974276b4586",
+      "archiveSha256": "286c746c2324826b3bd12405b7aa1cde97d8a24a5eb621a097fc2cd65efd13b1"
+    }
+  },
+  "taskPages": {
+    "authority": "PROGRESS.md",
+    "recordSha256": "a8d36eff853bb9fb7790b39fd97897eb1b8423b2d1558763f9765a7b1a54c03c",
+    "retainedVersions": [
+      "64b8b400106fbe92dcba87fe15b21fff5b4be6f08f7562b319983113dc288d8c",
+      "7eba5692a7cd18b6a49b5c75a578c4a40e7c1f018f9c28289f0b8cf579d0e62b",
+      "a29b5e9bc40c28c934009b5a5ecd385dabe2776067ecaa94c8ba59357a75ee78"
+    ],
+    "currentVersion": "64b8b400106fbe92dcba87fe15b21fff5b4be6f08f7562b319983113dc288d8c",
+    "rendererSha256": "9371ba8304069a73acc556d1c9f9cc6df627d15df4115ce56620817b50a85c4b"
+  },
+  "limits": [
+    "支持格式之外需具体组件适配，不能靠重写网页绕过。",
+    "语义与业务验收不由脚本PASS裁定。",
+    "未开始宿主自然发现、正式业务环境试用或整库替换。",
+    "未证明断电/强杀时的双文件原子事务。",
+    "历史六来源任务/九阶段未按本轮新合同重跑。"
+  ],
+  "installed": false,
+  "committed": false,
+  "pushed": false,
+  "released": false,
+  "rawPrivateConversationsIncluded": false
+}

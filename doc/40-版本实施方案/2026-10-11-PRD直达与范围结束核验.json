@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-11",
+  "status": "PASS_DESIGN_AND_SITE_DATA_ONLY",
+  "artifactSha256": "c17c34d7f4dd6c1c9edaafc90483d556bb89d8c119bf68b7f4dc063f692d62c9",
+  "scope": "PRD discoverability and spec/plan/issue direct entry and scoped termination; no skill implementation change",
+  "confirmed": {
+    "mainCandidates": 5,
+    "methodCandidates": 32,
+    "componentInterfaces": 48,
+    "specIdentity": "method-spec / spec unchanged",
+    "specTitle": "PRD／行为与验收规格",
+    "directEntryAndScopedResultMethods": [
+      "spec",
+      "plan",
+      "issue"
+    ],
+    "implementationReturnsRequireExistingAuthorization": true,
+    "oldGraphsPreserved": 8,
+    "oldNodesPreserved": 93,
+    "oldEdgesPreserved": 121
+  },
+  "independentReview": {
+    "agent": "prd_boundary_audit",
+    "openP1": 0,
+    "openP2": 0,
+    "sourceDocReadmeEmbeddedRawEqual": true,
+    "oldFullGraphObjectsEqualToBaseline": true,
+    "implementedTwoSkillsAndSevenMethodSourcesUnchanged": true
+  },
+  "checks": {
+    "sourceAndEmbeddedVerifier": "PASS",
+    "gitDiffCheck": "PASS"
+  },
+  "limits": [
+    "No new runtime package/installation/implicit selection claim",
+    "Previous26 browser checks belong to their previously recorded artifact; this increment was independently checked as design/source data",
+    "Creative draft and image acceptance are in a separate task and not evidence of installed new create/method packages"
+  ]
+}

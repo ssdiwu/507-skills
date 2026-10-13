@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "status": "COMPLETED_WITH_FINDINGS",
+  "date": "2026-10-11",
+  "scope": "正式会话材料的Luna受控创作/工作重放与网站，不是技能替换接受",
+  "model": {
+    "id": "gpt-6-luna",
+    "effort": "medium",
+    "actualRuntimeContextsAudited": true,
+    "executors": 6
+  },
+  "counts": {
+    "domains": 2,
+    "caseProfiles": 3,
+    "actualOutputs": 10,
+    "boundInputOutputToolArtifacts": 19,
+    "siteViews": 15,
+    "mainResponsibilities": 5,
+    "completeMethods": 32,
+    "componentInterfaces": 48
+  },
+  "source": {
+    "formalRecentThreadContextRead": true,
+    "originalSourceLocators": "private local research only",
+    "creationInput": "confirmed author material, semantic replay; constructed local-revision second round",
+    "workInput": "real batch changes and identity clarification; sixteen selected records with synthetic IDs",
+    "exactRecheck": "original user wording and known priority scale, fresh executors",
+    "partialHistoryNotFullBusinessEvidence": true
+  },
+  "execution": {
+    "old": "published library catalogue, self-selected actual skill/host workflow",
+    "candidate": "design catalogue/reference contracts, actual two packages available by explicit path",
+    "naturalHostDiscoveryTested": false,
+    "commonHostResourcesAvailable": true,
+    "candidateExactReadMemory": true,
+    "allResourceBodiesFullyReadProven": false,
+    "legacyWorkUsed507Library": false,
+    "legacyWorkR1ReconstructionEqualsOriginal": false,
+    "originalMessagesPreferredForR1": true,
+    "readReportPathTyposKeptAndToolsAudited": true,
+    "realPlatformWrites": false,
+    "messagesOrPublication": false,
+    "imagesOrMediaGenerated": false
+  },
+  "outcome": {
+    "structuralChecks": 18,
+    "structuralStatus": "PASS_ARTIFACT_STRUCTURE_ONLY",
+    "semanticAcceptance": "NOT_PASSED_ALL_TARGETS",
+    "confirmedIssueGroups": [
+      "effective acceptance/send conditions not fully retained",
+      "waiting rationale lost in candidate exact state",
+      "precise deadline conflict or unsupported replacement"
+    ],
+    "sourceSuspicion": "two sources lack proven same-experiment relation",
+    "inputConfoundCorrected": "HKHA attribution parentheses/priority scale",
+    "priorityNumericDifferenceAloneNotFailure": true,
+    "fixedModelDoesNotProveCausalStatisticalOrCostBenefit": true
+  },
+  "website": {
+    "artifactSha256": "c3f3bfdc21ba2931671436199f95b5fb53cc873f0a705b39786a097bda88fdee",
+    "dataSource": "local private replay-data.json single author",
+    "sourceAndEmbeddedData": "PASS",
+    "browserOperationChecks": 57,
+    "tenOutputsDisplayed": true,
+    "roundSpecificAdoptionVsReuse": true,
+    "contractReturnExpansionsContextFocusAndScroll": true,
+    "hashReload": true,
+    "cssWidths": [
+      1413,
+      768,
+      390
+    ],
+    "layoutMeasurements": 6,
+    "pageHorizontalOverflow": false,
+    "rawSurfaceScreenshotsInspected": 4,
+    "independentSiteReview": "PASS_WITHIN_STATIC_SCOPE",
+    "openSiteP1P2": 0
+  },
+  "preserved": {
+    "actualPackages": 2,
+    "sharedSourceMethods": 7,
+    "packagedCopies": 14,
+    "immutableBundleFiles": 22,
+    "frozenSourceVersions": 21,
+    "originGroups": 17,
+    "selectedAtoms": 196,
+    "evidenceMappings": 587,
+    "oldGraphs": 8,
+    "oldNodes": 93,
+    "oldEdges": 121,
+    "UIUXPatterns": 16,
+    "skillImplementationChanged": false
+  },
+  "next": "按真实消费者补变更对账、原版记录与来源身份合同；保留失败，再用同一失败和未见样本复验，平台与宿主另测",
+  "actionsNotPerformed": [
+    "install/replace global skills",
+    "modify SKILL or seven shared source implementation",
+    "modify original creative work or business records",
+    "commit/push/publish"
+  ],
+  "maintainerDocumentValidation": {
+    "status": "PASS",
+    "files": 7,
+    "localLinks": 101,
+    "failures": []
+  }
+}

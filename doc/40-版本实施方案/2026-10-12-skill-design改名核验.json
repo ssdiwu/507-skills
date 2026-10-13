@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "date": "2026-10-12",
+  "library": "507-skills",
+  "nameChange": {
+    "from": "507-skill",
+    "to": "skill-design",
+    "userSpecifiedName": true,
+    "namespacePrefixAdded": false
+  },
+  "installed": true,
+  "hostDiscoveryVerified": true,
+  "oldLiveEntryAbsent": true,
+  "otherSkillNamesUnchanged": true,
+  "skills": 17,
+  "files": 162,
+  "main": 5,
+  "secondary": 12,
+  "bundleFingerprint": "67b47fa792199db1492f7edef27cd0a5c9c49eb5b684c524d0e0f9771a6c31d2",
+  "snapshotFingerprint": "fad2a486d2e8ecc7232d90bf59c76a46bf7ad200e84bc5a9742dfdbcb50d814c",
+  "changedFileScope": [
+    "skill-design/SKILL.md name",
+    "skill-design/agents/openai.yaml default_prompt",
+    "507-what/SKILL.md sole direct reference"
+  ],
+  "unchangedSkillDirectories": 15,
+  "checks": {
+    "packageTests": 22,
+    "metadataQuickValidate": "PASS",
+    "independentReviewModel": "gpt-6-luna",
+    "blockers": 0,
+    "workingLocations": 2,
+    "enabledEntriesPerLocation": 17,
+    "renamedEntryEnabled": true,
+    "retiredOldEntryPresent": false,
+    "installedFileHashesMatched": 162,
+    "legacySourcesRetained": true
+  },
+  "naturalBusinessSelectionVerified": false,
+  "historicalNamesAndSnapshotsRetained": true,
+  "recoveryRecordOutsideDiscoveryRoot": true,
+  "sourceRecordHashes": {
+    "installation": "6e3eb4b1469d2de42369df09df12510892403cfcf075a304977e016812034492",
+    "hostDiscovery": "c71fd267a80d0b2b030acc3376ba2ba331145488b0c1a262a41fd656a4b4d2d0",
+    "independentReview": "d74685a5db6ecc38a5b77fb6c23ea25c9747ba46fd10dff7379d1d522dec0f83"
+  },
+  "committed": false,
+  "pushed": false,
+  "released": false
+}

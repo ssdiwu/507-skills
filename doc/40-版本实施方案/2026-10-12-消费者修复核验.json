@@ -1,0 +1,61 @@
+{
+  "status": "COMPLETE_REVIEW_CORRECTED_SCOPE_FIRST_PASS_NOT_RELIABLE",
+  "date": "2026-10-12",
+  "model": "gpt-6-luna",
+  "effort": "medium",
+  "executors": 6,
+  "modelOutputs": 12,
+  "semanticReviewers": 1,
+  "stages": {
+    "firstPass": "FAILURES_RETAINED",
+    "reviewCorrected": "PASS",
+    "constructedAdjacent": "PASS"
+  },
+  "implementation": {
+    "packages": 2,
+    "sharedSources": 7,
+    "changedSharedSources": 3,
+    "copies": 14,
+    "bundleFiles": 22,
+    "fingerprint": "c3b70f1812ec364da4309b0c95f8aa7265be6ba5e11df79b6d113d088f363e3e",
+    "independentReadonlyAdapters": 1,
+    "installed": false
+  },
+  "checks": {
+    "packagingProtectionTests": 15,
+    "componentCliTests": 10,
+    "componentActualSnapshotChecks": 3,
+    "isolatedSyncTests": 14,
+    "secondAndThirdAwait": "PASS_FROZEN_SAMPLE_SCOPE",
+    "website": {
+      "status": "PASS_STATIC_LOCAL_SCOPE",
+      "htmlSha256": "073e819035172a744fab6f891ac6e5b78ccc1910d8a68e2d5f8bf40257fefb43",
+      "repairPanelChecks": 53,
+      "priorCorrectionChecks": 28,
+      "priorReplayWorkflowUiChecks": 57,
+      "outputEqualityChecks": 27,
+      "repairResponsiveMeasurements": 6,
+      "finalRepairScreenshots": 4,
+      "namedScrollRegionAccessibility": "PASS",
+      "notesFromSameIdSnapshot": "PASS",
+      "scope": "local interface, immutable outputs and return paths; excludes first-pass model reliability, natural host discovery, media acceptance and current ERP"
+    },
+    "independentCloseout": {
+      "status": "COMPLETE",
+      "openP1P2": 0,
+      "scope": "specified shared sources, readonly CLI, data and local interface; no first-pass reliability or live ERP acceptance"
+    }
+  },
+  "limits": [
+    "explicit reference catalog not natural host discovery",
+    "source and component read/execution not proof of semantic first-pass reliability",
+    "prototype ERP source version is frozen; original tree independently changing",
+    "no business write/install/commit/push/message/release/deployment"
+  ],
+  "maintainerDocumentValidation": {
+    "status": "PASS",
+    "files": 10,
+    "localLinks": 124,
+    "failures": []
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-12",
+  "status": "IMPLEMENTED_AND_SCOPED_TRIALS_COMPLETE",
+  "library": "507-skills",
+  "delivery": "one new library with internal entrypoints",
+  "implementation": {
+    "main": [
+      "507-skill",
+      "507-what",
+      "507-why",
+      "507-how",
+      "507-create"
+    ],
+    "secondary": [
+      "507-work-update",
+      "507-spec",
+      "507-implement",
+      "507-fix",
+      "507-review",
+      "507-issue",
+      "507-coordinate",
+      "507-deliver",
+      "507-retro",
+      "507-material",
+      "507-compose",
+      "507-adapt"
+    ],
+    "methodSources": 11,
+    "scriptSources": 6,
+    "constructedFiles": 155,
+    "methodCopies": 88,
+    "scriptCopies": 11,
+    "otherSharedCopies": 4,
+    "bundle": "a4ab2beb06b1b71044e95bd7e692e84dcd53f37482a7afbfa5b4ebc80580aa48"
+  },
+  "model": {
+    "name": "gpt-6-luna",
+    "effort": "medium",
+    "executors": 4,
+    "independentReviewers": 1,
+    "actualContextsVerified": true,
+    "explicitMenu": true,
+    "hostNaturalDiscovery": false
+  },
+  "checks": {
+    "packageTests": 22,
+    "componentTests": 27,
+    "sourceFreezeFiles": 180,
+    "sourceFreezeMismatches": 0,
+    "oldEntryAndMethodFilesPreserved": 38,
+    "realSourceCases": 6,
+    "executionStages": 9
+  },
+  "cases": [
+    {
+      "id": "why",
+      "adopted": [
+        "507-why"
+      ],
+      "rounds": 1,
+      "status": "PASS_WITH_LIMITS"
+    },
+    {
+      "id": "creation",
+      "adopted": [
+        "507-compose",
+        "507-adapt"
+      ],
+      "rounds": 1,
+      "status": "PASS_WITH_LIMITS",
+      "whySkipMain": "author premise and goal sufficient"
+    },
+    {
+      "id": "strategy",
+      "adopted": [
+        "507-how",
+        "507-spec",
+        "507-issue",
+        "507-coordinate"
+      ],
+      "rounds": 1,
+      "status": "PASS_WITH_LIMITS",
+      "limits": "local preparation only"
+    },
+    {
+      "id": "direction",
+      "adopted": [
+        "507-create",
+        "507-material"
+      ],
+      "rounds": 1,
+      "status": "PASS_WITH_LIMITS",
+      "limits": "discussion only, no PPT change"
+    },
+    {
+      "id": "demo",
+      "adopted": [
+        "507-implement"
+      ],
+      "rounds": 2,
+      "status": "PASS_WITH_LIMITS",
+      "firstFailure": "390px content overflow",
+      "finalBrowser": {
+        "viewportWidth": 390,
+        "contentWidth": 373,
+        "desktopWidth": 1413,
+        "desktopContentWidth": 1396
+      }
+    },
+    {
+      "id": "fix",
+      "adopted": [
+        "507-fix",
+        "507-review"
+      ],
+      "rounds": 3,
+      "status": "PASS_WITH_LIMITS",
+      "historicalVerdicts": [
+        "REJECT",
+        "REJECT"
+      ],
+      "sameFinalTestOnR2": {
+        "passed": 14,
+        "failed": 3
+      },
+      "sameFinalTestOnR3": {
+        "passed": 17,
+        "failed": 0
+      },
+      "independentlyReplayed": true,
+      "scope": "local HTTP mock, SQLite service/store close/reopen and second-account readback",
+      "osProcessRestart": false
+    }
+  ],
+  "reviewExtra": [
+    "507-deliver local PR draft",
+    "507-retro local retrospective"
+  ],
+  "privateEvidence": {
+    "location": "local reference website evidence/full-paths-20261012",
+    "rawConversationsIncludedInPublicRepo": false
+  },
+  "remaining": [
+    "new 17-entry atomic mapping",
+    "remaining candidate methods",
+    "PNG/editable PPTX/audio/video",
+    "complete product UI",
+    "host natural discovery",
+    "actual remote issue and multi-agent engineering integration",
+    "real external services/formal ERP acceptance",
+    "long-run stability and author acceptance"
+  ],
+  "sourceRefs": [
+    {
+      "path": "next/packages.json",
+      "sha256": "4cce1960f035cd9e874b07bf66d3102be9179985914370b2eb1a85e77fab1c8c"
+    },
+    {
+      "path": "lib/catalog.json",
+      "sha256": "3d116b1d8e646377f349d901231614e2e709b19ec3d5f726e153120fff0cc567"
+    }
+  ],
+  "deliveryBoundary": {
+    "installed": false,
+    "formalERPChanged": false,
+    "committed": false,
+    "pushed": false,
+    "published": false
+  },
+  "website": {
+    "sha256": "d08a20eda0de75dfcb2545507a7284584493293ad91cfbe0bdb7316c49b5306e",
+    "sourceDataVerified": true,
+    "deliveryBrowser": {
+      "status": "PASS",
+      "viewportWidth": 390,
+      "contentWidth": 373,
+      "mainRows": 5,
+      "realCaseTabs": 6,
+      "fixStageTabs": 3,
+      "r3IndependentReportLink": true
+    },
+    "oldAtomRows": 196,
+    "oldEvidenceMappings": 587,
+    "sources": 21,
+    "oldGraphs": 8,
+    "newDesignGraphs": 5,
+    "newEntryAtomicMapping": "pending"
+  }
+}

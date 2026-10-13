@@ -1,0 +1,125 @@
+{
+  "status": "PASS_WITHIN_VERIFIED_SCOPE",
+  "date": "2026-10-11",
+  "capabilities": 2,
+  "sharedMethods": 7,
+  "sharedCopies": 14,
+  "bundleFiles": 22,
+  "bundleFingerprint": "8e1ed504499368d831b627948dba0a783512edc1c7d68332fee1592d2db2c6bb",
+  "toolChecks": {
+    "status": "PASS",
+    "isolatedTests": 15,
+    "finalCheck": "PASS",
+    "immutableBuild": "PASS",
+    "sourceSha256": "d4d5590174139997e837e5672b4601a4a0fedb22a92ae81f50f6a4cbdaf5a593",
+    "limits": "15项为主任务完整测试；独立审查最后一轮定向执行3项恢复测试与原反例。"
+  },
+  "forwardExecution": {
+    "status": "PASS_WITHIN_CONTROLLED_FORWARD_SCOPE",
+    "cases": [
+      {
+        "id": "what-ready",
+        "result": "目标和授权充分，修改accent为blue并保留compact，读回确认，没有追加用户确认。"
+      },
+      {
+        "id": "what-ambiguous",
+        "result": "仅输出中性场景/期待结果问题，未列答案菜单，待模拟用户答复。"
+      },
+      {
+        "id": "what-fact",
+        "result": "事实解释直接回复，未采用what，无额外产物。"
+      },
+      {
+        "id": "what-supersession",
+        "result": "明确新决定直接回写正文，未重开旧30身份选择。"
+      },
+      {
+        "id": "skill-rebuild",
+        "result": "两旧语言摘要素材重建为一个sample-summary包；语言为参数，无旧别名、共有层或脚本；静态和隔离检查成立。"
+      }
+    ],
+    "candidateMatchesCurrentSource": true,
+    "limits": [
+      "4个what请求由一个独立执行者依次处理，不是4个独立上下文或真实宿主匹配实验。",
+      "skill执行者查询编队状态时收到其他已完成代理摘要；声明未采用，也未读取其他目录。因此不将该案例称为严格盲测。",
+      "没有真实邮箱/发送/网络/安装/Git/发布；没有跨模型或效率收益结论。"
+    ],
+    "evidenceReceiptSha256": "68da3b1489973abe7c4501bc2644f87a78d4caae0922c0cab49010a9c64d1395"
+  },
+  "independentReview": {
+    "status": "PASS_WITHIN_REVIEWED_SCOPE",
+    "openFindings": 0,
+    "resolvedFindings": [
+      {
+        "id": "PKG-01",
+        "priority": "P2",
+        "title": "sync全包验证前覆盖可用共有副本，失败无法保全旧版"
+      },
+      {
+        "id": "PKG-02",
+        "priority": "P2",
+        "title": "未登记且无引用的Markdown备忘可混入交付包"
+      },
+      {
+        "id": "PKG-03",
+        "priority": "P1",
+        "title": "旧包重命名完成后中断导致备份被清理，原包与恢复目录同时丢失"
+      }
+    ],
+    "finalTargetedTests": 3,
+    "originalRecoveryReproduction": "PASS: 原22文件完整恢复",
+    "evidenceReceiptSha256": "3f5ed0e115ed49dd72e1191d18198a78b92f0eecb0f5240f303c5a6c36653633",
+    "limits": "源码、直接文档与包恢复路径；不替代真实宿主发现、模型收益或人工验收。"
+  },
+  "siteVerification": {
+    "status": "PASS_WITHIN_BROWSER_SCOPE",
+    "artifactSha256": "7ffc002c9246b32a0493b430b1d61a71b5e3be24ef8af586295663daaab74b94",
+    "views": 11,
+    "responsiveCssWidths": [
+      320,
+      390,
+      768,
+      1413
+    ],
+    "checkedPaths": [
+      "技能选择与键盘Enter",
+      "共有方法到原子及返回",
+      "旧素材到来源合同及返回",
+      "处置分类2/14/1/5/8",
+      "搜索空态与重置",
+      "异常URL状态恢复"
+    ],
+    "visualReview": "已查看桌面1413与窄屏390截图",
+    "evidenceReceiptSha256": "758eefaa580c82bd37e395447a10b78e357892947628ec37bc29d71e3bf1267a",
+    "sourceAndEmbeddedData": "PASS: 2新能力、7方法、30旧素材及既有对照材料指纹一致",
+    "limits": [
+      "Responsive widths use desktop Chromium emulation, not physical mobile devices.",
+      "Regression checks navigate all eleven views; deep interaction coverage in this receipt concerns the new rebuild view and return paths.",
+      "Browser execution does not prove host skill discovery, installation or production effectiveness."
+    ],
+    "additionalStaticReview": {
+      "status": "PARTIAL_REVIEW_NO_CONFIRMED_FINDINGS",
+      "complete": false,
+      "evidenceReceiptSha256": "d8b260e85385ca34f583c63a5e1bca837ecbad32aefb1e6f74e7756e15583ff7",
+      "scope": "两能力/方法及新视图主要内容已读；未完成全部静态追踪，未当成完整审查通过。"
+    }
+  },
+  "legacySources": {
+    "baseline": "5f3b0f8bd0a67484f9cfdc63a60fa93413a20068",
+    "commonCodeWriteChangedFiles": 0,
+    "identityPolicy": "仅保全已发布源与回退材料，不自动继承旧30身份"
+  },
+  "documentation": {
+    "currentLocalLinksChecked": 134,
+    "missingFiles": 0,
+    "gitDiffCheck": "PASS",
+    "privateLocatorScan": "PASS: 当前改动未发现本机绝对路径或原始会话标识"
+  },
+  "hostInstallation": false,
+  "commitPushPublish": false,
+  "limits": [
+    "未验证宿主自动发现或实际调用可靠性。",
+    "未验证跨模型、生产效果、令牌及成本收益。",
+    "原子清单仍是有证据的研究范围，不宣称穷尽全部动作或方法。"
+  ]
+}

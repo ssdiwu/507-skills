@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "date": "2026-10-12",
+  "library": "507-skills",
+  "status": "INSTALLED_USER_SCOPE_HOST_DISCOVERY_VERIFIED",
+  "installed": true,
+  "installScope": "user",
+  "skills": {
+    "main": 5,
+    "secondary": 12,
+    "entrypoints": 17,
+    "files": 162,
+    "normalDirectories": 17,
+    "symlinks": 0,
+    "bundleFingerprint": "c4bfe1fe4df64b60a42c04ed8960046b30f38e12704cbb81b00e0be3858130df",
+    "sourceSnapshotFingerprint": "c114142ce6a5ee74c89e46ca73d02459c0887c9280e28fa2841bf974276b4586"
+  },
+  "oldEntries": {
+    "legacy507LinksAlreadyAbsent": true,
+    "legacyLinksRemoved": 0,
+    "otherDiscoveryEntriesPreserved": 23,
+    "oldPublishedSourceRetained": true
+  },
+  "verification": {
+    "installedFilesSha256Match": 162,
+    "metadataIdentityMatch": 17,
+    "localReferenceErrors": 0,
+    "implicitAuthorRootReferences": 0,
+    "hostScan": {
+      "independentWorkingLocations": 2,
+      "foundPerLocation": 17,
+      "enabledUserSkillsPerLocation": 17,
+      "duplicate507Skills": 0,
+      "loadErrors507": 0,
+      "forceReload": true
+    },
+    "independentReview": {
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "blockingFindings": 0,
+      "offlineInstalledComponent": "task_view.py",
+      "generatedVersions": 2,
+      "updatedStateReadBack": true,
+      "businessPlatformAccess": false
+    }
+  },
+  "recovery": {
+    "recordKeptOutsideDiscoveryRoot": true,
+    "unmodifiedRegisteredDirectoriesOnly": true,
+    "modifiedContentsStopRollback": true,
+    "oldBeforeStateHadNo507Link": true
+  },
+  "limits": [
+    "本轮接入与宿主发现成立，不证明自然选择和真实业务完成。",
+    "已安装副本仍是固定构建，更新需从维护源生成、核对后接入。",
+    "本次未改其他插件与宿主设置，未做Git提交、推送或发布。"
+  ],
+  "sourceRecordHashes": {
+    "installation": "870a13f657c7fb088d7c2c7990707e27b4e09cef68e12b8da94b7089be9ab72e",
+    "hostDiscovery": "46b65a713dc504e723c7e169e76ce7eca05f5148e221de593895997411351d0d",
+    "independentReview": "ab13d6afc821bb6890c5c477a3e509131e1a988a54d5c4def5e53fecf5d73323"
+  }
+}
