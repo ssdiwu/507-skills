@@ -935,6 +935,29 @@
         }
       ],
       "relatedAtomIds": []
+    },
+    {
+      "source": "lib/methods/skill-entry-resolution.md",
+      "title": "旧技能引用与当前职责",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "当前请求、项目约定或接续材料点名旧技能，需要查询声明去向并保留原任务权限、终点及来源。"
+        },
+        {
+          "skillId": "507-setup",
+          "when": "当前请求、项目约定或接续材料点名旧技能，需要查询声明去向并保留原任务权限、终点及来源。"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "当前请求、项目约定或接续材料点名旧技能，需要查询声明去向并保留原任务权限、终点及来源。"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "当前请求、项目约定或接续材料点名旧技能，需要查询声明去向并保留原任务权限、终点及来源。"
+        }
+      ],
+      "relatedAtomIds": []
     }
   ],
   "components": [
@@ -989,7 +1012,19 @@
     {
       "source": "lib/components/library_view.py",
       "consumers": [
-        "skill-design"
+        "skill-design",
+        {
+          "skillId": "507-setup",
+          "when": "只读查询包内旧名或当前名声明；不执行候选，不判断安装与动作授权。"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "只读查询包内旧名或当前名声明；不执行候选，不判断安装与动作授权。"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "只读查询包内旧名或当前名声明；不执行候选，不判断安装与动作授权。"
+        }
       ]
     },
     {

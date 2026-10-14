@@ -49,6 +49,14 @@
         {
           "source": "lib/components/library-view.md",
           "target": "references/shared/library-view.md"
+        },
+        {
+          "source": "lib/methods/skill-entry-resolution.md",
+          "target": "references/shared/skill-entry-resolution.md"
+        },
+        {
+          "source": "lib/registry/skill-entry-index.md",
+          "target": "references/shared/skill-entry-index.md"
         }
       ],
       "files": [
@@ -646,6 +654,22 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/skill-entry-resolution.md",
+          "target": "references/shared/skill-entry-resolution.md"
+        },
+        {
+          "source": "lib/components/library-view.md",
+          "target": "references/shared/library-view.md"
+        },
+        {
+          "source": "lib/components/library_view.py",
+          "target": "scripts/library_view.py"
+        },
+        {
+          "source": "lib/registry/skill-entry-index.md",
+          "target": "references/shared/skill-entry-index.md"
         }
       ],
       "role": "secondary"
@@ -682,6 +706,22 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/skill-entry-resolution.md",
+          "target": "references/shared/skill-entry-resolution.md"
+        },
+        {
+          "source": "lib/components/library-view.md",
+          "target": "references/shared/library-view.md"
+        },
+        {
+          "source": "lib/components/library_view.py",
+          "target": "scripts/library_view.py"
+        },
+        {
+          "source": "lib/registry/skill-entry-index.md",
+          "target": "references/shared/skill-entry-index.md"
         }
       ],
       "role": "secondary"
@@ -967,6 +1007,22 @@
         {
           "source": "lib/methods/project-navigation.md",
           "target": "references/shared/project-navigation.md"
+        },
+        {
+          "source": "lib/methods/skill-entry-resolution.md",
+          "target": "references/shared/skill-entry-resolution.md"
+        },
+        {
+          "source": "lib/components/library-view.md",
+          "target": "references/shared/library-view.md"
+        },
+        {
+          "source": "lib/components/library_view.py",
+          "target": "scripts/library_view.py"
+        },
+        {
+          "source": "lib/registry/skill-entry-index.md",
+          "target": "references/shared/skill-entry-index.md"
         }
       ]
     },

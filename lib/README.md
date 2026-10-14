@@ -1,6 +1,6 @@
 # 共有方法、做法与设计资料
 
-lib是当前非Skill资源的唯一维护源，不自行路由或获得写入权。当前28方法源、9脚本源，以及按需组件说明与设计资料；实际消费者、采用条件见[catalog](catalog.json)，随包路径见[next/packages](../next/packages.json)。源改后统一生成普通副本，不手改副本。
+lib是当前非Skill资源的唯一维护源，不自行路由或获得写入权。当前29方法源、9脚本源，以及按需组件说明与设计资料；实际消费者、采用条件见[catalog](catalog.json)，随包路径见[next/packages](../next/packages.json)。源改后统一生成普通副本，不手改副本。
 
 ## 方法与消费者
 
@@ -21,3 +21,5 @@ lib是当前非Skill资源的唯一维护源，不自行路由或获得写入权
 2026-10-13按旧30实际消费者补齐研究、原型、架构、行为不变、交互、作者采访、知识入口、媒体、视觉与真实接续方法；共有源28份，脚本9段。资料不自行路由。当前清单投影与实物回执见[组件](components/README.md)，逐项来源与退出见[处置记录](../doc/40-版本实施方案/2026-10-13-旧30能力处置.json)。
 
 507-component按条件消费evidence、behavior-preserving-change、validation与authority-and-return。它在目标产品查库、采用或抽取界面组件，不是修改这里的技能共有库；本目录的资料无入口，也不自行发起该工作。
+
+[skill-entry-resolution](methods/skill-entry-resolution.md)用于旧引用需要定位当前职责时，由setup、deliver、coordinate及skill-design消费；[生成索引](registry/skill-entry-index.md)和既有library_view提供按名查询，声明、宿主存在与原任务权限分别判断。工程证据另补实际目标起点与夹具预置的区分，仍由既有spec／implement／fix／review按条件采用，不增加总控或新的测试入口。

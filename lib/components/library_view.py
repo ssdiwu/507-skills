@@ -153,19 +153,128 @@ def project(root, packages_path, catalog_path, disposition_path):
                        '旧入口身份退出与原方法放弃分别记录；待验证不是待实现。']}
 
 
+def skill_index(view):
+    """Keep name declarations, not package-file hashes that would refer to this index."""
+    current = []
+    for entry in view['skills']:
+        contract = next(f for f in entry['files'] if f['path'] == entry['source'])
+        current.append({'name': entry['name'], 'role': entry['role'],
+                        'description': entry['description'],
+                        'entry': entry['name'] + '/SKILL.md',
+                        'contractSha256': contract['sha256']})
+    keys = ['id', 'decision', 'reason', 'retained', 'dropped', 'targets',
+            'consumers', 'source', 'sourceSha256', 'verification']
+    return {'schema': 1, 'kind': 'skill-declarations',
+            'current': sorted(current, key=lambda row: row['name']),
+            'legacy': sorted([{key: row[key] for key in keys} for row in view['legacy']],
+                             key=lambda row: row['id'])}
+
+
+def index_markdown(index):
+    return ('# 当前技能名与旧能力去向（生成索引）\n\n'
+            '由library_view读取现行入口清单、共有资源与旧30处置生成；只改维护源后重新生成。'
+            '这是源码声明快照，不证明宿主已安装或启用，也不增加原任务权限。'
+            '按需用包内library_view的--index-file与--lookup查询，不必通读所有候选。\n\n'
+            '```json\n' + json.dumps(index, ensure_ascii=False, indent=2, sort_keys=True) + '\n```\n')
+
+
+def read_index(path):
+    path = Path(path)
+    if path.is_symlink() or not path.is_file():
+        raise ValueError('expected regular index file')
+    raw = path.read_bytes()
+    if len(raw) > 8 * 1024 * 1024:
+        raise ValueError('index exceeds 8 MiB')
+    blocks = re.findall(r'^```json\n(.*?)\n```\s*$', raw.decode('utf-8'), re.M | re.S)
+    if len(blocks) != 1:
+        raise ValueError('expected one JSON index block')
+    index = json.loads(blocks[0], object_pairs_hook=pairs)
+    if not isinstance(index, dict) or index.get('schema') != 1 or index.get('kind') != 'skill-declarations':
+        raise ValueError('unsupported skill index')
+    for field, identity in [('current', 'name'), ('legacy', 'id')]:
+        rows = index.get(field)
+        if not isinstance(rows, list) or not rows or any(not isinstance(row, dict) for row in rows):
+            raise ValueError('invalid index section: ' + field)
+        names = [row.get(identity) for row in rows]
+        if any(not isinstance(name, str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]{0,63}', name) for name in names) or len(names) != len(set(names)):
+            raise ValueError('duplicate or invalid index identities: ' + field)
+    current = {row['name']: row for row in index['current']}
+    for row in current.values():
+        if (row.get('role') not in ('main', 'secondary') or not isinstance(row.get('description'), str)
+                or not row['description'] or row.get('entry') != row['name'] + '/SKILL.md'
+                or not re.fullmatch(r'[0-9a-f]{64}', str(row.get('contractSha256')))):
+            raise ValueError('invalid current declaration')
+    for row in index['legacy']:
+        if row.get('decision') not in ('retain', 'merge', 'drop'):
+            raise ValueError('invalid legacy decision')
+        for key in ('reason', 'source', 'verification'):
+            if not isinstance(row.get(key), str) or not row[key]:
+                raise ValueError('invalid legacy field: ' + key)
+        for key in ('retained', 'targets', 'consumers'):
+            values = row.get(key)
+            if not isinstance(values, list) or any(not isinstance(value, str) or not value for value in values):
+                raise ValueError('invalid legacy list: ' + key)
+        if not isinstance(row.get('dropped'), list) or any(
+                not isinstance(item, dict) or any(not isinstance(item.get(key), str) or not item[key]
+                                                  for key in ('mechanism', 'reason'))
+                for item in row['dropped']):
+            raise ValueError('invalid dropped mechanisms')
+        if len(row['consumers']) != len(set(row['consumers'])) or any(name not in current for name in row['consumers']):
+            raise ValueError('unknown or duplicate legacy consumer')
+        if len(row['targets']) != len(set(row['targets'])):
+            raise ValueError('duplicate legacy target')
+        if row['decision'] != 'drop' and (not row['retained'] or not row['targets'] or not row['consumers']):
+            raise ValueError('retained declaration has no consumer')
+        if not re.fullmatch(r'[0-9a-f]{64}', str(row.get('sourceSha256'))):
+            raise ValueError('invalid legacy source identity')
+        for value in [row['source'], *row['targets']]:
+            rel = PurePosixPath(value)
+            if '\\' in value or rel.is_absolute() or '..' in rel.parts or not rel.parts:
+                raise ValueError('unsafe declaration path')
+    return index, sha(raw)
+
+
+def lookup(index, name, index_hash):
+    if not isinstance(name, str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]{0,63}', name):
+        raise ValueError('expected literal skill name')
+    current = {row['name']: row for row in index['current']}
+    legacy = next((row for row in index['legacy'] if row['id'] == name), None)
+    status = ('CURRENT_DECLARATION_FOUND' if name in current else
+              'LEGACY_DECLARATION_FOUND' if legacy else 'UNKNOWN_NAME')
+    candidates = [current[name]] if name in current else [current[n] for n in legacy['consumers']] if legacy else []
+    return {'status': status, 'query': name, 'indexSha256': index_hash,
+            'currentCandidates': candidates, 'legacyOrigin': legacy,
+            'runtimeAvailability': 'NOT_CHECKED', 'actionAuthority': 'UNCHANGED',
+            'limits': ['候选是源码声明，不是固定调用链；按原目标选择必要职责并保留返回位置。',
+                       '历史原件仅作来源；宿主存在性、完整合同与原动作许可需分别核对。']}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--source-root', required=True)
-    parser.add_argument('--packages', required=True)
-    parser.add_argument('--catalog', required=True)
-    parser.add_argument('--dispositions', required=True)
+    parser.add_argument('--source-root')
+    parser.add_argument('--packages')
+    parser.add_argument('--catalog')
+    parser.add_argument('--dispositions')
+    parser.add_argument('--emit-index', action='store_true', help='Emit a package-independent Markdown name index')
+    parser.add_argument('--index-file', help='Read only a supplied index; requires --lookup')
+    parser.add_argument('--lookup', help='Return declarations for one literal name; never execute them')
     args = parser.parse_args()
     try:
+        source_args = [args.source_root, args.packages, args.catalog, args.dispositions]
+        if args.index_file or args.lookup:
+            if not args.index_file or not args.lookup or any(source_args) or args.emit_index:
+                raise ValueError('lookup requires only --index-file and --lookup')
+            index, identity = read_index(args.index_file)
+            result = lookup(index, args.lookup, identity)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
+            return 1 if result['status'] == 'UNKNOWN_NAME' else 0
+        if not all(source_args):
+            raise ValueError('source projection requires all four source arguments')
         root = Path(args.source_root)
         if root.is_symlink() or not root.is_dir():
             raise ValueError('expected explicit regular source root')
         result = project(root, args.packages, args.catalog, args.dispositions)
-        print(json.dumps(result, ensure_ascii=False, indent=2))
+        print(index_markdown(skill_index(result)) if args.emit_index else json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except (ValueError, KeyError, TypeError, OSError) as exc:
         print(json.dumps({'status': 'INPUT_ERROR', 'error': str(exc)}, ensure_ascii=False), file=sys.stderr)

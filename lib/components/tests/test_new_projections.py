@@ -2,6 +2,9 @@
 import importlib.util
 import json
 from pathlib import Path
+import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 import wave
@@ -42,7 +45,7 @@ class ActualFileTests(unittest.TestCase):
 
 class LibraryTests(unittest.TestCase):
  def setUp(self):
-  self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
+  self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)/'author';self.root.mkdir()
   for path,body in [('next/skills/a/SKILL.md','---\nname: a\ndescription: A\n---\n'),('next/skills/a/agents/openai.yaml','interface:\n'),('common/old/SKILL.md','legacy'),('lib/methods/m.md','method'),('next/skills/a/references/shared/m.md','copy')]:
    p=self.root/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(body)
   self.packages={'skills':[{'name':'a','role':'main','source':'next/skills/a','files':['SKILL.md','agents/openai.yaml'],'shared':[{'source':'lib/methods/m.md','target':'references/shared/m.md'}]}]}
@@ -80,5 +83,54 @@ class LibraryTests(unittest.TestCase):
   with self.assertRaisesRegex(ValueError,'legacy field'):self.run_projection()
  def test_duplicate_keys_are_refused(self):
   with self.assertRaisesRegex(ValueError,'duplicate JSON'):json.loads('{"x":1,"x":2}',object_pairs_hook=library.pairs)
+
+ def write_index(self,index=None):
+  index=index or library.skill_index(self.run_projection())
+  path=self.root/'index.md';path.write_text(library.index_markdown(index));return path
+ def query(self,name,index=None,extra=()):
+  path=self.write_index(index)
+  return subprocess.run([sys.executable,str(ROOT/'library_view.py'),'--index-file',str(path),'--lookup',name,*extra],capture_output=True,text=True)
+ def test_standalone_lookup_works_without_author_tree_or_installed_candidate(self):
+  path=self.write_index();isolated=Path(self.temp.name)/'runtime';isolated.mkdir()
+  shutil.copy2(ROOT/'library_view.py',isolated/'lookup.py');shutil.copy2(path,isolated/'index.md')
+  shutil.rmtree(self.root)
+  run=subprocess.run([sys.executable,str(isolated/'lookup.py'),'--index-file',str(isolated/'index.md'),'--lookup','old'],cwd=isolated,capture_output=True,text=True)
+  self.assertEqual(run.returncode,0,run.stderr);r=json.loads(run.stdout)
+  self.assertEqual(r['status'],'LEGACY_DECLARATION_FOUND');self.assertEqual(r['currentCandidates'][0]['name'],'a')
+  self.assertEqual(r['runtimeAvailability'],'NOT_CHECKED');self.assertEqual(r['actionAuthority'],'UNCHANGED')
+  self.assertEqual({p.name for p in isolated.iterdir()},{'lookup.py','index.md'})
+ def test_unknown_name_does_not_guess_or_activate_a_candidate(self):
+  run=self.query('older');self.assertEqual(run.returncode,1,run.stderr);r=json.loads(run.stdout)
+  self.assertEqual(r['status'],'UNKNOWN_NAME');self.assertEqual(r['currentCandidates'],[]);self.assertIsNone(r['legacyOrigin'])
+ def test_current_name_wins_but_preserves_same_name_legacy_origin(self):
+  index=library.skill_index(self.run_projection());index['legacy'][0]['id']='a'
+  run=self.query('a',index);self.assertEqual(run.returncode,0,run.stderr);r=json.loads(run.stdout)
+  self.assertEqual(r['status'],'CURRENT_DECLARATION_FOUND');self.assertEqual(r['legacyOrigin']['id'],'a')
+  self.assertEqual([v['name'] for v in r['currentCandidates']],['a'])
+ def test_multiple_consumers_are_declarations_not_an_executed_chain(self):
+  index=library.skill_index(self.run_projection());index['current'].append({**index['current'][0],'name':'b','entry':'b/SKILL.md'})
+  index['legacy'][0]['consumers']=['a','b']
+  run=self.query('old',index);self.assertEqual(run.returncode,0,run.stderr);r=json.loads(run.stdout)
+  self.assertEqual([v['name'] for v in r['currentCandidates']],['a','b']);self.assertNotIn('execution',r)
+  self.assertEqual(r['actionAuthority'],'UNCHANGED');self.assertFalse((self.root/'next/skills/b').exists())
+ def test_explicitly_dropped_name_has_no_replacement_candidate(self):
+  index=library.skill_index(self.run_projection());old=index['legacy'][0]
+  old.update(decision='drop',retained=[],targets=[],consumers=[])
+  run=self.query('old',index);self.assertEqual(run.returncode,0,run.stderr)
+  self.assertEqual(json.loads(run.stdout)['currentCandidates'],[])
+ def test_invalid_index_refuses_unknown_consumer_or_unsafe_path(self):
+  original=library.skill_index(self.run_projection())
+  for key,value in [('consumers',['missing']),('targets',['../outside.md']),('source','/outside.md'),('dropped',[{'mechanism':True,'reason':'x'}])]:
+   index=json.loads(json.dumps(original));index['legacy'][0][key]=value
+   with self.subTest(key=key):
+    run=self.query('old',index);self.assertEqual(run.returncode,2,run.stdout+run.stderr)
+    self.assertEqual(json.loads(run.stderr)['status'],'INPUT_ERROR');self.assertEqual(run.stdout,'')
+ def test_duplicate_identity_symlink_and_mixed_query_modes_are_refused(self):
+  index=library.skill_index(self.run_projection());index['current'].append(dict(index['current'][0]))
+  self.assertEqual(self.query('old',index).returncode,2)
+  path=self.write_index();link=self.root/'linked.md';link.symlink_to(path)
+  run=subprocess.run([sys.executable,str(ROOT/'library_view.py'),'--index-file',str(link),'--lookup','old'],capture_output=True,text=True)
+  self.assertEqual(run.returncode,2,run.stdout+run.stderr)
+  self.assertEqual(self.query('old',extra=('--source-root',str(self.root))).returncode,2)
 
 if __name__=='__main__':unittest.main()

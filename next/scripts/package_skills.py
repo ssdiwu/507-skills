@@ -3,6 +3,7 @@
 import argparse
 import ctypes
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path, PurePosixPath
@@ -30,7 +31,7 @@ COMPONENTS = {'lib/components/library_view.py': 'scripts/library_view.py',
               'lib/components/check_prose.py': 'scripts/check_prose.py',
               'lib/components/check_spoken.py': 'scripts/check_spoken.py'}
 COMPONENT_CONSUMERS = {
-    'lib/components/library_view.py': {'skill-design'},
+    'lib/components/library_view.py': {'skill-design', '507-setup', '507-deliver', '507-coordinate'},
     'lib/components/artifact_receipt.py': {'507-create', '507-compose', '507-adapt'},
     'lib/components/task_view.py': {'507-coordinate', '507-work-update'},
     'lib/components/state_diff.py': {'507-work-update'},
@@ -49,7 +50,8 @@ SHARED_DOCS = {'lib/design/apple-interaction.md': 'references/shared/apple-inter
                'lib/components/library-view.md': 'references/shared/library-view.md',
                'lib/components/task-view.md': 'references/shared/task-view.md',
                'lib/components/text-checks.md': 'references/shared/text-checks.md',
-               'lib/design/artifact-prompts.md': 'references/shared/artifact-prompts.md'}
+               'lib/design/artifact-prompts.md': 'references/shared/artifact-prompts.md',
+               'lib/registry/skill-entry-index.md': 'references/shared/skill-entry-index.md'}
 
 SHARED_DOC_CONSUMERS = {'lib/design/apple-interaction.md': {'507-implement', '507-adapt', '507-create'},
     'lib/design/containers-and-motion.md': {'507-implement', '507-adapt', '507-create'},
@@ -57,12 +59,27 @@ SHARED_DOC_CONSUMERS = {'lib/design/apple-interaction.md': {'507-implement', '50
     'lib/design/target-design.md': {'507-compose', '507-adapt'},
     'lib/components/media-adapters.md': {'507-compose', '507-create', '507-adapt'},
     'lib/components/artifact-receipt.md': {'507-compose', '507-create', '507-adapt'},
-    'lib/components/library-view.md': {'skill-design'},
+    'lib/components/library-view.md': {'skill-design', '507-setup', '507-deliver', '507-coordinate'},
 
     'lib/components/task-view.md': {'507-coordinate', '507-work-update'},
     'lib/components/text-checks.md': {'507-compose', '507-adapt'},
     'lib/design/artifact-prompts.md': {'507-compose', '507-adapt'},
+    'lib/registry/skill-entry-index.md': {'skill-design', '507-setup', '507-deliver', '507-coordinate'},
 }
+
+DISPOSITIONS = 'doc/40-版本实施方案/2026-10-13-旧30能力处置.json'
+
+
+def check_skill_index(root):
+    """Compare the generated name index to current declarations, never host state."""
+    spec = importlib.util.spec_from_file_location('library_view_for_packages', within(root, 'lib/components/library_view.py', True))
+    library = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(library)
+    actual, _ = library.read_index(within(root, 'lib/registry/skill-entry-index.md', True))
+    view = library.project(root, within(root, 'next/packages.json', True),
+                           within(root, 'lib/catalog.json', True), within(root, DISPOSITIONS, True))
+    if actual != library.skill_index(view):
+        raise PackageError('Stale skill-entry index; regenerate from current source declarations')
 
 class PackageError(ValueError):
     pass
@@ -273,6 +290,7 @@ def check(root, entries=None):
         expected_files = set(entry['files']) | expected_targets
         if set(payload[entry['name']]) != expected_files:
             raise PackageError(f'{entry["name"]}: declared package file set differs')
+    check_skill_index(root)
     return payload
 
 def sync(root):

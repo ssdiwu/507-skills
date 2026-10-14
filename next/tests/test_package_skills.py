@@ -23,6 +23,16 @@ class PackageTests(unittest.TestCase):
         shutil.copytree(ROOT/'next/skills', self.root/'next/skills')
         shutil.copytree(ROOT/'lib', self.root/'lib')
         shutil.copy2(ROOT/'next/packages.json', self.root/'next/packages.json')
+        # Author-side index verification needs the ledger and preserved contracts,
+        # not the old implementation tools or any personal installation directory.
+        ledger = ROOT/packager.DISPOSITIONS
+        target = self.root/packager.DISPOSITIONS
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ledger, target)
+        for row in json.loads(ledger.read_text())['legacy']:
+            dest = self.root/row['source']
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(ROOT/row['source'], dest)
         self.call('sync')
 
     def tearDown(self):
@@ -74,6 +84,40 @@ class PackageTests(unittest.TestCase):
         self.assertIn('drift',self.call('check',ok=False)['error']);self.call('build',ok=False)
         self.call('sync');second=Path(self.call('build')['path'])
         self.assertNotEqual(first,second);self.assertEqual(packager.file_map(first),before)
+
+    def regenerate_index(self):
+        spec=importlib.util.spec_from_file_location('index_for_test',self.root/'lib/components/library_view.py')
+        library=importlib.util.module_from_spec(spec);spec.loader.exec_module(library)
+        view=library.project(self.root,self.root/'next/packages.json',self.root/'lib/catalog.json',self.root/packager.DISPOSITIONS)
+        (self.root/'lib/registry/skill-entry-index.md').write_text(library.index_markdown(library.skill_index(view)))
+
+    def test_changed_contract_blocks_stale_name_index_and_preserves_previous_bundle(self):
+        first=Path(self.call('build')['path']);before=packager.file_map(first)
+        contract=self.root/'next/skills/507-deliver/SKILL.md'
+        contract.write_text(contract.read_text()+'\nA scoped contract revision.\n')
+        self.assertIn('Stale skill-entry index',self.call('check',ok=False)['error'])
+        self.call('build',ok=False);self.assertEqual(packager.file_map(first),before)
+        self.regenerate_index();self.call('sync');second=Path(self.call('build')['path'])
+        self.assertNotEqual(first,second);self.assertEqual(packager.file_map(first),before)
+
+    def test_changed_legacy_decision_refuses_sync_without_replacing_current_packages(self):
+        ledger=self.root/packager.DISPOSITIONS;data=json.loads(ledger.read_text())
+        data['legacy'][0]['reason']+=' Updated disposition rationale.'
+        ledger.write_text(json.dumps(data,ensure_ascii=False))
+        packages=self.root/'next/skills';before=packager.file_map(packages)
+        source=self.root/'lib/methods/evidence.md';source.write_text(source.read_text()+'\nValid updated method.\n')
+        self.assertIn('Stale skill-entry index',self.call('sync',ok=False)['error'])
+        self.assertEqual(packager.file_map(packages),before)
+        self.regenerate_index();self.call('sync');self.call('check')
+
+    def test_packaged_lookup_does_not_need_author_manifests_or_other_packages(self):
+        result=self.call('build');runtime=Path(self.temp.name)/'standalone-deliver'
+        shutil.copytree(Path(result['path'])/'507-deliver',runtime)
+        shutil.rmtree(self.root)
+        run=subprocess.run([sys.executable,str(runtime/'scripts/library_view.py'),'--index-file',str(runtime/'references/shared/skill-entry-index.md'),'--lookup','507-git'],cwd=runtime,capture_output=True,text=True)
+        self.assertEqual(run.returncode,0,run.stdout+run.stderr);query=json.loads(run.stdout)
+        self.assertEqual([c['name'] for c in query['currentCandidates']],['507-deliver'])
+        self.assertEqual(query['runtimeAvailability'],'NOT_CHECKED');self.assertEqual(query['actionAuthority'],'UNCHANGED')
 
     def test_bad_component_syntax_preserves_all_packages(self):
         before=packager.file_map(self.root/'next/skills')
