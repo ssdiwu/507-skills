@@ -56,3 +56,5 @@ description: "在目标与现状已足够清楚、介入策略尚未形成时，
 本次出现需要可定位的改进机会及完整候选处置时，读[架构摩擦与候选证据](references/shared/architecture-candidates.md)并在本职责原权限与完成边界内采用。
 
 本次出现构造保持公开行为的内部简化策略时，读[行为不变修改证据门](references/shared/behavior-preserving-change.md)并在本职责原权限与完成边界内采用。
+
+本次目标需要对齐产品功能、入口与用户操作的设计／实现／运行差距时，读[交互点与证据](references/shared/interaction-map.md)。需要独立的可探索地图结果可按原权限委托 `507-product-map`；普通策略、规格或审查不强制建图，结果回到当前职责。

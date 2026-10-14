@@ -20,8 +20,9 @@ SKILL_NAMES = {'skill-design', '507-what', '507-why', '507-how', '507-create',
                '507-work-update', '507-material', '507-compose', '507-adapt',
                '507-spec', '507-implement', '507-fix', '507-review', '507-issue',
                '507-coordinate', '507-deliver', '507-retro', '507-setup',
-               '507-component'}
-COMPONENTS = {'lib/components/library_view.py': 'scripts/library_view.py',
+               '507-component', '507-product-map'}
+COMPONENTS = {'lib/components/product_map.py': 'scripts/product_map.py',
+              'lib/components/library_view.py': 'scripts/library_view.py',
               'lib/components/artifact_receipt.py': 'scripts/artifact_receipt.py',
               'lib/components/task_view.py': 'scripts/task_view.py',
               'lib/components/state_diff.py': 'scripts/state_diff.py',
@@ -31,6 +32,7 @@ COMPONENTS = {'lib/components/library_view.py': 'scripts/library_view.py',
               'lib/components/check_prose.py': 'scripts/check_prose.py',
               'lib/components/check_spoken.py': 'scripts/check_spoken.py'}
 COMPONENT_CONSUMERS = {
+    'lib/components/product_map.py': {'507-product-map'},
     'lib/components/library_view.py': {'skill-design', '507-setup', '507-deliver', '507-coordinate'},
     'lib/components/artifact_receipt.py': {'507-create', '507-compose', '507-adapt'},
     'lib/components/task_view.py': {'507-coordinate', '507-work-update'},
@@ -41,7 +43,8 @@ COMPONENT_CONSUMERS = {
     'lib/components/check_prose.py': {'507-compose', '507-adapt'},
     'lib/components/check_spoken.py': {'507-compose', '507-adapt'},
 }
-SHARED_DOCS = {'lib/design/apple-interaction.md': 'references/shared/apple-interaction.md',
+SHARED_DOCS = {'lib/components/product-map.md': 'references/shared/product-map.md',
+               'lib/design/apple-interaction.md': 'references/shared/apple-interaction.md',
                'lib/design/containers-and-motion.md': 'references/shared/containers-and-motion.md',
                'lib/design/interaction-detail.md': 'references/shared/interaction-detail.md',
                'lib/design/target-design.md': 'references/shared/target-design.md',
@@ -53,7 +56,8 @@ SHARED_DOCS = {'lib/design/apple-interaction.md': 'references/shared/apple-inter
                'lib/design/artifact-prompts.md': 'references/shared/artifact-prompts.md',
                'lib/registry/skill-entry-index.md': 'references/shared/skill-entry-index.md'}
 
-SHARED_DOC_CONSUMERS = {'lib/design/apple-interaction.md': {'507-implement', '507-adapt', '507-create'},
+SHARED_DOC_CONSUMERS = {'lib/components/product-map.md': {'507-product-map'},
+    'lib/design/apple-interaction.md': {'507-implement', '507-adapt', '507-create'},
     'lib/design/containers-and-motion.md': {'507-implement', '507-adapt', '507-create'},
     'lib/design/interaction-detail.md': {'507-implement', '507-adapt', '507-create'},
     'lib/design/target-design.md': {'507-compose', '507-adapt'},

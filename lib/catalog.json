@@ -70,6 +70,10 @@
         {
           "skillId": "507-component",
           "when": "目标产品、组件库版本、真实导出或使用关系需核实时查当前源码和用法，不以截图或未查到判不存在。"
+        },
+        {
+          "skillId": "507-product-map",
+          "when": "交互点梳理需要核来源、限定证据及完成后返回原目标时采用。"
         }
       ],
       "relatedAtomIds": [
@@ -309,6 +313,10 @@
         {
           "skillId": "507-component",
           "when": "核对本次组件采用、导出和调用处的可观察结果；只查或单处保留止于查找证据，不以组件存在称整页通过。"
+        },
+        {
+          "skillId": "507-product-map",
+          "when": "交互点梳理需要核来源、限定证据及完成后返回原目标时采用。"
         }
       ],
       "relatedAtomIds": [
@@ -393,6 +401,10 @@
         {
           "skillId": "507-component",
           "when": "组件采用或抽取完成后交回原页面/功能，承接原授权和未完成，不另建总控或把局部结果当整件完成。"
+        },
+        {
+          "skillId": "507-product-map",
+          "when": "交互点梳理需要核来源、限定证据及完成后返回原目标时采用。"
         }
       ],
       "relatedAtomIds": [
@@ -958,6 +970,29 @@
         }
       ],
       "relatedAtomIds": []
+    },
+    {
+      "source": "lib/methods/interaction-map.md",
+      "title": "交互点、关系与证据",
+      "consumers": [
+        {
+          "skillId": "507-product-map",
+          "when": "目标需要功能交互点及其设计、实现和运行证据的同对象对照；普通执行不默认建图。"
+        },
+        {
+          "skillId": "507-how",
+          "when": "目标需要功能交互点及其设计、实现和运行证据的同对象对照；普通执行不默认建图。"
+        },
+        {
+          "skillId": "507-spec",
+          "when": "目标需要功能交互点及其设计、实现和运行证据的同对象对照；普通执行不默认建图。"
+        },
+        {
+          "skillId": "507-review",
+          "when": "目标需要功能交互点及其设计、实现和运行证据的同对象对照；普通执行不默认建图。"
+        }
+      ],
+      "relatedAtomIds": []
     }
   ],
   "components": [
@@ -1033,6 +1068,13 @@
         "507-create",
         "507-compose",
         "507-adapt"
+      ]
+    },
+    {
+      "source": "lib/components/product_map.py",
+      "title": "交互点地图生成",
+      "consumers": [
+        "507-product-map"
       ]
     }
   ]

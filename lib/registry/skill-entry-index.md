@@ -55,7 +55,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "58593f6208e90d7991596f3cca16c9d70913b0a1cdbffc70895f0c8cdfd987f7",
+      "contractSha256": "854129b8997547bf63b986126aac74212fbda48a7f4eca997e5d947f45e45707",
       "description": "在目标与现状已足够清楚、介入策略尚未形成时，构造穿过接口、状态、数据、权限、消费者与迁移约束的变更路径。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
@@ -83,6 +83,13 @@
       "role": "secondary"
     },
     {
+      "contractSha256": "e0abf610b9cf2600b318675db73ad786d64a96f43b5dedaff0bee71142d3411a",
+      "description": "梳理指定产品功能的交互点与操作关系，把设计要求、实现依据和实际运行证据对到同一节点，生成可探索地图与范围差距。用于功能盘点、入口到结果的对照或明确要求交互地图；仓库目录导航、组件抽取和普通实现不默认进入。",
+      "entry": "507-product-map/SKILL.md",
+      "name": "507-product-map",
+      "role": "secondary"
+    },
+    {
       "contractSha256": "58da3de76bc30011cafcc592c6bafc93bdd4908a1f1397e85291383308cec3d1",
       "description": "复盘已发生的工程工作，以实际尝试和结果提炼改进及重复任务的工具建议。用于明确复盘或已证实的重复摩擦；复盘不自动修改技能、规范、记忆或工具，批准方法写入后才实施。",
       "entry": "507-retro/SKILL.md",
@@ -90,7 +97,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "1339c9f140c2d4e7ce6cfbd3faf9ab6f0e9e84d66c628252c220f003e1ea9ac9",
+      "contractSha256": "bd7e619611ba2625fc99130be55b2bc862507eab3f65af2a4872d540318b1436",
       "description": "独立、只读审查指定代码、文档或交付变更，核对现行规范、要求、实际运行证据及有依据的风险。只交付发现与结论；实现者自查和全库改进机会调查不替代该审查。",
       "entry": "507-review/SKILL.md",
       "name": "507-review",
@@ -104,7 +111,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "b55e0bc149322135eb037903d3fe4e6300f01e103982613c3bb9e2bbc969f886",
+      "contractSha256": "8508c4690111377634bb5d47b8d8445f11c8a96f0c6599eee65a673da25154df",
       "description": "把已确认的软件需求或方案整理为唯一现行行为与验收规格，也支持维护 PRD。需要写清应发生什么时使用；已有充分规格可直接实施，活动或合作提案按其写作任务处理。",
       "entry": "507-spec/SKILL.md",
       "name": "507-spec",

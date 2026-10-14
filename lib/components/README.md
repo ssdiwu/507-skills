@@ -60,3 +60,7 @@ reference-date由调用方给定，可选，仅比较支持的YYYY-MM-DD日历�
 [library_view](library-view.md)按显式维护清单输出当前实现、旧30处置与待补；[artifact_receipt](artifact-receipt.md)记录实际文件身份与所列结构，媒体制作沿[工具适配](media-adapters.md)。前者不判业务效果，后者不判渲染、语义或接受。当前9段脚本，精确消费者以catalog与packages为准。
 
 library_view另提供按名查询：`--index-file`配合`--lookup`只读一个生成声明索引，返回当前、旧来源或未知，退出分别为0／1，输入错误为2。查询可在单包外移后运行，不访问作者清单、兄弟技能、安装目录或网络。`--emit-index`是维护者的源投影模式，需要显式的四项源输入；打包检查核索引与现行声明一致，不能用旧快照冒充当前入口。两个模式与权限界限见[合同](library-view.md)。
+
+## 从同一交互点记录生成地图
+
+[product_map.py](product_map.py)按[合同](product-map.md)验证交互点、关系、路径与三维证据，从一份JSON生成包含树、筛选、详情、关系和路径的离线网页。源码声明与运行观察分开，未知及相反条件并存；结构与生成成功不证明语义或产品接受。更新同一记录后用新输出目录重生成，旧网页保持不变；现有目录拒绝覆盖。当前共有脚本总数10，以catalog与packages为准。

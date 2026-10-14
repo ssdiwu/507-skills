@@ -1,6 +1,6 @@
 # 共有方法、做法与设计资料
 
-lib是当前非Skill资源的唯一维护源，不自行路由或获得写入权。当前29方法源、9脚本源，以及按需组件说明与设计资料；实际消费者、采用条件见[catalog](catalog.json)，随包路径见[next/packages](../next/packages.json)。源改后统一生成普通副本，不手改副本。
+lib是当前非Skill资源的唯一维护源，不自行路由或获得写入权。当前30方法源、10脚本源，以及按需组件说明与设计资料；实际消费者、采用条件见[catalog](catalog.json)，随包路径见[next/packages](../next/packages.json)。源改后统一生成普通副本，不手改副本。
 
 ## 方法与消费者
 
@@ -23,3 +23,5 @@ lib是当前非Skill资源的唯一维护源，不自行路由或获得写入权
 507-component按条件消费evidence、behavior-preserving-change、validation与authority-and-return。它在目标产品查库、采用或抽取界面组件，不是修改这里的技能共有库；本目录的资料无入口，也不自行发起该工作。
 
 [skill-entry-resolution](methods/skill-entry-resolution.md)用于旧引用需要定位当前职责时，由setup、deliver、coordinate及skill-design消费；[生成索引](registry/skill-entry-index.md)和既有library_view提供按名查询，声明、宿主存在与原任务权限分别判断。工程证据另补实际目标起点与夹具预置的区分，仍由既有spec／implement／fix／review按条件采用，不增加总控或新的测试入口。
+
+[interaction-map](methods/interaction-map.md)承载交互点身份、包含与操作关系、同对象三维证据及覆盖判断，由product-map、how、spec、review按条件采用。[product_map](components/product-map.md)由product-map携带，读取同一JSON生成可探索地图；生成器不采证、不将源码推为跑通，也不成为业务需求权威。

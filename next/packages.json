@@ -289,6 +289,10 @@
         {
           "source": "lib/methods/behavior-preserving-change.md",
           "target": "references/shared/behavior-preserving-change.md"
+        },
+        {
+          "source": "lib/methods/interaction-map.md",
+          "target": "references/shared/interaction-map.md"
         }
       ],
       "role": "main"
@@ -433,6 +437,10 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/interaction-map.md",
+          "target": "references/shared/interaction-map.md"
         }
       ],
       "role": "secondary"
@@ -567,6 +575,10 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/interaction-map.md",
+          "target": "references/shared/interaction-map.md"
         }
       ],
       "role": "secondary"
@@ -1050,6 +1062,41 @@
         {
           "source": "lib/methods/authority-and-return.md",
           "target": "references/shared/authority-and-return.md"
+        }
+      ]
+    },
+    {
+      "name": "507-product-map",
+      "source": "next/skills/507-product-map",
+      "role": "secondary",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/interaction-map.md",
+          "target": "references/shared/interaction-map.md"
+        },
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/components/product-map.md",
+          "target": "references/shared/product-map.md"
+        },
+        {
+          "source": "lib/components/product_map.py",
+          "target": "scripts/product_map.py"
         }
       ]
     }
