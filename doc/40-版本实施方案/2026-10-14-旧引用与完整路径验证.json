@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "title": "旧引用接续与完整路径起点",
+  "status": "PASS_SCOPED_SOURCE_AND_REPLAY",
+  "sourceFingerprint": "c333f6b452336ca9e4d334a9e5b317184107cbe69b867dcb83f1a6dac6e98e36",
+  "implementation": {
+    "entrypoints": 19,
+    "main": 5,
+    "secondary": 14,
+    "files": 262,
+    "sharedCopies": 206,
+    "methodSources": 29,
+    "scriptSources": 9
+  },
+  "automated": {
+    "packageChecks": 26,
+    "componentChecks": 65,
+    "status": "PASS"
+  },
+  "models": [
+    "gpt-6-luna"
+  ],
+  "mode": "真实会话衍生、任务化裁剪、显式候选目录中的自主选择；不是原文重放或宿主自然发现。",
+  "cases": [
+    {
+      "id": "known-legacy",
+      "title": "维护旧Git引用",
+      "selected": [
+        "507-setup",
+        "507-deliver"
+      ],
+      "observed": "仅交付段落承接到当前职责；原许可、草稿终点及历史保留。",
+      "status": "PASS_WITH_LIMITS"
+    },
+    {
+      "id": "unknown-name",
+      "title": "未知技能名",
+      "selected": [
+        "507-setup"
+      ],
+      "observed": "组件返回UNKNOWN_NAME与exit 1，没有候选或猜测替代。",
+      "status": "PASS_WITH_LIMITS"
+    },
+    {
+      "id": "first-use",
+      "title": "完整首次使用范围",
+      "selected": [
+        "507-review"
+      ],
+      "observed": "拒绝整体通过；配置与用户绑定未验证，后段结果在其范围保留。",
+      "status": "PASS_WITH_LIMITS"
+    },
+    {
+      "id": "bound-slice",
+      "title": "明确已绑定项目切片",
+      "selected": [
+        "507-review"
+      ],
+      "observed": "允许相应预置并有条件交回；未把首次绑定列成此范围阻塞，未把摘要升级为独立复验。",
+      "status": "PASS_WITH_LIMITS"
+    }
+  ],
+  "review": {
+    "status": "PASS_WITH_LIMITS",
+    "sourceReportSha256": "adb849cfc9290b18c13f5fd8b828d03f89eb5558f61553b1d16c04b5245d4c2b",
+    "browserSupplementSha256": "cc95961fbfecaea8d5023863c3fa81fb5534d083e29122118139ed7f9c6373de",
+    "scope": "本轮源码与四项隔离材料判断，及生成网页的现行来源修复；宿主、业务、发布未包含。"
+  },
+  "frictions": [
+    "审查者首次误定位候选目录，读取失败后恢复；这是隔离入口资料定位问题，未据此改技能。",
+    "旧Git任务完整读取setup/deliver合同后校准引用，组件实际仅用于未知名称；不冒称两个名字都经过脚本。",
+    "验收回放只给摘要，原始运行日志未随输入提供；模型保留证据限制，没有新的产品验收。",
+    "初次生成页面仍由study内的旧清单显示18版已接入；已让生成器向两个视图提供同一现行投影，旧失败与静态初审保留，实际页面另作补充独立审查。"
+  ],
+  "limits": [
+    "本轮没有安装或改变正式业务项目、自动化、全局规则。",
+    "已安装固定版仍为18入口／242文件；19入口新增产品组件职责仍未在真实产品或宿主选择中验证。",
+    "只验证本轮判断与权限边界，不证明错误率、速度、令牌或全库能力提升。"
+  ],
+  "record": "doc/40-版本实施方案/2026-10-14-旧引用与完整路径实施与验证.md",
+  "website": {
+    "status": "PASS_CURRENT_SOURCE_AFTER_REPAIR",
+    "regressions": 2,
+    "originalResult": "同一反例在保存的真实旧renderer上1失败／1通过",
+    "candidateResult": "修订版2通过，实际页面与独立只读核对显示19/262、本轮4行及已装上一版18/242",
+    "priorFailurePreserved": true
+  }
+}
