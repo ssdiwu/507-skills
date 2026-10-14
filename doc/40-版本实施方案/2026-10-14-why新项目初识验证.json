@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "title": "why路径与分支续修；同节点三类证据展示",
+  "sourceFingerprint": "87ea69d07af9c9144ef3bdbd979093b2a609f8b962fa7a7ece02f29d4b300a3e",
+  "implementation": {
+    "main": 5,
+    "secondary": 15,
+    "entrypoints": 20,
+    "methodSources": 30,
+    "scriptSources": 10,
+    "files": 274,
+    "sharedCopies": 215
+  },
+  "record": "doc/40-版本实施方案/2026-10-14-why新项目初识实施与试用.md",
+  "mode": "R1–R5同一句请求、同951冻结源码与无预设技能链；R6/R7为反馈辅助修订，单列。全局安装仍未更新。",
+  "automated": {
+    "packageChecks": 26,
+    "componentChecks": 0,
+    "status": "PASS",
+    "note": "26项针对首版55e；最终87ea资源闭包与274文件已独立读回，共有脚本未改",
+    "packageChecksFingerprint": "55e226ef4a358d0b9787f39bea52ed98d0808538e63ca1a7ddac9810023d3b6a"
+  },
+  "review": {
+    "status": "PASS_WITH_LIMITS",
+    "scope": "87ea合同与最终修订说明通过；一句话首次执行与真实产品另验",
+    "note": "通过绑定R6/R7反馈修订材料；R5一语未通过记录保留，不证明自主首轮稳定。"
+  },
+  "cases": [
+    {
+      "id": "curio-intro-r1",
+      "title": "这是个新项目，请帮我了解一下",
+      "selected": [
+        "507-why"
+      ],
+      "observed": "首轮55e226ef自主选why并完整读合同和参考，概览可用；独立审读P2：路径停在模型/写入器中段，未核真实入口、结果消费和必要失败/返回。",
+      "status": "REQUIRES_REVISION",
+      "artifactLabel": "打开首轮实际回复",
+      "candidateFingerprint": "55e226ef4a358d0b9787f39bea52ed98d0808538e63ca1a7ddac9810023d3b6a"
+    },
+    {
+      "id": "curio-intro-r2",
+      "title": "相同一句请求：独立新轮",
+      "selected": [
+        "507-why"
+      ],
+      "observed": "实际读取c333旧用户副本；ec98新合同与专用方法均未读。只有文档介绍，不能据此验修订方法。",
+      "status": "WRONG_VERSION",
+      "candidateFingerprint": "ec98a30becba71b29b5ae21ec018a37270cef76b1c8d5e24f9380b0ca974c64f",
+      "artifactLabel": "打开第二轮原始结果"
+    },
+    {
+      "id": "curio-intro-r3",
+      "title": "相同一句请求：排除旧副本读取",
+      "selected": [
+        "507-why"
+      ],
+      "observed": "尝试采用why；外层隔离与内置沙箱冲突，全部实际读取被拒，新合同未执行。",
+      "status": "ENV_BLOCKED",
+      "candidateFingerprint": "ec98a30becba71b29b5ae21ec018a37270cef76b1c8d5e24f9380b0ca974c64f",
+      "artifactLabel": "打开第三轮受阻回复"
+    },
+    {
+      "id": "curio-intro-r4",
+      "title": "相同一句请求：单层隔离试用",
+      "selected": [
+        "507-why"
+      ],
+      "observed": "ec98新合同与专用方法全文返回；多维展开及数据/权益边界有依据。代表路径P2仍未闭，新P2：将新建额度条件泛化到编辑。",
+      "status": "REQUIRES_REVISION",
+      "candidateFingerprint": "ec98a30becba71b29b5ae21ec018a37270cef76b1c8d5e24f9380b0ca974c64f",
+      "artifactLabel": "打开第四轮实际回复"
+    },
+    {
+      "id": "curio-intro-r5",
+      "title": "相同一句请求：产物责任与分支修订",
+      "selected": [
+        "507-why"
+      ],
+      "candidateFingerprint": "87ea69d07af9c9144ef3bdbd979093b2a609f8b962fa7a7ece02f29d4b300a3e",
+      "observed": "第五轮同一句请求已正确限定新建额度，并读了真实提交/回调；路径尚缺取消及最终消费，另将拍摄与相册混为同一路径。",
+      "status": "REQUIRES_REVISION",
+      "artifactLabel": "打开第五轮实际回复"
+    },
+    {
+      "id": "curio-intro-r6",
+      "title": "反馈辅助：修正代表路径与入口分流",
+      "selected": [
+        "507-why"
+      ],
+      "candidateFingerprint": "87ea69d07af9c9144ef3bdbd979093b2a609f8b962fa7a7ece02f29d4b300a3e",
+      "observed": "反馈修订已区分拍摄/相册，说明成功回调、失败表单保留与取消未知；最后展柜数据参数绑定尚未实读。",
+      "status": "REQUIRES_REVISION",
+      "artifactLabel": "打开反馈修订结果"
+    },
+    {
+      "id": "curio-intro-r7",
+      "title": "反馈辅助：只补最后消费者绑定",
+      "selected": [],
+      "candidateFingerprint": "87ea69d07af9c9144ef3bdbd979093b2a609f8b962fa7a7ece02f29d4b300a3e",
+      "observed": "局部补读真实展柜参数绑定与浏览/组织数组，保全R6正确路径/门禁/分流/失败/取消；三个材料P2已关闭。反馈辅助，不记fresh技能采用。",
+      "status": "PASS_WITH_LIMITS",
+      "artifactLabel": "打开最终局部修订"
+    }
+  ],
+  "frictions": [
+    "历史R1/R4：代表路径未闭，R4还泛化新建额度。最终材料R7已关闭；原产物/失败保留。",
+    "历史R2：读旧安装副本，未执行修订候选；只改试用隔离，不改真实安装。",
+    "历史R3：嵌套沙箱冲突，候选未执行；后续单层隔离保护实际目录。",
+    "R5同句新试用：额度解释正确，仍漏取消/最后消费，新增拍摄和相册混用；一语整体未通过。",
+    "R6反馈修订：分支/成功/失败/取消已核，最后数据绑定欠证据；R7只补该片段后通过。"
+  ],
+  "limits": [
+    "本轮未运行Curio，说明/接线成立不证明真实相机、保存刷新、取消、交易、云端、真机或发布。",
+    "新候选87ea为20入口274文件；实际安装仍c333的19入口262文件，未更新。",
+    "R1–R5用户短句相同；R6/R7提供旧稿和缺陷，属于反馈辅助修订，不宣称自主首轮稳定。",
+    "模型拥有常规用户记忆，未做无历史知识、跨项目或成本收益对照。",
+    "地图实物是ac8b396源码与历史2e3fd运行的分享标题/名称切片，非最新全Curio地图。"
+  ],
+  "deliveryChecks": {
+    "date": "2026-10-15",
+    "scope": "独立构建本批精确提交范围；不重跑模型或产品",
+    "packageCheck": "PASS",
+    "packageBuild": "PASS",
+    "fingerprint": "87ea69d07af9c9144ef3bdbd979093b2a609f8b962fa7a7ece02f29d4b300a3e",
+    "files": 274,
+    "packageTests": {
+      "count": 26,
+      "status": "PASS",
+      "logSha256": "0dc5806f43deb566a52c02e7bf6e0305af1566f72d79b6fc96c84a10abcfe2fd"
+    },
+    "preservedTrialIdentity": true,
+    "installedUpdated": false,
+    "componentTests": {
+      "rerun": false,
+      "scope": "共有脚本未变；地图批76项有效证据保留"
+    }
+  }
+}

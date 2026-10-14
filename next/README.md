@@ -8,7 +8,7 @@
 | --- | --- |
 | [skill-design](../next/skills/skill-design/SKILL.md) | 技能设计与编写（skill-design） |
 | [507-what](../next/skills/507-what/SKILL.md) | 目标与关键取舍 |
-| [507-why](../next/skills/507-why/SKILL.md) | 理解、解释与证据 |
+| [507-why](../next/skills/507-why/SKILL.md) | 陌生项目初识、理解、解释与证据 |
 | [507-how](../next/skills/507-how/SKILL.md) | 介入点与变更策略 |
 | [507-create](../next/skills/507-create/SKILL.md) | 作者主线与作品责任 |
 
@@ -34,6 +34,10 @@
 
 明确故障、成熟稿、充分规格和已有任务图可直接进入相应能力；不因技能存在重跑what/why/how或全链。技能缺失可按同一合同直接工作，独立审查仍须另一执行者。
 
+## 了解陌生项目从哪里开始
+
+当前项目已经可定位时，一句“这是个新项目，请帮我了解一下”即可表达初识目标。由[507-why](skills/507-why/SKILL.md)主动调查必要维度，再用代表路径校准概览；[专用方法](skills/507-why/references/project-understanding.md)留在该包内。可查事实不变成用户问卷，地图只按需要采用，不强制why到其它入口的链。源码实现、原生候选发现、一语试用和真实安装分别记录，见[本轮记录](../doc/40-版本实施方案/2026-10-14-why新项目初识实施与试用.md)。
+
 ## 初始化仓库从哪里开始
 
 明确要初始化仓库时可直接使用[507-setup](skills/507-setup/SKILL.md)。它采用[项目依据](../lib/methods/project-foundation.md)建立或归位 README、AGENTS、GLOSSARY、DESIGN、spec、doc，确需接续时维护 PROGRESS；内容与风险决定详略，不创建没有内容和消费者的空文件。维护地图时采用[项目导航](../lib/methods/project-navigation.md)。这些方法仍由setup持有修改范围与完成责任，不自行启动其它技能。
@@ -48,7 +52,7 @@
 
 ## 资源维护与构建
 
-lib是唯一共有维护源，无SKILL入口。当前30方法源、10脚本源；包内普通生成副本共215份，273构建文件。作者/作品/呈现、工程证据和按情境协调是按实际消费者维护的共有方法，专用内容留包内。数据以[清单](packages.json)与[资源登记](../lib/catalog.json)为准。
+lib是唯一共有维护源，无SKILL入口。当前30方法源、10脚本源；包内普通生成副本共215份，274构建文件。作者/作品/呈现、工程证据和按情境协调是按实际消费者维护的共有方法，专用内容留包内。数据以[清单](packages.json)与[资源登记](../lib/catalog.json)为准。
 
 明确要梳理产品功能与可操作节点时，可直接进入[507-product-map](skills/507-product-map/SKILL.md)。[共有方法](../lib/methods/interaction-map.md)由product-map、how、spec、review按需采用；专用[地图组件](../lib/components/product-map.md)从同一记录生成包含树、筛选、证据详情、全部关系与登记路径，更新记录后生成新目录。普通策略、规格、审查和实现不因此强制建图。
 
