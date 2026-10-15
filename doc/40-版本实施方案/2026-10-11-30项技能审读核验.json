@@ -1,0 +1,80 @@
+{
+  "status": "PASS_WITHIN_AUDIT_AND_LOCAL_SITE_SCOPE",
+  "baseline": "5f3b0f8bd0a67484f9cfdc63a60fa93413a20068",
+  "scope": {
+    "completeUniqueFiles": 111,
+    "completeLines": 8862,
+    "partialOnlyFiles": 4,
+    "mainFiles": 30,
+    "mainLines": 3197,
+    "coverageInterpretation": "联合去重的主体审计读取回执；不含后续独立收口额外读文件，不等于全部脚本审计"
+  },
+  "skills": 30,
+  "resources": 11,
+  "realSessionCore": 9,
+  "staticRisks": 4,
+  "sessionUniqueRawLines": 42,
+  "failureCount": 0,
+  "failures": [],
+  "limits": [
+    "主合同审读不等于全部细原子已归一；旧196归一集保持原覆盖。",
+    "未运行30项业务流程、模型同题任务、媒体生成、独立安装或宿主发现。",
+    "角色／共有源／路由／新入口均为候选，未实施迁移或证明收益。",
+    "私有短摘录仅存本地参考材料，未发布网站或原始会话。"
+  ],
+  "dataChecks": "PASS",
+  "independentDocumentReview": "PASS_WITHIN_DOCUMENT_SCOPE; 未解决发现0",
+  "independentSiteReview": "PASS_WITHIN_STATIC_SCOPE; 未发现行动项",
+  "browserChecks": {
+    "status": "PASS_WITHIN_LOCAL_BROWSER_SCOPE",
+    "artifactSha256": "723d40e95f15ca4b4420bd48a8a9809a2daf30f083f7061487ced0b6708ad7a1",
+    "views": 10,
+    "viewports": [
+      320,
+      390,
+      768,
+      1413
+    ],
+    "pageOverflowPx": 0,
+    "scope": "本地离线浏览器；未声称排队的内置面板已渲染"
+  },
+  "protectedSourceFiles": 351,
+  "protectedMainFiles": 30,
+  "protectedScriptsSubtreeFiles": 88,
+  "currentMainAndBusinessScriptsChanged": false,
+  "documentProposalFacts": {
+    "defaultEntryCandidates": 19,
+    "defaultCapabilityCandidates": 11,
+    "minimumContractLocators": 115,
+    "resourceGroups": 11,
+    "implementedResourceGroups": 1,
+    "candidateResourceGroups": 10,
+    "resourceProofs": 31,
+    "consideredMergeFamilies": 9,
+    "splitDecisions": 4,
+    "registeredSkillMerges": 0,
+    "registeredSkillSplits": 0
+  },
+  "sessionEvidence": {
+    "purposefulSamples": 9,
+    "coreFindings": 9,
+    "coreStatuses": {
+      "已修": 3,
+      "缓解": 4,
+      "未证实": 2
+    },
+    "historicalSupplement": 1,
+    "controlledReplaySupplement": 1,
+    "staticRisks": 4,
+    "necessaryGateExamples": 2,
+    "privateShortExcerptRefs": 45,
+    "verifiedUniqueRawMessageLines": 42,
+    "rawConversationsInPublicTree": false
+  },
+  "reviewReceiptSha256": {
+    "documents": "15b2beec05ad0a43313d2d4e97bc4c90ae4e332c4f4035eb842f0045edab8402",
+    "site": "6abd33a587fb516b82e0972745aeaaadc38203494f7da09057e6f3896baab494",
+    "browser": "b0f241b205978d5fcea024600f262efd389a2f131dc1828350f2bc0c3a6811b6"
+  },
+  "commitOrPush": false
+}

@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-11",
+  "status": "PASS_DESIGN_AND_REFERENCE_SITE_ONLY",
+  "artifactSha256": "6db4cf6b28130f35f449780468103cf8827dc2dc06081af4108bda85cc82a92b",
+  "scope": "Five main thinking references; shared UI/UX design material; old README topology and current conditional workflow comparison; no skill implementation migration",
+  "designCounts": {
+    "mainInitiallyConfirmed": 5,
+    "methodCandidates": 32,
+    "componentInterfaceCandidates": 48,
+    "mainThinkingSections": 5,
+    "sharedDesignPatterns": 16,
+    "promptTemplates": 5,
+    "oldWorkflowGraphs": 8,
+    "oldNodes": 93,
+    "oldEdges": 121,
+    "currentDesignGraphs": 5,
+    "comparisonPairs": 9,
+    "staticTaskScenarios": 6,
+    "websiteViews": 14
+  },
+  "sourceScope": {
+    "oldReadmeRevision": "5f3b0f8bd0a67484f9cfdc63a60fa93413a20068",
+    "oldGraphRawIdentityNodeAndEdgeLocators": "exactly preserved; original line styles are not inferred as mandatory/optional",
+    "currentGraphCanonicalSource": "doc/10-架构与运行/工作流对照与条件接力.md",
+    "mainThinkingCanonicalSource": "doc/10-架构与运行/主要技能特有思考参考.md",
+    "designPatternCanonicalSource": "lib/design/patterns.json",
+    "bookmarkEntrypoints": 21,
+    "entryContentObtained": 15,
+    "entryShellOrNavigationOnly": 5,
+    "entryAccessFailed": 1,
+    "selectedComponentOrCatalogPages": 19,
+    "readPrivateInspirationNotes": 6,
+    "actualOriginalSiteActions": 3,
+    "actionCoverage": [
+      "AI Elements Sources expand",
+      "Motion Primitives TextEffect Code selection",
+      "Bencho Asset swap preview direction, Corner parameter and Code selection"
+    ],
+    "limits": "selected public previews and content observations only; not all components, source code, licenses, installations or business actions"
+  },
+  "independentReview": {
+    "skill": "507-review",
+    "fixedP2": 3,
+    "fixedNavigationInformationItem": 1,
+    "openP1": 0,
+    "openP2": 0,
+    "finalIncrementReviewedSha256": "6db4cf6b28130f35f449780468103cf8827dc2dc06081af4108bda85cc82a92b",
+    "coverage": "old8 raw graphs/node and edge locators; current5 raw graphs and thinking doc hashes; canonical16 patterns and role/interface references; scoped public privacy; final search semantics and private note identity; browser separately checked by root"
+  },
+  "browser": {
+    "tool": "ego-browser",
+    "status": "PASS",
+    "actualOperationChecks": 26,
+    "layoutChecks": 6,
+    "returnPositionChecks": 1,
+    "layoutWidths": [
+      1413,
+      768,
+      390
+    ],
+    "pageHorizontalOverflow": false,
+    "screenshotsVisuallyInspected": [
+      "workflow1413",
+      "workflow390",
+      "uiLibrary1413",
+      "uiLibrary390"
+    ],
+    "scope": "14 views retained; 9 comparison choices; component/method contract reachability, pointer and Enter return; focus restoration; semantic search and selected detail retention; example states and refresh; prior knowledge alias; CSS layouts",
+    "limits": [
+      "CSS emulation, not real hardware or screen reader certification",
+      "Scroll restoration tested from a DOM-arranged 180px graph position, with actual contract and return clicks; native wheel/PageDown forwarding not confirmed",
+      "State demos do not execute skills or provide business receipts"
+    ]
+  },
+  "checks": {
+    "sourceAndEmbeddedIdentity": "PASS",
+    "all21VersionsAnd17OriginGroupsRetained": true,
+    "selected196AtomsAnd587MappingsRetained": true,
+    "twoImplementedMainSevenMethodsFourteenCopiesUnchanged": true,
+    "immutable22FileBundleUnchanged": true,
+    "immutableBundleFingerprint": "8e1ed504499368d831b627948dba0a783512edc1c7d68332fee1592d2db2c6bb",
+    "publicLocalLinks": 143,
+    "publicPrivateLocatorScan": {
+      "status": "PASS",
+      "scopedFiles": 17
+    },
+    "gitDiffCheck": "PASS"
+  },
+  "failureRecovery": [
+    {
+      "signal": "common failure text caused search 快切 to match every pattern",
+      "fix": "search only semantic fields; failed browser record retained; all26 operation checks passed after fix"
+    },
+    {
+      "signal": "return navigation previously lost origin focus/scroll and two media aliases were absent",
+      "fix": "origin focus/page and graph position retained; explicit media aliases; new skill-design graph made reachable"
+    },
+    {
+      "signal": "test assumed a near-top media node produced nonzero graph scroll; native inputs did not establish the fixture",
+      "fix": "retain failure; establish an explicit 180px DOM fixture and verify restoration; do not claim native input forwarding"
+    }
+  ],
+  "notEstablished": [
+    "5/32/48 skill implementation migration",
+    "host installation/discovery or implicit selection",
+    "runtime components or business execution",
+    "all-source license or compatibility audit",
+    "actual media production or device acceptance",
+    "cross-model effect or cost reduction",
+    "commit/push/release"
+  ]
+}

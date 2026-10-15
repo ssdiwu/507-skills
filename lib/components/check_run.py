@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""Run one explicit local check and preserve its result and selected source hashes."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import signal
+import subprocess
+import sys
+import tempfile
+import time
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def sources(cwd, paths, after=False):
+    result = {}
+    for rel in paths:
+        p = Path(rel)
+        target = cwd / p
+        invalid = p.is_absolute() or '..' in p.parts or target.is_symlink() or not target.resolve().is_relative_to(cwd) or not target.is_file()
+        if invalid and after:
+            result[rel] = None
+            continue
+        if invalid:
+            raise ValueError('source must be an existing regular file inside cwd: '+rel)
+        result[rel] = sha(target)
+    return result
+
+def run(args):
+    argv = json.loads(args.argv_json)
+    if not isinstance(argv, list) or not argv or not all(isinstance(x, str) and x and '\x00' not in x for x in argv):
+        raise ValueError('argv-json must be a nonempty array of argument strings')
+    cwd = args.cwd.resolve(strict=True)
+    if not cwd.is_dir() or not 0 < args.timeout <= 3600:
+        raise ValueError('cwd must be a directory and timeout in (0, 3600]')
+    out = args.log_dir.absolute()
+    if out.exists() or out.is_symlink():
+        raise ValueError('log-dir already exists; prior evidence is preserved')
+    out.parent.mkdir(parents=True, exist_ok=True)
+    before = sources(cwd, args.source)
+    stage = Path(tempfile.mkdtemp(prefix='.check-', dir=out.parent))
+    started = time.time()
+    proc = None
+    try:
+        with (stage/'stdout.log').open('wb') as stdout, (stage/'stderr.log').open('wb') as stderr:
+            proc = subprocess.Popen(argv, cwd=cwd, stdout=stdout, stderr=stderr, start_new_session=True)
+            timed_out = False
+            try:
+                proc.wait(timeout=args.timeout)
+            except subprocess.TimeoutExpired:
+                timed_out = True
+                os.killpg(proc.pid, signal.SIGKILL)
+                proc.wait()
+        after = sources(cwd, args.source, after=True)
+        receipt = {'schema': 1, 'argv': argv, 'cwd': str(cwd), 'exitCode': proc.returncode,
+                   'timedOut': timed_out, 'seconds': round(time.time()-started, 3),
+                   'sourceBefore': before, 'sourceAfter': after, 'sourceUnchanged': before == after,
+                   'logs': {name: sha(stage/name) for name in ['stdout.log', 'stderr.log']},
+                   'status': 'COMMAND_PASS' if proc.returncode == 0 and not timed_out else 'COMMAND_FAIL',
+                   'meaning': 'Only this command result; not business acceptance, authority or independent review.'}
+        (stage/'receipt.json').write_text(json.dumps(receipt, ensure_ascii=False, indent=2)+'\n')
+        stage.rename(out)
+        receipt['receiptPath'] = str(out/'receipt.json')
+        return receipt, 0 if receipt['status'] == 'COMMAND_PASS' else 1
+    finally:
+        if proc and proc.poll() is None:
+            os.killpg(proc.pid, signal.SIGKILL)
+            proc.wait()
+        if stage.exists():
+            import shutil
+            shutil.rmtree(stage)
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--argv-json', required=True)
+    parser.add_argument('--cwd', type=Path, required=True)
+    parser.add_argument('--log-dir', type=Path, required=True)
+    parser.add_argument('--timeout', type=float, default=60)
+    parser.add_argument('--source', action='append', default=[])
+    args = parser.parse_args()
+    try:
+        result, code = run(args)
+    except (OSError, ValueError, TypeError) as exc:
+        result, code = {'status':'INPUT_OR_RUNTIME_ERROR', 'error':str(exc)}, 2
+    print(json.dumps(result, ensure_ascii=False))
+    return code
+
+if __name__ == '__main__':
+    raise SystemExit(main())

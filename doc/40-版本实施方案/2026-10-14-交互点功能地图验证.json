@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "title": "交互点功能地图：落实与Curio真实材料试用",
+  "mode": "20入口普通候选中的自主选择；当前地图目标应用到正式分享任务切片，不是历史原话重放或本轮产品重跑。",
+  "sourceFingerprint": "53774ffe3526631c99f6099648457079bf97987dcd0e8881758fe3dcc753d601",
+  "implementation": {
+    "entrypoints": 20,
+    "main": 5,
+    "secondary": 15,
+    "files": 273,
+    "sharedCopies": 215,
+    "methodSources": 30,
+    "scriptSources": 10
+  },
+  "automated": {
+    "packageChecks": 26,
+    "componentChecks": 76,
+    "status": "PASS"
+  },
+  "review": {
+    "status": "PASS_WITH_LIMITS",
+    "scope": "源码与模型、资源闭包；浏览器和材料试用另核"
+  },
+  "cases": [
+    {
+      "id": "curio-map-r1",
+      "title": "Curio地图首轮：18交互点／31关系／2路径",
+      "selected": [
+        "507-product-map"
+      ],
+      "observed": "自行选择且工具实际返回完整合同；核心粒度和关系成立，但漏控制动效条件、具体键盘按钮设计确认越界，两项材料P2需修订。",
+      "status": "REQUIRES_REVISION"
+    },
+    {
+      "id": "curio-map-r2",
+      "title": "Curio地图二轮：按独立反馈局部校准",
+      "selected": [
+        "507-product-map"
+      ],
+      "observed": "6-luna反馈后二轮局部校准；18/31/2身份关系保全，运行条件补齐、具体按钮设计归未知，不把历史失败或未知改为通过。独立材料复核通过；实际网页筛选/详情/展开关系跳转及历史选择恢复完成。产品未重跑。",
+      "status": "PASS_WITH_LIMITS"
+    }
+  ],
+  "frictions": [
+    "初次登记未给既有方法补新消费者，打包拒绝；已补齐。",
+    "有效1000节点包含链触发Python递归上限，独立P2反例已修并原动作通过。",
+    "实际地图后退仅恢复地址而未恢复详情（P2），已修组件，根与独立审读者同输入后退/前进/重载通过。",
+    "6-luna首次生成证据有未支持字段及路径不连续，组件拒绝；执行者自行修正后生成，原失败日志保留。",
+    "隔离模型沙箱不能连接Ego浏览器，未把结构检查当实际网页通过；根在真实浏览器补验。",
+    "真实生成暴露字段错误定位过泛；已增加对象/维度/条目/未支持字段定位，并给最小有效结构例，不放宽接受模型。",
+    "首轮材料审读发现停循环动效条件遗漏及键盘具体按钮设计确认越界，两处P2由6-luna反馈校准；现有方法已具对应边界，不增加重复规则。",
+    "二轮浏览器把未展开关系内隐藏按钮的点击失败归为面板遮挡；独立复现并核几何，展开后跳转通过，无布局缺陷证据，不增规则或改布局。"
+  ],
+  "limits": [
+    "实际安装仍为c333的19入口；新20入口未自动安装。",
+    "试用消费真实源码及历史运行资料，不重跑产品，不将源码或合计测试结果升级为当前全部节点通过。",
+    "结构、材料、网页操作、宿主发现与使用者接受分别成立。"
+  ],
+  "record": "doc/40-版本实施方案/2026-10-14-交互点功能地图实施与试用.md",
+  "trialScope": {
+    "model": "gpt-6-luna",
+    "r1": "REQUIRES_REVISION_P2",
+    "r2": "PASS_MATERIAL_SCOPE_AFTER_FEEDBACK",
+    "nodes": 18,
+    "edges": 31,
+    "paths": 2,
+    "noPresetChain": true,
+    "actualFullContractReturnVerified": true,
+    "productExecutedThisRound": false,
+    "websiteActualInteractionChecked": true,
+    "userAcceptanceVerified": false,
+    "candidateInstalled": false
+  },
+  "deliveryChecks": {
+    "date": "2026-10-15",
+    "scope": "独立构建本批精确提交范围；不重跑模型或产品",
+    "packageCheck": "PASS",
+    "packageBuild": "PASS",
+    "fingerprint": "53774ffe3526631c99f6099648457079bf97987dcd0e8881758fe3dcc753d601",
+    "files": 273,
+    "packageTests": {
+      "count": 26,
+      "status": "PASS",
+      "logSha256": "601ce5c013371250ec352dcbb5664680a01a4b5c9aa42a5d6625dc977dc613e6"
+    },
+    "preservedTrialIdentity": true,
+    "installedUpdated": false,
+    "componentTests": {
+      "count": 76,
+      "status": "PASS",
+      "logSha256": "1aa197a0a4e01684c7dfb500d94d15c8553254dfcd2bf0651cd2b438dd7a3574"
+    }
+  }
+}

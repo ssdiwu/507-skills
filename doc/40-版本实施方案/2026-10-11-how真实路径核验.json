@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-11",
+  "status": "PASS_WITHIN_DESIGN_STUDY_SCOPE",
+  "scope": "how特有思考、相邻边界及用户实际路径；只设计和本地网站。",
+  "artifactSha256": "3c8e6f8fff607a1348f2a4d1d2be5d1180cb10624b2ee89accb85a157df57ea7",
+  "observedCases": 6,
+  "selection": "目的性片段，不统计通常频率",
+  "staticPriorScenarios": 12,
+  "howIdentity": "主要/solution方法/消费者内三种结构继续未定",
+  "provenance": "观察记录、历史报告与事后映射分别成立；历史指令不是本轮授权",
+  "independentReview": {
+    "status": "PASS_WITHIN_REVIEWED_SCOPE",
+    "resolvedFindings": 2,
+    "openFindings": 0,
+    "receiptSha256": "6a540b19b6578b49b382c745c07712b11f3e07569da9fd8e66e1a8f2fc302aa3"
+  },
+  "browser": {
+    "baseArtifactSha256": "644335baf000589a6fdac7f0c98fa485f00b427654f2cc542c1a37490984da53",
+    "baseChecks": 25,
+    "baseReceiptSha256": "6675a5a4c55fdb31594bae4a6844ebd28dee32a7b5f73b78eb829d39e5e8f4c0",
+    "finalArtifactSha256": "3c8e6f8fff607a1348f2a4d1d2be5d1180cb10624b2ee89accb85a157df57ea7",
+    "repairChecks": 6,
+    "repairReceiptSha256": "0f5a581add1d906857515f09d00104c8351c24577ca83904b900e1842b1bf492",
+    "recoveredFailure": "同一文件地址只换hash保留旧文档，显式重载恢复；失败记录保全。",
+    "scope": "初版25项操作与最终6项修订/宽度分别绑定各自HTML；截图只为局部参考。"
+  },
+  "dataVerification": {
+    "status": "PASS",
+    "receiptSha256": "7ec143e7f375d343226bf4a1032da300ec38a7978c6001fdc448c35a4d34ae6f"
+  },
+  "actualImplementationChanged": false,
+  "migrationApplied": false,
+  "hostInstalled": false,
+  "committed": false,
+  "pushed": false,
+  "limits": [
+    "没有重跑6历史项目；历史测试/交付/用户认可只按记录范围引用",
+    "不证明新skill已执行、自动选择、成本或跨模型效果",
+    "私有原话与会话身份不进入公开文档"
+  ]
+}

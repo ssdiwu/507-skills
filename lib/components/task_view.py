@@ -1,0 +1,392 @@
+#!/usr/bin/env python3
+"""Project an explicitly selected existing process record into versioned offline task views."""
+import argparse
+from contextlib import contextmanager
+import hashlib
+import html
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import sys
+import tempfile
+
+FIELDS = {'id', 'title', 'status', 'owner', 'dependsOn', 'result', 'evidence', 'notes', 'decision', 'acceptance'}
+LABELS = {'id': '身份', 'title': '工作', 'status': '报告状态', 'owner': '承担者', 'dependsOn': '依赖',
+          'result': '结果', 'evidence': '证据', 'notes': '备注', 'decision': '决定', 'acceptance': '验收记录'}
+MAX_BYTES = 4 * 1024 * 1024
+FILES = {'index.html', 'projection.json', 'manifest.json'}
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def encoded(value):
+    return (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + '\n').encode('utf-8')
+
+
+def strict_json(raw):
+    def unique(pairs):
+        result = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError('duplicate JSON key: ' + key)
+            result[key] = value
+        return result
+    return json.loads(raw.decode('utf-8'), object_pairs_hook=unique,
+                      parse_constant=lambda value: (_ for _ in ()).throw(ValueError('invalid JSON number: ' + value)))
+
+
+def read_bytes(path):
+    if path.is_symlink() or not path.is_file():
+        raise ValueError('input must be a regular non-symlink file: ' + str(path))
+    raw = path.read_bytes()
+    if len(raw) > MAX_BYTES:
+        raise ValueError('input exceeds 4 MiB')
+    return raw
+
+
+def contract(value):
+    allowed = {'title', 'mode', 'modeNote', 'source', 'fields', 'columns', 'statusMap'}
+    if not isinstance(value, dict) or set(value) - allowed:
+        raise ValueError('contract accepts display/projection fields only; tasks do not belong in contract')
+    for field in ('title', 'modeNote'):
+        if not isinstance(value.get(field), str) or not value[field].strip():
+            raise ValueError('contract.' + field + ' must be explicit nonempty text')
+    if value.get('mode') not in ('simple', 'graph', 'continuing'):
+        raise ValueError('mode must be simple, graph or continuing; caller selects it')
+    source = value.get('source')
+    if not isinstance(source, dict) or source.get('format') not in ('json', 'markdown'):
+        raise ValueError('source.format must be json or markdown')
+    if source['format'] == 'json':
+        if set(source) != {'format', 'tasksPath'} or not isinstance(source['tasksPath'], list):
+            raise ValueError('JSON source requires explicit tasksPath array; [] selects root array')
+        if any(not isinstance(k, (str, int)) or isinstance(k, bool) or (isinstance(k, int) and k < 0) for k in source['tasksPath']):
+            raise ValueError('tasksPath keys must be strings or nonnegative indexes')
+    elif set(source) != {'format', 'heading'} or not isinstance(source['heading'], str) or not re.fullmatch(r'#{1,6} .+', source['heading']):
+        raise ValueError('Markdown source requires one exact heading including # level')
+    fields = value.get('fields')
+    if not isinstance(fields, dict) or not {'id', 'title', 'status'} <= set(fields) or set(fields) - FIELDS:
+        raise ValueError('fields must map id/title/status and supported optional fields')
+    if any(not isinstance(k, str) or not k.strip() for k in fields.values()) or len(set(fields.values())) != len(fields):
+        raise ValueError('field mappings must be nonempty and unique')
+    columns = value.get('columns', ['id', 'title', 'status'])
+    if not isinstance(columns, list) or not columns or len(set(columns)) != len(columns) or any(k not in fields for k in columns):
+        raise ValueError('columns must select distinct mapped fields')
+    statuses = value.get('statusMap', {})
+    if not isinstance(statuses, dict):
+        raise ValueError('statusMap must be an object')
+    for key, item in statuses.items():
+        if not isinstance(key, str) or not key or not isinstance(item, dict) or set(item) - {'label', 'dependencySatisfied'}:
+            raise ValueError('invalid status mapping')
+        if not isinstance(item.get('label'), str) or not item['label'] or not isinstance(item.get('dependencySatisfied', False), bool):
+            raise ValueError('status mapping requires label and optional boolean dependencySatisfied')
+    return value
+
+
+def cells(line):
+    if not line.strip().startswith('|') or not line.strip().endswith('|'):
+        raise ValueError('Markdown task table requires outer pipes')
+    text = line.strip()[1:-1]
+    parts, part, index = [], '', 0
+    while index < len(text):
+        if text[index:index + 2] == '\\|':
+            part += '|'
+            index += 2
+        elif text[index] == '|':
+            parts.append(part.strip())
+            part = ''
+            index += 1
+        else:
+            part += text[index]
+            index += 1
+    parts.append(part.strip())
+    return parts
+
+
+def markdown_rows(raw, heading):
+    lines = raw.decode('utf-8').splitlines()
+    # A fenced example is not the actual process section or table.
+    visible, fence = [], None
+    for line in lines:
+        marker = re.match(r'^\s{0,3}(`{3,}|~{3,})', line)
+        if marker and fence is None:
+            fence = marker[1]
+            visible.append(False)
+        elif marker and fence and marker[1][0] == fence[0] and len(marker[1]) >= len(fence):
+            fence = None
+            visible.append(False)
+        else:
+            visible.append(fence is None)
+    matches = [i for i, line in enumerate(lines) if visible[i] and line.strip() == heading]
+    if len(matches) != 1:
+        raise ValueError('Markdown heading must match exactly once')
+    start, level = matches[0] + 1, len(heading.split(' ', 1)[0])
+    end = len(lines)
+    for i in range(start, len(lines)):
+        match = re.match(r'^(#{1,6})\s', lines[i])
+        if visible[i] and match and len(match[1]) <= level:
+            end = i
+            break
+    starts = []
+    for i in range(start, end - 1):
+        if visible[i] and visible[i + 1] and lines[i].strip().startswith('|') and lines[i + 1].strip().startswith('|'):
+            possible = cells(lines[i + 1])
+            if possible and all(re.fullmatch(r':?-{3,}:?', x) for x in possible):
+                starts.append(i)
+    if len(starts) != 1:
+        raise ValueError('selected Markdown section must contain exactly one task table')
+    first = starts[0]
+    headers, divider = cells(lines[first]), cells(lines[first + 1])
+    if not all(headers) or len(set(headers)) != len(headers) or len(divider) != len(headers):
+        raise ValueError('Markdown table headers must be distinct and match divider')
+    records, locations = [], []
+    for i in range(first + 2, end):
+        if not visible[i] or not lines[i].strip().startswith('|'):
+            break
+        values = cells(lines[i])
+        if len(values) != len(headers):
+            raise ValueError('Markdown row cell count mismatch at line ' + str(i + 1))
+        records.append(dict(zip(headers, values)))
+        locations.append({'line': i + 1, 'tableHeaderLine': first + 1})
+    return records, locations, headers
+
+
+def select_records(raw, spec):
+    if spec['format'] == 'markdown':
+        return markdown_rows(raw, spec['heading'])
+    value = strict_json(raw)
+    path = spec['tasksPath']
+    for key in path:
+        if isinstance(key, str) and isinstance(value, dict) and key in value:
+            value = value[key]
+        elif isinstance(key, int) and not isinstance(key, bool) and isinstance(value, list) and key < len(value):
+            value = value[key]
+        else:
+            raise ValueError('tasksPath does not resolve exactly')
+    if not isinstance(value, list):
+        raise ValueError('selected tasksPath must resolve to an array')
+    return value, [{'jsonPath': path + [i]} for i in range(len(value))], None
+
+
+def project(raw, spec, source_path):
+    records, locations, headers = select_records(raw, spec['source'])
+    fields = spec['fields']
+    if headers is not None and any(key not in headers for key in fields.values()):
+        raise ValueError('mapped Markdown column does not exist')
+    projected, known = [], set()
+    for record, location in zip(records, locations):
+        if not isinstance(record, dict):
+            raise ValueError('task record must be an object')
+        item = {key: record[source] for key, source in fields.items() if source in record}
+        for key in ('id', 'title', 'status'):
+            if not isinstance(item.get(key), str) or not item[key].strip():
+                raise ValueError('task requires nonempty string ' + key)
+        if item['id'] in known:
+            raise ValueError('duplicate task ID: ' + item['id'])
+        known.add(item['id'])
+        if 'dependsOn' in item:
+            if spec['source']['format'] == 'markdown':
+                item['dependsOn'] = [] if item['dependsOn'] == '-' else strict_json(item['dependsOn'].encode('utf-8'))
+            deps = item['dependsOn']
+            if not isinstance(deps, list) or any(not isinstance(x, str) or not x for x in deps) or len(set(deps)) != len(deps):
+                raise ValueError('dependsOn must be distinct string IDs; Markdown uses JSON array or -')
+        for key, val in item.items():
+            if key in ('id', 'title', 'status', 'dependsOn'):
+                continue
+            if val is not None and not isinstance(val, str) and not (key == 'evidence' and isinstance(val, list) and all(isinstance(v, str) for v in val)):
+                raise ValueError('optional fields must be text/null; evidence may be text array')
+        projected.append({'fields': item, 'sourceLocation': location})
+    by_id = {item['fields']['id']: item for item in projected}
+    for item in projected:
+        for dep in item['fields'].get('dependsOn', []):
+            if dep not in known or dep == item['fields']['id']:
+                raise ValueError('dependency must reference another selected task: ' + dep)
+    active, visited = set(), set()
+    def visit(key):
+        if key in active:
+            raise ValueError('dependency cycle found')
+        if key in visited:
+            return
+        active.add(key)
+        for dep in by_id[key]['fields'].get('dependsOn', []):
+            visit(dep)
+        active.remove(key)
+        visited.add(key)
+    for key in by_id:
+        visit(key)
+    statuses = spec.get('statusMap', {})
+    for item in projected:
+        fields_value = item['fields']
+        deps = fields_value.get('dependsOn')
+        item['statusLabel'] = statuses.get(fields_value['status'], {}).get('label', fields_value['status'])
+        if deps is None:
+            item['dependencyHint'] = '未提供依赖；未判断可开工'
+        elif not deps:
+            item['dependencyHint'] = '记录无依赖；仍需任务权限与执行判断'
+        else:
+            satisfied = all(statuses.get(by_id[k]['fields']['status'], {}).get('dependencySatisfied', False) for k in deps)
+            item['dependencyHint'] = '按显示契约，依赖状态已满足；不代表领取或授权' if satisfied else '依赖状态尚未明确满足；不是自动冻结指令'
+    return {'schema': 1, 'mode': spec['mode'], 'modeNote': spec['modeNote'],
+            'source': {'file': str(source_path), 'sha256': sha(raw), 'selector': spec['source']},
+            'tasks': projected, 'scope': '只读过程记录的派生展示；不代表任务创建、派工、作者接受或业务验收。'}
+
+
+STYLE = '''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f3f1ea;color:#202c29;font:16px/1.7 system-ui,-apple-system,sans-serif}header,main,footer{max-width:1160px;margin:auto;padding:28px}h1{font-size:clamp(28px,4vw,46px);line-height:1.25}h2{font-size:23px}p,td,dd,a,.mono{overflow-wrap:anywhere}button,input,select{font:inherit;border:1px solid #acbbb0;background:#fffefa;color:inherit;border-radius:5px;padding:8px 12px;max-width:100%}button{cursor:pointer}a{color:#216047}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #c16829;outline-offset:3px}.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.tools label{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.table{overflow-x:auto;border:1px solid #ccd4c7;background:#fffefa}table{border-collapse:collapse;width:100%;min-width:580px}th,td{text-align:left;padding:12px;border-bottom:1px solid #dde1d6;vertical-align:top}.tiny{font-size:13px;color:#50655c}.mono{font-family:ui-monospace,monospace;font-size:12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}.node,.detail{background:#fffefa;border:1px solid #ccd4c7;padding:18px;min-width:0}.node h3{margin:5px 0}.detail{margin-top:24px;scroll-margin-top:14px}dt{font-weight:650}dd{margin:0 0 14px;white-space:pre-wrap}summary{cursor:pointer}.no{color:#815420}.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}[hidden]{display:none!important}@media(max-width:480px){header,main,footer{padding:18px}.tools label{width:100%}.tools input{width:100%}body{font-size:15px}.detail{padding:16px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}'''
+
+
+SCRIPT = '''const data=JSON.parse(document.querySelector('#task-data').textContent),tasks=data.projection.tasks;const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const text=(t,k)=>!(k in t.fields)?'未提供':t.fields[k]===null?'明确空值':t.fields[k]===''?'空文本':Array.isArray(t.fields[k])?(t.fields[k].length?t.fields[k].join('；'):'空数组'):t.fields[k];const status=document.querySelector('#status'),owner=document.querySelector('#owner'),query=document.querySelector('#query'),byId=new Map(tasks.map(t=>[t.fields.id,t]));for(const [select,key] of [[status,'status'],[owner,'owner']])for(const v of [...new Set(tasks.map(t=>text(t,key)))]){const o=document.createElement('option');o.value=v;o.textContent=key==='status'?(data.contract.statusMap?.[v]?.label||v):v;select.append(o)}const link=(id,label)=>'<button type="button" data-task="'+esc(id)+'">'+esc(label)+'</button>';function detail(id){const t=byId.get(id);if(!t)return;const node=document.querySelector('#detail');node.hidden=false;let content='<h2>'+esc(t.fields.title)+'</h2><dl>';for(const k of Object.keys(data.contract.fields)){let v=text(t,k);if(k==='status')v=t.statusLabel+'（原值：'+v+'）';content+='<dt>'+esc(data.labels[k])+'</dt><dd>'+esc(v)+'</dd>'}content+='</dl><p>'+esc(t.dependencyHint)+'</p><p class="tiny">报告状态与验收记录分别展示；未提供验收不能解释成已验收。</p><p class="mono">来源：'+esc(data.projection.source.file)+' · '+esc(t.sourceLocation.line?'行 '+t.sourceLocation.line+'（表头行 '+t.sourceLocation.tableHeaderLine+'）':'JSON 路径 '+JSON.stringify(t.sourceLocation.jsonPath))+'<br>SHA-256：'+esc(data.projection.source.sha256)+'</p>';const deps=t.fields.dependsOn;if(deps?.length)content+='<p>前置工作：'+deps.map(k=>link(k,byId.get(k).fields.title)).join(' ')+'</p>';const next=tasks.filter(x=>x.fields.dependsOn?.includes(id));if(next.length)content+='<p>后续工作：'+next.map(x=>link(x.fields.id,x.fields.title)).join(' ')+'</p>';node.innerHTML=content;node.focus();node.scrollIntoView({block:'start'})}function render(){const q=query.value.trim().toLocaleLowerCase();const selected=tasks.filter(t=>(!status.value||text(t,'status')===status.value)&&(!owner.value||text(t,'owner')===owner.value)&&(!q||Object.values(t.fields).flat().join(' ').toLocaleLowerCase().includes(q)));document.querySelector('#count').textContent='显示 '+selected.length+' / '+tasks.length+' 项';const rows=document.querySelector('#rows');rows.innerHTML=selected.map(t=>'<tr>'+data.columns.map(k=>'<td>'+(k==='title'?link(t.fields.id,t.fields.title):esc(k==='status'?t.statusLabel:text(t,k)))+'</td>').join('')+'</tr>').join('');document.querySelector('#empty').hidden=!!selected.length;const graph=document.querySelector('#graph');if(graph)graph.innerHTML=selected.map(t=>'<article class="node"><div class="tiny">'+esc(t.fields.id)+' · '+esc(t.statusLabel)+'</div><h3>'+link(t.fields.id,t.fields.title)+'</h3><p>'+esc(t.dependencyHint)+'</p><p>依赖：'+(!('dependsOn' in t.fields)?'未提供':!t.fields.dependsOn.length?'记录无依赖':t.fields.dependsOn.map(k=>link(k,byId.get(k).fields.title)).join(' '))+'</p></article>').join('')}for(const e of [status,owner,query])e.addEventListener('input',render);document.addEventListener('click',e=>{const b=e.target.closest('[data-task]');if(b)detail(b.dataset.task)});render();'''
+
+
+def render(projection, spec):
+    esc = lambda value: html.escape(str(value), quote=True)
+    columns = spec.get('columns', ['id', 'title', 'status'])
+    mode_label = {'simple': '普通工作：必要拆分与交回', 'graph': '有依赖的独立工作：任务关系', 'continuing': '持续工作：沿用现有记录'}[spec['mode']]
+    payload = encoded({'projection': projection, 'contract': spec, 'labels': LABELS, 'columns': columns}).decode('utf-8').replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
+    graph = '<section><h2>工作之间的依赖</h2><p class="tiny">关系来自指定记录；点击前置或后续工作查看原字段，筛选不改变依赖。</p><div id="graph" class="grid"></div></section>' if spec['mode'] != 'simple' else ''
+    continuing = '<p>持续工作只沿用同一过程记录。更新记录后重跑组件，历史网页保留；本页不保存第二套可编辑任务或工作日志。</p>' if spec['mode'] == 'continuing' else ''
+    table_head = ''.join('<th scope="col">' + esc(LABELS[k]) + '</th>' for k in columns)
+    return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'; script-src \'unsafe-inline\'; connect-src \'none\'; img-src \'none\'; base-uri \'none\'; form-action \'none\'"><title>'+esc(spec['title'])+'</title><style>'+STYLE+'</style></head><body><header><h1>'+esc(spec['title'])+'</h1><p>'+esc(mode_label)+'</p><p>'+esc(spec['modeNote'])+'</p><p class="tiny">'+esc(projection['scope'])+'</p>'+continuing+'</header><main><section><h2>当前工作</h2><div class="tools"><label>搜索<input id="query" type="search" placeholder="标题、备注、结果"></label><label>报告状态<select id="status"><option value="">全部状态</option></select></label><label>承担者<select id="owner"><option value="">全部承担者</option></select></label></div><p id="count" role="status" aria-live="polite"></p><div class="table" role="region" aria-label="工作记录，可横向滚动" tabindex="0"><table><thead><tr>'+table_head+'</tr></thead><tbody id="rows"></tbody></table></div><p id="empty" hidden>当前筛选没有匹配工作。</p></section>'+graph+'<section id="detail" class="detail" tabindex="-1" hidden aria-label="选定工作详情"></section><noscript>本页的筛选和详情需要浏览器允许本地脚本。完整只读投影位于同目录 projection.json。</noscript></main><footer><details><summary>来源与生成范围</summary><p class="mono">文件：'+esc(projection['source']['file'])+'<br>SHA-256：'+esc(projection['source']['sha256'])+'</p><p>如果页面需要新布局或字段能力，先修改组件及契约并验证，再生成新版本；不要手工改本页。</p></details></footer><script id="task-data" type="application/json">'+payload+'</script><script>'+SCRIPT+'</script></body></html>'
+
+
+def stable_entry(version):
+    link = 'versions/' + version + '/index.html'
+    return ('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>当前任务视图</title><body><p><a href="' + link + '">打开当前任务视图</a></p><p>生成产物；更新原过程记录后重跑组件，不在这里维护任务。</p></body></html>\n').encode('utf-8')
+
+
+def check_tree(root, registry):
+    if not isinstance(registry, dict) or set(registry) != {'schema', 'current', 'versions'} or registry['schema'] != 1 or not isinstance(registry['versions'], dict):
+        raise ValueError('invalid output registry')
+    versions = registry['versions']
+    if registry['current'] not in versions or not versions:
+        raise ValueError('current version does not resolve')
+    version_root = root / 'versions'
+    if version_root.is_symlink() or not version_root.is_dir() or set(p.name for p in version_root.iterdir()) != set(versions):
+        raise ValueError('output versions differ from registry')
+    for version, digest in versions.items():
+        if not re.fullmatch(r'[a-f0-9]{64}', version) or not isinstance(digest, str):
+            raise ValueError('invalid version registration')
+        directory = version_root / version
+        if directory.is_symlink() or not directory.is_dir() or set(p.name for p in directory.iterdir()) != FILES:
+            raise ValueError('version contents changed: ' + version)
+        raw = read_bytes(directory / 'manifest.json')
+        manifest = strict_json(raw)
+        if sha(raw) != digest or manifest.get('version') != version or sha(encoded(manifest.get('identity'))) != version:
+            raise ValueError('version manifest changed: ' + version)
+        if set(manifest.get('files', {})) != FILES - {'manifest.json'}:
+            raise ValueError('invalid manifest file set')
+        for name, expected in manifest['files'].items():
+            if sha(read_bytes(directory / name)) != expected:
+                raise ValueError('generated version was modified: ' + version + '/' + name)
+    if read_bytes(root / 'index.html') != stable_entry(registry['current']):
+        raise ValueError('generated stable entry was modified')
+
+
+@contextmanager
+def output_lock(root):
+    root.mkdir(parents=True, exist_ok=True)
+    if root.is_symlink() or not root.is_dir():
+        raise ValueError('out-root must be a real directory')
+    lock = root / '.task-view-lock'
+    try:
+        lock.mkdir()
+    except FileExistsError:
+        raise ValueError('output is in use; preserve lock and inspect interrupted writer before retry')
+    try:
+        yield
+    finally:
+        lock.rmdir()
+
+
+def publish(root, version, projection, rendered, identity):
+    with output_lock(root):
+        entries = set(p.name for p in root.iterdir()) - {'.task-view-lock'}
+        registry = None
+        if entries:
+            if entries != {'versions', 'current.json', 'index.html'}:
+                raise ValueError('output root contains unregistered files; prior state preserved')
+            registry = strict_json(read_bytes(root / 'current.json'))
+            check_tree(root, registry)
+        if registry and version in registry['versions']:
+            if registry['current'] != version:
+                raise ValueError('this historical version already exists; explicit rollback is outside renderer scope')
+            return False
+        versions = root / 'versions'
+        versions.mkdir(exist_ok=True)
+        directory = versions / version
+        stage = Path(tempfile.mkdtemp(prefix='.task-view-stage-', dir=root))
+        inserted = False
+        old_entry = (root / 'index.html').read_bytes() if registry else None
+        old_registry = (root / 'current.json').read_bytes() if registry else None
+        try:
+            content = {'projection.json': encoded(projection), 'index.html': rendered.encode('utf-8')}
+            for name, data in content.items():
+                (stage / name).write_bytes(data)
+            manifest = {'schema': 1, 'version': version, 'identity': identity,
+                        'files': {name: sha(data) for name, data in content.items()},
+                        'meaningVerified': False, 'acceptanceVerified': False}
+            manifest_raw = encoded(manifest)
+            (stage / 'manifest.json').write_bytes(manifest_raw)
+            # mkdir is exclusive even if another tool introduced an empty destination.
+            directory.mkdir()
+            inserted = True
+            for name in FILES:
+                os.replace(stage / name, directory / name)
+            new_registry = {'schema': 1, 'current': version,
+                            'versions': {**(registry['versions'] if registry else {}), version: sha(manifest_raw)}}
+            (stage / 'entry').write_bytes(stable_entry(version))
+            (stage / 'registry').write_bytes(encoded(new_registry))
+            os.replace(stage / 'entry', root / 'index.html')
+            os.replace(stage / 'registry', root / 'current.json')
+            return True
+        except Exception:
+            for name, previous in [('index.html', old_entry), ('current.json', old_registry)]:
+                if previous is not None:
+                    restore = stage / ('restore-' + name)
+                    restore.write_bytes(previous)
+                    os.replace(restore, root / name)
+                elif (root / name).exists():
+                    (root / name).unlink()
+            if inserted:
+                shutil.rmtree(directory)
+            if not registry and versions.exists() and not any(versions.iterdir()):
+                versions.rmdir()
+            raise
+        finally:
+            shutil.rmtree(stage)
+
+
+def generate(record_path, contract_path, out_root):
+    record_path, contract_path, out_root = Path(record_path), Path(contract_path), Path(out_root)
+    raw, contract_raw = read_bytes(record_path), read_bytes(contract_path)
+    spec = contract(strict_json(contract_raw))
+    projection = project(raw, spec, record_path.absolute())
+    renderer_sha = sha(Path(__file__).read_bytes())
+    identity = {'recordSha256': sha(raw), 'contractSha256': sha(contract_raw), 'rendererSha256': renderer_sha,
+                'recordFile': str(record_path.absolute()), 'schema': 1}
+    version = sha(encoded(identity))
+    created = publish(out_root.absolute(), version, projection, render(projection, spec), identity)
+    return {'status': 'RENDERED' if created else 'UNCHANGED', 'mode': spec['mode'], 'tasks': len(projection['tasks']),
+            'version': version, 'entry': str(out_root.absolute() / 'index.html'),
+            'page': str(out_root.absolute() / 'versions' / version / 'index.html'),
+            'meaningVerified': False, 'acceptanceVerified': False}
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--record', type=Path, required=True, help='existing authoritative process record; read-only')
+    parser.add_argument('--contract', type=Path, required=True, help='explicit projection/display JSON; never a second task list')
+    parser.add_argument('--out-root', type=Path, required=True, help='dedicated output root; history preserved, current entry updated')
+    args = parser.parse_args(argv)
+    try:
+        print(json.dumps(generate(args.record, args.contract, args.out_root), ensure_ascii=False))
+        return 0
+    except (OSError, ValueError, TypeError, KeyError, RecursionError) as exc:
+        print(json.dumps({'status': 'ERROR', 'error': str(exc), 'previousCurrentPreserved': True}, ensure_ascii=False))
+        return 2
+
+
+if __name__ == '__main__':
+    sys.exit(main())

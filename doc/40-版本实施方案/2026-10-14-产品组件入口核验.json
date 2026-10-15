@@ -1,0 +1,99 @@
+{
+  "date": "2026-10-14",
+  "scope": "产品组件次要技能、直接消费者、资源与导航登记；既有新版按已授权范围分批Git交付",
+  "source": {
+    "fingerprint": "739b3070c1ddbc39ef97449458630bd81ac0457ff8ee57203d49f36e79faafa0",
+    "skills": 19,
+    "main": 5,
+    "secondary": 14,
+    "files": 248,
+    "sharedCopies": 192,
+    "methodSources": 28,
+    "scriptSources": 9,
+    "componentBundleFiles": {
+      "507-component/SKILL.md": "96c729cd5b53e6bd5049ef85489c55b3261162fb327a4aa9efd1da7b43077c0f",
+      "507-component/agents/openai.yaml": "a467b62611cda41b54239aa904836c0667da8134218cfc4fe6163351fd42a56a",
+      "507-component/references/shared/authority-and-return.md": "e7a79a0edb91419374c1248287b7fc04e6a1b5899bd311de827d5951c0ef503f",
+      "507-component/references/shared/behavior-preserving-change.md": "375532c4e30a6f3c1a97abac70c2b79a2aa05c621129c59a618132595d5b22b1",
+      "507-component/references/shared/evidence.md": "69c4ac39a3634d09ca0976f92980b5e0dbdbfb6170a6b502e7407979bb944e22",
+      "507-component/references/shared/validation.md": "ad0cfc1fd322e88650b824f318a5f4b52976899767cd41a65366e83cebbb277c"
+    }
+  },
+  "checks": [
+    {
+      "command": "python3 next/scripts/package_skills.py sync",
+      "status": "PASS"
+    },
+    {
+      "command": "python3 next/scripts/package_skills.py check",
+      "status": "PASS"
+    },
+    {
+      "command": "python3 next/scripts/package_skills.py build",
+      "status": "PASS"
+    },
+    {
+      "command": "python3 -B -m unittest discover -s next/tests -v",
+      "status": "PASS",
+      "tests": 23,
+      "sourceUnchanged": true,
+      "sourceFileCount": 310,
+      "sourceTreeSha256": "af3b58b75c94ca63b2aab828d43129bdd2fdf133b05bf474e93f883723b7b250",
+      "logSha256": "816f86ab50ebe000865d2e399f6bf3ec9d1d9cdd743e8ebefa441022518a6229",
+      "independentlyReadBack": true
+    },
+    {
+      "command": "python3 -B -m unittest discover -s lib/components/tests -v",
+      "status": "PASS",
+      "tests": 58,
+      "logSha256": "1eb7bb9bbaa5b065db470d5ddc011e98869419d33ac21b8de97cc8b85d01b8f2"
+    },
+    {
+      "command": "python3 -B scripts/test_all.py",
+      "status": "PASS",
+      "checkGroups": 32,
+      "logSha256": "5c50d4c3078f5a0c17743b665d4b0feccdb7fdb2caf0067bb22672c7e6f64d97"
+    }
+  ],
+  "independentContractReview": {
+    "model": "gpt-6-luna",
+    "status": "NO_BLOCKING_FINDING",
+    "scope": [
+      "component contract",
+      "implement delegation",
+      "GLOSSARY distinctions",
+      "four method consumers",
+      "metadata",
+      "new bundle six file hashes",
+      "final package-test log and 310 source hashes"
+    ]
+  },
+  "publicScopeReview": {
+    "status": "NO_BLOCKING_FINDING",
+    "localHostStateExcluded": true,
+    "immutableBuildsExcluded": true,
+    "privateCredentialAndConversationScan": "No matches in reviewed new sources, references, audits and archives",
+    "historicalSyntheticTmpExample": "Retained without changing excerpt identity",
+    "upstreamLicenseAndAttribution": "Retained; not a legal compatibility opinion"
+  },
+  "installed": {
+    "fingerprint": "10f6ceee19ff0c5b9a6a9a097e71f0dc157e7a35b49307d5312ea02cc49c81cc",
+    "skills": 18,
+    "files": 242,
+    "unchanged": true,
+    "newComponentInstalled": false
+  },
+  "notVerified": [
+    "new skill host discovery and natural selection",
+    "actual product component reuse/extraction/caller migration",
+    "original page or feature acceptance",
+    "new 19-entry reference website projection"
+  ],
+  "gitAuthority": {
+    "batchedCommits": true,
+    "pushCurrentBranch": true,
+    "createPullRequest": true,
+    "mergeMain": false,
+    "installationIncluded": false
+  }
+}

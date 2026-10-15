@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "date": "2026-10-13",
+  "status": "SOURCE_VERIFIED_AND_USER_ENVIRONMENT_CONNECTED",
+  "library": "507-skills",
+  "entrypoints": 18,
+  "main": 5,
+  "secondary": 13,
+  "methodSources": 28,
+  "scriptSources": 9,
+  "packageFiles": 238,
+  "sharedCopies": 184,
+  "bundleFingerprint": "129175d7ea5241421c6490c9b1505665bcbc60489818dc435d374d3c47116b98",
+  "legacyDisposition": {
+    "exactItems": 30,
+    "retainedIndependentResponsibilities": 7,
+    "merged": 23,
+    "wholeCapabilityDropped": 0,
+    "mechanismExits": "各项记录具体退出机制与依据，不以凑数取消有效任务"
+  },
+  "checks": {
+    "packageChecks": 22,
+    "componentChecks": 58,
+    "newComponentCounterexamples": 15,
+    "sourceClosure": true,
+    "independentSemanticReview": "PASS_FOR_REVIEWED_VERSIONS + 来源尾注补充通过",
+    "independentComponentReview": "PASS_WITH_LIMITS",
+    "independentInstallationReview": "PASS_WITH_LIMITS",
+    "hostWorkspaces": 2,
+    "hostEnabledEach": 18,
+    "browser": "桌面/390px、筛选/空结果/首次展开与历史标签已实际核对，最终网页身份见私有站回执"
+  },
+  "consumerTrial": {
+    "model": "gpt-6-luna",
+    "mode": "显式菜单/固定包受控消费，本轮真实库维护任务的只读切片与相邻图卡边界",
+    "fixedBundle": "3e0fccc08867e53c6e81f2d8ee2992b2652f777523c637188c768a267ed58869",
+    "notLatestWholeBusinessTrial": true,
+    "limits": "后续源码负例修订、来源文字及安装各自核验；未称自然宿主选择、真实PNG或业务接受。"
+  },
+  "pending": [
+    "自然选择、按需读取与返回",
+    "真实目标媒体制作、渲染/播放与作者接受",
+    "正式项目集成、真实外部平台动作",
+    "按真实消费者提取旧专项工具适配",
+    "新增方法的原子语义穷尽映射"
+  ],
+  "git": {
+    "committedThisRound": false,
+    "pushedThisRound": false,
+    "releasedThisRound": false
+  },
+  "evidence": "本地参考站 evidence/legacy-coverage-20261013；原报告、负例与修订保留原版本。"
+}

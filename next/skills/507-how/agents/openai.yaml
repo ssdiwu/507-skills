@@ -1,0 +1,6 @@
+interface:
+  display_name: "介入点与跨约束变更策略"
+  short_description: "从目标和当前约束选择介入点，理清状态、数据、消费者与迁移路径"
+  default_prompt: "使用 $507-how 构造当前目标的变更策略，核对不变量、迁移与验收，并继续已授权的工作。"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,815 @@
+{
+  "schema": 1,
+  "date": "2026-10-11",
+  "decision": "本轮只交付507-skill与507-what；共有方法与确定性工具成为基础，旧30不再有默认保留身份。",
+  "naming": "用户已确认507-what；why在其中作为按需思考方法，5W2H整体不成为强制总控。",
+  "legacy": [
+    {
+      "id": "507-explain",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "clear-expression"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "understanding-tools"
+      ],
+      "boundary": "概念解释的诊断、术语债务和逐级升级不进入两包；只有当前澄清所需的最小解释方法进入共有层。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:common/507-explain/SKILL.md",
+      "sourcePath": "common/507-explain/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-explain/SKILL.md",
+      "sourceSha256": "83371d88755be5362540c7a414c180817085e4ab4f4e10f322c57d3745cba621"
+    },
+    {
+      "id": "507-explore",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "evidence",
+        "question-frontier"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "evidence-investigation"
+      ],
+      "boundary": "完整项目机制与代码影响调查延后；两包仅做目标所需的有界只读取证。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:common/507-explore/SKILL.md",
+      "sourcePath": "common/507-explore/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-explore/SKILL.md",
+      "sourceSha256": "bc7782980273c5a26d9a5fa413c385cc26850441917635a0d4b24d150be509f3"
+    },
+    {
+      "id": "507-grill",
+      "disposition": "rebuild-capability",
+      "dispositionLabel": "重建为本轮能力",
+      "methodIds": [
+        "evidence",
+        "decision-ownership",
+        "question-frontier",
+        "alternatives",
+        "authority-and-return",
+        "clear-expression"
+      ],
+      "specialist": [
+        "what.intent-discovery",
+        "what.bounded-decision-dialogue",
+        "what.branch-closeout"
+      ],
+      "futureFamilies": [],
+      "boundary": "重建为意图、问题与取舍澄清；移除固定追问仪式、代码项目目录规定、兄弟技能安装依赖和宿主图形硬编码。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "507-what",
+      "sourceDocumentId": "our:common/507-grill/SKILL.md",
+      "sourcePath": "common/507-grill/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-grill/SKILL.md",
+      "sourceSha256": "ad0519061f1ebbdb926405f641e93c6965b0ef2501c1233065c01806f88ac1b2"
+    },
+    {
+      "id": "507-handoff",
+      "disposition": "future-only",
+      "dispositionLabel": "未来任务族素材",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [
+        "continuity-support"
+      ],
+      "boundary": "完整中断/跨会话交接暂不迁入，也不作为两能力每次的默认收尾；不自动抓取聊天或发送摘要。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:common/507-handoff/SKILL.md",
+      "sourcePath": "common/507-handoff/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-handoff/SKILL.md",
+      "sourceSha256": "882a825c5314c4dacad2b3cc9300ad8596ad1eba67d65ec3f6c31e120ccdefa8"
+    },
+    {
+      "id": "507-research",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "evidence"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "evidence-investigation"
+      ],
+      "boundary": "只迁来源身份、一手依据与证据缺口；完整外部比较报告和调研过程不进入两包。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:common/507-research/SKILL.md",
+      "sourcePath": "common/507-research/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-research/SKILL.md",
+      "sourceSha256": "4499a53dec2c8dabff1537bd19113bc5efef161a2d405978b1c70a8862899b46"
+    },
+    {
+      "id": "507-skill",
+      "disposition": "rebuild-capability",
+      "dispositionLabel": "重建为本轮能力",
+      "methodIds": [
+        "evidence",
+        "decision-ownership",
+        "question-frontier",
+        "alternatives",
+        "validation",
+        "authority-and-return",
+        "clear-expression"
+      ],
+      "specialist": [
+        "skill.capability-planning",
+        "skill.contract-authoring",
+        "skill.method-evolution",
+        "skill.package-validation"
+      ],
+      "futureFamilies": [],
+      "boundary": "由任务/原子/消费者重新设计包，而非旧名称优先；专项主合同、host metadata与实际行为回放归本包。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "507-skill",
+      "sourceDocumentId": "our:common/507-skill/SKILL.md",
+      "sourcePath": "common/507-skill/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-skill/SKILL.md",
+      "sourceSha256": "18fe2c3624552fb4454d4acf7a46f56064f4d7576f01d2e1dfe9c9bec12f2406"
+    },
+    {
+      "id": "507-taste",
+      "disposition": "future-only",
+      "dispositionLabel": "未来任务族素材",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [
+        "visual-direction"
+      ],
+      "boundary": "真实视觉粗稿、正负反馈、资产组合等方法未来再按消费者设计；本轮不借名称将完整审美流程藏入共有层。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:common/507-taste/SKILL.md",
+      "sourcePath": "common/507-taste/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-taste/SKILL.md",
+      "sourceSha256": "7cc68b1864ed8a6d5c7822343ab3ccc0d0ad5d586b7c81742818d39bd4edb9f5"
+    },
+    {
+      "id": "507-visualize",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "clear-expression"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "understanding-tools"
+      ],
+      "boundary": "只迁关系语义与最小表达；独立交互工具、网页、交互QA与发布不进入两包。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:common/507-visualize/SKILL.md",
+      "sourcePath": "common/507-visualize/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-visualize/SKILL.md",
+      "sourceSha256": "09f4cb86602bd7f8371c99d1faf88d4688765a7f6ded1fa69df31a1fc581e4de"
+    },
+    {
+      "id": "507-fix",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "validation"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "software-change"
+      ],
+      "boundary": "只迁失败增量信息、复现/目标路径的验证纪律；故障修复、冲突处理、插桩不进入。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-fix/SKILL.md",
+      "sourcePath": "code/507-fix/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-fix/SKILL.md",
+      "sourceSha256": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a"
+    },
+    {
+      "id": "507-git",
+      "disposition": "out-of-round",
+      "dispositionLabel": "本轮不进入",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [],
+      "boundary": "提交、推送、标签、版本和渠道发布与本轮两项交付无直接消费者；不迁脚本、不新建Git能力。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-git/SKILL.md",
+      "sourcePath": "code/507-git/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-git/SKILL.md",
+      "sourceSha256": "fc1a598d8f4344d619cc58eb6072e09d258cdc751af16f9fdab7e766bd36f6fb"
+    },
+    {
+      "id": "507-inspect",
+      "disposition": "extract-specialist",
+      "dispositionLabel": "仅取技能设计专用片段",
+      "methodIds": [],
+      "specialist": [
+        "skill.responsibility-and-consumer-analysis"
+      ],
+      "futureFamilies": [
+        "independent-assurance"
+      ],
+      "boundary": "仅将职责、接缝和真实消费者证据用于技能结构设计；代码架构体检与独立报告不进入。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-inspect/SKILL.md",
+      "sourcePath": "code/507-inspect/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-inspect/SKILL.md",
+      "sourceSha256": "68572b2dd30670b90941613e632542a4ce21268335bfb5a405b609581b733939"
+    },
+    {
+      "id": "507-issue",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "authority-and-return"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "project-work-definition"
+      ],
+      "boundary": "只迁当前结论/取代历史的区别；远程工单、元数据及提交回读不进入。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-issue/SKILL.md",
+      "sourcePath": "code/507-issue/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-issue/SKILL.md",
+      "sourceSha256": "57211638c990fb6cc7f3683ff54029498f267f00501df75ef63e9ac65ad6b394"
+    },
+    {
+      "id": "507-prd",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "validation",
+        "authority-and-return"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "project-work-definition"
+      ],
+      "boundary": "只迁可观察行为验收和唯一现行权威；完整PRD模板、spec迁移不进入。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-prd/SKILL.md",
+      "sourcePath": "code/507-prd/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-prd/SKILL.md",
+      "sourceSha256": "77d3a0153efb35692ac52b94fecbdc2d7241d960f1172dff650bd1790417863d"
+    },
+    {
+      "id": "507-prototype",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "validation"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "software-change"
+      ],
+      "boundary": "只取可证伪问题与证据/未知边界；两包可要求或使用最小证据，但不因此具备通用原型制作合同。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-prototype/SKILL.md",
+      "sourcePath": "code/507-prototype/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-prototype/SKILL.md",
+      "sourceSha256": "e350a1445d8dc721abadd60f6d049dfa7040de579c7f37a68a3f323553ac34f2"
+    },
+    {
+      "id": "507-review",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "evidence"
+      ],
+      "specialist": [
+        "skill.independent-validation"
+      ],
+      "futureFamilies": [
+        "independent-assurance"
+      ],
+      "boundary": "迁证据分层用于本轮独立检查；独立审查仍须独立执行者，不能由共有方法假冒第三个正式能力。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-review/SKILL.md",
+      "sourcePath": "code/507-review/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-review/SKILL.md",
+      "sourceSha256": "3e986f852afc0ed073bf9001a39bb950503f49b3814814909addc839c0b0f95c"
+    },
+    {
+      "id": "507-setup",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "authority-and-return"
+      ],
+      "specialist": [
+        "skill.resource-migration"
+      ],
+      "futureFamilies": [
+        "project-work-definition"
+      ],
+      "boundary": "迁唯一权威、源到目标、消费者切换与退出方法；项目初始化、全目录迁移与个人规则修改不进入。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-setup/SKILL.md",
+      "sourcePath": "code/507-setup/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-setup/SKILL.md",
+      "sourceSha256": "2733198dc801fde5ebafd0769d9a3af0d620a2d720372aed257719b554046bec"
+    },
+    {
+      "id": "507-simplify",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "alternatives"
+      ],
+      "specialist": [
+        "skill.responsibility-and-consumer-analysis"
+      ],
+      "futureFamilies": [
+        "software-change"
+      ],
+      "boundary": "以消费者需知细节、重复规则和协调成本判断抽象；不迁行为不变代码简化执行合同。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-simplify/SKILL.md",
+      "sourcePath": "code/507-simplify/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-simplify/SKILL.md",
+      "sourceSha256": "c0d66d7fbc22e6608bb8f9875fe56b4bf72ec1ee706908eae62674f1b6548110"
+    },
+    {
+      "id": "507-test",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "validation"
+      ],
+      "specialist": [
+        "skill.behavior-replay"
+      ],
+      "futureFamilies": [
+        "software-change"
+      ],
+      "boundary": "迁公开行为、独立预期和反例用于技能回放；不迁TDD及生产代码测试维护。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-test/SKILL.md",
+      "sourcePath": "code/507-test/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-test/SKILL.md",
+      "sourceSha256": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5"
+    },
+    {
+      "id": "507-ui",
+      "disposition": "out-of-round",
+      "dispositionLabel": "本轮不进入",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [],
+      "boundary": "产品界面设计、状态反馈、平台交互和渲染验证本轮没有正式消费者，不迁到共有层。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:code/507-ui/SKILL.md",
+      "sourcePath": "code/507-ui/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-ui/SKILL.md",
+      "sourceSha256": "06c751c58610c08a5ab6ac289fc7507619b2bf6fb2b3997ce8349ebd5f72c920"
+    },
+    {
+      "id": "507-breakdown",
+      "disposition": "out-of-round",
+      "dispositionLabel": "本轮不进入",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [],
+      "boundary": "视频拉片、时间窗取证、可写VideoManifest和M3字段与本轮无关，现有脚本仅保留原件。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-breakdown/SKILL.md",
+      "sourcePath": "write/507-breakdown/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-breakdown/SKILL.md",
+      "sourceSha256": "489a1dc1e87b131ba84b93a774afe63ea98dfd7c38403fe725bdd1a04c6ac55a"
+    },
+    {
+      "id": "507-cast",
+      "disposition": "future-only",
+      "dispositionLabel": "未来任务族素材",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [
+        "knowledge-and-writing"
+      ],
+      "boundary": "主题知识页聚合、知识库去重与图谱维护是未来任务族素材，本轮不注册或复制。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-cast/SKILL.md",
+      "sourcePath": "write/507-cast/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-cast/SKILL.md",
+      "sourceSha256": "f0c680aee2c42d100029e15eedebf9adca19a6fbbb194e900c002061162a596c"
+    },
+    {
+      "id": "507-forge",
+      "disposition": "future-only",
+      "dispositionLabel": "未来任务族素材",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [
+        "knowledge-and-writing"
+      ],
+      "boundary": "文章/方案/讲稿创作、作者声音与载体审计整体延后；不因都会写文本就并入skill包。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-forge/SKILL.md",
+      "sourcePath": "write/507-forge/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-forge/SKILL.md",
+      "sourceSha256": "a1dc986ad1d93e19fa15e98d7410eaa90d65507307721844984a980f829ffe57"
+    },
+    {
+      "id": "507-fuse",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "alternatives"
+      ],
+      "specialist": [],
+      "futureFamilies": [
+        "knowledge-and-writing"
+      ],
+      "boundary": "只迁竞争解释与反证方法；选题生成、作品边界、候选入库和图谱不进入。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-fuse/SKILL.md",
+      "sourcePath": "write/507-fuse/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-fuse/SKILL.md",
+      "sourceSha256": "b5e71b3f10faa349ecc5dff88f7da997d8c78b708448b2bc3ebc96ae836a07e2"
+    },
+    {
+      "id": "507-mine",
+      "disposition": "future-only",
+      "dispositionLabel": "未来任务族素材",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [
+        "knowledge-and-writing"
+      ],
+      "boundary": "已有材料到知识碎片的提取、去重互链与入库不进入；原子梳理不等于自动采用其知识库工作流。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-mine/SKILL.md",
+      "sourcePath": "write/507-mine/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-mine/SKILL.md",
+      "sourceSha256": "e57d9af100ebd51e33fdbeb043a7beaaf3a3ee880aad118505ccc48c39c4dd46"
+    },
+    {
+      "id": "507-ppt",
+      "disposition": "out-of-round",
+      "dispositionLabel": "本轮不进入",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [],
+      "boundary": "PPTX/HTML制作、布局工具与母版验证不服务本轮两能力，不抽取媒体库。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-ppt/SKILL.md",
+      "sourcePath": "write/507-ppt/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-ppt/SKILL.md",
+      "sourceSha256": "1ffc1592b8418fa7d4c258ab49954466bbe3b146fa8b33eb3cf39b2d2282c535"
+    },
+    {
+      "id": "507-prospect",
+      "disposition": "extract-methods",
+      "dispositionLabel": "仅取共有方法片段",
+      "methodIds": [
+        "question-frontier"
+      ],
+      "specialist": [
+        "what.intent-discovery"
+      ],
+      "futureFamilies": [
+        "knowledge-and-writing"
+      ],
+      "boundary": "只迁未表达动机的中性显化与问题依赖；作者亲历采访、引语归属和完整材料交付暂不进入。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-prospect/SKILL.md",
+      "sourcePath": "write/507-prospect/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-prospect/SKILL.md",
+      "sourceSha256": "0cb3e78bc5e7be46d20e41f5be440529d52e135bcd9449a243348cdd42dc698e"
+    },
+    {
+      "id": "507-rednote",
+      "disposition": "out-of-round",
+      "dispositionLabel": "本轮不进入",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [],
+      "boundary": "图文分页、Live Photo、公众号封面与字体运行时本轮不迁。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-rednote/SKILL.md",
+      "sourcePath": "write/507-rednote/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-rednote/SKILL.md",
+      "sourceSha256": "a95065cdacfa969aad6bb2b8a2ba3f2220ff305bda9b96b490320043f2cc9ab4"
+    },
+    {
+      "id": "507-remix",
+      "disposition": "out-of-round",
+      "dispositionLabel": "本轮不进入",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [],
+      "boundary": "拉片包reader、borrow-map与原创视频创作包不服务本轮两能力，不抽成通用编排器。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-remix/SKILL.md",
+      "sourcePath": "write/507-remix/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-remix/SKILL.md",
+      "sourceSha256": "498ba81fd22093062d345314906024760938b92c518ff8c35b3446f309ca0c78"
+    },
+    {
+      "id": "507-video",
+      "disposition": "out-of-round",
+      "dispositionLabel": "本轮不进入",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [],
+      "boundary": "视频制作、音频时间线、授权素材适配和版本化母版验收本轮不迁。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-video/SKILL.md",
+      "sourcePath": "write/507-video/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-video/SKILL.md",
+      "sourceSha256": "55fcb0f9513e1091db3f2d8e6c08600682a61107c5c193b4d0e53fd54870c0bc"
+    },
+    {
+      "id": "507-voiceover",
+      "disposition": "out-of-round",
+      "dispositionLabel": "本轮不进入",
+      "methodIds": [],
+      "specialist": [],
+      "futureFamilies": [],
+      "boundary": "声音档案、SSE、节奏处理、真实媒体时长与配音包均不服务本轮；不因含hash/json工具而泛化。",
+      "identityInherited": false,
+      "identityMeaning": "没有自动身份继承；507-skill复用技术名但重建其职责。",
+      "newCapabilityId": "",
+      "sourceDocumentId": "our:write/507-voiceover/SKILL.md",
+      "sourcePath": "write/507-voiceover/SKILL.md",
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-voiceover/SKILL.md",
+      "sourceSha256": "684def2f97612c2902a3b62978fad0f65799655b52526a8fa2752568b35d2a8d"
+    }
+  ],
+  "methods": [
+    {
+      "id": "evidence",
+      "title": "事实、来源与工作基线",
+      "source": "lib/methods/evidence.md",
+      "consumers": [
+        {
+          "skillId": "507-skill",
+          "when": "规划或演进前确认原合同、消费者、来源版本；融合外部方法时保留适用条件。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "提问前核实事实，承接已确认意图；不让用户在客观事实之间选择。"
+        }
+      ],
+      "relatedAtomIds": [
+        "observable-facts",
+        "source-first",
+        "fact-inference-separation",
+        "evidence-gaps",
+        "historical-rationale"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-explore",
+        "507-research",
+        "507-grill",
+        "507-skill",
+        "507-review"
+      ]
+    },
+    {
+      "id": "decision-ownership",
+      "title": "目标、边界与决定归属",
+      "source": "lib/methods/decision-ownership.md",
+      "consumers": [
+        {
+          "skillId": "507-skill",
+          "when": "先确认要获得什么可复用能力，再判断方法、参考、脚本与入口的边界。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "把模糊诉求转为本次需要澄清的分支，并筛除不该追问的工程细节。"
+        }
+      ],
+      "relatedAtomIds": [
+        "engineering-owner",
+        "reversible-autonomy",
+        "irreversible-gate",
+        "goal-done-predicate",
+        "scope-addition-trades-capacity"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-grill",
+        "507-skill"
+      ]
+    },
+    {
+      "id": "question-frontier",
+      "title": "信息缺口与问题依赖",
+      "source": "lib/methods/question-frontier.md",
+      "consumers": [
+        {
+          "skillId": "507-skill",
+          "when": "获取新能力的真实任务、消费者、错误模式与约束；不为技能编写启动全套采访。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "区分“尚未知道想要什么”与“已有候选待取舍”，逐层消除会改变行动的缺口。"
+        }
+      ],
+      "relatedAtomIds": [
+        "question-frontier",
+        "unknowns-frontier",
+        "author-nonleading-interview",
+        "bounded-inquiry"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-grill",
+        "507-prospect",
+        "507-explore"
+      ]
+    },
+    {
+      "id": "alternatives",
+      "title": "真实候选、反证与代价",
+      "source": "lib/methods/alternatives.md",
+      "consumers": [
+        {
+          "skillId": "507-skill",
+          "when": "比较新建、合并、拆解、做方法或脚本的结构方案，以消费者成本为依据。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "把真实取舍呈现为可决定的少量候选，并保留推荐理由和影响。"
+        }
+      ],
+      "relatedAtomIds": [
+        "real-alternatives",
+        "counterevidence-writing",
+        "three-way-verdict",
+        "subtraction-before-abstraction"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-grill",
+        "507-fuse",
+        "507-simplify"
+      ]
+    },
+    {
+      "id": "validation",
+      "title": "可观察验收与相称验证",
+      "source": "lib/methods/validation.md",
+      "consumers": [
+        {
+          "skillId": "507-skill",
+          "when": "选择和执行技能用例、独立行为回放与脚本负例；不得把链接检查当作行为通过。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "明确什么观察足以支持方案或结束澄清；事实未知时选择最小取证，不暗自扩展成实现。"
+        }
+      ],
+      "relatedAtomIds": [
+        "behavior-spec",
+        "falsifiable-claim",
+        "three-way-verdict",
+        "real-target-proof",
+        "risk-scaled-validation",
+        "failure-learning-log",
+        "two-no-information-stop"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-prd",
+        "507-test",
+        "507-prototype",
+        "507-fix",
+        "507-skill"
+      ]
+    },
+    {
+      "id": "authority-and-return",
+      "title": "当前权威、冲突与返回",
+      "source": "lib/methods/authority-and-return.md",
+      "consumers": [
+        {
+          "skillId": "507-skill",
+          "when": "记录旧方法到新位置的逐项去向，切换消费者并保留恢复依据。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "累积当前共识，用户改口时说明被取代的决定与影响，结束时返回可继续工作的边界。"
+        }
+      ],
+      "relatedAtomIds": [
+        "single-current-authority",
+        "decision-lineage",
+        "context-pointers",
+        "remove-legacy-callers",
+        "safe-pause-resume"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-grill",
+        "507-setup",
+        "507-issue",
+        "507-skill"
+      ]
+    },
+    {
+      "id": "clear-expression",
+      "title": "最小清晰表达与关系类型",
+      "source": "lib/methods/clear-expression.md",
+      "consumers": [
+        {
+          "skillId": "507-skill",
+          "when": "表达能力边界、来源去向和资源依赖；避免用目录层级冒充执行层级。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "解释关键概念，展示已定/当前可问/被阻塞的关系，使候选本身仍可直接阅读。"
+        }
+      ],
+      "relatedAtomIds": [
+        "visual-smallest-model",
+        "typed-relationships",
+        "bilingual-plain-technical"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-explain",
+        "507-visualize",
+        "507-grill"
+      ]
+    }
+  ],
+  "stats": {
+    "capabilities": 2,
+    "sharedMethods": 7,
+    "sharedCopies": 14,
+    "bundleFiles": 22,
+    "legacySources": 30,
+    "dispositions": {
+      "extract-methods": 14,
+      "rebuild-capability": 2,
+      "future-only": 5,
+      "out-of-round": 8,
+      "extract-specialist": 1
+    }
+  },
+  "status": "implemented_verified_within_scope",
+  "limits": [
+    "本轮新体系只有2个正式能力，没有把其余28项藏成内部Skill。",
+    "旧30原件保全用于来源与回退；不代表其身份进入新体系。",
+    "相关原子链接用于比较与追溯，不代表当前文件已采用所有上游机制。",
+    "没有安装、启用、提交、推送或发布；没有声称令牌、速度或自主性收益。"
+  ]
+}

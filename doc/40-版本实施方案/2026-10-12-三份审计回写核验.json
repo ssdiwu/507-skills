@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-12",
+  "status": "DOC_AND_REFERENCE_SITE_PASS_SCOPED",
+  "scope": "三份审计的来源归属、共识／事实修正／建议，以及两轨验证计划；未改技能／组件实现或包数量。",
+  "maintainedSource": {
+    "path": "doc/40-版本实施方案/2026-10-12-审计共识与验证资料.json",
+    "sha256": "99f3cfee7f7d56a6fdcec2fe44f422228625a9099eee77cfc01cdf82e599fb13"
+  },
+  "reports": [
+    {
+      "id": "D",
+      "title": "三层架构与运行可靠性独立审计",
+      "sha256": "f9db864c6ff3c6e6d4ff7b05522462f716304485f6f049a13b201b39e744c19c"
+    },
+    {
+      "id": "K",
+      "title": "重构与运行可靠性 · 独立审计报告",
+      "sha256": "a479f31971bd8f713ebe8a5de80d369c2e9cb0cd45ddabdccf09cb6de365b1be"
+    },
+    {
+      "id": "P",
+      "title": "507-skills 重构审计报告（2026-10-12，只读）",
+      "sha256": "18d23da99d9080daa6f73e6039c11fcfdf5b333a55eda9d26c9d05e85b63b2c0"
+    }
+  ],
+  "issueCounts": {
+    "all": 12,
+    "accepted": 3,
+    "corrected": 5,
+    "pending": 4
+  },
+  "independentReview": {
+    "skill": "507-review",
+    "initialFindings": [
+      {
+        "priority": "P2",
+        "path": "PROGRESS.md",
+        "issue": "旧句将全部方法包化列成待办",
+        "disposition": "已改为按真实路径缺口决定是否包化"
+      }
+    ],
+    "unresolvedMaterialFindings": 0,
+    "targetedRecheck": "PASS",
+    "scope": "文档／数据／渲染内容与生成一致性，不替代浏览器或模型运行"
+  },
+  "verification": {
+    "publicLocalLinks": 82,
+    "publicPrivatePaths": 0,
+    "implementationFilesUnchanged": 485,
+    "reportOriginalsAndCopiesUnchanged": true,
+    "packageCheck": {
+      "status": "PASS",
+      "skills": 2,
+      "files": 22,
+      "sharedCopies": 14
+    },
+    "browser": {
+      "checks": 24,
+      "htmlSha256": "1bfa8293db679d6e88f8b278a374b524e1fe0db9d1e25948b8163a60e1a406b4",
+      "cssWidths": [
+        1413,
+        768,
+        390
+      ],
+      "scope": "分类筛选／重载与后退／键盘／报告副本／实际文字／两轨／滚动区域／旧图与UI及修订输出抽查；桌面和窄屏截图已查看"
+    }
+  },
+  "uncovered": [
+    "下一轮消费者、评分、政策来源机制及包化取舍尚未实现或新测",
+    "两包宿主自然采用、独立隔离执行与缺依赖处理",
+    "新未见任务的首次运行效果／统计可靠性／成本",
+    "真实平台写入、实际媒介、当前ERP验收和正式集成"
+  ],
+  "actions": {
+    "skillOrComponentImplementationChanged": false,
+    "candidateMigrationApplied": false,
+    "hostInstalledOrReplaced": false,
+    "newModelTasksRun": false,
+    "businessWrites": false,
+    "gitCommitPushOrPublish": false
+  }
+}

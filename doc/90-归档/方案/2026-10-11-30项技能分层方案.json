@@ -1,0 +1,3080 @@
+{
+  "date": "2026-10-11",
+  "baseline": "5f3b0f8bd0a67484f9cfdc63a60fa93413a20068",
+  "status": "superseded",
+  "rolePolicy": "19个常用任务入口候选、11个常用被委托能力（含handoff生命周期支持）；这是导航建议，所有技能直接请求时仍可成为入口。",
+  "actionPolicy": "30个技能身份先保留；合并的是稳定方法与原则，现有条件模式保留。拆注册入口须独立合同与回放证明，本轮未获这种证据。",
+  "stats": {
+    "skills": 30,
+    "mainLines": 3197,
+    "entryCandidates": 19,
+    "capabilityCandidates": 11,
+    "skillMergesRecommended": 0,
+    "registeredSplitsRecommended": 0,
+    "sharedResourceGroups": 11
+  },
+  "mergeDecisions": [
+    {
+      "id": "M01",
+      "skills": [
+        "507-explore",
+        "507-research"
+      ],
+      "shared": "共用证据身份与基线方法",
+      "decision": "项目内部未知与外部原文核验的证据面和返回不同，先不合入口。"
+    },
+    {
+      "id": "M02",
+      "skills": [
+        "507-explain",
+        "507-visualize"
+      ],
+      "shared": "共用基础呈现方法",
+      "decision": "解释落地与可操作工具有不同目标与验收；简单任务保留最短路径。"
+    },
+    {
+      "id": "M03",
+      "skills": [
+        "507-grill",
+        "507-prospect"
+      ],
+      "shared": "共用问题依赖调度可继续验证",
+      "decision": "决策可以推荐、作者采访不能诱导，许可和产物不等价。"
+    },
+    {
+      "id": "M04",
+      "skills": [
+        "507-review",
+        "507-inspect",
+        "507-simplify"
+      ],
+      "shared": "review／inspect共用取证源已实现；simplify保持独立的第二层行为验证与实施，是否采用共有方法仍属候选。",
+      "decision": "交付缺陷判断、结构候选、行为不变实施分别保留，只读与写入不合。"
+    },
+    {
+      "id": "M05",
+      "skills": [
+        "507-fix",
+        "507-test"
+      ],
+      "shared": "共用可信反馈方法",
+      "decision": "根因修复与测试资产/测试先行有不同权限；必要回归留在修复闭环。"
+    },
+    {
+      "id": "M06",
+      "skills": [
+        "507-setup",
+        "507-prd",
+        "507-issue"
+      ],
+      "shared": "共用权威与迁移方法",
+      "decision": "基础规则、具体需求和远端追踪对象不同，不重建总文档技能。"
+    },
+    {
+      "id": "M07",
+      "skills": [
+        "507-mine",
+        "507-fuse",
+        "507-cast",
+        "507-forge"
+      ],
+      "shared": "材料身份/负载可共源",
+      "decision": "长期单元、作品候选、知识导航和成品生命周期不同，不把全部成文强串主链。"
+    },
+    {
+      "id": "M08",
+      "skills": [
+        "507-ppt",
+        "507-rednote"
+      ],
+      "shared": "三轴概念可共源",
+      "decision": "页级可编辑幻灯片与连续图文分页的产物与渲染不可合并。"
+    },
+    {
+      "id": "M09",
+      "skills": [
+        "507-breakdown",
+        "507-remix",
+        "507-voiceover",
+        "507-video"
+      ],
+      "shared": "来源接收与时间方法可共源",
+      "decision": "取证、原创蓝图、真实声音与视频母版的权限和完成不同；成熟素材可直接video。"
+    }
+  ],
+  "splitDecisions": [
+    {
+      "skill": "507-forge",
+      "decision": "书面／方案／现场的模式继续保留，不恢复三个入口；直接轻润色保持独立模式边界。"
+    },
+    {
+      "skill": "507-taste",
+      "decision": "先拆清方向与全量资产制作的工作范围，再回放是否需要独立入口。"
+    },
+    {
+      "skill": "507-test",
+      "decision": "维护与测试先行继续条件分流，不机械重拆TDD。"
+    },
+    {
+      "skill": "507-git",
+      "decision": "提交与交付模式继续分清授权，不重拆commit/release。"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "N01",
+      "title": "多任务协调与连续接续",
+      "candidate": "按真实任务图与外部执行者能力定义可复用工作合同或运行协议；先回放片段完成后仍有剩余目标的场景。",
+      "basis": "F01实际接续断开；现行出口已有规则，不足以证明必须新增总控。"
+    },
+    {
+      "id": "N02",
+      "title": "PR正文与远端生命周期",
+      "candidate": "正文方法、创建/检查/看护/合并各有范围，优先方法吸收；不把Git授权扩成全部PR动作。",
+      "basis": "F04来源表达弱化；初期原子比较已有细化。"
+    },
+    {
+      "id": "N03",
+      "title": "会话复盘与工具化候选",
+      "candidate": "复盘先只读找实际摩擦，授权维护再进入skill/setup/工程动作；工具化先核已有能力并实证。",
+      "basis": "当前任务与真实会话参考已可成立，但自动改善收益未测。"
+    }
+  ],
+  "items": [
+    {
+      "id": "507-explain",
+      "group": "common",
+      "purpose": "解释用户不理解的概念、术语或相近概念差异，形成可复述的理解，默认在对话中完成。定位项目代码机制使用 507-explore，系统外部调研使用 507-research。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "核心概念、关系或少量差异与用户背景；已知背景从上下文承接。\n项目特有词从实际术语权威读取；一般概念不漫扫项目。",
+      "outputs": "最小正确心智模型、具体场景/边界，最多一种必要示意。\n感知型障碍时可生成系统临时视觉件，附一次性与清理状态；默认不落盘。",
+      "permissions": "read：只为解释查必要权威定义与背景。\nwrite：默认无文件；只有明确要求或稳定项目术语才按项目规则写术语表。感知型临时产物只能系统临时位置。\nexternal：不替 explore/research/grill 执行；留下分发成品交相应视觉制作职责。",
+      "lifecycle": "start：识别真正卡住的核心概念；能确定不反问。\nstop：建立可复述最小模型，边界明确，新增术语解释/黑盒/移除各有归宿。\nreturn：理解成立返回原任务；只需解释则结束。\nfailure：依次修构造、表达、载体，不反复同义重述或扩系统课程。",
+      "minimum": [
+        {
+          "path": "common/507-explain/SKILL.md",
+          "lines": [
+            3,
+            34
+          ],
+          "claim": "解释目标、范围、术语归宿、默认不落盘。"
+        },
+        {
+          "path": "common/507-explain/SKILL.md",
+          "lines": [
+            51,
+            69
+          ],
+          "claim": "先构造再表达，感知型才临时视觉，分发成品另交。"
+        },
+        {
+          "path": "common/507-explain/SKILL.md",
+          "lines": [
+            109,
+            114
+          ],
+          "claim": "完成、产物、返回和回退。"
+        }
+      ],
+      "resources": "kind：方法/原则\nproposal：渲染检查与图形选择可与 grill、visualize 共源；定义落地/术语债务与升级顺序是 explain 专有核心，不能一并抽掉。宿主支持种类作为环境事实，不把固定五类变成所有宿主能力保证。\npath：common/507-explain/SKILL.md\nlines：36\n61\nkind：模板\nproposal：可留包内按需 reference，但短任务两三段无需展开；仅为减行数拆文件没有收益。\npath：common/507-explain/SKILL.md\nlines：71\n87\nkind：脚本\nproposal：本包无脚本；不建议通用解释脚本或理解评分器。临时视觉件由实际环境完成。",
+      "actionExplanation": "retain：保留可直接解释的独立入口。\nmerge：不与 visualize 合并：explain 以最小心智模型和反馈为完成，visualize 以理解工具的语义+操作路径为完成；文件与成本边界也不同。\nsplit：不拆术语债务/定义/视觉升级小 Skill；仅可把长例子抽包内参考。\nrefactor：与 grill/visualize 抽呈现基础方法，主文保留定义可指认、术语归宿、先修构造、临时视觉权限及完成边界。\nstatus：建议，未实施；静态审计不证明真实用户理解。",
+      "noMerge": "不与 visualize 合并：explain 以最小心智模型和反馈为完成，visualize 以理解工具的语义+操作路径为完成；文件与成本边界也不同。",
+      "noSplit": "不拆术语债务/定义/视觉升级小 Skill；仅可把长例子抽包内参考。",
+      "neighbors": [
+        {
+          "skill": "507-visualize",
+          "boundary": "一个概念讲懂 vs 将已成立材料制作成可探索/比较或独立工具。explain 已有图，不因有图自动转 visualize。"
+        },
+        {
+          "skill": "507-explore",
+          "boundary": "项目机制证据未知另调查。"
+        },
+        {
+          "skill": "507-research",
+          "boundary": "外部证据未知另取证。"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "用户价值取舍另对齐，理解不等于决定。"
+        }
+      ],
+      "routingRisks": "这里未明确写 visualize，可能路由到媒体制作；需要按目标区分学习工具 visualize 与出版/媒介成品。\n作者自查能说明定义与术语完整，不能在没有反馈时宣称用户已理解。",
+      "path": "common/507-explain/SKILL.md",
+      "sha256": "83371d88755be5362540c7a414c180817085e4ab4f4e10f322c57d3745cba621",
+      "lineCount": 114,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-explain/SKILL.md",
+      "resourceIds": [
+        "R10"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-explore",
+      "group": "common",
+      "purpose": "只读探索项目问题、代码机制或改动影响，在现有证据不足以确定下一步时使用。交付已知、未知与可验证候选；通用概念解释和外部资料调研分别使用 explain、research。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "待弄清的项目现象、想法或行为问题；当前版本与范围。\n项目实际 README／规范／术语／规格／决定及实现入口；已有确认和有效验证。\n委托时补足目标、只读授权、预期证据、返回位置。",
+      "outputs": "会话中最新完整探索快照：目标、已知、未知、按需的证据化候选、当前可推进边界、证据范围。\n一句话结论与唯一推荐的下一动作；不创建持久地图。",
+      "permissions": "read：项目文件、现有配置/测试与运行输出、相称只读验证。\nwrite：禁止修改代码、配置、项目文档和持久地图；不提交。\nexternal：外部系统调查缺口交 research；正常动作必须退出 explore 再按原授权推进。",
+      "lifecycle": "start：项目证据不足以确定下一步；从已有共识开始，不重问已确认决定。\nstop：问题已可回答，或已确定且说明前提已满足的专门动作。\nreturn：原调用任务或对应 evidence/decision/implementation 动作；本技能完成不结束整体目标。\nfailure：局部观察保持已读范围与置信限制，未知不得补成全局计划。",
+      "minimum": [
+        {
+          "path": "common/507-explore/SKILL.md",
+          "lines": [
+            3,
+            25
+          ],
+          "claim": "项目未知与相邻职责区分；明确只读调查入口。"
+        },
+        {
+          "path": "common/507-explore/SKILL.md",
+          "lines": [
+            29,
+            36
+          ],
+          "claim": "先读共识、事实/决定分开、临时快照、不实施、找到下一步停止。"
+        },
+        {
+          "path": "common/507-explore/SKILL.md",
+          "lines": [
+            40,
+            48
+          ],
+          "claim": "定位输入并按条件采用代码影响方法；保持只读。"
+        },
+        {
+          "path": "common/507-explore/SKILL.md",
+          "lines": [
+            99,
+            104
+          ],
+          "claim": "完成、产物、条件出口和回退。"
+        }
+      ],
+      "resources": "kind：原则/方法\nproposal：可与 research、grill、skill 的同义规则归一为按需基线与证据身份方法；主文保留只读及项目范围。\npath：common/507-explore/SKILL.md\nlines：29\n34\nkind：方法\nproposal：是非 Skill 方法，不增影响调查入口；可作为已有 review/inspect 取证的相关消费者切片，只有共同语义成立部分共源。explore 包保留完整随包副本。\npath：common/507-explore/references/code-impact.md\nlines：3\n38\nkind：模板\nproposal：保留技能内；仅一项明确消费者，不能因其他技能也有摘要就抽通用状态库。\npath：common/507-explore/SKILL.md\nlines：50\n79\nkind：脚本\nproposal：本包没有脚本；没有可机械化的业务操作收益证据，不建议给探索强制增加脚本。",
+      "actionExplanation": "retain：保留独立入口与直达。\nmerge：不与 research、grill 或 inspect 合并：项目事实调查、外部取证、用户决策与全库架构审查的输入、结论门槛和停止位置不同。\nsplit：不拆成小 Skill；代码影响已经是有条件 reference。\nrefactor：可抽共同基线/证据方法；快照与只读合同保留主文。代码影响资源先核对消费者，再考虑共源和随包生成。\nstatus：建议，未实施；保留现行可用基线。",
+      "noMerge": "不与 research、grill 或 inspect 合并：项目事实调查、外部取证、用户决策与全库架构审查的输入、结论门槛和停止位置不同。",
+      "noSplit": "不拆成小 Skill；代码影响已经是有条件 reference。",
+      "neighbors": [
+        {
+          "skill": "507-research",
+          "boundary": "项目内已知未知 vs 外部对象事实与借鉴；单个外部事实可查不需升级为系统调研。"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "事实充分后只有用户拥有的产品/权责/成本/风险取舍才转交。"
+        },
+        {
+          "skill": "507-inspect",
+          "boundary": "一个当前问题的调查 vs 系统架构摩擦调查。"
+        },
+        {
+          "skill": "507-explain",
+          "boundary": "实际项目机制证据未知 vs 一个概念的理解障碍。"
+        },
+        {
+          "skill": "507-setup",
+          "boundary": "只读识别旧导航或规范缺口，不能顺手搬迁；分别交 setup 导航或项目依据模式。"
+        },
+        {
+          "skill": "507-prototype",
+          "boundary": "须可观察低成本假设，explore 不承诺自己生成原型。"
+        }
+      ],
+      "routingRisks": "若把唯一推荐误读为固定下一技能，会绕过条件或提前结束原任务；主次角色不能把它扩成总控。\n共用快照模板若引入文件状态库，会破坏临时只读权限。",
+      "path": "common/507-explore/SKILL.md",
+      "sha256": "bc7782980273c5a26d9a5fa413c385cc26850441917635a0d4b24d150be509f3",
+      "lineCount": 104,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-explore/SKILL.md",
+      "resourceIds": [
+        "R03",
+        "R04"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-grill",
+      "group": "common",
+      "purpose": "实施或成文前，需要对齐用户意图、范围、权责、体验、成本或风险取舍时使用；也用于用户明确要求把方案问透。先查清可核实事实，已有充分确认时不额外启动对齐。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "package",
+        "share"
+      ],
+      "inputs": "请求和既有共识限定的顶层分支；已核实的事实与工程判断。\n用户真正拥有的意图、权责、体验、不可逆成本和风险缺口。\n当前授权是否包含耐久写入、实施或外部工单动作。",
+      "outputs": "会话累积共识、复杂时随frontier重绘的临时决策控制台。\n必要耐久结论只进入它实际约束的唯一当前权威，且须有对应写入授权；否则交可接力结论。\nAgent工程设计/验证方案，不把它们变问卷。",
+      "permissions": "read：项目相关规范/词义/规格/issue/ADR及实现、已有检查/最小只读或可丢弃验证。\nwrite：仅既有授权内回写对应术语/规格/设计/doc；选定归宿不产生写入授权，不建通用decisions或第二状态库。\nexternal：不因对齐而创建远程工单、提交或发布；代码实现与方案起草退出后交对应职责。",
+      "lifecycle": "start：本次范围内仍有用户决策或明确请求问透；事实/所有权闸门先行。\nstop：全部顶层分支完成，冲突处理，工程细节自行收口；不依赖用户喊停。\nreturn：只对齐时结束；已授权原任务继续，未授权实施不动手。\nfailure：事实不足暂冻结依赖问题，其余独立frontier可继续；取证回到explore/research/prototype后复用当前树。",
+      "minimum": [
+        {
+          "path": "common/507-grill/SKILL.md",
+          "lines": [
+            3,
+            24
+          ],
+          "claim": "用户决策动作、已有确认不重启、非目标。"
+        },
+        {
+          "path": "common/507-grill/SKILL.md",
+          "lines": [
+            30,
+            40
+          ],
+          "claim": "frontier、真实候选、所有权、纠错、有界分支、冲突和唯一权威。"
+        },
+        {
+          "path": "common/507-grill/SKILL.md",
+          "lines": [
+            142,
+            148
+          ],
+          "claim": "实施授权与工程设计不要求先启动grill。"
+        },
+        {
+          "path": "common/507-grill/SKILL.md",
+          "lines": [
+            193,
+            232
+          ],
+          "claim": "归宿不授权、惰性持久化、项目组织区别。"
+        },
+        {
+          "path": "common/507-grill/SKILL.md",
+          "lines": [
+            247,
+            252
+          ],
+          "claim": "完成、产物、出口与事实不足回退。"
+        }
+      ],
+      "resources": "kind：方法\nproposal：最成熟的非 Skill 资源候选之一。code README已经明确普通实施可直接采用，无须grill；共源后grill及任何实际消费者保留随包副本。保持引用不扩大权限的首段。\npath：common/507-grill/references/code-change-design.md\nlines：3\n34\nkind：方法/模板\nproposal：按代码项目条件抽为归宿reference，核对setup/project-standard与prd实际消费者；唯一权威、写入需授权、无耐久消费者不建载体仍留主文。\npath：common/507-grill/SKILL.md\nlines：173\n232\nkind：方法/模板\nproposal：共同渲染/可读基础可归公共方法，frontier状态、阻塞细节不提前展示、候选工具呈现仍是grill专用。\npath：common/507-grill/SKILL.md\nlines：61\n118\nkind：方法/原则\nproposal：不把全部frontier规则抽成普遍总导航；其他入口只能按真实取舍消费它。\npath：common/507-grill/SKILL.md\nlines：30\n40\nkind：脚本\nproposal：本包没有脚本；不能把取舍和候选质量机械化为统一执行器。",
+      "actionExplanation": "retain：保留决策对齐入口和独立委托角色。\nmerge：不与taste/prospect/prd/issue合并：主动候选取舍、非诱导采访、需求合同和远端生命周期不同，授权与终点亦不同。\nsplit：不新增工程设计Skill；代码设计已有reference。将控制台样例、代码项目归宿与附录模板拆按条件资料即可，不因主文287行单独判缺陷。\nrefactor：主文围绕用户所有权、范围/frontier、真实候选、冲突、授权、完成保持最低合同；专门方法和代码项目归宿可按条件引用。142行和245行的未授权实施边界应表述为结束对齐/等待新授权，避免被误用成原任务已经授权仍要额外批准。\nstatus：建议；静态证据说明当前合同如何限制，不证明对齐回合已节省。",
+      "noMerge": "不与taste/prospect/prd/issue合并：主动候选取舍、非诱导采访、需求合同和远端生命周期不同，授权与终点亦不同。",
+      "noSplit": "不新增工程设计Skill；代码设计已有reference。将控制台样例、代码项目归宿与附录模板拆按条件资料即可，不因主文287行单独判缺陷。",
+      "neighbors": [
+        {
+          "skill": "507-prospect",
+          "boundary": "有真实备选策略/推荐的决策对齐 vs 不给候选以免锚定作者材料的开放采访。"
+        },
+        {
+          "skill": "507-taste",
+          "boundary": "事实充分的产品/成本风险取舍 vs 基于真实粗稿的主观审美辨认。"
+        },
+        {
+          "skill": "507-prd",
+          "boundary": "确认结论 vs 正式产品行为/验收成文。"
+        },
+        {
+          "skill": "507-issue",
+          "boundary": "确认结论 vs 远端调查/执行状态与追踪；归宿不产生远端权限。"
+        },
+        {
+          "skill": "507-setup",
+          "boundary": "局部授权回写结论 vs 全项目规范迁移。"
+        },
+        {
+          "skill": "507-forge",
+          "boundary": "内容/方案用户取舍 vs 授权范围成文和修订。"
+        }
+      ],
+      "routingRisks": "如果上层总入口强制grill，所有明确任务都会产生额外访谈或工程问题外包，与现行合同冲突。\n抽reference时若把权限只移出主文，执行者可能因没有读取该分支而越权或建第二库。\n不得为统一模板凑数量；原合同已经有反凑数保护，重构不能误删。",
+      "path": "common/507-grill/SKILL.md",
+      "sha256": "ad0519061f1ebbdb926405f641e93c6965b0ef2501c1233065c01806f88ac1b2",
+      "lineCount": 287,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-grill/SKILL.md",
+      "resourceIds": [
+        "R01",
+        "R03",
+        "R04"
+      ],
+      "painIds": [
+        "S04"
+      ],
+      "recommendedFirstStep": "优先处理项目标准的条件跨包引用闭包，保留原权限与定稿门槛。"
+    },
+    {
+      "id": "507-handoff",
+      "group": "common",
+      "purpose": "在中断、换会话、压缩上下文或转交工作时，生成可供接手的脱敏交接摘要。只在对话中输出，不写文件，也不作为普通任务的默认结束步骤。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain"
+      ],
+      "inputs": "当前目标与下一重点、正式产物和确认决定。\n当前Git状态/未提交变化、已运行与未覆盖验证、有效尝试与排除项。\n未完成、阻塞、风险及下一步；PROGRESS只作可能过期的线索并对证据。",
+      "outputs": "当前对话里的脱敏摘要，引用文件路径/URL/commit，不复制正式资料全文。\n状态不确定明确标记并附复验方式。",
+      "permissions": "read：任务需要的当前快照、相关正式证据与工作状态。\nwrite：绝不写仓库、临时目录、个人配置、进度文件或历史文件。\nexternal：不自动发消息、更新记忆、转交宿主thread；摘要不授权下一业务动作。",
+      "lifecycle": "start：真实中断/转交/压缩需要，正常完成不进入。\nstop：接手者能识别目标、正式源、当前位置、验证、有效尝试、未完成与风险；本会话到此结束。\nreturn：下一会话按目标选相应动作，不重跑全部导航。\nfailure：无法核实明确不确定和复验命令，不用猜测填满。",
+      "minimum": [
+        {
+          "path": "common/507-handoff/SKILL.md",
+          "lines": [
+            3,
+            15
+          ],
+          "claim": "实际中断触发、仅对话不落盘、正式源引用和脱敏。"
+        },
+        {
+          "path": "common/507-handoff/SKILL.md",
+          "lines": [
+            19,
+            33
+          ],
+          "claim": "必要状态与PROGRESS不冒充验收。"
+        },
+        {
+          "path": "common/507-handoff/SKILL.md",
+          "lines": [
+            75,
+            90
+          ],
+          "claim": "空章节可裁剪，不默认结束，完整接续状态和停止。"
+        }
+      ],
+      "resources": "kind：模板\nproposal：留在单包，短且只有明确handoff消费者；不与explore/grill当前快照统一成文件状态库。\npath：common/507-handoff/SKILL.md\nlines：35\n75\nkind：原则\nproposal：可采用共有证据身份/结果边界，主文仍保留不写文件、不泄密和仅中断使用。\npath：common/507-handoff/SKILL.md\nlines：31\n33\nkind：脚本\nproposal：无包内脚本；不建议自动抓取全聊天/全Git或自动传递到外部会话的通用执行器，会扩大读取和外部权限。",
+      "actionExplanation": "retain：保留独立直达；在多数交付场景是按中断触发的被委托能力。\nmerge：不与explore/grill或项目PROGRESS维护合并：承载的是运行状态而非项目事实/用户决定，输出只在会话且本会话结束。\nsplit：不拆更小Skill或通用持久摘要系统。模板保留主文已足够，按引用抽为包内资料只在明确收益出现时做。\nrefactor：可统一证据状态词和引用方式；无需为三层外观改变当前简单完整合同。\nstatus：建议保留；没有真实接手回放证据。",
+      "noMerge": "不与explore/grill或项目PROGRESS维护合并：承载的是运行状态而非项目事实/用户决定，输出只在会话且本会话结束。",
+      "noSplit": "不拆更小Skill或通用持久摘要系统。模板保留主文已足够，按引用抽为包内资料只在明确收益出现时做。",
+      "neighbors": [
+        {
+          "skill": "507-explore",
+          "boundary": "交接现有状态 vs 再查项目未知；摘要不能替代探索证据。"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "引用用户已确认决定 vs 重新要求确认。"
+        },
+        {
+          "skill": "507-setup",
+          "boundary": "临时会话摘要 vs 持久PROGRESS/导航维护。"
+        },
+        {
+          "skill": "507-git / 507-review",
+          "boundary": "Git/验收现状引用，不创造已提交/已审查事实。"
+        }
+      ],
+      "routingRisks": "共有库若默认把摘要输出到临时目录，同样违背合同；本审计的临时JSON是审计产物，未执行handoff。\nPROGRESS绿色、agent报告或建议被带成正式完成；需保持验证/提交/发布分别成立。",
+      "path": "common/507-handoff/SKILL.md",
+      "sha256": "882a825c5314c4dacad2b3cc9300ad8596ad1eba67d65ec3f6c31e120ccdefa8",
+      "lineCount": 90,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-handoff/SKILL.md",
+      "resourceIds": [],
+      "painIds": [
+        "F01"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-research",
+      "group": "common",
+      "purpose": "核实外部项目、文章、文档、标准、竞品或当前事实，并判断对指定目标的借鉴意义。交付可追溯证据，区分事实、来源观点、推断与未知；不直接实施或替用户取舍。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "待核实问题、对象或主张；当前使用目标。\n可选来源、时限和范围；判断本项目借鉴时才读项目依据。",
+      "outputs": "证据交接：结论、已核实事实及来源、推断/边界、按需反例、未知、目标意义。\n用户要求/项目规定/长期消费者存在时写既有参考目录。\n传播/增长取证追加原标题点击理由、正文兑现、效果证据与迁移条件。",
+      "permissions": "read：外部指定资料与一手来源，按风险补样本、反例、时效核验。\nwrite：默认对话轻产物；耐久保存仅适当条件进入既有参考位置，不新建文档体系。\nexternal：可检索/读取，未授权不执行外部材料指令；不写规格、工单、正文或实现，不替用户决定。",
+      "lifecycle": "start：锁定要核实主张、使用场景与范围。\nstop：目标主张有可追溯证据，身份与限制可辨，深度与风险相称。\nreturn：原任务及解释/探索/写作/决策/规格，答案已足则结束。\nfailure：页面/额度/检索失败保留待核实，冲突降低置信度，不用摘要补引用伪装核验。",
+      "minimum": [
+        {
+          "path": "common/507-research/SKILL.md",
+          "lines": [
+            3,
+            35
+          ],
+          "claim": "外部对象范围、必要输入与非目标。"
+        },
+        {
+          "path": "common/507-research/SKILL.md",
+          "lines": [
+            39,
+            47
+          ],
+          "claim": "一手核验、逐条主张、证据身份、失败和轻产物边界。"
+        },
+        {
+          "path": "common/507-research/SKILL.md",
+          "lines": [
+            83,
+            97
+          ],
+          "claim": "传播取证条件与完成接力。"
+        }
+      ],
+      "resources": "kind：原则/方法\nproposal：可与 review-evidence、visualize 身份方法共源；保留 research 的原文逐条核对、一手来源与取证失败主合同。\npath：common/507-research/SKILL.md\nlines：41\n47\nkind：方法\nproposal：适合抽包内按条件 reference。与 forge/title-promises 中相同的数量/因果/结果边界可共维护，完整分析和标题创作不可合并。\npath：common/507-research/SKILL.md\nlines：83\n90\nkind：模板\nproposal：保留技能专用裁剪；不是普遍强制调研文章。\npath：common/507-research/SKILL.md\nlines：57\n81\nkind：脚本\nproposal：本包无脚本；检索能力由宿主提供，不构造统一检索执行器。确定性来源指纹/覆盖清单可候选，但须有真实重复消费证据。",
+      "actionExplanation": "retain：保留外部证据主要入口及委托能力。\nmerge：不与 explore、mine 或 forge 合并：核验外部主张、项目边界、材料重组和作者表达承担不同责任。\nsplit：传播研究抽条件 reference，不新增增长研究 Skill；一般查证不加载它。\nrefactor：共用证据身份/原文核验原则，收窄分支材料默认读取；输出仍明确什么已核验、未知与下游可消费限制。\nstatus：建议，未验证真实检索效果或成本。",
+      "noMerge": "不与 explore、mine 或 forge 合并：核验外部主张、项目边界、材料重组和作者表达承担不同责任。",
+      "noSplit": "传播研究抽条件 reference，不新增增长研究 Skill；一般查证不加载它。",
+      "neighbors": [
+        {
+          "skill": "507-explore",
+          "boundary": "外部事实 vs 项目内部事实与frontier。"
+        },
+        {
+          "skill": "507-explain",
+          "boundary": "来源确认 vs 把概念讲懂；研究报告不等于理解成立。"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "提供事实与适用条件，不决定用户成本/风险。"
+        },
+        {
+          "skill": "507-mine",
+          "boundary": "证据交接 vs 去重并形成可复用材料单元。"
+        },
+        {
+          "skill": "507-forge",
+          "boundary": "传播机制取证 vs 根据作者真实材料写标题与正文。"
+        }
+      ],
+      "routingRisks": "抽共有资源不能让research顺手拟标题，或把原帖标题/成绩数字当作者可用事实。\n摘要有链接但未读原文、或模板诱导不必要耐久文档；需真实会话关联才能称已发生。",
+      "path": "common/507-research/SKILL.md",
+      "sha256": "4499a53dec2c8dabff1537bd19113bc5efef161a2d405978b1c70a8862899b46",
+      "lineCount": 105,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-research/SKILL.md",
+      "resourceIds": [
+        "R03"
+      ],
+      "painIds": [
+        "F03",
+        "F04",
+        "H01"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-skill",
+      "group": "common",
+      "purpose": "创建、改写或审视 agent skill，或把已有经验、外部方法融入现有技能时使用。产出职责清楚、按需读取且经过相称验证的技能；普通任务执行、项目规范维护和插件接入不使用本技能。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "目标能力、目标技能/仓库、指定版本、用户修订稿、当前交付范围及已有消费者。\n来源与读取边界；只读/修改/宿主/发布授权分别清楚。",
+      "outputs": "可独立读取技能包/精确改动，直接相关导航与验证；只读时交证据、建议、不建议修改项。\n按目标宿主维护界面元数据，分别报告文件、发现、实际显示。\n来源/迁移证据按项目既有组织保留，不强制新体系。",
+      "permissions": "read：目标技能主文完整读取，再按当前分支读references/脚本/宿主配置和来源。\nwrite：只读审视不修改；授权修改包含技能、直接消费者与导航，常规结构/措辞自行决定。\nexternal：不接管产品/插件/安装配置/发布；research/grill可等价替代，非必经依赖；提交发布启用按各自授权。",
+      "lifecycle": "start：技能维护/方法融合/明确技能审视；先比较已有职责与信息归属。\nstop：范围交付且触发、输入、权限、输出、停止一致，关联入口有效，验证与未覆盖可辨。\nreturn：查证/用户取舍/脚本问题处理后返回；交付审查独立；原任务还有授权工作继续。\nfailure：来源不成立、职责冲突、关键约束难保或验证失败保留可用版本和证据。",
+      "minimum": [
+        {
+          "path": "common/507-skill/SKILL.md",
+          "lines": [
+            3,
+            23
+          ],
+          "claim": "明确维护范围、只读/写入、复用优先与按需分支。"
+        },
+        {
+          "path": "common/507-skill/SKILL.md",
+          "lines": [
+            27,
+            36
+          ],
+          "claim": "信息归属与一般规则不能复制私有偶然条件。"
+        },
+        {
+          "path": "common/507-skill/SKILL.md",
+          "lines": [
+            40,
+            57
+          ],
+          "claim": "最小元数据/合同、权限风险、独立包与按需读取。"
+        },
+        {
+          "path": "common/507-skill/SKILL.md",
+          "lines": [
+            61,
+            72
+          ],
+          "claim": "消费者与导航同步、结构/真实宿主/行为验证、完成恢复。"
+        }
+      ],
+      "resources": "kind：方法\nproposal：已是合适的非 Skill 包内方法，不新增技能审计入口；跨能力共用的基线和证据身份可抽，技能专属职责比较仍留包。\npath：common/507-skill/references/evolution.md\nlines：3\n34\nkind：方法\nproposal：保留技能专用验证reference，真实消费者重复后可共有维护；不是每个任务固定四用例或强制代理测试。\npath：common/507-skill/references/validation.md\nlines：11\n30\nkind：方法/模板\nproposal：保持条件reference与随包资源；主文只保留选定OpenAI目标时的最低字段及不扩大权限。不要做所有宿主共用强制项。\npath：common/507-skill/references/openai-metadata.md\nlines：3\n42\nkind：工具维护候选\nproposal：现有审查证据专用维护工具可作为未来包生成样板；在真实第二类资源出现之前不泛化统一执行器/打包器。\npath：scripts/sync_review_evidence.py\nlines：9\n48\nkind：脚本\nproposal：507-skill包内没有脚本。需要确定性元数据/链接/覆盖检查时先复用既有工具，不要求每Skill带脚本。",
+      "actionExplanation": "retain：保留技能包维护入口，不降成只给其他入口调用的内部工具。\nmerge：不与setup/research/review/插件维护合并：规则归属、外部核验、独立交付判断和技能合同维护不同。\nsplit：当前主文已短且有清晰三份reference，不再拆小Skill。\nrefactor：只抽真实跨消费者的基线/身份/回放基础；保持读哪些分支与执行者做什么的入口说明。批量全量审计需每项覆盖回执，本次JSON即按这个思想记录，但并未运行被审技能。\nstatus：建议以保留为主，现有分支组织已经符合按需资料目标。",
+      "noMerge": "不与setup/research/review/插件维护合并：规则归属、外部核验、独立交付判断和技能合同维护不同。",
+      "noSplit": "当前主文已短且有清晰三份reference，不再拆小Skill。",
+      "neighbors": [
+        {
+          "skill": "507-setup",
+          "boundary": "可复用技能合同 vs 当前项目规范和导航，不能把项目规则都写成Skill。"
+        },
+        {
+          "skill": "507-research",
+          "boundary": "外部来源事实未核实取证 vs 选择迁移方法并维护合同。"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "用户目标/成本风险未确定时对齐；常规措辞和资源组织无需审批。"
+        },
+        {
+          "skill": "507-review",
+          "boundary": "实施者技能自查 vs 行为/权限/公开合同变化后的独立交付审查。"
+        },
+        {
+          "skill": "插件维护/宿主配置",
+          "boundary": "源文件合同 vs 安装/启用/宿主发现，当前技能明确不接管。"
+        }
+      ],
+      "routingRisks": "抽根lib后单项安装暗依赖作者仓库或兄弟包；短主文不证明资源齐全或行为不变。\n不能把目录里只有2份agents文件判成其余6项功能缺陷；是否选定目标需另核对，文件存在也不是宿主发现证据。\n字符串/静态检查不能被报告为30项完整行为验证。",
+      "path": "common/507-skill/SKILL.md",
+      "sha256": "18fe2c3624552fb4454d4acf7a46f56064f4d7576f01d2e1dfe9c9bec12f2406",
+      "lineCount": 72,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-skill/SKILL.md",
+      "resourceIds": [
+        "R03"
+      ],
+      "painIds": [
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "H01",
+        "R01"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-taste",
+      "group": "common",
+      "purpose": "在图标、品牌、界面或插画等视觉方向未定，且需要用户凭真实粗稿选择时使用。通过明显不同的候选与淘汰反馈收敛风格；已有明确方向只需实现时不使用。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "refactor"
+      ],
+      "inputs": "视觉对象与用户观点：性格、为谁、冻结哪一秒；已有明确输入应承接。\n正负参考图；给不出参考可用性格先铺开。\n用户可参与反馈，用户独有主观判断不能由agent代替。",
+      "outputs": "现行主文：用户确认单一方向、定稿源文件、元素分层与离线组合台、收敛记录与机械检查。\n记录每轮变量、保留/淘汰、经确认的轴、观点前提与未收口项。",
+      "permissions": "read：用户已有方向、参考和媒介合同。\nwrite：用户请求视觉探索所需粗稿、源文件、组合台与记录；主文未指定统一保存位置或通用生成工具。\nexternal：用户挑选/审美确认必需；生成资产仍服从实际工具权限/素材授权。尚未授权不能把定稿视作上线或发布。",
+      "lifecycle": "start：方向未定的主观视觉选择且满足3项进入条件。\nstop：现行要求单一方向+机械验收+记录全部成立；这比描述中的方向选择更宽。\nreturn：现行出口指向规格/工单/设计与实现；上游观点推翻回0重开。\nfailure：连续两轮不对味停止出图，补观点/参考，不继续盲调。",
+      "minimum": [
+        {
+          "path": "common/507-taste/SKILL.md",
+          "lines": [
+            3,
+            33
+          ],
+          "claim": "视觉方向和真实粗稿触发，明确方向跳过；需求取舍归grill。"
+        },
+        {
+          "path": "common/507-taste/SKILL.md",
+          "lines": [
+            37,
+            51
+          ],
+          "claim": "观点先行、结构差异、粗稿不精修、受控变量、人机判据分开。"
+        },
+        {
+          "path": "common/507-taste/SKILL.md",
+          "lines": [
+            59,
+            76
+          ],
+          "claim": "参考不足可推进，候选与反馈必须真实。"
+        },
+        {
+          "path": "common/507-taste/SKILL.md",
+          "lines": [
+            126,
+            142
+          ],
+          "claim": "完成产物与连续失败回退、主观/机械结果边界。"
+        }
+      ],
+      "resources": "kind：方法/模板\nproposal：核心方向探索方法留taste；可按领域抽包内参考。其他媒介要共用前先核对其真实原型数量、授权和完成门，不把9稿/两轮强加到PPT等。\npath：common/507-taste/SKILL.md\nlines：37\n76\nkind：方法\nproposal：建议改为方向确认后且交付确需可组合资产时启用的条件分支，或返回媒介owner完成；不拆新Skill。\npath：common/507-taste/SKILL.md\nlines：78\n88\nkind：脚本\nproposal：本包实际上无脚本；这些是任务中需要选择/编写的检查要求，不能报告为已有一键库。只抽经实际输入/错误/副作用验收、被多方采用的检查。\npath：common/507-taste/SKILL.md\nlines：47\n47\nkind：模板\nproposal：包内参考候选，不另建全库审美状态库。\npath：common/507-taste/SKILL.md\nlines：100\n124",
+      "actionExplanation": "retain：保留视觉方向独立入口和主观用户所有权。\nmerge：不并入grill、ui或prototype：粗稿反馈不是一般决策树，主观方向不是客观未知或完整界面实施；媒体所有者需要保留自己的产物与验收。\nsplit：建议拆方法/分支，不拆新Skill：主文=方向识别，媒介精修/分层组合=条件参考或返回原媒介。\nrefactor：优先候选：将固定9稿、至少两轮、每轮留2弃1、普遍分层组合台与定稿，改为有依据的默认/适用条件与明确跳过逻辑；保留结构差异、每轮信息、正面观点、单变量归因、用户确认和失败复诊。方向交接模式与全量定稿模式分清权限和终点。\nstatus：合同范围张力有文本证据；收益/真实返工尚待会话关联与同题回放，不直接迁移。",
+      "noMerge": "不并入grill、ui或prototype：粗稿反馈不是一般决策树，主观方向不是客观未知或完整界面实施；媒体所有者需要保留自己的产物与验收。",
+      "noSplit": "建议拆方法/分支，不拆新Skill：主文=方向识别，媒介精修/分层组合=条件参考或返回原媒介。",
+      "neighbors": [
+        {
+          "skill": "507-grill",
+          "boundary": "主观粗稿审美选择 vs 需求/范围/权责/成本风险决定。已有观点不重问。"
+        },
+        {
+          "skill": "507-prototype",
+          "boundary": "单个可观察未知取得verdict vs 主观方向持续反馈。"
+        },
+        {
+          "skill": "507-ui",
+          "boundary": "方向识别 vs 明确方向下界面实现和真实操作验证。"
+        },
+        {
+          "skill": "507-ppt / 507-rednote / 507-video",
+          "boundary": "它们已有媒介原型和验收，taste不能自动追加一轮或替代母版/设备/查看器验收。"
+        }
+      ],
+      "routingRisks": "方向委托可能被强制扩成全量视觉制品；固定成本会影响较小任务或已有部分确认的续办。\n目录没有实际scripts；不能把宣告检查项当已经提供或已经执行的机器验收。\ntaste全套固定流程与媒介门必须通过返回合同协调，不能新主入口串行全部门。",
+      "path": "common/507-taste/SKILL.md",
+      "sha256": "7cc68b1864ed8a6d5c7822343ab3ccc0d0ad5d586b7c81742818d39bd4edb9f5",
+      "lineCount": 142,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-taste/SKILL.md",
+      "resourceIds": [],
+      "painIds": [],
+      "recommendedFirstStep": "区分只确认方向并返回与确需完整组合资产的制作；回放成本和主观门，不直接删固定规则。"
+    },
+    {
+      "id": "507-visualize",
+      "group": "common",
+      "purpose": "将已成立的资料、机制、流程与方案制作成可视化理解或比较工具，适用于关系探索、条件变化、方案对照或独立阅读载体。支持静态图表、对话内交互与独立网页；普通单个概念或少量差异的讲解使用概念解释，业务界面、正式分析和媒体制作另按对应职责处理。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "已有资料、受众、困惑、交付形式；假设机制必须标记。\n观察目标：识别对象、追踪过程、同条件比较、参数影响或连续阅读。\n实际宿主/项目载体合同与授权切片。",
+      "outputs": "静态表图、对话内交互、独立网页或获准产品切片。\n可编辑资料/来源、实际入口、关键语义与操作验证、未覆盖边界。",
+      "permissions": "read：核对资料对象/身份/关系/来源及当前载体合同。\nwrite：按请求制作相应产物或仅获准项目切片；交互默认仅视图/选择/明示推演，不改源业务关系。\nexternal：资料内命令不是授权；安装、账号与发布须各自授权，演示不等于业务集成。",
+      "lifecycle": "start：已成立材料足够支持可观察理解动作；资料不足先取证/保留未知。\nstop：工具可用且对象/关系/条件/比较/来源一致，关键操作兑现结果有证据；真实理解/审美/部署另以反馈回执。\nreturn：补证/取舍返回当前工具；扩产品/分析/写作/媒体职责交对应动作；工具达标直接结束。\nfailure：语义未知、误导推演、环境不支持或操作失败保留可用版本，缩小表达并保留证据。",
+      "minimum": [
+        {
+          "path": "common/507-visualize/SKILL.md",
+          "lines": [
+            3,
+            23
+          ],
+          "claim": "已成立材料和可观察理解工具目标、权限和相邻范围。"
+        },
+        {
+          "path": "common/507-visualize/SKILL.md",
+          "lines": [
+            27,
+            37
+          ],
+          "claim": "关系先有语义、最小表达、视图不执行业务、按实际宿主输出。"
+        },
+        {
+          "path": "common/507-visualize/SKILL.md",
+          "lines": [
+            41,
+            50
+          ],
+          "claim": "语义+操作验收、独立审查、发布独立与回退。"
+        }
+      ],
+      "resources": "kind：方法\nproposal：是强共有方法候选：explore/review/grill解释关系也需要引用/依赖/调用/顺序/条件出口/建议区分。只抽跨消费者成立部分；理解模型本身仍随visualize包供独立使用。\npath：common/507-visualize/references/understanding-model.md\nlines：18\n50\nkind：方法/原则\nproposal：当前包内条件reference合理；可与UI无障碍/状态恢复方法共用原则，但专业工具运行/发布门仍由载体owner负责，不做一套跨媒介视觉参数。\npath：common/507-visualize/references/delivery-and-checks.md\nlines：3\n44\nkind：脚本\nproposal：本包无脚本/统一图形引擎；实际宿主和项目组件是工具，不能因三层设计强制新库/力导向/三栏。",
+      "actionExplanation": "retain：保留独立理解工具入口与委托表达能力。\nmerge：不与explain/ui/分析图表或媒体制作合并：理解目标、产物寿命、业务副作用和验收都有不同。\nsplit：不按静态/交互/网站拆新Skill，已有载体reference按条件处理；不把每条关系/身份原子拆入口。\nrefactor：继续保留当前两份reference与短主文；抽共有关系语义与基础可读方法，关键业务不执行、结果边界、恢复和失败仍在主文。\nstatus：建议保留/共源；没有运行工具、浏览器或用户理解验收。",
+      "noMerge": "不与explain/ui/分析图表或媒体制作合并：理解目标、产物寿命、业务副作用和验收都有不同。",
+      "noSplit": "不按静态/交互/网站拆新Skill，已有载体reference按条件处理；不把每条关系/身份原子拆入口。",
+      "neighbors": [
+        {
+          "skill": "507-explain",
+          "boundary": "单概念解释足够则直接讲；制作关系探索/比较站才visualize。"
+        },
+        {
+          "skill": "507-research / 507-explore",
+          "boundary": "工具消费已成立内容，事实未知先调查而非图形补结论。"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "显示方案不替用户决定；真实意图/成本/范围取舍才对齐。"
+        },
+        {
+          "skill": "507-ui",
+          "boundary": "知识/机制解释切片可制作，普通业务页面/表单和产品后台行为仍按UI合同。"
+        },
+        {
+          "skill": "正式分析/出版图表/媒体",
+          "boundary": "不能因有图网页而扩大到其验收和输出。"
+        }
+      ],
+      "routingRisks": "目录、关键词同名、引用被自动画成调用/依赖；机械图谱抽取需要人工语义核证。\n选中对象、详情、关系和地址状态分裂；多视角副本漂移；查看按钮变业务执行。\n静态截图或节点存在不能证明点选/返回/离线/部署完成。",
+      "path": "common/507-visualize/SKILL.md",
+      "sha256": "09f4cb86602bd7f8371c99d1faf88d4688765a7f6ded1fa69df31a1fc581e4de",
+      "lineCount": 50,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-visualize/SKILL.md",
+      "resourceIds": [
+        "R10"
+      ],
+      "painIds": [
+        "F03"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-fix",
+      "group": "code",
+      "purpose": "修复已明确存在的软件故障、报错、崩溃、行为回归或合并冲突，先复现再修根因并验证。测试资产本身是主任务时使用 507-test；明确测试先行时使用 507-test 的测试先行模式。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "完整错误/日志、受影响行为/输入/环境、既定预期、授权最小范围、可重复原故障信号。",
+      "outputs": "最小根因修复、原动作与回归反馈证据、清理状态、根因和未覆盖边界。",
+      "permissions": "修复既定行为及必要回归；不借机重构、新增功能、改变规格或掩盖故障；规格变化/过时测试/环境问题分别退出。",
+      "lifecycle": "先分类、故障条件下有效失败、根因再改。连续两次同路径无新信息必须改变诊断；原故障因预期修复通过且相关回归清理成立后返回交付，独立review按项目要求。",
+      "minimum": [
+        {
+          "path": "code/507-fix/SKILL.md",
+          "lines": [
+            25,
+            34
+          ],
+          "claim": "原故障动作的可靠pass/fail"
+        },
+        {
+          "path": "code/507-fix/SKILL.md",
+          "lines": [
+            18,
+            21
+          ],
+          "claim": "生产/规格/测试/环境分类"
+        },
+        {
+          "path": "code/507-fix/SKILL.md",
+          "lines": [
+            58,
+            64
+          ],
+          "claim": "根因最小改动"
+        },
+        {
+          "path": "code/507-fix/SKILL.md",
+          "lines": [
+            36,
+            43
+          ],
+          "claim": "失败有新信息、无效重试停止条件"
+        },
+        {
+          "path": "code/507-fix/SKILL.md",
+          "lines": [
+            60,
+            64
+          ],
+          "claim": "不放宽校验/断言"
+        },
+        {
+          "path": "code/507-fix/SKILL.md",
+          "lines": [
+            86,
+            95
+          ],
+          "claim": "临时插桩清理"
+        }
+      ],
+      "resources": "path：code/507-fix/SKILL.md\nlines：23-43,66-76\nkind：方法/原则\nidea：可信反馈环、有效尝试、验证相称性与长期结论归属；可与test/review共源，任务门槛仍留主文\npath：code/507-fix/SKILL.md\nlines：78-88\nkind：模式方法\nidea：合并冲突意图保全、真实业务分歧、临时插桩；目前单包保留，不新建Skill",
+      "actionExplanation": "保留根因修复入口；共有化有效反馈环、失败尝试与验证原则候选；冲突解决保持模式方法，不单独新Skill。",
+      "noMerge": "fix允许改变生产实现来恢复既定行为，普通test只处理测试资产；合并成同一默认流程易把失败测试自动授予生产修改。fix与simplify分别故障恢复和行为不变内部摩擦，验收信号不同。",
+      "noSplit": "fix允许改变生产实现来恢复既定行为，普通test只处理测试资产；合并成同一默认流程易把失败测试自动授予生产修改。fix与simplify分别故障恢复和行为不变内部摩擦，验收信号不同。",
+      "neighbors": [
+        {
+          "skill": "507-test",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-simplify",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-review",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "回归补测被机械拆去test导致修复反馈环往返\nbug已清楚仍先强制explore/grill\n已有绿灯没拒绝原故障却当修复证明\n临时日志/fixture进入正式产物",
+      "path": "code/507-fix/SKILL.md",
+      "sha256": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a",
+      "lineCount": 95,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-fix/SKILL.md",
+      "resourceIds": [
+        "R02",
+        "R04"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-git",
+      "group": "code",
+      "purpose": "在用户要求 Git 提交、推送、标签或软件版本发布时，按明确范围完成对应动作。仅提交时停在本地历史，远端、版本和渠道另按实际授权；不承担社交内容发布。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain"
+      ],
+      "inputs": "已授权动作、仓库/分支/路径归属、目标提交/引用、版本/渠道（需要时）、当前验证与身份证据。",
+      "outputs": "本地提交哈希与保留改动，或精确引用/版本/渠道读回结果；草稿请求仅草稿；各动作完成/失败/未执行分开。",
+      "permissions": "授权动作逐项限定；只push不授权提交、本地commit不授权push/tag/release；不全量暂存、不覆盖无关改动、不强推主干/重建标签/改身份；外部未知先查。",
+      "lifecycle": "本地流程轻量复核与精确暂存，不重复完整review；明确后续授权连续执行并复用有效证据。引用/渠道分别实际读回，失败保留状态，仅瞬时网络等同时满足条件最多重试一次。",
+      "minimum": [
+        {
+          "path": "code/507-git/SKILL.md",
+          "lines": [
+            12,
+            19
+          ],
+          "claim": "明确动作与结束位置"
+        },
+        {
+          "path": "code/507-git/SKILL.md",
+          "lines": [
+            23,
+            26
+          ],
+          "claim": "范围归属与精确暂存"
+        },
+        {
+          "path": "code/507-git/SKILL.md",
+          "lines": [
+            25,
+            30
+          ],
+          "claim": "复用/补足必要验证不绕钩子"
+        },
+        {
+          "path": "code/507-git/references/delivery.md",
+          "lines": [
+            7,
+            28
+          ],
+          "claim": "引用/版本/身份一致"
+        },
+        {
+          "path": "code/507-git/references/delivery.md",
+          "lines": [
+            70,
+            83
+          ],
+          "claim": "外部结果读回、幂等重试边界"
+        },
+        {
+          "path": "code/507-git/SKILL.md",
+          "lines": [
+            14,
+            35
+          ],
+          "claim": "提交/推送/标签/渠道不可互相替代"
+        }
+      ],
+      "resources": "path：code/507-git/references/delivery.md\nlines：5-28,30-83\nkind：模式方法\nidea：版本与引用交付已有条件参考；当前单入口专属，不抽成跨系统发布总控\npath：code/507-git/SKILL.md\nlines：21-30\nkind：方法\nidea：本地精确提交；审查/暂存/完成权限留主文，不因命令确定性就制作自动全量执行器",
+      "actionExplanation": "保留已合并本地历史/引用交付入口；按条件交付参考保留，权限/结束位置不可压进通用自动脚本；不重新拆commit/release。",
+      "noMerge": "本地历史和版本引用具有稳定共同方法：归属、验证、精确引用与读回，当前模式差异充分。重新拆分没有已成立消费者/路由收益；也不应和review合并，git轻量复核不能替代独立审查。",
+      "noSplit": "本地历史和版本引用具有稳定共同方法：归属、验证、精确引用与读回，当前模式差异充分。重新拆分没有已成立消费者/路由收益；也不应和review合并，git轻量复核不能替代独立审查。",
+      "neighbors": [
+        {
+          "skill": "507-review",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-fix",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-test",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-setup",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "名称git吸引未覆盖Git操作\n仅push被扩成提交和定版\n本地commit要求全部delivery前提\n已授权各步骤重复确认\n命令成功被当远端渠道实际完成",
+      "path": "code/507-git/SKILL.md",
+      "sha256": "fc1a598d8f4344d619cc58eb6072e09d258cdc751af16f9fdab7e766bd36f6fb",
+      "lineCount": 37,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-git/SKILL.md",
+      "resourceIds": [],
+      "painIds": [
+        "F04"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-inspect",
+      "group": "code",
+      "purpose": "只读检查指定代码范围的模块职责、公开接口、实现接缝与维护摩擦，产出带证据的重构候选。围绕某次 commit、branch 或 diff 的交付审查使用 507-review。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "明确代码范围、版本/调用证据、现行ADR/规范/测试事实；不以模糊'看看'自动承诺全量。",
+      "outputs": "完整候选卡报告、置信度/真实摩擦/消费者证据/公开不变量/设计约束/验证缺口、不建议项与未读范围。",
+      "permissions": "只读代码/测试/配置/文档，不写报告文件到项目；不建立行为基线、补测试、实施或关闭改造候选；需公开行为变化只能标记需求。",
+      "lifecycle": "真实摩擦信号沿调用者/接缝取证，必要只读方案比较；报告完成停止代码工作。整体候选可委托simplify再判断，用户只要报告可结束；证据不足降级不伪造改造。",
+      "minimum": [
+        {
+          "path": "code/507-inspect/SKILL.md",
+          "lines": [
+            12,
+            12
+          ],
+          "claim": "只读"
+        },
+        {
+          "path": "code/507-inspect/SKILL.md",
+          "lines": [
+            13,
+            14
+          ],
+          "claim": "代码观察证据与confidence"
+        },
+        {
+          "path": "code/507-inspect/SKILL.md",
+          "lines": [
+            90,
+            100
+          ],
+          "claim": "完整报告含未采纳观察"
+        },
+        {
+          "path": "code/507-inspect/SKILL.md",
+          "lines": [
+            72,
+            80
+          ],
+          "claim": "公开不变量/设计约束/verification_gap"
+        },
+        {
+          "path": "code/507-inspect/SKILL.md",
+          "lines": [
+            31,
+            31
+          ],
+          "claim": "候选不等于批准/缺陷"
+        },
+        {
+          "path": "code/507-inspect/SKILL.md",
+          "lines": [
+            51,
+            69
+          ],
+          "claim": "消费者证据支撑旧路径判断"
+        }
+      ],
+      "resources": "path：common/references/review-evidence.md\nlines：5-52\nkind：既有共有方法\nidea：与review共同取证，但结论门槛各自不同\npath：code/507-inspect/SKILL.md\nlines：19-54,56-80\nkind：原则/模板\nidea：深度/接缝/删除测试/局部性与消费者证据；与simplify具有真实共同概念，可做非Skill架构判断参考",
+      "actionExplanation": "保留架构候选能力及直达入口；共源取证继续；候选卡和架构判断可按需参考，完整报告/置信/不变量和只读门槛留主文。",
+      "noMerge": "只读观察与行为验证实施为双层证据链，不能并入simplify默认写权限；与review不同范围和结论。卡片字段是同一报告的完整性，不对应新Skill。",
+      "noSplit": "只读观察与行为验证实施为双层证据链，不能并入simplify默认写权限；与review不同范围和结论。卡片字段是同一报告的完整性，不对应新Skill。",
+      "neighbors": [
+        {
+          "skill": "507-review",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-simplify",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-explore",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-issue",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "未指定范围承诺全库\n推荐方向误当具体实施方案\n卡片Strong被视为无需第二门槛\n仅报告任务结束前强制继续simplify",
+      "path": "code/507-inspect/SKILL.md",
+      "sha256": "68572b2dd30670b90941613e632542a4ce21268335bfb5a405b609581b733939",
+      "lineCount": 144,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-inspect/SKILL.md",
+      "resourceIds": [
+        "R00",
+        "R03"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-issue",
+      "group": "code",
+      "purpose": "草拟、创建或维护 GitHub issue，包括调查态补证及原位升级为可领取的执行工单。用于用户要求记录或追踪问题，不因发现问题就自动创建远程工单。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain"
+      ],
+      "inputs": "仓库、现象/目标、已知/未知、证据与用户决定、现行规格链接、远程写入授权、仓库标签/ownership规则。",
+      "outputs": "draft对话草稿，或同一条investigation→ready远端issue、评论证据历史、标签/负责人/回链核验。",
+      "permissions": "仅被要求的工单草拟/远端维护；不因发现问题自动建单、不代替实现、不自行创建标签/改权限、不把agent工程判断称用户决定。",
+      "lifecycle": "请求可直接草拟或ready，不必先investigation；真实未知才调查。远端正文/状态/元数据/证据读回成立后按当前成熟度返回记录任务或交实施；ready前提失效降回investigation。",
+      "minimum": [
+        {
+          "path": "code/507-issue/SKILL.md",
+          "lines": [
+            14,
+            45
+          ],
+          "claim": "draft/investigation/ready状态及不可假装可执行"
+        },
+        {
+          "path": "code/507-issue/SKILL.md",
+          "lines": [
+            43,
+            51
+          ],
+          "claim": "正文当前结论、评论历史"
+        },
+        {
+          "path": "code/507-issue/SKILL.md",
+          "lines": [
+            37,
+            42
+          ],
+          "claim": "同一载体原位升级"
+        },
+        {
+          "path": "code/507-issue/SKILL.md",
+          "lines": [
+            47,
+            48
+          ],
+          "claim": "远端授权、标签/负责人及读回"
+        },
+        {
+          "path": "code/507-issue/SKILL.md",
+          "lines": [
+            130,
+            147
+          ],
+          "claim": "支持结论的证据真实远程可访问"
+        },
+        {
+          "path": "code/507-issue/SKILL.md",
+          "lines": [
+            161,
+            165
+          ],
+          "claim": "权限失败保留已经创建对象与待补项"
+        }
+      ],
+      "resources": "path：code/507-issue/SKILL.md\nlines：53-126\nkind：模板\nidea：调查态与执行态模板\npath：code/507-issue/SKILL.md\nlines：128-147,159-165\nkind：方法\nidea：远程可接力证据/元数据准备提交读回，当前专属issue，不因有CLI就抽成跨系统执行器\npath：code/507-issue/SKILL.md\nlines：49-51\nkind：原则\nidea：有效尝试、正文当前/历史可追踪，与fix等可能共源；载体具体写入保留自身",
+      "actionExplanation": "保留问题追踪入口，不再拆调查/执行Skill；可把两种正文模板与远程证据/元数据清单放条件参考，状态与外部动作合同保留主文。",
+      "noMerge": "调查/执行共用同一远端对象，拆成两个入口容易复制问题和重开批准。规格与issue有不同事实权威、权限、状态周期；不能与prd合并。",
+      "noSplit": "调查/执行共用同一远端对象，拆成两个入口容易复制问题和重开批准。规格与issue有不同事实权威、权限、状态周期；不能与prd合并。",
+      "neighbors": [
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-explore",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-research",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prototype",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-review",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "纯文本需求强制制造证据附件\n不存在PRD时强制创建完整规格\n远端回链→prd→issue造成往返循环\n模板中的升级条件'已由grill确认'（80行）可被误判为必须先运行Skill而非用户取舍已充分",
+      "path": "code/507-issue/SKILL.md",
+      "sha256": "57211638c990fb6cc7f3683ff54029498f267f00501df75ef63e9ac65ad6b394",
+      "lineCount": 192,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-issue/SKILL.md",
+      "resourceIds": [],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-prd",
+      "group": "code",
+      "purpose": "把已确认的对话、方案或存量产品要求整理为现行行为与验收规格，优先维护对应 spec。软件产品需求使用本技能；面向人的活动或合作方案使用 507-forge 的方案模式。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "package",
+        "share"
+      ],
+      "inputs": "已有已确认对话/方案/旧要求、项目词义/设计/决定、当前实现和验收差异、公开验证入口。",
+      "outputs": "唯一现行spec或精简短规格；来源/旧入口处理、可判定验收；指定一次性PRD保持一次性身份。",
+      "permissions": "写需求行为及验收、直接相关导航；不规定逐文件实现、编排执行或创建远程issue；迁移仅在相关范围授权时。关键用户取舍未定不得定稿。",
+      "lifecycle": "综合已有共识并查项目事实，不重新访谈。需求/范围/失败/验收一致、唯一正文和链接成立后返回实施；需要跟踪才issue，事实/关键技术未知按条件补证。",
+      "minimum": [
+        {
+          "path": "code/507-prd/SKILL.md",
+          "lines": [
+            38,
+            55
+          ],
+          "claim": "需求与实现/验收证据分开"
+        },
+        {
+          "path": "code/507-prd/SKILL.md",
+          "lines": [
+            36,
+            51
+          ],
+          "claim": "唯一现行规格"
+        },
+        {
+          "path": "code/507-prd/SKILL.md",
+          "lines": [
+            33,
+            55
+          ],
+          "claim": "稳定行为/公开验证入口"
+        },
+        {
+          "path": "code/507-prd/SKILL.md",
+          "lines": [
+            16,
+            35
+          ],
+          "claim": "不重复访谈、不写实现步骤"
+        },
+        {
+          "path": "code/507-prd/SKILL.md",
+          "lines": [
+            107,
+            135
+          ],
+          "claim": "阻塞性未知不能藏在TODO/TBD/补充说明"
+        },
+        {
+          "path": "code/507-prd/SKILL.md",
+          "lines": [
+            46,
+            49
+          ],
+          "claim": "只在授权范围迁移并报告剩余消费者"
+        }
+      ],
+      "resources": "path：code/507-prd/SKILL.md\nlines：69-101\nkind：模板\nidea：PRD产物骨架；只有完整规格化请求需要\npath：code/507-prd/references/behavior-acceptance.md\nlines：5-31\nkind：方法\nidea：按相关入口/状态/恢复选择场景，区分接受/未定义/排除/不涉及/疑似故障；未来可供ui/test/review随包使用，但当前引用消费者只有prd\npath：code/507-setup/references/project-standard.md\nlines：136-148\nkind：方法\nidea：prd已直接引用的迁移方法应进入共有维护源并生成包内副本，不能依赖兄弟setup安装",
+      "actionExplanation": "保留规格入口；重构跨包迁移依赖为声明清楚的完整随包资源；完整模板可按需留为模式参考，但不把权限/当前权威/阻塞条件抽离主文。",
+      "noMerge": "与issue合并会让需求全文和追踪状态共享生命周期并模糊远端权限；与setup合并会把具体产品规格改义权混入基础归位。PRD模板、迁移、验收是相同规格交付的条件方法，无独立工作产物，不拆Skill。",
+      "noSplit": "与issue合并会让需求全文和追踪状态共享生命周期并模糊远端权限；与setup合并会把具体产品规格改义权混入基础归位。PRD模板、迁移、验收是相同规格交付的条件方法，无独立工作产物，不拆Skill。",
+      "neighbors": [
+        {
+          "skill": "507-setup",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-issue",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prototype",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-forge",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "把已确认视为必须有grill运行历史（23/121的上游表述宜校准为缺取舍才对齐）\n规格小改被完整PRD/issue链拖慢\nprd:46条件读取../507-setup/references/project-standard.md使独立包缺少必需迁移资源",
+      "path": "code/507-prd/SKILL.md",
+      "sha256": "77d3a0153efb35692ac52b94fecbdc2d7241d960f1172dff650bd1790417863d",
+      "lineCount": 146,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-prd/SKILL.md",
+      "resourceIds": [
+        "R01",
+        "R04"
+      ],
+      "painIds": [
+        "S04"
+      ],
+      "recommendedFirstStep": "优先处理项目标准的条件跨包引用闭包，保留原权限与定稿门槛。"
+    },
+    {
+      "id": "507-prototype",
+      "group": "code",
+      "purpose": "用低成本、可丢弃原型验证会改变下一步决定的具体未知，适用于逻辑、状态、交互或技术可行性。正式实现更小或原型不能带来有效证据时不使用。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "单一可观察未知、现有文档代码不足的证据、会改变的决定、成本/停止信号、允许隔离位置与已有运行时。",
+      "outputs": "supported/rejected/inconclusive证据记录、对决策影响、原型清理状态；临时壳默认删除，明确暂留条件责任。",
+      "permissions": "隔离可丢弃实现，内存/假数据/只读默认；不连接真实写操作/生产数据/不可逆系统；不自动转生产或做完整打磨。",
+      "lifecycle": "五个条件均成立才建，否则直接回原流程；运行自身关键路径smoke避免坏脚本误导观察；记录证据再清理，将verdict回调用者；收益不足或成本接近正式实现停止。",
+      "minimum": [
+        {
+          "path": "code/507-prototype/SKILL.md",
+          "lines": [
+            16,
+            20
+          ],
+          "claim": "具体未知与决定影响"
+        },
+        {
+          "path": "code/507-prototype/SKILL.md",
+          "lines": [
+            18,
+            22
+          ],
+          "claim": "成本优于正式实现"
+        },
+        {
+          "path": "code/507-prototype/SKILL.md",
+          "lines": [
+            40,
+            42
+          ],
+          "claim": "隔离与安全默认"
+        },
+        {
+          "path": "code/507-prototype/SKILL.md",
+          "lines": [
+            43,
+            43
+          ],
+          "claim": "原型自身smoke"
+        },
+        {
+          "path": "code/507-prototype/SKILL.md",
+          "lines": [
+            44,
+            54
+          ],
+          "claim": "证据verdict与清理"
+        },
+        {
+          "path": "code/507-prototype/SKILL.md",
+          "lines": [
+            45,
+            45
+          ],
+          "claim": "不自动升生产"
+        },
+        {
+          "path": "code/507-prototype/SKILL.md",
+          "lines": [
+            91,
+            94
+          ],
+          "claim": "原型禁止真实写操作、生产数据和不可逆外部系统；不得交无verdict/清理状态目录"
+        }
+      ],
+      "resources": "path：code/507-prototype/SKILL.md\nlines：12-28,37-54\nkind：方法\nidea：证据试验进入/形状/运行/清理；当前先包内专属\npath：code/507-prototype/SKILL.md\nlines：56-80\nkind：模板\nidea：可观察问题/支持否定信号/verdict/清理记录",
+      "actionExplanation": "保留证据试验能力及直达；问题/假设/信号/verdict/清理模板可移条件参考，成本与隔离合同留主文；不并入ui/taste。",
+      "noMerge": "prototype默认终点是有用证据和清理；ui产物是正式界面，taste产物是主观方向收敛，输入和退出不同。逻辑/UI/可行性是回答同一个未知的载体，不各拆入口。",
+      "noSplit": "prototype默认终点是有用证据和清理；ui产物是正式界面，taste产物是主观方向收敛，输入和退出不同。逻辑/UI/可行性是回答同一个未知的载体，不各拆入口。",
+      "neighbors": [
+        {
+          "skill": "507-explore",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-research",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-issue",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-ui",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-taste",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "清楚正式实现也先做原型\nUI原型固定2–4数量强加所有任务\n原型代码直接升生产\n原型不充分自动重复投入\n只需查文档的事实进入试验",
+      "path": "code/507-prototype/SKILL.md",
+      "sha256": "e350a1445d8dc721abadd60f6d049dfa7040de579c7f37a68a3f323553ac34f2",
+      "lineCount": 94,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-prototype/SKILL.md",
+      "resourceIds": [
+        "R02"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-review",
+      "group": "code",
+      "purpose": "审查明确的代码或文档变更范围，核对项目规范、需求与有证据的质量风险，只读交付发现与路由。主动寻找全库架构机会使用 507-inspect；外部事实核查使用 507-research。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "明确commit/branch/tag/path或可说明的diff基准、规范、现行需求、实现/验证证据。",
+      "outputs": "Standards/Spec/CodeQuality带证据发现、影响/严重性、verdict、实际检查边界与修复路由。",
+      "permissions": "只读；可在运行条件与授权允许时运行已有检查；不能修文件、补测试、改策略/基线或自动提交。",
+      "lifecycle": "说明范围/基准原因后取证；干净区仍审已提交差异。完成三维审查并清楚无阻塞/限制后返回委托者；发现指向相应实施，修复后仅重查受影响范围，不能因为末尾路由就放弃整体目标。",
+      "minimum": [
+        {
+          "path": "code/507-review/SKILL.md",
+          "lines": [
+            14,
+            14
+          ],
+          "claim": "独立只读"
+        },
+        {
+          "path": "code/507-review/SKILL.md",
+          "lines": [
+            18,
+            27
+          ],
+          "claim": "明确范围/基准"
+        },
+        {
+          "path": "code/507-review/SKILL.md",
+          "lines": [
+            8,
+            35
+          ],
+          "claim": "三类审查权威"
+        },
+        {
+          "path": "common/references/review-evidence.md",
+          "lines": [
+            39,
+            44
+          ],
+          "claim": "严重性与确定程度分开"
+        },
+        {
+          "path": "code/507-review/SKILL.md",
+          "lines": [
+            98,
+            121
+          ],
+          "claim": "有证据行动发现/无阻塞及限制"
+        },
+        {
+          "path": "code/507-review/SKILL.md",
+          "lines": [
+            31,
+            35
+          ],
+          "claim": "公共方法不是另一种设计即缺陷"
+        },
+        {
+          "path": "common/references/review-evidence.md",
+          "lines": [
+            39,
+            44
+          ],
+          "claim": "review/inspect结论与严重性/置信度分开"
+        }
+      ],
+      "resources": "path：common/references/review-evidence.md\nlines：5-52\nkind：既有共有方法\nidea：锚定/真实行为/要求机制证据/更正，保持唯一源\npath：scripts/sync_review_evidence.py\nlines：9-48\nkind：既有维护工具\nidea：生成与只读漂移检查，随包普通文件，主合同不依赖仓库根运行它\npath：code/507-review/SKILL.md\nlines：68-96\nkind：模板\nidea：只读审查报告，专属结论格式可留包内",
+      "actionExplanation": "保留独立只读工作能力及直达入口；继续共有取证源+完整随包副本；可使范围选择/报告模板按需，但三维审查和独立权限不抽离主文。",
+      "noMerge": "review判断此次交付有无规范/需求/质量风险；inspect形成不等于缺陷的候选；simplify修改并证明行为不变。合并会把候选升格缺陷、丢独立性或混入写权限。",
+      "noSplit": "review判断此次交付有无规范/需求/质量风险；inspect形成不等于缺陷的候选；simplify修改并证明行为不变。合并会把候选升格缺陷、丢独立性或混入写权限。",
+      "neighbors": [
+        {
+          "skill": "507-inspect",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-simplify",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-fix",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-test",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-setup",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-issue",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-git",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "干净工作区错当无内容\n把架构偏好列阻塞缺陷\n无明确spec猜目标\n每次git本地提交重复完整review\n返回原交付时重新启动完整导航",
+      "path": "code/507-review/SKILL.md",
+      "sha256": "3e986f852afc0ed073bf9001a39bb950503f49b3814814909addc839c0b0f95c",
+      "lineCount": 121,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-review/SKILL.md",
+      "resourceIds": [
+        "R00",
+        "R02",
+        "R03"
+      ],
+      "painIds": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "R01"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-setup",
+      "group": "code",
+      "purpose": "建立、迁移或检查项目工作依据，或维护 README、文档导航与目录职责。按请求选择项目依据或导航维护范围；只有明确指定目标时才处理全局 AGENTS.md，不承担业务实现或架构体检。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "目标项目/文件、范围、读/写授权、指定或最新确认基线、现行规范与用户改稿、实现/验证证据。",
+      "outputs": "授权范围内基础规范和导航；只读证据/缺口/建议；旧权威切换、剩余消费者与下一步开工条件。",
+      "permissions": "导航模式仅地图文档；项目依据模式可维护已授权基础规范、归位已确认术语/设计与PROGRESS；具体规格由prd或相应已授权动作承接。业务实现、测试、工具、未指定全局文件与远程写入没有自动授权。",
+      "lifecycle": "按请求读所需模式，普通导航不通读全标准。完成范围内正文/引用切换、保全历史与未完成项、链接和真实阅读路径验证后返回原交付；工程缺口进入相应动作，规范/公开行为变化交独立review。",
+      "minimum": [
+        {
+          "path": "code/507-setup/SKILL.md",
+          "lines": [
+            14,
+            20
+          ],
+          "claim": "读写/模式权限表"
+        },
+        {
+          "path": "code/507-setup/SKILL.md",
+          "lines": [
+            24,
+            25
+          ],
+          "claim": "工作树单一写入与来源权威"
+        },
+        {
+          "path": "code/507-setup/SKILL.md",
+          "lines": [
+            26,
+            26
+          ],
+          "claim": "不能以实现缺口降低要求"
+        },
+        {
+          "path": "code/507-setup/SKILL.md",
+          "lines": [
+            28,
+            37
+          ],
+          "claim": "候选先验证后切换并退出旧路径"
+        },
+        {
+          "path": "code/507-setup/SKILL.md",
+          "lines": [
+            43,
+            46
+          ],
+          "claim": "只读/局部/全局完成条件分开"
+        }
+      ],
+      "resources": "path：code/507-setup/references/project-standard.md\nlines：18-39,41-49,89-123\nkind：方法/原则\nidea：项目权威归属与当下状态/历史分工\npath：code/507-setup/references/project-standard.md\nlines：136-148\nkind：方法\nidea：存量迁移的来源映射、候选保全、消费者切换与退出\npath：code/507-setup/references/navigation.md\nlines：22-48,50-68\nkind：方法/模板\nidea：证据驱动地图与最小README骨架；当前先留包内，跨入口必要时消费随包副本",
+      "actionExplanation": "保留入口；维持项目依据、导航、指定全局规则的条件模式；抽取可被prd/grill共享的权威归属及存量迁移方法，禁止为三层外观再拆Skill。",
+      "noMerge": "setup、prd、issue分别维护基础权威、具体需求、远程追踪，修改对象和权限不同。setup两种主要模式都服务可找到当前依据，已有条件表可区分，不需重新建立map入口。",
+      "noSplit": "setup、prd、issue分别维护基础权威、具体需求、远程追踪，修改对象和权限不同。setup两种主要模式都服务可找到当前依据，已有条件表可区分，不需重新建立map入口。",
+      "neighbors": [
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-issue",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-inspect",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-review",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "把README小修扩大成项目标准迁移\n把普通导航获得的权限扩大到AGENTS/spec/PROGRESS正文\n迁移中重复把内部正文/导航接力当新用户审批\n把文档保障说成工程检查已生效",
+      "path": "code/507-setup/SKILL.md",
+      "sha256": "2733198dc801fde5ebafd0769d9a3af0d620a2d720372aed257719b554046bec",
+      "lineCount": 46,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-setup/SKILL.md",
+      "resourceIds": [
+        "R01"
+      ],
+      "painIds": [
+        "S04"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-simplify",
+      "group": "code",
+      "purpose": "对指定代码范围或 507-inspect 报告实施行为不变的内部简化，逐项建立证据并验证。需要新增能力或改变公开契约、可观察行为时退出并转需求实施。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain"
+      ],
+      "inputs": "用户指定范围或完整inspect报告（无指定可用当前diff候选范围）、摩擦、允许范围、公开不变量、项目既有验证。",
+      "outputs": "每项修改并验证/带证据关闭/行为变化路由，内部结构修改、基线与验证证据、必要地图。",
+      "permissions": "授权范围内深改内部代码/接缝、可建不改变产品行为验证信号；不得改公开API/错误时序/持久化/兼容语义。无消费者旧内部路径须明确检索证据，不默认保留或默认删除。",
+      "lifecycle": "完整接收报告并核对当前版本；先行为基线/可执行信号，成立才改，否则关闭；逐项回归，不靠全绿证明行为不变。每个输入有结论后返回原交付/独立review；行为变化退出该项。",
+      "minimum": [
+        {
+          "path": "code/507-simplify/SKILL.md",
+          "lines": [
+            12,
+            45
+          ],
+          "claim": "完整输入逐项交接"
+        },
+        {
+          "path": "code/507-simplify/SKILL.md",
+          "lines": [
+            13,
+            14
+          ],
+          "claim": "代码观察+行为基线两层"
+        },
+        {
+          "path": "code/507-simplify/SKILL.md",
+          "lines": [
+            15,
+            16
+          ],
+          "claim": "公开可观察行为不变"
+        },
+        {
+          "path": "code/507-simplify/SKILL.md",
+          "lines": [
+            15,
+            26
+          ],
+          "claim": "消费者检索"
+        },
+        {
+          "path": "code/507-simplify/SKILL.md",
+          "lines": [
+            35,
+            45
+          ],
+          "claim": "范围不静默扩大"
+        },
+        {
+          "path": "code/507-simplify/SKILL.md",
+          "lines": [
+            98,
+            121
+          ],
+          "claim": "三类结论与失败回退"
+        },
+        {
+          "path": "code/507-simplify/SKILL.md",
+          "lines": [
+            27,
+            27
+          ],
+          "claim": "测试不等同于行为不变"
+        },
+        {
+          "path": "code/507-simplify/SKILL.md",
+          "lines": [
+            108,
+            121
+          ],
+          "claim": "不静默扩大修改范围；失败回退且不放宽断言"
+        }
+      ],
+      "resources": "path：code/507-simplify/SKILL.md\nlines：47-68\nkind：模板\nidea：简化记录卡，留自身语义\npath：code/507-simplify/SKILL.md\nlines：76-102,110-121\nkind：方法\nidea：行为基线、候选三类门槛与前后验证，可共享方法，实施最低门槛不可抽空\npath：code/507-simplify/SKILL.md\nlines：92-96,106-119\nkind：原则\nidea：架构边界、删除测试、可观察契约与真实消费者",
+      "actionExplanation": "保留行为不变实施能力及直达；可共源架构判断与基线/验证方法；不要先合并inspect或把所有重构套候选清单。",
+      "noMerge": "inspect不建立第二层行为门，simplify承担实施/关闭；与fix相比不恢复产品语义且不允许行为变化。基线/判定/修改/回归是同一负责闭环，不分成微Skill。",
+      "noSplit": "inspect不建立第二层行为门，simplify承担实施/关闭；与fix相比不恢复产品语义且不允许行为变化。基线/判定/修改/回归是同一负责闭环，不分成微Skill。",
+      "neighbors": [
+        {
+          "skill": "507-inspect",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-review",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-fix",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-test",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-setup",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "仅当前diff就扩大全库\n过时候选按旧定位实施\n反复为全部候选问用户选项\n只移动文件作为收益\n变更公开错误或时序被叫内部重构",
+      "path": "code/507-simplify/SKILL.md",
+      "sha256": "c0d66d7fbc22e6608bb8f9875fe56b4bf72ec1ee706908eae62674f1b6548110",
+      "lineCount": 164,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-simplify/SKILL.md",
+      "resourceIds": [],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-test",
+      "group": "code",
+      "purpose": "维护、运行或诊断行为测试，或按用户明确要求的 TDD（测试驱动开发）方式实现已确认行为。按请求选择普通测试或测试先行范围；普通补测不取得生产实现修改权。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "预期公开行为、用户请求模式与修改授权、公开入口、项目框架/命令/惯例、当前失败输出或缺口。",
+      "outputs": "测试资产、失败分类/只读结果，或明确授权TDD的最小生产实现与红绿证据；未覆盖范围。",
+      "permissions": "普通补测仅测试与必要测试环境；只读跑/诊断不取得补测权限；TDD仅明确授权行为；'只先写测试'有效RED后停止。",
+      "lifecycle": "已知模式和行为直接开始，不先重复需求访谈。维护按失败分类覆盖完成，TDD逐个完整行为RED/GREEN/REFACTOR；生产bug转fix、规格取舍对齐后返回；原委托者继续整体交付。",
+      "minimum": [
+        {
+          "path": "code/507-test/SKILL.md",
+          "lines": [
+            12,
+            18
+          ],
+          "claim": "模式修改权限表"
+        },
+        {
+          "path": "code/507-test/SKILL.md",
+          "lines": [
+            16,
+            18
+          ],
+          "claim": "只读与只写测试结束"
+        },
+        {
+          "path": "code/507-test/SKILL.md",
+          "lines": [
+            25,
+            25
+          ],
+          "claim": "有效RED非编译/fixture错误"
+        },
+        {
+          "path": "code/507-test/SKILL.md",
+          "lines": [
+            22,
+            26
+          ],
+          "claim": "公开行为与代表性错误结果断言"
+        },
+        {
+          "path": "code/507-test/SKILL.md",
+          "lines": [
+            23,
+            23
+          ],
+          "claim": "mock仅系统边界"
+        },
+        {
+          "path": "code/507-test/SKILL.md",
+          "lines": [
+            25,
+            25
+          ],
+          "claim": "不删断言、不伪造内部结果"
+        },
+        {
+          "path": "code/507-test/SKILL.md",
+          "lines": [
+            27,
+            27
+          ],
+          "claim": "有效证据复用"
+        }
+      ],
+      "resources": "path：code/507-test/SKILL.md\nlines：20-29\nkind：原则\nidea：行为断言、公开入口、边界mock、证据复用共同核\npath：code/507-test/references/maintenance.md\nlines：24-47\nkind：方法\nidea：反例检验与失败分类\npath：code/507-test/references/test-first.md\nlines：7-53\nkind：模式方法\nidea：TDD垂直切片和RED/GREEN/REFACTOR仅保留测试先行专属参考，不抽为强制工程步骤",
+      "actionExplanation": "保留已合并入口；不重拆TDD，普通维护/测试先行仍用条件模式；可抽反馈环共用方法，生产授权和有效RED门槛留主文。",
+      "noMerge": "两模式都有同一可观察反馈环，但权限表已保留差异，可继续单入口；重拆TDD会增加无收益入口与关键词冲突。与fix合并会吞掉普通测试不改生产的边界。",
+      "noSplit": "两模式都有同一可观察反馈环，但权限表已保留差异，可继续单入口；重拆TDD会增加无收益入口与关键词冲突。与fix合并会吞掉普通测试不改生产的边界。",
+      "neighbors": [
+        {
+          "skill": "507-fix",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-grill",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-ui",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-simplify",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-review",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "所有'先写测试'都自动生产开发\n维护失败诊断强制RED/GREEN循环\nTDD中可用的顺手内部简化扩大成全库simplify\n每个回归动作都重新加载全套test",
+      "path": "code/507-test/SKILL.md",
+      "sha256": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5",
+      "lineCount": 36,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-test/SKILL.md",
+      "resourceIds": [
+        "R02",
+        "R04"
+      ],
+      "painIds": [
+        "F02"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-ui",
+      "group": "code",
+      "purpose": "设计、实现或打磨产品界面的操作路径、状态反馈与视觉呈现，并验证实际渲染和使用结果。适用于页面、控件、表单和工作台；独立只读审查、纯视觉方向选择、PPT、图文或品牌形象使用相应入口。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "对象、用户操作路径、允许改动位置、版本基座、需求/设计/用户改稿、已有组件与业务通路。",
+      "outputs": "授权UI实现或隔离样稿/只读建议、相关spec/DESIGN修订、实际版本/环境/动作/结果与未覆盖证据。",
+      "permissions": "请求范围内设计实现验证；只读评估/样稿不获得正式产品写权限；界面不另建正式状态源或执行队列，不自动改技术栈、迁移全产品规范。",
+      "lifecycle": "已有方向直接续做；只因真实视觉/产品取舍缺口采用候选或对齐。关键操作、正式结果、恢复和渲染有相称证据后返回原交付或结束；行为/权限/数据变化仍独立review。",
+      "minimum": [
+        {
+          "path": "code/507-ui/SKILL.md",
+          "lines": [
+            32,
+            34
+          ],
+          "claim": "正式回执决定成功/完成"
+        },
+        {
+          "path": "code/507-ui/SKILL.md",
+          "lines": [
+            28,
+            34
+          ],
+          "claim": "草稿/显示/正式状态所有权"
+        },
+        {
+          "path": "code/507-ui/SKILL.md",
+          "lines": [
+            48,
+            52
+          ],
+          "claim": "实际目标环境渲染并操作"
+        },
+        {
+          "path": "code/507-ui/SKILL.md",
+          "lines": [
+            54,
+            56
+          ],
+          "claim": "前端模拟、自动/主观视觉/独立审查分别成立"
+        },
+        {
+          "path": "code/507-ui/SKILL.md",
+          "lines": [
+            60,
+            63
+          ],
+          "claim": "允许范围与可用基线保护"
+        }
+      ],
+      "resources": "path：code/507-ui/references/interaction.md\nlines：5-22,24-58\nkind：方法\nidea：正式结果、标签语义、草稿/异步恢复/可达性；现时单一包内消费者，保留包内，待真实第二消费者再共源\npath：code/507-ui/references/containers-and-motion.md\nlines：5-31\nkind：方法\nidea：容器/可中断反馈/材质与布局；不是跨媒介统一设计原则\npath：code/507-ui/references/apple-interaction.md\nlines：3-35\nkind：平台参考\nidea：Apple原生细节仅按平台需要读，不独立Skill、不成为全产品默认",
+      "actionExplanation": "保留产品界面主入口；保留三份按场景读取参考；先重构条件采用与共享证据方法，不合并prototype或taste，也不把平台方法新建Skill。",
+      "noMerge": "ui交付正式产品、prototype交付可丢弃证据与清理、taste交付主观方向收敛，停止和产物不同。操作/视觉/验证是同一完整UI交付，不按代码/设计/测试水平拆成竞争入口。",
+      "noSplit": "ui交付正式产品、prototype交付可丢弃证据与清理、taste交付主观方向收敛，停止和产物不同。操作/视觉/验证是同一完整UI交付，不按代码/设计/测试水平拆成竞争入口。",
+      "neighbors": [
+        {
+          "skill": "507-taste",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prototype",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-prd",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-fix",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-test",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        },
+        {
+          "skill": "507-review",
+          "boundary": "现行合同分别检查，不因邻接强制接力"
+        }
+      ],
+      "routingRisks": "把样稿一律当prototype并强制删除\n已确认方向重新采样/访谈\n按同名状态枚举重写现有运行事实\nUI源码或静态图通过被说成完整操作已通过",
+      "path": "code/507-ui/SKILL.md",
+      "sha256": "06c751c58610c08a5ab6ac289fc7507619b2bf6fb2b3997ce8349ebd5f72c920",
+      "lineCount": 63,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-ui/SKILL.md",
+      "resourceIds": [
+        "R02",
+        "R04"
+      ],
+      "painIds": [
+        "F09"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-breakdown",
+      "group": "write",
+      "purpose": "对参考视频进行结构、分镜、节奏与内容取证，产出可核验的拉片包，供后续挖掘或借鉴。普通视频总结、仅把已有录像作为成片素材时不使用。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "一个URL或本地参考视频；Python/media/ASR/MiniMax已声明依赖",
+      "outputs": "本地证据回溯的新video_*拉片包，只有validator可写video_completed",
+      "permissions": "取得/ASR/OCR/PTS/帧/外部MiniMax视频与图片理解；按进程环境读取密钥，不读shell配置；不分析普通素材登记或制作母版",
+      "lifecycle": "默认M3语义参考→本地锚点定位→自适应帧/图片证据→Agent填写→validator；显式fallback只跳整段M3，仍需图片key；不完整不交下游",
+      "minimum": [
+        {
+          "path": "write/507-breakdown/SKILL.md",
+          "lines": [
+            29,
+            66
+          ],
+          "claim": "最终时间仅本地ASR/OCR/PTS/scene证明，M3时间不能事实化；新契约不兼容旧包；只有validated completed才下游；隔离候选失败不损旧包、force不能覆completed"
+        }
+      ],
+      "resources": "拉片完成包只读reader可与remix/mine共享方法/最小工具（scripts/video_contract.py:11-35,73-78,118-125；remix脚本57-94），但VideoManifest可写状态和M3字段（55-115）继续归取证pipeline；时间来源/模型参考分离原则可以共享",
+      "actionExplanation": "保留；可抽完成包读取契约，取证pipeline保留专业拥有者，不与remix/video合并",
+      "noMerge": "取证与创作借鉴的事实权威不同，制作拥有另一份原创输入；video用户素材直接登记不必经M3",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "普通总结/自有素材进成片不应跑完整取证；显式fallback不能说无key完成；标签/字段填满不等于证据成立",
+      "path": "write/507-breakdown/SKILL.md",
+      "sha256": "489a1dc1e87b131ba84b93a774afe63ea98dfd7c38403fe725bdd1a04c6ac55a",
+      "lineCount": 66,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-breakdown/SKILL.md",
+      "resourceIds": [
+        "R09"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-cast",
+      "group": "write",
+      "purpose": "把成熟碎片簇组织为知识库中的系统化主题页，适用于主题结构与知识沉淀。选题候选使用 507-fuse，书面文章使用 507-forge 的书面模式。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain"
+      ],
+      "inputs": "语义成熟碎片簇及既有图谱/主题页；数量≥3只是参考下限",
+      "outputs": "只含主题定位、子主题、碎片链接/简短定位与元信息的主题页；同步知识图谱/索引",
+      "permissions": "写主题页/图谱/必要索引、按新增合并降级删除同步链接；用户知识组织取舍按需对齐；不脚本决定主题结构",
+      "lifecycle": "检查成熟和已有页→提出结构→真实用户组织取舍才grill→写聚合视图并维护图谱；不成熟不建页；基于主题写作品需fuse另起",
+      "minimum": [
+        {
+          "path": "write/507-cast/SKILL.md",
+          "lines": [
+            26,
+            31
+          ],
+          "claim": "只聚合链接和元信息，不融成长文；每段回指碎片；成熟度语义判断不机械计数；变更同步避免视图失真；不自行定用户组织方式"
+        },
+        {
+          "path": "write/507-cast/SKILL.md",
+          "lines": [
+            98,
+            110
+          ],
+          "claim": "知识组织取舍、只聚合和完成同步"
+        }
+      ],
+      "resources": "知识库去重、链接/图谱同步与成熟簇检查（26-31,35-66）；只抽目标vault可重用适配/检查方法，主题边界仍是cast判断",
+      "actionExplanation": "保留；把知识库约定做目标适配方法，不与 fuse/mine/forge 合并",
+      "noMerge": "fuse产值得写一篇的候选、cast产二次学习入口；mine新增/维护材料单元、cast维护聚合视图，触发和生命周期不同",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "机械归类不全转grill；红线“不脚本聚合”与机械链接可自动处理须一起保留，避免把所有确定性链接检查禁掉",
+      "path": "write/507-cast/SKILL.md",
+      "sha256": "f0c680aee2c42d100029e15eedebf9adca19a6fbbb194e900c002061162a596c",
+      "lineCount": 110,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-cast/SKILL.md",
+      "resourceIds": [],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-forge",
+      "group": "write",
+      "purpose": "写作、重组或保真修订书面文章、正式方案、讲稿与逐页内容。按用户目标选择文章、方案或现场内容方法，保留作者声音、事实与承诺边界；视觉成品、配音和视频制作由对应技能负责。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "refactor",
+        "share"
+      ],
+      "inputs": "用户指定当前稿/要求、确认中心与材料、作者/讲者声音、读者/听众目标、真实责任与边界",
+      "outputs": "主稿/精确修订、正式方案或显式草稿、讲稿/逐页内容/旁白包；各模式独立审计",
+      "permissions": "按明确范围写稿；只读建议不是写入许可；不自动登录/消息/发布/付费生成/Git，也不做视觉/声音/母版",
+      "lifecycle": "目标明确直接选相应条件参考。轻润色直接编辑指定范围，含义风险另列；成文承担完整可读首稿并保留用户改稿。缺口按职责补后返回；仅成文可结束",
+      "minimum": [
+        {
+          "path": "write/507-forge/SKILL.md",
+          "lines": [
+            14,
+            34
+          ],
+          "claim": "用户修订稿优先；语义强度/因果/责任/事实/作者声音保护；排除方向不回补；材料与篇幅时长相称；轻润色不扩成结构改写。成文/现场首稿由Agent承担，不能把声音工作推回用户"
+        },
+        {
+          "path": "write/507-forge/references/prose.md",
+          "lines": [
+            19,
+            26
+          ],
+          "claim": "轻润色不扩大权限；含义强度/因果/责任风险与保真检查"
+        },
+        {
+          "path": "write/507-forge/references/prose.md",
+          "lines": [
+            79,
+            92
+          ],
+          "claim": "作者首稿责任与声音形成"
+        },
+        {
+          "path": "write/507-forge/references/spoken.md",
+          "lines": [
+            59,
+            71
+          ],
+          "claim": "讲者首稿责任、反馈回扫与排除方向退出"
+        }
+      ],
+      "resources": "同源维护作者身份/事实保护/独立材料承重原则（SKILL:24-30；prose:44-57,127-144；spoken:19-26,35-83）；prose/spoken审计共享保护与任务-新增-承重-接力框架，各载体审计仍独立；check脚本可在包内抽位置保持mask/计数，不必根lib。507个人声音样本应是可选作者profile，不上升为库通用准则",
+      "actionExplanation": "保留现有三模式；重构过度上游路由与作者配置归属；暂不再拆新Skill",
+      "noMerge": "三个模式已共享作者保真成文方法但产物语体不同，适合保留按需refs；不可与ppt/video/rednote/voiceover合并外部副作用、版本和验收边界",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "prose.md:37在“中心判断和材料已明确但没卡”场景仍要求尚未碎片化先mine、尚未比较先fuse；与SKILL:18,32及库规格清楚任务直接完成存在过度路由张力。prose:81-90是507作者profile不是公共作者模型。未有输入不足不重跑访谈/创意链",
+      "path": "write/507-forge/SKILL.md",
+      "sha256": "a1dc986ad1d93e19fa15e98d7410eaa90d65507307721844984a980f829ffe57",
+      "lineCount": 41,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-forge/SKILL.md",
+      "resourceIds": [
+        "R05",
+        "R06",
+        "R08"
+      ],
+      "painIds": [
+        "R01",
+        "S03"
+      ],
+      "recommendedFirstStep": "保持已修的轻润色直达；校准完整成文分支按流程资产缺失触发mine/fuse的张力。"
+    },
+    {
+      "id": "507-fuse",
+      "group": "write",
+      "purpose": "比较既有碎片与证据能支撑的竞争解释，组合为有作品边界的候选选题。用于判断材料能否成题、如何组合；不挖碎片，不写正文，不替用户选择中心判断。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "refactor",
+        "share"
+      ],
+      "inputs": "既有碎片+争点来源/证据与说话位置；当前写作或载体目标",
+      "outputs": "候选选题卡、来源锚点、独立材料负载与作品边界、选题图谱；不写完整大纲/正文",
+      "permissions": "检索与去重候选，写候选区/图谱；不得代用户拍板中心判断，不把落容器许可当定稿",
+      "lifecycle": "先检索和竞争解释比较，再骨架与负载判断；真实竞争2-5，无竞争1；可只交候选结束，真实用户取舍交grill后接forge",
+      "minimum": [
+        {
+          "path": "write/507-fuse/SKILL.md",
+          "lines": [
+            23,
+            32
+          ],
+          "claim": "支持证据/反例/替代解释/边界比较先于结论；材料负载决定作品大小；说话位置不可捏造；候选状态与正式状态明确；不硬凑伪分歧"
+        },
+        {
+          "path": "write/507-fuse/SKILL.md",
+          "lines": [
+            72,
+            85
+          ],
+          "claim": "候选、容器许可与确认正式创意分开"
+        }
+      ],
+      "resources": "独立材料与负载（24-28,45-52,61-65）；选题价值与竞争解释按条件参考（references/选题判断.md:3-50）；候选状态规则可与grill共享原则，但写候选/图谱和作品停止点留入口",
+      "actionExplanation": "保留；重构条件路由与候选/确认状态表达；不与 mine/cast/forge 合并",
+      "noMerge": "cast知识主题页不主张单作品中心判断；fuse需要选题判断与作品负载。mine只形成单元；forge承担成品首稿与保真",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "SKILL:10/70-85较强写法会令所有候选都进grill，110/126却按真实选择进入；应校准成有用户取舍才接力，既定授权/中心无需重复确认",
+      "path": "write/507-fuse/SKILL.md",
+      "sha256": "b5e71b3f10faa349ecc5dff88f7da997d8c78b708448b2bc3ebc96ae836a07e2",
+      "lineCount": 127,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-fuse/SKILL.md",
+      "resourceIds": [
+        "R05",
+        "R06"
+      ],
+      "painIds": [
+        "S03"
+      ],
+      "recommendedFirstStep": "校准强制交审文字与条件出口，仅在真实候选/负载判断缺口时介入。"
+    },
+    {
+      "id": "507-mine",
+      "group": "write",
+      "purpose": "把已表达的想法、文章、研究证据或已完成拉片包整理为可复用碎片与观点，并在既有知识库去重互链。未表达的作者经历使用 507-prospect；不产选题或写正文。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "已表达想法、作者交接、指定文章/访谈/笔记、research证据、video_completed拉片包；可以只一个观点",
+      "outputs": "既有知识库碎片、证据身份/来源/边界、图谱互链、材料交接",
+      "permissions": "检索既有资产并新建/更新/互链碎片；不系统外搜，不写候选或正文，不决定作品篇幅",
+      "lifecycle": "素材类型识别与去重后独立材料拆分、证据状态核对、落盘；需要补证 research→mine，作者未表达且希望采访 prospect→mine；只记录可结束",
+      "minimum": [
+        {
+          "path": "write/507-mine/SKILL.md",
+          "lines": [
+            39,
+            45
+          ],
+          "claim": "独立材料依据对象/关系/来源/动作/结果/机制/反例/边界区别，不用重复改写造数量；经验假设允许但不能冒充事实；反证可改/降/不落；保护现行知识库纪律"
+        }
+      ],
+      "resources": "材料单元独立性判据（39-45,49-55,61-62）与 fuse/forge同源方法；证据身份/关系类型可共用。图谱与目录同步须在目标vault适配参考中，不把示例路径规定成全库默认",
+      "actionExplanation": "保留；知识库适配方法条件化，不与 research/fuse/cast 合并",
+      "noMerge": "research查外界并产证据；mine把材料变成作者长期碎片；fuse承担作品范围与候选；cast是主题聚合视图",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "完整口述直接挖掘；不因需长期素材沉淀就全域外搜，不承担候选篇幅，记录目标结束即可",
+      "path": "write/507-mine/SKILL.md",
+      "sha256": "e57d9af100ebd51e33fdbeb043a7beaaf3a3ee880aad118505ccc48c39c4dd46",
+      "lineCount": 99,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-mine/SKILL.md",
+      "resourceIds": [
+        "R05",
+        "R06",
+        "R09"
+      ],
+      "painIds": [
+        "S03"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-ppt",
+      "group": "write",
+      "purpose": "根据成熟且已确认的逐页内容，制作和验证可编辑 PPTX 或离线单文件 HTML 幻灯片。内容仍需编排时使用 507-forge 的现场内容模式；不用于小红书图卡。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "每页认知目标、可见内容、notes或无备注、受众场景时长、授权素材与组件语义",
+      "outputs": "请求的PPTX或离线单文件HTML、visual-plan、真实原型选择证据、manifest v2、notes/alt/source、报告/截图",
+      "permissions": "视觉制作、保义缩句断行；不写讲稿/改主线、不发布/安装、不顺带模板填充/旧PPT转换/社媒",
+      "lifecycle": "输入足够→三轴计划→若未选成熟preset/快速生成，2-3真实原型并按当前哈希确认→隔离生成/真实验证→原子替换；内容含义变更返回forge；不强制双载体全生成",
+      "minimum": [
+        {
+          "path": "write/507-ppt/SKILL.md",
+          "lines": [
+            28,
+            89
+          ],
+          "claim": "内容语义不得被视觉改写；可编辑原生chart/table与notes/alt；current hash/prototype/plan/报告绑定；中文语义换行、真实逐页截图；适配降级明示；失败保留旧产物"
+        }
+      ],
+      "resources": "三轴定义、内容视觉证据分离（references/design-system.md:3-9,29-40,74-85）与rednote styles:3-32,58-66；真假验证/哈希绑定/候选安全替换原则与其他交付共用。text_layout只现有pptHTML/PPTX消费，artifact_evidence含deck/pptx专用，不按名移lib",
+      "actionExplanation": "保留；条件参考已足够，三轴共用原理可抽；工具套件先保持包内闭包",
+      "noMerge": "rednote连续文章DOM切片，不承载deck固定页/可编辑原生对象；forge负责逐页内容，ppt负责目标载体真实视觉对象",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "原型不应路由独立prototype或默认taste；成熟preset/明确快速可跳过原型但不跳过验证；媒体要求1-3与phrase规则不得无证据放宽；类型与注册表不横跨rednote",
+      "path": "write/507-ppt/SKILL.md",
+      "sha256": "1ffc1592b8418fa7d4c258ab49954466bbe3b146fa8b33eb3cf39b2d2282c535",
+      "lineCount": 92,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-ppt/SKILL.md",
+      "resourceIds": [
+        "R07"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-prospect",
+      "group": "write",
+      "purpose": "通过非诱导采访，帮助作者表达尚未充分叙述的亲历、直觉或判断，产出会话中的作者材料交接。已有完整材料的提取使用 507-mine；本技能不查外部事实或写正文。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "尚未充分表达的亲历、直觉、判断或既有作品的一手材料缺口；文字或宿主已有转写",
+      "outputs": "会话内作者材料交接：亲历/判断/变化/反例/边界/未确认线索/外部缺口",
+      "permissions": "只读指定对话和材料、非诱导采访；不落盘，不外搜，不产候选或正文",
+      "lifecycle": "锁定本轮目标、已有答复直接复用；覆盖目标且低信息增益或用户终止后停止。可补料后返回 forge，不必去 mine；只为想清楚可结束",
+      "minimum": [
+        {
+          "path": "write/507-prospect/SKILL.md",
+          "lines": [
+            37,
+            108
+          ],
+          "claim": "开放材料采访不提供候选或推荐；许可/继续不能算认可 AI 命题；逐字可溯才直接引语；隐私脱敏；一般判断至少尝试反例/失败样例；不自动存完整私密转写"
+        }
+      ],
+      "resources": "frontier 信息依赖与少轮次调度可作为方法（SKILL:37-39,53-59）；材料身份/作者归属与引语判据可与写作来源原则同源维护（45-49,92-108），入口必须仍保留非诱导和不落盘红线",
+      "actionExplanation": "保留；可抽调度方法，不能与 grill/mine 合并",
+      "noMerge": "grill 产决策且可推荐；prospect 产作者材料且不得推荐。mine 能写知识库，prospect 默认只会话。输入/授权/输出不等价",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "不得因混合人机对话自动采访；已有完整材料直接 mine/forge；不把作者位置模板当加问门",
+      "path": "write/507-prospect/SKILL.md",
+      "sha256": "0cb3e78bc5e7be46d20e41f5be440529d52e135bcd9449a243348cdd42dc698e",
+      "lineCount": 123,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-prospect/SKILL.md",
+      "resourceIds": [
+        "R05"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-rednote",
+      "group": "write",
+      "purpose": "把成熟文章制作成小红书图文，默认连续全文排版，明确要求摘要时才提炼；也支持 Live Photo 与公众号封面对。正文写作使用 507-forge 的书面模式，不负责账号登录和发布。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "唯一成熟书面主稿/用户修订平台稿；明确summary才摘要；已选短视频/封面素材和授权为条件输入",
+      "outputs": "content.md、visual-plan、runtime只读paged-content、HTML快照/图片/PDF/contact/manifest、按需LivePhoto与公众号封面对",
+      "permissions": "本地动态工作台自动原子保存平台稿/视觉和assets；不回写raw主稿，不账号登录/外传/发布，不自动长视频选段，不为平台名自动增长优化",
+      "lifecycle": "默认article连续全文→组件三轴→最终DOM测量→同runtime预览导出→覆盖/哈希/视觉校验；内容不成立回forge，growth/title要求才forge；成品交付可结束",
+      "minimum": [
+        {
+          "path": "write/507-rednote/SKILL.md",
+          "lines": [
+            48,
+            147
+          ],
+          "claim": "article完整可见内容/顺序/来源覆盖，无排除项；summary明确用户要求/源映射/去向；1500x2000、真DOM分页不字数估算/不缩字，片段连续；runtime/fonts/assets/content/plan哈希都当前；preview/export同程序；可选载体各自完成证据"
+        },
+        {
+          "path": "write/507-rednote/references/project-spec.md",
+          "lines": [
+            24,
+            33
+          ],
+          "claim": "runtime/素材/fontSet等全部分页输入身份变化使旧分页失效"
+        }
+      ],
+      "resources": "三轴原则（references/styles.md:3-32,45-66）与ppt同源，内容/视觉分离和覆盖证明可做媒介适配方法；runtime分页器/状态save queue/字体/本地服务、LivePhoto适配保留本包，不按名字搬公共",
+      "actionExplanation": "保留；article/summary/LivePhoto/公众号封面做同入口条件方法；共享三轴原则，不合并PPT/render engine",
+      "noMerge": "ppt按内容页组织，可编辑对象；rednotearticle物理页只是连续阅读片段。公众号封面对与LivePhoto只条件后处理，不强制video链",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "article不能默认summary或重排课件；标题growth不能因小红书名就触发；封面图片缺失调用独立图像能力仍遵守付费/外传授权，不让引用扩大权限。旧spec/render路径只限定迁移/动态后处理，不能作为默认分页",
+      "path": "write/507-rednote/SKILL.md",
+      "sha256": "a95065cdacfa969aad6bb2b8a2ba3f2220ff305bda9b96b490320043f2cc9ab4",
+      "lineCount": 147,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-rednote/SKILL.md",
+      "resourceIds": [
+        "R07"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-remix",
+      "group": "write",
+      "purpose": "读取已完成的拉片包，借鉴结构、叙事、镜头、字幕与节奏，重组为原创视频创作包。原视频取证使用 507-breakdown，成片制作使用 507-video。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "refactor",
+        "share"
+      ],
+      "inputs": "一个或多个完成拉片新包+当前主题平台时长风格项目名",
+      "outputs": "7个人读创作包文件+工具无关prompt-pack；继续制作时补齐声音时间/证据/素材/隐私交接",
+      "permissions": "只读completed拉片包、写原创蓝图；不读取原视频绕取证、不生成媒体/配音/成片/发布",
+      "lifecycle": "核对输入→选可迁移手法/排不借/冲突→Agent明确原创结构→写骨架后完整检查；蓝图可结束，制作目标则补合同后video",
+      "minimum": [
+        {
+          "path": "write/507-remix/SKILL.md",
+          "lines": [
+            8,
+            104
+          ],
+          "claim": "借结构/节奏/视听语言，不能逐句主题文案/人物/品牌/独特镜头；可借/不借/冲突可溯；prompt工具无关，无来源路径或模型字段；文件存在不等于完成"
+        }
+      ],
+      "resources": "completed包reader与breakdown共享；borrow-map来源/允许借/排除/冲突适合作为条件方法。模式启发式和骨架生成尚有草稿传播与安全替换的静态风险，留本包重构验证后再评估",
+      "actionExplanation": "保留身份、优先重构脚本与原创计划输入；不要先抽脚本到lib",
+      "noMerge": "breakdown证据compiler，remix原创手法适配，video母版执行。多个参考并非机械拼镜头，不能把所有视频题材共用强制链",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "静态草稿传播风险：来源片段匹配时transcript前80字符进入storyboard.visual及同一prompt-pack；主文与脚本README明确输出只是骨架，Agent须改写检查。尚无已验收成品或模型实际使用采样的证据。\n静态安全替换缺口：仅旧目录存在且显式--force时，在来源输入校验之后删除旧包，再合成和写候选；没有隔离候选／异常回退。没有执行事故证明；缺必要文件、JSON不可解析或manifest未completed时在删除前退出；完成标记下的内部结构异常仍可能在删除后的合成阶段失败。\n来源video_completed只证明输入包，不证明新原创包完成；旧verification须绑定新版本。",
+      "path": "write/507-remix/SKILL.md",
+      "sha256": "498ba81fd22093062d345314906024760938b92c518ff8c35b3446f309ca0c78",
+      "lineCount": 104,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-remix/SKILL.md",
+      "resourceIds": [
+        "R09"
+      ],
+      "painIds": [
+        "S01",
+        "S02"
+      ],
+      "recommendedFirstStep": "优先隔离草稿出口与先删后生成风险；不要先共享推广生成器。"
+    },
+    {
+      "id": "507-video",
+      "group": "write",
+      "purpose": "根据成熟内容、授权素材或现有项目，制作、修改、预览和导出视频，止于经版本化审片与验收的本地母版。不生成克隆声音、不做参考片取证，也不登录或发布到平台。",
+      "defaultRole": "entry",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "已确认目标/受众/平台/时长画幅主张，成熟内容或现有项目，授权素材，真实主时间基准，事实/隐私边界",
+      "outputs": "当前版本经审片的本地母版、工程源/manifest、审片记录/中间产物/交付回执；条件profile另有功能镜头映射/采集/独立终检",
+      "permissions": "恢复原位项目、核验素材/制作/预览/当前确认后最终渲染；付费生成需明确授权；不克隆声音/参考片取证/平台发布/剪映工程",
+      "lifecycle": "直接使用成熟content与既有授权，不重跑素材链；缺口对应上游返回；按当前引擎reviewGate与最小变更重跑；止本地母版",
+      "minimum": [
+        {
+          "path": "write/507-video/SKILL.md",
+          "lines": [
+            51,
+            91
+          ],
+          "claim": "一个真实主时间权威；可见可听变化旧确认失效；当前版本明确允许final render且同条无新修改；preview/构建不当母版验收；产品profile有独立关键帧终检；未验收不删恢复资产"
+        }
+      ],
+      "resources": "时间来源与版本失效（SKILL:49-54；production-contract:75-86）可与voiceover/forge旁白同源；素材来源角色/状态/隐私（production:61-73）可共享原则但用途适配留入口；产品profile和Remotion方法保留拥有者条件refs，镜头语法是非Skill项目参考，不另起控制技能",
+      "actionExplanation": "保留；product-promo已有条件profile；不新增视频总控、不统一引擎抽象",
+      "noMerge": "voiceover仅TTS音频，breakdown参考取证，remix蓝图；任何TTS/参考片/产品profile都按条件启用，不能强制链",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "有媒体或审片門不能主次划分依据；已有其他可验证引擎继续原工程；纯录像/无旁白不启动forge或voiceover；产品styleframe不是prototype通用调查",
+      "path": "write/507-video/SKILL.md",
+      "sha256": "55fcb0f9513e1091db3f2d8e6c08600682a61107c5c193b4d0e53fd54870c0bc",
+      "lineCount": 98,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-video/SKILL.md",
+      "resourceIds": [
+        "R08"
+      ],
+      "painIds": [
+        "S01"
+      ],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    },
+    {
+      "id": "507-voiceover",
+      "group": "write",
+      "purpose": "用 Voicebox 中已授权且已建立的声音档案，将成熟旁白生成并验证为带真实时长的本地配音包。不采集或克隆新声音，不写旁白，也不制作或发布视频。",
+      "defaultRole": "capability",
+      "roleQualifier": "默认导航候选；直接请求时可成为入口，被委托时返回结果。",
+      "disposition": [
+        "retain",
+        "share"
+      ],
+      "inputs": "成熟可说旁白/唯一sectionID、本人或当前用途已授权且人试听档案、语言/输出位置/边界",
+      "outputs": "最终WAV、真实帧数/速度后的时长、参数/音频哈希与completed narration-manifest",
+      "permissions": "只读已有profile、可本机启动应用并生成授权声音；不创建/导入/删除profile，不写旁白/时间线/发布；远程需显式信任",
+      "lifecycle": "版本归一→授权/profile精确定位→live capabilities组合→健康→新组合短试听→生成/SSE终态→后处理实测→交接；单独音频可结束",
+      "minimum": [
+        {
+          "path": "write/507-voiceover/SKILL.md",
+          "lines": [
+            42,
+            85
+          ],
+          "claim": "每次authorized-voice且依据不由flag替代；真实终态与WAV解析；final atempo后时间；段落级timing不伪造逐字；多档案不能序号猜；现有音频替换需明确force；声音敏感资料不入公开库"
+        }
+      ],
+      "resources": "真实媒体时间权威（SKILL:36-38,64-72）、实测媒体结构/哈希检查（scripts/voicebox_narrate.py:356-379）可供video未来复用；apply_tempo/Voicebox SSE/profile等留适配器。atomicJSON等标准能力不要为函数重复建root框架",
+      "actionExplanation": "保留；Voicebox适配器与工具化可独立封装候选，但不与video合并也不泛化为共有TTS总控",
+      "noMerge": "声音身份/授权、服务生命周期、SSE、WAV与人的听感独立；video可真人音频/无旁白直入，无需Voicebox",
+      "noSplit": "现有条件模式先保持，只有独立合同和回放证明才增入口。",
+      "neighbors": [],
+      "routingRisks": "只读取健康/capabilities不等于声音授权；视频目标未要求TTS不能强制走voiceover；听感待人验收不能称通过",
+      "path": "write/507-voiceover/SKILL.md",
+      "sha256": "684def2f97612c2902a3b62978fad0f65799655b52526a8fa2752568b35d2a8d",
+      "lineCount": 88,
+      "sourceURL": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-voiceover/SKILL.md",
+      "resourceIds": [
+        "R08"
+      ],
+      "painIds": [],
+      "recommendedFirstStep": "保持主体合同，先验证共有方法和调用条件。"
+    }
+  ],
+  "resources": [
+    {
+      "id": "R00",
+      "title": "共用审查证据",
+      "kind": "方法＋维护生成器",
+      "status": "implemented",
+      "priority": "已有样板",
+      "consumers": [
+        "507-review",
+        "507-inspect"
+      ],
+      "method": "唯一取证维护源，生成两个完整随包副本；保持当前机制，作为抽取与交付样板。",
+      "preserve": "review判交付缺陷，inspect判架构摩擦；只读权限、结论门槛和结果不合并。",
+      "proofs": [
+        {
+          "path": "common/references/review-evidence.md",
+          "lines": [
+            1,
+            52
+          ],
+          "note": "公共维护源",
+          "sha256": "ce2fa1c4bc4fa450e09e57993141bb532d38e1191d6b45640b3d6eab10d14017",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/references/review-evidence.md#L1-L52"
+        },
+        {
+          "path": "scripts/sync_review_evidence.py",
+          "lines": [
+            9,
+            48
+          ],
+          "note": "生成头、指纹和副本一致性",
+          "sha256": "f15817aee6936c27ec3fe23feab3d6db42e663219838cb278915e9095de59fa2",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/scripts/sync_review_evidence.py#L9-L48"
+        }
+      ],
+      "validation": "继续已有副本--check；单独包能读到完整方法，不依赖作者仓库。",
+      "painIds": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "R01"
+      ]
+    },
+    {
+      "id": "R01",
+      "title": "项目权威与存量迁移",
+      "kind": "方法",
+      "status": "candidate",
+      "priority": "P1",
+      "consumers": [
+        "507-setup",
+        "507-prd",
+        "507-grill"
+      ],
+      "method": "共有源维护权威归属和迁移步骤；按必要分支向消费者随包交付，修正条件读取兄弟包的闭包缺口。",
+      "preserve": "setup的基础规范、prd的具体要求、grill的人拥有的取舍及各自写入范围保持。",
+      "proofs": [
+        {
+          "path": "code/507-prd/SKILL.md",
+          "lines": [
+            46,
+            46
+          ],
+          "note": "迁移分支直接读兄弟setup参考",
+          "sha256": "77d3a0153efb35692ac52b94fecbdc2d7241d960f1172dff650bd1790417863d",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-prd/SKILL.md#L46-L46"
+        },
+        {
+          "path": "common/507-grill/SKILL.md",
+          "lines": [
+            224,
+            224
+          ],
+          "note": "条件读取setup标准",
+          "sha256": "ad0519061f1ebbdb926405f641e93c6965b0ef2501c1233065c01806f88ac1b2",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-grill/SKILL.md#L224-L224"
+        },
+        {
+          "path": "code/507-setup/references/project-standard.md",
+          "lines": [
+            136,
+            148
+          ],
+          "note": "迁移方法",
+          "sha256": "ded5df7430362200983fdfbb8d40a214e1446817d57c9cb80731db9f89d04104",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-setup/references/project-standard.md#L136-L148"
+        }
+      ],
+      "validation": "隔离单项安装prd/grill，验证触发迁移分支的必要资源；有/无兄弟包都明确结果。",
+      "painIds": [
+        "S04"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "可信行为反馈与有效诊断",
+      "kind": "方法／原则",
+      "status": "candidate",
+      "priority": "P2",
+      "consumers": [
+        "507-fix",
+        "507-test",
+        "507-review",
+        "507-prototype",
+        "507-ui"
+      ],
+      "method": "归一预期、失败信号、反例、原动作、重试新信息与验证覆盖的共同部分；不复制业务测试或制造统一验证总控。",
+      "preserve": "修复、只写测试、生产实现、独立审查与前置试验有不同权限和完成判据。",
+      "proofs": [
+        {
+          "path": "code/507-fix/SKILL.md",
+          "lines": [
+            23,
+            43
+          ],
+          "note": "可复验信号与有效尝试",
+          "sha256": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-fix/SKILL.md#L23-L43"
+        },
+        {
+          "path": "code/507-test/SKILL.md",
+          "lines": [
+            20,
+            29
+          ],
+          "note": "测试对象及模式",
+          "sha256": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-test/SKILL.md#L20-L29"
+        },
+        {
+          "path": "common/references/review-evidence.md",
+          "lines": [
+            29,
+            35
+          ],
+          "note": "验证能拒绝代表性错误",
+          "sha256": "ce2fa1c4bc4fa450e09e57993141bb532d38e1191d6b45640b3d6eab10d14017",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/references/review-evidence.md#L29-L35"
+        }
+      ],
+      "validation": "原故障、测试资产、主张验证、UI路径分别回放，避免反馈方法改变权限。",
+      "painIds": [
+        "F01",
+        "F02",
+        "F05",
+        "F09",
+        "R01"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "基线与证据身份",
+      "kind": "原则／方法",
+      "status": "candidate",
+      "priority": "P2",
+      "consumers": [
+        "507-explore",
+        "507-research",
+        "507-grill",
+        "507-skill",
+        "507-review",
+        "507-inspect"
+      ],
+      "method": "尽量复用既有证据方法的共同部分，保留版本、来源、要求/实现/验证、已知/未知和生成物身份。",
+      "preserve": "项目事实、外部事实、用户决定、候选与实际结果不混合；不建竞争状态库。",
+      "proofs": [
+        {
+          "path": "common/507-explore/SKILL.md",
+          "lines": [
+            29,
+            36
+          ],
+          "note": "权威与临时快照",
+          "sha256": "bc7782980273c5a26d9a5fa413c385cc26850441917635a0d4b24d150be509f3",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-explore/SKILL.md#L29-L36"
+        },
+        {
+          "path": "common/507-research/SKILL.md",
+          "lines": [
+            39,
+            47
+          ],
+          "note": "证据问题、一手原文逐条核验与事实/观点/推断/未知身份",
+          "sha256": "4499a53dec2c8dabff1537bd19113bc5efef161a2d405978b1c70a8862899b46",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-research/SKILL.md#L39-L47"
+        },
+        {
+          "path": "common/references/review-evidence.md",
+          "lines": [
+            5,
+            17
+          ],
+          "note": "基线与行为追踪",
+          "sha256": "ce2fa1c4bc4fa450e09e57993141bb532d38e1191d6b45640b3d6eab10d14017",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/references/review-evidence.md#L5-L17"
+        }
+      ],
+      "validation": "换会话/换分支/换构建/来源适配时，保持同一证据身份且不重复问已知事实。",
+      "painIds": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "H01",
+        "R01",
+        "S04"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "代码影响、设计与行为验收",
+      "kind": "条件方法",
+      "status": "candidate",
+      "priority": "P2",
+      "consumers": [
+        "507-explore",
+        "507-grill",
+        "507-prd",
+        "507-ui",
+        "507-fix",
+        "507-test"
+      ],
+      "method": "三种方法分别维护和按缺口采用；已有正常实施可直接读取，不为此新增设计或影响调查Skill。",
+      "preserve": "调查只读、设计由Agent收口、人拥有取舍、实施授权分别保留。",
+      "proofs": [
+        {
+          "path": "common/507-explore/references/code-impact.md",
+          "lines": [
+            3,
+            38
+          ],
+          "note": "行为影响链",
+          "sha256": "e5a2e88b606de8ece6d4b2f2a1eb39f3280e6c2fd9a338133a496f318d48a0f9",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-explore/references/code-impact.md#L3-L38"
+        },
+        {
+          "path": "common/507-grill/references/code-change-design.md",
+          "lines": [
+            3,
+            21
+          ],
+          "note": "正常实施可直接读",
+          "sha256": "caf954d68554b07bb2cdc113cc5d5707e7664eecaa8536ca5b097c9d9211dce3",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-grill/references/code-change-design.md#L3-L21"
+        },
+        {
+          "path": "code/README.md",
+          "lines": [
+            42,
+            42
+          ],
+          "note": "直接方法采用已有入口",
+          "sha256": "a7bc8b3b1cb8c41fa30640e1e872a3ba220e908d276d02f79cd30c0e375045fa",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/README.md#L42-L42"
+        },
+        {
+          "path": "code/507-prd/references/behavior-acceptance.md",
+          "lines": [
+            3,
+            31
+          ],
+          "note": "差异维度、场景状态、行为验收与计划/已有/已执行证据分开",
+          "sha256": "dd83d4840eadc3287e529a6824f08e10c8e5f9d0e1d6a670deac748d272e65b9",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/code/507-prd/references/behavior-acceptance.md#L3-L31"
+        }
+      ],
+      "validation": "明确小修不启动完整grill；架构变化仅展开相关调查/设计/验收。",
+      "painIds": [
+        "F02",
+        "F09",
+        "S04"
+      ]
+    },
+    {
+      "id": "R05",
+      "title": "作者、材料与语义保真",
+      "kind": "原则／方法",
+      "status": "candidate",
+      "priority": "P2",
+      "consumers": [
+        "507-prospect",
+        "507-mine",
+        "507-fuse",
+        "507-forge"
+      ],
+      "method": "作者归属、可靠引语、亲历/判断/外部事实、语义风险等共同原则可同源维护。",
+      "preserve": "采访不诱导、不落盘；材料写入、候选负载判断、成文与含义变化权限各自保留。",
+      "proofs": [
+        {
+          "path": "write/507-prospect/SKILL.md",
+          "lines": [
+            45,
+            49
+          ],
+          "note": "作者材料身份",
+          "sha256": "0cb3e78bc5e7be46d20e41f5be440529d52e135bcd9449a243348cdd42dc698e",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-prospect/SKILL.md#L45-L49"
+        },
+        {
+          "path": "write/507-prospect/SKILL.md",
+          "lines": [
+            92,
+            108
+          ],
+          "note": "引语与边界",
+          "sha256": "0cb3e78bc5e7be46d20e41f5be440529d52e135bcd9449a243348cdd42dc698e",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-prospect/SKILL.md#L92-L108"
+        },
+        {
+          "path": "write/507-forge/references/prose.md",
+          "lines": [
+            23,
+            27
+          ],
+          "note": "保真轻润色已明确直达",
+          "sha256": "994887b5cdfe5100486b9844ac4c97dbfc53c678f3821349466b56010b715475",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-forge/references/prose.md#L23-L27"
+        }
+      ],
+      "validation": "从尚未表达、已表达需沉淀、成熟材料和局部润色四种输入区分选择与副作用。",
+      "painIds": [
+        "R01",
+        "S03"
+      ]
+    },
+    {
+      "id": "R06",
+      "title": "独立材料与负载",
+      "kind": "方法",
+      "status": "candidate",
+      "priority": "P2",
+      "consumers": [
+        "507-mine",
+        "507-fuse",
+        "507-forge"
+      ],
+      "method": "共同解释什么算另一份独立材料、重复/反例/范围怎样影响作品承载量。",
+      "preserve": "mine产材料单元、fuse判候选与作品边界、forge验实际正文；不共用跨层完成状态。",
+      "proofs": [
+        {
+          "path": "write/507-fuse/SKILL.md",
+          "lines": [
+            1,
+            40
+          ],
+          "note": "候选与材料边界",
+          "sha256": "b5e71b3f10faa349ecc5dff88f7da997d8c78b708448b2bc3ebc96ae836a07e2",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-fuse/SKILL.md#L1-L40"
+        },
+        {
+          "path": "write/507-forge/references/prose.md",
+          "lines": [
+            43,
+            62
+          ],
+          "note": "成文合同的材料负载",
+          "sha256": "994887b5cdfe5100486b9844ac4c97dbfc53c678f3821349466b56010b715475",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-forge/references/prose.md#L43-L62"
+        }
+      ],
+      "validation": "有成熟材料不因缺一种上游产物格式强制建碎片或候选卡；真实缺口仍返回。",
+      "painIds": [
+        "R01",
+        "S03"
+      ]
+    },
+    {
+      "id": "R07",
+      "title": "三轴视觉判定",
+      "kind": "原则／词义",
+      "status": "candidate",
+      "priority": "P3",
+      "consumers": [
+        "507-ppt",
+        "507-rednote"
+      ],
+      "method": "共享语义组件、设计语言、视觉呈现和内容/视觉分离的概念原则。",
+      "preserve": "PPT按页与双载体可编辑对象；图文按连续组件、DOM分页和同runtime导出；各自注册表、换行、渲染和验收不合并。",
+      "proofs": [
+        {
+          "path": "write/507-ppt/references/design-system.md",
+          "lines": [
+            1,
+            22
+          ],
+          "note": "三轴语义",
+          "sha256": "1f03505ce8834d6fbcb2907bcc45e6f5158a6fe9b04e810973efc1a65746b939",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-ppt/references/design-system.md#L1-L22"
+        },
+        {
+          "path": "write/507-rednote/references/styles.md",
+          "lines": [
+            1,
+            35
+          ],
+          "note": "图文视觉方法",
+          "sha256": "6d3263475f8c019ad5a88790a1e2d19dfece2affbdf13f294173ca6b1c724e54",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-rednote/references/styles.md#L1-L35"
+        }
+      ],
+      "validation": "相同原则分别驱动两种产物；不能把规则文件数或相同名字当渲染器可互换证明。",
+      "painIds": []
+    },
+    {
+      "id": "R08",
+      "title": "真实时间与版本失效",
+      "kind": "方法／原则",
+      "status": "candidate",
+      "priority": "P2",
+      "consumers": [
+        "507-forge",
+        "507-voiceover",
+        "507-video"
+      ],
+      "method": "共同说明真人/TTS/录像/音乐/明确时间线怎样成为单一时间依据，输入改变后哪些下游证据失效。",
+      "preserve": "声音身份、生成授权、最终音频实测、作品时间线与人的审片仍属各自合同。",
+      "proofs": [
+        {
+          "path": "write/507-voiceover/SKILL.md",
+          "lines": [
+            1,
+            40
+          ],
+          "note": "配音产物与真实能力",
+          "sha256": "684def2f97612c2902a3b62978fad0f65799655b52526a8fa2752568b35d2a8d",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-voiceover/SKILL.md#L1-L40"
+        },
+        {
+          "path": "write/507-video/references/production-contract.md",
+          "lines": [
+            1,
+            40
+          ],
+          "note": "时间与制作依据",
+          "sha256": "452bd6f82762484399a5fe924de5fed28c42498c78bd18ec865e7dbc8cb89b15",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-video/references/production-contract.md#L1-L40"
+        },
+        {
+          "path": "write/507-voiceover/SKILL.md",
+          "lines": [
+            64,
+            72
+          ],
+          "note": "实际生成终态、最终变速WAV实测与段落时间",
+          "sha256": "684def2f97612c2902a3b62978fad0f65799655b52526a8fa2752568b35d2a8d",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-voiceover/SKILL.md#L64-L72"
+        },
+        {
+          "path": "write/507-video/SKILL.md",
+          "lines": [
+            51,
+            54
+          ],
+          "note": "同一真实时间基准、上游变化与下游时间确认失效",
+          "sha256": "55fcb0f9513e1091db3f2d8e6c08600682a61107c5c193b4d0e53fd54870c0bc",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-video/SKILL.md#L51-L54"
+        }
+      ],
+      "validation": "更换音频/主题/版本后不能沿旧审片确认；不按字数当作已测时长。",
+      "painIds": [
+        "R01",
+        "S01",
+        "S03"
+      ]
+    },
+    {
+      "id": "R09",
+      "title": "完成拉片包的只读接收",
+      "kind": "方法／可选reader",
+      "status": "candidate",
+      "priority": "P2",
+      "consumers": [
+        "507-breakdown",
+        "507-mine",
+        "507-remix"
+      ],
+      "method": "维护已完成拉片包的最小读取合同及必要验证；如果出现确定性多消费者再考虑共享reader。",
+      "preserve": "VideoManifest状态写入、理解模型、M3策略和取证归breakdown；消费方不把完成来源状态当原创包通过。",
+      "proofs": [
+        {
+          "path": "write/507-remix/SKILL.md",
+          "lines": [
+            14,
+            24
+          ],
+          "note": "只接完成来源包",
+          "sha256": "498ba81fd22093062d345314906024760938b92c518ff8c35b3446f309ca0c78",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-remix/SKILL.md#L14-L24"
+        },
+        {
+          "path": "write/507-remix/SKILL.md",
+          "lines": [
+            80,
+            103
+          ],
+          "note": "骨架不是完成制作合同",
+          "sha256": "498ba81fd22093062d345314906024760938b92c518ff8c35b3446f309ca0c78",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/write/507-remix/SKILL.md#L80-L103"
+        }
+      ],
+      "validation": "完成/未完成/损坏/字段缺失输入分别测试，取证与原创阶段状态不混合。",
+      "painIds": [
+        "S01",
+        "S02",
+        "S03"
+      ]
+    },
+    {
+      "id": "R10",
+      "title": "基础呈现与关系语义",
+      "kind": "方法／原则",
+      "status": "candidate",
+      "priority": "P3",
+      "consumers": [
+        "507-explain",
+        "507-visualize"
+      ],
+      "method": "图表选择、关系类型、基本可读性、渲染失败替代表达可共享。",
+      "preserve": "explain定义可指认和术语归宿；visualize的点选/返回/恢复与载体验收分别保持。",
+      "proofs": [
+        {
+          "path": "common/507-visualize/references/understanding-model.md",
+          "lines": [
+            3,
+            41
+          ],
+          "note": "关系与比较",
+          "sha256": "bc6d3e5918c7751fa0d06eefa1cbb83b7bc78dfbfc89a625ff7c328b56f4a161",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-visualize/references/understanding-model.md#L3-L41"
+        },
+        {
+          "path": "common/507-explain/SKILL.md",
+          "lines": [
+            28,
+            61
+          ],
+          "note": "定义/术语、最小图表、渲染失败替代与载体升级边界",
+          "sha256": "83371d88755be5362540c7a414c180817085e4ab4f4e10f322c57d3745cba621",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-explain/SKILL.md#L28-L61"
+        },
+        {
+          "path": "common/507-visualize/references/delivery-and-checks.md",
+          "lines": [
+            30,
+            42
+          ],
+          "note": "真实长标签、可达恢复、语义与实际操作分别验收",
+          "sha256": "7582164ddf583b4aaaed7eeccb6b7da742f78873ac6d9d719bfb16b8dd21eff0",
+          "url": "https://github.com/ssdiwu/507-skills/blob/5f3b0f8bd0a67484f9cfdc63a60fa93413a20068/common/507-visualize/references/delivery-and-checks.md#L30-L42"
+        }
+      ],
+      "validation": "简单概念不建站；关系探索/条件观察按需制作实际工具，避免相同图形强制合并。",
+      "painIds": [
+        "F03"
+      ]
+    }
+  ],
+  "limits": [
+    "本次为审计与迁移候选，未改30项SKILL主文和业务脚本。",
+    "30份主文完整审读并核对指纹；参考与脚本的读取覆盖单独登记，不代表全部脚本行为审计。",
+    "私有会话摘录与定位只存本地研究材料，公开版本只保存匿名症状与候选回放。",
+    "未做真实Agent同题执行、独立安装、宿主发现或收益验证；角色和路由候选未启用。"
+  ],
+  "supersededBy": "doc/40-版本实施方案/2026-10-11-两能力重建.md"
+}

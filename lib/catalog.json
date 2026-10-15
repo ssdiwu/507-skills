@@ -1,0 +1,1081 @@
+{
+  "schema": 1,
+  "maintenance": "lib/methods",
+  "methods": [
+    {
+      "id": "evidence",
+      "title": "事实、来源与工作基线",
+      "source": "lib/methods/evidence.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "规划或演进前确认原合同、消费者、来源版本；融合外部方法时保留适用条件。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "提问前核实事实，承接已确认意图；不让用户在客观事实之间选择。"
+        },
+        {
+          "skillId": "507-work-update",
+          "when": "核对消息、当前事项与历史过程的身份、版本与覆盖；不把自报或历史命令当当前授权。"
+        },
+        {
+          "skillId": "507-why",
+          "when": "解释依赖现状、版本或多来源"
+        },
+        {
+          "skillId": "507-how",
+          "when": "当前版本、调用、消费者或运行状态不明"
+        },
+        {
+          "skillId": "507-create",
+          "when": "指定稿、事实或多来源身份不明"
+        },
+        {
+          "skillId": "507-spec",
+          "when": "当前版本、原需求或来源归属不清"
+        },
+        {
+          "skillId": "507-implement",
+          "when": "指定版本、未提交改动或旧报告影响基准"
+        },
+        {
+          "skillId": "507-fix",
+          "when": "当前故障版本、用户改动或证据归属不明"
+        },
+        {
+          "skillId": "507-review",
+          "when": "指定版本、来源身份或旧报告需要核实"
+        },
+        {
+          "skillId": "507-issue",
+          "when": "证据版本、故障事实或来源归属不清"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "跨位置、版本或执行者报告的身份不清"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "差异版本、独立审查或远端结果来源不清"
+        },
+        {
+          "skillId": "507-retro",
+          "when": "过程、来源版本或完成自报需核实"
+        },
+        {
+          "skillId": "507-material",
+          "when": "1. 读取当前指定材料与必要上下文，核对可得范围。需要判断作者、Agent、第三方归属或支持关系时，读[作者与来源](references/shared/author-and-source.md)；基线或外部来源连接不明时读[事实与证据](references/shared/evidence.md)。未读取、未提供和无法核验分别说明。"
+        },
+        {
+          "skillId": "507-component",
+          "when": "目标产品、组件库版本、真实导出或使用关系需核实时查当前源码和用法，不以截图或未查到判不存在。"
+        },
+        {
+          "skillId": "507-product-map",
+          "when": "交互点梳理需要核来源、限定证据及完成后返回原目标时采用。"
+        }
+      ],
+      "relatedAtomIds": [
+        "observable-facts",
+        "source-first",
+        "fact-inference-separation",
+        "evidence-gaps",
+        "historical-rationale"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-explore",
+        "507-research",
+        "507-grill",
+        "507-skill",
+        "507-review"
+      ]
+    },
+    {
+      "id": "decision-ownership",
+      "title": "目标、边界与决定归属",
+      "source": "lib/methods/decision-ownership.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "先确认要获得什么可复用能力，再判断方法、参考、脚本与入口的边界。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "把模糊诉求转为本次需要澄清的分支，并筛除不该追问的工程细节。"
+        },
+        {
+          "skillId": "507-why",
+          "when": "解释请求混入目标、权限或用户取舍"
+        },
+        {
+          "skillId": "507-how",
+          "when": "范围、权限或取舍归属不清"
+        },
+        {
+          "skillId": "507-create",
+          "when": "作者主张、修改权限或承诺归属不清"
+        },
+        {
+          "skillId": "507-spec",
+          "when": "目标、成本或责任仍有实质取舍"
+        },
+        {
+          "skillId": "507-implement",
+          "when": "需要区分例行工程选择与实质目标取舍"
+        },
+        {
+          "skillId": "507-fix",
+          "when": "证据表明规格或风险承受需要改变"
+        },
+        {
+          "skillId": "507-issue",
+          "when": "写入许可、责任或产品取舍实质不明"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "子任务权限、责任或实质取舍有歧义"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "目标渠道、动作许可或成本有实质歧义"
+        },
+        {
+          "skillId": "507-retro",
+          "when": "将建议写成行为、权限或工具建设前"
+        }
+      ],
+      "relatedAtomIds": [
+        "engineering-owner",
+        "reversible-autonomy",
+        "irreversible-gate",
+        "goal-done-predicate",
+        "scope-addition-trades-capacity"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-grill",
+        "507-skill"
+      ]
+    },
+    {
+      "id": "question-frontier",
+      "title": "信息缺口与问题依赖",
+      "source": "lib/methods/question-frontier.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "获取新能力的真实任务、消费者、错误模式与约束；不为技能编写启动全套采访。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "区分“尚未知道想要什么”与“已有候选待取舍”，逐层消除会改变行动的缺口。"
+        },
+        {
+          "skillId": "507-why",
+          "when": "背景或对象不清且会改变解释"
+        },
+        {
+          "skillId": "507-how",
+          "when": "策略依赖尚未成立的信息"
+        },
+        {
+          "skillId": "507-create",
+          "when": "尚未表达的一手材料或实质决定缺失"
+        },
+        {
+          "skillId": "507-spec",
+          "when": "有阻塞行为定义的信息缺口"
+        }
+      ],
+      "relatedAtomIds": [
+        "question-frontier",
+        "unknowns-frontier",
+        "author-nonleading-interview",
+        "bounded-inquiry"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-grill",
+        "507-prospect",
+        "507-explore"
+      ]
+    },
+    {
+      "id": "alternatives",
+      "title": "真实候选、反证与代价",
+      "source": "lib/methods/alternatives.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "比较新建、合并、拆解、做方法或脚本的结构方案，以消费者成本为依据。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "把真实取舍呈现为可决定的少量候选，并保留推荐理由和影响。"
+        },
+        {
+          "skillId": "507-why",
+          "when": "原因或解释真实竞争"
+        },
+        {
+          "skillId": "507-how",
+          "when": "存在真实替代路径"
+        },
+        {
+          "skillId": "507-create",
+          "when": "主线或表达策略确实竞争"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "多种拆分／隔离方案真实有代价差异"
+        },
+        {
+          "skillId": "507-retro",
+          "when": "多个改进有真实收益／代价差异"
+        }
+      ],
+      "relatedAtomIds": [
+        "real-alternatives",
+        "counterevidence-writing",
+        "three-way-verdict",
+        "subtraction-before-abstraction"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-grill",
+        "507-fuse",
+        "507-simplify"
+      ]
+    },
+    {
+      "id": "validation",
+      "title": "可观察验收与相称验证",
+      "source": "lib/methods/validation.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "选择和执行技能用例、独立行为回放与脚本负例；不得把链接检查当作行为通过。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "明确什么观察足以支持方案或结束澄清；事实未知时选择最小取证，不暗自扩展成实现。"
+        },
+        {
+          "skillId": "507-work-update",
+          "when": "核对工作结果与当前权限，分别报告准备、写入读回、独立验收和接受。"
+        },
+        {
+          "skillId": "507-why",
+          "when": "需要判断解释或观察是否可用"
+        },
+        {
+          "skillId": "507-how",
+          "when": "需要定义切片和最终检查"
+        },
+        {
+          "skillId": "507-create",
+          "when": "需要检查含义、材料或真实载体"
+        },
+        {
+          "skillId": "507-spec",
+          "when": "验收能否区分正确结果仍不清"
+        },
+        {
+          "skillId": "507-implement",
+          "when": "完整交付、多轮确认、代表性错误或验证范围改变时检查原目标和跨模块结果。"
+        },
+        {
+          "skillId": "507-fix",
+          "when": "准备故障复验、回归或真实环境检查"
+        },
+        {
+          "skillId": "507-review",
+          "when": "判定验收是否足够或选择必要检查"
+        },
+        {
+          "skillId": "507-issue",
+          "when": "是否可升级 ready 或验收是否成立"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "定义接收信号或验证集成行为"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "验证是否足以支持目标终点"
+        },
+        {
+          "skillId": "507-retro",
+          "when": "提议验证、对照收益或验收方法改变"
+        },
+        {
+          "skillId": "507-component",
+          "when": "核对本次组件采用、导出和调用处的可观察结果；只查或单处保留止于查找证据，不以组件存在称整页通过。"
+        },
+        {
+          "skillId": "507-product-map",
+          "when": "交互点梳理需要核来源、限定证据及完成后返回原目标时采用。"
+        }
+      ],
+      "relatedAtomIds": [
+        "behavior-spec",
+        "falsifiable-claim",
+        "three-way-verdict",
+        "real-target-proof",
+        "risk-scaled-validation",
+        "failure-learning-log",
+        "two-no-information-stop"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-prd",
+        "507-test",
+        "507-prototype",
+        "507-fix",
+        "507-skill"
+      ]
+    },
+    {
+      "id": "authority-and-return",
+      "title": "当前权威、冲突与返回",
+      "source": "lib/methods/authority-and-return.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "记录旧方法到新位置的逐项去向，切换消费者并保留恢复依据。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "累积当前共识，用户改口时说明被取代的决定与影响，结束时返回可继续工作的边界。"
+        },
+        {
+          "skillId": "507-work-update",
+          "when": "新报告改变旧安排、授权或依赖时分别承接，结束先报告完成/符合/差距并继续获授权的原目标。"
+        },
+        {
+          "skillId": "507-why",
+          "when": "新证据冲突、保存解释或内部解释完成"
+        },
+        {
+          "skillId": "507-how",
+          "when": "新决定冲突、权威回写或内部策略完成"
+        },
+        {
+          "skillId": "507-create",
+          "when": "用户新改稿、保存归宿或内部动作完成"
+        },
+        {
+          "skillId": "507-spec",
+          "when": "新修订、迁移或有效条件需要保全"
+        },
+        {
+          "skillId": "507-implement",
+          "when": "多轮确认、最终交付或规格修订时对账有效完整目标，再返回实际完成、差距与未验证。"
+        },
+        {
+          "skillId": "507-fix",
+          "when": "修订要求、保存结论或本能力完成"
+        },
+        {
+          "skillId": "507-review",
+          "when": "新证据反驳旧发现、发现已修或需要返回"
+        },
+        {
+          "skillId": "507-issue",
+          "when": "用户修订、状态升级或决定取代"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "接续旧安排、新报告改变条件、子任务完成或转交时，区分授权与依赖并回到原目标。"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "部分交付、失败恢复或父目标尚未完成"
+        },
+        {
+          "skillId": "507-retro",
+          "when": "纠正旧结论、保存改进或完成复盘"
+        },
+        {
+          "skillId": "507-component",
+          "when": "组件采用或抽取完成后交回原页面/功能，承接原授权和未完成，不另建总控或把局部结果当整件完成。"
+        },
+        {
+          "skillId": "507-product-map",
+          "when": "交互点梳理需要核来源、限定证据及完成后返回原目标时采用。"
+        }
+      ],
+      "relatedAtomIds": [
+        "single-current-authority",
+        "decision-lineage",
+        "context-pointers",
+        "remove-legacy-callers",
+        "safe-pause-resume"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-grill",
+        "507-setup",
+        "507-issue",
+        "507-skill"
+      ]
+    },
+    {
+      "id": "clear-expression",
+      "title": "最小清晰表达与关系类型",
+      "source": "lib/methods/clear-expression.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "表达能力边界、来源去向和资源依赖；避免用目录层级冒充执行层级。"
+        },
+        {
+          "skillId": "507-what",
+          "when": "解释关键概念，展示已定/当前可问/被阻塞的关系，使候选本身仍可直接阅读。"
+        },
+        {
+          "skillId": "507-why",
+          "when": "对象与关系不易看清"
+        },
+        {
+          "skillId": "507-how",
+          "when": "接口、状态或迁移关系复杂"
+        },
+        {
+          "skillId": "507-create",
+          "when": "读者难以找到对象、关系或下一步"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "对象、依赖或状态关系难以读清"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "说明关系或差异难以理解"
+        }
+      ],
+      "relatedAtomIds": [
+        "visual-smallest-model",
+        "typed-relationships",
+        "bilingual-plain-technical"
+      ],
+      "lineageMeaning": "相关比较原子与旧素材；不表示整套上游方法均已采用。",
+      "legacySourceSkills": [
+        "507-explain",
+        "507-visualize",
+        "507-grill"
+      ]
+    },
+    {
+      "id": "artifact-contract",
+      "title": "作品版本与语义保护",
+      "source": "lib/methods/artifact-contract.md",
+      "consumers": [
+        {
+          "skillId": "507-create",
+          "when": "用户手改、多派生载体或替换可用作品"
+        },
+        {
+          "skillId": "507-compose",
+          "when": "仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](references/shared/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](references/shared/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "承接成熟稿、指定版本与手改、目标受众、载体、保留要求和修改授权。按[作品合同](references/shared/artifact-contract.md)确定当前内容版本、保护项及派生位置，不回写唯一主稿除非本次授权覆盖。只读建议仍只交建议；有制作请求时完成目标环境中可用的内容和呈现实物。"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "本轮真实消费者采用的共有方法；原子归一尚待逐条映射，不推断为零能力。"
+    },
+    {
+      "id": "artifact-rendering",
+      "title": "离线HTML呈现合同",
+      "source": "lib/methods/artifact-rendering.md",
+      "consumers": [
+        {
+          "skillId": "507-compose",
+          "when": "用户还要求离线 HTML 且内容成熟时，读[呈现合同](references/shared/artifact-rendering.md)，使用[呈现脚本](scripts/render_artifact.py)制作图卡式页面、幻灯片或阅读网站，并看最终 HTML。真实内容还需确定视觉阅读关系时采用[设计提示](references/shared/artifact-prompts.md)。目标是图片、PPTX 或视频时，复用真实可用成熟工具核对依赖及目标文件；缺工具交付内容包和具体依赖，不能称目标载体已完成。"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "4. 可以由离线 HTML 满足目标时，读[呈现合同](references/shared/artifact-rendering.md)，运行[呈现脚本](scripts/render_artifact.py)，生成图卡式页面、幻灯片或阅读网站。必须打开当前 HTML 核对全部页、最密页、来源、备注和实际导航；生成与内容指纹不代替这一步。"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "本轮真实消费者采用的共有方法；原子归一尚待逐条映射，不推断为零能力。"
+    },
+    {
+      "id": "author-and-source",
+      "title": "作者归属与材料支持",
+      "source": "lib/methods/author-and-source.md",
+      "consumers": [
+        {
+          "skillId": "507-create",
+          "when": "作者、Agent、第三方混合，引语或主张承重有缺口"
+        },
+        {
+          "skillId": "507-material",
+          "when": "1. 读取当前指定材料与必要上下文，核对可得范围。需要判断作者、Agent、第三方归属或支持关系时，读[作者与来源](references/shared/author-and-source.md)；基线或外部来源连接不明时读[事实与证据](references/shared/evidence.md)。未读取、未提供和无法核验分别说明。"
+        },
+        {
+          "skillId": "507-compose",
+          "when": "仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](references/shared/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](references/shared/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "1. 核对目标读者要理解、判断或执行什么，读取[受众与载体](references/reader-and-carrier.md)。已有条件足够时自行安排入口、层级、分页与节奏，不重开总规划。归属、引语或材料支持可能受压缩影响时读[作者与来源](references/shared/author-and-source.md)。"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "本轮真实消费者采用的共有方法；原子归一尚待逐条映射，不推断为零能力。"
+    },
+    {
+      "id": "engineering-evidence",
+      "title": "工程原动作与运行证据",
+      "source": "lib/methods/engineering-evidence.md",
+      "consumers": [
+        {
+          "skillId": "507-spec",
+          "when": "接受现有运行结果或状态／异步行为作依据"
+        },
+        {
+          "skillId": "507-implement",
+          "when": "关键断言、原动作或运行状态证据"
+        },
+        {
+          "skillId": "507-fix",
+          "when": "绑定原动作与版本；共享状态/快照/客户端生命周期改变时验证更新后的已有与新建消费者。"
+        },
+        {
+          "skillId": "507-review",
+          "when": "使用[工程证据](references/shared/engineering-evidence.md)核对真实调用、写入、最终消费、原动作及运行版本。区分执行者自报与工具回执，审查者口述采用规则也不能作为完整读取证明。未提交源文件用实际指纹定位，不能当成 HEAD 代码；后续修改不自动继承旧审查通过。"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "本轮真实消费者采用的共有方法；原子归一尚待逐条映射，不推断为零能力。"
+    },
+    {
+      "id": "task-coordination",
+      "title": "按情境拆解与协调",
+      "source": "lib/methods/task-coordination.md",
+      "consumers": [
+        {
+          "skillId": "507-coordinate",
+          "when": "需要拆分、依赖推进、跨回合接续或任务网页对齐"
+        },
+        {
+          "skillId": "507-create",
+          "when": "创作存在独立产物、真实依赖或跨回合接续需要"
+        },
+        {
+          "skillId": "507-work-update",
+          "when": "跨工程、写作、研究或一般工作需要拆分、依赖推进或持续接续"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "三类固定来源的情境判断与本库授权适配；不全量继承上游工具、队列或流程。"
+    },
+    {
+      "id": "external-research",
+      "title": "外部取证与证据交接",
+      "source": "lib/methods/external-research.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "融合外部方法、核一手出处与适用条件"
+        },
+        {
+          "skillId": "507-why",
+          "when": "解释依赖外部事实或需要独立证据比较"
+        },
+        {
+          "skillId": "507-how",
+          "when": "外部依赖、方案或参考机制尚未核实"
+        },
+        {
+          "skillId": "507-create",
+          "when": "作品的外部事实或传播借鉴需要取证"
+        },
+        {
+          "skillId": "507-material",
+          "when": "来源材料需外部核实并形成证据交接"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "visual-understanding",
+      "title": "对象关系、比较与观察",
+      "source": "lib/methods/visual-understanding.md",
+      "consumers": [
+        {
+          "skillId": "507-why",
+          "when": "关系或条件需要实际探索和观察"
+        },
+        {
+          "skillId": "507-how",
+          "when": "成立策略需要同条件对照或可操作关系表达"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "制作比较站或关系阅读工具"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "工作关系需要固定任务视图之外的理解载体"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "visual-direction",
+      "title": "视觉方向与真实反馈",
+      "source": "lib/methods/visual-direction.md",
+      "consumers": [
+        {
+          "skillId": "507-create",
+          "when": "作品视觉方向未定，需要真实结构粗稿和反馈"
+        },
+        {
+          "skillId": "507-compose",
+          "when": "已成熟内容还需要视觉方向选择"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "目标载体方向未定且真实候选能区分选择"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "continuation",
+      "title": "真实中断、交接与续办",
+      "source": "lib/methods/continuation.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-what",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-work-update",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-why",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-how",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-create",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-spec",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-implement",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-fix",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-review",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-issue",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-retro",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-material",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-compose",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        },
+        {
+          "skillId": "507-setup",
+          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "project-foundation",
+      "title": "项目依据与迁移",
+      "source": "lib/methods/project-foundation.md",
+      "consumers": [
+        {
+          "skillId": "507-setup",
+          "when": "建立、只读巡检或获授权迁移项目工作依据"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "project-navigation",
+      "title": "项目阅读导航",
+      "source": "lib/methods/project-navigation.md",
+      "consumers": [
+        {
+          "skillId": "507-setup",
+          "when": "只维护README、目录职责、spec/doc导航或局部地图"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "probe-lifecycle",
+      "title": "可丢弃原型证据",
+      "source": "lib/methods/probe-lifecycle.md",
+      "consumers": [
+        {
+          "skillId": "507-why",
+          "when": "现有证据不能区分解释，隔离观察能低成本改变结论"
+        },
+        {
+          "skillId": "507-how",
+          "when": "一个可观察未知会改变策略且收益大于制作与清理成本"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "architecture-candidates",
+      "title": "架构摩擦与候选证据",
+      "source": "lib/methods/architecture-candidates.md",
+      "consumers": [
+        {
+          "skillId": "507-why",
+          "when": "只读解释模块职责、接缝或维护现象"
+        },
+        {
+          "skillId": "507-how",
+          "when": "需要可定位的改进机会及完整候选处置"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "behavior-preserving-change",
+      "title": "行为不变修改证据门",
+      "source": "lib/methods/behavior-preserving-change.md",
+      "consumers": [
+        {
+          "skillId": "507-how",
+          "when": "构造保持公开行为的内部简化策略"
+        },
+        {
+          "skillId": "507-implement",
+          "when": "执行已授权行为不变修改，逐项建立基线、修改或有据关闭"
+        },
+        {
+          "skillId": "507-component",
+          "when": "把已重复界面块归入产品组件库并迁移调用时，锁定原行为及受影响旧/新消费者的有效基线。"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "interaction",
+      "title": "操作、状态与实际呈现",
+      "source": "lib/methods/interaction.md",
+      "consumers": [
+        {
+          "skillId": "507-implement",
+          "when": "实现产品操作、异步状态与失败恢复"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "制作可操作载体，范围止于呈现而不修改正式业务"
+        },
+        {
+          "skillId": "507-create",
+          "when": "已确认交互作品涉及动作、共同状态和返回时，按具体控件/容器/平台需要采用；不扩大正式产品写权。"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "author-interview",
+      "title": "显化作者一手材料",
+      "source": "lib/methods/author-interview.md",
+      "consumers": [
+        {
+          "skillId": "507-create",
+          "when": "尚未表达的作者亲历或判断影响当前主线"
+        },
+        {
+          "skillId": "507-material",
+          "when": "请求明确包含采访或补作者一手材料"
+        },
+        {
+          "skillId": "507-compose",
+          "when": "当前稿具体表达缺口需要作者材料，既有材料足够时跳过"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "knowledge-organization",
+      "title": "已有知识入口组织",
+      "source": "lib/methods/knowledge-organization.md",
+      "consumers": [
+        {
+          "skillId": "507-material",
+          "when": "明确要求主题聚合、去重或已有知识入口维护，不默认建库"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "explanation-progression",
+      "title": "同一场景的解释检验",
+      "source": "lib/methods/explanation-progression.md",
+      "consumers": [
+        {
+          "skillId": "507-why",
+          "when": "竞争解释的首个可见缺口需要同案重跑与反例"
+        },
+        {
+          "skillId": "507-compose",
+          "when": "解释型作品确有读者旧解释需要校准"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "media-study",
+      "title": "参考视听证据与原创借鉴",
+      "source": "lib/methods/media-study.md",
+      "consumers": [
+        {
+          "skillId": "507-why",
+          "when": "解释参考作品机制，需要可回查媒体观察"
+        },
+        {
+          "skillId": "507-material",
+          "when": "为作品提供带时间和身份的媒体证据"
+        },
+        {
+          "skillId": "507-create",
+          "when": "需要借鉴手法，保留原片取证与原创蓝图边界"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "只借呈现结构，不改成熟稿主张与事实"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "media-production",
+      "title": "媒体版本、时间与验收",
+      "source": "lib/methods/media-production.md",
+      "consumers": [
+        {
+          "skillId": "507-create",
+          "when": "整体视听作品需对齐内容、声音、素材和版本"
+        },
+        {
+          "skillId": "507-compose",
+          "when": "旁白或分镜须交接给真实媒体制作"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "目标包含真实音频或视频，沿成熟制作工具核实物"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
+    },
+    {
+      "id": "title-promises",
+      "title": "传播标题与正文兑现",
+      "source": "lib/methods/title-promises.md",
+      "consumers": [
+        {
+          "skillId": "507-compose",
+          "when": "明确传播目标或请求改标题吸引力"
+        },
+        {
+          "skillId": "507-adapt",
+          "when": "原授权包含传播优化，不因平台名称改主张"
+        }
+      ],
+      "relatedAtomIds": []
+    },
+    {
+      "source": "lib/methods/skill-entry-resolution.md",
+      "title": "旧技能引用与当前职责",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "当前请求、项目约定或接续材料点名旧技能，需要查询声明去向并保留原任务权限、终点及来源。"
+        },
+        {
+          "skillId": "507-setup",
+          "when": "当前请求、项目约定或接续材料点名旧技能，需要查询声明去向并保留原任务权限、终点及来源。"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "当前请求、项目约定或接续材料点名旧技能，需要查询声明去向并保留原任务权限、终点及来源。"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "当前请求、项目约定或接续材料点名旧技能，需要查询声明去向并保留原任务权限、终点及来源。"
+        }
+      ],
+      "relatedAtomIds": []
+    },
+    {
+      "source": "lib/methods/interaction-map.md",
+      "title": "交互点、关系与证据",
+      "consumers": [
+        {
+          "skillId": "507-product-map",
+          "when": "目标需要功能交互点及其设计、实现和运行证据的同对象对照；普通执行不默认建图。"
+        },
+        {
+          "skillId": "507-how",
+          "when": "目标需要功能交互点及其设计、实现和运行证据的同对象对照；普通执行不默认建图。"
+        },
+        {
+          "skillId": "507-spec",
+          "when": "目标需要功能交互点及其设计、实现和运行证据的同对象对照；普通执行不默认建图。"
+        },
+        {
+          "skillId": "507-review",
+          "when": "目标需要功能交互点及其设计、实现和运行证据的同对象对照；普通执行不默认建图。"
+        }
+      ],
+      "relatedAtomIds": []
+    }
+  ],
+  "components": [
+    {
+      "source": "lib/components/check_prose.py",
+      "consumers": [
+        "507-compose",
+        "507-adapt"
+      ]
+    },
+    {
+      "source": "lib/components/check_run.py",
+      "consumers": [
+        "507-implement",
+        "507-fix",
+        "507-review"
+      ]
+    },
+    {
+      "source": "lib/components/check_spoken.py",
+      "consumers": [
+        "507-compose",
+        "507-adapt"
+      ]
+    },
+    {
+      "source": "lib/components/render_artifact.py",
+      "consumers": [
+        "507-compose",
+        "507-adapt"
+      ]
+    },
+    {
+      "source": "lib/components/state_diff.py",
+      "consumers": [
+        "507-work-update"
+      ]
+    },
+    {
+      "source": "lib/components/work_view.py",
+      "consumers": [
+        "507-work-update"
+      ]
+    },
+    {
+      "source": "lib/components/task_view.py",
+      "consumers": [
+        "507-coordinate",
+        "507-work-update"
+      ]
+    },
+    {
+      "source": "lib/components/library_view.py",
+      "consumers": [
+        "skill-design",
+        {
+          "skillId": "507-setup",
+          "when": "只读查询包内旧名或当前名声明；不执行候选，不判断安装与动作授权。"
+        },
+        {
+          "skillId": "507-deliver",
+          "when": "只读查询包内旧名或当前名声明；不执行候选，不判断安装与动作授权。"
+        },
+        {
+          "skillId": "507-coordinate",
+          "when": "只读查询包内旧名或当前名声明；不执行候选，不判断安装与动作授权。"
+        }
+      ]
+    },
+    {
+      "source": "lib/components/artifact_receipt.py",
+      "consumers": [
+        "507-create",
+        "507-compose",
+        "507-adapt"
+      ]
+    },
+    {
+      "source": "lib/components/product_map.py",
+      "title": "交互点地图生成",
+      "consumers": [
+        "507-product-map"
+      ]
+    }
+  ]
+}

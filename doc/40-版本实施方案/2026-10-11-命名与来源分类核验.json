@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-11",
+  "status": "PASS_WITHIN_DESIGN_DELTA_SCOPE",
+  "scope": "四项工作名确认与主要来源类型修订；仅参考网站与设计记录。",
+  "artifactSha256": "0cd0a477aa48fafdd719b8a142c4fe8a2607be85c10e61e4944b3728356755c6",
+  "confirmedNames": [
+    "what",
+    "skills",
+    "create",
+    "why"
+  ],
+  "pendingNamesAndRoles": [
+    "how / solve",
+    "knowledge"
+  ],
+  "typedPrimaryRelationships": 43,
+  "provenanceKinds": {
+    "core": "核心思考素材",
+    "context": "旧执行情境",
+    "method": "局部方法借鉴",
+    "support": "通用配套与保障"
+  },
+  "knowledgeCore": [
+    "507-mine",
+    "507-cast"
+  ],
+  "independentReview": {
+    "status": "PASS_WITHIN_REVIEWED_SCOPE",
+    "receiptSha256": "a7cf2e41d61ec3c4d282d82365b2bb7f92a379f5b2d13dca81985be3f9569ce8"
+  },
+  "browser": {
+    "status": "PASS_WITHIN_INCREMENTAL_SCOPE",
+    "checks": 11,
+    "receiptSha256": "93b8cdd656efb89a19577cc89bcc0a4c30082bbdb76e8ff0000f2b0426b7056e",
+    "initialReportExecutionErrorsRecovered": 2
+  },
+  "dataVerification": {
+    "status": "PASS",
+    "receiptSha256": "849470ae0f0a982aeaf5b49c3be8b6395fc81179c9f1f411523ca51295a7aadc"
+  },
+  "actualImplementationChanged": false,
+  "migrationApplied": false,
+  "hostInstalled": false,
+  "committed": false,
+  "pushed": false,
+  "limits": [
+    "仅核对本次命名、来源分类与关键往返；初版全站/响应式回执仍绑定初版。",
+    "命名确认不是职责定案，知识及解决主要身份尚待讨论。",
+    "未验证新技能实际选择、跨模型或收益。"
+  ]
+}

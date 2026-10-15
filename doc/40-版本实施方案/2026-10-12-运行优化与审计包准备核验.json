@@ -1,0 +1,59 @@
+{
+  "status": "PLAN_AND_LOCAL_AUDIT_MATERIAL_PREPARED_NOT_EXECUTED",
+  "date": "2026-10-12",
+  "runtimeSkillChanges": false,
+  "externalModelInvoked": false,
+  "privateSessionExported": false,
+  "userChoice": "507自行选择模型，本轮只接收审计材料",
+  "planSource": "doc/10-架构与运行/运行优化与异模型审计方案.md",
+  "actualPackagesUnchanged": {
+    "skills": 2,
+    "files": 22,
+    "sharedCopies": 14
+  },
+  "auditMaterial": {
+    "fullBundleFiles": 55,
+    "constructedCalibrationCases": 6,
+    "stage1Files": 47,
+    "stage2Files": 9,
+    "answerKeyExcluded": true,
+    "priorVerdictsExcluded": true,
+    "rawPrivateSessionExcluded": true,
+    "fullArchiveSha256": "1e2c7239ce8c9c967440ef6ed6221c732240c5c89ad1ac4e12762529a2b622f4",
+    "stageArchiveSha256": {
+      "1": "2ba3d67101ec2d08b32d04b70dd1af07efa4c860b0c6801c5eeb231b43490853",
+      "2": "9f83c5e5faf320e2135640e57b37223d95002517e50e4fb65a9f577cd10b7e7f"
+    },
+    "internalPreparationCheckOnly": {
+      "model": "gpt-6-luna",
+      "labelsMatch": 6,
+      "initialConstraintReasonCorrected": true,
+      "scope": "constructed material and packet preparation; not third party or statistical reliability"
+    }
+  },
+  "website": {
+    "status": "PASS_LOCAL_REFERENCE_SCOPE",
+    "checks": 21,
+    "htmlSha256": "e7296a9f623b019fdb62c7d52d76c4fecd101a898f2b42e317ad91d409d534fa",
+    "responsiveWidths": [
+      1413,
+      768,
+      390
+    ],
+    "screenshotsViewed": 2,
+    "scope": "proposal, artifact links, native keyboard/details, named scroll region and representative old pages"
+  },
+  "checks": {
+    "artifactSources": "PASS",
+    "markdownLocalLinks": "PASS",
+    "gitDiffCheck": "PASS"
+  },
+  "limits": [
+    "新优化方案与第三方审计未执行",
+    "内部预检不升级为外部审计或模型稳定性",
+    "两个实际包、候选资料、网页交互及宿主自然发现分别成立",
+    "原修复核验保持其历史版本身份，新增网页未复跑原完整138项套件"
+  ],
+  "currentDelivery": false,
+  "supersededBy": "2026-10-12用户要求一次完整上下文；此回执保留此前分次材料准备身份"
+}

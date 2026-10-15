@@ -1,0 +1,4 @@
+interface:
+  display_name: "复盘与工具化建议"
+  short_description: "从实际尝试和结果提炼方法与工具建议，获具体批准后才落地建设。"
+  default_prompt: "使用 $507-retro 复盘已发生工作，区分真实证据和建议，提出重复任务的工具化候选。"

@@ -1,8 +1,146 @@
 # Agent Skills
 
-一套可独立使用的 Agent Skills（智能体技能）。每项技能说明何时使用、具体要做什么、允许修改哪些内容、交付什么、何时停止，以及后续可以进入哪些工作。需要多项技能时，通过已经完成的结果继续下一步。
+本轮在[507-why](next/skills/507-why/SKILL.md)落实陌生项目初识，主要职责与入口数保持不变；源码固定候选20入口／274文件，实际用户安装仍为19入口c333版。一句请求的6-luna试用、具体卡点及独立判定见[本轮记录](doc/40-版本实施方案/2026-10-14-why新项目初识实施与试用.md)。
 
-本仓库按 [Agent Skills 规范](https://agentskills.io/specification)组织每个 `SKILL.md`（技能说明），不绑定某个 Agent（智能体）产品。共享技能规定工作动作、修改范围、交付结果、验证与后续处理；怎样发现技能、授予工具权限和安排调用，由使用它的宿主决定，不属于本仓库的通用承诺。
+本轮新增[507-product-map](next/skills/507-product-map/SKILL.md)交互点功能梳理，源码候选现为五主要、十五次要共20入口；共有方法和地图组件已经落实。当前实际安装仍为下述c333的19入口，候选实现、材料试用与安装分别记录，见[本轮实施与试用](doc/40-版本实施方案/2026-10-14-交互点功能地图实施与试用.md)。
+
+当前c333固定版已按用户授权接入真实用户环境，五主要、十四次要共19入口／262文件；两个工作位置重新扫描均发现19个启用入口。旧18入口固定副本保留恢复点；来源、独立读回及范围见[当前接入](doc/40-版本实施方案/2026-10-14-c333使用环境接入.md)，历史接入见[原记录](doc/10-架构与运行/新版用户环境接入.md)。安装与发现已成立，自然任务中的选择、接力和业务验收继续按实际工作观察。
+
+此前已将三种协作尺度融入同一新版，覆盖工程、写作、研究与一般工作，见[三情境与生成任务网页](doc/10-架构与运行/三情境协调与生成任务网页.md)。已有过程记录是状态维护源，临时网页由共有组件生成和重生成；需要新表达能力时先扩组件，生成HTML不直接编辑。
+
+工作能力扩展与现有过程记录的分工见[工作推进与接续](doc/10-架构与运行/工作推进与过程接续.md)；此前隔离候选与正式接入阶段分开；当前接入与试用见[work-update接入说明](doc/10-架构与运行/work-update接入与真实工作试用.md)。
+
+整体分工初步确认what、why、how、create、skill-design五个主要技能，可继续增减；knowledge下沉次要方法；职责继续按“特有思考、完整方法、共有组件”讨论，见[设计候选](doc/40-版本实施方案/2026-10-11-思考方法组件分工.md)。以下说明上轮已有实现。
+
+用户安装版为五主要、十四次要；当前源码另增交互点功能梳理，主要职责保持五个。产品组件查找与抽取职责已接入；新入口的真实产品工作仍未验证。完整入口见[新体系说明](next/README.md)。资源闭包已检查，既有六类真实来源任务/九阶段试用保留原范围与版本，结果见[实际试用](doc/10-架构与运行/创作与工程实际试用.md)。安装不把旧试用升级为新能力通过；接入、记录与恢复约定见[试用准备](doc/10-架构与运行/真实环境试用准备.md)。
+
+**源码与业务验证分别成立**：旧30通用能力的保留、合并和机制退出已逐项落实；专项媒体工具和真实任务效果仍有边界。准确状态见[整体覆盖](doc/10-架构与运行/新体系实现覆盖.md)，首次卡点与修订由[本轮安排](doc/40-版本实施方案/2026-10-12-创作与工程路径接入.md)承接。
+
+| 当前问题 | 阅读入口 |
+| --- | --- |
+| 当前新版skill怎样使用和随库交付 | [新体系说明](next/README.md) |
+| 怎样规划、编写、重构技能体系 | [skill-design](next/skills/skill-design/SKILL.md) |
+| 怎样明确目标和关键取舍 | [507-what](next/skills/507-what/SKILL.md) |
+| 怎样发现、整理和推进现有工作 | [507-work-update](next/skills/507-work-update/SKILL.md) |
+| 怎样找产品组件库、复用或抽取重复界面块 | [507-component](next/skills/507-component/SKILL.md) |
+| 怎样梳理交互点、对照设计／实现／运行证据 | [507-product-map](next/skills/507-product-map/SKILL.md) |
+| 共有方法、消费者与生成关系在哪里 | [共有库](lib/README.md) |
+| 旧30拆成了什么，哪些本轮不进入 | [重建方案](doc/40-版本实施方案/2026-10-11-两能力重建.md) |
+| 调用、独立包和恢复应达到什么要求 | [库级规格](spec/技能分层与共有资源.md) |
+| 阅读设计、词义、来源与当前进度 | [DESIGN](DESIGN.md) · [GLOSSARY](GLOSSARY.md) · [来源](doc/20-能力参考/skill-library-comparison/README.md) · [PROGRESS](PROGRESS.md) |
+
+本仓库按[Agent Skills规范](https://agentskills.io/specification)组织可独立读取的包，不以目录推断宿主发现或权限。当前清单源码已构建，安装、启用、提交和发布仍按各自实际状态判断。
+
+## 历史设计流程导航（2026-10-11）
+
+创作与工作处理的Luna重放、确定遗漏和应补职责见[正式会话重放评估](doc/10-架构与运行/正式会话Luna重放与能力补强.md)；[核验回执](doc/40-版本实施方案/2026-10-11-Luna创作与工作重放核验.json)区分十份输出、网站操作与尚未成立的真实平台/宿主效果。测试完成不等于候选通过或替换完成。
+
+代码与项目里哪些职责会采用、哪些跳过，旧grill怎样回交完整方案，见[任务采用与决策接力](doc/10-架构与运行/任务采用与决策接力.md)。[情境与观察资料](doc/40-版本实施方案/2026-10-11-工程采用与决策资料.json)是网站的唯一数据维护源：7类任务/19个情境属于设计推演；3轮what属于模拟输入、显式读包的受控Agent演练。宿主自然选择与真实工程接力尚未成立。[本轮核验](doc/40-版本实施方案/2026-10-11-任务采用与决策接力核验.json)分别记录设计、网页、演练和未完成的试用门。
+
+五个主要职责的判断轴、问题示例、方法采用/跳过和典型失败见[特有思考参考](doc/10-架构与运行/主要技能特有思考参考.md)。它是doc参考，实际技能合同与已实现范围仍以各SKILL.md和核验为准。UI／UX模式与按需提示见[共有设计资料](lib/design/README.md)。
+
+下图保留2026-10-11的5主要/32方法/48接口设计导航，当前源码20入口／已安装19入口与方法去向见上方实现说明和旧30处置，允许直接请求方法或组件；不表示历史候选都已注册、安装或运行。完整工程、创作、视听与能力设计的条件/返回见[工作流对照](doc/10-架构与运行/工作流对照与条件接力.md)。图的唯一详细维护源在该文档；此处只提供入口概览。
+
+```mermaid
+flowchart TD
+ task["用户目标、材料与已有授权"] --> need{"当前缺口；清楚任务可直达"}
+ need -->|"目标/用户关键决定"| what["what"]
+ need -->|"理解/解释"| why["why"]
+ need -->|"变更策略"| how["how"]
+ need -->|"作品表达"| create["create"]
+ need -->|"能力组织"| skills["skill-design"]
+ need -->|"前提充分"| direct["完整方法或已有组件"]
+ what -->|"必要决定足够"| direct
+ why -->|"必要理解足够"| direct
+ how -->|"策略充分，承接原授权"| direct
+ create -->|"按表达缺口采用"| direct
+ skills -->|"按能力设计目标采用"| direct
+ direct --> result["范围结果、证据与未覆盖；父目标未完继续"]
+ result -. "实质新缺口才返回相应思考" .-> need
+ interruption["真实中断/转交"] --> resume["resume"]
+ resume -. "有效版本与未完成目标" .-> task
+```
+
+<details>
+<summary>查看当前工程与创作设计路线；都是按需采用</summary>
+
+### 当前工程路线
+
+```mermaid
+flowchart TD
+ task["工程目标、版本与修改权限"] -->|"目标有实质缺口"| what["what"]
+ task -->|"机制未知"| why["why"]
+ task -->|"跨约束策略未成"| how["how"]
+ task -->|"已有方案/故障/任务图"| work{"直接选择完整工作"}
+ what --> work
+ why --> work
+ how --> work
+ work -->|"只建立/维护PRD或规格"| spec["spec：PRD/行为与验收规格"]
+ work -->|"只做执行计划"| plan["plan"]
+ work -->|"记录/追踪问题"| issue["issue"]
+ work -->|"新增/改变行为"| implement["implement"]
+ work -->|"明确故障"| fix["fix"]
+ work -->|"只读改进机会"| inspect["inspect"]
+ inspect -->|"收益、行为基线及授权充分"| simplify["simplify"]
+ work -->|"测试资产/获授权TDD"| verify["verify"]
+ implement -->|"仅必要行为依据"| spec
+ spec -. "父任务已授权实施，规格结果回交" .-> implement
+ spec -->|"仅规格请求完成"| result
+ implement -->|"复杂接力拆解"| plan
+ plan -. "父任务已授权实施，计划结果回交" .-> implement
+ plan -->|"仅计划请求完成"| result
+ issue -->|"仅记录/追踪范围完成"| result
+ issue -. "执行态就绪且原目标已授权实施" .-> implement
+ implement -->|"独立写入值得协调"| coordinate["coordinate"]
+ coordinate -. "集成与整体复验回交" .-> implement
+ implement -->|"产品操作路径"| interaction["interaction"]
+ interaction -. "行为与操作证据回交" .-> implement
+ implement --> checked["原目标完整路径与必要检查"]
+ fix --> checked
+ simplify --> checked
+ verify --> checked
+ checked --> review["review：独立只读"]
+ review -. "发现回原实施者" .-> work
+ review -->|"范围达成；未请求交付"| result["范围结果与未覆盖"]
+ review -->|"已授权具体终点"| deliver["deliver：Git/PR/版本终点"]
+ deliver --> result
+ result -->|"明确复盘/重复摩擦"| retro["retro：改进候选"]
+```
+
+### 当前创作路线
+
+```mermaid
+flowchart TD
+ request["创作目标/指定稿件与授权"] -->|"主张、受众、作者责任未成"| create["create"]
+ request -->|"成熟稿指定修订"| draft["draft"]
+ request -->|"内容成熟，阅读关系需变"| adapt["adapt"]
+ create -->|"作者尚未表达材料"| interview["interview"]
+ interview -. "一手材料与未知回交" .-> create
+ create -->|"材料身份/独立性"| material["material"]
+ material -. "材料支持位置回交" .-> create
+ create -->|"主线/论证/节奏"| compose["compose"]
+ compose -. "结构与材料负载回交" .-> create
+ create -->|"主张与材料成立"| draft
+ draft --> content["完整主稿/方案/可说内容"]
+ content -->|"载体容量/阅读适配"| adapt
+ adapt --> presentation["目标载体组件；真实呈现检查"]
+ content -->|"成熟视听内容"| production["media-production"]
+ production --> result["作品与载体结果；接受/发布另立"]
+ presentation --> result
+ result -->|"具体平台发布授权"| publish["外部发布出口：平台适配另核"]
+ result -->|"明确复盘"| retro["retro"]
+```
+
+</details>
+
+仅理解/调查/策略/规格/计划的请求止于对应结果；实施请求沿已有授权继续。提交、推送、合并、发布和人工接受分别成立，内容平台发布适配仍另核。下面的旧图是原发布导航，保留用于来源对照，不视为当前候选全部已迁移。
+
+## 已发布基线与历史工作流
+
+以下common/code/write的30项说明与流程保留已发布基线，作为方法拆解来源与回退参考。它们没有整体转入新体系，也不是本轮安装范围；本轮使用上方next入口。此前19入口／11能力的提案已被两能力重建取代，见[历史方案](doc/90-归档/方案/2026-10-11-30项技能分层方案.md)。
+
+<details>
+<summary>展开已发布基线的30项说明与流程，仅用于来源追溯</summary>
 
 ## 适合谁
 
@@ -229,3 +367,9 @@ python3 scripts/test_all.py
 - 使用条款见 [`LICENSE`](LICENSE)。
 
 欢迎提 issue（问题单）讨论 skill 边界、可复现失败和跨宿主行为。个人偏好优先留在自己的 `AGENTS.md` 或 fork 中。
+
+</details>
+
+- [Luna补强复验与工程接力](doc/10-架构与运行/Luna补强复验与工程接力.md)：3共有方法实际补强，复验仍有语义问题；真实工程样本的审查/隔离修复与实际选路对照。
+
+- [消费者对账修复与条件验证](doc/10-架构与运行/消费者对账修复与条件验证.md)：首次失败、审读后修订与构造相邻例分开；共享源和只读字段CLI实际更新。

@@ -1,0 +1,68 @@
+{
+  "status": "COMPLETED_WITH_FINDINGS_NOT_GLOBAL_ACCEPTANCE",
+  "model": "gpt-6-luna",
+  "effort": "medium",
+  "executors": 4,
+  "modelOutputs": 5,
+  "semanticReviewers": 1,
+  "implementation": {
+    "changedSharedSources": 3,
+    "totalSharedSources": 7,
+    "generatedCopies": 14,
+    "packages": 2,
+    "bundleFiles": 22,
+    "fingerprint": "9f71b70a50d70721e69b7694ae65371f0d8106cb14af10caa46f863d14fd1a9c",
+    "mainContractsChanged": false,
+    "installed": false
+  },
+  "checks": {
+    "packagingProtectionTests": 15,
+    "frozenSyncSuite": 12,
+    "independentSecondAwaitProbe": "PASS_AFTER_ISOLATED_FIX",
+    "independentFixReexecution": "PASS_SCOPE_ONLY",
+    "componentBrowserChecks": 3,
+    "website": {
+      "status": "PASS_STATIC_LOCAL_SCOPE",
+      "htmlSha256": "d7dab4000cc5867e9724989643e522ae7b93956ede77db109bc90df9ebe1fed1",
+      "newBrowserChecks": 28,
+      "priorReplayRegressionChecks": 57,
+      "responsiveMeasurements": 6,
+      "screenshotsInspected": 4,
+      "scope": "new view interactions/frozen outputs/keyboard/contract return/hash reload; older replay, workflow and UI preserved; excludes model semantic acceptance and full ERP"
+    },
+    "documentation": {
+      "status": "PASS",
+      "files": 9,
+      "localLinks": 123
+    }
+  },
+  "remaining": [
+    "work condition owner and exact deadline conflict",
+    "candidate why/implement/fix choice mismatch",
+    "same-round unsynced UI feedback and full ERP integration",
+    "natural host discovery/platform real readback/media/author acceptance"
+  ],
+  "limits": [
+    "explicit design catalog, not host discovery",
+    "actual runtime models verified separately from self report",
+    "no source ERP write, install, commit, push, message or deployment",
+    "no causal, statistical or cost-benefit claim"
+  ],
+  "maintainerDocumentValidation": {
+    "status": "PASS",
+    "files": 9,
+    "localLinks": 123,
+    "failures": []
+  },
+  "semanticReview": {
+    "status": "COMPLETED_WITH_CORRECTIONS",
+    "initialFalsePassRetained": true,
+    "current": "deadline override confirmed; condition owner unresolved; source connection unproven; isolated ERP fix passes scope only"
+  },
+  "independentWebsiteReview": {
+    "status": "NO_OPEN_SOURCE_OR_INTERFACE_P1_P2_WITHIN_SCOPE",
+    "model": "gpt-6-luna",
+    "pendingReceipt": "resolved by current website scope and bound checks",
+    "modelFindingsRemain": true
+  }
+}

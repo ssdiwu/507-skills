@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-11",
+  "status": "PASS_WITHIN_DESIGN_DELTA_SCOPE",
+  "scope": "skill-design命名、术语分清、knowledge下沉与完整工程方法承接；仅设计和参考网站。",
+  "artifactSha256": "71d892b6736519332a0b64dce66520cce97c433b4e04cbb96e2cab5206277184",
+  "confirmedMainNames": [
+    "what",
+    "why",
+    "create",
+    "skill-design"
+  ],
+  "pendingMainNameAndRole": "how / solve",
+  "demotion": {
+    "former": "knowledge主要候选",
+    "current": "organize次要方法",
+    "positionConfirmed": true,
+    "workingNameConfirmed": false
+  },
+  "counts": {
+    "mainCandidates": 5,
+    "methodCandidates": 22,
+    "componentInterfaces": 40,
+    "staticScenarios": 12,
+    "engineeringResponsibilities": 11,
+    "authoritativeTerms": 4,
+    "typedSourceRelationships": 50
+  },
+  "independentReview": {
+    "status": "PASS_WITHIN_REVIEWED_SCOPE",
+    "resolvedFindings": 1,
+    "openFindings": 0,
+    "receiptSha256": "031cc719272cd5e6f1b2c27a1bdbcd306ab6b45e98e07089a31e40b2c8e68b8e"
+  },
+  "browser": {
+    "baseArtifactSha256": "15e253c97dedcc5f0c0b928078543436114b422d0dd8e5c675372d1b6d70e3e1",
+    "baseChecks": 25,
+    "baseReceiptSha256": "19ca61715f8de430022eea284d7c5139d453441b78773888545135682cd886c5",
+    "finalArtifactSha256": "71d892b6736519332a0b64dce66520cce97c433b4e04cbb96e2cab5206277184",
+    "targetedRepairChecks": 5,
+    "targetedReceiptSha256": "609cf01d59953e6b03b2c7d3ad2b54fc9bf4035a727e282a6c0a91095886546b",
+    "scope": "基版25项与最终工单修订5项分别绑定各自HTML，不声称25项全在最终版重跑。"
+  },
+  "glossarySha256": "a4f4c287874fc81d4697b344ece2db9ff2c05b01206ca0a71751bf04b6b67577",
+  "dataVerification": {
+    "status": "PASS",
+    "receiptSha256": "638fea17748f2c9b0361d82213c7b3240678d7902724f0fc0961bfcfda6f67ee"
+  },
+  "actualImplementationChanged": false,
+  "migrationApplied": false,
+  "hostInstalled": false,
+  "committed": false,
+  "pushed": false,
+  "limits": [
+    "候选数不是注册或安装技能数。",
+    "已确认名称和下沉位置不表示合同均已实现。",
+    "未执行远端工单、故障修复、知识入库或版本交付。",
+    "未验证新方法实际选择、生产效果、跨模型或成本收益。"
+  ]
+}

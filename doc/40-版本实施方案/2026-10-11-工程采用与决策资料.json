@@ -1,0 +1,1484 @@
+{
+  "schema": 1,
+  "status": "DESIGN_PROFILES_AND_CONTROLLED_AGENT_PROBE",
+  "counts": {
+    "main": 5,
+    "method": 32,
+    "interfaces": 48
+  },
+  "sourceDoc": "doc/10-架构与运行/任务采用与决策接力.md",
+  "sourceDocSha256": "f5d8f4d2ec40a8783303ab9a04448deed72447a81ba09dfa9434264bdf26aac4",
+  "host": {
+    "steps": [
+      {
+        "id": "discovery",
+        "title": "宿主发现",
+        "meaning": "名称、描述和路径进入本次会话的可用清单。",
+        "proof": "当前没有本次新包发现回执，不能说已自动选择。"
+      },
+      {
+        "id": "selection",
+        "title": "Agent选择",
+        "meaning": "描述匹配当前目标，或用户明确指定。",
+        "proof": "显式路径演练与自然选择分开计证据。"
+      },
+      {
+        "id": "body",
+        "title": "读取正文",
+        "meaning": "读取选定版本SKILL.md，掌握目标、权限与停止。",
+        "proof": "手动读取验证消费，不证明注册。"
+      },
+      {
+        "id": "method",
+        "title": "按需方法",
+        "meaning": "当前缺口需要才读参考，足够时复用已有材料。",
+        "proof": "lib资料不会因存在自动激活。"
+      },
+      {
+        "id": "execution",
+        "title": "工具执行",
+        "meaning": "脚本、CLI或工具实际动作并产生回执。",
+        "proof": "读提示/看节点不等于运行或交付。"
+      },
+      {
+        "id": "delegation",
+        "title": "委派与返回",
+        "meaning": "独立工作值得委派时才启动子代理；回交后由父目标负责人消费。",
+        "proof": "子代理结束、集成、验收及发布分别成立。"
+      }
+    ],
+    "localEvidence": "本会话可用清单无507；手动包读取已演练，未核验新会话发现。",
+    "officialSources": [
+      {
+        "title": "Build skills",
+        "url": "https://learn.chatgpt.com/docs/build-skills"
+      },
+      {
+        "title": "Testing Agent Skills Systematically with Evals",
+        "url": "https://developers.openai.com/blog/eval-skills"
+      }
+    ],
+    "readDate": "2026-10-11"
+  },
+  "profiles": [
+    {
+      "id": "bug",
+      "title": "明确故障",
+      "variants": [
+        {
+          "id": "ready",
+          "title": "复现与预期已清楚",
+          "assumptions": "已获范围修复许可；现行行为依据充分。",
+          "steps": [
+            {
+              "entityId": "method-fix",
+              "reason": "复现、根因及范围修复"
+            },
+            {
+              "entityId": "artifact.check",
+              "reason": "必要既有检查"
+            },
+            {
+              "entityId": "surface.check",
+              "reason": "回到原故障动作"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "行为改动按项目规则独立审查"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-verify",
+              "reason": "需要测试资产或环境方法时"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-what",
+              "reason": "预期和范围已确认"
+            },
+            {
+              "entityId": "main-understand",
+              "reason": "目标是修复，未请求独立机制解释"
+            },
+            {
+              "entityId": "main-solve",
+              "reason": "局部修复策略已足够"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "恢复既定行为，无新规格工作"
+            },
+            {
+              "entityId": "method-issue",
+              "reason": "未请求跨会话问题追踪"
+            },
+            {
+              "entityId": "method-plan",
+              "reason": "无需复杂接力拆解"
+            }
+          ],
+          "stop": "原动作与必要回归成立；Git或发布按另有授权。",
+          "returns": "取证/检查与审查发现回原修复目标。"
+        },
+        {
+          "id": "evidence",
+          "title": "缺根因证据",
+          "assumptions": "已有修复许可，修复目标清楚，少量可丢弃实验可区分两种根因。",
+          "steps": [
+            {
+              "entityId": "method-fix",
+              "reason": "持有原修复目标"
+            },
+            {
+              "entityId": "method-research",
+              "reason": "核对事实与证据"
+            },
+            {
+              "entityId": "method-probe",
+              "reason": "仅观察会改变根因判断的未知"
+            },
+            {
+              "entityId": "surface.check",
+              "reason": "原动作回归"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "行为改动独立审查"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-verify",
+              "reason": "若故障在测试或运行环境"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-what",
+              "reason": "事实未知不改成偏好题"
+            },
+            {
+              "entityId": "main-solve",
+              "reason": "不凭“怎么修”开启总策略"
+            }
+          ],
+          "stop": "证据只调查请求止于结论；授权修复请求继续到原路径。",
+          "returns": "probe不是修复完成，结论回fix；失败保留范围。"
+        },
+        {
+          "id": "expectation",
+          "title": "先厘清预期",
+          "assumptions": "实现事实可查，但不同用户要求冲突；本轮只要明确行为依据。",
+          "steps": [
+            {
+              "entityId": "main-what",
+              "reason": "询问真正属于用户的目标/取舍"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "把决定落实为当前可验收行为"
+            }
+          ],
+          "conditional": [],
+          "skipped": [
+            {
+              "entityId": "method-fix",
+              "reason": "当前不是已有预期下的修复"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "本轮未授权实现"
+            },
+            {
+              "entityId": "method-plan",
+              "reason": "未请求实施拆解"
+            }
+          ],
+          "stop": "决定与规格成立便结束；不因为名为bug自动实施新行为。",
+          "returns": "事实由Agent核实，what结果回当前规格目标。"
+        }
+      ]
+    },
+    {
+      "id": "feature",
+      "title": "项目新增功能",
+      "variants": [
+        {
+          "id": "ready",
+          "title": "行为与方案已充分",
+          "assumptions": "已有有效规格和方案，目标是完成真实消费者接入。",
+          "steps": [
+            {
+              "entityId": "method-implement",
+              "reason": "按现行依据兑现行为"
+            },
+            {
+              "entityId": "surface.check",
+              "reason": "完整路径观察"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "独立收口"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-verify",
+              "reason": "需独立测试资产/环境判断"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "现行要求有实质变化才维护"
+            },
+            {
+              "entityId": "method-interaction",
+              "reason": "确需产品界面、操作路径或状态体验的独立方法时采用"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-what",
+              "reason": "关键用户取舍已定"
+            },
+            {
+              "entityId": "main-understand",
+              "reason": "机制已充分理解"
+            },
+            {
+              "entityId": "main-solve",
+              "reason": "已有可行策略"
+            },
+            {
+              "entityId": "method-coordinate",
+              "reason": "没有值得独立协调的工作"
+            }
+          ],
+          "stop": "新增功能在目标环境路径成立；接受/部署另立。",
+          "returns": "交互、测试与审查结果回未完功能目标。"
+        },
+        {
+          "id": "choice",
+          "title": "存在产品取舍",
+          "assumptions": "权限/恢复体验还需用户决定，实施已经在原范围授权。",
+          "steps": [
+            {
+              "entityId": "main-what",
+              "reason": "收口权限/体验等用户决定"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "唯一现行行为及验收"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "消费决定继续实施"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "独立验收判断"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "main-solve",
+              "reason": "决定后仍缺跨约束策略才采用"
+            },
+            {
+              "entityId": "method-plan",
+              "reason": "复杂拆解才采用"
+            },
+            {
+              "entityId": "method-interaction",
+              "reason": "确需产品界面、操作路径或状态体验的独立方法时采用"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-understand",
+              "reason": "事实够用，不强制独立解释"
+            },
+            {
+              "entityId": "method-issue",
+              "reason": "不因每次改动新建工单"
+            }
+          ],
+          "stop": "不能止于what或PRD；父目标含实施就继续到功能交付。",
+          "returns": "spec/计划/交互子结果均回实施者。"
+        },
+        {
+          "id": "coupled",
+          "title": "跨状态与数据策略未成",
+          "assumptions": "目标已定、现状有足够理解，但数据迁移及多消费者耦合尚需策略。",
+          "steps": [
+            {
+              "entityId": "main-solve",
+              "reason": "构造介入、不变量、迁移及退出策略"
+            },
+            {
+              "entityId": "method-model",
+              "reason": "需要可判断关系与状态模型"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "形成现行行为与验收"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "消费方案完成真实接入"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "独立收口"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-probe",
+              "reason": "关键未知值得低成本观察"
+            },
+            {
+              "entityId": "method-plan",
+              "reason": "多个接力切片需任务图"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-what",
+              "reason": "不要重问既定目标"
+            },
+            {
+              "entityId": "main-understand",
+              "reason": "不重做已有机制理解"
+            },
+            {
+              "entityId": "method-simplify",
+              "reason": "目标不是无行为变化的整理"
+            }
+          ],
+          "stop": "方案结果不能代替实施结果，未决事实只阻塞依赖部分。",
+          "returns": "model/probe返回how；how/spec返回原实现目标。"
+        }
+      ]
+    },
+    {
+      "id": "demo",
+      "title": "想法到可运行Demo",
+      "variants": [
+        {
+          "id": "scope",
+          "title": "演示承诺未定",
+          "assumptions": "已请求本地Demo，但给谁演示、哪条动作证明价值未明确。",
+          "steps": [
+            {
+              "entityId": "main-what",
+              "reason": "确定用途/用户与最小承诺"
+            },
+            {
+              "entityId": "main-solve",
+              "reason": "此情境还缺最小可行策略"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "交付可实际启动Demo"
+            },
+            {
+              "entityId": "surface.check",
+              "reason": "启动并完成约定演示动作"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-design",
+              "reason": "视觉方向缺口"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "需持续行为依据时"
+            },
+            {
+              "entityId": "method-interaction",
+              "reason": "确需产品界面、操作路径或状态体验的独立方法时采用"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-express",
+              "reason": "产品网页不是创作职责的词面触发"
+            },
+            {
+              "entityId": "method-user-study",
+              "reason": "不机械扩大成完整调研"
+            },
+            {
+              "entityId": "method-deliver",
+              "reason": "本地Demo未请求Git/部署终点"
+            }
+          ],
+          "stop": "止于可启动、可演示及限制；取证原型与生产接受分别成立。",
+          "returns": "每个取证/策略结果返回Demo目标。"
+        },
+        {
+          "id": "ready",
+          "title": "演示目标与方案充分",
+          "assumptions": "场景、核心动作、输入和本地运行范围已确认。",
+          "steps": [
+            {
+              "entityId": "method-implement",
+              "reason": "直接建设可运行结果"
+            },
+            {
+              "entityId": "surface.check",
+              "reason": "实际演示验证"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-review",
+              "reason": "行为/风险需要独立收口"
+            },
+            {
+              "entityId": "method-design",
+              "reason": "真实方向未定才用"
+            },
+            {
+              "entityId": "method-interaction",
+              "reason": "确需产品界面、操作路径或状态体验的独立方法时采用"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-what",
+              "reason": "不再问完整5W2H"
+            },
+            {
+              "entityId": "main-solve",
+              "reason": "已有可行方案"
+            },
+            {
+              "entityId": "method-plan",
+              "reason": "无需完整项目任务系统"
+            },
+            {
+              "entityId": "method-coordinate",
+              "reason": "单项Demo无需形式并行"
+            }
+          ],
+          "stop": "既定演示动作成立、结果与限制可审。",
+          "returns": "组件成果回实现者，不把一张截图当完整Demo。"
+        },
+        {
+          "id": "probe",
+          "title": "本轮只取证",
+          "assumptions": "目标是区分一个可观察技术未知，本轮不要求正式Demo。",
+          "steps": [
+            {
+              "entityId": "method-probe",
+              "reason": "形成能区分方案的低成本观察"
+            },
+            {
+              "entityId": "surface.check",
+              "reason": "保留实际观察"
+            },
+            {
+              "entityId": "receipt.read",
+              "reason": "回读结果、未知与清理状态"
+            }
+          ],
+          "conditional": [],
+          "skipped": [
+            {
+              "entityId": "method-implement",
+              "reason": "不把可丢弃原型自动转正式产品"
+            },
+            {
+              "entityId": "main-what",
+              "reason": "可证伪问题已定"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "没有产品规格交付目标"
+            }
+          ],
+          "stop": "支持/反驳/证据不足与覆盖结果；不扩成生产实现。",
+          "returns": "原型得到结论后回原研究/策略目标。"
+        }
+      ]
+    },
+    {
+      "id": "proposal",
+      "title": "只写PRD或完整方案",
+      "variants": [
+        {
+          "id": "prd",
+          "title": "要求只写PRD",
+          "assumptions": "用户决定与事实充分，只需建立/维护现行行为依据。",
+          "steps": [
+            {
+              "entityId": "method-spec",
+              "reason": "PRD／行为与验收规格"
+            },
+            {
+              "entityId": "artifact.check",
+              "reason": "结构、引用与必要内容核对"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-model",
+              "reason": "现有关系不足以判断行为才用"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-what",
+              "reason": "不因写PRD重访谈"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "未授权代码实现"
+            },
+            {
+              "entityId": "method-deliver",
+              "reason": "未请求Git终点"
+            },
+            {
+              "entityId": "method-plan",
+              "reason": "不把规格写成任务拆解"
+            }
+          ],
+          "stop": "唯一可验收规格与未决边界；写文档不增加实施权。",
+          "returns": "子结果回spec文档所有者。"
+        },
+        {
+          "id": "complex",
+          "title": "分支决策到完整技术方案",
+          "assumptions": "用户取舍与跨约束策略未成；要求图/网站解释，本轮只规划。",
+          "steps": [
+            {
+              "entityId": "main-what",
+              "reason": "必要用户分支与决定"
+            },
+            {
+              "entityId": "main-solve",
+              "reason": "策略、介入、不变量、迁移/回退"
+            },
+            {
+              "entityId": "method-model",
+              "reason": "表达可判断的权限/状态关系"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "所需行为与验收基准"
+            },
+            {
+              "entityId": "method-visualize",
+              "reason": "阅读决定与依赖"
+            },
+            {
+              "entityId": "web.relationship",
+              "reason": "关系探索呈现"
+            },
+            {
+              "entityId": "web.detail",
+              "reason": "决定/来源详情"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-plan",
+              "reason": "仅当需要复杂可接力拆解"
+            },
+            {
+              "entityId": "method-research",
+              "reason": "事实缺口"
+            },
+            {
+              "entityId": "method-probe",
+              "reason": "具体可低成本证伪未知"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "method-implement",
+              "reason": "请求明确先不实现"
+            },
+            {
+              "entityId": "method-issue",
+              "reason": "没有远程问题追踪目标"
+            },
+            {
+              "entityId": "method-deliver",
+              "reason": "规划不扩大Git/发布权限"
+            }
+          ],
+          "stop": "完整策略、行为/验收、必要依赖与真实未知；不是what短结论。",
+          "returns": "事实和决定回当前方案；图从同一正文生成与回链。"
+        },
+        {
+          "id": "tasks",
+          "title": "方案已定，只拆接力计划",
+          "assumptions": "行为与策略充分，仅需另一实施者能接手的任务图。",
+          "steps": [
+            {
+              "entityId": "method-plan",
+              "reason": "切片、依赖、锚点、检查与回退"
+            },
+            {
+              "entityId": "artifact.check",
+              "reason": "可接力性与引用核对"
+            }
+          ],
+          "conditional": [],
+          "skipped": [
+            {
+              "entityId": "main-solve",
+              "reason": "不重复形成策略"
+            },
+            {
+              "entityId": "main-what",
+              "reason": "不重问已决定目标"
+            },
+            {
+              "entityId": "method-spec",
+              "reason": "不另建相反需求正文"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "本轮不实施"
+            }
+          ],
+          "stop": "计划可被接手，工单写入/实施另依权限。",
+          "returns": "事实缺口核实后回plan；不以计划完成宣布产品完成。"
+        }
+      ]
+    },
+    {
+      "id": "parallel",
+      "title": "已有任务图，集成与PR",
+      "variants": [
+        {
+          "id": "ready",
+          "title": "目标与任务图已充分",
+          "assumptions": "独立工作值得协调，已授权集成并创建PR。",
+          "steps": [
+            {
+              "entityId": "method-coordinate",
+              "reason": "按就绪依赖分派与集成"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "子任务按实际类型完成"
+            },
+            {
+              "entityId": "artifact.check",
+              "reason": "融合后整体复验"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "集成结果独立审查"
+            },
+            {
+              "entityId": "method-deliver",
+              "reason": "指定Git/PR终点"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-fix",
+              "reason": "故障类子任务"
+            },
+            {
+              "entityId": "method-interaction",
+              "reason": "产品操作子任务"
+            },
+            {
+              "entityId": "method-verify",
+              "reason": "测试资产/环境子任务"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-what",
+              "reason": "不重问已定产品目标"
+            },
+            {
+              "entityId": "main-solve",
+              "reason": "不重走已有策略"
+            },
+            {
+              "entityId": "method-plan",
+              "reason": "不重建已有效任务图"
+            },
+            {
+              "entityId": "method-retro",
+              "reason": "未请求或无重复摩擦时不做结束仪式"
+            }
+          ],
+          "stop": "任务完成、集成完成、PR创建、约定head检查、合并分别成立。",
+          "returns": "子结果回协调者；协调者负责整体复验与剩余项。"
+        },
+        {
+          "id": "pr-text",
+          "title": "只写PR说明",
+          "assumptions": "已有变更与证据，这次仅写可审PR正文。",
+          "steps": [
+            {
+              "entityId": "pr.describe",
+              "reason": "说明问题、结果、证据与实际风险"
+            }
+          ],
+          "conditional": [],
+          "skipped": [
+            {
+              "entityId": "method-coordinate",
+              "reason": "没有并行实施目标"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "不顺便修改代码"
+            },
+            {
+              "entityId": "method-deliver",
+              "reason": "PR说明不自动创建/推送PR"
+            },
+            {
+              "entityId": "main-what",
+              "reason": "表达材料已充分"
+            }
+          ],
+          "stop": "可审正文与来源；不改变PR状态。",
+          "returns": "发现材料缺口回查，不伪造验证或回执。"
+        }
+      ]
+    },
+    {
+      "id": "review",
+      "title": "指定审查或改进机会",
+      "variants": [
+        {
+          "id": "change",
+          "title": "只读审查指定变更",
+          "assumptions": "版本、变更范围与依据明确。",
+          "steps": [
+            {
+              "entityId": "method-review",
+              "reason": "规范/需求/可证实质量发现"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "artifact.check",
+              "reason": "已有机械检查可以执行"
+            },
+            {
+              "entityId": "surface.check",
+              "reason": "有必要且在只读/隔离范围的路径观察"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "method-fix",
+              "reason": "审查不顺带修复"
+            },
+            {
+              "entityId": "main-solve",
+              "reason": "不扩成整库策略"
+            },
+            {
+              "entityId": "method-inspect",
+              "reason": "不把指定交付审查换成主动全库机会扫描"
+            },
+            {
+              "entityId": "main-what",
+              "reason": "范围已经明确"
+            }
+          ],
+          "stop": "发现、结论、覆盖与未验证；修复另依原权限。",
+          "returns": "发现回原实施者；没有发现不证明所有风险已排除。"
+        },
+        {
+          "id": "opportunity",
+          "title": "主动寻找架构机会",
+          "assumptions": "请求只读识别结构摩擦与改进机会。",
+          "steps": [
+            {
+              "entityId": "method-inspect",
+              "reason": "按真实消费者评估收益与问题"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-model",
+              "reason": "关系需可判断模型"
+            },
+            {
+              "entityId": "method-research",
+              "reason": "事实/版本证据不足"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "method-simplify",
+              "reason": "未获授权简化时不改代码"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "不是指定交付收口"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "不自动执行候选改造"
+            }
+          ],
+          "stop": "有据候选及成立条件；后续改变策略/授权另明确。",
+          "returns": "候选可交how或获授权simplify，不凭少行数宣称收益。"
+        }
+      ]
+    },
+    {
+      "id": "project",
+      "title": "项目依据与升级",
+      "variants": [
+        {
+          "id": "basis",
+          "title": "初始化或维护项目依据",
+          "assumptions": "范围为规则、词义、设计、规格入口与导航。",
+          "steps": [
+            {
+              "entityId": "method-maintain",
+              "reason": "核对有效来源并维护直接消费者"
+            },
+            {
+              "entityId": "artifact.check",
+              "reason": "引用与目录一致性"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-spec",
+              "reason": "确有行为规格维护工作"
+            },
+            {
+              "entityId": "method-organize",
+              "reason": "独立知识组织目标"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "method-implement",
+              "reason": "setup不承包框架升级"
+            },
+            {
+              "entityId": "main-skill",
+              "reason": "普通项目依据不是技能编写"
+            },
+            {
+              "entityId": "method-deliver",
+              "reason": "初始化不自动提交/推送"
+            }
+          ],
+          "stop": "授权依据及消费者一致；必要工程检查缺口回交。",
+          "returns": "局部导航不扩大成整项目迁移。"
+        },
+        {
+          "id": "upgrade",
+          "title": "真实框架或依赖升级",
+          "assumptions": "请求含生产变更，现有跨约束迁移策略未成。",
+          "steps": [
+            {
+              "entityId": "main-solve",
+              "reason": "兼容、迁移、不变量与回退策略"
+            },
+            {
+              "entityId": "method-implement",
+              "reason": "完成获授权升级"
+            },
+            {
+              "entityId": "method-verify",
+              "reason": "本场景需核对目标实例与运行环境"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "变更独立审查"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-maintain",
+              "reason": "同步受影响依据"
+            },
+            {
+              "entityId": "method-fix",
+              "reason": "定位升级后实际故障"
+            },
+            {
+              "entityId": "method-probe",
+              "reason": "验证关键兼容未知"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-what",
+              "reason": "工程选择可自行判断；真实成本/产品取舍出现才回what"
+            },
+            {
+              "entityId": "method-organize",
+              "reason": "不是知识收录"
+            },
+            {
+              "entityId": "main-express",
+              "reason": "不是作品表达"
+            }
+          ],
+          "stop": "实际升级目标与回归，不能以文档更新结束。",
+          "returns": "环境或证据结果回升级目标；部署/Git终点按授权。"
+        },
+        {
+          "id": "known",
+          "title": "已有升级方案",
+          "assumptions": "目标、兼容策略、迁移及回退已经充分。",
+          "steps": [
+            {
+              "entityId": "method-implement",
+              "reason": "直接消费已定方案"
+            },
+            {
+              "entityId": "artifact.check",
+              "reason": "相称回归"
+            },
+            {
+              "entityId": "method-review",
+              "reason": "独立收口"
+            }
+          ],
+          "conditional": [
+            {
+              "entityId": "method-verify",
+              "reason": "环境或测试资产确需判断"
+            },
+            {
+              "entityId": "method-maintain",
+              "reason": "只维护直接受影响依据"
+            }
+          ],
+          "skipped": [
+            {
+              "entityId": "main-solve",
+              "reason": "不重做已有效策略"
+            },
+            {
+              "entityId": "main-what",
+              "reason": "不重问已有决定"
+            },
+            {
+              "entityId": "method-plan",
+              "reason": "单项接力不重建任务图"
+            }
+          ],
+          "stop": "目标环境可用与必要回归，失败保持可回退基线。",
+          "returns": "已存在检查可直接组件，验收责任仍由实施者持有。"
+        }
+      ]
+    }
+  ],
+  "legacyMapping": [
+    {
+      "title": "目标与用户取舍",
+      "targetIds": [
+        "main-what"
+      ],
+      "old": "grill的对齐主责",
+      "current": "what及现有随包方法保留必要问题、事实/所有权、候选/反证、冲突与返回。",
+      "state": "当前包合同与受控演练"
+    },
+    {
+      "title": "分支与当前可问问题",
+      "targetIds": [
+        "main-what",
+        "method-model"
+      ],
+      "old": "界定分支后按依赖推进",
+      "current": "复杂时建立必要分支；答案/证据消除问题就撤下，不为走完树重问。",
+      "state": "主合同保留，复杂连续性需更多测试"
+    },
+    {
+      "title": "流程图或决策网站",
+      "targetIds": [
+        "method-visualize",
+        "web.relationship",
+        "web.detail"
+      ],
+      "old": "会话级控制台，不是独立持久台账",
+      "current": "读取同一当前正文，显示决定/依赖/待证事实与历史回链。",
+      "state": "表达能力设计；当前观察页不是实际决策状态机"
+    },
+    {
+      "title": "耐久记录与恢复",
+      "targetIds": [
+        "method-maintain",
+        "method-resume"
+      ],
+      "old": "按结论归属回spec/词义/设计/issue/ADR",
+      "current": "唯一最近正文；新决定明确取代旧项，图表回链；恢复重用有效范围。",
+      "state": "what权威/返回合同已实现，完整resume仍候选"
+    },
+    {
+      "title": "完整工程方案",
+      "targetIds": [
+        "main-solve",
+        "method-model",
+        "method-spec",
+        "method-plan"
+      ],
+      "old": "旧grill明确排除完整方案起草",
+      "current": "how策略、spec行为/验收、plan接力按需求组成完整结果；原负责人持有目标。",
+      "state": "分工设计；演练后续由普通Agent消费what，未调用这些包"
+    },
+    {
+      "title": "面向人的方案",
+      "targetIds": [
+        "main-express",
+        "method-compose",
+        "method-draft"
+      ],
+      "old": "grill回交forge方案模式",
+      "current": "create持作者/受众与作品责任，结构/成文方法回交完整方案。",
+      "state": "设计候选"
+    }
+  ],
+  "decision": {
+    "statusLabels": {
+      "confirmed": "已决定",
+      "askable": "当前可问",
+      "blocked": "前提阻塞",
+      "ready": "可独立推进",
+      "unknown": "待验证事实",
+      "retired": "问题已撤下",
+      "superseded": "仅历史/已取代"
+    },
+    "rounds": [
+      {
+        "id": "r1",
+        "title": "第一轮：必要分支",
+        "questionGroups": 4,
+        "frontierIds": [
+          "role",
+          "money",
+          "contacts",
+          "invite",
+          "revoke"
+        ],
+        "questions": "任务动作、金额与联系人（分开决定）、邀请责任、撤销体验，共4组/5项决定。",
+        "summary": "业务前沿与旧链接事实核验可并行，不把可查事实问成用户偏好。",
+        "rows": [
+          {
+            "id": "scope",
+            "label": "交付范围",
+            "status": "confirmed",
+            "value": "完整方案与可读关系，本轮只规划",
+            "reason": "不改代码、不远程写入、不部署。"
+          },
+          {
+            "id": "role",
+            "label": "伙伴行为",
+            "status": "askable",
+            "value": "待用户明确",
+            "reason": "动作范围改变产品行为。"
+          },
+          {
+            "id": "money",
+            "label": "金额",
+            "status": "askable",
+            "value": "待用户决定",
+            "reason": "属于敏感信息开放取舍。"
+          },
+          {
+            "id": "contacts",
+            "label": "联系人",
+            "status": "askable",
+            "value": "待用户决定",
+            "reason": "与金额不能捆绑成同一答案。"
+          },
+          {
+            "id": "invite",
+            "label": "邀请责任",
+            "status": "askable",
+            "value": "待用户决定",
+            "reason": "责任集中或授权成员的取舍。"
+          },
+          {
+            "id": "revoke",
+            "label": "撤销体验",
+            "status": "askable",
+            "value": "待用户决定",
+            "reason": "立即停止或交接只读是不同风险。"
+          },
+          {
+            "id": "anonymous",
+            "label": "旧匿名链接去留",
+            "status": "blocked",
+            "value": "当前样本未核验",
+            "reason": "先查真实响应，再判断是否需业务取舍。"
+          },
+          {
+            "id": "design",
+            "label": "独立设计工作",
+            "status": "ready",
+            "value": "先起草模型与验收结构",
+            "reason": "无需问内部API/字段命名。"
+          },
+          {
+            "id": "contact-range",
+            "label": "联系人开放范围",
+            "status": "blocked",
+            "value": "前置答案未定",
+            "reason": "允许开放时才出现",
+            "dependsOn": [
+              "contacts"
+            ]
+          },
+          {
+            "id": "handover",
+            "label": "交接只读期限",
+            "status": "blocked",
+            "value": "前置答案未定",
+            "reason": "选择限期只读时才出现",
+            "dependsOn": [
+              "revoke"
+            ]
+          },
+          {
+            "id": "task-writes",
+            "label": "任务写权限细节",
+            "status": "blocked",
+            "value": "前置答案未定",
+            "reason": "允许任务写操作时才出现",
+            "dependsOn": [
+              "role"
+            ]
+          }
+        ],
+        "result": "此轮对齐未完成；原方案目标继续。"
+      },
+      {
+        "id": "r2",
+        "title": "第二轮：答案消除分支",
+        "questionGroups": 0,
+        "frontierIds": [],
+        "questions": "无新的必要用户问题；开放字段范围、只读期限、任务写操作问题撤下。",
+        "summary": "决定足够，普通Agent继续给技术/实施方案；未知联系人和导出不能标为验收通过。",
+        "rows": [
+          {
+            "id": "scope",
+            "label": "交付范围",
+            "status": "confirmed",
+            "value": "技术与实施方案，仍只规划",
+            "reason": "父目标不能止于what短结论。"
+          },
+          {
+            "id": "role",
+            "label": "伙伴行为",
+            "status": "confirmed",
+            "value": "仅查看和新增评论",
+            "reason": "任务写权限后续分支退出。"
+          },
+          {
+            "id": "money",
+            "label": "金额",
+            "status": "confirmed",
+            "value": "隐藏",
+            "reason": "开放范围问题退出。"
+          },
+          {
+            "id": "contacts",
+            "label": "联系人",
+            "status": "confirmed",
+            "value": "一律隐藏",
+            "reason": "开放字段问题此轮退出。"
+          },
+          {
+            "id": "invite",
+            "label": "邀请责任",
+            "status": "confirmed",
+            "value": "仅内部管理员",
+            "reason": "不重问管理员内部实现细节。"
+          },
+          {
+            "id": "revoke",
+            "label": "撤销体验",
+            "status": "confirmed",
+            "value": "立即停止，贡献/审计保留",
+            "reason": "限期只读问题退出。"
+          },
+          {
+            "id": "anonymous",
+            "label": "旧匿名链接",
+            "status": "confirmed",
+            "value": "全部退出匿名，改登录后授权",
+            "reason": "用户已明确，不重问兼容策略。"
+          },
+          {
+            "id": "fact",
+            "label": "样本与未覆盖事实",
+            "status": "unknown",
+            "value": "一类旧API返回金额；联系人/导出未知",
+            "reason": "只证明样本，不证明全实例/生产。"
+          },
+          {
+            "id": "retired",
+            "label": "失去必要的旧问题",
+            "status": "retired",
+            "value": "开放范围/只读期限/写权限",
+            "reason": "撤下问题不等于对应接口已安全。"
+          },
+          {
+            "id": "contact-range",
+            "label": "联系人开放范围",
+            "status": "retired",
+            "value": "答案使问题不再必要",
+            "reason": "允许开放时才出现",
+            "dependsOn": [
+              "contacts"
+            ]
+          },
+          {
+            "id": "handover",
+            "label": "交接只读期限",
+            "status": "retired",
+            "value": "答案使问题不再必要",
+            "reason": "选择限期只读时才出现",
+            "dependsOn": [
+              "revoke"
+            ]
+          },
+          {
+            "id": "task-writes",
+            "label": "任务写权限细节",
+            "status": "retired",
+            "value": "答案使问题不再必要",
+            "reason": "允许任务写操作时才出现",
+            "dependsOn": [
+              "role"
+            ]
+          }
+        ],
+        "result": "此次对齐已足够；已回交完整方案草案，网页呈现和真实验证未执行。"
+      },
+      {
+        "id": "r3",
+        "title": "第三轮：明确修订与收窄",
+        "questionGroups": 0,
+        "frontierIds": [],
+        "questions": "无必须追加决定，不再询问是否确认覆盖；用户已经给了主体、项目与字段范围。",
+        "summary": "只替换联系人规则与交付范围。重开的是技术设计/验收分支，不是重新问所有问题。",
+        "rows": [
+          {
+            "id": "scope",
+            "label": "当前交付范围",
+            "status": "confirmed",
+            "value": "只要技术方案与验收依据",
+            "reason": "不拆票、不详细排期、不实现。"
+          },
+          {
+            "id": "role",
+            "label": "伙伴行为",
+            "status": "confirmed",
+            "value": "查看和新增评论",
+            "reason": "原有效决定复用。"
+          },
+          {
+            "id": "money",
+            "label": "金额",
+            "status": "confirmed",
+            "value": "继续隐藏",
+            "reason": "原有效决定复用。"
+          },
+          {
+            "id": "old-contact",
+            "label": "联系人旧项",
+            "status": "superseded",
+            "value": "一律隐藏",
+            "reason": "被用户明确新指令取代；仅历史回查。"
+          },
+          {
+            "id": "contacts",
+            "label": "联系人当前项",
+            "status": "confirmed",
+            "value": "管理员对已入本项目伙伴单独授权，只读姓名/工作邮箱",
+            "reason": "电话与私人联系方式仍禁止。"
+          },
+          {
+            "id": "invite",
+            "label": "邀请责任",
+            "status": "confirmed",
+            "value": "管理员",
+            "reason": "不扩大给内部成员。"
+          },
+          {
+            "id": "revoke",
+            "label": "撤销",
+            "status": "confirmed",
+            "value": "立即停止后续项目访问",
+            "reason": "审计和贡献保留。"
+          },
+          {
+            "id": "anonymous",
+            "label": "旧匿名入口",
+            "status": "confirmed",
+            "value": "继续退出",
+            "reason": "不通过回退恢复匿名。"
+          },
+          {
+            "id": "fact",
+            "label": "待验证事实",
+            "status": "unknown",
+            "value": "工作邮箱分类、其他链接/导出未核验",
+            "reason": "决定足够，实际实现与验收仍未执行。"
+          },
+          {
+            "id": "contact-range",
+            "label": "联系人开放范围",
+            "status": "ready",
+            "value": "已给边界，转技术设计/验收",
+            "reason": "允许开放时才出现",
+            "dependsOn": [
+              "contacts"
+            ]
+          },
+          {
+            "id": "handover",
+            "label": "交接只读期限",
+            "status": "retired",
+            "value": "答案使问题不再必要",
+            "reason": "选择限期只读时才出现",
+            "dependsOn": [
+              "revoke"
+            ]
+          },
+          {
+            "id": "task-writes",
+            "label": "任务写权限细节",
+            "status": "retired",
+            "value": "答案使问题不再必要",
+            "reason": "允许任务写操作时才出现",
+            "dependsOn": [
+              "role"
+            ]
+          }
+        ],
+        "result": "修订方案与验收差异已回交；父目标的观察呈现由根代理整合，不宣称真实项目完成。"
+      }
+    ],
+    "ownership": "文档/会话维护唯一当前结论；此观察页只读取模拟记录，不可写回业务决定。",
+    "summaryFields": [
+      "当前范围",
+      "已确认",
+      "当前可问",
+      "事实/回答阻塞",
+      "排除或取代",
+      "下一行动",
+      "正文归宿"
+    ]
+  },
+  "trial": {
+    "status": "CONTROLLED_AGENT_SIMULATED_INPUT_MANUAL_PACKAGE",
+    "rounds": 3,
+    "package": "next/skills/507-what/SKILL.md",
+    "readPattern": [
+      "第一轮：1主文、1专用参考、5共有方法",
+      "第二轮：补读validation与authority-and-return",
+      "第三轮：复用已有资料，不新调用包"
+    ],
+    "observed": [
+      "事实未知未改成用户偏好",
+      "独立问题与方案工作没有被未知事实全部阻塞",
+      "足够后撤下失效问题并继续方案",
+      "明确新决定原位取代，无重复确认",
+      "未执行代码/远程写入/部署"
+    ],
+    "limits": [
+      "单执行者、模拟事实和模拟回答",
+      "显式指定包，不验证宿主自然选择",
+      "没有旧grill同输入对照或成本统计",
+      "没有真实项目工具结果或新会话恢复",
+      "其他候选方法没有运行包；后续方案是普通Agent输出"
+    ]
+  },
+  "gaps": [
+    {
+      "id": "continuity",
+      "title": "复杂决策连续性",
+      "ownerIds": [
+        "main-what",
+        "method-visualize"
+      ],
+      "reason": "当前范围、已定、可问、阻塞、取代、下一动作及正文归宿需要可消费映射。",
+      "resolution": "补what内部复杂对齐参考与同源表示；不新造万能decision技能。",
+      "state": "建议；本次单样本不能证明普遍可靠"
+    },
+    {
+      "id": "loading",
+      "title": "真实入口与读取闭包",
+      "ownerIds": [
+        "main-skill"
+      ],
+      "reason": "网站采用关系不等于可发现/可加载入口。",
+      "resolution": "按真实消费者做少量完整方法入口，其余包内/共享参考；不全注册32。",
+      "state": "工程替换前未解决"
+    },
+    {
+      "id": "coordination",
+      "title": "精确版本的就绪与集成",
+      "ownerIds": [
+        "method-coordinate"
+      ],
+      "reason": "旧集成版本的单片通过不能证明当前组合可用。",
+      "resolution": "回交与验收绑定版本、保留未集成项，融合后整体复验。",
+      "state": "已有来源建议，候选合同需补清"
+    },
+    {
+      "id": "delivery",
+      "title": "PR/CI反馈与交付终点",
+      "ownerIds": [
+        "method-deliver"
+      ],
+      "reason": "旧head检查、创建PR与merge-ready不能混为同一结果。",
+      "resolution": "明确指定head、等待范围、评论分类、修复回交和停止点。",
+      "state": "已有来源建议，候选合同需补清"
+    },
+    {
+      "id": "environment",
+      "title": "验证环境与清理",
+      "ownerIds": [
+        "method-verify"
+      ],
+      "reason": "驱动、实例、就绪、身份及副作用可能使观察失真。",
+      "resolution": "按实际风险定义环境profile与清理证据，不给每次小改造大环境。",
+      "state": "已有来源建议，候选合同需补清"
+    }
+  ],
+  "pilotGates": [
+    {
+      "title": "显式包消费",
+      "current": "本次三轮单样本已观察",
+      "next": "更多正例/负例/恢复与父目标续办"
+    },
+    {
+      "title": "宿主发现与自然选择",
+      "current": "未验证",
+      "next": "单消费者试用空间，不替换全局；用不带技能名的请求观察"
+    },
+    {
+      "title": "真实工程纵向闭包",
+      "current": "未实现",
+      "next": "一个真实改动所需spec/fix/implement/verify/review等先够用"
+    },
+    {
+      "title": "旧/新同条件对照",
+      "current": "未验证",
+      "next": "固定任务、基线、材料、模型与权限，比较误触发/返工/结果"
+    }
+  ]
+}

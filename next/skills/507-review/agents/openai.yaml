@@ -1,0 +1,4 @@
+interface:
+  display_name: "独立交付审查"
+  short_description: "由另一执行者只读审查指定变更，核对要求、风险与实际证据并返回结论。"
+  default_prompt: "使用 $507-review 独立只读审查指定变更，交付有定位依据的发现与验证限制。"

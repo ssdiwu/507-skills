@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "date": "2026-10-13",
+  "status": "LOCAL_SCOPE_COMPLETE_WITH_LIMITATIONS",
+  "scope": "同一新版的当前信息、完整目标、消费者生命周期与交付回报接缝修复",
+  "bundleFingerprint": "10f6ceee19ff0c5b9a6a9a097e71f0dc157e7a35b49307d5312ea02cc49c81cc",
+  "implementation": {
+    "entrypoints": 18,
+    "main": 5,
+    "secondary": 13,
+    "methodSources": 28,
+    "scriptSources": 9,
+    "files": 242,
+    "sharedCopies": 188
+  },
+  "changes": [
+    {
+      "path": "AGENTS.md",
+      "beforeSha256": "a00e9ea7364829dcaff321107f6733e1595f08f666115b02397bd72ee47e96df",
+      "afterSha256": "45ad3118b098a236df0af0a8b9593207dbc3f8854d3821b5f965076d7ed9d296"
+    },
+    {
+      "path": "lib/README.md",
+      "beforeSha256": "fe2fb1c55512d2ff6b9db9f05209ac8fb62c791ddc9043fa4dbbbc055d1246dc",
+      "afterSha256": "3f96e2803db734e0b1019ca0eedfb236a2e086cf4c1a4d98fe12f251127703f9"
+    },
+    {
+      "path": "lib/catalog.json",
+      "beforeSha256": "3f4624a4aaf3313a3d560d8e39eccbf7db3794c2c32348699501b30897fe0b39",
+      "afterSha256": "c60d9ec66bdc67749052945cb2c144578802ddbafb4223edc717eea7b5bfe6c8"
+    },
+    {
+      "path": "lib/methods/authority-and-return.md",
+      "beforeSha256": "cc42f98242cf9510da7005b13b346129b02ac59765540bedbe4d029e550fbf75",
+      "afterSha256": "fc400743bdb35228604d023f1327ee4f794303f71d3c96a374bf9ed1f676c283"
+    },
+    {
+      "path": "lib/methods/engineering-evidence.md",
+      "beforeSha256": "9e7ce6a6d4df601a009e95d15e95f78eb254f98c187c6cfa7583aed6e4a38d26",
+      "afterSha256": "ff3bf45dfc64f3e4f16bc2d1029701cee4e18f062c21e6c0636ee05bdd4503c7"
+    },
+    {
+      "path": "lib/methods/evidence.md",
+      "beforeSha256": "210a5dc181938b40917648ce804ec26062b0f69e97fd1e4648fc94087ea87539",
+      "afterSha256": "dce8f49c7aed9a8e0c40280431bf727fbff21547e10ac94eeafdc1b694bfb67c"
+    },
+    {
+      "path": "lib/methods/interaction.md",
+      "beforeSha256": "6de5af41e01e53ffcb5c5553dde79c9d48841ad0479c31936633549355780343",
+      "afterSha256": "f572ac965f38b669286a97348150315484278c94de4d0cf3e3d790d015fceeab"
+    },
+    {
+      "path": "lib/methods/validation.md",
+      "beforeSha256": "a165116484ab391e1087c297d11fa4f74a5a10f5a13fa6b70e9ead38e8bec61e",
+      "afterSha256": "dfa0ffb76810c0bf9537594f58907d60419d1e72f64c57206e5ffe4455c8b77b"
+    },
+    {
+      "path": "next/README.md",
+      "beforeSha256": "813a171ff42c9e9b65d1a0e7b042f5a448c9a670e464cee5356c83bb07f42022",
+      "afterSha256": "316af6004932ed48cfe28a26a72477ec7b93832b5a3d76a89b08e6c69decbcf1"
+    },
+    {
+      "path": "next/packages.json",
+      "beforeSha256": "7d23e30d1f8e2a8fae700050a2f2b198c726b69db908265a488338055dbee595",
+      "afterSha256": "4f38272c2e884d64267250b4a38cbccd2ff7373eaead83d8bf998e377fb4c1e0"
+    },
+    {
+      "path": "next/scripts/package_skills.py",
+      "beforeSha256": "fe9352afbfe77174059ea7395c21b08080fa565edfc3cd962516770d04aebba0",
+      "afterSha256": "583dafcc7e6d8ad51a3049dddcb392566a2588a9d823b7063f599e1e45e0d0a2"
+    },
+    {
+      "path": "next/skills/507-coordinate/SKILL.md",
+      "beforeSha256": "4ad66be5b38dc0b551272e5f1fb66c3726c741c19cdd789b39e99b8cf755fec7",
+      "afterSha256": "087810c7be3bf38ec0714b403878845b8f6709de0824a064add54192b173558d"
+    },
+    {
+      "path": "next/skills/507-create/SKILL.md",
+      "beforeSha256": "24789ffb77d21f93db9389c20198b9a4ad99b96177b2b7162b17a9b367bc27ad",
+      "afterSha256": "938a035dc8ce11ff35684571dbd7b54bf3ce4ca682fa16a648da2940e686dc6a"
+    },
+    {
+      "path": "next/skills/507-fix/SKILL.md",
+      "beforeSha256": "8457ef87c6400ef17f318b56e42b6c13ea4eae6e48d5a41939328649dfc061be",
+      "afterSha256": "0e155767beeb79d7366d8389e58ed69613991f8e7963e97de827d4c4198dd22a"
+    },
+    {
+      "path": "next/skills/507-implement/SKILL.md",
+      "beforeSha256": "b8f1a988172c90fc9581d6655b82a6084710f21055be3ec9122f969e1c20c87c",
+      "afterSha256": "56e10af798c9730a14af13e8e6fd66ffdc9c0553213607bceb9cd69d1be026d7"
+    },
+    {
+      "path": "next/skills/507-review/SKILL.md",
+      "beforeSha256": "1dab73560a19957211517adc28dc0f43e0f6a690fc919100c698b9ee7ed277ea",
+      "afterSha256": "e73146f8b607ba13f982933fcd86beafac58ce35514bb01fd7707eaad38b831a"
+    },
+    {
+      "path": "next/skills/507-spec/SKILL.md",
+      "beforeSha256": "9e6603922496918aa4bd053991fc5141d024af58a28bebc632faf8a16844e2f6",
+      "afterSha256": "8b7eabaab7eb8f088acf7ab0f9846d942ca8dde46827b8db16ab7eec95895bcc"
+    },
+    {
+      "path": "next/skills/507-work-update/SKILL.md",
+      "beforeSha256": "629e6f1d95fc19e434cdfb555a719fdf7547996da0408a457d490487b024bf60",
+      "afterSha256": "8d3ce8e08c26d769d978e6da057728b5f55042af09010cc65a8086906ab6e7e0"
+    },
+    {
+      "path": "next/tests/test_package_skills.py",
+      "beforeSha256": "16edbf60c5678cc7355a2f7633e242eed98499996b794e3d776c14ed04951f55",
+      "afterSha256": "8e3d8188461788ac37484c5dd20a4a7116427c489728cae8e12d15b8b7d94435"
+    }
+  ],
+  "checks": {
+    "packageTests": {
+      "passed": 23,
+      "independentContract": "PASS_CONTRACT_SCOPE"
+    },
+    "work": {
+      "status": "PASS_CASE_SCOPE",
+      "condition": "反馈后本地范围复验"
+    },
+    "repair": {
+      "status": "PASS_CASE_SCOPE_WITH_LIMITATION",
+      "independentTargeted": 5,
+      "condition": "反馈后生命周期补证，传输前拒绝，网络0"
+    },
+    "creation": {
+      "status": "PASS_CASE_SCOPE_WITH_LIMITATION",
+      "sourceGeneration": "BYTE_MATCH",
+      "parentUI": "C1-C4_LOCAL_REPLAY_PASS",
+      "condition": "反馈后完整原型限定操作",
+      "notCovered": [
+        "设置子页逐项独立操作",
+        "真实客户端/供应商/插件",
+        "OS原生减少动态",
+        "720×480/移动端",
+        "人的体验接受"
+      ]
+    },
+    "site": {
+      "status": "PASS_SOURCE_GENERATION_AND_SCOPED_BROWSER",
+      "historicalBytes": 58,
+      "storedCitations": 690,
+      "legacyMetadataCitations": 700,
+      "independentReadOnlyComponents": "PASS_WITH_PENDING_INSTALLATION",
+      "currentAndHistoricalSeparated": true,
+      "htmlSha256": "ef5a6a09c536830857f22ed17abd4794ca99d38572fdfff4895ba22fc3b6d027",
+      "batchAndRoundNavigation": "PASS_WITH_EXPLICIT_BATCH_URL",
+      "independentFinal": "PASS_CURRENT_IDENTITIES_AND_ROUTING"
+    },
+    "installation": {
+      "status": "PASS_INSTALL_AND_HOST_DISCOVERY_WITH_LIMITATION",
+      "fingerprint": "10f6ceee19ff0c5b9a6a9a097e71f0dc157e7a35b49307d5312ea02cc49c81cc",
+      "activeFiles": 242,
+      "priorBackupFiles": 238,
+      "entrypoints": 18,
+      "hostRootsChecked": 2,
+      "hostEnabledPerRoot": 18,
+      "helperLatestSha256": "ddf9857241427f2e40a2b518559e3bd5ea82181efc9dedee7310bae5e1e1b44f",
+      "stagingEditRejection": "PREPARATION_REFUSED_NO_SWITCH_VERIFIED",
+      "unrelatedRootEntries": 23,
+      "unrelatedRecursiveBytes": "NO_BEFORE_SHA_UNKNOWN",
+      "recoveryFailureLatestRevision": "NOT_RERUN_AFTER_PRE_SWITCH_CHECK_CHANGE"
+    }
+  },
+  "notEstablished": [
+    "首次自主全通过",
+    "技能变化的独立因果作用",
+    "正式协作者发送接收与开工",
+    "真实provider与Electron产品集成",
+    "人的接受",
+    "提交、推送和发布"
+  ],
+  "privacy": "真实会话原文、绝对本机路径、调用和产物身份保留在使用者私有参考站证据，不进入公开文档。",
+  "finishedAt": "2026-10-13T18:13:05.169161+08:00"
+}

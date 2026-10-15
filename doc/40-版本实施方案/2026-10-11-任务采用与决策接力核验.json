@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "status": "PASS_DESIGN_SITE_AND_CONTROLLED_MANUAL_WHAT_PROBE",
+  "date": "2026-10-11",
+  "scope": "任务采用、旧grill接替、复杂对齐连续性与分阶段试用的设计评估；技能实现与安装未改变",
+  "artifactSha256": "a3c0ff0dbe2af9a0f4a9d6d44af5d1e95d34a50c4b7c366df2c3ec416dce594a",
+  "singleAuthor": {
+    "path": "doc/40-版本实施方案/2026-10-11-工程采用与决策资料.json",
+    "sha256": "586951c9be2612abc2a098045bdaf614ff3bb3471567f47726d483fb1f7ae2b9"
+  },
+  "counts": {
+    "views": 15,
+    "engineeringProfiles": 7,
+    "scopedVariants": 19,
+    "mainResponsibilities": 5,
+    "completeMethods": 32,
+    "componentInterfaces": 48,
+    "controlledWhatRounds": 3,
+    "oldGraphs": 8,
+    "oldNodes": 93,
+    "oldEdges": 121,
+    "selectedAtoms": 196,
+    "evidenceMappings": 587
+  },
+  "sourceValidation": {
+    "status": "PASS",
+    "roleReferencesClosed": true,
+    "rationaleFingerprintVerified": true,
+    "embeddedDataMatches": true,
+    "olderWorkflowThinkingUIDataPreserved": true,
+    "actualPackages": 2,
+    "sharedSourceMethods": 7,
+    "packagedSharedCopies": 14,
+    "immutableBundleFiles": 22,
+    "bundleFingerprint": "8e1ed504499368d831b627948dba0a783512edc1c7d68332fee1592d2db2c6bb"
+  },
+  "browser": {
+    "status": "PASS",
+    "checks": 40,
+    "variantsOperated": 19,
+    "profilesVariantsFilters": true,
+    "contractReturnContextFocusAndLocation": true,
+    "keyboardSelectionFocus": true,
+    "decisionFrontierAndSupersession": true,
+    "cssWidths": [
+      1413,
+      768,
+      390
+    ],
+    "layoutMeasurements": 6,
+    "pageHorizontalOverflow": false,
+    "visualScreenshotsInspected": 4,
+    "capture": "Ego Page.cdp Chromium surface, no clip; CSS-width emulation, not real device"
+  },
+  "independentReview": {
+    "status": "PASS_WITHIN_STATIC_SCOPE",
+    "fixedP2": 4,
+    "openP1P2": 0,
+    "scope": "核心来源、设计/实现边界、ID、条件采用、按钮焦点与导航；实际浏览器及最终回执由维护者检查"
+  },
+  "controlledProbe": {
+    "status": "OBSERVED_CONTROLLED_AGENT_OUTPUT",
+    "executor": "one fresh-context Agent",
+    "input": "3 rounds of simulated project, user answers and readonly facts",
+    "activation": "explicit actual 507-what path read; not host implicit discovery",
+    "reportedReadFilesWithCurrentFingerprints": 9,
+    "observed": [
+      "necessary decisions separate from factual investigation",
+      "dependent questions deferred",
+      "answers retire unnecessary questions",
+      "parent scheme continues after what result",
+      "explicit revision replaces affected decision only",
+      "scope narrows and still-valid decisions reused"
+    ],
+    "rawToolLogIndependentlyAudited": false,
+    "oldNewMatchedControl": false,
+    "freshContextRecoveryTest": false,
+    "realProjectImplementation": false
+  },
+  "trialConclusion": "当前32方法的职责覆盖基本满足这些情境；可发现入口、读取闭包和真实工程仍需消费者试用。补强既有coordinate/deliver/verify合同，不据本轮增加新方法。",
+  "notEstablished": [
+    "host implicit selection in this session",
+    "all five main and thirty-two complete method packages implemented",
+    "real engineering integration and exact-head CI/PR loop",
+    "cross-chat recovery",
+    "cross-model/old-new effectiveness or cost benefit"
+  ],
+  "actionsNotPerformed": [
+    "modify skill or shared source implementation",
+    "install/replace global skills",
+    "commit/push/merge/publish"
+  ],
+  "maintainerDocumentValidation": {
+    "status": "PASS",
+    "scopedFiles": 8,
+    "localLinks": 100,
+    "privateLocatorsAbsent": true,
+    "reportedSourceFingerprints": 9,
+    "failures": []
+  }
+}

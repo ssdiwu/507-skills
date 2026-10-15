@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "checkedDate": "2026-10-11",
+  "scope": "公开主入口固定版本登记，完整树计数不证明原子全文审计或实际效果",
+  "sources": [
+    {
+      "id": "507",
+      "repository": "https://github.com/ssdiwu/507-skills",
+      "revision": "5f3b0f8bd0a67484f9cfdc63a60fa93413a20068",
+      "count": 30,
+      "scope": "common / code / write 下 */SKILL.md",
+      "exclusions": "参考、模板、归档和研究候选",
+      "role": "现行已推送基线"
+    },
+    {
+      "id": "pstack",
+      "label": "pstack",
+      "repository": "https://github.com/cursor/plugins",
+      "revision": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "count": 51,
+      "scope": "pstack/skills/**/SKILL.md",
+      "exclusions": "不计 automations 下 3 项、参考及 playbooks。",
+      "directoryURL": "https://github.com/cursor/plugins/tree/d73344bee8cf22e53b9d5f4cf5749d38ba38c174/pstack/skills/",
+      "treeURL": "https://api.github.com/repos/cursor/plugins/git/trees/d73344bee8cf22e53b9d5f4cf5749d38ba38c174?recursive=1"
+    },
+    {
+      "id": "matt",
+      "label": "Matt Pocock",
+      "repository": "https://github.com/mattpocock/skills",
+      "revision": "49dd158d1076134a641b33efb035946536778336",
+      "count": 38,
+      "scope": "skills/**/SKILL.md",
+      "exclusions": "只计 skills 下主文件；仍包含试验与冻结入口。",
+      "directoryURL": "https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/",
+      "treeURL": "https://api.github.com/repos/mattpocock/skills/git/trees/49dd158d1076134a641b33efb035946536778336?recursive=1"
+    },
+    {
+      "id": "teamkit",
+      "label": "Cursor Team Kit",
+      "repository": "https://github.com/cursor/plugins",
+      "revision": "d73344bee8cf22e53b9d5f4cf5749d38ba38c174",
+      "count": 18,
+      "scope": "cursor-team-kit/skills/**/SKILL.md",
+      "exclusions": "不计 agents、rules 和辅助资源。",
+      "directoryURL": "https://github.com/cursor/plugins/tree/d73344bee8cf22e53b9d5f4cf5749d38ba38c174/cursor-team-kit/skills/",
+      "treeURL": "https://api.github.com/repos/cursor/plugins/git/trees/d73344bee8cf22e53b9d5f4cf5749d38ba38c174?recursive=1"
+    },
+    {
+      "id": "anis",
+      "label": "Anis 合集",
+      "repository": "https://github.com/anis-dr/skills",
+      "revision": "03a3a955ebeab2b722bab7f926b66868ed2ddfa1",
+      "count": 168,
+      "scope": "skills/**/SKILL.md",
+      "exclusions": "不计 .agents/skills 内 2 个维护入口；不计参考。",
+      "directoryURL": "https://github.com/anis-dr/skills/tree/03a3a955ebeab2b722bab7f926b66868ed2ddfa1/skills/",
+      "treeURL": "https://api.github.com/repos/anis-dr/skills/git/trees/03a3a955ebeab2b722bab7f926b66868ed2ddfa1?recursive=1"
+    },
+    {
+      "id": "anthropic",
+      "label": "Anthropic",
+      "repository": "https://github.com/anthropics/skills",
+      "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "count": 19,
+      "scope": "skills/**/SKILL.md",
+      "exclusions": "全仓 20 份主文件，其中 template/SKILL.md 不计；注册清单 19 项。",
+      "directoryURL": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/",
+      "treeURL": "https://api.github.com/repos/anthropics/skills/git/trees/dbd4588f9e1033efb41dad4bef2f7947c8993d44?recursive=1"
+    },
+    {
+      "id": "superpowers",
+      "label": "Superpowers",
+      "repository": "https://github.com/obra/superpowers",
+      "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+      "count": 15,
+      "scope": "skills/**/SKILL.md",
+      "exclusions": "不计测试、提示模板、平台参考。",
+      "directoryURL": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/",
+      "treeURL": "https://api.github.com/repos/obra/superpowers/git/trees/bb92a77741419a4ab5f06e711a283343f1ada0c3?recursive=1"
+    },
+    {
+      "id": "marketing",
+      "label": "Corey Haines Marketing",
+      "repository": "https://github.com/coreyhaines31/marketingskills",
+      "revision": "1efedbc5148b54b2f0f6c6c9fe0be62e151c7fff",
+      "count": 50,
+      "scope": "skills/**/SKILL.md",
+      "exclusions": "不计参考、工具集成、CLI 包装及顾问资料。",
+      "directoryURL": "https://github.com/coreyhaines31/marketingskills/tree/1efedbc5148b54b2f0f6c6c9fe0be62e151c7fff/skills/",
+      "treeURL": "https://api.github.com/repos/coreyhaines31/marketingskills/git/trees/1efedbc5148b54b2f0f6c6c9fe0be62e151c7fff?recursive=1"
+    },
+    {
+      "id": "vercel",
+      "label": "Vercel",
+      "repository": "https://github.com/vercel-labs/agent-skills",
+      "revision": "063bee94c3f4df8453406c830b0a7df0f2860278",
+      "count": 9,
+      "scope": "skills/**/SKILL.md",
+      "exclusions": "不计 rules、references、编译 AGENTS.md。README 摘要存在旧数字，数量以完整树和主文为准。",
+      "directoryURL": "https://github.com/vercel-labs/agent-skills/tree/063bee94c3f4df8453406c830b0a7df0f2860278/skills/",
+      "treeURL": "https://api.github.com/repos/vercel-labs/agent-skills/git/trees/063bee94c3f4df8453406c830b0a7df0f2860278?recursive=1"
+    }
+  ],
+  "licenseBoundary": "本阶段仅保存自有摘要与公开链接；未复制完整上游正文，不声明替代上游许可"
+}

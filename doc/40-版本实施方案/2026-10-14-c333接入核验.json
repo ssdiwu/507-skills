@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "title": "c333固定版使用环境接入",
+  "status": "INSTALLED_AND_HOST_DISCOVERED",
+  "sourceFingerprint": "c333f6b452336ca9e4d334a9e5b317184107cbe69b867dcb83f1a6dac6e98e36",
+  "implementation": {
+    "entrypoints": 19,
+    "main": 5,
+    "secondary": 14,
+    "files": 262,
+    "sharedCopies": 206,
+    "methodSources": 29,
+    "scriptSources": 9
+  },
+  "installation": {
+    "root": "$HOME/.agents/skills",
+    "mode": "ordinary-complete-package-copies",
+    "filesMatched": 262,
+    "changedAfterCopy": [],
+    "symlinks": false
+  },
+  "previous": {
+    "fingerprint": "10f6ceee19ff0c5b9a6a9a097e71f0dc157e7a35b49307d5312ea02cc49c81cc",
+    "entrypoints": 18,
+    "files": 242,
+    "backup": "outside-skill-discovery-root",
+    "backupFilesMatched": 242,
+    "rollbackExecuted": false
+  },
+  "independentReadback": {
+    "status": "PASS_INSTALL_SCOPE",
+    "installedFilesMatched": 262,
+    "backupFilesMatched": 242,
+    "unrelatedObjectsMatched": 1511,
+    "unrelatedSnapshotSha256": "5e322696d50567acd0cf925378710fa71c783426ac6ed4668505363e41aed799"
+  },
+  "discovery": {
+    "transport": "separate-local-app-server",
+    "forceReload": true,
+    "scopes": [
+      "workspace",
+      "layering-worktree"
+    ],
+    "entrypointsPerScope": [
+      19,
+      19
+    ],
+    "enabledPerScope": [
+      19,
+      19
+    ],
+    "managedErrorsPerScope": [
+      0,
+      0
+    ]
+  },
+  "smoke": {
+    "packageCheck": "PASS_19_262_206",
+    "installedLookup": {
+      "query": "507-git",
+      "status": "LEGACY_DECLARATION_FOUND",
+      "runtimeAvailability": "NOT_CHECKED",
+      "actionAuthority": "UNCHANGED"
+    }
+  },
+  "sharedSource": {
+    "root": "lib",
+    "methods": "lib/methods",
+    "scripts": "lib/components",
+    "design": "lib/design",
+    "registry": "lib/registry",
+    "installedMethods": "<skill>/references/shared",
+    "installedScripts": "<skill>/scripts",
+    "implicitRepositoryDependency": false
+  },
+  "limits": [
+    "本次完成固定候选接入、文件核对和宿主发现，不证明自然选择、真实产品组件抽取或业务完整路径。",
+    "交互点地图候选、近期表达及观察条件新校准没有因安装而实施。",
+    "本次未改变技能合同或重新运行先前四项模型回放。",
+    "备份完整性已核，未执行实际回退。"
+  ]
+}
