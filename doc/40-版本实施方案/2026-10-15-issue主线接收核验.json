@@ -20,8 +20,10 @@
     "note": "主线提取源闭包、构建及26项包／76项组件检查通过；不是整库行为或自然采用通过。"
   },
   "review": {
-    "status": "PENDING",
-    "note": "既有两处正文与反馈稿独审保留；main精确提取与新安装接入另核。"
+    "status": "PASS_WITH_LIMITS",
+    "note": "精确接收范围及实际安装、新子代理读取独审通过；原首次失败保留，只关闭本次单项接入，未证自然、业务、稳定或收益。",
+    "precommitReportSha256": "bf11fbacb70dd6418163ec76faba1b925b195d7bc83b494532ece5cc80251da1",
+    "installationReportSha256": "823a33c9d1803586fc09ba8dfac717d332255ae1af61a51298b0e9b774dab431"
   },
   "record": "doc/40-版本实施方案/2026-10-15-issue主线接收与安装.md",
   "cases": [
@@ -48,10 +50,12 @@
     {
       "id": "issue-installed-fresh-smoke",
       "title": "主线安装与新子代理读取",
-      "version": "拟从已提交main构建；尚未安装或启动新子代理",
-      "selected": [],
-      "observed": "待主线精确差异独审与实际提交后，安装完整已提交包、读回并观察新子代理实际工具读取。准备不算通过。",
-      "status": "REVIEW_PENDING"
+      "version": "已提交main e8b49f3／a299；新启动6-luna/medium显式读取烟雾",
+      "selected": [
+        "507-issue"
+      ],
+      "observed": "274安装文件逐份等于已提交主线，87ea和c333回退及范围外1973对象保全；两处宿主20启用无错误。新线程公开item2完整返回主文2dd7，item3完整返回平台参考8872及hash，均exit0且未截断，早于item4报告。首个路径清单截断不称全读；独立核验通过，只支持显式接入，不证明自然调用或业务交接。",
+      "status": "PASS_WITH_LIMITS"
     }
   ],
   "comparisons": [
@@ -83,6 +87,51 @@
     "v0.3.0历史标签不变；本次为其后的未发布增量。",
     "反馈通过不证明自然调用、首次稳定、技能单因果或节省。",
     "安装及新子代理烟雾不执行平台动作，不重跑已完成反馈案例。",
-    "试验工作树其余内容保全；不把实验整包作为安装来源。"
-  ]
+    "试验工作树其余内容保全；不把实验整包作为安装来源。",
+    "新子代理工具真实读取及fork参数可核；任务明文来自调用者记录，原生加密载荷无法独立核验，不将其当原始明文输入证据。"
+  ],
+  "delivery": {
+    "sourceCommit": "e8b49f3a554e4c8a0a62c848fa4035d3811ddb7b",
+    "sourceFingerprint": "a2999d596db80e80598d3fe3659d4fe708abefb083d8b62095ec44e501ae45d7",
+    "remoteMainMatchedAtInstallation": true,
+    "baseCommit": "e4d606ae48e143949c098b3198a747df037d5edf",
+    "tagUnchanged": "v0.3.0",
+    "tagCommit": "1c1b79f1a5f9bf98b89386b3cae7128f0e5d8a7d",
+    "newTagOrRelease": false
+  },
+  "installation": {
+    "status": "FILES_MATCH_COMMITTED_MAIN",
+    "entries": 20,
+    "files": 274,
+    "previous87eaBackupIdentity": "20261015-190236-issue-main-2029287d",
+    "previous87eaFiles": 274,
+    "c333BackupIdentity": "20261015-133720-v030-8325d0e8",
+    "c333Files": 262,
+    "unrelatedObjectsUnchanged": 1973,
+    "hostLocations": 2,
+    "enabledPerLocation": 20,
+    "loadErrors": 0,
+    "independentReadback": "PASS_WITH_LIMITS"
+  },
+  "freshAgent": {
+    "threadId": "01a13f3b-c801-7231-8f75-eb9dbe1f04e4",
+    "turnId": "01a13f3b-c898-73b1-86f1-4b15f99e8121",
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "forkHistory": "none",
+    "publicItemNumbering": "zero-based after omitting reasoning",
+    "entryReadItem": 2,
+    "platformReadItem": 3,
+    "reportItem": 4,
+    "entrySha256": "2dd7e75e7eec413686dbc45360272acc8cec0705f4c3f2721b03c5ead9abc074",
+    "platformSha256": "8872d8827522eef7c0f8c138bc39749a8fe98c936d9fbfc3b01c46972ff4130c",
+    "publicThreadSha256": "0eec6c2c41e1620abebe6c49529daaf77521747f25a179cde54d1aa26d6a763b",
+    "reportSha256": "bf4e7ac1722efb19f4df164da43ffe68b456cf2f7b47b8a9862183bb73d0bf6f",
+    "explicitReadingOnly": true,
+    "naturalRoutingVerified": false,
+    "plaintextPromptIndependentlyVerified": false,
+    "promptProvenance": "调用者事后归档的本会话工具请求；原生载荷加密，非原始明文回执",
+    "independentFullBodyReadVerified": true,
+    "reportArtifactSerialization": "原最终消息全文加一个文件末尾换行；原消息另保全"
+  }
 }
