@@ -69,7 +69,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "600a9e6ed91029eac11bfa2e121b6c365e326e27366134b8e138b36f60268c7a",
+      "contractSha256": "2dd7e75e7eec413686dbc45360272acc8cec0705f4c3f2721b03c5ead9abc074",
       "description": "草拟、创建或维护可跟进的软件工单，保留调查证据并原位升级为可领取的执行任务。用于用户要求记录或追踪问题；发现缺陷本身不授权远程建单、分派或关闭。",
       "entry": "507-issue/SKILL.md",
       "name": "507-issue",

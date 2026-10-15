@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "date": "2026-10-15",
+  "title": "issue调查稿补充的主线接收与安装",
+  "sourceFingerprint": "a2999d596db80e80598d3fe3659d4fe708abefb083d8b62095ec44e501ae45d7",
+  "implementation": {
+    "entrypoints": 20,
+    "main": 5,
+    "secondary": 15,
+    "files": 274,
+    "sharedCopies": 215,
+    "methodSources": 30,
+    "scriptSources": 10
+  },
+  "mode": "仅issue两处已审正文及main生成索引；其它worktree试验不进入。首次、反馈、主线接收和安装分别记录。",
+  "automated": {
+    "packageChecks": 26,
+    "componentChecks": 76,
+    "status": "PASS",
+    "note": "主线提取源闭包、构建及26项包／76项组件检查通过；不是整库行为或自然采用通过。"
+  },
+  "review": {
+    "status": "PENDING",
+    "note": "既有两处正文与反馈稿独审保留；main精确提取与新安装接入另核。"
+  },
+  "record": "doc/40-版本实施方案/2026-10-15-issue主线接收与安装.md",
+  "cases": [
+    {
+      "id": "issue-original-first",
+      "title": "原正式首次正文",
+      "version": "接收前旧主文600a；原会话首次，未重跑",
+      "selected": [
+        "507-issue"
+      ],
+      "observed": "主合同完整返回，解释和目标仍有效；关键已查依据未进入可复制正文，未知未连到证据动作及推进条件，两项交接缺口保留。非ready本身不是失败。",
+      "status": "REQUIRES_REVISION"
+    },
+    {
+      "id": "issue-draft-feedback",
+      "title": "一次已知反例反馈稿",
+      "version": "已审主文2dd7；单次6-luna/medium反馈，非自然或新样本",
+      "selected": [
+        "507-issue"
+      ],
+      "observed": "原始调查稿带历史出处、下一证据动作和推进条件，必要未知保留，经独审限定通过；原稿未改，没有执行调查或平台动作。",
+      "status": "PASS_WITH_LIMITS"
+    },
+    {
+      "id": "issue-installed-fresh-smoke",
+      "title": "主线安装与新子代理读取",
+      "version": "拟从已提交main构建；尚未安装或启动新子代理",
+      "selected": [],
+      "observed": "待主线精确差异独审与实际提交后，安装完整已提交包、读回并观察新子代理实际工具读取。准备不算通过。",
+      "status": "REVIEW_PENDING"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "issue-draft-mainline",
+      "title": "调查稿补充的接收范围",
+      "beforeLabel": "原主文600a／平台9128",
+      "afterLabel": "已审主文2dd7／平台8872",
+      "before": [
+        "关键依据易停正文之外",
+        "开放问题尚难继续调查",
+        "正文组织跟随平台参考"
+      ],
+      "after": [
+        "正文含现状与必要出处",
+        "未知接证据动作与推进条件",
+        "起草即用；平台许可另核"
+      ],
+      "evidence": "只接收已审正文，不带其它实验优化；原首次失败与单次已知反例反馈通过分别成立。主线构建、安装及新子代理采用按各自实际回执核验。",
+      "sources": [
+        "next/skills/507-issue/SKILL.md"
+      ]
+    }
+  ],
+  "frictions": [
+    "首次已完整读合同仍丢交接；读取到正文不能单独证明完成。"
+  ],
+  "limits": [
+    "v0.3.0历史标签不变；本次为其后的未发布增量。",
+    "反馈通过不证明自然调用、首次稳定、技能单因果或节省。",
+    "安装及新子代理烟雾不执行平台动作，不重跑已完成反馈案例。",
+    "试验工作树其余内容保全；不把实验整包作为安装来源。"
+  ]
+}
