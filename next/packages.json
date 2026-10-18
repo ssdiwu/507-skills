@@ -113,8 +113,8 @@
       "role": "main"
     },
     {
-      "name": "507-work-update",
-      "source": "next/skills/507-work-update",
+      "name": "507-work",
+      "source": "next/skills/507-work",
       "shared": [
         {
           "source": "lib/methods/evidence.md",
@@ -159,7 +159,7 @@
         "references/process.md",
         "references/state-views.md"
       ],
-      "role": "secondary"
+      "role": "main"
     },
     {
       "name": "507-why",

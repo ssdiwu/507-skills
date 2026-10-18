@@ -16,7 +16,7 @@
           "when": "提问前核实事实，承接已确认意图；不让用户在客观事实之间选择。"
         },
         {
-          "skillId": "507-work-update",
+          "skillId": "507-work",
           "when": "核对消息、当前事项与历史过程的身份、版本与覆盖；不把自报或历史命令当当前授权。"
         },
         {
@@ -255,7 +255,7 @@
           "when": "明确什么观察足以支持方案或结束澄清；事实未知时选择最小取证，不暗自扩展成实现。"
         },
         {
-          "skillId": "507-work-update",
+          "skillId": "507-work",
           "when": "核对工作结果与当前权限，分别报告准备、写入读回、独立验收和接受。"
         },
         {
@@ -339,7 +339,7 @@
           "when": "累积当前共识，用户改口时说明被取代的决定与影响，结束时返回可继续工作的边界。"
         },
         {
-          "skillId": "507-work-update",
+          "skillId": "507-work",
           "when": "新报告改变旧安排、授权或依赖时分别承接，结束先报告完成/符合/差距并继续获授权的原目标。"
         },
         {
@@ -542,7 +542,7 @@
           "when": "创作存在独立产物、真实依赖或跨回合接续需要"
         },
         {
-          "skillId": "507-work-update",
+          "skillId": "507-work",
           "when": "跨工程、写作、研究或一般工作需要拆分、依赖推进或持续接续"
         }
       ],
@@ -634,7 +634,7 @@
           "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
         },
         {
-          "skillId": "507-work-update",
+          "skillId": "507-work",
           "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
         },
         {
@@ -979,20 +979,20 @@
     {
       "source": "lib/components/state_diff.py",
       "consumers": [
-        "507-work-update"
+        "507-work"
       ]
     },
     {
       "source": "lib/components/work_view.py",
       "consumers": [
-        "507-work-update"
+        "507-work"
       ]
     },
     {
       "source": "lib/components/task_view.py",
       "consumers": [
         "507-coordinate",
-        "507-work-update"
+        "507-work"
       ]
     },
     {

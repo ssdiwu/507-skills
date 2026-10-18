@@ -359,7 +359,7 @@
       "consumers": [
         "skill-design",
         "507-what",
-        "507-work-update",
+        "507-work",
         "507-why",
         "507-how",
         "507-create",
@@ -1623,7 +1623,7 @@
       "scope": "18入口在真实项目、工作更新与创作中自然使用，观察过度路由、漏读和父目标提前结束。",
       "consumers": [
         "skill-design",
-        "507-work-update",
+        "507-work",
         "507-create",
         "507-how"
       ],
@@ -1746,6 +1746,34 @@
         "507-do"
       ],
       "verification": "本次源码、包闭包及独审另记；原首次、反馈与旧独审不重归类。"
+    },
+    {
+      "id": "507-work-update",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-work-update/SKILL.md",
+      "decision": "merge",
+      "reason": "原工作能力升格并改名为主要入口507-work；coordinate保留独立的次要协调职责，重复方法采用原共有源。",
+      "retained": [
+        "工作事项发现、组织、建议排序、授权内推进与原记录更新",
+        "事项身份、日期、条件、来源与接受状态的保全",
+        "局部更新直接处理，复杂状态才按需生成视图",
+        "真实中断接续、独立协作及结果验收的原有边界"
+      ],
+      "dropped": [
+        {
+          "mechanism": "独立507-work-update次要入口",
+          "reason": "由简短主要入口work承接同一工作目标，不保留两个竞争入口。"
+        }
+      ],
+      "targets": [
+        "next/skills/507-work/SKILL.md",
+        "next/skills/507-work/references/process.md",
+        "next/skills/507-work/references/state-views.md"
+      ],
+      "consumers": [
+        "507-work"
+      ],
+      "verification": "原包、首次及旧独审保留原身份；本次源码、包检查与独审另记，不继承自然任务采用结论。"
     }
   ]
 }
