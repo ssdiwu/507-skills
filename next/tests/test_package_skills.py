@@ -231,6 +231,31 @@ class PackageTests(unittest.TestCase):
         self.assertEqual(query['actionAuthority'], 'UNCHANGED')
         self.assertEqual(query['runtimeAvailability'], 'NOT_CHECKED')
 
+    def test_adapt_primary_lookup_and_do_visual_method_work_without_author_tree(self):
+        bundle = Path(self.call('build', extra=('--output', Path(self.temp.name)/'frozen-packages'))['path'])
+        runtime = Path(self.temp.name)/'standalone-do'
+        lookup = Path(self.temp.name)/'standalone-lookup'
+        shutil.copytree(bundle/'507-do', runtime)
+        shutil.copytree(bundle/'507-setup', lookup)
+        reference = Path('references/shared/visual-direction.md')
+        original = (bundle/'507-do'/reference).read_bytes()
+        self.assertIn((ROOT/'lib/methods/visual-direction.md').read_bytes(), original)
+        shutil.rmtree(self.root)
+        packager.validate_package(runtime, '507-do')
+        run = subprocess.run([sys.executable, str(lookup/'scripts/library_view.py'),
+                              '--index-file', str(lookup/'references/shared/skill-entry-index.md'),
+                              '--lookup', '507-adapt'], cwd=lookup, capture_output=True, text=True)
+        self.assertEqual(run.returncode, 0, run.stdout+run.stderr)
+        query = json.loads(run.stdout)
+        self.assertEqual([(r['name'], r['role']) for r in query['currentCandidates']], [('507-adapt', 'main')])
+        self.assertEqual(query['runtimeAvailability'], 'NOT_CHECKED')
+        self.assertEqual(query['actionAuthority'], 'UNCHANGED')
+        # A consumer that loses its new method must fail, even if the author bundle remains intact.
+        (runtime/reference).unlink()
+        with self.assertRaises(packager.PackageError):
+            packager.validate_package(runtime, '507-do')
+        self.assertEqual((bundle/'507-do'/reference).read_bytes(), original)
+
     def test_bad_component_syntax_preserves_all_packages(self):
         before=packager.file_map(self.root/'next/skills')
         (self.root/'lib/components/work_view.py').write_text('def invalid(:\n')

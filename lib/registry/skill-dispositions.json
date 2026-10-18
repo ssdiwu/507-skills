@@ -311,7 +311,8 @@
       ],
       "consumers": [
         "507-create",
-        "507-adapt"
+        "507-adapt",
+        "507-do"
       ],
       "sourceEvidence": [
         {

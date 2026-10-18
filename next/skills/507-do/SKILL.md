@@ -64,6 +64,7 @@ python3 scripts/check_run.py --argv-json '["node","--test","test/sync.test.mjs"]
 | 关键断言、原动作或运行状态证据 | [工程证据](references/shared/engineering-evidence.md)：核验红绿、最终消费者和源码指纹 |
 | 验证计划、代表性错误或扩大测试范围 | [可观察验收](references/shared/validation.md)：选择相称检查并保留边界 |
 | 规格修订、内部工作已完成或父目标仍未完成 | [权威与返回](references/shared/authority-and-return.md)：保全条件并继续原目标 |
+| 用户点名呈现参考，或视觉／交互方向有会改变做法的缺口 | [视觉方向与真实反馈](references/shared/visual-direction.md)：按需查已授权来源、优先复用并把选择落实到产品；已有设计与普通局部修改直接继续 |
 
 存在可独立结果且并行收益成立时才采用 coordinate；串行可直接完成。行为、数据、权限或公开契约变化完成后由另一执行者独立 review；实施者自查不替代独立审查。提交、推送、PR（拉取请求）写入与发布按具体授权另立结果。
 

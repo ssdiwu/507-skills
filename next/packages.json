@@ -542,6 +542,10 @@
         {
           "source": "lib/design/apple-interaction.md",
           "target": "references/shared/apple-interaction.md"
+        },
+        {
+          "source": "lib/methods/visual-direction.md",
+          "target": "references/shared/visual-direction.md"
         }
       ],
       "role": "main"
@@ -912,7 +916,7 @@
         "SKILL.md",
         "agents/openai.yaml"
       ],
-      "role": "secondary"
+      "role": "main"
     },
     {
       "name": "507-setup",
