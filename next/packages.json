@@ -486,12 +486,13 @@
       "role": "secondary"
     },
     {
-      "name": "507-implement",
-      "source": "next/skills/507-implement",
+      "name": "507-do",
+      "source": "next/skills/507-do",
       "files": [
         "SKILL.md",
         "agents/openai.yaml",
-        "references/testing.md"
+        "references/testing.md",
+        "references/debugging.md"
       ],
       "shared": [
         {
@@ -543,46 +544,7 @@
           "target": "references/shared/apple-interaction.md"
         }
       ],
-      "role": "secondary"
-    },
-    {
-      "name": "507-fix",
-      "source": "next/skills/507-fix",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/engineering-evidence.md",
-          "target": "references/shared/engineering-evidence.md"
-        },
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/components/check_run.py",
-          "target": "scripts/check_run.py"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        }
-      ],
-      "role": "secondary"
+      "role": "main"
     },
     {
       "name": "507-review",

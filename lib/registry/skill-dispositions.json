@@ -364,8 +364,7 @@
         "507-how",
         "507-create",
         "507-spec",
-        "507-implement",
-        "507-fix",
+        "507-do",
         "507-review",
         "507-issue",
         "507-coordinate",
@@ -650,7 +649,7 @@
         "lib/design/apple-interaction.md"
       ],
       "consumers": [
-        "507-implement",
+        "507-do",
         "507-adapt"
       ],
       "sourceEvidence": [
@@ -682,8 +681,8 @@
       "id": "507-fix",
       "group": "code",
       "source": "code/507-fix/SKILL.md",
-      "decision": "retain",
-      "reason": "保留独立目标责任，重建到当前入口；旧目录只作来源。",
+      "decision": "merge",
+      "reason": "修复职责并入主要工程入口507-do的修复模式，保留复现、根因、最小修复和原动作复验；旧30及随后next版本分别保留原件。",
       "retained": [
         "完整错误与首个真实失败，预期/输入/环境/范围/版本先核，生产故障、规格变化、过时测试和环境分清。",
         "改生产前确定可重复故障信号，断言能拒原错；无确定信号缩小/观测，不症状猜改。",
@@ -702,14 +701,18 @@
         {
           "mechanism": "修复日志永久追加AGENTS或每故障造规格",
           "reason": "稳定行为/原因/回归沿职责归位，恢复既定行为不机械写新需求。"
+        },
+        {
+          "mechanism": "独立507-fix活动入口",
+          "reason": "同一工程入口承接原修复目标，详细方法留在do包内按修复模式读取。"
         }
       ],
       "targets": [
-        "next/skills/507-fix/SKILL.md",
+        "next/skills/507-do/references/debugging.md",
         "lib/methods/engineering-evidence.md"
       ],
       "consumers": [
-        "507-fix"
+        "507-do"
       ],
       "sourceEvidence": [
         {
@@ -721,10 +724,15 @@
           "path": "code/507-fix/SKILL.md",
           "startLine": null,
           "endLine": null
+        },
+        {
+          "path": "doc/90-归档/技能/507-fix/SKILL.md",
+          "startLine": null,
+          "endLine": null
         }
       ],
       "implementation": "SOURCE_IMPLEMENTED",
-      "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
+      "verification": "旧首次与原独审按原身份保留；本次合并的结构检查与独审另记，不继承自然任务采用或业务效果结论。"
     },
     {
       "id": "507-test",
@@ -757,10 +765,10 @@
         }
       ],
       "targets": [
-        "next/skills/507-implement/references/testing.md"
+        "next/skills/507-do/references/testing.md"
       ],
       "consumers": [
-        "507-implement"
+        "507-do"
       ],
       "sourceEvidence": [
         {
@@ -815,11 +823,11 @@
       ],
       "targets": [
         "lib/methods/behavior-preserving-change.md",
-        "next/skills/507-implement/SKILL.md"
+        "next/skills/507-do/SKILL.md"
       ],
       "consumers": [
         "507-how",
-        "507-implement"
+        "507-do"
       ],
       "sourceEvidence": [
         {
@@ -1711,6 +1719,33 @@
         "507-create"
       ],
       "verification": "原独审及首次证据保持原身份；本次合并的包检查和独审另记，不继承自然任务效果结论。"
+    },
+    {
+      "id": "507-implement",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-implement/SKILL.md",
+      "decision": "merge",
+      "reason": "原实施能力升格并改名为主要工程入口507-do，保留已有需求直接执行及各类测试限定。",
+      "retained": [
+        "新增功能和已确认行为的完整工程结果",
+        "指定版本、局部修改、行为不变调整及必要验证",
+        "只跑测试、补测试、测试先行和只写失败测试的各自边界",
+        "独立审查、原任务返回和失败保全"
+      ],
+      "dropped": [
+        {
+          "mechanism": "独立507-implement次要入口",
+          "reason": "主要入口采用简短动作名do，详细工程定义和模式写在包内。"
+        }
+      ],
+      "targets": [
+        "next/skills/507-do/SKILL.md",
+        "next/skills/507-do/references/testing.md"
+      ],
+      "consumers": [
+        "507-do"
+      ],
+      "verification": "本次源码、包闭包及独审另记；原首次、反馈与旧独审不重归类。"
     }
   ]
 }

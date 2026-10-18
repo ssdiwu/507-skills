@@ -41,25 +41,18 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "0e155767beeb79d7366d8389e58ed69613991f8e7963e97de827d4c4198dd22a",
-      "description": "修复已明确的软件故障、报错、崩溃、回归或合并冲突，建立可重复失败信号、定位根因并复验原动作。规格变更与测试资产维护按其实际任务处理，不借修复做无关重构。",
-      "entry": "507-fix/SKILL.md",
-      "name": "507-fix",
-      "role": "secondary"
+      "contractSha256": "36effe80904477c06d580fd57f264832a9dd99ba1b53bebeae5b28e809ade6f6",
+      "description": "按已明确的工程目标完成新增功能、故障修复、局部修改或指定测试。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只跑测试不自动改代码。",
+      "entry": "507-do/SKILL.md",
+      "name": "507-do",
+      "role": "main"
     },
     {
-      "contractSha256": "854129b8997547bf63b986126aac74212fbda48a7f4eca997e5d947f45e45707",
+      "contractSha256": "5f5412b1a57708938779cb4c4fd8526207dd28c99f44040aa81738bcad377ff7",
       "description": "在目标与现状已足够清楚、介入策略尚未形成时，构造穿过接口、状态、数据、权限、消费者与迁移约束的变更路径。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
       "role": "main"
-    },
-    {
-      "contractSha256": "8d5a4790a1563125e0a10544af07e87d51ff4b23ed0c532b513c7ade86aee994",
-      "description": "按已确认的软件需求实施、维护测试或完成明确授权的测试先行开发。需求与权限充分时直接执行；已明确的故障使用根因修复，只读运行或只补测试不取得生产修改权。",
-      "entry": "507-implement/SKILL.md",
-      "name": "507-implement",
-      "role": "secondary"
     },
     {
       "contractSha256": "2dd7e75e7eec413686dbc45360272acc8cec0705f4c3f2721b03c5ead9abc074",
@@ -132,7 +125,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "df4b0167935fcc5994c73ddb6b6a62e376f4d4a1b6d8b91b214f5e86f96f51db",
+      "contractSha256": "23f98a768428472546b69c1614c073d4039b30854c0cba2c8b8d29b4a7bacb1c",
       "description": "规划、创建或重构技能体系，把任务经验和外部方法组织成合适的技能、共有方法与工具，并完成获授权的文件和验证。普通业务执行、项目文档维护及仅需澄清意图不使用本技能。",
       "entry": "skill-design/SKILL.md",
       "name": "skill-design",
@@ -296,9 +289,9 @@
     },
     {
       "consumers": [
-        "507-fix"
+        "507-do"
       ],
-      "decision": "retain",
+      "decision": "merge",
       "dropped": [
         {
           "mechanism": "逐层单例→文件→包→全库机械扩大",
@@ -307,10 +300,14 @@
         {
           "mechanism": "修复日志永久追加AGENTS或每故障造规格",
           "reason": "稳定行为/原因/回归沿职责归位，恢复既定行为不机械写新需求。"
+        },
+        {
+          "mechanism": "独立507-fix活动入口",
+          "reason": "同一工程入口承接原修复目标，详细方法留在do包内按修复模式读取。"
         }
       ],
       "id": "507-fix",
-      "reason": "保留独立目标责任，重建到当前入口；旧目录只作来源。",
+      "reason": "修复职责并入主要工程入口507-do的修复模式，保留复现、根因、最小修复和原动作复验；旧30及随后next版本分别保留原件。",
       "retained": [
         "完整错误与首个真实失败，预期/输入/环境/范围/版本先核，生产故障、规格变化、过时测试和环境分清。",
         "改生产前确定可重复故障信号，断言能拒原错；无确定信号缩小/观测，不症状猜改。",
@@ -324,10 +321,10 @@
       "source": "code/507-fix/SKILL.md",
       "sourceSha256": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a",
       "targets": [
-        "next/skills/507-fix/SKILL.md",
+        "next/skills/507-do/references/debugging.md",
         "lib/methods/engineering-evidence.md"
       ],
-      "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
+      "verification": "旧首次与原独审按原身份保留；本次合并的结构检查与独审另记，不继承自然任务采用或业务效果结论。"
     },
     {
       "consumers": [
@@ -490,8 +487,7 @@
         "507-how",
         "507-create",
         "507-spec",
-        "507-implement",
-        "507-fix",
+        "507-do",
         "507-review",
         "507-issue",
         "507-coordinate",
@@ -529,6 +525,33 @@
         "lib/methods/continuation.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
+    },
+    {
+      "consumers": [
+        "507-do"
+      ],
+      "decision": "merge",
+      "dropped": [
+        {
+          "mechanism": "独立507-implement次要入口",
+          "reason": "主要入口采用简短动作名do，详细工程定义和模式写在包内。"
+        }
+      ],
+      "id": "507-implement",
+      "reason": "原实施能力升格并改名为主要工程入口507-do，保留已有需求直接执行及各类测试限定。",
+      "retained": [
+        "新增功能和已确认行为的完整工程结果",
+        "指定版本、局部修改、行为不变调整及必要验证",
+        "只跑测试、补测试、测试先行和只写失败测试的各自边界",
+        "独立审查、原任务返回和失败保全"
+      ],
+      "source": "doc/90-归档/技能/507-implement/SKILL.md",
+      "sourceSha256": "8d5a4790a1563125e0a10544af07e87d51ff4b23ed0c532b513c7ade86aee994",
+      "targets": [
+        "next/skills/507-do/SKILL.md",
+        "next/skills/507-do/references/testing.md"
+      ],
+      "verification": "本次源码、包闭包及独审另记；原首次、反馈与旧独审不重归类。"
     },
     {
       "consumers": [
@@ -956,7 +979,7 @@
     {
       "consumers": [
         "507-how",
-        "507-implement"
+        "507-do"
       ],
       "decision": "merge",
       "dropped": [
@@ -990,7 +1013,7 @@
       "sourceSha256": "c0d66d7fbc22e6608bb8f9875fe56b4bf72ec1ee706908eae62674f1b6548110",
       "targets": [
         "lib/methods/behavior-preserving-change.md",
-        "next/skills/507-implement/SKILL.md"
+        "next/skills/507-do/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -1062,7 +1085,7 @@
     },
     {
       "consumers": [
-        "507-implement"
+        "507-do"
       ],
       "decision": "merge",
       "dropped": [
@@ -1094,13 +1117,13 @@
       "source": "code/507-test/SKILL.md",
       "sourceSha256": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5",
       "targets": [
-        "next/skills/507-implement/references/testing.md"
+        "next/skills/507-do/references/testing.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
     {
       "consumers": [
-        "507-implement",
+        "507-do",
         "507-adapt"
       ],
       "decision": "merge",

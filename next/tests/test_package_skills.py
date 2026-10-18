@@ -138,6 +138,48 @@ class PackageTests(unittest.TestCase):
         self.assertEqual([row['name'] for row in query['currentCandidates']], ['507-create'])
         self.assertEqual(query['actionAuthority'], 'UNCHANGED')
 
+    def test_do_preserves_methods_and_resolves_both_previous_engineering_names(self):
+        bundle = Path(self.call('build')['path'])
+        self.assertFalse((bundle/'507-implement').exists())
+        self.assertFalse((bundle/'507-fix').exists())
+        current = {row['name']: row for row in json.loads((ROOT/'next/packages.json').read_text())['skills']}
+        self.assertEqual(current['507-do']['role'], 'main')
+        self.assertEqual((bundle/'507-do/references/testing.md').read_bytes(),
+                         (ROOT/'doc/90-归档/技能/507-implement/references/testing.md').read_bytes())
+        previous = (ROOT/'doc/90-归档/技能/507-fix/SKILL.md').read_text().split('---\n', 2)[2].lstrip('\n')
+        expected = previous.replace('(references/shared/', '(shared/').replace('(scripts/', '(../scripts/')
+        self.assertEqual((bundle/'507-do/references/debugging.md').read_text(), expected)
+        runtime = bundle/'507-deliver'
+        for old_name in ('507-implement', '507-fix'):
+            run = subprocess.run([sys.executable, str(runtime/'scripts/library_view.py'),
+                                  '--index-file', str(runtime/'references/shared/skill-entry-index.md'),
+                                  '--lookup', old_name], cwd=runtime, capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, run.stdout+run.stderr)
+            query = json.loads(run.stdout)
+            self.assertEqual(query['status'], 'LEGACY_DECLARATION_FOUND')
+            self.assertEqual([(row['name'], row['role']) for row in query['currentCandidates']], [('507-do', 'main')])
+            self.assertEqual(query['actionAuthority'], 'UNCHANGED')
+            self.assertEqual(query['legacyOrigin']['decision'], 'merge')
+
+    def test_do_check_runner_works_in_an_isolated_package_and_preserves_failure(self):
+        bundle = Path(self.call('build')['path'])
+        isolated = Path(self.temp.name)/'isolated-do'
+        shutil.copytree(bundle/'507-do', isolated)
+        work = Path(self.temp.name)/'check-work';work.mkdir()
+        source = work/'input.txt';source.write_text('original input\n')
+        for code in (0, 7):
+            logs = Path(self.temp.name)/('check-'+str(code))
+            run = subprocess.run([sys.executable, str(isolated/'scripts/check_run.py'),
+                                  '--argv-json', json.dumps([sys.executable, '-c', 'raise SystemExit('+str(code)+')']),
+                                  '--cwd', str(work), '--log-dir', str(logs), '--source', 'input.txt'],
+                                 cwd=isolated, capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0 if code==0 else 1, run.stdout+run.stderr)
+            receipt = json.loads((logs/'receipt.json').read_text())
+            self.assertEqual(receipt['exitCode'], code)
+            self.assertEqual(receipt['status'], 'COMMAND_PASS' if code==0 else 'COMMAND_FAIL')
+            self.assertTrue(receipt['sourceUnchanged'])
+            self.assertEqual(source.read_text(), 'original input\n')
+
     def test_bad_component_syntax_preserves_all_packages(self):
         before=packager.file_map(self.root/'next/skills')
         (self.root/'lib/components/work_view.py').write_text('def invalid(:\n')
