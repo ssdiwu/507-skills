@@ -394,7 +394,7 @@
       "group": "code",
       "source": "code/507-setup/SKILL.md",
       "decision": "retain",
-      "reason": "保留独立目标责任，重建到当前入口；旧目录只作来源。",
+      "reason": "保留项目工作依据与导航的独立目标责任，升格为主要入口507-setup；规格与工单仍由原次要职责承接，两份单消费者方法归入setup包内。旧目录及迁移前方法保留来源身份。",
       "retained": [
         "按项目依据/导航/只读巡检/指定全局四种请求选择最小范围；局部地图不自动跑规范巡检。",
         "项目根、有效版本、用户手改、已确认结论、工作树、唯一写入者和受保护边界先核对；时间戳不自动取得权威。",
@@ -424,8 +424,8 @@
         }
       ],
       "targets": [
-        "lib/methods/project-foundation.md",
-        "lib/methods/project-navigation.md",
+        "next/skills/507-setup/references/project-foundation.md",
+        "next/skills/507-setup/references/project-navigation.md",
         "next/skills/507-setup/SKILL.md"
       ],
       "consumers": [

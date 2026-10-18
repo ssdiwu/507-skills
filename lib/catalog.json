@@ -694,32 +694,6 @@
       "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
     },
     {
-      "id": "project-foundation",
-      "title": "项目依据与迁移",
-      "source": "lib/methods/project-foundation.md",
-      "consumers": [
-        {
-          "skillId": "507-setup",
-          "when": "建立、只读巡检或获授权迁移项目工作依据"
-        }
-      ],
-      "relatedAtomIds": [],
-      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
-    },
-    {
-      "id": "project-navigation",
-      "title": "项目阅读导航",
-      "source": "lib/methods/project-navigation.md",
-      "consumers": [
-        {
-          "skillId": "507-setup",
-          "when": "只维护README、目录职责、spec/doc导航或局部地图"
-        }
-      ],
-      "relatedAtomIds": [],
-      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
-    },
-    {
       "id": "probe-lifecycle",
       "title": "可丢弃原型证据",
       "source": "lib/methods/probe-lifecycle.md",

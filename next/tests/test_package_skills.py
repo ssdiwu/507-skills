@@ -204,6 +204,33 @@ class PackageTests(unittest.TestCase):
             self.assertEqual(query['actionAuthority'], 'UNCHANGED')
             self.assertEqual(query['runtimeAvailability'], 'NOT_CHECKED')
 
+    def test_setup_private_methods_keep_original_content_and_standalone_current_identity(self):
+        bundle = Path(self.call('build')['path'])
+        current = {row['name']: row for row in json.loads((ROOT/'next/packages.json').read_text())['skills']}
+        self.assertEqual(current['507-setup']['role'], 'main')
+        self.assertEqual(current['507-spec']['role'], 'secondary')
+        self.assertEqual(current['507-issue']['role'], 'secondary')
+        for name in ('project-foundation', 'project-navigation'):
+            rel = 'references/'+name+'.md'
+            self.assertIn(rel, current['507-setup']['files'])
+            self.assertEqual((bundle/'507-setup'/rel).read_bytes(),
+                             (ROOT/'doc/90-归档/共有方法/2026-10-19-setup包内迁移'/(name+'.md')).read_bytes())
+            self.assertFalse((bundle/'507-setup/references/shared'/(name+'.md')).exists())
+            self.assertFalse((self.root/'lib/methods'/(name+'.md')).exists())
+        runtime = Path(self.temp.name)/'standalone-setup'
+        shutil.copytree(bundle/'507-setup', runtime)
+        shutil.rmtree(self.root)
+        packager.validate_package(runtime, '507-setup')
+        run = subprocess.run([sys.executable, str(runtime/'scripts/library_view.py'),
+                              '--index-file', str(runtime/'references/shared/skill-entry-index.md'),
+                              '--lookup', '507-setup'], cwd=runtime, capture_output=True, text=True)
+        self.assertEqual(run.returncode, 0, run.stdout+run.stderr)
+        query = json.loads(run.stdout)
+        self.assertEqual(query['status'], 'CURRENT_DECLARATION_FOUND')
+        self.assertEqual([(row['name'], row['role']) for row in query['currentCandidates']], [('507-setup', 'main')])
+        self.assertEqual(query['actionAuthority'], 'UNCHANGED')
+        self.assertEqual(query['runtimeAvailability'], 'NOT_CHECKED')
+
     def test_bad_component_syntax_preserves_all_packages(self):
         before=packager.file_map(self.root/'next/skills')
         (self.root/'lib/components/work_view.py').write_text('def invalid(:\n')

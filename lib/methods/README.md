@@ -1,6 +1,6 @@
 # 共有方法
 
-本目录的 30 份方法按条件提供判断与工作做法，没有独立技能入口。消费者与采用条件以[资源登记](../catalog.json)为准；专用方法留在各技能包内。脚本和工具说明见[components](../components/README.md)，设计参考见[design](../design/README.md)。
+本目录的 28 份方法按条件提供判断与工作做法，没有独立技能入口。消费者与采用条件以[资源登记](../catalog.json)为准；专用方法留在各技能包内。脚本和工具说明见[components](../components/README.md)，设计参考见[design](../design/README.md)。
 
 | 方法 | 当前使用者 |
 | --- | --- |
@@ -20,8 +20,6 @@
 | [对象关系、比较与观察](visual-understanding.md) | 507-why, 507-how, 507-adapt, 507-coordinate |
 | [视觉方向与真实反馈](visual-direction.md) | 507-create, 507-adapt |
 | [真实中断、交接与续办](continuation.md) | skill-design, 507-what, 507-work, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-review, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-material, 507-adapt, 507-setup |
-| [项目依据与迁移](project-foundation.md) | 507-setup |
-| [项目阅读导航](project-navigation.md) | 507-setup |
 | [可丢弃原型证据](probe-lifecycle.md) | 507-why, 507-how |
 | [架构摩擦与候选证据](architecture-candidates.md) | 507-why, 507-how |
 | [行为不变修改证据门](behavior-preserving-change.md) | 507-how, 507-do, 507-component |
@@ -36,3 +34,5 @@
 | [交互点、关系与证据](interaction-map.md) | 507-product-map, 507-how, 507-spec, 507-review |
 
 主入口说明何时读取和读后做什么；这里集中维护方法正文，随包副本按[清单](../../next/packages.json)生成。方法共享不要求每个任务通读整套资料。
+
+项目依据与项目导航仅由setup消费，现分别在其包内维护[项目依据](../../next/skills/507-setup/references/project-foundation.md)与[项目导航](../../next/skills/507-setup/references/project-navigation.md)，不再参与共有副本生成。

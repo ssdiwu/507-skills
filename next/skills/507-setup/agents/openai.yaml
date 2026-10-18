@@ -1,4 +1,4 @@
 interface:
-  display_name: "507 · 项目依据与导航"
-  short_description: "建立或维护项目依据与阅读入口，按授权切换正文和消费者"
+  display_name: "整理项目依据"
+  short_description: "建立、迁移或维护项目依据；局部导航直接处理，规格与工单按需承接"
   default_prompt: "使用 $507-setup 处理本次项目依据或导航任务，先核当前版本和范围，完成相应文档与验证。"

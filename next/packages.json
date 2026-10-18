@@ -917,23 +917,17 @@
     {
       "name": "507-setup",
       "source": "next/skills/507-setup",
-      "role": "secondary",
+      "role": "main",
       "files": [
         "SKILL.md",
-        "agents/openai.yaml"
+        "agents/openai.yaml",
+        "references/project-foundation.md",
+        "references/project-navigation.md"
       ],
       "shared": [
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/project-foundation.md",
-          "target": "references/shared/project-foundation.md"
-        },
-        {
-          "source": "lib/methods/project-navigation.md",
-          "target": "references/shared/project-navigation.md"
         },
         {
           "source": "lib/methods/skill-entry-resolution.md",
