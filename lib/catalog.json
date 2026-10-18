@@ -525,7 +525,7 @@
         },
         {
           "skillId": "507-adapt",
-          "when": "1. 核对目标读者要理解、判断或执行什么，读取[受众与载体](references/reader-and-carrier.md)。已有条件足够时自行安排入口、层级、分页与节奏，不重开总规划。归属、引语或材料支持可能受压缩影响时读[作者与来源](references/shared/author-and-source.md)。"
+          "when": "1. 按上节核对目标读者要理解、判断或执行什么。已有条件足够时自行安排入口、层级、分页与节奏，不重开总规划。归属、引语或材料支持可能受压缩影响时读[作者与来源](references/shared/author-and-source.md)。"
         }
       ],
       "relatedAtomIds": [],

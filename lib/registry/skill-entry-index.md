@@ -6,7 +6,7 @@
 {
   "current": [
     {
-      "contractSha256": "7e935d4bf5f4c8a67f7ef926c4ef58e7a40964cbc2cee1c3f7d6128b8938e44f",
+      "contractSha256": "4d4ec454db78facec7e19ee9ed7e42033bdba0c623731d86b934ee2164f09945",
       "description": "保留成熟稿件的含义、作者判断和来源，把它适配目标受众及文章、图卡、幻灯片、网站或口播的阅读关系与容量。用于已有内容的载体转换；需要改变主张或重新成文时返回作者与成文工作。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
@@ -97,7 +97,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "bd7e619611ba2625fc99130be55b2bc862507eab3f65af2a4872d540318b1436",
+      "contractSha256": "35400e57f752cf1682c93d41d74650dd8dc43308e939575b0fd4e229a3e9db1d",
       "description": "独立、只读审查指定代码、文档或交付变更，核对现行规范、要求、实际运行证据及有依据的风险。只交付发现与结论；实现者自查和全库改进机会调查不替代该审查。",
       "entry": "507-review/SKILL.md",
       "name": "507-review",
