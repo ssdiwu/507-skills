@@ -29,7 +29,8 @@ class PackageTests(unittest.TestCase):
         target = self.root/packager.DISPOSITIONS
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ledger, target)
-        for row in json.loads(ledger.read_text())['legacy']:
+        decisions = json.loads(ledger.read_text())
+        for row in decisions['legacy'] + decisions.get('retired', []):
             dest = self.root/row['source']
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ROOT/row['source'], dest)
@@ -118,6 +119,24 @@ class PackageTests(unittest.TestCase):
         self.assertEqual(run.returncode,0,run.stdout+run.stderr);query=json.loads(run.stdout)
         self.assertEqual([c['name'] for c in query['currentCandidates']],['507-deliver'])
         self.assertEqual(query['runtimeAvailability'],'NOT_CHECKED');self.assertEqual(query['actionAuthority'],'UNCHANGED')
+
+    def test_merged_compose_is_retired_and_create_keeps_all_writing_methods(self):
+        result = self.call('build')
+        bundle = Path(result['path'])
+        self.assertNotIn('507-compose', packager.SKILL_NAMES)
+        self.assertFalse((bundle/'507-compose').exists())
+        for name in ('prose.md', 'proposal.md', 'spoken.md'):
+            self.assertEqual((bundle/'507-create/references'/name).read_bytes(),
+                             (ROOT/'doc/90-归档/技能/507-compose/references'/name).read_bytes())
+        runtime = bundle/'507-deliver'
+        run = subprocess.run([sys.executable, str(runtime/'scripts/library_view.py'),
+                              '--index-file', str(runtime/'references/shared/skill-entry-index.md'),
+                              '--lookup', '507-compose'], cwd=runtime, capture_output=True, text=True)
+        self.assertEqual(run.returncode, 0, run.stdout+run.stderr)
+        query = json.loads(run.stdout)
+        self.assertEqual(query['status'], 'LEGACY_DECLARATION_FOUND')
+        self.assertEqual([row['name'] for row in query['currentCandidates']], ['507-create'])
+        self.assertEqual(query['actionAuthority'], 'UNCHANGED')
 
     def test_bad_component_syntax_preserves_all_packages(self):
         before=packager.file_map(self.root/'next/skills')

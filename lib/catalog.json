@@ -475,11 +475,7 @@
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "用户手改、多派生载体或替换可用作品"
-        },
-        {
-          "skillId": "507-compose",
-          "when": "仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](references/shared/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](references/shared/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
+          "when": "用户手改、多派生载体或替换可用作品；仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](references/shared/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](references/shared/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
         },
         {
           "skillId": "507-adapt",
@@ -495,7 +491,7 @@
       "source": "lib/methods/artifact-rendering.md",
       "consumers": [
         {
-          "skillId": "507-compose",
+          "skillId": "507-create",
           "when": "用户还要求离线 HTML 且内容成熟时，读[呈现合同](references/shared/artifact-rendering.md)，使用[呈现脚本](scripts/render_artifact.py)制作图卡式页面、幻灯片或阅读网站，并看最终 HTML。真实内容还需确定视觉阅读关系时采用[设计提示](references/shared/artifact-prompts.md)。目标是图片、PPTX 或视频时，复用真实可用成熟工具核对依赖及目标文件；缺工具交付内容包和具体依赖，不能称目标载体已完成。"
         },
         {
@@ -513,15 +509,11 @@
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "作者、Agent、第三方混合，引语或主张承重有缺口"
+          "when": "作者、Agent、第三方混合，引语或主张承重有缺口；仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](references/shared/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](references/shared/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
         },
         {
           "skillId": "507-material",
           "when": "1. 读取当前指定材料与必要上下文，核对可得范围。需要判断作者、Agent、第三方归属或支持关系时，读[作者与来源](references/shared/author-and-source.md)；基线或外部来源连接不明时读[事实与证据](references/shared/evidence.md)。未读取、未提供和无法核验分别说明。"
-        },
-        {
-          "skillId": "507-compose",
-          "when": "仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](references/shared/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](references/shared/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
         },
         {
           "skillId": "507-adapt",
@@ -638,11 +630,7 @@
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "作品视觉方向未定，需要真实结构粗稿和反馈"
-        },
-        {
-          "skillId": "507-compose",
-          "when": "已成熟内容还需要视觉方向选择"
+          "when": "作品视觉方向未定，需要真实结构粗稿和反馈；已成熟内容还需要视觉方向选择"
         },
         {
           "skillId": "507-adapt",
@@ -715,10 +703,6 @@
         },
         {
           "skillId": "507-material",
-          "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
-        },
-        {
-          "skillId": "507-compose",
           "when": "真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过"
         },
         {
@@ -842,15 +826,11 @@
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "尚未表达的作者亲历或判断影响当前主线"
+          "when": "尚未表达的作者亲历或判断影响当前主线；当前稿具体表达缺口需要作者材料，既有材料足够时跳过"
         },
         {
           "skillId": "507-material",
           "when": "请求明确包含采访或补作者一手材料"
-        },
-        {
-          "skillId": "507-compose",
-          "when": "当前稿具体表达缺口需要作者材料，既有材料足够时跳过"
         }
       ],
       "relatedAtomIds": [],
@@ -879,7 +859,7 @@
           "when": "竞争解释的首个可见缺口需要同案重跑与反例"
         },
         {
-          "skillId": "507-compose",
+          "skillId": "507-create",
           "when": "解释型作品确有读者旧解释需要校准"
         }
       ],
@@ -918,11 +898,7 @@
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "整体视听作品需对齐内容、声音、素材和版本"
-        },
-        {
-          "skillId": "507-compose",
-          "when": "旁白或分镜须交接给真实媒体制作"
+          "when": "整体视听作品需对齐内容、声音、素材和版本；旁白或分镜须交接给真实媒体制作"
         },
         {
           "skillId": "507-adapt",
@@ -938,7 +914,7 @@
       "source": "lib/methods/title-promises.md",
       "consumers": [
         {
-          "skillId": "507-compose",
+          "skillId": "507-create",
           "when": "明确传播目标或请求改标题吸引力"
         },
         {
@@ -999,7 +975,7 @@
     {
       "source": "lib/components/check_prose.py",
       "consumers": [
-        "507-compose",
+        "507-create",
         "507-adapt"
       ]
     },
@@ -1014,14 +990,14 @@
     {
       "source": "lib/components/check_spoken.py",
       "consumers": [
-        "507-compose",
+        "507-create",
         "507-adapt"
       ]
     },
     {
       "source": "lib/components/render_artifact.py",
       "consumers": [
-        "507-compose",
+        "507-create",
         "507-adapt"
       ]
     },
@@ -1066,7 +1042,6 @@
       "source": "lib/components/artifact_receipt.py",
       "consumers": [
         "507-create",
-        "507-compose",
         "507-adapt"
       ]
     },

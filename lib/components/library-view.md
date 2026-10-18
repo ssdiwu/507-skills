@@ -22,7 +22,7 @@ python3 scripts/library_view.py --source-root <待核库> --packages <入口清�
 
 同一命令加--emit-index输出声明索引Markdown。维护者先在新位置生成候选、核对后切换共有源，再生成包内副本；索引不携带依赖自身的包文件指纹。普通查询不需要这些源参数。
 
-入口清单采用本库packages.json的skills/name/source/role/files/shared结构；catalog含methods/components及真实consumers；处置记录含schema、date、legacy、pending、historicalPlanning。每个旧项有id/source/decision/reason/retained/dropped/targets/consumers/verification，decision为retain/merge/drop。保留动作与放弃机制分开，不用旧名字数量判断完整。
+入口清单采用本库packages.json的skills/name/source/role/files/shared结构；catalog含methods/components及真实consumers；当前处置维护源为 `lib/registry/skill-dispositions.json`，带日期的旧记录保留历史身份。处置记录含schema、date、legacy、pending、historicalPlanning，并可含retired列表。每个旧项有id/source/decision/reason/retained/dropped/targets/consumers/verification，decision为retain/merge/drop。保留动作与放弃机制分开，不用旧名字数量判断完整。retired记录其后退出的入口，必须没有同名当前／旧30身份，归档合同位于`doc/90-归档/技能/<id>/SKILL.md`且name一致；仍按同样的目标资源及消费者规则验证。退役名称参与旧名查询，不恢复活动入口。
 
 输入必须是普通文件，拒绝重复JSON键、重复身份、越界／软链／缺资源、消费者不一致、旧common/code/write实际SKILL清单缺项及保留方法没有当前消费者。成功为SOURCE_PROJECTED、exit0，输入错误为INPUT_ERROR、exit2。它核明确来源的存在和指纹，不替代打包检查、语义审查、宿主发现或业务效果。
 

@@ -6,11 +6,11 @@
 
 | 脚本 | 确定性工作 | 当前消费者（省略 507- 前缀） |
 | --- | --- | --- |
-| [check_prose.py](check_prose.py) | 提示书面表达问题；不自动改稿 | compose、adapt |
-| [check_spoken.py](check_spoken.py) | 提示讲稿和口播表达问题；不裁决作者接受 | compose、adapt |
+| [check_prose.py](check_prose.py) | 提示书面表达问题；不自动改稿 | create、adapt |
+| [check_spoken.py](check_spoken.py) | 提示讲稿和口播表达问题；不裁决作者接受 | create、adapt |
 | [check_run.py](check_run.py) | 运行指定检查命令并记录输出、退出或超时 | implement、fix、review |
-| [render_artifact.py](render_artifact.py) | 生成离线 HTML 图卡、幻灯片阅读页或网站 | compose、adapt |
-| [artifact_receipt.py](artifact_receipt.py) | 记录实际文件身份及支持的结构信息 | create、compose、adapt |
+| [render_artifact.py](render_artifact.py) | 生成离线 HTML 图卡、幻灯片阅读页或网站 | create、adapt |
+| [artifact_receipt.py](artifact_receipt.py) | 记录实际文件身份及支持的结构信息 | create、adapt |
 | [state_diff.py](state_diff.py) | 按给定政策比较两份状态及字段变化 | work-update |
 | [work_view.py](work_view.py) | 从明确工作记录生成快照与文字视图 | work-update |
 | [task_view.py](task_view.py) | 从已有记录生成任务、依赖与结果网页 | coordinate、work-update |

@@ -107,8 +107,24 @@ def project(root, packages_path, catalog_path, disposition_path):
     observed = {p.parent.name for group in ('common', 'code', 'write') for p in (root / group).glob('*/SKILL.md')}
     if len(rows) != len(observed) or {r['id'] for r in rows} != observed:
         raise ValueError('legacy decisions must cover the exact source inventory')
+    retired = decisions.get('retired', [])
+    if not isinstance(retired, list) or any(not isinstance(row, dict) for row in retired):
+        raise ValueError('invalid retired entry list')
+    retired_ids = [row.get('id') for row in retired]
+    if (any(not isinstance(name, str) or not re.fullmatch(r'[a-z0-9][a-z0-9-]{0,63}', name)
+            for name in retired_ids) or len(retired_ids) != len(set(retired_ids))
+            or set(retired_ids) & (set(names) | observed)):
+        raise ValueError('retired identities must be unique and inactive')
+    for row in retired:
+        if (row.get('group') != 'retired' or row.get('decision') not in ('merge', 'drop')
+                or row.get('source') != 'doc/90-归档/技能/' + row['id'] + '/SKILL.md'):
+            raise ValueError('retired source must match archived identity')
+        raw = source(root, row['source']).read_text()
+        if not re.search(r'^name: ' + re.escape(row['id']) + r'\s*$', raw, re.M):
+            raise ValueError('archived contract name differs from retired identity')
+    rows = rows + retired
     for row in rows:
-        if row.get('group') not in ('common', 'code', 'write') or row.get('source') != row['group'] + '/' + row['id'] + '/SKILL.md':
+        if row not in retired and (row.get('group') not in ('common', 'code', 'write') or row.get('source') != row['group'] + '/' + row['id'] + '/SKILL.md'):
             raise ValueError('legacy source must match identity and group')
         for key in ['targets', 'consumers', 'retained', 'dropped']:
             if not isinstance(row.get(key), list):
@@ -172,7 +188,7 @@ def skill_index(view):
 
 def index_markdown(index):
     return ('# 当前技能名与旧能力去向（生成索引）\n\n'
-            '由library_view读取现行入口清单、共有资源与旧30处置生成；只改维护源后重新生成。'
+            '由library_view读取现行入口清单、共有资源与当前名称处置生成；旧30来源和其后退役入口分别核对。只改维护源后重新生成。'
             '这是源码声明快照，不证明宿主已安装或启用，也不增加原任务权限。'
             '按需用包内library_view的--index-file与--lookup查询，不必通读所有候选。\n\n'
             '```json\n' + json.dumps(index, ensure_ascii=False, indent=2, sort_keys=True) + '\n```\n')

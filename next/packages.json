@@ -304,7 +304,10 @@
       "files": [
         "SKILL.md",
         "agents/openai.yaml",
-        "references/authorship.md"
+        "references/authorship.md",
+        "references/prose.md",
+        "references/proposal.md",
+        "references/spoken.md"
       ],
       "shared": [
         {
@@ -398,6 +401,42 @@
         {
           "source": "lib/design/apple-interaction.md",
           "target": "references/shared/apple-interaction.md"
+        },
+        {
+          "source": "lib/methods/artifact-rendering.md",
+          "target": "references/shared/artifact-rendering.md"
+        },
+        {
+          "source": "lib/components/text-checks.md",
+          "target": "references/shared/text-checks.md"
+        },
+        {
+          "source": "lib/components/check_prose.py",
+          "target": "scripts/check_prose.py"
+        },
+        {
+          "source": "lib/components/check_spoken.py",
+          "target": "scripts/check_spoken.py"
+        },
+        {
+          "source": "lib/components/render_artifact.py",
+          "target": "scripts/render_artifact.py"
+        },
+        {
+          "source": "lib/design/artifact-prompts.md",
+          "target": "references/shared/artifact-prompts.md"
+        },
+        {
+          "source": "lib/methods/explanation-progression.md",
+          "target": "references/shared/explanation-progression.md"
+        },
+        {
+          "source": "lib/design/target-design.md",
+          "target": "references/shared/target-design.md"
+        },
+        {
+          "source": "lib/methods/title-promises.md",
+          "target": "references/shared/title-promises.md"
         }
       ],
       "role": "main"
@@ -811,92 +850,6 @@
         "SKILL.md",
         "agents/openai.yaml",
         "references/material-units.md"
-      ],
-      "role": "secondary"
-    },
-    {
-      "name": "507-compose",
-      "source": "next/skills/507-compose",
-      "shared": [
-        {
-          "source": "lib/methods/author-and-source.md",
-          "target": "references/shared/author-and-source.md"
-        },
-        {
-          "source": "lib/methods/artifact-contract.md",
-          "target": "references/shared/artifact-contract.md"
-        },
-        {
-          "source": "lib/methods/artifact-rendering.md",
-          "target": "references/shared/artifact-rendering.md"
-        },
-        {
-          "source": "lib/components/text-checks.md",
-          "target": "references/shared/text-checks.md"
-        },
-        {
-          "source": "lib/components/check_prose.py",
-          "target": "scripts/check_prose.py"
-        },
-        {
-          "source": "lib/components/check_spoken.py",
-          "target": "scripts/check_spoken.py"
-        },
-        {
-          "source": "lib/components/render_artifact.py",
-          "target": "scripts/render_artifact.py"
-        },
-        {
-          "source": "lib/design/artifact-prompts.md",
-          "target": "references/shared/artifact-prompts.md"
-        },
-        {
-          "source": "lib/methods/visual-direction.md",
-          "target": "references/shared/visual-direction.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/author-interview.md",
-          "target": "references/shared/author-interview.md"
-        },
-        {
-          "source": "lib/methods/explanation-progression.md",
-          "target": "references/shared/explanation-progression.md"
-        },
-        {
-          "source": "lib/methods/media-production.md",
-          "target": "references/shared/media-production.md"
-        },
-        {
-          "source": "lib/components/artifact_receipt.py",
-          "target": "scripts/artifact_receipt.py"
-        },
-        {
-          "source": "lib/components/artifact-receipt.md",
-          "target": "references/shared/artifact-receipt.md"
-        },
-        {
-          "source": "lib/components/media-adapters.md",
-          "target": "references/shared/media-adapters.md"
-        },
-        {
-          "source": "lib/design/target-design.md",
-          "target": "references/shared/target-design.md"
-        },
-        {
-          "source": "lib/methods/title-promises.md",
-          "target": "references/shared/title-promises.md"
-        }
-      ],
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/proposal.md",
-        "references/prose.md",
-        "references/spoken.md"
       ],
       "role": "secondary"
     },

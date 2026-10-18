@@ -1,6 +1,6 @@
 interface:
-  display_name: "作者主线与作品责任"
-  short_description: "从作者和受众出发建立材料支撑的主线，完成保留含义与声音的作品"
-  default_prompt: "使用 $507-create 根据指定材料与稿件完成作品，核对作者主线、事实责任、声音和实际载体。"
+  display_name: "创作、成文与改稿"
+  short_description: "完成文章、方案、讲稿与指定修改，成熟稿直接进入，保留作者判断与声音"
+  default_prompt: "使用 $507-create 沿指定材料与稿件完成创作、成文或局部修改，已有目的和成熟稿直接采用，不重走采访与规划。"
 policy:
   allow_implicit_invocation: true

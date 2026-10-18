@@ -12,4 +12,4 @@ targets.json为`{"schema":1,"files":[{"path":"cards/01.png","kind":"png"}]}`。p
 
 presentationAcceptance始终NOT_PERFORMED。调用者负责渲染／播放、作者内容、语义、许可与真实接受，不能把exit0写为成品验收通过。组件不覆盖文件，保留原目标与版本；输出重定向只用于本次新的证据位置，不覆盖旧回执。
 
-消费者：compose/adapt仅在实际制作目标文件且需要身份回执时采用；只成文与HTML制作不强制运行。
+消费者：create/adapt仅在实际制作目标文件且需要身份回执时采用；只成文与HTML制作不强制运行。

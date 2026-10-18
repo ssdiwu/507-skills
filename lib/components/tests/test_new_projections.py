@@ -84,6 +84,41 @@ class LibraryTests(unittest.TestCase):
  def test_duplicate_keys_are_refused(self):
   with self.assertRaisesRegex(ValueError,'duplicate JSON'):json.loads('{"x":1,"x":2}',object_pairs_hook=library.pairs)
 
+ def add_retired(self):
+  archive=self.root/'doc/90-归档/技能/retired/SKILL.md'
+  archive.parent.mkdir(parents=True);archive.write_text('---\nname: retired\ndescription: Previous writer\n---\n')
+  row={**self.disp['legacy'][0],'id':'retired','group':'retired','source':'doc/90-归档/技能/retired/SKILL.md'}
+  self.disp['retired']=[row]
+  return row,archive
+ def test_retired_entry_resolves_without_becoming_an_active_entry(self):
+  self.add_retired();view=self.run_projection();index=library.skill_index(view)
+  self.assertEqual(view['implementation']['entrypoints'],1)
+  result=library.lookup(index,'retired','test-index')
+  self.assertEqual(result['status'],'LEGACY_DECLARATION_FOUND')
+  self.assertEqual([r['name'] for r in result['currentCandidates']],['a'])
+  self.assertEqual(result['actionAuthority'],'UNCHANGED')
+ def test_retirement_cannot_hide_missing_original_legacy_coverage(self):
+  self.add_retired();self.disp['legacy']=[]
+  with self.assertRaisesRegex(ValueError,'exact source'):self.run_projection()
+ def test_retired_identity_cannot_shadow_active_or_legacy_names(self):
+  row,_=self.add_retired()
+  for name in ('a','old'):
+   row['id']=name
+   with self.assertRaisesRegex(ValueError,'unique and inactive'):self.run_projection()
+ def test_duplicate_retirement_is_refused(self):
+  row,_=self.add_retired();self.disp['retired'].append(dict(row))
+  with self.assertRaisesRegex(ValueError,'unique and inactive'):self.run_projection()
+ def test_retirement_requires_matching_archived_contract(self):
+  row,archive=self.add_retired();archive.write_text('---\nname: different\n---\n')
+  with self.assertRaisesRegex(ValueError,'contract name'):self.run_projection()
+  archive.unlink()
+  with self.assertRaisesRegex(ValueError,'missing source'):self.run_projection()
+ def test_retirement_cannot_point_to_unrelated_source_or_consumer(self):
+  row,_=self.add_retired();row['source']='common/old/SKILL.md'
+  with self.assertRaisesRegex(ValueError,'archived identity'):self.run_projection()
+  row['source']='doc/90-归档/技能/retired/SKILL.md';row['consumers']=['missing']
+  with self.assertRaisesRegex(ValueError,'current consumer'):self.run_projection()
+
  def write_index(self,index=None):
   index=index or library.skill_index(self.run_projection())
   path=self.root/'index.md';path.write_text(library.index_markdown(index));return path
