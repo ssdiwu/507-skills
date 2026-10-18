@@ -1,27 +1,23 @@
-# 共有方法、做法与设计资料
+# 共有资源库
 
-lib是当前非Skill资源的唯一维护源，不自行路由或获得写入权。当前30方法源、10脚本源，以及按需组件说明与设计资料；实际消费者、采用条件见[catalog](catalog.json)，随包路径见[next/packages](../next/packages.json)。源改后统一生成普通副本，不手改副本。
+`lib/` 是 507-skills 的**共有资源库**：集中维护多个技能按需采用的方法、执行脚本、工具说明、设计参考和名称索引。它没有独立 Skill 入口，不自行选择任务、授予权限或成为业务状态源。术语统一见[GLOSSARY](../GLOSSARY.md#分层与共有资源)。
 
-## 方法与消费者
+## 按资源种类查找
 
-原七份来源、决定归属、缺口、反证、验收、权威返回、清晰表达继续使用。新增author-and-source由create/material/compose/adapt消费；artifact-contract由create/compose/adapt消费；artifact-rendering由compose/adapt消费；engineering-evidence由spec/implement/fix/review消费。主入口保留触发、权限、产物和结束。
+| 种类 | 位置与入口 | 用途与边界 |
+| --- | --- | --- |
+| 共有方法 | [methods](methods/README.md)，当前 30 份 | 在适用条件下指导判断与行动；调用者负责权限、语义和完整任务 |
+| 执行脚本 | [components 的脚本表](components/README.md#执行脚本)，当前 10 个 | 执行明确输入到输出的动作；执行成功不替代业务判断 |
+| 工具说明 | [components 的说明表](components/README.md#工具说明) | 说明脚本或外部工具的输入输出、依赖、错误与验证边界；Markdown 文件不等于可运行工具 |
+| 设计参考 | [design](design/README.md) | 保存呈现提示、交互模式和来源；区分已随包采用的提示与尚未运行验证的参考 |
+| 名称索引 | [registry/skill-entry-index.md](registry/skill-entry-index.md) | 从现行入口与旧名处置生成的查询声明；不证明安装、启用或实际采用 |
 
-本轮原位校准authority-and-return、evidence、validation与engineering-evidence，直接消费者仍按具体条件采用；完成回报不替代实际目标验收，不要求新日志、总控或全量必读。
+“共有库”是本目录的简称，当前导航使用全称“共有资源库”。“素材库”指文章、图片、音视频等创作输入的集合；灵感库是想法、参考和线索的来源，不是本目录的别名。目标产品的界面组件库由该产品维护，`507-component` 按其范围查找、复用或抽取。
 
-## 具体组件
+## 维护与随包使用
 
-[components](components/README.md)提供state_diff、work_view、check_run、render_artifact以及原样复用的check_prose/check_spoken。状态/检查/呈现分别完成其局部确定性工作，不代替许可、语义、作者或业务验收；PNG/PPTX/视频未因HTML呈现而完成。
+每项共有源的真实消费者与采用条件登记在[catalog.json](catalog.json)，随包源与目标路径登记在[packages.json](../next/packages.json)。当前 52 个共有源产生 215 份普通副本，随对应技能独立交付；方法、脚本、说明、设计提示和索引不能按文件数合算为技能数。
 
-[design](design/README.md)保留16模式、原5提示与来源，并增加成稿适配提示；资料不是技能或通用产品组件。当前技能只携带声明采用的文档，其他资料不成为隐式安装依赖。
+修改唯一维护源后生成受影响副本并核对漂移；触发、权限、输入输出、依赖或完成条件改变时，还需同步受影响入口与验证。局部说明整理不改变这些行为合同。具体命令见[next 维护入口](../next/README.md#资源维护与构建)。
 
-工作专用接续方法保留在work-update包内；其余次要方法和48组件接口继续按真实任务取舍，不为了候选数量预造文件。当前范围与未覆盖见[整体覆盖](../doc/10-架构与运行/新体系实现覆盖.md)。
-
-[task-coordination](methods/task-coordination.md)由coordinate/create/work-update按需消费，承载跨领域局部协作、任务图推进和持续协调；[task_view](components/task-view.md)由coordinate/work-update携带，读取已有记录生成临时网页。记录更新重跑组件，呈现不足先扩组件；不直接手改生成网页，不建另一套人工状态或日志。
-
-2026-10-13按旧30实际消费者补齐研究、原型、架构、行为不变、交互、作者采访、知识入口、媒体、视觉与真实接续方法；共有源28份，脚本9段。资料不自行路由。当前清单投影与实物回执见[组件](components/README.md)，逐项来源与退出见[处置记录](../doc/40-版本实施方案/2026-10-13-旧30能力处置.json)。
-
-507-component按条件消费evidence、behavior-preserving-change、validation与authority-and-return。它在目标产品查库、采用或抽取界面组件，不是修改这里的技能共有库；本目录的资料无入口，也不自行发起该工作。
-
-[skill-entry-resolution](methods/skill-entry-resolution.md)用于旧引用需要定位当前职责时，由setup、deliver、coordinate及skill-design消费；[生成索引](registry/skill-entry-index.md)和既有library_view提供按名查询，声明、宿主存在与原任务权限分别判断。工程证据另补实际目标起点与夹具预置的区分，仍由既有spec／implement／fix／review按条件采用，不增加总控或新的测试入口。
-
-[interaction-map](methods/interaction-map.md)承载交互点身份、包含与操作关系、同对象三维证据及覆盖判断，由product-map、how、spec、review按条件采用。[product_map](components/product-map.md)由product-map携带，读取同一JSON生成可探索地图；生成器不采证、不将源码推为跑通，也不成为业务需求权威。
+单个消费者专用的内容留在技能包内。历史候选、旧数量与试用结果从[历史导航](../doc/历史导航.md)查询，当前源码、安装与未验证项见[PROGRESS](../PROGRESS.md)。

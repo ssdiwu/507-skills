@@ -1,66 +1,63 @@
-# 507-skills 新体系
+# 当前技能入口
 
-同一个507-skills新版当前源码包含20个入口：五主要、十五次要，新增交互点功能梳理。职责与当前清单见下表；工作角色可直接进入，不构成固定流水线。旧30保留为来源与回退。当前安装已按明确授权从本地未提交main组合更新为650fd009，20入口／273文件，读取完整性与讲稿目标句的接入见[本轮记录](../doc/40-版本实施方案/2026-10-18-读取完整性与讲稿目标句接入.md)；前批027b的20入口／274文件、原a299及前一87ea的20入口／274文件及更早c333的19入口／262文件保留为回退。2026-10-15的issue补充提交、安装与新子代理读取结果见[历史接收记录](../doc/40-版本实施方案/2026-10-15-issue主线接收与安装.md)及[核验](../doc/40-版本实施方案/2026-10-15-issue主线接收核验.json)，不因构建自动视为安装；交互地图实施与试用见[本轮记录](../doc/40-版本实施方案/2026-10-14-交互点功能地图实施与试用.md)。
+当前清单包含 **20 个入口：5 个主要技能、15 个次要工作能力**。`next` 是现行源码目录名，不表示这些技能仍待接入。源码与安装状态见[当前进度](../PROGRESS.md)，历史方案与验证见[历史导航](../doc/历史导航.md)。
+
+主要／次要沿[术语表](../GLOSSARY.md#分层与共有资源)定义，清楚任务可以直达相应工作能力。下面的分工不要求固定串行调用，也不承诺宿主隐藏次要入口。
 
 ## 主要职责
 
 | 实际入口 | 独有责任 |
 | --- | --- |
-| [skill-design](../next/skills/skill-design/SKILL.md) | 技能设计与编写（skill-design） |
-| [507-what](../next/skills/507-what/SKILL.md) | 目标与关键取舍 |
-| [507-why](../next/skills/507-why/SKILL.md) | 陌生项目初识、理解、解释与证据 |
-| [507-how](../next/skills/507-how/SKILL.md) | 介入点与变更策略 |
-| [507-create](../next/skills/507-create/SKILL.md) | 作者主线与作品责任 |
+| [skill-design](skills/skill-design/SKILL.md) | 技能设计与编写（skill-design） |
+| [507-what](skills/507-what/SKILL.md) | 目标与关键取舍 |
+| [507-why](skills/507-why/SKILL.md) | 陌生项目初识、理解、解释与证据 |
+| [507-how](skills/507-how/SKILL.md) | 介入点与变更策略 |
+| [507-create](skills/507-create/SKILL.md) | 作者主线与作品责任 |
 
 ## 次要工作能力
 
 | 实际入口 | 独立结果 |
 | --- | --- |
 | [507-setup](skills/507-setup/SKILL.md) | 项目依据、规范迁移与局部导航维护 |
-| [507-work-update](../next/skills/507-work-update/SKILL.md) | 工作发现、更新与推进 |
-| [507-spec](../next/skills/507-spec/SKILL.md) | PRD、行为与验收规格 |
-| [507-implement](../next/skills/507-implement/SKILL.md) | 实施与行为测试 |
+| [507-work-update](skills/507-work-update/SKILL.md) | 工作发现、更新与推进 |
+| [507-spec](skills/507-spec/SKILL.md) | PRD、行为与验收规格 |
+| [507-implement](skills/507-implement/SKILL.md) | 实施与行为测试 |
 | [507-component](skills/507-component/SKILL.md) | 产品界面组件库查找、复用或重复块抽取与调用迁移 |
 | [507-product-map](skills/507-product-map/SKILL.md) | 指定功能的交互点及关系，同对象设计／实现／运行证据与可探索地图 |
-| [507-fix](../next/skills/507-fix/SKILL.md) | 原动作复现与根因修复 |
-| [507-review](../next/skills/507-review/SKILL.md) | 独立只读审查 |
-| [507-issue](../next/skills/507-issue/SKILL.md) | 可独立接手的调查／执行工单；只起草也整理依据、下一动作与推进条件 |
-| [507-coordinate](../next/skills/507-coordinate/SKILL.md) | 依赖、并行隔离与集成 |
-| [507-deliver](../next/skills/507-deliver/SKILL.md) | PR表达与授权版本交付 |
-| [507-retro](../next/skills/507-retro/SKILL.md) | 复盘与工具化建议 |
-| [507-material](../next/skills/507-material/SKILL.md) | 作者材料、来源与支持范围 |
-| [507-compose](../next/skills/507-compose/SKILL.md) | 组织、完整成文与局部改稿 |
-| [507-adapt](../next/skills/507-adapt/SKILL.md) | 受众、容量与载体适配 |
+| [507-fix](skills/507-fix/SKILL.md) | 原动作复现与根因修复 |
+| [507-review](skills/507-review/SKILL.md) | 独立只读审查 |
+| [507-issue](skills/507-issue/SKILL.md) | 可独立接手的调查／执行工单；只起草也整理依据、下一动作与推进条件 |
+| [507-coordinate](skills/507-coordinate/SKILL.md) | 依赖、并行隔离与集成 |
+| [507-deliver](skills/507-deliver/SKILL.md) | PR表达与授权版本交付 |
+| [507-retro](skills/507-retro/SKILL.md) | 复盘与工具化建议 |
+| [507-material](skills/507-material/SKILL.md) | 作者材料、来源与支持范围 |
+| [507-compose](skills/507-compose/SKILL.md) | 组织、完整成文与局部改稿 |
+| [507-adapt](skills/507-adapt/SKILL.md) | 受众、容量与载体适配 |
 
 明确故障、成熟稿、充分规格和已有任务图可直接进入相应能力；不因技能存在重跑what/why/how或全链。技能缺失可按同一合同直接工作，独立审查仍须另一执行者。
 
 工单只起草时直接采用507-issue主文的正文组织方法，调查态保留关键未知并给证据动作和推进条件；行为、范围、依赖与验收充分后才作为ready交接。平台参考只在对应动作已获授权时读取，不把正文组织挂在平台许可之后。
 
-## 了解陌生项目从哪里开始
+## 常见任务的直接入口
 
-当前项目已经可定位时，一句“这是个新项目，请帮我了解一下”即可表达初识目标。由[507-why](skills/507-why/SKILL.md)主动调查必要维度，再用代表路径校准概览；[专用方法](skills/507-why/references/project-understanding.md)留在该包内。可查事实不变成用户问卷，地图只按需要采用，不强制why到其它入口的链。源码实现、原生候选发现、一语试用和真实安装分别记录，见[本轮记录](../doc/40-版本实施方案/2026-10-14-why新项目初识实施与试用.md)。
+| 任务 | 采用方式 |
+| --- | --- |
+| 了解可定位的陌生项目 | why 自主建立必要全貌并核对代表路径；交互地图只在确有需要时使用 |
+| 初始化仓库或维护文档导航 | setup 按范围建立或维护项目依据；具体行为要求由 spec 承接 |
+| 整理材料、成文或换载体 | 材料需要核身份时用 material；已有目标和材料直接 compose；成熟内容换受众或载体用 adapt |
+| 找产品界面组件 | component 先核目标产品已有组件；没有适用组件且有多个确定使用位置时才抽取并迁移调用 |
+| 梳理功能与实际操作证据 | product-map 对齐交互点、关系及设计／实现／运行证据；普通实现不强制建图 |
+| 推进已有工作或安排协作 | work-update 维护事项并推进授权工作；coordinate 按实际依赖组织独立结果与集成 |
 
-## 初始化仓库从哪里开始
-
-明确要初始化仓库时可直接使用[507-setup](skills/507-setup/SKILL.md)。它采用[项目依据](../lib/methods/project-foundation.md)建立或归位 README、AGENTS、GLOSSARY、DESIGN、spec、doc，确需接续时维护 PROGRESS；内容与风险决定详略，不创建没有内容和消费者的空文件。维护地图时采用[项目导航](../lib/methods/project-navigation.md)。这些方法仍由setup持有修改范围与完成责任，不自行启动其它技能。
-
-具体功能行为与验收需要成文时由507-spec承接；已有充分需求可直接进入工程实施。目标明确的仓库初始化不必先走what、why、how。
-
-## 产品组件工作从哪里进入
-
-直接要求查产品组件库、复用现有组件或将重复界面块送进库时，可使用[507-component](skills/507-component/SKILL.md)。已有适用组件先采用；库内没有且有多个确定使用位置才抽取并迁移已有调用；单处使用留原位。结果返回原页面或功能，页面操作、状态与反馈仍由507-implement按需读interaction并验证。不要求所有界面任务先过此入口。
-
-该职责修改目标产品的组件及相关调用，不写本技能库的共有方法／脚本；后者仍由skill-design负责。技能主合同可直接触发，lib资料按条件消费，不会自动发现抽取工作或自行写入组件。
+产品界面组件库与本技能库的共有资源库是不同对象。`507-component` 处理前者，`skill-design` 处理后者。方法和工具可以直接采用，不必为读取一段参考再启动一个技能。
 
 ## 资源维护与构建
 
-lib是唯一共有维护源，无SKILL入口。当前30方法源、10脚本源；包内普通生成副本共215份，273构建文件。作者/作品/呈现、工程证据和按情境协调是按实际消费者维护的共有方法，专用内容留包内。数据以[清单](packages.json)与[资源登记](../lib/catalog.json)为准。
+[共有资源库](../lib/README.md)分开说明方法、执行脚本、工具说明、设计参考与名称索引。当前登记 30 份共有方法、10 个执行脚本；52 个共有源形成 215 份随包副本。加上各技能的 58 份自有文件，精确包清单共 273 个文件。事实以[packages.json](packages.json)与[catalog.json](../lib/catalog.json)为准。
 
-明确要梳理产品功能与可操作节点时，可直接进入[507-product-map](skills/507-product-map/SKILL.md)。[共有方法](../lib/methods/interaction-map.md)由product-map、how、spec、review按需采用；专用[地图组件](../lib/components/product-map.md)从同一记录生成包含树、筛选、证据详情、全部关系与登记路径，更新记录后生成新目录。普通策略、规格、审查和实现不因此强制建图。
+共有源修改后生成对应副本，不手改随包副本。入口合同或旧名处置改变时，按[名称索引说明](../lib/components/library-view.md)先生成并核对索引，再同步包。名称查询只返回声明，不执行技能或证明宿主已启用。
 
-coordinate已覆盖工程、写作、研究与一般工作，按需选择局部协作、任务图推进、持续协调；create/work-update按相应缺口采用同一协调方法。临时任务网页由[task_view组件](../lib/components/task-view.md)读取已有过程记录生成与更新，不能直接编辑生成HTML；表达不足改组件后重生成。无需网页或独立工作时直接完成，不新增技能身份或强制日志。
-
-在仓库根运行：
+在仓库根按变更范围运行：
 
 ```sh
 python3 next/scripts/package_skills.py sync
@@ -70,18 +67,10 @@ python3 -m unittest discover -s next/tests -v
 python3 -m unittest discover -s lib/components/tests -v
 ```
 
-sync先验证完整候选再切换，失败恢复；check拒绝未登记身份、文件、越界、软链、语法错误、副本漂移及过期名称声明；build以内容指纹保留完整不可变快照，独占发布避免覆盖同时出现的目标。当前实现按精确清单维护，不是通用调度或安装器。
+sync 验证候选后切换并保留失败恢复；check 核身份、精确文件、资源闭包、软链接、副本漂移和索引新鲜度；build 生成按内容指纹定位的不可变快照。构建工具不承担宿主安装或自动调度。只改导航说明时核链接、范围和内容保全，不为文档整理重跑业务。
 
-遇到旧技能引用时，setup、deliver、coordinate及skill-design按[旧引用方法](../lib/methods/skill-entry-resolution.md)采用包内名称查询；普通目标已有准确入口时跳过。查询只返回当前声明、旧来源及候选消费者，不执行技能、不核验宿主启用，也不扩大原任务许可。未知名称保留未知，多个消费者不成为固定调用链。历史原件继续保留；项目维护仍按具体授权原位修改对应引用。
+## 能力与验证边界
 
-维护者改变入口合同或旧能力处置后，先用[库投影组件](../lib/components/library-view.md)的`--emit-index`从真实清单生成并核对索引候选，再替换`lib/registry/skill-entry-index.md`并运行sync/check/build。索引只保存声明和合同身份，不把自身随包文件哈希写回自身；调用时只需包内脚本与索引，不要求作者仓库或兄弟包。
+入口和资源已实现，不等于每个自然任务都已稳定采用。离线 HTML 与 PNG、PPTX、音频或视频分别核验；源码检查、实际操作、独立审查、安装发现与人的接受保留各自证据。
 
-声称完整首次使用时，spec、implement和review按工程证据区分实际用户起点与夹具预置。用户必需的配置、绑定或确认被预置后仍是未验证；明确只验已绑定项目或SDK切片时保留该范围，不额外扩成全产品验收。
-
-本轮按真实试用卡点校准当前信息与授权采用、完整目标对账及更新后新建消费者的验证；交付回报明确完成、是否符合有效预期和具体差距。主要职责和采用关系保持原边界；新增产品组件次要职责的验证及接入状态由根PROGRESS记录。
-
-## 已验证与未覆盖
-
-[本轮路径安排](../doc/40-版本实施方案/2026-10-12-创作与工程路径接入.md)与[整体覆盖](../doc/10-架构与运行/新体系实现覆盖.md)区分源码、显式菜单试跑、实际工具、独立审读、宿主自然发现及正式业务。当前进度见[PROGRESS](../PROGRESS.md)。
-
-原三入口接入见[历史work-update试用](../doc/10-架构与运行/work-update接入与真实工作试用.md)；原两入口及候选记录保留阶段身份。HTML只证明该载体，不能作为图片、PPTX或视频制作完成。
+当前已接入内容及未验证项在[PROGRESS](../PROGRESS.md)维护；各轮首次、反馈修订和独审记录见[历史导航](../doc/历史导航.md)。历史测试命令和已发布专项能力仍保留在原版本记录中，不作为本清单的默认执行流程。

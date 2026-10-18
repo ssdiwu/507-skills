@@ -1,4 +1,36 @@
-# 工作状态的确定性组件
+# 执行脚本与工具说明
+
+本目录同时包含可运行脚本和配套说明，分开列示。当前共有执行脚本为 **10 个**；准确消费者见[catalog](../catalog.json)，随包路径见[packages](../../next/packages.json)。
+
+## 执行脚本
+
+| 脚本 | 确定性工作 | 当前消费者（省略 507- 前缀） |
+| --- | --- | --- |
+| [check_prose.py](check_prose.py) | 提示书面表达问题；不自动改稿 | compose、adapt |
+| [check_spoken.py](check_spoken.py) | 提示讲稿和口播表达问题；不裁决作者接受 | compose、adapt |
+| [check_run.py](check_run.py) | 运行指定检查命令并记录输出、退出或超时 | implement、fix、review |
+| [render_artifact.py](render_artifact.py) | 生成离线 HTML 图卡、幻灯片阅读页或网站 | compose、adapt |
+| [artifact_receipt.py](artifact_receipt.py) | 记录实际文件身份及支持的结构信息 | create、compose、adapt |
+| [state_diff.py](state_diff.py) | 按给定政策比较两份状态及字段变化 | work-update |
+| [work_view.py](work_view.py) | 从明确工作记录生成快照与文字视图 | work-update |
+| [task_view.py](task_view.py) | 从已有记录生成任务、依赖与结果网页 | coordinate、work-update |
+| [product_map.py](product_map.py) | 从交互点记录生成可探索的产品地图 | product-map |
+| [library_view.py](library_view.py) | 展示明确技能清单，生成或查询名称索引 | skill-design、setup、deliver、coordinate |
+
+## 工具说明
+
+| 文档 | 说明对象 |
+| --- | --- |
+| [text-checks.md](text-checks.md) | 书面与口播检查器的用法和限制 |
+| [task-view.md](task-view.md) | 从既有记录生成任务网页的输入、更新和失败处理 |
+| [product-map.md](product-map.md) | 交互点地图的输入模型与输出 |
+| [library-view.md](library-view.md) | 库清单展示与名称索引查询 |
+| [artifact-receipt.md](artifact-receipt.md) | 文件身份与结构回执 |
+| [media-adapters.md](media-adapters.md) | 复用外部制作工具前实际读齐说明，核依赖及目标文件 |
+
+这些 Markdown 说明不构成额外脚本。`render_artifact.py` 的合同在[呈现方法](../methods/artifact-rendering.md)；生成 HTML 不表示已生成 PNG、PPTX 或视频。脚本的确定性结果与权限、语义、视觉质量、实际业务完成分别判断。
+
+## 状态比较与现有用法
 
 `state_diff.py`是`artifact.check`的一个确定性适配：按选定政策比较两份记录快照，报告实际字段变化、身份变化与拒绝原因。仅用Python标准库，只读三个输入文件，JSON写到标准输出，不访问网络、不写业务、不安装技能，也不授予平台权限。它可独立使用；work-update通过清单携带普通生成副本。
 
@@ -53,14 +85,14 @@ reference-date由调用方给定，可选，仅比较支持的YYYY-MM-DD日历�
 
 [task_view.py](task_view.py)按[组件合同](task-view.md)读取明确JSON数组路径或Markdown唯一标题下的任务表，以字段映射生成任务、依赖、报告状态与验收记录分开的离线网页。当前消费者是coordinate/work-update；无需网页时不运行。
 
-原记录修改后用同一组件与输出根重生成；历史版本保留，当前入口更新，坏输入或手改生成文件拒绝。渲染器能力变化形成新身份，不能直接编辑HTML补状态或布局。只读投影与版本登记不是新的工作日志、任务数据库或授权来源，也不会自动派工、联网或发布。当前七脚本包括此组件。
+原记录修改后用同一组件与输出根重生成；历史版本保留，当前入口更新，坏输入或手改生成文件拒绝。渲染器能力变化形成新身份，不能直接编辑HTML补状态或布局。只读投影与版本登记不是新的工作日志、任务数据库或授权来源，也不会自动派工、联网或发布。
 
 ## 当前库投影与实际成品回执
 
-[library_view](library-view.md)按显式维护清单输出当前实现、旧30处置与待补；[artifact_receipt](artifact-receipt.md)记录实际文件身份与所列结构，媒体制作沿[工具适配](media-adapters.md)。前者不判业务效果，后者不判渲染、语义或接受。当前9段脚本，精确消费者以catalog与packages为准。
+[library_view](library-view.md)按显式维护清单输出当前实现、旧30处置与待补；[artifact_receipt](artifact-receipt.md)记录实际文件身份与所列结构，媒体制作沿[工具适配](media-adapters.md)。前者不判业务效果，后者不判渲染、语义或接受。精确消费者以catalog与packages为准。
 
 library_view另提供按名查询：`--index-file`配合`--lookup`只读一个生成声明索引，返回当前、旧来源或未知，退出分别为0／1，输入错误为2。查询可在单包外移后运行，不访问作者清单、兄弟技能、安装目录或网络。`--emit-index`是维护者的源投影模式，需要显式的四项源输入；打包检查核索引与现行声明一致，不能用旧快照冒充当前入口。两个模式与权限界限见[合同](library-view.md)。
 
 ## 从同一交互点记录生成地图
 
-[product_map.py](product_map.py)按[合同](product-map.md)验证交互点、关系、路径与三维证据，从一份JSON生成包含树、筛选、详情、关系和路径的离线网页。源码声明与运行观察分开，未知及相反条件并存；结构与生成成功不证明语义或产品接受。更新同一记录后用新输出目录重生成，旧网页保持不变；现有目录拒绝覆盖。当前共有脚本总数10，以catalog与packages为准。
+[product_map.py](product_map.py)按[合同](product-map.md)验证交互点、关系、路径与三维证据，从一份JSON生成包含树、筛选、详情、关系和路径的离线网页。源码声明与运行观察分开，未知及相反条件并存；结构与生成成功不证明语义或产品接受。更新同一记录后用新输出目录重生成，旧网页保持不变；现有目录拒绝覆盖。
