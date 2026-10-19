@@ -522,7 +522,7 @@
         },
         {
           "skillId": "507-review",
-          "when": "使用[工程证据](references/shared/engineering-evidence.md)核对真实调用、写入、最终消费、原动作及运行版本。区分执行者自报与工具回执，审查者口述采用规则也不能作为完整读取证明。未提交源文件用实际指纹定位，不能当成 HEAD 代码；后续修改不自动继承旧审查通过。"
+          "when": "判断真实调用、写入、最终消费、原动作或运行版本；在 507-review 的条件性共有方法表读取[工程证据](references/shared/engineering-evidence.md)，先完整读取，再按它核对并下结论；已完整读取且版本未变的内容直接复用。"
         }
       ],
       "relatedAtomIds": [],

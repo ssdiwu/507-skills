@@ -90,8 +90,8 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "35400e57f752cf1682c93d41d74650dd8dc43308e939575b0fd4e229a3e9db1d",
-      "description": "独立、只读审查指定代码、文档或交付变更，核对现行规范、要求、实际运行证据及有依据的风险。只交付发现与结论；实现者自查和全库改进机会调查不替代该审查。",
+      "contractSha256": "80e43b5f676cf89b73a7e6bf66e4a718a3c8ec8cfba895f8fa686bc15b114e47",
+      "description": "只读核验现有实现是否满足要求。用于按已确认要求检查现状，或独立审查代码、文档与交付变更；运行必要检查后给出发现和结论，不修改受审内容。实现者自查和全库改进机会调查不替代独审。",
       "entry": "507-review/SKILL.md",
       "name": "507-review",
       "role": "secondary"
@@ -132,7 +132,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "23f98a768428472546b69c1614c073d4039b30854c0cba2c8b8d29b4a7bacb1c",
+      "contractSha256": "fc18c4285b4a3053890dc1657cafb46d60d3a288e3d72091890c86b0c0437f89",
       "description": "规划、创建或重构技能体系，把任务经验和外部方法组织成合适的技能、共有方法与工具，并完成获授权的文件和验证。普通业务执行、项目文档维护及仅需澄清意图不使用本技能。",
       "entry": "skill-design/SKILL.md",
       "name": "skill-design",
