@@ -551,6 +551,25 @@
       "role": "main"
     },
     {
+      "name": "507-clean",
+      "source": "next/skills/507-clean",
+      "role": "main",
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "shared": [
+        {
+          "source": "lib/methods/behavior-preserving-change.md",
+          "target": "references/shared/behavior-preserving-change.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ]
+    },
+    {
       "name": "507-review",
       "source": "next/skills/507-review",
       "files": [

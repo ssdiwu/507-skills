@@ -20,7 +20,7 @@ SKILL_NAMES = {'skill-design', '507-what', '507-why', '507-how', '507-create',
                '507-work', '507-material', '507-adapt',
                '507-spec', '507-do', '507-review', '507-issue',
                '507-coordinate', '507-deliver', '507-retro', '507-setup',
-               '507-component', '507-product-map'}
+               '507-component', '507-product-map', '507-clean'}
 COMPONENTS = {'lib/components/product_map.py': 'scripts/product_map.py',
               'lib/components/library_view.py': 'scripts/library_view.py',
               'lib/components/artifact_receipt.py': 'scripts/artifact_receipt.py',

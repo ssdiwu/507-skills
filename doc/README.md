@@ -7,7 +7,7 @@
 | 问题 | 入口 |
 | --- | --- |
 | 项目是什么、怎样使用 | [根 README](../README.md) |
-| 当前 18 个技能分别做什么 | [next/README](../next/README.md) |
+| 当前 19 个技能分别做什么 | [next/README](../next/README.md) |
 | 共有方法、执行脚本与设计参考在哪里 | [共有资源库](../lib/README.md) |
 | 名词怎样使用 | [GLOSSARY](../GLOSSARY.md) |
 | 当前行为与验收要求 | [spec 导航](../spec/README.md) · [技能分层与共有资源](../spec/技能分层与共有资源.md) |

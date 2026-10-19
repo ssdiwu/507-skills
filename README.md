@@ -1,6 +1,6 @@
 # 507-skills
 
-507-skills 是一套可独立使用、按任务组合的智能体技能。当前实现位于 `next/skills/`，包含 **18 个入口：9 个主要技能、9 个次要工作能力**；共有方法、执行脚本和设计参考集中维护在 `lib/`。
+507-skills 是一套可独立使用、按任务组合的智能体技能。当前实现位于 `next/skills/`，包含 **19 个入口：10 个主要技能、9 个次要工作能力**；共有方法、执行脚本和设计参考集中维护在 `lib/`。
 
 用户主要通过主要技能表达目标，Agent 按任务需要采用主要或次要技能。清楚任务直接采用相应能力，有实质缺口才补相应判断；不要求用户点选内部技能链。各入口的触发、权限、结果与完成条件以自己的 `SKILL.md` 为准。
 
@@ -12,12 +12,13 @@
 | 认识项目、查清现状或解释机制 | [507-why](next/skills/507-why/SKILL.md) |
 | 选择具体变更位置和推进策略 | [507-how](next/skills/507-how/SKILL.md) |
 | 完成工程实现、修复、局部修改或指定测试 | [507-do](next/skills/507-do/SKILL.md) |
+| 限定模块清理代码与规则，先列清单 | [507-clean](next/skills/507-clean/SKILL.md) |
 | 完成创作、成文或局部修改 | [507-create](next/skills/507-create/SKILL.md) |
 | 将成熟内容适配目标受众、场景与载体 | [507-adapt](next/skills/507-adapt/SKILL.md) |
 | 发现、整理和推进已有工作，或局部更新事项 | [507-work](next/skills/507-work/SKILL.md) |
 | 建立、迁移或整理项目依据与导航 | [507-setup](next/skills/507-setup/SKILL.md) |
 | 设计或维护技能体系 | [skill-design](next/skills/skill-design/SKILL.md) |
-| 实施、修复、写作、适配、审查及其他清楚工作 | [18 个入口与职责](next/README.md) |
+| 实施、修复、写作、适配、审查及其他清楚工作 | [19 个入口与职责](next/README.md) |
 
 ```mermaid
 flowchart TD

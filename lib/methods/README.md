@@ -18,11 +18,11 @@
 | [按情境拆解与协调](task-coordination.md) | 507-coordinate, 507-create, 507-work |
 | [外部取证与证据交接](external-research.md) | skill-design, 507-why, 507-how, 507-create, 507-material |
 | [对象关系、比较与观察](visual-understanding.md) | 507-why, 507-how, 507-adapt, 507-coordinate |
-| [视觉方向与真实反馈](visual-direction.md) | 507-create, 507-adapt |
-| [真实中断、交接与续办](continuation.md) | skill-design, 507-what, 507-work, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-review, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-material, 507-adapt, 507-setup |
+| [视觉方向与真实反馈](visual-direction.md) | 507-create, 507-adapt, 507-do |
+| [真实中断、交接与续办](continuation.md) | skill-design, 507-what, 507-work, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-review, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-material, 507-adapt, 507-setup, 507-clean |
 | [可丢弃原型证据](probe-lifecycle.md) | 507-why, 507-how |
 | [架构摩擦与候选证据](architecture-candidates.md) | 507-why, 507-how |
-| [行为不变修改证据门](behavior-preserving-change.md) | 507-how, 507-do, 507-component |
+| [行为不变修改证据门](behavior-preserving-change.md) | 507-how, 507-do, 507-component, 507-clean |
 | [操作、状态与实际呈现](interaction.md) | 507-do, 507-adapt, 507-create |
 | [显化作者一手材料](author-interview.md) | 507-create, 507-material |
 | [已有知识入口组织](knowledge-organization.md) | 507-material |
