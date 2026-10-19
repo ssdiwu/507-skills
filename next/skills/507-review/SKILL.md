@@ -23,6 +23,8 @@ description: "只读核验现有实现是否满足要求。用于按已确认要
 
 ## 判断与取证
 
+选择必要检查或判定验收覆盖前，完整读取[可观察验收](references/shared/validation.md)，据此确定检查与结论范围。判断真实调用、写入、最终消费、原动作或运行版本时（包括运行测试及解释结果），在取证或下结论前完整读取[工程证据](references/shared/engineering-evidence.md)。两者均可复用已完整读取且版本未变的内容；未触发的分支不展开。
+
 | 视角 | 本次问题 |
 | --- | --- |
 | 规范 | 是否违反有效项目约束，公开入口／权限变化是否同步必要说明 |
@@ -43,9 +45,7 @@ python3 scripts/check_run.py --argv-json '["node","--test","test/sync.test.mjs"]
 
 | 条件 | 读取与用途 |
 | --- | --- |
-| 判断真实调用、写入、最终消费、原动作或运行版本 | [工程证据](references/shared/engineering-evidence.md)：先完整读取，再按它核对并下结论；已完整读取且版本未变的内容直接复用 |
 | 指定版本、来源身份或旧报告需要核实 | [事实与来源](references/shared/evidence.md)：区分事实、推断和读取范围 |
-| 判定验收是否足够或选择必要检查 | [可观察验收](references/shared/validation.md)：约束结论范围 |
 | 新证据反驳旧发现、发现已修或需要返回 | [权威与返回](references/shared/authority-and-return.md)：更正当前结论并回交原实施者 |
 
 ## 结论与结束

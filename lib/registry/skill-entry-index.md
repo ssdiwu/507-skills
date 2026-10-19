@@ -90,7 +90,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "80e43b5f676cf89b73a7e6bf66e4a718a3c8ec8cfba895f8fa686bc15b114e47",
+      "contractSha256": "3f48290b253bfffb71e7438ecc1de56b675dc9549478ea6a17d5b65d98d425e4",
       "description": "只读核验现有实现是否满足要求。用于按已确认要求检查现状，或独立审查代码、文档与交付变更；运行必要检查后给出发现和结论，不修改受审内容。实现者自查和全库改进机会调查不替代独审。",
       "entry": "507-review/SKILL.md",
       "name": "507-review",
