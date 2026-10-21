@@ -20,13 +20,6 @@
       "role": "main"
     },
     {
-      "contractSha256": "96c729cd5b53e6bd5049ef85489c55b3261162fb327a4aa9efd1da7b43077c0f",
-      "description": "查找目标产品的界面组件库并复用已有组件；库内没有且同一界面块有多个确定使用位置时，抽取库组件并迁移已有调用。仅一处使用留在原地，只查找时只交结果；不接管整份界面、业务权限或数据通路。",
-      "entry": "507-component/SKILL.md",
-      "name": "507-component",
-      "role": "secondary"
-    },
-    {
       "contractSha256": "cb8f9d9de811e9593af29ec0b26243bc59f96eff09be3ae05ee4fa6b1c5fa60e",
       "description": "判断必要的工作拆分、依赖、执行所有权与结果接收，适用于已有工程、写作、研究或一般工作目标。按情境选择局部协作、任务图推进或持续协调；简单任务直接完成，只做计划时不自动派发或实施。",
       "entry": "507-coordinate/SKILL.md",
@@ -48,8 +41,8 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "22f86df4b687171055a3d3a0729ebeddfb55038ee02ccb0f99aa517476126795",
-      "description": "按已明确的工程目标完成新增功能、故障修复、局部修改或指定测试。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只跑测试不自动改代码。",
+      "contractSha256": "bf38de3928b0c5ea4b41a5f3c05954ef8c96c3fcee1e9183f2b1a196fb9d09d8",
+      "description": "按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只查组件或只跑测试不自动改代码。",
       "entry": "507-do/SKILL.md",
       "name": "507-do",
       "role": "main"
@@ -199,6 +192,32 @@
         "next/skills/507-material/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
+    },
+    {
+      "consumers": [
+        "507-do"
+      ],
+      "decision": "merge",
+      "dropped": [
+        {
+          "mechanism": "独立507-component活动入口及do到component的职责交接",
+          "reason": "do已持有原工程目标和操作范围，包内方法承接专用判断，不再重复转交同一任务。"
+        }
+      ],
+      "id": "507-component",
+      "reason": "产品界面组件查找、复用和抽取迁移由主要工程入口507-do直接承接，专用方法留在包内按需读取。",
+      "retained": [
+        "只查找时交可定位结果，不修改组件、调用、依赖或库配置",
+        "已有适用组件直接采用；同语义且多个已存在或已确认使用位置才抽取并迁移范围内已有调用",
+        "单处无适用组件留在原地；保留原操作授权、行为、原页面验证与返回"
+      ],
+      "source": "doc/90-归档/技能/507-component/SKILL.md",
+      "sourceSha256": "96c729cd5b53e6bd5049ef85489c55b3261162fb327a4aa9efd1da7b43077c0f",
+      "targets": [
+        "next/skills/507-do/SKILL.md",
+        "next/skills/507-do/references/component-reuse.md"
+      ],
+      "verification": "原入口全包及历史首次证据保持原身份；本次源码、独审和安装另记，不继承真实任务采用或效率结论。"
     },
     {
       "consumers": [

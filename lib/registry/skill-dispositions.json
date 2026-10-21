@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "date": "2026-10-18",
+  "date": "2026-10-21",
   "authority": "各现行SKILL.md是行为合同；本记录只维护旧能力处置、去向和缺口。",
   "legacy": [
     {
@@ -1775,6 +1775,32 @@
         "507-work"
       ],
       "verification": "原包、首次及旧独审保留原身份；本次源码、包检查与独审另记，不继承自然任务采用结论。"
+    },
+    {
+      "id": "507-component",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-component/SKILL.md",
+      "decision": "merge",
+      "reason": "产品界面组件查找、复用和抽取迁移由主要工程入口507-do直接承接，专用方法留在包内按需读取。",
+      "retained": [
+        "只查找时交可定位结果，不修改组件、调用、依赖或库配置",
+        "已有适用组件直接采用；同语义且多个已存在或已确认使用位置才抽取并迁移范围内已有调用",
+        "单处无适用组件留在原地；保留原操作授权、行为、原页面验证与返回"
+      ],
+      "dropped": [
+        {
+          "mechanism": "独立507-component活动入口及do到component的职责交接",
+          "reason": "do已持有原工程目标和操作范围，包内方法承接专用判断，不再重复转交同一任务。"
+        }
+      ],
+      "targets": [
+        "next/skills/507-do/SKILL.md",
+        "next/skills/507-do/references/component-reuse.md"
+      ],
+      "consumers": [
+        "507-do"
+      ],
+      "verification": "原入口全包及历史首次证据保持原身份；本次源码、独审和安装另记，不继承真实任务采用或效率结论。"
     }
   ]
 }
