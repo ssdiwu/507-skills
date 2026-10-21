@@ -1,4 +1,4 @@
 interface:
-  display_name: "创作材料整理"
+  display_name: "整理材料"
   short_description: "核对素材身份、作者归属、独立来源和支持范围，交付可消费材料"
   default_prompt: "使用 $507-material 整理指定材料，保留来源、身份、支持范围和待核验缺口。"

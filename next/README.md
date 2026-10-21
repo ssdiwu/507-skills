@@ -31,7 +31,7 @@
 | [507-coordinate](skills/507-coordinate/SKILL.md) | 依赖、并行隔离与集成 |
 | [507-deliver](skills/507-deliver/SKILL.md) | PR表达与授权版本交付 |
 | [507-retro](skills/507-retro/SKILL.md) | 复盘与工具化建议 |
-| [507-material](skills/507-material/SKILL.md) | 作者材料、来源与支持范围 |
+| [507-material](skills/507-material/SKILL.md) | 整理指定资料的来源、身份、重复与支持范围，或按请求组织已有知识入口 |
 
 明确故障、成熟稿、充分规格和已有任务图可直接进入相应能力；不因技能存在重跑what/why/how或全链。技能缺失可按同一合同直接工作，独立审查仍须另一执行者。
 
