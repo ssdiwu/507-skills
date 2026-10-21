@@ -34,6 +34,6 @@ description: "整理指定资料，核清来源、身份、重复和支持范围
 
 本次出现请求明确包含采访或补作者一手材料时，读[显化作者一手材料](references/shared/author-interview.md)并在本职责原权限与完成边界内采用。
 
-本次出现明确要求主题聚合、去重或已有知识入口维护，不默认建库时，读[已有知识入口组织](references/shared/knowledge-organization.md)并在本职责原权限与完成边界内采用。
+本次出现明确要求主题聚合、去重或已有知识入口维护，不默认建库时，读[已有知识入口组织](references/knowledge-organization.md)并在本职责原权限与完成边界内采用。
 
 本次出现为作品提供带时间和身份的媒体证据时，读[参考视听证据与原创借鉴](references/shared/media-study.md)并在本职责原权限与完成边界内采用。

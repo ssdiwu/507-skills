@@ -1,6 +1,6 @@
 # 共有方法
 
-本目录的 28 份方法按条件提供判断与工作做法，没有独立技能入口。消费者与采用条件以[资源登记](../catalog.json)为准；专用方法留在各技能包内。脚本和工具说明见[components](../components/README.md)，设计参考见[design](../design/README.md)。
+本目录的 27 份方法按条件提供判断与工作做法，没有独立技能入口。消费者与采用条件以[资源登记](../catalog.json)为准；专用方法留在各技能包内。脚本和工具说明见[components](../components/README.md)，设计参考见[design](../design/README.md)。
 
 | 方法 | 当前使用者 |
 | --- | --- |
@@ -25,7 +25,6 @@
 | [行为不变修改证据门](behavior-preserving-change.md) | 507-how, 507-do, 507-clean |
 | [操作、状态与实际呈现](interaction.md) | 507-do, 507-adapt, 507-create |
 | [显化作者一手材料](author-interview.md) | 507-create, 507-material |
-| [已有知识入口组织](knowledge-organization.md) | 507-material |
 | [同一场景的解释检验](explanation-progression.md) | 507-why, 507-create |
 | [参考视听证据与原创借鉴](media-study.md) | 507-why, 507-material, 507-create, 507-adapt |
 | [媒体版本、时间与验收](media-production.md) | 507-create, 507-adapt |

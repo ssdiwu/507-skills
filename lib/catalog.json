@@ -783,19 +783,6 @@
       "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
     },
     {
-      "id": "knowledge-organization",
-      "title": "已有知识入口组织",
-      "source": "lib/methods/knowledge-organization.md",
-      "consumers": [
-        {
-          "skillId": "507-material",
-          "when": "明确要求主题聚合、去重或已有知识入口维护，不默认建库"
-        }
-      ],
-      "relatedAtomIds": [],
-      "lineageMeaning": "旧30逐项保留的方法；来源定位见当前处置记录，源码存在不证明任务效果。"
-    },
-    {
       "id": "explanation-progression",
       "title": "同一场景的解释检验",
       "source": "lib/methods/explanation-progression.md",

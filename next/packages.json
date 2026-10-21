@@ -824,10 +824,6 @@
           "target": "references/shared/author-interview.md"
         },
         {
-          "source": "lib/methods/knowledge-organization.md",
-          "target": "references/shared/knowledge-organization.md"
-        },
-        {
           "source": "lib/methods/media-study.md",
           "target": "references/shared/media-study.md"
         }
@@ -835,7 +831,8 @@
       "files": [
         "SKILL.md",
         "agents/openai.yaml",
-        "references/material-units.md"
+        "references/material-units.md",
+        "references/knowledge-organization.md"
       ],
       "role": "secondary"
     },

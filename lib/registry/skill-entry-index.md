@@ -62,7 +62,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "58df0fc8e229a312d5d8ce21d223cefb1952180ab969f8daac4770ab195dd9e0",
+      "contractSha256": "692ea6bdc6e50d8ae1822290850460666fb2c26dbf0758353272369843cc5d2f",
       "description": "整理指定资料，核清来源、身份、重复和支持范围；也可按明确请求组织已有知识入口。用于素材混杂、独立性或证据承重需要核对；不替作者选主张，不写成稿，不默认写入知识库。",
       "entry": "507-material/SKILL.md",
       "name": "507-material",
@@ -188,7 +188,7 @@
       "source": "write/507-cast/SKILL.md",
       "sourceSha256": "f0c680aee2c42d100029e15eedebf9adca19a6fbbb194e900c002061162a596c",
       "targets": [
-        "lib/methods/knowledge-organization.md",
+        "next/skills/507-material/references/knowledge-organization.md",
         "next/skills/507-material/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
