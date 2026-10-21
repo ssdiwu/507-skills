@@ -40,7 +40,7 @@ flowchart TD
 | 名称和易混词义 | [术语表](GLOSSARY.md) |
 | 库级使用与交付要求 | [分层规格](spec/技能分层与共有资源.md) |
 | 文档与导航的共用阅读设计 | [DESIGN](DESIGN.md) |
-| 当前源码、安装及尚未验证的部分 | [PROGRESS](PROGRESS.md) |
+| 当前版本、能力范围、已知限制与待办 | [PROGRESS](PROGRESS.md) |
 | 长期依据、外部来源和历史记录 | [文档导航](doc/README.md) |
 
 `next/skills/` 是当前技能源码，`lib/` 是共有资源维护源。`common/`、`code/`、`write/` 保留旧版技能、来源和回退用途；旧路线、候选及各轮验证从[历史导航](doc/历史导航.md)查阅，不并入当前入口清单。
