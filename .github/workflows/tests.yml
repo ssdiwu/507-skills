@@ -21,6 +21,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: requirements-test.txt
+      - name: Check current skill packages
+        run: python next/scripts/package_skills.py check
+      - name: Run current skill package regressions
+        run: python -m unittest discover -s next/tests -v
+      - name: Run shared component regressions
+        run: python -m unittest discover -s lib/components/tests -v
       - name: Install officecli for PPTX readback and generation
         run: |
           curl -fsSL --retry 3 \
