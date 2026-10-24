@@ -1,6 +1,6 @@
 # 507-skills
 
-507-skills 是一套可独立使用、按任务组合的智能体技能。当前实现位于 `next/skills/`，包含 **18 个入口：10 个主要技能、8 个次要工作能力**；共有方法、执行脚本和设计参考集中维护在 `lib/`。
+507-skills 是一套可独立使用、按任务组合的智能体技能。当前实现位于 `next/skills/`，包含 **19 个入口：10 个主要技能、9 个次要工作能力**；共有方法、执行脚本和设计参考集中维护在 `lib/`。
 
 用户主要通过主要技能表达目标，Agent 按任务需要采用主要或次要技能。清楚任务直接采用相应能力，有实质缺口才补相应判断；不要求用户点选内部技能链。各入口的触发、权限、结果与完成条件以自己的 `SKILL.md` 为准。
 
@@ -18,7 +18,7 @@
 | 发现、整理和推进已有工作，或局部更新事项 | [507-work](next/skills/507-work/SKILL.md) |
 | 建立、迁移或整理项目依据与导航 | [507-setup](next/skills/507-setup/SKILL.md) |
 | 设计或维护技能体系 | [skill-design](next/skills/skill-design/SKILL.md) |
-| 实施、修复、写作、适配、审查及其他清楚工作 | [18 个入口与职责](next/README.md) |
+| 实施、修复、写作、适配、审查及其他清楚工作 | [19 个入口与职责](next/README.md) |
 
 ```mermaid
 flowchart TD
@@ -30,6 +30,8 @@ flowchart TD
     thinking --> result["任务结果、验证与未覆盖"]
     work --> result
 ```
+
+图解复杂状态、跨角色时序、对象关系或同条件比较时，可按需采用次要能力 [507-visualize](next/skills/507-visualize/SKILL.md)；简单说明直接完成。
 
 ## 当前文档与目录
 

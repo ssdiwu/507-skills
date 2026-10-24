@@ -232,7 +232,7 @@
       "group": "common",
       "source": "common/507-visualize/SKILL.md",
       "decision": "merge",
-      "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
+      "reason": "旧入口的有效理解方法继续由共有资源维护；2026-10-24按图解表达独立结果建立同名次要入口，当前与旧版合同分别追溯。",
       "retained": [
         "先确定理解动作，对象稳定身份/版本与事实/候选分开；采用条件：已有材料需要关系探索、条件观察或同条件比較",
         "关键边有类型、方向、条件和可定位依据；采用条件：引用/依赖/调用/时间/接力/同类不混",
@@ -251,13 +251,15 @@
       ],
       "targets": [
         "lib/methods/visual-understanding.md",
-        "lib/methods/clear-expression.md"
+        "lib/methods/clear-expression.md",
+        "next/skills/507-visualize/SKILL.md"
       ],
       "consumers": [
         "507-why",
         "507-how",
         "507-adapt",
-        "507-coordinate"
+        "507-coordinate",
+        "507-visualize"
       ],
       "sourceEvidence": [
         {
@@ -277,7 +279,7 @@
         }
       ],
       "implementation": "SOURCE_IMPLEMENTED",
-      "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
+      "verification": "原方法保留；同名次要入口的结构与试用结果见当前进度，不能由名称恢复推断旧版所有载体已验证。"
     },
     {
       "id": "507-taste",

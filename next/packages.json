@@ -1002,6 +1002,29 @@
           "target": "scripts/product_map.py"
         }
       ]
+    },
+    {
+      "name": "507-visualize",
+      "source": "next/skills/507-visualize",
+      "shared": [
+        {
+          "source": "lib/methods/visual-understanding.md",
+          "target": "references/shared/visual-understanding.md"
+        },
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        }
+      ],
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "role": "secondary"
     }
   ]
 }

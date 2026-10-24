@@ -66,6 +66,10 @@
         {
           "skillId": "507-product-map",
           "when": "交互点梳理需要核来源、限定证据及完成后返回原目标时采用。"
+        },
+        {
+          "skillId": "507-visualize",
+          "when": "图表依赖来源身份、版本或支持范围时，核已有材料与未知。"
         }
       ],
       "relatedAtomIds": [
@@ -297,6 +301,10 @@
         {
           "skillId": "507-product-map",
           "when": "交互点梳理需要核来源、限定证据及完成后返回原目标时采用。"
+        },
+        {
+          "skillId": "507-visualize",
+          "when": "核图表是否保全条件、区分事实和建议，以及实际呈现与理解反馈的覆盖。"
         }
       ],
       "relatedAtomIds": [
@@ -586,6 +594,10 @@
         {
           "skillId": "507-coordinate",
           "when": "工作关系需要固定任务视图之外的理解载体"
+        },
+        {
+          "skillId": "507-visualize",
+          "when": "组织状态、时序、对象关系或同条件比较，选择形式并核语义、呈现及返回。"
         }
       ],
       "relatedAtomIds": [],

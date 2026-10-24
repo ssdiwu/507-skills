@@ -1,0 +1,4 @@
+interface:
+  display_name: "图解表达"
+  short_description: "用有依据的状态图、时序图、关系图或比较表，让复杂问题便于理解和讨论。"
+  default_prompt: "使用 $507-visualize 将当前材料组织为便于理解的图表与简短说明，保留关键条件、来源和未知。"
