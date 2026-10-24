@@ -1,4 +1,4 @@
 interface:
-  display_name: "What · 明确目标与关键取舍"
-  short_description: "查清必要事实，澄清目标与实质取舍，信息足够后返回原任务"
-  default_prompt: "使用 $507-what 澄清仍会改变下一步行动的目标和取舍，充分时直接返回原任务。"
+  display_name: "定义目标与关键取舍"
+  short_description: "从初步设想形成问题、范围和成功标准，主动整合与记录必要决定。"
+  default_prompt: "使用 $507-what 整合已有材料形成问题、目标与关键取舍，主动记录并继续原任务。"
