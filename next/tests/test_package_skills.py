@@ -398,14 +398,16 @@ class PackageTests(unittest.TestCase):
         skills=self.root/'next/skills';before=packager.file_map(skills)
         source=self.root/'lib/methods/evidence.md'
         source.write_text(source.read_text()+'\nValid changed method.\n')
-        real_rename=packager.os.rename
+        # Patch the API sync calls: Python 3.10's pathlib caches os.rename.
+        # autospec preserves method binding so callbacks receive source and target.
+        real_rename=packager.Path.rename
         for error_type in [OSError,KeyboardInterrupt]:
             def fail_candidate(src,dst):
                 if Path(src).name=='candidate-skills':
                     raise error_type('injected switch interruption')
                 return real_rename(src,dst)
             with self.subTest(error=error_type.__name__):
-                with mock.patch.object(packager.os,'rename',side_effect=fail_candidate):
+                with mock.patch.object(packager.Path,'rename',autospec=True,side_effect=fail_candidate):
                     with self.assertRaises(error_type):
                         packager.sync(self.root)
                 self.assertEqual(packager.file_map(skills),before)
@@ -414,7 +416,7 @@ class PackageTests(unittest.TestCase):
         skills=self.root/'next/skills';before=packager.file_map(skills)
         source=self.root/'lib/methods/evidence.md'
         source.write_text(source.read_text()+'\nValid changed method.\n')
-        real_rename=packager.os.rename
+        real_rename=packager.Path.rename
         for stage_name in ['skills','candidate-skills']:
             def interrupt_after_effect(src,dst):
                 result=real_rename(src,dst)
@@ -422,7 +424,7 @@ class PackageTests(unittest.TestCase):
                     raise KeyboardInterrupt('interrupted after rename took effect')
                 return result
             with self.subTest(stage=stage_name):
-                with mock.patch.object(packager.os,'rename',side_effect=interrupt_after_effect):
+                with mock.patch.object(packager.Path,'rename',autospec=True,side_effect=interrupt_after_effect):
                     with self.assertRaises(KeyboardInterrupt):
                         packager.sync(self.root)
                 self.assertEqual(packager.file_map(skills),before)
@@ -431,12 +433,12 @@ class PackageTests(unittest.TestCase):
         skills=self.root/'next/skills';before=packager.file_map(skills)
         source=self.root/'lib/methods/evidence.md'
         source.write_text(source.read_text()+'\nValid changed method.\n')
-        real_rename=packager.os.rename
+        real_rename=packager.Path.rename
         def fail_switch_and_restore(src,dst):
             if Path(src).name in ['candidate-skills','previous-skills']:
                 raise OSError('injected unavailable destination')
             return real_rename(src,dst)
-        with mock.patch.object(packager.os,'rename',side_effect=fail_switch_and_restore):
+        with mock.patch.object(packager.Path,'rename',autospec=True,side_effect=fail_switch_and_restore):
             with self.assertRaisesRegex(packager.PackageError,'recovery retained at'):
                 packager.sync(self.root)
         backups=list((self.root/'next').glob('.skill-sync-*/previous-skills'))
