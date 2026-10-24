@@ -57,6 +57,10 @@
         {
           "source": "lib/registry/skill-entry-index.md",
           "target": "references/shared/skill-entry-index.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "files": [
@@ -103,6 +107,10 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "files": [
@@ -151,6 +159,10 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "files": [
@@ -226,6 +238,10 @@
         {
           "source": "lib/methods/media-study.md",
           "target": "references/shared/media-study.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "main"
@@ -236,7 +252,8 @@
       "files": [
         "SKILL.md",
         "agents/openai.yaml",
-        "references/change-strategy.md"
+        "references/change-strategy.md",
+        "references/solution-design.md"
       ],
       "shared": [
         {
@@ -294,6 +311,10 @@
         {
           "source": "lib/methods/interaction-map.md",
           "target": "references/shared/interaction-map.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "main"
@@ -437,6 +458,10 @@
         {
           "source": "lib/methods/title-promises.md",
           "target": "references/shared/title-promises.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "main"
@@ -481,6 +506,10 @@
         {
           "source": "lib/methods/interaction-map.md",
           "target": "references/shared/interaction-map.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "secondary"
@@ -547,6 +576,10 @@
         {
           "source": "lib/methods/visual-direction.md",
           "target": "references/shared/visual-direction.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "main"
@@ -567,6 +600,10 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ]
     },
@@ -605,6 +642,14 @@
         {
           "source": "lib/methods/interaction-map.md",
           "target": "references/shared/interaction-map.md"
+        },
+        {
+          "source": "lib/methods/artifact-contract.md",
+          "target": "references/shared/artifact-contract.md"
+        },
+        {
+          "source": "lib/methods/author-and-source.md",
+          "target": "references/shared/author-and-source.md"
         }
       ],
       "role": "secondary"
@@ -637,6 +682,10 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "secondary"
@@ -708,6 +757,10 @@
         {
           "source": "lib/registry/skill-entry-index.md",
           "target": "references/shared/skill-entry-index.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "secondary"
@@ -760,6 +813,10 @@
         {
           "source": "lib/registry/skill-entry-index.md",
           "target": "references/shared/skill-entry-index.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "secondary"
@@ -795,6 +852,10 @@
         {
           "source": "lib/methods/continuation.md",
           "target": "references/shared/continuation.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "role": "secondary"
@@ -826,6 +887,10 @@
         {
           "source": "lib/methods/media-study.md",
           "target": "references/shared/media-study.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "files": [
@@ -927,6 +992,10 @@
         {
           "source": "lib/methods/title-promises.md",
           "target": "references/shared/title-promises.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ],
       "files": [
@@ -965,6 +1034,10 @@
         {
           "source": "lib/registry/skill-entry-index.md",
           "target": "references/shared/skill-entry-index.md"
+        },
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
         }
       ]
     },
@@ -1002,6 +1075,45 @@
           "target": "scripts/product_map.py"
         }
       ]
+    },
+    {
+      "name": "507-plan",
+      "source": "next/skills/507-plan",
+      "shared": [
+        {
+          "source": "lib/methods/work-records.md",
+          "target": "references/shared/work-records.md"
+        },
+        {
+          "source": "lib/methods/evidence.md",
+          "target": "references/shared/evidence.md"
+        },
+        {
+          "source": "lib/methods/decision-ownership.md",
+          "target": "references/shared/decision-ownership.md"
+        },
+        {
+          "source": "lib/methods/question-frontier.md",
+          "target": "references/shared/question-frontier.md"
+        },
+        {
+          "source": "lib/methods/validation.md",
+          "target": "references/shared/validation.md"
+        },
+        {
+          "source": "lib/methods/authority-and-return.md",
+          "target": "references/shared/authority-and-return.md"
+        },
+        {
+          "source": "lib/methods/continuation.md",
+          "target": "references/shared/continuation.md"
+        }
+      ],
+      "files": [
+        "SKILL.md",
+        "agents/openai.yaml"
+      ],
+      "role": "secondary"
     },
     {
       "name": "507-visualize",

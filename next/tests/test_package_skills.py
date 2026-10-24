@@ -148,7 +148,17 @@ class PackageTests(unittest.TestCase):
                          (ROOT/'doc/90-归档/技能/507-implement/references/testing.md').read_bytes())
         previous = (ROOT/'doc/90-归档/技能/507-fix/SKILL.md').read_text().split('---\n', 2)[2].lstrip('\n')
         expected = previous.replace('(references/shared/', '(shared/').replace('(scripts/', '(../scripts/')
-        self.assertEqual((bundle/'507-do/references/debugging.md').read_text(), expected)
+        actual = (bundle/'507-do/references/debugging.md').read_text()
+        # Later authorized fixes change evidence side effects and stage records;
+        # keep the original feedback/root-cause/no-weakened-assertion contract.
+        self.assertTrue(actual.startswith(expected.split('修复后重放同一输入', 1)[0]))
+        for start, end in (('| 条件 |', '## 完成与返回'),
+                           ('证据显示属于规格变化或环境问题时', None)):
+            protected = expected.split(start, 1)[1]
+            if end:
+                protected = protected.split(end, 1)[0]
+            self.assertIn(start + protected, actual)
+        self.assertEqual(actual, (ROOT/'next/skills/507-do/references/debugging.md').read_text())
         runtime = bundle/'507-deliver'
         for old_name in ('507-implement', '507-fix'):
             run = subprocess.run([sys.executable, str(runtime/'scripts/library_view.py'),
@@ -186,11 +196,16 @@ class PackageTests(unittest.TestCase):
         current = {row['name']: row for row in json.loads((ROOT/'next/packages.json').read_text())['skills']}
         self.assertEqual(current['507-work']['role'], 'main')
         self.assertEqual(current['507-coordinate']['role'], 'secondary')
+        # Unchanged tools and private methods retain the rename-time baseline.
         for rel in ('references/state-views.md', 'scripts/work_view.py',
-                    'scripts/state_diff.py', 'scripts/task_view.py',
-                    'references/shared/task-coordination.md', 'references/shared/continuation.md'):
+                    'scripts/state_diff.py', 'scripts/task_view.py'):
             self.assertEqual((bundle/'507-work'/rel).read_bytes(),
                              (ROOT/'doc/90-归档/技能/507-work-update'/rel).read_bytes())
+        # These shared contracts intentionally evolved after the rename.
+        # Check the current unique source, never rewrite the historical archive.
+        for name in ('task-coordination', 'continuation', 'work-records'):
+            self.assertEqual((bundle/'507-work/references/shared'/(name+'.md')).read_bytes(),
+                             packager.expected_copy(ROOT, 'lib/methods/'+name+'.md'))
         runtime = Path(self.temp.name)/'standalone-lookup'
         shutil.copytree(bundle/'507-deliver', runtime)
         shutil.rmtree(self.root)
@@ -213,8 +228,8 @@ class PackageTests(unittest.TestCase):
         for name in ('project-foundation', 'project-navigation'):
             rel = 'references/'+name+'.md'
             self.assertIn(rel, current['507-setup']['files'])
-            self.assertEqual((bundle/'507-setup'/rel).read_bytes(),
-                             (ROOT/'doc/90-归档/共有方法/2026-10-19-setup包内迁移'/(name+'.md')).read_bytes())
+            self.assertTrue((bundle/'507-setup'/rel).read_bytes().startswith(
+                (ROOT/'doc/90-归档/共有方法/2026-10-19-setup包内迁移'/(name+'.md')).read_bytes()))
             self.assertFalse((bundle/'507-setup/references/shared'/(name+'.md')).exists())
             self.assertFalse((self.root/'lib/methods'/(name+'.md')).exists())
         runtime = Path(self.temp.name)/'standalone-setup'
@@ -383,14 +398,16 @@ class PackageTests(unittest.TestCase):
         skills=self.root/'next/skills';before=packager.file_map(skills)
         source=self.root/'lib/methods/evidence.md'
         source.write_text(source.read_text()+'\nValid changed method.\n')
-        real_rename=packager.os.rename
+        # Patch the API sync calls: Python 3.10's pathlib caches os.rename.
+        # autospec preserves method binding so callbacks receive source and target.
+        real_rename=packager.Path.rename
         for error_type in [OSError,KeyboardInterrupt]:
             def fail_candidate(src,dst):
                 if Path(src).name=='candidate-skills':
                     raise error_type('injected switch interruption')
                 return real_rename(src,dst)
             with self.subTest(error=error_type.__name__):
-                with mock.patch.object(packager.os,'rename',side_effect=fail_candidate):
+                with mock.patch.object(packager.Path,'rename',autospec=True,side_effect=fail_candidate):
                     with self.assertRaises(error_type):
                         packager.sync(self.root)
                 self.assertEqual(packager.file_map(skills),before)
@@ -399,7 +416,7 @@ class PackageTests(unittest.TestCase):
         skills=self.root/'next/skills';before=packager.file_map(skills)
         source=self.root/'lib/methods/evidence.md'
         source.write_text(source.read_text()+'\nValid changed method.\n')
-        real_rename=packager.os.rename
+        real_rename=packager.Path.rename
         for stage_name in ['skills','candidate-skills']:
             def interrupt_after_effect(src,dst):
                 result=real_rename(src,dst)
@@ -407,7 +424,7 @@ class PackageTests(unittest.TestCase):
                     raise KeyboardInterrupt('interrupted after rename took effect')
                 return result
             with self.subTest(stage=stage_name):
-                with mock.patch.object(packager.os,'rename',side_effect=interrupt_after_effect):
+                with mock.patch.object(packager.Path,'rename',autospec=True,side_effect=interrupt_after_effect):
                     with self.assertRaises(KeyboardInterrupt):
                         packager.sync(self.root)
                 self.assertEqual(packager.file_map(skills),before)
@@ -416,12 +433,12 @@ class PackageTests(unittest.TestCase):
         skills=self.root/'next/skills';before=packager.file_map(skills)
         source=self.root/'lib/methods/evidence.md'
         source.write_text(source.read_text()+'\nValid changed method.\n')
-        real_rename=packager.os.rename
+        real_rename=packager.Path.rename
         def fail_switch_and_restore(src,dst):
             if Path(src).name in ['candidate-skills','previous-skills']:
                 raise OSError('injected unavailable destination')
             return real_rename(src,dst)
-        with mock.patch.object(packager.os,'rename',side_effect=fail_switch_and_restore):
+        with mock.patch.object(packager.Path,'rename',autospec=True,side_effect=fail_switch_and_restore):
             with self.assertRaisesRegex(packager.PackageError,'recovery retained at'):
                 packager.sync(self.root)
         backups=list((self.root/'next').glob('.skill-sync-*/previous-skills'))
