@@ -21,4 +21,4 @@
 交接完成于接手者能够找到目标、原产物、当前工作位置、权限/写入者、验证边界、有效失败和下一动作。摘要不证明接手已发生；实际续办与业务结果另以动作、产物和回执记录。宿主因压缩而继续时返回当前有效目标；真实转交且当前任务结束时停于交接，不强制关闭尚有授权工作的父目标。
 
 
-来源：common/507-handoff/SKILL.md 全文；当前 coordinate/work-update及其process参考、authority-and-return已有部分返回与接续方法。
+来源：archive/legacy/common/507-handoff/SKILL.md 全文；当前 coordinate/work-update及其process参考、authority-and-return已有部分返回与接续方法。

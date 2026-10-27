@@ -46,11 +46,11 @@ class ActualFileTests(unittest.TestCase):
 class LibraryTests(unittest.TestCase):
  def setUp(self):
   self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)/'author';self.root.mkdir()
-  for path,body in [('next/skills/a/SKILL.md','---\nname: a\ndescription: A\n---\n'),('next/skills/a/agents/openai.yaml','interface:\n'),('common/old/SKILL.md','legacy'),('lib/methods/m.md','method'),('next/skills/a/references/shared/m.md','copy')]:
+  for path,body in [('skills/a/SKILL.md','---\nname: a\ndescription: A\n---\n'),('skills/a/agents/openai.yaml','interface:\n'),('archive/legacy/common/old/SKILL.md','legacy'),('lib/methods/m.md','method'),('skills/a/references/shared/m.md','copy')]:
    p=self.root/path;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(body)
-  self.packages={'skills':[{'name':'a','role':'main','source':'next/skills/a','files':['SKILL.md','agents/openai.yaml'],'shared':[{'source':'lib/methods/m.md','target':'references/shared/m.md'}]}]}
+  self.packages={'skills':[{'name':'a','role':'main','source':'skills/a','files':['SKILL.md','agents/openai.yaml'],'shared':[{'source':'lib/methods/m.md','target':'references/shared/m.md'}]}]}
   self.catalog={'methods':[{'source':'lib/methods/m.md','consumers':[{'skillId':'a'}]}],'components':[]}
-  self.disp={'date':'2026-10-13','legacy':[{'id':'old','group':'common','verification':'not business tested','dropped':[],'source':'common/old/SKILL.md','decision':'merge','reason':'shared','retained':['action'],'targets':['lib/methods/m.md'],'consumers':['a']}],'pending':[],'historicalPlanning':{}}
+  self.disp={'date':'2026-10-13','legacy':[{'id':'old','group':'common','verification':'not business tested','dropped':[],'source':'archive/legacy/common/old/SKILL.md','decision':'merge','reason':'shared','retained':['action'],'targets':['lib/methods/m.md'],'consumers':['a']}],'pending':[],'historicalPlanning':{}}
  def tearDown(self):self.temp.cleanup()
  def run_projection(self):
   for name,data in [('packages',self.packages),('catalog',self.catalog),('decisions',self.disp)]:
@@ -114,7 +114,7 @@ class LibraryTests(unittest.TestCase):
   archive.unlink()
   with self.assertRaisesRegex(ValueError,'missing source'):self.run_projection()
  def test_retirement_cannot_point_to_unrelated_source_or_consumer(self):
-  row,_=self.add_retired();row['source']='common/old/SKILL.md'
+  row,_=self.add_retired();row['source']='archive/legacy/common/old/SKILL.md'
   with self.assertRaisesRegex(ValueError,'archived identity'):self.run_projection()
   row['source']='doc/90-归档/技能/retired/SKILL.md';row['consumers']=['missing']
   with self.assertRaisesRegex(ValueError,'current consumer'):self.run_projection()
@@ -147,7 +147,7 @@ class LibraryTests(unittest.TestCase):
   index['legacy'][0]['consumers']=['a','b']
   run=self.query('old',index);self.assertEqual(run.returncode,0,run.stderr);r=json.loads(run.stdout)
   self.assertEqual([v['name'] for v in r['currentCandidates']],['a','b']);self.assertNotIn('execution',r)
-  self.assertEqual(r['actionAuthority'],'UNCHANGED');self.assertFalse((self.root/'next/skills/b').exists())
+  self.assertEqual(r['actionAuthority'],'UNCHANGED');self.assertFalse((self.root/'skills/b').exists())
  def test_explicitly_dropped_name_has_no_replacement_candidate(self):
   index=library.skill_index(self.run_projection());old=index['legacy'][0]
   old.update(decision='drop',retained=[],targets=[],consumers=[])

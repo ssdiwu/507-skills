@@ -21,7 +21,7 @@ class Check:
 
 def checks() -> list[Check]:
     python = sys.executable
-    breakdown = ROOT / "write/507-breakdown/scripts"
+    breakdown = ROOT / "archive/legacy/write/507-breakdown/scripts"
     standalone_breakdown = (
         ("breakdown forced fallback", "test_forced_local_fallback.py"),
         ("breakdown image response parser", "test_image_response_parser.py"),
@@ -35,25 +35,25 @@ def checks() -> list[Check]:
     )
     result = [
         Check("Review evidence package consistency", (python, "-B", "scripts/sync_review_evidence.py", "--check")),
-        Check("PPT unit and CLI regressions", (python, "-B", "-m", "unittest", "discover", "-s", ".", "-p", "test_*.py", "-v"), ROOT / "write/507-ppt/scripts"),
-        Check("PPT HTML browser evidence", ("bash", "scripts/test_html.sh"), ROOT / "write/507-ppt"),
-        Check("RedNote regressions", (python, "-B", "-m", "unittest", "-v", "scripts/test_render_rednote.py"), ROOT / "write/507-rednote"),
-        Check("RedNote runtime bundle freshness", (python, "-B", "scripts/validate_runtime_bundle.py"), ROOT / "write/507-rednote"),
-        Check("RedNote runtime JS regressions", ("npm", "test"), ROOT / "write/507-rednote/runtime"),
-        Check("RedNote runtime browser and export", (python, "-B", "scripts/test_serve_rednote.py"), ROOT / "write/507-rednote"),
-        Check("Voiceover regressions", (python, "-B", "-m", "unittest", "-v", "scripts/test_voicebox_narrate.py"), ROOT / "write/507-voiceover"),
-        Check("Write prose audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_prose.py"), ROOT / "write/507-forge/scripts/prose"),
-        Check("Write spoken audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_spoken.py"), ROOT / "write/507-forge/scripts/spoken"),
-        Check("Video contract regressions", (python, "-B", "-m", "unittest", "-v", "write/507-video/scripts/test_contract.py")),
+        Check("PPT unit and CLI regressions", (python, "-B", "-m", "unittest", "discover", "-s", ".", "-p", "test_*.py", "-v"), ROOT / "archive/legacy/write/507-ppt/scripts"),
+        Check("PPT HTML browser evidence", ("bash", "scripts/test_html.sh"), ROOT / "archive/legacy/write/507-ppt"),
+        Check("RedNote regressions", (python, "-B", "-m", "unittest", "-v", "scripts/test_render_rednote.py"), ROOT / "archive/legacy/write/507-rednote"),
+        Check("RedNote runtime bundle freshness", (python, "-B", "scripts/validate_runtime_bundle.py"), ROOT / "archive/legacy/write/507-rednote"),
+        Check("RedNote runtime JS regressions", ("npm", "test"), ROOT / "archive/legacy/write/507-rednote/runtime"),
+        Check("RedNote runtime browser and export", (python, "-B", "scripts/test_serve_rednote.py"), ROOT / "archive/legacy/write/507-rednote"),
+        Check("Voiceover regressions", (python, "-B", "-m", "unittest", "-v", "scripts/test_voicebox_narrate.py"), ROOT / "archive/legacy/write/507-voiceover"),
+        Check("Write prose audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_prose.py"), ROOT / "archive/legacy/write/507-forge/scripts/prose"),
+        Check("Write spoken audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_spoken.py"), ROOT / "archive/legacy/write/507-forge/scripts/spoken"),
+        Check("Video contract regressions", (python, "-B", "-m", "unittest", "-v", "archive/legacy/write/507-video/scripts/test_contract.py")),
         Check("Breakdown atomic publication", (python, "-B", "-m", "unittest", "-v", "test_video_pull_force.py"), breakdown),
     ]
     result.extend(Check(name, (python, "-B", filename), breakdown) for name, filename in standalone_breakdown)
     result.append(Check("Breakdown MiniMax no-key contract", (python, "-B", "test_minimax_adapter.py", "--no-key"), breakdown))
-    pptx_samples = sorted((ROOT / "write/507-ppt/examples").rglob("*.pptx"))
-    result.append(Check("PPT checked-in SVG media quality", (python, "-B", "write/507-ppt/scripts/pptx_svg.py", *(str(path) for path in pptx_samples))))
-    for manifest in sorted((ROOT / "write/507-ppt/examples").glob("*.manifest.json")):
-        result.append(Check(f"PPT manifest {manifest.name}", (python, "-B", "write/507-ppt/scripts/validate_manifest.py", str(manifest))))
-    result.append(Check("PPT provenance report", (python, "-B", "write/507-ppt/scripts/validate_provenance.py", "--check", "write/507-ppt/examples/provenance-report.json")))
+    pptx_samples = sorted((ROOT / "archive/legacy/write/507-ppt/examples").rglob("*.pptx"))
+    result.append(Check("PPT checked-in SVG media quality", (python, "-B", "archive/legacy/write/507-ppt/scripts/pptx_svg.py", *(str(path) for path in pptx_samples))))
+    for manifest in sorted((ROOT / "archive/legacy/write/507-ppt/examples").glob("*.manifest.json")):
+        result.append(Check(f"PPT manifest {manifest.name}", (python, "-B", "archive/legacy/write/507-ppt/scripts/validate_manifest.py", str(manifest))))
+    result.append(Check("PPT provenance report", (python, "-B", "archive/legacy/write/507-ppt/scripts/validate_provenance.py", "--check", "archive/legacy/write/507-ppt/examples/provenance-report.json")))
     return result
 
 

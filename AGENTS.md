@@ -6,7 +6,7 @@
 
 ## 阅读顺序
 
-首次进入仓库时，读取本文件、根 [`README.md`](README.md) 与目标目录的 `README.md`（新体系见 [`next/README.md`](next/README.md)，已发布素材见 `write/`、`code/` 或 `common/`），建立定位、入口和安全边界；后续按任务与变化补读，已读且未变化的材料直接复用。
+首次进入仓库时，读取本文件、根 [`README.md`](README.md) 与目标目录的 `README.md`（现行技能见 [`skills/README.md`](skills/README.md)，旧版归档见 `archive/legacy/write/`、`archive/legacy/code/` 或 `archive/legacy/common/`），建立定位、入口和安全边界；后续按任务与变化补读，已读且未变化的材料直接复用。
 
 跨会话续办或阶段调整时读取根 [`PROGRESS.md`](PROGRESS.md)，核对公开的当前版本、能力范围、已知限制和待办；当前工作树的交付维护者在这些信息实质变化时更新该快照。本机安装、试验过程、临时交接和私有原始回执保存在库外，接续时由原任务交代位置、版本与未完成，不写入公开进度。共用开发依据和可公开的历史结论继续归 doc 对应入口，历史证据保留，不在本规则或 README 复制进度正文。
 
@@ -14,7 +14,7 @@
 
 技能分工与共有资源的变更先读[分层规格](spec/技能分层与共有资源.md)和[设计依据](doc/10-架构与运行/技能分层设计依据.md)，再核对受影响的真实消费者。目标、当前实现、候选与验证范围分开；研究统计和来源指令不直接成为执行合同。
 
-创建、改写或融合技能方法时使用新体系 [`skill-design`](next/skills/skill-design/SKILL.md)；常规项目任务不因用到了技能而启动技能编写流程。
+创建、改写或融合技能方法时使用新体系 [`skill-design`](skills/skill-design/SKILL.md)；常规项目任务不因用到了技能而启动技能编写流程。
 
 ## 修改原则
 

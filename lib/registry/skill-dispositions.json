@@ -6,7 +6,7 @@
     {
       "id": "507-explore",
       "group": "common",
-      "source": "common/507-explore/SKILL.md",
+      "source": "archive/legacy/common/507-explore/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -34,12 +34,12 @@
       ],
       "sourceEvidence": [
         {
-          "path": "common/507-explore/SKILL.md",
+          "path": "archive/legacy/common/507-explore/SKILL.md",
           "startLine": 27,
           "endLine": 48
         },
         {
-          "path": "common/507-explore/references/code-impact.md",
+          "path": "archive/legacy/common/507-explore/references/code-impact.md",
           "startLine": 3,
           "endLine": 41
         }
@@ -50,7 +50,7 @@
     {
       "id": "507-explain",
       "group": "common",
-      "source": "common/507-explain/SKILL.md",
+      "source": "archive/legacy/common/507-explain/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -74,7 +74,7 @@
       ],
       "targets": [
         "lib/methods/explanation-progression.md",
-        "next/skills/507-why/references/explanation.md"
+        "skills/507-why/references/explanation.md"
       ],
       "consumers": [
         "507-why",
@@ -82,7 +82,7 @@
       ],
       "sourceEvidence": [
         {
-          "path": "common/507-explain/SKILL.md",
+          "path": "archive/legacy/common/507-explain/SKILL.md",
           "startLine": 26,
           "endLine": 69
         }
@@ -93,7 +93,7 @@
     {
       "id": "507-grill",
       "group": "common",
-      "source": "common/507-grill/SKILL.md",
+      "source": "archive/legacy/common/507-grill/SKILL.md",
       "decision": "retain",
       "reason": "保留独立目标责任，重建到当前入口；旧目录只作来源。",
       "retained": [
@@ -120,7 +120,7 @@
         }
       ],
       "targets": [
-        "next/skills/507-what/SKILL.md",
+        "skills/507-what/SKILL.md",
         "lib/methods/question-frontier.md"
       ],
       "consumers": [
@@ -128,12 +128,12 @@
       ],
       "sourceEvidence": [
         {
-          "path": "common/507-grill/SKILL.md",
+          "path": "archive/legacy/common/507-grill/SKILL.md",
           "startLine": 28,
           "endLine": 40
         },
         {
-          "path": "common/507-grill/SKILL.md",
+          "path": "archive/legacy/common/507-grill/SKILL.md",
           "startLine": 173,
           "endLine": 244
         }
@@ -144,7 +144,7 @@
     {
       "id": "507-skill",
       "group": "common",
-      "source": "common/507-skill/SKILL.md",
+      "source": "archive/legacy/common/507-skill/SKILL.md",
       "decision": "retain",
       "reason": "保留独立目标责任，重建到当前入口；旧目录只作来源。",
       "retained": [
@@ -163,7 +163,7 @@
         }
       ],
       "targets": [
-        "next/skills/skill-design/SKILL.md",
+        "skills/skill-design/SKILL.md",
         "lib/components/library_view.py"
       ],
       "consumers": [
@@ -171,7 +171,7 @@
       ],
       "sourceEvidence": [
         {
-          "path": "common/507-skill/SKILL.md",
+          "path": "archive/legacy/common/507-skill/SKILL.md",
           "startLine": 10,
           "endLine": 72
         }
@@ -182,7 +182,7 @@
     {
       "id": "507-research",
       "group": "common",
-      "source": "common/507-research/SKILL.md",
+      "source": "archive/legacy/common/507-research/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -214,12 +214,12 @@
       ],
       "sourceEvidence": [
         {
-          "path": "common/507-research/SKILL.md",
+          "path": "archive/legacy/common/507-research/SKILL.md",
           "startLine": 37,
           "endLine": 55
         },
         {
-          "path": "common/507-research/SKILL.md",
+          "path": "archive/legacy/common/507-research/SKILL.md",
           "startLine": 57,
           "endLine": 97
         }
@@ -230,7 +230,7 @@
     {
       "id": "507-visualize",
       "group": "common",
-      "source": "common/507-visualize/SKILL.md",
+      "source": "archive/legacy/common/507-visualize/SKILL.md",
       "decision": "merge",
       "reason": "旧入口的有效理解方法继续由共有资源维护；2026-10-24按图解表达独立结果建立同名次要入口，当前与旧版合同分别追溯。",
       "retained": [
@@ -252,7 +252,7 @@
       "targets": [
         "lib/methods/visual-understanding.md",
         "lib/methods/clear-expression.md",
-        "next/skills/507-visualize/SKILL.md"
+        "skills/507-visualize/SKILL.md"
       ],
       "consumers": [
         "507-why",
@@ -263,17 +263,17 @@
       ],
       "sourceEvidence": [
         {
-          "path": "common/507-visualize/SKILL.md",
+          "path": "archive/legacy/common/507-visualize/SKILL.md",
           "startLine": 10,
           "endLine": 49
         },
         {
-          "path": "common/507-visualize/references/understanding-model.md",
+          "path": "archive/legacy/common/507-visualize/references/understanding-model.md",
           "startLine": 3,
           "endLine": 50
         },
         {
-          "path": "common/507-visualize/references/delivery-and-checks.md",
+          "path": "archive/legacy/common/507-visualize/references/delivery-and-checks.md",
           "startLine": 3,
           "endLine": 44
         }
@@ -284,7 +284,7 @@
     {
       "id": "507-taste",
       "group": "common",
-      "source": "common/507-taste/SKILL.md",
+      "source": "archive/legacy/common/507-taste/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -318,12 +318,12 @@
       ],
       "sourceEvidence": [
         {
-          "path": "common/507-taste/SKILL.md",
+          "path": "archive/legacy/common/507-taste/SKILL.md",
           "startLine": 18,
           "endLine": 88
         },
         {
-          "path": "common/507-taste/SKILL.md",
+          "path": "archive/legacy/common/507-taste/SKILL.md",
           "startLine": 126,
           "endLine": 142
         }
@@ -334,7 +334,7 @@
     {
       "id": "507-handoff",
       "group": "common",
-      "source": "common/507-handoff/SKILL.md",
+      "source": "archive/legacy/common/507-handoff/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -379,12 +379,12 @@
       ],
       "sourceEvidence": [
         {
-          "path": "common/507-handoff/SKILL.md",
+          "path": "archive/legacy/common/507-handoff/SKILL.md",
           "startLine": 10,
           "endLine": 33
         },
         {
-          "path": "common/507-handoff/SKILL.md",
+          "path": "archive/legacy/common/507-handoff/SKILL.md",
           "startLine": 77,
           "endLine": 90
         }
@@ -395,7 +395,7 @@
     {
       "id": "507-setup",
       "group": "code",
-      "source": "code/507-setup/SKILL.md",
+      "source": "archive/legacy/code/507-setup/SKILL.md",
       "decision": "retain",
       "reason": "保留项目工作依据与导航的独立目标责任，升格为主要入口507-setup；规格与工单仍由原次要职责承接，两份单消费者方法归入setup包内。旧目录及迁移前方法保留来源身份。",
       "retained": [
@@ -427,31 +427,31 @@
         }
       ],
       "targets": [
-        "next/skills/507-setup/references/project-foundation.md",
-        "next/skills/507-setup/references/project-navigation.md",
-        "next/skills/507-setup/SKILL.md"
+        "skills/507-setup/references/project-foundation.md",
+        "skills/507-setup/references/project-navigation.md",
+        "skills/507-setup/SKILL.md"
       ],
       "consumers": [
         "507-setup"
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-setup/SKILL.md",
+          "path": "archive/legacy/code/507-setup/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-setup/references/project-standard.md",
+          "path": "archive/legacy/code/507-setup/references/project-standard.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-setup/references/navigation.md",
+          "path": "archive/legacy/code/507-setup/references/navigation.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-setup/references/project-maintenance.md",
+          "path": "archive/legacy/code/507-setup/references/project-maintenance.md",
           "startLine": null,
           "endLine": null
         }
@@ -462,7 +462,7 @@
     {
       "id": "507-prototype",
       "group": "code",
-      "source": "code/507-prototype/SKILL.md",
+      "source": "archive/legacy/code/507-prototype/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -498,12 +498,12 @@
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-prototype/SKILL.md",
+          "path": "archive/legacy/code/507-prototype/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-prototype/SKILL.md",
+          "path": "archive/legacy/code/507-prototype/SKILL.md",
           "startLine": null,
           "endLine": null
         }
@@ -514,7 +514,7 @@
     {
       "id": "507-prd",
       "group": "code",
-      "source": "code/507-prd/SKILL.md",
+      "source": "archive/legacy/code/507-prd/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -539,19 +539,19 @@
         }
       ],
       "targets": [
-        "next/skills/507-spec/SKILL.md"
+        "skills/507-spec/SKILL.md"
       ],
       "consumers": [
         "507-spec"
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-prd/SKILL.md",
+          "path": "archive/legacy/code/507-prd/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-prd/SKILL.md",
+          "path": "archive/legacy/code/507-prd/SKILL.md",
           "startLine": null,
           "endLine": null
         }
@@ -562,7 +562,7 @@
     {
       "id": "507-issue",
       "group": "code",
-      "source": "code/507-issue/SKILL.md",
+      "source": "archive/legacy/code/507-issue/SKILL.md",
       "decision": "retain",
       "reason": "保留独立目标责任，重建到当前入口；旧目录只作来源。",
       "retained": [
@@ -591,19 +591,19 @@
         }
       ],
       "targets": [
-        "next/skills/507-issue/SKILL.md"
+        "skills/507-issue/SKILL.md"
       ],
       "consumers": [
         "507-issue"
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-issue/SKILL.md",
+          "path": "archive/legacy/code/507-issue/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-issue/SKILL.md",
+          "path": "archive/legacy/code/507-issue/SKILL.md",
           "startLine": null,
           "endLine": null
         }
@@ -614,7 +614,7 @@
     {
       "id": "507-ui",
       "group": "code",
-      "source": "code/507-ui/SKILL.md",
+      "source": "archive/legacy/code/507-ui/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -657,22 +657,22 @@
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-ui/SKILL.md",
+          "path": "archive/legacy/code/507-ui/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-ui/references/interaction.md",
+          "path": "archive/legacy/code/507-ui/references/interaction.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-ui/references/containers-and-motion.md",
+          "path": "archive/legacy/code/507-ui/references/containers-and-motion.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-ui/references/apple-interaction.md",
+          "path": "archive/legacy/code/507-ui/references/apple-interaction.md",
           "startLine": null,
           "endLine": null
         }
@@ -683,7 +683,7 @@
     {
       "id": "507-fix",
       "group": "code",
-      "source": "code/507-fix/SKILL.md",
+      "source": "archive/legacy/code/507-fix/SKILL.md",
       "decision": "merge",
       "reason": "修复职责并入主要工程入口507-do的修复模式，保留复现、根因、最小修复和原动作复验；旧30及随后next版本分别保留原件。",
       "retained": [
@@ -711,7 +711,7 @@
         }
       ],
       "targets": [
-        "next/skills/507-do/references/debugging.md",
+        "skills/507-do/references/debugging.md",
         "lib/methods/engineering-evidence.md"
       ],
       "consumers": [
@@ -719,12 +719,12 @@
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-fix/SKILL.md",
+          "path": "archive/legacy/code/507-fix/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-fix/SKILL.md",
+          "path": "archive/legacy/code/507-fix/SKILL.md",
           "startLine": null,
           "endLine": null
         },
@@ -740,7 +740,7 @@
     {
       "id": "507-test",
       "group": "code",
-      "source": "code/507-test/SKILL.md",
+      "source": "archive/legacy/code/507-test/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -768,24 +768,24 @@
         }
       ],
       "targets": [
-        "next/skills/507-do/references/testing.md"
+        "skills/507-do/references/testing.md"
       ],
       "consumers": [
         "507-do"
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-test/SKILL.md",
+          "path": "archive/legacy/code/507-test/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-test/references/maintenance.md",
+          "path": "archive/legacy/code/507-test/references/maintenance.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-test/references/test-first.md",
+          "path": "archive/legacy/code/507-test/references/test-first.md",
           "startLine": null,
           "endLine": null
         }
@@ -796,7 +796,7 @@
     {
       "id": "507-simplify",
       "group": "code",
-      "source": "code/507-simplify/SKILL.md",
+      "source": "archive/legacy/code/507-simplify/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -826,7 +826,7 @@
       ],
       "targets": [
         "lib/methods/behavior-preserving-change.md",
-        "next/skills/507-do/SKILL.md"
+        "skills/507-do/SKILL.md"
       ],
       "consumers": [
         "507-how",
@@ -834,17 +834,17 @@
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-simplify/SKILL.md",
+          "path": "archive/legacy/code/507-simplify/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-simplify/SKILL.md",
+          "path": "archive/legacy/code/507-simplify/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-simplify/SKILL.md",
+          "path": "archive/legacy/code/507-simplify/SKILL.md",
           "startLine": null,
           "endLine": null
         }
@@ -855,7 +855,7 @@
     {
       "id": "507-review",
       "group": "code",
-      "source": "code/507-review/SKILL.md",
+      "source": "archive/legacy/code/507-review/SKILL.md",
       "decision": "retain",
       "reason": "保留独立目标责任，重建到当前入口；旧目录只作来源。",
       "retained": [
@@ -883,19 +883,19 @@
         }
       ],
       "targets": [
-        "next/skills/507-review/SKILL.md"
+        "skills/507-review/SKILL.md"
       ],
       "consumers": [
         "507-review"
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-review/SKILL.md",
+          "path": "archive/legacy/code/507-review/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-review/SKILL.md",
+          "path": "archive/legacy/code/507-review/SKILL.md",
           "startLine": null,
           "endLine": null
         }
@@ -906,7 +906,7 @@
     {
       "id": "507-git",
       "group": "code",
-      "source": "code/507-git/SKILL.md",
+      "source": "archive/legacy/code/507-git/SKILL.md",
       "decision": "retain",
       "reason": "保留独立目标责任，重建到当前入口；旧目录只作来源。",
       "retained": [
@@ -935,20 +935,20 @@
         }
       ],
       "targets": [
-        "next/skills/507-deliver/SKILL.md",
-        "next/skills/507-deliver/references/actions.md"
+        "skills/507-deliver/SKILL.md",
+        "skills/507-deliver/references/actions.md"
       ],
       "consumers": [
         "507-deliver"
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-git/SKILL.md",
+          "path": "archive/legacy/code/507-git/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-git/references/delivery.md",
+          "path": "archive/legacy/code/507-git/references/delivery.md",
           "startLine": null,
           "endLine": null
         }
@@ -959,7 +959,7 @@
     {
       "id": "507-inspect",
       "group": "code",
-      "source": "code/507-inspect/SKILL.md",
+      "source": "archive/legacy/code/507-inspect/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -997,17 +997,17 @@
       ],
       "sourceEvidence": [
         {
-          "path": "code/507-inspect/SKILL.md",
+          "path": "archive/legacy/code/507-inspect/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-inspect/SKILL.md",
+          "path": "archive/legacy/code/507-inspect/SKILL.md",
           "startLine": null,
           "endLine": null
         },
         {
-          "path": "code/507-inspect/SKILL.md",
+          "path": "archive/legacy/code/507-inspect/SKILL.md",
           "startLine": null,
           "endLine": null
         }
@@ -1018,7 +1018,7 @@
     {
       "id": "507-breakdown",
       "group": "write",
-      "source": "write/507-breakdown/SKILL.md",
+      "source": "archive/legacy/write/507-breakdown/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1045,22 +1045,22 @@
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-breakdown/SKILL.md",
+          "path": "archive/legacy/write/507-breakdown/SKILL.md",
           "startLine": 1,
           "endLine": 66
         },
         {
-          "path": "write/507-breakdown/AGENTS.md",
+          "path": "archive/legacy/write/507-breakdown/AGENTS.md",
           "startLine": 1,
           "endLine": 17
         },
         {
-          "path": "write/507-breakdown/references/analysis-playbook.md",
+          "path": "archive/legacy/write/507-breakdown/references/analysis-playbook.md",
           "startLine": 1,
           "endLine": 15
         },
         {
-          "path": "write/507-breakdown/scripts/README.md",
+          "path": "archive/legacy/write/507-breakdown/scripts/README.md",
           "startLine": 1,
           "endLine": 72
         }
@@ -1077,7 +1077,7 @@
     {
       "id": "507-cast",
       "group": "write",
-      "source": "write/507-cast/SKILL.md",
+      "source": "archive/legacy/write/507-cast/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1095,15 +1095,15 @@
         }
       ],
       "targets": [
-        "next/skills/507-material/references/knowledge-organization.md",
-        "next/skills/507-material/SKILL.md"
+        "skills/507-material/references/knowledge-organization.md",
+        "skills/507-material/SKILL.md"
       ],
       "consumers": [
         "507-material"
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-cast/SKILL.md",
+          "path": "archive/legacy/write/507-cast/SKILL.md",
           "startLine": 1,
           "endLine": 110
         }
@@ -1120,7 +1120,7 @@
     {
       "id": "507-forge",
       "group": "write",
-      "source": "write/507-forge/SKILL.md",
+      "source": "archive/legacy/write/507-forge/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1145,7 +1145,7 @@
         }
       ],
       "targets": [
-        "next/skills/507-create/SKILL.md",
+        "skills/507-create/SKILL.md",
         "lib/methods/explanation-progression.md",
         "lib/methods/title-promises.md",
         "lib/components/check_prose.py",
@@ -1157,22 +1157,22 @@
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-forge/SKILL.md",
+          "path": "archive/legacy/write/507-forge/SKILL.md",
           "startLine": 1,
           "endLine": 41
         },
         {
-          "path": "write/507-forge/references/prose.md",
+          "path": "archive/legacy/write/507-forge/references/prose.md",
           "startLine": 94,
           "endLine": 114
         },
         {
-          "path": "write/507-forge/references/prose/title-promises.md",
+          "path": "archive/legacy/write/507-forge/references/prose/title-promises.md",
           "startLine": 1,
           "endLine": 28
         },
         {
-          "path": "write/507-forge/references/spoken/ai-course.md",
+          "path": "archive/legacy/write/507-forge/references/spoken/ai-course.md",
           "startLine": 1,
           "endLine": 52
         }
@@ -1189,7 +1189,7 @@
     {
       "id": "507-fuse",
       "group": "write",
-      "source": "write/507-fuse/SKILL.md",
+      "source": "archive/legacy/write/507-fuse/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1212,20 +1212,20 @@
         }
       ],
       "targets": [
-        "next/skills/507-create/SKILL.md",
-        "next/skills/507-create/references/authorship.md"
+        "skills/507-create/SKILL.md",
+        "skills/507-create/references/authorship.md"
       ],
       "consumers": [
         "507-create"
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-fuse/SKILL.md",
+          "path": "archive/legacy/write/507-fuse/SKILL.md",
           "startLine": 1,
           "endLine": 127
         },
         {
-          "path": "write/507-fuse/references/选题判断.md",
+          "path": "archive/legacy/write/507-fuse/references/选题判断.md",
           "startLine": 1,
           "endLine": 50
         }
@@ -1242,7 +1242,7 @@
     {
       "id": "507-mine",
       "group": "write",
-      "source": "write/507-mine/SKILL.md",
+      "source": "archive/legacy/write/507-mine/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1261,15 +1261,15 @@
         }
       ],
       "targets": [
-        "next/skills/507-material/SKILL.md",
-        "next/skills/507-material/references/material-units.md"
+        "skills/507-material/SKILL.md",
+        "skills/507-material/references/material-units.md"
       ],
       "consumers": [
         "507-material"
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-mine/SKILL.md",
+          "path": "archive/legacy/write/507-mine/SKILL.md",
           "startLine": 1,
           "endLine": 99
         }
@@ -1286,7 +1286,7 @@
     {
       "id": "507-ppt",
       "group": "write",
-      "source": "write/507-ppt/SKILL.md",
+      "source": "archive/legacy/write/507-ppt/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1316,27 +1316,27 @@
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-ppt/SKILL.md",
+          "path": "archive/legacy/write/507-ppt/SKILL.md",
           "startLine": 1,
           "endLine": 92
         },
         {
-          "path": "write/507-ppt/references/workflow-contract.md",
+          "path": "archive/legacy/write/507-ppt/references/workflow-contract.md",
           "startLine": 1,
           "endLine": 56
         },
         {
-          "path": "write/507-ppt/references/design-system.md",
+          "path": "archive/legacy/write/507-ppt/references/design-system.md",
           "startLine": 1,
           "endLine": 87
         },
         {
-          "path": "write/507-ppt/references/typography.md",
+          "path": "archive/legacy/write/507-ppt/references/typography.md",
           "startLine": 1,
           "endLine": 55
         },
         {
-          "path": "write/507-ppt/references/style-contracts.md",
+          "path": "archive/legacy/write/507-ppt/references/style-contracts.md",
           "startLine": 1,
           "endLine": 43
         }
@@ -1353,7 +1353,7 @@
     {
       "id": "507-prospect",
       "group": "write",
-      "source": "write/507-prospect/SKILL.md",
+      "source": "archive/legacy/write/507-prospect/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1380,7 +1380,7 @@
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-prospect/SKILL.md",
+          "path": "archive/legacy/write/507-prospect/SKILL.md",
           "startLine": 1,
           "endLine": 123
         }
@@ -1397,7 +1397,7 @@
     {
       "id": "507-rednote",
       "group": "write",
-      "source": "write/507-rednote/SKILL.md",
+      "source": "archive/legacy/write/507-rednote/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1428,7 +1428,7 @@
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-rednote/SKILL.md",
+          "path": "archive/legacy/write/507-rednote/SKILL.md",
           "startLine": 1,
           "endLine": 147
         }
@@ -1445,7 +1445,7 @@
     {
       "id": "507-remix",
       "group": "write",
-      "source": "write/507-remix/SKILL.md",
+      "source": "archive/legacy/write/507-remix/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1467,22 +1467,22 @@
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-remix/SKILL.md",
+          "path": "archive/legacy/write/507-remix/SKILL.md",
           "startLine": 1,
           "endLine": 104
         },
         {
-          "path": "write/507-remix/AGENTS.md",
+          "path": "archive/legacy/write/507-remix/AGENTS.md",
           "startLine": 1,
           "endLine": 5
         },
         {
-          "path": "write/507-remix/references/remake-method.md",
+          "path": "archive/legacy/write/507-remix/references/remake-method.md",
           "startLine": 1,
           "endLine": 16
         },
         {
-          "path": "write/507-remix/scripts/README.md",
+          "path": "archive/legacy/write/507-remix/scripts/README.md",
           "startLine": 1,
           "endLine": 30
         }
@@ -1499,7 +1499,7 @@
     {
       "id": "507-video",
       "group": "write",
-      "source": "write/507-video/SKILL.md",
+      "source": "archive/legacy/write/507-video/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1532,17 +1532,17 @@
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-video/SKILL.md",
+          "path": "archive/legacy/write/507-video/SKILL.md",
           "startLine": 1,
           "endLine": 98
         },
         {
-          "path": "write/507-video/references/production-contract.md",
+          "path": "archive/legacy/write/507-video/references/production-contract.md",
           "startLine": 1,
           "endLine": 90
         },
         {
-          "path": "write/507-video/references/product-promo-profile.md",
+          "path": "archive/legacy/write/507-video/references/product-promo-profile.md",
           "startLine": 1,
           "endLine": 106
         }
@@ -1559,7 +1559,7 @@
     {
       "id": "507-voiceover",
       "group": "write",
-      "source": "write/507-voiceover/SKILL.md",
+      "source": "archive/legacy/write/507-voiceover/SKILL.md",
       "decision": "merge",
       "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
       "retained": [
@@ -1588,22 +1588,22 @@
       ],
       "sourceEvidence": [
         {
-          "path": "write/507-voiceover/SKILL.md",
+          "path": "archive/legacy/write/507-voiceover/SKILL.md",
           "startLine": 1,
           "endLine": 88
         },
         {
-          "path": "write/507-voiceover/README.md",
+          "path": "archive/legacy/write/507-voiceover/README.md",
           "startLine": 1,
           "endLine": 69
         },
         {
-          "path": "write/507-voiceover/scripts/README.md",
+          "path": "archive/legacy/write/507-voiceover/scripts/README.md",
           "startLine": 1,
           "endLine": 72
         },
         {
-          "path": "write/507-voiceover/scripts/voicebox_narrate.py",
+          "path": "archive/legacy/write/507-voiceover/scripts/voicebox_narrate.py",
           "startLine": 1,
           "endLine": 956
         }
@@ -1713,10 +1713,10 @@
         }
       ],
       "targets": [
-        "next/skills/507-create/SKILL.md",
-        "next/skills/507-create/references/prose.md",
-        "next/skills/507-create/references/proposal.md",
-        "next/skills/507-create/references/spoken.md"
+        "skills/507-create/SKILL.md",
+        "skills/507-create/references/prose.md",
+        "skills/507-create/references/proposal.md",
+        "skills/507-create/references/spoken.md"
       ],
       "consumers": [
         "507-create"
@@ -1742,8 +1742,8 @@
         }
       ],
       "targets": [
-        "next/skills/507-do/SKILL.md",
-        "next/skills/507-do/references/testing.md"
+        "skills/507-do/SKILL.md",
+        "skills/507-do/references/testing.md"
       ],
       "consumers": [
         "507-do"
@@ -1769,9 +1769,9 @@
         }
       ],
       "targets": [
-        "next/skills/507-work/SKILL.md",
-        "next/skills/507-work/references/process.md",
-        "next/skills/507-work/references/state-views.md"
+        "skills/507-work/SKILL.md",
+        "skills/507-work/references/process.md",
+        "skills/507-work/references/state-views.md"
       ],
       "consumers": [
         "507-work"
@@ -1796,8 +1796,8 @@
         }
       ],
       "targets": [
-        "next/skills/507-do/SKILL.md",
-        "next/skills/507-do/references/component-reuse.md"
+        "skills/507-do/SKILL.md",
+        "skills/507-do/references/component-reuse.md"
       ],
       "consumers": [
         "507-do"

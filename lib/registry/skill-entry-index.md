@@ -171,7 +171,7 @@
         "事实/推断/未知、资料覆盖、来源锚点与支持边界已有一般合同",
         "语义模型只作线索；本地ASR/OCR/PTS/scene-cut限定时间；受限视觉搜索→增密抽帧→可见锚点回写；高承重声/画回原片核验；观察包交给内容/借鉴而非直接制作"
       ],
-      "source": "write/507-breakdown/SKILL.md",
+      "source": "archive/legacy/write/507-breakdown/SKILL.md",
       "sourceSha256": "489a1dc1e87b131ba84b93a774afe63ea98dfd7c38403fe725bdd1a04c6ac55a",
       "targets": [
         "lib/methods/media-study.md"
@@ -199,11 +199,11 @@
         "资料库原请求权限、对象/字段/关系沿库规则、内容证据建关系及读回",
         "成熟主题簇→回访/二次学习入口，定位/子主题/链接及一句定位/覆盖/更新时间/相关页；材料变动只更新受影响入口；不贴全文/凭空长章节"
       ],
-      "source": "write/507-cast/SKILL.md",
+      "source": "archive/legacy/write/507-cast/SKILL.md",
       "sourceSha256": "f0c680aee2c42d100029e15eedebf9adca19a6fbbb194e900c002061162a596c",
       "targets": [
-        "next/skills/507-material/references/knowledge-organization.md",
-        "next/skills/507-material/SKILL.md"
+        "skills/507-material/references/knowledge-organization.md",
+        "skills/507-material/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -228,8 +228,8 @@
       "source": "doc/90-归档/技能/507-component/SKILL.md",
       "sourceSha256": "96c729cd5b53e6bd5049ef85489c55b3261162fb327a4aa9efd1da7b43077c0f",
       "targets": [
-        "next/skills/507-do/SKILL.md",
-        "next/skills/507-do/references/component-reuse.md"
+        "skills/507-do/SKILL.md",
+        "skills/507-do/references/component-reuse.md"
       ],
       "verification": "原入口全包及历史首次证据保持原身份；本次源码、独审和安装另记，不继承真实任务采用或效率结论。"
     },
@@ -254,10 +254,10 @@
       "source": "doc/90-归档/技能/507-compose/SKILL.md",
       "sourceSha256": "c67ff3da93d0ee898b1b8679d50856f641c62082c65f5968c4f96fad154ae928",
       "targets": [
-        "next/skills/507-create/SKILL.md",
-        "next/skills/507-create/references/prose.md",
-        "next/skills/507-create/references/proposal.md",
-        "next/skills/507-create/references/spoken.md"
+        "skills/507-create/SKILL.md",
+        "skills/507-create/references/prose.md",
+        "skills/507-create/references/proposal.md",
+        "skills/507-create/references/spoken.md"
       ],
       "verification": "原独审及首次证据保持原身份；本次合并的包检查和独审另记，不继承自然任务效果结论。"
     },
@@ -288,11 +288,11 @@
         "保留事实与类比、代表性误解与反馈路径；采用条件：解释当前核心，不扩系统课程",
         "感知或条件操作确有收益才用临时观察件；采用条件：在隔离位置，说明模拟、验证和清理状态"
       ],
-      "source": "common/507-explain/SKILL.md",
+      "source": "archive/legacy/common/507-explain/SKILL.md",
       "sourceSha256": "83371d88755be5362540c7a414c180817085e4ab4f4e10f322c57d3745cba621",
       "targets": [
         "lib/methods/explanation-progression.md",
-        "next/skills/507-why/references/explanation.md"
+        "skills/507-why/references/explanation.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -319,7 +319,7 @@
         "逐入口查校验、提交、状态写者、保存/恢复与最终消费者；采用条件：当前行为改动的影响存在具体未知时；不强制完整矩阵",
         "可验证候选保留依据、成立边界、反证和最小动作；采用条件：真实技术路径竞争且已有证据不足时"
       ],
-      "source": "common/507-explore/SKILL.md",
+      "source": "archive/legacy/common/507-explore/SKILL.md",
       "sourceSha256": "bc7782980273c5a26d9a5fa413c385cc26850441917635a0d4b24d150be509f3",
       "targets": [
         "lib/methods/evidence.md",
@@ -358,10 +358,10 @@
         "冲突核全部文件与双方意图，保合理改动，真实业务分歧回用户。",
         "临时插桩标记与敏感输出清理；稳定行为/回归/原因证据分别进规格/测试/doc，独立review与Git动作另立。"
       ],
-      "source": "code/507-fix/SKILL.md",
+      "source": "archive/legacy/code/507-fix/SKILL.md",
       "sourceSha256": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a",
       "targets": [
-        "next/skills/507-do/references/debugging.md",
+        "skills/507-do/references/debugging.md",
         "lib/methods/engineering-evidence.md"
       ],
       "verification": "旧首次与原独审按原身份保留；本次合并的结构检查与独审另记，不继承自然任务采用或业务效果结论。"
@@ -395,10 +395,10 @@
         "标题机制差异/证据/兑现位置一起生成；承诺资源须真实可访问且可用；使用量/效果/第三方好评不互推",
         "实践真实因果链与图像证据位置；不同状态图不冒充时间迭代"
       ],
-      "source": "write/507-forge/SKILL.md",
+      "source": "archive/legacy/write/507-forge/SKILL.md",
       "sourceSha256": "a1dc986ad1d93e19fa15e98d7410eaa90d65507307721844984a980f829ffe57",
       "targets": [
-        "next/skills/507-create/SKILL.md",
+        "skills/507-create/SKILL.md",
         "lib/methods/explanation-progression.md",
         "lib/methods/title-promises.md",
         "lib/components/check_prose.py",
@@ -432,11 +432,11 @@
         "候选以题目/中心判断/受众入口/材料组合/论证推进/暂不采用解释/作品上限表达；仅需要候选池时保持候选而不顺带写全文",
         "传播目标明确时标题候选、真实点击理由、证据与正文兑现位置一起返回"
       ],
-      "source": "write/507-fuse/SKILL.md",
+      "source": "archive/legacy/write/507-fuse/SKILL.md",
       "sourceSha256": "b5e71b3f10faa349ecc5dff88f7da997d8c78b708448b2bc3ebc96ae836a07e2",
       "targets": [
-        "next/skills/507-create/SKILL.md",
-        "next/skills/507-create/references/authorship.md"
+        "skills/507-create/SKILL.md",
+        "skills/507-create/references/authorship.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -472,11 +472,11 @@
         "命令成功后独立读回每引用/版本/Release，分支成功不代其它渠道；多行文字文件提交。",
         "失败先外部对账，只瞬时/不变/安全可重复/无冲突最多重试一次；未知/身份变化/冲突停止，不强推覆tag或自撤已成外部动作。"
       ],
-      "source": "code/507-git/SKILL.md",
+      "source": "archive/legacy/code/507-git/SKILL.md",
       "sourceSha256": "fc1a598d8f4344d619cc58eb6072e09d258cdc751af16f9fdab7e766bd36f6fb",
       "targets": [
-        "next/skills/507-deliver/SKILL.md",
-        "next/skills/507-deliver/references/actions.md"
+        "skills/507-deliver/SKILL.md",
+        "skills/507-deliver/references/actions.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -510,10 +510,10 @@
         "依赖先前提、独立题可按工具支持批收，答后重算必要性；采用条件：真实问题依赖时，不提前问被阻塞分支",
         "冲突和持久化回最近当前权威，授权不因归宿扩大；采用条件：只有需要保存且已有该写入授权"
       ],
-      "source": "common/507-grill/SKILL.md",
+      "source": "archive/legacy/common/507-grill/SKILL.md",
       "sourceSha256": "ad0519061f1ebbdb926405f641e93c6965b0ef2501c1233065c01806f88ac1b2",
       "targets": [
-        "next/skills/507-what/SKILL.md",
+        "skills/507-what/SKILL.md",
         "lib/methods/question-frontier.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
@@ -559,7 +559,7 @@
         "目标、决定、产物、实际位置、Git脏状态、验证、有效失败/排除、剩余依赖与下一人；采用条件：只有接续必要信息，按实际任务裁剪",
         "接手先核当前权威和较新用户修订，不从摘要补权限；采用条件：实际续办时，写权明确交回"
       ],
-      "source": "common/507-handoff/SKILL.md",
+      "source": "archive/legacy/common/507-handoff/SKILL.md",
       "sourceSha256": "882a825c5314c4dacad2b3cc9300ad8596ad1eba67d65ec3f6c31e120ccdefa8",
       "targets": [
         "lib/methods/continuation.md"
@@ -588,8 +588,8 @@
       "source": "doc/90-归档/技能/507-implement/SKILL.md",
       "sourceSha256": "8d5a4790a1563125e0a10544af07e87d51ff4b23ed0c532b513c7ade86aee994",
       "targets": [
-        "next/skills/507-do/SKILL.md",
-        "next/skills/507-do/references/testing.md"
+        "skills/507-do/SKILL.md",
+        "skills/507-do/references/testing.md"
       ],
       "verification": "本次源码、包闭包及独审另记；原首次、反馈与旧独审不重归类。"
     },
@@ -627,7 +627,7 @@
         "只调查请求报告完成就停止；原目标有授权实施则回交完整报告逐项建立基线，修改/关闭/行为变化路由。",
         "候选并非缺陷，改变公开API/契约/产品行为归需求实施；不能把inspect变review或直接写入口。"
       ],
-      "source": "code/507-inspect/SKILL.md",
+      "source": "archive/legacy/code/507-inspect/SKILL.md",
       "sourceSha256": "68572b2dd30670b90941613e632542a4ce21268335bfb5a405b609581b733939",
       "targets": [
         "lib/methods/architecture-candidates.md"
@@ -666,10 +666,10 @@
         "发现问题、建单、评论、分派、关闭分别核权限；部分失败保留真实对象与待补，不重建或改权限凑完成。",
         "ready证据/决定失效退调查；只记录请求可停相应状态，父任务已授权实施时返回继续。"
       ],
-      "source": "code/507-issue/SKILL.md",
+      "source": "archive/legacy/code/507-issue/SKILL.md",
       "sourceSha256": "57211638c990fb6cc7f3683ff54029498f267f00501df75ef63e9ac65ad6b394",
       "targets": [
-        "next/skills/507-issue/SKILL.md"
+        "skills/507-issue/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -695,11 +695,11 @@
         "沿真实库约定新建补充去重互链并读回，标签不自动证明关系",
         "与主题页维护结合的受影响索引/图谱更新与链接一致性"
       ],
-      "source": "write/507-mine/SKILL.md",
+      "source": "archive/legacy/write/507-mine/SKILL.md",
       "sourceSha256": "e57d9af100ebd51e33fdbeb043a7beaaf3a3ee880aad118505ccc48c39c4dd46",
       "targets": [
-        "next/skills/507-material/SKILL.md",
-        "next/skills/507-material/references/material-units.md"
+        "skills/507-material/SKILL.md",
+        "skills/507-material/references/material-units.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -726,7 +726,7 @@
         "语义关系×设计语言×呈现的分离、类型不能渲染器互换、真实目标原型、中文不可拆语义短语、最终截图而非zero issues",
         "真实PPTX原生文字/图表/表格/备注编辑验收与来源，目标工具缺失保持未完成"
       ],
-      "source": "write/507-ppt/SKILL.md",
+      "source": "archive/legacy/write/507-ppt/SKILL.md",
       "sourceSha256": "1ffc1592b8418fa7d4c258ab49954466bbe3b146fa8b33eb3cf39b2d2282c535",
       "targets": [
         "lib/methods/artifact-contract.md",
@@ -764,10 +764,10 @@
         "只规格请求止于规格，父任务已授权实施则返回继续；远程工单回链按对应授权。",
         "关键行为未知不伪定稿；没有TODO/TBD/空章伪装充分，先保原权威并继续明确部分。"
       ],
-      "source": "code/507-prd/SKILL.md",
+      "source": "archive/legacy/code/507-prd/SKILL.md",
       "sourceSha256": "77d3a0153efb35692ac52b94fecbdc2d7241d960f1172dff650bd1790417863d",
       "targets": [
-        "next/skills/507-spec/SKILL.md"
+        "skills/507-spec/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -794,7 +794,7 @@
         "作者/Agent/第三方身份、推进许可不是命题认可、引语与转述边界",
         "连续叙述任务；稳定上下文最高增益两三个独立缺口；依赖/矛盾/敏感才逐题；先具体后抽象；一般判断至少尝试反例；内部覆盖快照与会话材料交接"
       ],
-      "source": "write/507-prospect/SKILL.md",
+      "source": "archive/legacy/write/507-prospect/SKILL.md",
       "sourceSha256": "0cb3e78bc5e7be46d20e41f5be440529d52e135bcd9449a243348cdd42dc698e",
       "targets": [
         "lib/methods/author-interview.md"
@@ -833,7 +833,7 @@
         "先保全观察与结论，再删除外壳/经重写吸收/登记暂留条件和清理责任；临时壳不自动升生产。",
         "证据回交调用问题；正式实现重新设计、测试和审查，原型运行不能冒充生产交付。"
       ],
-      "source": "code/507-prototype/SKILL.md",
+      "source": "archive/legacy/code/507-prototype/SKILL.md",
       "sourceSha256": "e350a1445d8dc721abadd60f6d049dfa7040de579c7f37a68a3f323553ac34f2",
       "targets": [
         "lib/methods/probe-lifecycle.md"
@@ -864,7 +864,7 @@
         "语义组件/整体语言/局部呈现分离；字体度量影响真实换行，固定物理页是最终阅读切片；必要图/表/代码不得切失可读内容",
         "输出图片目标必须由真实图像/页面导出工具完成；LivePhoto/公众号封面对保留明确按需适配与失败边界"
       ],
-      "source": "write/507-rednote/SKILL.md",
+      "source": "archive/legacy/write/507-rednote/SKILL.md",
       "sourceSha256": "a95065cdacfa969aad6bb2b8a2ba3f2220ff305bda9b96b490320043f2cc9ab4",
       "targets": [
         "lib/methods/artifact-contract.md",
@@ -892,7 +892,7 @@
         "作者主线/来源身份/真实目标/关键事实/制作内容分工仅有一般边界",
         "抽象可迁移手法、来源冲突处理、明确不复制逐句主题/身份/品牌/独特画面、原创叙事任务→分镜/风格/工具无关蓝图、制作交接缺口"
       ],
-      "source": "write/507-remix/SKILL.md",
+      "source": "archive/legacy/write/507-remix/SKILL.md",
       "sourceSha256": "498ba81fd22093062d345314906024760938b92c518ff8c35b3446f309ca0c78",
       "targets": [
         "lib/methods/media-study.md"
@@ -926,7 +926,7 @@
         "取证失败仍交已成立部分、待核与影响，不用摘要补引用；采用条件：访问、搜索、额度或原件缺失",
         "传播借鉴交标题点击理由、正文兑现、效果证据及迁移条件；采用条件：只有当前目标包含传播/涨粉/业务增长"
       ],
-      "source": "common/507-research/SKILL.md",
+      "source": "archive/legacy/common/507-research/SKILL.md",
       "sourceSha256": "4499a53dec2c8dabff1537bd19113bc5efef161a2d405978b1c70a8862899b46",
       "targets": [
         "lib/methods/external-research.md",
@@ -965,10 +965,10 @@
         "已有检查核副作用和许可，新旧违规/例外/未覆盖分别，不因补证扩权或刷新基线。",
         "结论绑定实际版本/差异与未覆盖，修正后另一执行者复核相关变化；无阻塞不声称业务接受/发布。"
       ],
-      "source": "code/507-review/SKILL.md",
+      "source": "archive/legacy/code/507-review/SKILL.md",
       "sourceSha256": "3e986f852afc0ed073bf9001a39bb950503f49b3814814909addc839c0b0f95c",
       "targets": [
-        "next/skills/507-review/SKILL.md"
+        "skills/507-review/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -1007,12 +1007,12 @@
         "已有工程检查核实际策略/纳管/新旧违规/例外/未覆盖；缺必要机制交工程建设，不用文字或零源码绿灯冒充保障。",
         "走查要求→共用规则→实现→验证路径；巡检、迁移、实现可用、人工接受、提交发布分别成立。"
       ],
-      "source": "code/507-setup/SKILL.md",
+      "source": "archive/legacy/code/507-setup/SKILL.md",
       "sourceSha256": "2733198dc801fde5ebafd0769d9a3af0d620a2d720372aed257719b554046bec",
       "targets": [
-        "next/skills/507-setup/references/project-foundation.md",
-        "next/skills/507-setup/references/project-navigation.md",
-        "next/skills/507-setup/SKILL.md"
+        "skills/507-setup/references/project-foundation.md",
+        "skills/507-setup/references/project-navigation.md",
+        "skills/507-setup/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -1049,11 +1049,11 @@
         "原基线信号与受影响调用者/失败路径回归，适用检查新旧违规分别，不刷新基线/删覆盖/改断言遮失败。",
         "完整输入逐项结果与未覆盖交回，必要地图同步，独立review另立结果。"
       ],
-      "source": "code/507-simplify/SKILL.md",
+      "source": "archive/legacy/code/507-simplify/SKILL.md",
       "sourceSha256": "c0d66d7fbc22e6608bb8f9875fe56b4bf72ec1ee706908eae62674f1b6548110",
       "targets": [
         "lib/methods/behavior-preserving-change.md",
-        "next/skills/507-do/SKILL.md"
+        "skills/507-do/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -1079,10 +1079,10 @@
         "入口保留最低合同，按条件读参考，单包携完整普通资源；采用条件：创建或改结构时",
         "源与消费者同步、身份/链接/闭包/实际行为回放分层核验；采用条件：触发、权限、产物或资源变化时"
       ],
-      "source": "common/507-skill/SKILL.md",
+      "source": "archive/legacy/common/507-skill/SKILL.md",
       "sourceSha256": "18fe2c3624552fb4454d4acf7a46f56064f4d7576f01d2e1dfe9c9bec12f2406",
       "targets": [
-        "next/skills/skill-design/SKILL.md",
+        "skills/skill-design/SKILL.md",
         "lib/components/library_view.py"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
@@ -1116,7 +1116,7 @@
         "需要归因时控制其它条件，只改当前变量；无新信息返回前提；采用条件：收敛比较或连续失败",
         "结果绑定观点前提、候选版本与实际检查；偏好变化复核依赖；采用条件：需要续用方向记录"
       ],
-      "source": "common/507-taste/SKILL.md",
+      "source": "archive/legacy/common/507-taste/SKILL.md",
       "sourceSha256": "7cc68b1864ed8a6d5c7822343ab3ccc0d0ad5d586b7c81742818d39bd4edb9f5",
       "targets": [
         "lib/methods/visual-direction.md",
@@ -1155,10 +1155,10 @@
         "只测试有效RED后停止不进入GREEN；普通实施不自动TDD，修已知故障用根因方法。",
         "必要检查后新变化/失败/具体疑点才扩大，证据绑定版本/环境，独立review另立结果。"
       ],
-      "source": "code/507-test/SKILL.md",
+      "source": "archive/legacy/code/507-test/SKILL.md",
       "sourceSha256": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5",
       "targets": [
-        "next/skills/507-do/references/testing.md"
+        "skills/507-do/references/testing.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -1198,7 +1198,7 @@
         "实际目标环境渲染并操作关键路径；源码/DOM/构建/截图不代完整使用，自动与视觉证据分开。",
         "范围内规格/设计与运行记录同步，产品行为/权限/数据变动独立review；adapt采用共有交互不扩工程或业务权限。"
       ],
-      "source": "code/507-ui/SKILL.md",
+      "source": "archive/legacy/code/507-ui/SKILL.md",
       "sourceSha256": "06c751c58610c08a5ab6ac289fc7507619b2bf6fb2b3997ce8349ebd5f72c920",
       "targets": [
         "lib/methods/interaction.md",
@@ -1235,7 +1235,7 @@
         "现有项目原位状态、素材角色与真实元数据、主时间及版本失效、当前可播放预览/审片、最小重跑/保留母版、全片音画与真实规格回执",
         "产品真实功能→允许主张/安全状态/设计令牌→styleframe→功能镜头映射→分镜后真实采集→音乐条件→独立关键帧终检"
       ],
-      "source": "write/507-video/SKILL.md",
+      "source": "archive/legacy/write/507-video/SKILL.md",
       "sourceSha256": "55fcb0f9513e1091db3f2d8e6c08600682a61107c5c193b4d0e53fd54870c0bc",
       "targets": [
         "lib/methods/media-production.md",
@@ -1271,12 +1271,12 @@
         "单内容维护源，多视角仅派生；选择返回恢复与真实操作一致；采用条件：交互工具或阅读站",
         "语义和操作分别验收；无映射/未知/空结果分别表达；采用条件：理解工具交付，不能用截图或节点存在代替操作"
       ],
-      "source": "common/507-visualize/SKILL.md",
+      "source": "archive/legacy/common/507-visualize/SKILL.md",
       "sourceSha256": "09f4cb86602bd7f8371c99d1faf88d4688765a7f6ded1fa69df31a1fc581e4de",
       "targets": [
         "lib/methods/visual-understanding.md",
         "lib/methods/clear-expression.md",
-        "next/skills/507-visualize/SKILL.md"
+        "skills/507-visualize/SKILL.md"
       ],
       "verification": "原方法保留；同名次要入口的结构与试用结果见当前进度，不能由名称恢复推断旧版所有载体已验证。"
     },
@@ -1303,7 +1303,7 @@
         "声源身份/用途授权、短试听、实时兼容/终态、最终音频主时间、段级manifest/哈希与未覆盖听感",
         "既有voicebox_narrate.py可独立保全为本地组件，保持标准库/FFmpeg/Voicebox与当前服务实际contract，不新建wrapper/MCP"
       ],
-      "source": "write/507-voiceover/SKILL.md",
+      "source": "archive/legacy/write/507-voiceover/SKILL.md",
       "sourceSha256": "684def2f97612c2902a3b62978fad0f65799655b52526a8fa2752568b35d2a8d",
       "targets": [
         "lib/methods/media-production.md",
@@ -1334,9 +1334,9 @@
       "source": "doc/90-归档/技能/507-work-update/SKILL.md",
       "sourceSha256": "8d3ce8e08c26d769d978e6da057728b5f55042af09010cc65a8086906ab6e7e0",
       "targets": [
-        "next/skills/507-work/SKILL.md",
-        "next/skills/507-work/references/process.md",
-        "next/skills/507-work/references/state-views.md"
+        "skills/507-work/SKILL.md",
+        "skills/507-work/references/process.md",
+        "skills/507-work/references/state-views.md"
       ],
       "verification": "原包、首次及旧独审保留原身份；本次源码、包检查与独审另记，不继承自然任务采用结论。"
     }

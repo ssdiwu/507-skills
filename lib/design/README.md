@@ -12,7 +12,7 @@
 | [containers-and-motion.md](containers-and-motion.md) | 容器、层次与动效关系 |
 | [interaction-detail.md](interaction-detail.md) | 操作、反馈及交互细节 |
 
-具体消费者和携带范围见[packages](../../next/packages.json)。只按当前任务使用相关提示，不能由随包存在推断已执行或已验证。
+具体消费者和携带范围见[packages](../../packages.json)。只按当前任务使用相关提示，不能由随包存在推断已执行或已验证。
 
 ## 模式与来源资料
 

@@ -23,4 +23,4 @@
 进入制作或实现时，承接已选版本、保留与排除项及必要参数，优先沿用选定组件或同一实现机制。必须换实现时核对差异，只把实质影响原选择的取舍交回用户；在最终载体或产品中核对已选效果及本次相关操作，预览相似不代替兑现。只请求方案时停在方案，选择效果不自动授权实施或发布。
 
 
-来源：common/507-taste/SKILL.md 第18至142行；当前 lib/design/artifact-prompts.md 第5至7行已承接少量方向比较原则。
+来源：archive/legacy/common/507-taste/SKILL.md 第18至142行；当前 lib/design/artifact-prompts.md 第5至7行已承接少量方向比较原则。

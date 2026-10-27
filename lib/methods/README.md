@@ -33,6 +33,6 @@
 | [交互点、关系与证据](interaction-map.md) | 507-product-map, 507-how, 507-spec, 507-review |
 | [持续工作的记录与读回](work-records.md) | skill-design, 507-what, 507-why, 507-how, 507-plan, 507-do, 507-clean, 507-create, 507-adapt, 507-work, 507-setup, 507-spec, 507-coordinate, 507-issue, 507-deliver, 507-retro, 507-material |
 
-主入口说明何时读取和读后做什么；这里集中维护方法正文，随包副本按[清单](../../next/packages.json)生成。方法共享不要求每个任务通读整套资料。
+主入口说明何时读取和读后做什么；这里集中维护方法正文，随包副本按[清单](../../packages.json)生成。方法共享不要求每个任务通读整套资料。
 
-项目依据与项目导航仅由setup消费，现分别在其包内维护[项目依据](../../next/skills/507-setup/references/project-foundation.md)与[项目导航](../../next/skills/507-setup/references/project-navigation.md)，不再参与共有副本生成。
+项目依据与项目导航仅由setup消费，现分别在其包内维护[项目依据](../../skills/507-setup/references/project-foundation.md)与[项目导航](../../skills/507-setup/references/project-navigation.md)，不再参与共有副本生成。

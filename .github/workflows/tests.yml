@@ -22,9 +22,9 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-test.txt
       - name: Check current skill packages
-        run: python next/scripts/package_skills.py check
+        run: python scripts/package_skills.py check
       - name: Run current skill package regressions
-        run: python -m unittest discover -s next/tests -v
+        run: python -m unittest discover -s tests -v
       - name: Run shared component regressions
         run: python -m unittest discover -s lib/components/tests -v
       - name: Install officecli for PPTX readback and generation
@@ -56,8 +56,8 @@ jobs:
           fc-match 'PingFang SC' > "$RUNNER_TEMP/pptx-diagnostics/font-match.txt"
           dpkg-query --show --showformat='${Version}\n' fonts-noto-cjk > "$RUNNER_TEMP/pptx-diagnostics/font-package-version.txt"
           google-chrome --version > "$RUNNER_TEMP/pptx-diagnostics/browser.txt"
-          sha256sum write/507-ppt/examples/system-prototypes/candidate-a-swiss.pptx > "$RUNNER_TEMP/pptx-diagnostics/artifact-sha256.txt"
-          officecli view write/507-ppt/examples/system-prototypes/candidate-a-swiss.pptx screenshot \
+          sha256sum archive/legacy/write/507-ppt/examples/system-prototypes/candidate-a-swiss.pptx > "$RUNNER_TEMP/pptx-diagnostics/artifact-sha256.txt"
+          officecli view archive/legacy/write/507-ppt/examples/system-prototypes/candidate-a-swiss.pptx screenshot \
             --start 1 --end 1 -o "$RUNNER_TEMP/pptx-diagnostics/cover.png"
       - name: Retain PPTX renderer environment evidence
         if: always()

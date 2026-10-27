@@ -104,7 +104,7 @@ def project(root, packages_path, catalog_path, disposition_path):
         if not isinstance(pending, dict) or any(not isinstance(pending.get(k), str) or not pending[k] for k in ['id', 'kind', 'title', 'scope', 'status']):
             raise ValueError('invalid pending capability fields')
     rows = decisions['legacy']
-    observed = {p.parent.name for group in ('common', 'code', 'write') for p in (root / group).glob('*/SKILL.md')}
+    observed = {p.parent.name for group in ('common', 'code', 'write') for p in (root / 'archive/legacy' / group).glob('*/SKILL.md')}
     if len(rows) != len(observed) or {r['id'] for r in rows} != observed:
         raise ValueError('legacy decisions must cover the exact source inventory')
     retired = decisions.get('retired', [])
@@ -124,7 +124,7 @@ def project(root, packages_path, catalog_path, disposition_path):
             raise ValueError('archived contract name differs from retired identity')
     rows = rows + retired
     for row in rows:
-        if row not in retired and (row.get('group') not in ('common', 'code', 'write') or row.get('source') != row['group'] + '/' + row['id'] + '/SKILL.md'):
+        if row not in retired and (row.get('group') not in ('common', 'code', 'write') or row.get('source') != 'archive/legacy/' + row['group'] + '/' + row['id'] + '/SKILL.md'):
             raise ValueError('legacy source must match identity and group')
         for key in ['targets', 'consumers', 'retained', 'dropped']:
             if not isinstance(row.get(key), list):
@@ -155,7 +155,7 @@ def project(root, packages_path, catalog_path, disposition_path):
                 raise ValueError('unknown current consumer: ' + consumer)
         if row['decision'] != 'drop' and (not row['retained'] or not row['targets'] or not row['consumers']):
             raise ValueError('retained capability lacks a current consumer')
-    package_files = {entry['name'] + '/' + f['path'].removeprefix('next/skills/' + entry['name'] + '/'): f['sha256'] for entry in rendered for f in entry['files']}
+    package_files = {entry['name'] + '/' + f['path'].removeprefix('skills/' + entry['name'] + '/'): f['sha256'] for entry in rendered for f in entry['files']}
     package_fingerprint = sha(json.dumps(package_files, sort_keys=True, separators=(',', ':')).encode())
     return {'packageFingerprint': package_fingerprint, 'schema': 1, 'date': decisions['date'], 'status': 'SOURCE_PROJECTED',
             'inputHashes': {'packages': ph, 'catalog': ch, 'dispositions': dh},

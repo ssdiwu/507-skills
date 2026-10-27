@@ -48,4 +48,4 @@
 交付可用入口、当前内容版本、必要编辑源、验证与未覆盖。真实理解、主观接受、其他设备、集成、安装和发布分别凭反馈或回执成立。缺工具时用合同允许的替代或交可用内容与具体依赖；失败保留原可用版，不以演示替代正式能力。
 
 
-来源：common/507-visualize/SKILL.md 全文及两份 references 全文。
+来源：archive/legacy/common/507-visualize/SKILL.md 全文及两份 references 全文。

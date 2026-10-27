@@ -7,10 +7,10 @@ import hashlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = Path("common/references/review-evidence.md")
+SOURCE = Path("archive/legacy/common/references/review-evidence.md")
 TARGETS = (
-    Path("code/507-review/references/evidence.md"),
-    Path("code/507-inspect/references/evidence.md"),
+    Path("archive/legacy/code/507-review/references/evidence.md"),
+    Path("archive/legacy/code/507-inspect/references/evidence.md"),
 )
 
 

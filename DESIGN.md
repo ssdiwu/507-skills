@@ -27,15 +27,15 @@
 
 ## 历史专项产物的设计依据
 
-以下链接用于对应旧版专项产物的设计追溯，保留其原范围；当前技能与工具选择以[现行入口](next/README.md)为准。
+以下链接用于对应旧版专项产物的设计追溯，保留其原范围；当前技能与工具选择以[现行入口](skills/README.md)为准。
 
 | 对象 | 独立设计与行为依据 |
 | --- | --- |
-| 视觉幻灯片 | [PPT 三轴设计系统](write/507-ppt/references/design-system.md) |
-| 小红书图文与本地工作台 | [现行产品规格](spec/507-rednote.md)、[视觉表达](write/507-rednote/references/styles.md) |
-| 产品界面交付 | [507-ui](code/507-ui/SKILL.md)；实际项目的 DESIGN 与规格继续作为权威 |
-| 视频制作 | [制作合同](write/507-video/references/production-contract.md)及对应作品已确认的视觉／声音依据 |
-| 可视化理解与比较 | [507-visualize](common/507-visualize/SKILL.md)及其[载体检查](common/507-visualize/references/delivery-and-checks.md) |
+| 视觉幻灯片 | [PPT 三轴设计系统](archive/legacy/write/507-ppt/references/design-system.md) |
+| 小红书图文与本地工作台 | [现行产品规格](spec/507-rednote.md)、[视觉表达](archive/legacy/write/507-rednote/references/styles.md) |
+| 产品界面交付 | [507-ui](archive/legacy/code/507-ui/SKILL.md)；实际项目的 DESIGN 与规格继续作为权威 |
+| 视频制作 | [制作合同](archive/legacy/write/507-video/references/production-contract.md)及对应作品已确认的视觉／声音依据 |
+| 可视化理解与比较 | [507-visualize](archive/legacy/common/507-visualize/SKILL.md)及其[载体检查](archive/legacy/common/507-visualize/references/delivery-and-checks.md) |
 
 共用设计不把 PPT、图文、视频与产品 UI 统一成一套配色、组件或数值。修订阅读体验时同步受影响的导航和具体规格，验证真实阅读动作；文档完成不证明呈现已经实现。
 

@@ -1,6 +1,6 @@
 # 执行脚本与工具说明
 
-本目录同时包含可运行脚本和配套说明，分开列示。当前共有执行脚本为 **10 个**；准确消费者见[catalog](../catalog.json)，随包路径见[packages](../../next/packages.json)。
+本目录同时包含可运行脚本和配套说明，分开列示。当前共有执行脚本为 **10 个**；准确消费者见[catalog](../catalog.json)，随包路径见[packages](../../packages.json)。
 
 ## 执行脚本
 

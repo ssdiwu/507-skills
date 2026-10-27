@@ -10,7 +10,7 @@ node_modules/
 !.env.example
 
 # Immutable local candidates; source packages and checks remain versioned
-/next/dist/
+/dist/
 
 # Local host session state
 /.mimosa/
