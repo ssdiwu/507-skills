@@ -1,6 +1,6 @@
 # 共有方法
 
-本目录的 28 份方法按条件提供判断与工作做法，没有独立技能入口。消费者与采用条件以[资源登记](../catalog.json)为准；专用方法留在各技能包内。脚本和工具说明见[components](../components/README.md)，设计参考见[design](../design/README.md)。
+本目录的 29 份方法按条件提供判断与工作做法，没有独立技能入口。消费者与采用条件以[资源登记](../catalog.json)为准；专用方法留在各技能包内。脚本和工具说明见[components](../components/README.md)，设计参考见[design](../design/README.md)。
 
 | 方法 | 当前使用者 |
 | --- | --- |
@@ -32,6 +32,7 @@
 | [旧技能引用与当前职责](skill-entry-resolution.md) | skill-design, 507-setup, 507-deliver, 507-coordinate |
 | [交互点、关系与证据](interaction-map.md) | 507-product-map, 507-how, 507-spec, 507-review |
 | [持续工作的记录与读回](work-records.md) | skill-design, 507-what, 507-why, 507-how, 507-plan, 507-do, 507-clean, 507-create, 507-adapt, 507-work, 507-setup, 507-spec, 507-coordinate, 507-issue, 507-deliver, 507-retro, 507-material |
+| [提示与指令审计](prompt-instruction-audit.md) | skill-design, 507-setup, 507-review |
 
 主入口说明何时读取和读后做什么；这里集中维护方法正文，随包副本按[清单](../../packages.json)生成。方法共享不要求每个任务通读整套资料。
 

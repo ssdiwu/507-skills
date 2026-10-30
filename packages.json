@@ -61,6 +61,10 @@
         {
           "source": "lib/methods/work-records.md",
           "target": "references/shared/work-records.md"
+        },
+        {
+          "source": "lib/methods/prompt-instruction-audit.md",
+          "target": "references/shared/prompt-instruction-audit.md"
         }
       ],
       "files": [
@@ -650,6 +654,10 @@
         {
           "source": "lib/methods/author-and-source.md",
           "target": "references/shared/author-and-source.md"
+        },
+        {
+          "source": "lib/methods/prompt-instruction-audit.md",
+          "target": "references/shared/prompt-instruction-audit.md"
         }
       ],
       "role": "secondary"
@@ -1038,6 +1046,10 @@
         {
           "source": "lib/methods/work-records.md",
           "target": "references/shared/work-records.md"
+        },
+        {
+          "source": "lib/methods/prompt-instruction-audit.md",
+          "target": "references/shared/prompt-instruction-audit.md"
         }
       ]
     },

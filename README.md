@@ -16,8 +16,8 @@
 | 完成创作、成文或局部修改 | [507-create](skills/507-create/SKILL.md) |
 | 将成熟内容适配目标受众、场景与载体 | [507-adapt](skills/507-adapt/SKILL.md) |
 | 发现、整理和推进已有工作，或局部更新事项 | [507-work](skills/507-work/SKILL.md) |
-| 建立、迁移或整理项目依据与导航 | [507-setup](skills/507-setup/SKILL.md) |
-| 设计或维护技能体系 | [skill-design](skills/skill-design/SKILL.md) |
+| 建立项目依据、审计工作指令或维护导航 | [507-setup](skills/507-setup/SKILL.md) |
+| 设计、维护技能或审计技能指令 | [skill-design](skills/skill-design/SKILL.md) |
 | 实施、修复、写作、适配、审查及其他清楚工作 | [20 个入口与职责](skills/README.md) |
 
 ```mermaid

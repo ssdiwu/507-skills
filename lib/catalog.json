@@ -1022,6 +1022,28 @@
         }
       ],
       "relatedAtomIds": []
+    },
+    {
+      "id": "prompt-instruction-audit",
+      "title": "提示与指令审计",
+      "source": "lib/methods/prompt-instruction-audit.md",
+      "consumers": [
+        {
+          "skillId": "skill-design",
+          "when": "指定审计技能的提示、触发、条件读取、冲突或模型适用性时，核维护源、消费者和生效证据；只读交建议，授权演进完成修订与验证。"
+        },
+        {
+          "skillId": "507-setup",
+          "when": "指定审计工作指令、提示或规则时，核失效、冲突、作用域与实际加载；只读交报告和建议差异，局部导航不扩大为审计。"
+        },
+        {
+          "skillId": "507-review",
+          "when": "独立审查指定提示、工作规则或技能指令及其修订时，核来源、生效、冲突与模型证据；只读不应用修改。"
+        }
+      ],
+      "relatedAtomIds": [],
+      "lineageMeaning": "从既有提示词审计与当前一手资料提炼；宿主机制与实际模型分别核验，不继承上游默认范围、删除或写入许可。",
+      "legacySourceSkills": []
     }
   ],
   "components": [
