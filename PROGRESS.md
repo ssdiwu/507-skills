@@ -2,7 +2,7 @@
 
 ## 当前版本
 
-已发布基线为 [v0.3.1](https://github.com/ssdiwu/507-skills/tree/v0.3.1)。版本变化见 [CHANGELOG](CHANGELOG.md)，具体能力以当前技能主文与精确清单为准。
+当前版本为 [v0.3.2](https://github.com/ssdiwu/507-skills/tree/v0.3.2)，按 Git 标签交付；GitHub Release 发布页另行按授权处理。版本变化见 [CHANGELOG](CHANGELOG.md)，具体能力以当前技能主文与精确清单为准。
 
 ## 现行目录
 
@@ -14,9 +14,9 @@
 
 ## 提示与指令审计增量
 
-新增[提示与指令审计共有方法](lib/methods/prompt-instruction-audit.md)，由 setup、skill-design、review 按范围采用，保持20个技能入口。方法区分当前来源、生效关系、文本冲突与目标模型证据；Claude Code 与 Codex 的机制差异见[来源说明](doc/20-能力参考/prompt-audit/README.md)。源码、包检查和构建、有限场景验证及独立审查已完成；限定范围未发现剩余阻塞问题，结果与首轮偏差见[实施与验证](doc/20-能力参考/prompt-audit/2026-10-30/README.md)。真实宿主加载、自然采用和长期收益尚未验证；本轮未提交或推送。
+新增[提示与指令审计共有方法](lib/methods/prompt-instruction-audit.md)，由 setup、skill-design、review 按范围采用，保持20个技能入口。方法区分当前来源、生效关系、文本冲突与目标模型证据；Claude Code 与 Codex 的机制差异见[来源说明](doc/20-能力参考/prompt-audit/README.md)。源码、包检查和构建、有限场景验证及独立审查已完成；限定范围未发现剩余阻塞问题，结果与首轮偏差见[实施与验证](doc/20-能力参考/prompt-audit/2026-10-30/README.md)。审计方法本身的原生自动发现、自然采用和长期收益尚未验证；源码版本以本页当前版本为准。
 
-后续实际只读审计确认的旧角色残留与阶段总述两项高置信表述问题已局部修订，必要副本、包与引用检查及独立复核完成；历史证据保留，见[修订记录](doc/20-能力参考/prompt-audit/2026-10-30/high-confidence-fixes.md)。HyperFrames 待核项不在本次修订范围，仍按只读检查另行判断。
+后续实际只读审计确认的旧角色残留与阶段总述两项高置信表述问题已局部修订，必要副本、包与引用检查及独立复核完成；历史证据保留，见[修订记录](doc/20-能力参考/prompt-audit/2026-10-30/high-confidence-fixes.md)。HyperFrames 经后续只读检查及4个 Codex 原生隔离媒体样例，未确认需要修订的问题，技能与正式媒体方法保持不变。3个已有 FFmpeg 工程保留原引擎，1个新素材任务在未提供 HyperFrames 技能时完成；其中1例实际探测到 HyperFrames 命令缺失后继续完成。该结果只覆盖单次简单媒体任务的技能与工具选择，不替代审计方法的原生触发、完整技能遵循、复杂成片或长期稳定性验证；Claude Code 按用户决定暂缓。
 
 ## 当前源码与试用状态
 
