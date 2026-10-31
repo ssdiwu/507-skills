@@ -1,0 +1,4 @@
+interface:
+  display_name: "界面演示"
+  short_description: "把已有产品与关键动作做成静态功能卡片或界面短动画，并检查实际展示结果。"
+  default_prompt: "使用 $507-demo 制作当前产品的界面展示，沿用已确认内容与尺寸，交付可编辑场景、目标文件和实际检查结果。"

@@ -1,0 +1,127 @@
+.rf .ss-stage {
+  overflow: hidden;
+  background: var(--ss-well);
+}
+
+/* Pinned top and sides, off the bottom */
+.rf-win {
+  position: absolute;
+  top: 28px;
+  left: 60px;
+  width: 440px;
+  height: 420px;
+}
+
+.rf-card {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  height: 100%;
+  padding: 28px 40px;
+  background: var(--ss-surface);
+}
+
+.rf-title {
+  margin-bottom: 14px;
+  color: var(--ss-text-strong);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.rf-group {
+  display: grid;
+  gap: 6px;
+}
+
+/* One line, always there, so the error never moves the form */
+.rf-lane {
+  height: 18px;
+}
+
+.rf-msg {
+  color: var(--ss-text);
+  font-size: 11px;
+}
+
+.rf-msg--error {
+  color: var(--ss-danger-text, var(--ss-danger));
+}
+
+.rf-button {
+  display: grid;
+  place-items: center;
+  height: 38px;
+  margin-top: 6px;
+  border-radius: 8px;
+  background: var(--ss-accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.rf-button[data-done] {
+  background: var(--ss-success);
+}
+
+/* Layers in one cell, crossfading in place */
+.rf-button {
+  grid-template-areas: 'stack';
+}
+
+.rf-layer {
+  grid-area: stack;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+  text-box: trim-both cap alphabetic;
+}
+
+.rf-layer[data-on] {
+  opacity: 1;
+  filter: none;
+  transition-delay: 0.08s;
+}
+
+.rf-labels {
+  display: grid;
+  justify-items: start;
+}
+
+.rf-label {
+  grid-area: 1 / 1;
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.rf-label[data-on] {
+  opacity: 1;
+  filter: none;
+  transition-delay: 0.08s;
+}
+
+.rf-button .ss-check__ring { stroke: rgb(255 255 255 / 0.45); }
+.rf-button .ss-check__arc { stroke: #fff; }
+.rf-button .ss-check__fill { fill: #fff; }
+.rf-button .ss-check__tick { stroke: var(--ss-success); }
+
+/* Narrow: a gutter each side */
+.rf .ss-stage[data-layout='compact'] .rf-win {
+  left: 16px;
+  width: 326px;
+}
+
+.rf .ss-stage[data-layout='compact'] .rf-card {
+  padding: 24px 22px;
+}
+
+/* The label trimmed to cap height, so the Check centers on the letters */
+
+/* Air between one field's message lane and the next field's label */
+.rf-group + .rf-group {
+  margin-top: 8px;
+}

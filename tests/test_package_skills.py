@@ -72,6 +72,23 @@ class PackageTests(unittest.TestCase):
             altered=json.loads(json.dumps(original));altered['skills'][2]['name']=name
             path.write_text(json.dumps(altered));self.call('check',ok=False)
 
+    def test_demo_runtime_cannot_expand_other_packages_or_bypass_manifest(self):
+        runtime = self.root/'skills/507-demo/runtime'
+        extra = runtime/'unregistered.ts'
+        extra.write_text('export const unregistered = true\n')
+        self.assertIn('undeclared', self.call('check', ok=False)['error'])
+        extra.unlink()
+        forbidden = runtime/'install.sh'
+        forbidden.write_text('#!/bin/sh\nexit 0\n')
+        with self.assertRaises(packager.PackageError):
+            packager.validate_package(runtime.parent, '507-demo')
+        forbidden.unlink()
+        other = self.root/'skills/507-why/runtime'
+        other.mkdir()
+        (other/'scene.tsx').write_text('export default null\n')
+        with self.assertRaises(packager.PackageError):
+            packager.validate_package(other.parent, '507-why')
+
     def test_undeclared_source_directory_blocks_check_and_build(self):
         extra=self.root/'skills/507-unregistered';extra.mkdir()
         (extra/'SKILL.md').write_text('Unregistered entry')
