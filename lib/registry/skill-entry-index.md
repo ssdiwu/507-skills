@@ -6,7 +6,7 @@
 {
   "current": [
     {
-      "contractSha256": "eafbc300ffd1ec91a6d4f825822f3d06d9bb5c8dfb4bae09da5ff8d1b8530631",
+      "contractSha256": "db9fd4c93492c2e822c117043f3840dca33efb499107760e67a1f9e1e03da76a",
       "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
@@ -27,7 +27,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "f3fb7b46b18982f1462144bcfc1ffcdb992161712405ae8ed95565ae3321235a",
+      "contractSha256": "d1ef54b1390983488d6af7083eb94044cb7e1b0f6964d33399c574328e24eea9",
       "description": "承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。主线未成立时补必要判断；已有目的、材料或成熟稿时直接成文或修改，保留作者声音和已确认内容，不重走采访与规划。",
       "entry": "507-create/SKILL.md",
       "name": "507-create",
@@ -41,7 +41,14 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "89aea09738552669e78a8dd17d9fefd367ff3df85edd69b813a92e98610b99d0",
+      "contractSha256": "f07d6e6df72c463820cfa6f0cc8ddebc2da2fe73eb907d7bc49a79d2b08140f5",
+      "description": "制作产品界面的静态展示图、功能卡片或带光标的短动画，交付可编辑场景与目标实物。用于介绍页、方案和文档中的界面示意及演示；已有产品组件优先复用，真实业务功能、实际软件操作录制、流程关系图和完整视频制作沿原任务处理。",
+      "entry": "507-demo/SKILL.md",
+      "name": "507-demo",
+      "role": "secondary"
+    },
+    {
+      "contractSha256": "cd0c2115a3d3ce36cc8db94b0352e886a9ff79445f11097c89cba7c9abc05723",
       "description": "按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只查组件或只跑测试不自动改代码。",
       "entry": "507-do/SKILL.md",
       "name": "507-do",

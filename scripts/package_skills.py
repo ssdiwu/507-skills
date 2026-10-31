@@ -20,7 +20,10 @@ SKILL_NAMES = {'skill-design', '507-what', '507-why', '507-how', '507-create',
                '507-work', '507-material', '507-adapt',
                '507-spec', '507-do', '507-review', '507-issue',
                '507-coordinate', '507-deliver', '507-retro', '507-setup',
-               '507-product-map', '507-clean', '507-plan', '507-visualize'}
+               '507-product-map', '507-clean', '507-plan', '507-visualize', '507-demo'}
+# The selected React runtime is private to this skill. Exact files are still
+# declared in packages.json; this only permits its required source formats.
+RUNTIME_SUFFIXES = {'.ts', '.tsx', '.css', '.mjs', '.json', '.html', '.md'}
 COMPONENTS = {'lib/components/product_map.py': 'scripts/product_map.py',
               'lib/components/library_view.py': 'scripts/library_view.py',
               'lib/components/artifact_receipt.py': 'scripts/artifact_receipt.py',
@@ -226,6 +229,8 @@ def validate_package(base, name):
     payload = file_map(base)
     unexpected = [rel for rel in payload if rel not in ('SKILL.md', 'agents/openai.yaml')
                   and not (rel.startswith('references/') and rel.endswith('.md'))
+                  and not (name == '507-demo' and rel.startswith('runtime/')
+                           and (PurePosixPath(rel).suffix in RUNTIME_SUFFIXES or rel == 'runtime/LICENSE'))
                   and not any(name in COMPONENT_CONSUMERS[src] and rel == target for src, target in COMPONENTS.items())]
     if unexpected:
         raise PackageError(f'{name}: unexpected package files: {unexpected}')
