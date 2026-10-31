@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -B \"$(git rev-parse --show-toplevel)/scripts/codex_maintenance_hooks.py\"",
+            "timeout": 40
+          }
+        ]
+      }
+    ]
+  }
+}
