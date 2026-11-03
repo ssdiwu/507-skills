@@ -55,7 +55,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "892a0a4df979939b58dd55011dcc413d892cf3d56c9dd034212ad3cf022f0a7d",
+      "contractSha256": "ef116ef95a0ce331ab45ecd643b7b8c4c310ec7e84b538102852706d28ddc775",
       "description": "根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
@@ -125,14 +125,14 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "3e1d4701e7f92db92a476dfbf764ee3c3c32648ec5bb00eaba5ea707b438494c",
-      "description": "定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。主动整合已有材料，只询问会改变方向的必要问题；事实查询、术语解释、故障诊断和前提已充分的执行不进入。",
+      "contractSha256": "91a5ea64bb4dc9fb37c2e69610cb64b67cb5f1d10c95b9516539554168d99efc",
+      "description": "定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。主动整合材料、提出有依据的观点与机会，只询问会改变方向的必要问题；事实查询、术语解释、故障诊断和前提已充分的执行不进入。",
       "entry": "507-what/SKILL.md",
       "name": "507-what",
       "role": "main"
     },
     {
-      "contractSha256": "7a7bd93b076151bb6230110308ee1ed1fae87e56ae3b50c95fd5ac8bb5934bb6",
+      "contractSha256": "da8311282290e3dbdf9e15b26136ec521fea0af67e31af14770576e3fc73a015",
       "description": "帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。明确故障修复、已有方案实施和作者作品编排直接进入相应工作，不重开解释主目标。",
       "entry": "507-why/SKILL.md",
       "name": "507-why",
@@ -146,7 +146,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "15560942ece6c232bc0c2d59c10c0b77992924d65548069464fac6eb9b0cf52a",
+      "contractSha256": "21ab32894dce0ba1859226e0df79f18a2ef1c9d1a7abbfadfe51360ee5b0ed45",
       "description": "规划、创建或重构技能体系，审计技能包中的触发、读取与指令适用性，把任务经验和外部方法组织成技能、共有方法与工具，并完成获授权的文件和验证。项目工作指令核对、普通业务执行及独立交付审查按其任务处理。",
       "entry": "skill-design/SKILL.md",
       "name": "skill-design",

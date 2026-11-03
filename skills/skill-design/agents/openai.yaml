@@ -1,4 +1,4 @@
 interface:
   display_name: "技能规划、编写与演进"
-  short_description: "设计与演进技能，或审计指定技能的触发、读取与指令适用性"
-  default_prompt: "使用 $skill-design 规划、重构技能体系或审计指定技能指令，完成已授权的技能包、共有资源和验证。"
+  short_description: "设计与演进技能，按需识别优化方向，或审计技能触发、读取与指令适用性"
+  default_prompt: "使用 $skill-design 设计或改进技能，按需选择优化方向并核对实际质量缺口，完成已授权的技能包、共有资源和验证。"
