@@ -146,7 +146,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "9685e588d067496ad057cbe164b0bf1c823583189fcfc0a2788a7fcc4b44ac51",
+      "contractSha256": "15560942ece6c232bc0c2d59c10c0b77992924d65548069464fac6eb9b0cf52a",
       "description": "规划、创建或重构技能体系，审计技能包中的触发、读取与指令适用性，把任务经验和外部方法组织成技能、共有方法与工具，并完成获授权的文件和验证。项目工作指令核对、普通业务执行及独立交付审查按其任务处理。",
       "entry": "skill-design/SKILL.md",
       "name": "skill-design",
