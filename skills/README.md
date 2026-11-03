@@ -55,25 +55,33 @@
 | 梳理功能与实际操作证据 | product-map 对齐交互点、关系及设计／实现／运行证据；普通实现不强制建图 |
 | 推进已有工作或安排协作 | work 持有本次事项与推进结果；需要协作时按需采用 coordinate，工程、创作和研究也可直接采用它 |
 
-demo 的 React 资源当前随单技能交付，不作为共有组件入口；真实产品界面组件库与本技能库的共有资源库是不同对象。前者由 do 的包内组件方法处理，后者由 `skill-design` 处理。旧 `507-component` 已退出活动入口，原包与验证保留在历史导航。方法和工具可以直接采用，不必为读取一段参考再启动一个技能。
+共有呈现代码、范例、播放器与检查工具统一在 lib 维护，demo 不保留单独维护源。所有视觉消费者直接采用同一共有 React 呈现层，技能不携带 runtime 或共有文档／脚本副本；真实产品组件仍由 do 在目标项目内复用。完整关系见[逐技能资源表](../lib/skill-resource-map.md)，选用与运行见[共有图解组件](../lib/components/visual-components.md)。旧 `507-component` 的历史身份保持不变。
 
 ## 资源维护与构建
 
-[共有资源库](../lib/README.md)分开说明方法、执行脚本、工具说明、设计参考与名称索引。当前登记 29 份共有方法、10 个执行脚本；51 个共有源形成 226 份随包副本。加上各技能的 211 份自有文件，精确包清单共 437 个文件。事实以[packages.json](../packages.json)与[catalog.json](../lib/catalog.json)为准。
+[共有资源库](../lib/README.md)分开说明方法、执行代码、运行资源、工具说明、设计参考与名称索引。每技能精确文件和依赖以自己的 `RESOURCES.md` 为准，[packages.json](../packages.json)只保留身份与声明位置及共有文件总清单，[catalog.json](../lib/catalog.json)对账共有资源消费者；[逐技能资源表](../lib/skill-resource-map.md)从这些维护源生成，不另维护调用清单。
 
-共有源修改后生成对应副本，不手改随包副本。入口合同或旧名处置改变时，按[名称索引说明](../lib/components/library-view.md)先生成并核对索引，再同步包。名称查询只返回声明，不执行技能或证明宿主已启用。
+共有源修改后直接检查实际消费者，不再生成或同步副本。入口合同或旧名处置改变时，按[名称索引说明](../lib/components/library-view.md)先生成并核对索引，再检查集合。名称查询只返回声明，不执行技能或证明宿主已启用。
 
-在仓库根按变更范围运行：
+每完成一个技能修改，在实际修改的仓库根必须运行独立检查；失败修复后重跑，不能运行则如实报告，未通过不声称完成。该命令检查全部21技能，不要求每次打包：
 
 ```sh
-python3 scripts/package_skills.py sync
-python3 scripts/package_skills.py check
-python3 scripts/package_skills.py build
-python3 -m unittest discover -s tests -v
-python3 -m unittest discover -s lib/components/tests -v
+python3 -B scripts/package_skills.py check
 ```
 
-sync 验证候选后切换并保留失败恢复；check 核身份、精确文件、资源闭包、软链接、副本漂移和索引新鲜度；build 生成按内容指纹定位的不可变快照。构建工具不承担宿主安装或自动调度。只改导航说明时核链接、范围和内容保全，不为文档整理重跑业务。
+声明或职责变化后生成关系表并核对；按变化运行相应回归。只有需要分发、归档或验证交付集合时才 build：
+
+```sh
+python3 -B scripts/resource_map.py
+python3 -B scripts/resource_map.py --check
+python3 -B -m unittest discover -s tests -v
+python3 -B -m unittest discover -s lib/components/tests -v
+python3 -B scripts/package_skills.py build
+```
+
+check 直接读取各技能 RESOURCES.md，核身份、文件多缺、技能与共有库显式依赖、引用边界、禁止私有执行资源和共有副本、源文件与索引；build 生成 skills/ 加一份 lib/ 的不可变集合。依赖缺失如实失败，不复制实现兜底。构建工具不安装或自动路由。
+
+build 在写入前执行同一 check，实际共有链接漏登 uses、私有实现或缺失依赖会阻止交付；入口回归同时验证没有新增交付且已有包不变。这里验证结构，不执行 TypeScript 编译或裁决图解语义；上述测试、类型检查与目标文件的独立内容／视觉验收仍按变更范围完成。聊天交付并非由构建器自动门控，须明确报告实际调用的检查入口和未覆盖。
 
 可选的宿主适配见[Codex 维护钩子说明](../scripts/codex-maintenance-hooks.md)：现仅保留结束一致性检查的未启用候选，采用依据尚未确认；副本编辑保护已撤除。仓库只提供未启用的示例，不自动配置宿主、生成索引、同步、构建或安装；未启用时继续使用上述维护流程。
 

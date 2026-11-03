@@ -2,8 +2,10 @@
 
 使用成熟工具生成非HTML目标后，需要保存版本身份和实际文件检查时采用。仅Python3.10+标准库，只读明确输入与实物，JSON输出到标准输出；不调用生成器、网络、发布或业务写入。
 
+从当前技能所在集合定位同一份 `lib/`；以下 `<共有库>` 指该目录，不依赖技能内脚本或业务工作目录。
+
 ```sh
-python3 scripts/artifact_receipt.py --artifact-root <实际成品目录> --input targets.json
+python3 <共有库>/components/artifact_receipt.py --artifact-root <实际成品目录> --input targets.json
 ```
 
 targets.json为`{"schema":1,"files":[{"path":"cards/01.png","kind":"png"}]}`。path必须是目录内唯一相对路径，拒绝越界和软链接；kind支持png/jpeg/pptx/wav/mp4/html。输入上限2MiB，单文件上限256MiB。缺失、空文件、格式头不符、截断WAV或缺原生PPTX部件返回exit2与INPUT_ERROR；所有声明文件完成所列检查时exit0与ACTUAL_FILES_RECORDED。

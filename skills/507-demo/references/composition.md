@@ -6,7 +6,7 @@
 
 记录目标尺寸、容器底色、焦点对象与观众需要读出的内容。用最终展示尺寸制作开场和结果，比较真实页面中的观感；不靠放大预览判断小卡片是否清楚。先修构图，再层次，再运动，最后局部装饰。
 
-从配套范例开始，静态卡用 `runtime/examples/static-card/`，表单反馈用 `runtime/examples/form-error/`，无光标状态变化用 `runtime/examples/payout-flow/`；中文适配样例为 `runtime/examples/review-card/` 和 `runtime/examples/review-flow/`。范例是可修改起点，不能替代当前产品设计。需要更细的上游案例时按当前问题查 [Framing](../runtime/references/framing.md) 与 [Craft](../runtime/references/craft.md)，其中营销展示的裁切、文字数量、间距和颜色偏好不成为所有产品的硬规则。
+从配套范例开始，静态卡用 `<共有库>/components/visual-runtime/examples/static-card/`，表单反馈用 `<共有库>/components/visual-runtime/examples/form-error/`，无光标状态变化用 `<共有库>/components/visual-runtime/examples/payout-flow/`；中文适配样例为 `<共有库>/components/visual-runtime/examples/review-card/` 和 `<共有库>/components/visual-runtime/examples/review-flow/`。范例是可修改起点，不能替代当前产品设计。需要更细的上游案例时按当前问题查 [Framing](../../../lib/components/visual-runtime/references/framing.md) 与 [Craft](../../../lib/components/visual-runtime/references/craft.md)，其中营销展示的裁切、文字数量、间距和颜色偏好不成为所有产品的硬规则。
 
 ## 保留内容，减少干扰
 

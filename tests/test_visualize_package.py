@@ -17,8 +17,8 @@ class VisualizeLookupTests(unittest.TestCase):
             isolated = Path(directory)
             script = isolated / 'query.py'
             index = isolated / 'index.md'
-            shutil.copy2(consumer / 'scripts/library_view.py', script)
-            shutil.copy2(consumer / 'references/shared/skill-entry-index.md', index)
+            shutil.copy2(ROOT / 'lib/components/library_view.py', script)
+            shutil.copy2(ROOT / 'lib/registry/skill-entry-index.md', index)
             result = subprocess.run(
                 [sys.executable, str(script), '--index-file', str(index),
                  '--lookup', '507-visualize'], cwd=isolated,

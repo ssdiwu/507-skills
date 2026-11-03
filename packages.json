@@ -1,1309 +1,359 @@
 {
-  "schema": 1,
+  "schema": 3,
   "system": "507-layered-capabilities",
+  "sharedRoot": "lib",
   "skills": [
     {
       "name": "skill-design",
       "source": "skills/skill-design",
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/question-frontier.md",
-          "target": "references/shared/question-frontier.md"
-        },
-        {
-          "source": "lib/methods/alternatives.md",
-          "target": "references/shared/alternatives.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/clear-expression.md",
-          "target": "references/shared/clear-expression.md"
-        },
-        {
-          "source": "lib/methods/external-research.md",
-          "target": "references/shared/external-research.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/components/library_view.py",
-          "target": "scripts/library_view.py"
-        },
-        {
-          "source": "lib/components/library-view.md",
-          "target": "references/shared/library-view.md"
-        },
-        {
-          "source": "lib/methods/skill-entry-resolution.md",
-          "target": "references/shared/skill-entry-resolution.md"
-        },
-        {
-          "source": "lib/registry/skill-entry-index.md",
-          "target": "references/shared/skill-entry-index.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        },
-        {
-          "source": "lib/methods/prompt-instruction-audit.md",
-          "target": "references/shared/prompt-instruction-audit.md"
-        }
-      ],
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/design.md",
-        "references/delivery.md",
-        "references/replay.md"
-      ],
-      "role": "main"
+      "role": "main",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-what",
       "source": "skills/507-what",
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/question-frontier.md",
-          "target": "references/shared/question-frontier.md"
-        },
-        {
-          "source": "lib/methods/alternatives.md",
-          "target": "references/shared/alternatives.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/clear-expression.md",
-          "target": "references/shared/clear-expression.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/conversation.md"
-      ],
-      "role": "main"
+      "role": "main",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-work",
       "source": "skills/507-work",
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/components/state_diff.py",
-          "target": "scripts/state_diff.py"
-        },
-        {
-          "source": "lib/components/work_view.py",
-          "target": "scripts/work_view.py"
-        },
-        {
-          "source": "lib/methods/task-coordination.md",
-          "target": "references/shared/task-coordination.md"
-        },
-        {
-          "source": "lib/components/task-view.md",
-          "target": "references/shared/task-view.md"
-        },
-        {
-          "source": "lib/components/task_view.py",
-          "target": "scripts/task_view.py"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/process.md",
-        "references/state-views.md"
-      ],
-      "role": "main"
+      "role": "main",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-why",
       "source": "skills/507-why",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/explanation.md",
-        "references/project-understanding.md"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/question-frontier.md",
-          "target": "references/shared/question-frontier.md"
-        },
-        {
-          "source": "lib/methods/alternatives.md",
-          "target": "references/shared/alternatives.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/clear-expression.md",
-          "target": "references/shared/clear-expression.md"
-        },
-        {
-          "source": "lib/methods/external-research.md",
-          "target": "references/shared/external-research.md"
-        },
-        {
-          "source": "lib/methods/visual-understanding.md",
-          "target": "references/shared/visual-understanding.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/probe-lifecycle.md",
-          "target": "references/shared/probe-lifecycle.md"
-        },
-        {
-          "source": "lib/methods/architecture-candidates.md",
-          "target": "references/shared/architecture-candidates.md"
-        },
-        {
-          "source": "lib/methods/explanation-progression.md",
-          "target": "references/shared/explanation-progression.md"
-        },
-        {
-          "source": "lib/methods/media-study.md",
-          "target": "references/shared/media-study.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "main"
+      "role": "main",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-how",
       "source": "skills/507-how",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/change-strategy.md",
-        "references/solution-design.md"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/question-frontier.md",
-          "target": "references/shared/question-frontier.md"
-        },
-        {
-          "source": "lib/methods/alternatives.md",
-          "target": "references/shared/alternatives.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/clear-expression.md",
-          "target": "references/shared/clear-expression.md"
-        },
-        {
-          "source": "lib/methods/external-research.md",
-          "target": "references/shared/external-research.md"
-        },
-        {
-          "source": "lib/methods/visual-understanding.md",
-          "target": "references/shared/visual-understanding.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/probe-lifecycle.md",
-          "target": "references/shared/probe-lifecycle.md"
-        },
-        {
-          "source": "lib/methods/architecture-candidates.md",
-          "target": "references/shared/architecture-candidates.md"
-        },
-        {
-          "source": "lib/methods/behavior-preserving-change.md",
-          "target": "references/shared/behavior-preserving-change.md"
-        },
-        {
-          "source": "lib/methods/interaction-map.md",
-          "target": "references/shared/interaction-map.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "main"
+      "role": "main",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-create",
       "source": "skills/507-create",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/authorship.md",
-        "references/prose.md",
-        "references/proposal.md",
-        "references/spoken.md"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/question-frontier.md",
-          "target": "references/shared/question-frontier.md"
-        },
-        {
-          "source": "lib/methods/alternatives.md",
-          "target": "references/shared/alternatives.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/clear-expression.md",
-          "target": "references/shared/clear-expression.md"
-        },
-        {
-          "source": "lib/methods/author-and-source.md",
-          "target": "references/shared/author-and-source.md"
-        },
-        {
-          "source": "lib/methods/artifact-contract.md",
-          "target": "references/shared/artifact-contract.md"
-        },
-        {
-          "source": "lib/methods/task-coordination.md",
-          "target": "references/shared/task-coordination.md"
-        },
-        {
-          "source": "lib/methods/external-research.md",
-          "target": "references/shared/external-research.md"
-        },
-        {
-          "source": "lib/methods/visual-direction.md",
-          "target": "references/shared/visual-direction.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/author-interview.md",
-          "target": "references/shared/author-interview.md"
-        },
-        {
-          "source": "lib/methods/media-study.md",
-          "target": "references/shared/media-study.md"
-        },
-        {
-          "source": "lib/methods/media-production.md",
-          "target": "references/shared/media-production.md"
-        },
-        {
-          "source": "lib/components/artifact_receipt.py",
-          "target": "scripts/artifact_receipt.py"
-        },
-        {
-          "source": "lib/components/artifact-receipt.md",
-          "target": "references/shared/artifact-receipt.md"
-        },
-        {
-          "source": "lib/components/media-adapters.md",
-          "target": "references/shared/media-adapters.md"
-        },
-        {
-          "source": "lib/methods/interaction.md",
-          "target": "references/shared/interaction.md"
-        },
-        {
-          "source": "lib/design/interaction-detail.md",
-          "target": "references/shared/interaction-detail.md"
-        },
-        {
-          "source": "lib/design/containers-and-motion.md",
-          "target": "references/shared/containers-and-motion.md"
-        },
-        {
-          "source": "lib/design/apple-interaction.md",
-          "target": "references/shared/apple-interaction.md"
-        },
-        {
-          "source": "lib/methods/artifact-rendering.md",
-          "target": "references/shared/artifact-rendering.md"
-        },
-        {
-          "source": "lib/components/text-checks.md",
-          "target": "references/shared/text-checks.md"
-        },
-        {
-          "source": "lib/components/check_prose.py",
-          "target": "scripts/check_prose.py"
-        },
-        {
-          "source": "lib/components/check_spoken.py",
-          "target": "scripts/check_spoken.py"
-        },
-        {
-          "source": "lib/components/render_artifact.py",
-          "target": "scripts/render_artifact.py"
-        },
-        {
-          "source": "lib/design/artifact-prompts.md",
-          "target": "references/shared/artifact-prompts.md"
-        },
-        {
-          "source": "lib/methods/explanation-progression.md",
-          "target": "references/shared/explanation-progression.md"
-        },
-        {
-          "source": "lib/design/target-design.md",
-          "target": "references/shared/target-design.md"
-        },
-        {
-          "source": "lib/methods/title-promises.md",
-          "target": "references/shared/title-promises.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "main"
+      "role": "main",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-spec",
       "source": "skills/507-spec",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/behavior-boundaries.md"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/question-frontier.md",
-          "target": "references/shared/question-frontier.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/engineering-evidence.md",
-          "target": "references/shared/engineering-evidence.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/interaction-map.md",
-          "target": "references/shared/interaction-map.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-do",
       "source": "skills/507-do",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/testing.md",
-        "references/debugging.md",
-        "references/component-reuse.md"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/engineering-evidence.md",
-          "target": "references/shared/engineering-evidence.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/components/check_run.py",
-          "target": "scripts/check_run.py"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/behavior-preserving-change.md",
-          "target": "references/shared/behavior-preserving-change.md"
-        },
-        {
-          "source": "lib/methods/interaction.md",
-          "target": "references/shared/interaction.md"
-        },
-        {
-          "source": "lib/design/interaction-detail.md",
-          "target": "references/shared/interaction-detail.md"
-        },
-        {
-          "source": "lib/design/containers-and-motion.md",
-          "target": "references/shared/containers-and-motion.md"
-        },
-        {
-          "source": "lib/design/apple-interaction.md",
-          "target": "references/shared/apple-interaction.md"
-        },
-        {
-          "source": "lib/methods/visual-direction.md",
-          "target": "references/shared/visual-direction.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "main"
+      "role": "main",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-clean",
       "source": "skills/507-clean",
       "role": "main",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/behavior-preserving-change.md",
-          "target": "references/shared/behavior-preserving-change.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ]
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-review",
       "source": "skills/507-review",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/engineering-evidence.md",
-          "target": "references/shared/engineering-evidence.md"
-        },
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/components/check_run.py",
-          "target": "scripts/check_run.py"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/interaction-map.md",
-          "target": "references/shared/interaction-map.md"
-        },
-        {
-          "source": "lib/methods/artifact-contract.md",
-          "target": "references/shared/artifact-contract.md"
-        },
-        {
-          "source": "lib/methods/author-and-source.md",
-          "target": "references/shared/author-and-source.md"
-        },
-        {
-          "source": "lib/methods/prompt-instruction-audit.md",
-          "target": "references/shared/prompt-instruction-audit.md"
-        }
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-issue",
       "source": "skills/507-issue",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/platform-write.md"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-coordinate",
       "source": "skills/507-coordinate",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/alternatives.md",
-          "target": "references/shared/alternatives.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/clear-expression.md",
-          "target": "references/shared/clear-expression.md"
-        },
-        {
-          "source": "lib/methods/task-coordination.md",
-          "target": "references/shared/task-coordination.md"
-        },
-        {
-          "source": "lib/components/task-view.md",
-          "target": "references/shared/task-view.md"
-        },
-        {
-          "source": "lib/components/task_view.py",
-          "target": "scripts/task_view.py"
-        },
-        {
-          "source": "lib/methods/visual-understanding.md",
-          "target": "references/shared/visual-understanding.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/skill-entry-resolution.md",
-          "target": "references/shared/skill-entry-resolution.md"
-        },
-        {
-          "source": "lib/components/library-view.md",
-          "target": "references/shared/library-view.md"
-        },
-        {
-          "source": "lib/components/library_view.py",
-          "target": "scripts/library_view.py"
-        },
-        {
-          "source": "lib/registry/skill-entry-index.md",
-          "target": "references/shared/skill-entry-index.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-deliver",
       "source": "skills/507-deliver",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/actions.md"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/clear-expression.md",
-          "target": "references/shared/clear-expression.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/skill-entry-resolution.md",
-          "target": "references/shared/skill-entry-resolution.md"
-        },
-        {
-          "source": "lib/components/library-view.md",
-          "target": "references/shared/library-view.md"
-        },
-        {
-          "source": "lib/components/library_view.py",
-          "target": "scripts/library_view.py"
-        },
-        {
-          "source": "lib/registry/skill-entry-index.md",
-          "target": "references/shared/skill-entry-index.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-retro",
       "source": "skills/507-retro",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/alternatives.md",
-          "target": "references/shared/alternatives.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-material",
       "source": "skills/507-material",
-      "shared": [
-        {
-          "source": "lib/methods/author-and-source.md",
-          "target": "references/shared/author-and-source.md"
-        },
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/external-research.md",
-          "target": "references/shared/external-research.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/author-interview.md",
-          "target": "references/shared/author-interview.md"
-        },
-        {
-          "source": "lib/methods/media-study.md",
-          "target": "references/shared/media-study.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/material-units.md",
-        "references/knowledge-organization.md"
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-adapt",
       "source": "skills/507-adapt",
-      "shared": [
-        {
-          "source": "lib/methods/author-and-source.md",
-          "target": "references/shared/author-and-source.md"
-        },
-        {
-          "source": "lib/methods/artifact-contract.md",
-          "target": "references/shared/artifact-contract.md"
-        },
-        {
-          "source": "lib/methods/artifact-rendering.md",
-          "target": "references/shared/artifact-rendering.md"
-        },
-        {
-          "source": "lib/design/artifact-prompts.md",
-          "target": "references/shared/artifact-prompts.md"
-        },
-        {
-          "source": "lib/components/text-checks.md",
-          "target": "references/shared/text-checks.md"
-        },
-        {
-          "source": "lib/components/check_prose.py",
-          "target": "scripts/check_prose.py"
-        },
-        {
-          "source": "lib/components/check_spoken.py",
-          "target": "scripts/check_spoken.py"
-        },
-        {
-          "source": "lib/components/render_artifact.py",
-          "target": "scripts/render_artifact.py"
-        },
-        {
-          "source": "lib/methods/visual-understanding.md",
-          "target": "references/shared/visual-understanding.md"
-        },
-        {
-          "source": "lib/methods/visual-direction.md",
-          "target": "references/shared/visual-direction.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/interaction.md",
-          "target": "references/shared/interaction.md"
-        },
-        {
-          "source": "lib/methods/media-study.md",
-          "target": "references/shared/media-study.md"
-        },
-        {
-          "source": "lib/methods/media-production.md",
-          "target": "references/shared/media-production.md"
-        },
-        {
-          "source": "lib/components/artifact_receipt.py",
-          "target": "scripts/artifact_receipt.py"
-        },
-        {
-          "source": "lib/components/artifact-receipt.md",
-          "target": "references/shared/artifact-receipt.md"
-        },
-        {
-          "source": "lib/components/media-adapters.md",
-          "target": "references/shared/media-adapters.md"
-        },
-        {
-          "source": "lib/design/target-design.md",
-          "target": "references/shared/target-design.md"
-        },
-        {
-          "source": "lib/design/interaction-detail.md",
-          "target": "references/shared/interaction-detail.md"
-        },
-        {
-          "source": "lib/design/containers-and-motion.md",
-          "target": "references/shared/containers-and-motion.md"
-        },
-        {
-          "source": "lib/design/apple-interaction.md",
-          "target": "references/shared/apple-interaction.md"
-        },
-        {
-          "source": "lib/methods/title-promises.md",
-          "target": "references/shared/title-promises.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        }
-      ],
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "role": "main"
+      "role": "main",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-setup",
       "source": "skills/507-setup",
       "role": "main",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/project-foundation.md",
-        "references/project-navigation.md"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        },
-        {
-          "source": "lib/methods/skill-entry-resolution.md",
-          "target": "references/shared/skill-entry-resolution.md"
-        },
-        {
-          "source": "lib/components/library-view.md",
-          "target": "references/shared/library-view.md"
-        },
-        {
-          "source": "lib/components/library_view.py",
-          "target": "scripts/library_view.py"
-        },
-        {
-          "source": "lib/registry/skill-entry-index.md",
-          "target": "references/shared/skill-entry-index.md"
-        },
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        },
-        {
-          "source": "lib/methods/prompt-instruction-audit.md",
-          "target": "references/shared/prompt-instruction-audit.md"
-        }
-      ]
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-product-map",
       "source": "skills/507-product-map",
       "role": "secondary",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "shared": [
-        {
-          "source": "lib/methods/interaction-map.md",
-          "target": "references/shared/interaction-map.md"
-        },
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/components/product-map.md",
-          "target": "references/shared/product-map.md"
-        },
-        {
-          "source": "lib/components/product_map.py",
-          "target": "scripts/product_map.py"
-        }
-      ]
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-plan",
       "source": "skills/507-plan",
-      "shared": [
-        {
-          "source": "lib/methods/work-records.md",
-          "target": "references/shared/work-records.md"
-        },
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/decision-ownership.md",
-          "target": "references/shared/decision-ownership.md"
-        },
-        {
-          "source": "lib/methods/question-frontier.md",
-          "target": "references/shared/question-frontier.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        },
-        {
-          "source": "lib/methods/authority-and-return.md",
-          "target": "references/shared/authority-and-return.md"
-        },
-        {
-          "source": "lib/methods/continuation.md",
-          "target": "references/shared/continuation.md"
-        }
-      ],
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-visualize",
       "source": "skills/507-visualize",
-      "shared": [
-        {
-          "source": "lib/methods/visual-understanding.md",
-          "target": "references/shared/visual-understanding.md"
-        },
-        {
-          "source": "lib/methods/evidence.md",
-          "target": "references/shared/evidence.md"
-        },
-        {
-          "source": "lib/methods/validation.md",
-          "target": "references/shared/validation.md"
-        }
-      ],
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml"
-      ],
-      "role": "secondary"
+      "role": "secondary",
+      "resources": "RESOURCES.md"
     },
     {
       "name": "507-demo",
       "source": "skills/507-demo",
       "role": "secondary",
-      "files": [
-        "SKILL.md",
-        "agents/openai.yaml",
-        "references/composition.md",
-        "references/motion.md",
-        "references/runtime.md",
-        "references/source.md",
-        "references/verification.md",
-        "runtime/LICENSE",
-        "runtime/NOTICE.md",
-        "runtime/UPSTREAM.json",
-        "runtime/examples/dual/dual.css",
-        "runtime/examples/dual/index.tsx",
-        "runtime/examples/form-error/form.css",
-        "runtime/examples/form-error/index.tsx",
-        "runtime/examples/payout-flow/index.tsx",
-        "runtime/examples/payout-flow/pace.css",
-        "runtime/examples/review-card/card.css",
-        "runtime/examples/review-card/index.tsx",
-        "runtime/examples/review-flow/form.css",
-        "runtime/examples/review-flow/index.tsx",
-        "runtime/examples/static-card/card.css",
-        "runtime/examples/static-card/index.tsx",
-        "runtime/kit/act.ts",
-        "runtime/kit/chart.css",
-        "runtime/kit/chart.tsx",
-        "runtime/kit/clock.ts",
-        "runtime/kit/code.css",
-        "runtime/kit/code.tsx",
-        "runtime/kit/controls/Badge.css",
-        "runtime/kit/controls/Badge.tsx",
-        "runtime/kit/controls/Field.css",
-        "runtime/kit/controls/Field.tsx",
-        "runtime/kit/controls/Segmented.css",
-        "runtime/kit/controls/Segmented.tsx",
-        "runtime/kit/controls/Slot.css",
-        "runtime/kit/controls/Slot.tsx",
-        "runtime/kit/controls/Tabs.css",
-        "runtime/kit/controls/Tabs.tsx",
-        "runtime/kit/controls/Toggle.css",
-        "runtime/kit/controls/Toggle.tsx",
-        "runtime/kit/controls/index.ts",
-        "runtime/kit/cursor.css",
-        "runtime/kit/cursor.tsx",
-        "runtime/kit/cursors.tsx",
-        "runtime/kit/ease.ts",
-        "runtime/kit/index.ts",
-        "runtime/kit/ios.css",
-        "runtime/kit/ios.tsx",
-        "runtime/kit/keys.css",
-        "runtime/kit/keys.tsx",
-        "runtime/kit/looks.ts",
-        "runtime/kit/measure.ts",
-        "runtime/kit/messages.css",
-        "runtime/kit/messages.tsx",
-        "runtime/kit/motion/Camera.css",
-        "runtime/kit/motion/Camera.tsx",
-        "runtime/kit/motion/Collapse.css",
-        "runtime/kit/motion/Collapse.tsx",
-        "runtime/kit/motion/Connector.css",
-        "runtime/kit/motion/Connector.tsx",
-        "runtime/kit/motion/Count.css",
-        "runtime/kit/motion/Count.tsx",
-        "runtime/kit/motion/Expand.css",
-        "runtime/kit/motion/Expand.tsx",
-        "runtime/kit/motion/Fly.css",
-        "runtime/kit/motion/Fly.tsx",
-        "runtime/kit/motion/Follow.css",
-        "runtime/kit/motion/Follow.tsx",
-        "runtime/kit/motion/Popover.css",
-        "runtime/kit/motion/Popover.tsx",
-        "runtime/kit/motion/Roll.css",
-        "runtime/kit/motion/Roll.tsx",
-        "runtime/kit/motion/Scroll.css",
-        "runtime/kit/motion/Scroll.tsx",
-        "runtime/kit/motion/States.css",
-        "runtime/kit/motion/States.tsx",
-        "runtime/kit/motion/Stream.css",
-        "runtime/kit/motion/Stream.tsx",
-        "runtime/kit/motion/Swap.css",
-        "runtime/kit/motion/Swap.tsx",
-        "runtime/kit/motion/index.ts",
-        "runtime/kit/parts/Avatar.css",
-        "runtime/kit/parts/Avatar.tsx",
-        "runtime/kit/parts/Check.css",
-        "runtime/kit/parts/Check.tsx",
-        "runtime/kit/parts/Chip.css",
-        "runtime/kit/parts/Chip.tsx",
-        "runtime/kit/parts/Facepile.css",
-        "runtime/kit/parts/Facepile.tsx",
-        "runtime/kit/parts/Icon.css",
-        "runtime/kit/parts/Icon.tsx",
-        "runtime/kit/parts/Menu.css",
-        "runtime/kit/parts/Menu.tsx",
-        "runtime/kit/parts/Meter.css",
-        "runtime/kit/parts/Meter.tsx",
-        "runtime/kit/parts/Pin.css",
-        "runtime/kit/parts/Pin.tsx",
-        "runtime/kit/parts/Row.css",
-        "runtime/kit/parts/Row.tsx",
-        "runtime/kit/parts/Spinner.css",
-        "runtime/kit/parts/Spinner.tsx",
-        "runtime/kit/parts/Toast.css",
-        "runtime/kit/parts/Toast.tsx",
-        "runtime/kit/parts/Tooltip.css",
-        "runtime/kit/parts/Tooltip.tsx",
-        "runtime/kit/parts/index.ts",
-        "runtime/kit/phone.css",
-        "runtime/kit/phone.tsx",
-        "runtime/kit/reduced-motion.ts",
-        "runtime/kit/stage.css",
-        "runtime/kit/stage.tsx",
-        "runtime/kit/stageshow.css",
-        "runtime/kit/util.ts",
-        "runtime/kit/window.css",
-        "runtime/kit/window.tsx",
-        "runtime/package-lock.json",
-        "runtime/package.json",
-        "runtime/playground/catalog.ts",
-        "runtime/playground/index.html",
-        "runtime/playground/main.tsx",
-        "runtime/playground/playback.ts",
-        "runtime/playground/preview.css",
-        "runtime/playground/preview.tsx",
-        "runtime/playground/tsconfig.json",
-        "runtime/playground/viewer.css",
-        "runtime/playground/viewer.tsx",
-        "runtime/playground/vite.config.ts",
-        "runtime/references/choreography.md",
-        "runtime/references/craft.md",
-        "runtime/references/framing.md",
-        "runtime/references/kit.md",
-        "runtime/references/motion.md",
-        "runtime/references/rehearse.md",
-        "runtime/references/review.md",
-        "runtime/references/verify.md",
-        "runtime/scripts/browser.mjs",
-        "runtime/scripts/class-clash-core.mjs",
-        "runtime/scripts/class-clash.mjs",
-        "runtime/scripts/film-checks.mjs",
-        "runtime/scripts/film.mjs",
-        "runtime/scripts/jumps-core.mjs",
-        "runtime/scripts/jumps.mjs",
-        "runtime/scripts/layout-core.mjs",
-        "runtime/scripts/layout.mjs",
-        "runtime/scripts/motion-watch.mjs",
-        "runtime/scripts/verification.mjs",
-        "runtime/scripts/verification.test.mjs"
-      ],
-      "shared": []
+      "resources": "RESOURCES.md"
     }
+  ],
+  "sharedFiles": [
+    "lib/README.md",
+    "lib/catalog.json",
+    "lib/components/README.md",
+    "lib/components/artifact-receipt.md",
+    "lib/components/artifact_receipt.py",
+    "lib/components/check_prose.py",
+    "lib/components/check_run.py",
+    "lib/components/check_spoken.py",
+    "lib/components/legacy/task-entry-v1.txt",
+    "lib/components/library-view.md",
+    "lib/components/library_view.py",
+    "lib/components/media-adapters.md",
+    "lib/components/product-map.md",
+    "lib/components/product_map.py",
+    "lib/components/react_export.py",
+    "lib/components/state_diff.py",
+    "lib/components/task-view.md",
+    "lib/components/task_view.py",
+    "lib/components/text-checks.md",
+    "lib/components/visual-components.md",
+    "lib/components/visual-runtime.md",
+    "lib/components/visual-runtime/LICENSE",
+    "lib/components/visual-runtime/NOTICE.md",
+    "lib/components/visual-runtime/UPSTREAM.json",
+    "lib/components/visual-runtime/examples/dual/dual.css",
+    "lib/components/visual-runtime/examples/dual/index.tsx",
+    "lib/components/visual-runtime/examples/form-error/form.css",
+    "lib/components/visual-runtime/examples/form-error/index.tsx",
+    "lib/components/visual-runtime/examples/payout-flow/index.tsx",
+    "lib/components/visual-runtime/examples/payout-flow/pace.css",
+    "lib/components/visual-runtime/examples/review-card/card.css",
+    "lib/components/visual-runtime/examples/review-card/index.tsx",
+    "lib/components/visual-runtime/examples/review-flow/form.css",
+    "lib/components/visual-runtime/examples/review-flow/index.tsx",
+    "lib/components/visual-runtime/examples/static-card/card.css",
+    "lib/components/visual-runtime/examples/static-card/index.tsx",
+    "lib/components/visual-runtime/kit/act.ts",
+    "lib/components/visual-runtime/kit/chart.css",
+    "lib/components/visual-runtime/kit/chart.tsx",
+    "lib/components/visual-runtime/kit/clock.ts",
+    "lib/components/visual-runtime/kit/code.css",
+    "lib/components/visual-runtime/kit/code.tsx",
+    "lib/components/visual-runtime/kit/controls/Badge.css",
+    "lib/components/visual-runtime/kit/controls/Badge.tsx",
+    "lib/components/visual-runtime/kit/controls/Field.css",
+    "lib/components/visual-runtime/kit/controls/Field.tsx",
+    "lib/components/visual-runtime/kit/controls/Segmented.css",
+    "lib/components/visual-runtime/kit/controls/Segmented.tsx",
+    "lib/components/visual-runtime/kit/controls/Slot.css",
+    "lib/components/visual-runtime/kit/controls/Slot.tsx",
+    "lib/components/visual-runtime/kit/controls/Tabs.css",
+    "lib/components/visual-runtime/kit/controls/Tabs.tsx",
+    "lib/components/visual-runtime/kit/controls/Toggle.css",
+    "lib/components/visual-runtime/kit/controls/Toggle.tsx",
+    "lib/components/visual-runtime/kit/controls/index.ts",
+    "lib/components/visual-runtime/kit/cursor.css",
+    "lib/components/visual-runtime/kit/cursor.tsx",
+    "lib/components/visual-runtime/kit/cursors.tsx",
+    "lib/components/visual-runtime/kit/ease.ts",
+    "lib/components/visual-runtime/kit/index.ts",
+    "lib/components/visual-runtime/kit/ios.css",
+    "lib/components/visual-runtime/kit/ios.tsx",
+    "lib/components/visual-runtime/kit/keys.css",
+    "lib/components/visual-runtime/kit/keys.tsx",
+    "lib/components/visual-runtime/kit/looks.ts",
+    "lib/components/visual-runtime/kit/measure.ts",
+    "lib/components/visual-runtime/kit/messages.css",
+    "lib/components/visual-runtime/kit/messages.tsx",
+    "lib/components/visual-runtime/kit/motion/Camera.css",
+    "lib/components/visual-runtime/kit/motion/Camera.tsx",
+    "lib/components/visual-runtime/kit/motion/Collapse.css",
+    "lib/components/visual-runtime/kit/motion/Collapse.tsx",
+    "lib/components/visual-runtime/kit/motion/Connector.css",
+    "lib/components/visual-runtime/kit/motion/Connector.tsx",
+    "lib/components/visual-runtime/kit/motion/Count.css",
+    "lib/components/visual-runtime/kit/motion/Count.tsx",
+    "lib/components/visual-runtime/kit/motion/Expand.css",
+    "lib/components/visual-runtime/kit/motion/Expand.tsx",
+    "lib/components/visual-runtime/kit/motion/Fly.css",
+    "lib/components/visual-runtime/kit/motion/Fly.tsx",
+    "lib/components/visual-runtime/kit/motion/Follow.css",
+    "lib/components/visual-runtime/kit/motion/Follow.tsx",
+    "lib/components/visual-runtime/kit/motion/Popover.css",
+    "lib/components/visual-runtime/kit/motion/Popover.tsx",
+    "lib/components/visual-runtime/kit/motion/Roll.css",
+    "lib/components/visual-runtime/kit/motion/Roll.tsx",
+    "lib/components/visual-runtime/kit/motion/Scroll.css",
+    "lib/components/visual-runtime/kit/motion/Scroll.tsx",
+    "lib/components/visual-runtime/kit/motion/States.css",
+    "lib/components/visual-runtime/kit/motion/States.tsx",
+    "lib/components/visual-runtime/kit/motion/Stream.css",
+    "lib/components/visual-runtime/kit/motion/Stream.tsx",
+    "lib/components/visual-runtime/kit/motion/Swap.css",
+    "lib/components/visual-runtime/kit/motion/Swap.tsx",
+    "lib/components/visual-runtime/kit/motion/index.ts",
+    "lib/components/visual-runtime/kit/parts/Avatar.css",
+    "lib/components/visual-runtime/kit/parts/Avatar.tsx",
+    "lib/components/visual-runtime/kit/parts/Check.css",
+    "lib/components/visual-runtime/kit/parts/Check.tsx",
+    "lib/components/visual-runtime/kit/parts/Chip.css",
+    "lib/components/visual-runtime/kit/parts/Chip.tsx",
+    "lib/components/visual-runtime/kit/parts/Facepile.css",
+    "lib/components/visual-runtime/kit/parts/Facepile.tsx",
+    "lib/components/visual-runtime/kit/parts/Icon.css",
+    "lib/components/visual-runtime/kit/parts/Icon.tsx",
+    "lib/components/visual-runtime/kit/parts/Menu.css",
+    "lib/components/visual-runtime/kit/parts/Menu.tsx",
+    "lib/components/visual-runtime/kit/parts/Meter.css",
+    "lib/components/visual-runtime/kit/parts/Meter.tsx",
+    "lib/components/visual-runtime/kit/parts/Pin.css",
+    "lib/components/visual-runtime/kit/parts/Pin.tsx",
+    "lib/components/visual-runtime/kit/parts/Row.css",
+    "lib/components/visual-runtime/kit/parts/Row.tsx",
+    "lib/components/visual-runtime/kit/parts/Spinner.css",
+    "lib/components/visual-runtime/kit/parts/Spinner.tsx",
+    "lib/components/visual-runtime/kit/parts/Toast.css",
+    "lib/components/visual-runtime/kit/parts/Toast.tsx",
+    "lib/components/visual-runtime/kit/parts/Tooltip.css",
+    "lib/components/visual-runtime/kit/parts/Tooltip.tsx",
+    "lib/components/visual-runtime/kit/parts/index.ts",
+    "lib/components/visual-runtime/kit/phone.css",
+    "lib/components/visual-runtime/kit/phone.tsx",
+    "lib/components/visual-runtime/kit/reduced-motion.ts",
+    "lib/components/visual-runtime/kit/stage.css",
+    "lib/components/visual-runtime/kit/stage.tsx",
+    "lib/components/visual-runtime/kit/stageshow.css",
+    "lib/components/visual-runtime/kit/util.ts",
+    "lib/components/visual-runtime/kit/window.css",
+    "lib/components/visual-runtime/kit/window.tsx",
+    "lib/components/visual-runtime/package-lock.json",
+    "lib/components/visual-runtime/package.json",
+    "lib/components/visual-runtime/playground/catalog.ts",
+    "lib/components/visual-runtime/playground/index.html",
+    "lib/components/visual-runtime/playground/main.tsx",
+    "lib/components/visual-runtime/playground/playback.ts",
+    "lib/components/visual-runtime/playground/preview.css",
+    "lib/components/visual-runtime/playground/preview.tsx",
+    "lib/components/visual-runtime/playground/tsconfig.json",
+    "lib/components/visual-runtime/playground/viewer.css",
+    "lib/components/visual-runtime/playground/viewer.tsx",
+    "lib/components/visual-runtime/playground/vite.config.ts",
+    "lib/components/visual-runtime/references/choreography.md",
+    "lib/components/visual-runtime/references/craft.md",
+    "lib/components/visual-runtime/references/framing.md",
+    "lib/components/visual-runtime/references/kit.md",
+    "lib/components/visual-runtime/references/motion.md",
+    "lib/components/visual-runtime/references/rehearse.md",
+    "lib/components/visual-runtime/references/review.md",
+    "lib/components/visual-runtime/references/verify.md",
+    "lib/components/visual-runtime/scripts/browser.mjs",
+    "lib/components/visual-runtime/scripts/class-clash-core.mjs",
+    "lib/components/visual-runtime/scripts/class-clash.mjs",
+    "lib/components/visual-runtime/scripts/film-checks.mjs",
+    "lib/components/visual-runtime/scripts/film.mjs",
+    "lib/components/visual-runtime/scripts/jumps-core.mjs",
+    "lib/components/visual-runtime/scripts/jumps.mjs",
+    "lib/components/visual-runtime/scripts/layout-core.mjs",
+    "lib/components/visual-runtime/scripts/layout.mjs",
+    "lib/components/visual-runtime/scripts/layout.test.mjs",
+    "lib/components/visual-runtime/scripts/motion-watch.mjs",
+    "lib/components/visual-runtime/scripts/render-artifact.mjs",
+    "lib/components/visual-runtime/scripts/ui.test.mjs",
+    "lib/components/visual-runtime/scripts/verification.mjs",
+    "lib/components/visual-runtime/scripts/verification.test.mjs",
+    "lib/components/visual-runtime/scripts/visuals.test.mjs",
+    "lib/components/visual-runtime/ui/README.md",
+    "lib/components/visual-runtime/ui/SOURCES.json",
+    "lib/components/visual-runtime/ui/Showcase.tsx",
+    "lib/components/visual-runtime/ui/index.tsx",
+    "lib/components/visual-runtime/ui/licenses/react-remove-scroll-bar-2.3.8.txt",
+    "lib/components/visual-runtime/ui/licenses/shadcn-ui.txt",
+    "lib/components/visual-runtime/ui/showcase.css",
+    "lib/components/visual-runtime/ui/ui.css",
+    "lib/components/visual-runtime/visuals/App.tsx",
+    "lib/components/visual-runtime/visuals/Artifact.tsx",
+    "lib/components/visual-runtime/visuals/Views.tsx",
+    "lib/components/visual-runtime/visuals/client.tsx",
+    "lib/components/visual-runtime/visuals/example.json",
+    "lib/components/visual-runtime/visuals/model.ts",
+    "lib/components/visual-runtime/visuals/server.tsx",
+    "lib/components/visual-runtime/visuals/visuals.css",
+    "lib/components/work_view.py",
+    "lib/design/README.md",
+    "lib/design/apple-interaction.md",
+    "lib/design/artifact-prompts.md",
+    "lib/design/containers-and-motion.md",
+    "lib/design/interaction-detail.md",
+    "lib/design/patterns.json",
+    "lib/design/prompts.md",
+    "lib/design/references.md",
+    "lib/design/target-design.md",
+    "lib/methods/README.md",
+    "lib/methods/alternatives.md",
+    "lib/methods/architecture-candidates.md",
+    "lib/methods/artifact-contract.md",
+    "lib/methods/artifact-rendering.md",
+    "lib/methods/author-and-source.md",
+    "lib/methods/author-interview.md",
+    "lib/methods/authority-and-return.md",
+    "lib/methods/behavior-preserving-change.md",
+    "lib/methods/clear-expression.md",
+    "lib/methods/continuation.md",
+    "lib/methods/decision-ownership.md",
+    "lib/methods/engineering-evidence.md",
+    "lib/methods/evidence.md",
+    "lib/methods/explanation-progression.md",
+    "lib/methods/external-research.md",
+    "lib/methods/interaction-map.md",
+    "lib/methods/interaction.md",
+    "lib/methods/media-production.md",
+    "lib/methods/media-study.md",
+    "lib/methods/probe-lifecycle.md",
+    "lib/methods/prompt-instruction-audit.md",
+    "lib/methods/question-frontier.md",
+    "lib/methods/skill-entry-resolution.md",
+    "lib/methods/task-coordination.md",
+    "lib/methods/title-promises.md",
+    "lib/methods/validation.md",
+    "lib/methods/visual-direction.md",
+    "lib/methods/visual-understanding.md",
+    "lib/methods/work-records.md",
+    "lib/registry/skill-dispositions.json",
+    "lib/registry/skill-entry-index.md",
+    "lib/skill-resource-map.md"
   ]
 }

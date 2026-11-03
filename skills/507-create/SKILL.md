@@ -7,6 +7,8 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 
 作为面向用户的主要技能，持续负责本次作品范围、作者主线、事实与声音，以及用户要求的最终交付。用户主要从主要技能表达目标；Agent 按需采用主次技能和共有资源，返回结果后继续当前作品。局部修改以约定范围为结果，不扩成整件作品重做。
 
+共有依赖见[共有资源合同](../../lib/README.md)，按本文链接直接使用同一份资源。
+
 ## 承接版本与操作范围
 
 承接用户请求、指定稿件与手改、已有目的、受众、主张、材料、排除项和交付范围。用户指定或修订的版本优先，不因另一稿时间较新就替换；保存位置沿已有约定，不建立同题竞争主稿。已明确内容直接沿用，常规措辞、结构和可逆呈现选择由 Agent 完成。
@@ -47,40 +49,40 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 
 | 当前缺口 | 采用依据与动作 |
 | --- | --- |
-| 事实、指定稿或多来源身份不明 | [事实与证据](references/shared/evidence.md)：核原版、来源及实际覆盖 |
-| 作者、Agent、第三方归属或材料承重需要核对 | [作者与来源](references/shared/author-and-source.md)：明确材料能支持什么 |
-| 用户手改、版本替换、多载体同步或完成判断 | [作品合同](references/shared/artifact-contract.md)：保护有效内容，核对本次实际承载文字的位置 |
-| 作者决定、目标或责任仍有实质取舍 | [决定归属](references/shared/decision-ownership.md)、[问题依赖](references/shared/question-frontier.md)：只补会改变下一动作的必要决定 |
-| 主线或表达方案确实竞争 | [候选与反证](references/shared/alternatives.md)：比较支撑、代价与反例 |
-| 核完整目标、内容或最终呈现 | [可观察验收](references/shared/validation.md)：对照原要求，保留未覆盖；检查器不替代语义与作者接受 |
-| 新修订、保存或内部动作完成 | [权威与返回](references/shared/authority-and-return.md)：承接当前决定并继续未完成目标 |
-| 对象或关系难以表达 | [清晰表达](references/shared/clear-expression.md)：选必要文字、表格或示意 |
+| 事实、指定稿或多来源身份不明 | [事实与证据](../../lib/methods/evidence.md)：核原版、来源及实际覆盖 |
+| 作者、Agent、第三方归属或材料承重需要核对 | [作者与来源](../../lib/methods/author-and-source.md)：明确材料能支持什么 |
+| 用户手改、版本替换、多载体同步或完成判断 | [作品合同](../../lib/methods/artifact-contract.md)：保护有效内容，核对本次实际承载文字的位置 |
+| 作者决定、目标或责任仍有实质取舍 | [决定归属](../../lib/methods/decision-ownership.md)、[问题依赖](../../lib/methods/question-frontier.md)：只补会改变下一动作的必要决定 |
+| 主线或表达方案确实竞争 | [候选与反证](../../lib/methods/alternatives.md)：比较支撑、代价与反例 |
+| 核完整目标、内容或最终呈现 | [可观察验收](../../lib/methods/validation.md)：对照原要求，保留未覆盖；检查器不替代语义与作者接受 |
+| 新修订、保存或内部动作完成 | [权威与返回](../../lib/methods/authority-and-return.md)：承接当前决定并继续未完成目标 |
+| 对象或关系难以表达 | [清晰表达](../../lib/methods/clear-expression.md)：选必要文字、表格或示意 |
 
-材料身份、去重与支持范围值得独立处理时，Agent 可采用 `507-material`；受众与载体关系需独立适配时采用 `507-adapt`。独立协作确有收益时采用 `507-coordinate` 或[协调方法](references/shared/task-coordination.md)。事实解释或变更策略确有独立缺口时也可采用相应主要技能；结果返回当前作品，不重开总目标。相邻技能不可用时沿同一责任直接完成，不等待安装或要求用户选择技能链。
+材料身份、去重与支持范围值得独立处理时，Agent 可采用 `507-material`；受众与载体关系需独立适配时采用 `507-adapt`。独立协作确有收益时采用 `507-coordinate` 或[协调方法](../../lib/methods/task-coordination.md)。事实解释或变更策略确有独立缺口时也可采用相应主要技能；结果返回当前作品，不重开总目标。相邻技能不可用时沿同一责任直接完成，不等待安装或要求用户选择技能链。
 
 作品中的对象关系、机制或选项需要独立图解时，可采用 `507-visualize`；接收后核作者主张、材料与声音，继续作品交付。普通局部润色直接完成，不把所有表述转成图或重新调查。
 
 ## 内容检查与已请求载体
 
-书面或口播提醒有用时，先读[检查器说明](references/shared/text-checks.md)，再运行[书面检查器](scripts/check_prose.py)或[口播检查器](scripts/check_spoken.py)。两者只读，提示按语境处理，不能用零命中证明事实或作者接受。讲稿的朗读、计时与未实测范围按现场内容方法如实交代。
+书面或口播提醒有用时，先读[检查器说明](../../lib/components/text-checks.md)，再运行[书面检查器](../../lib/components/check_prose.py)或[口播检查器](../../lib/components/check_spoken.py)。两者只读，提示按语境处理，不能用零命中证明事实或作者接受。讲稿的朗读、计时与未实测范围按现场内容方法如实交代。
 
-用户还要求离线 HTML 且内容已成熟时，先读[呈现合同](references/shared/artifact-rendering.md)，用[呈现脚本](scripts/render_artifact.py)生成图卡式页面、幻灯片或阅读网站，并检查当前实际页面；需要视觉阅读关系时采用[呈现提示](references/shared/artifact-prompts.md)。仅要求正文或备注时，内容即本次终点。
+用户还要求离线 HTML 且内容已成熟时，先按读者任务辨认时间、步骤、比较、版面或状态关系，读[共有图解组件](../../lib/components/visual-components.md)与[呈现合同](../../lib/methods/artifact-rendering.md)，用[呈现脚本](../../lib/components/visual-runtime/scripts/render-artifact.mjs)的对应 blocks 直接呈现；普通文字页保留正文和列表。需要视觉方向时采用[呈现提示](../../lib/design/artifact-prompts.md)。打开实际页面检查关系、来源和必要交互，不能只用文字完整、布局无溢出代替理解路径。仅要求正文或备注时，内容即本次终点。
 
-需要图片、可编辑 PPTX、音频或视频时，依[真实载体适配](references/shared/media-adapters.md)在首次依赖动作前实际读齐所选工具说明，复用成熟工具完成并检查目标文件；HTML 或内容包不冒称其他成品。必要文件身份使用[回执说明](references/shared/artifact-receipt.md)及[文件组件](scripts/artifact_receipt.py)，回执不裁决呈现和质量。缺素材或工具只阻塞相应动作，已确认的其余目标保持有效。
+需要图片、可编辑 PPTX、音频或视频时，依[真实载体适配](../../lib/components/media-adapters.md)在首次依赖动作前实际读齐所选工具说明，复用成熟工具完成并检查目标文件；HTML 或内容包不冒称其他成品。必要文件身份使用[回执说明](../../lib/components/artifact-receipt.md)及[文件组件](../../lib/components/artifact_receipt.py)，回执不裁决呈现和质量。缺素材或工具只阻塞相应动作，已确认的其余目标保持有效。
 
 作品需要产品界面静态图、功能卡片或模拟操作短动画时，可采用次要能力 `507-demo`，由它交回可编辑场景、目标实物与检查结果，再继续本次作品。真实业务实现、实际软件操作录制和完整成片沿相应能力处理；没有该技能时复用当前可用工具，不形成安装前提。
 
-作品含多个相连交互模块时，核共同状态、动作和返回，兑现可连续使用的整件产物；按[交互方法](references/shared/interaction.md)检查必要可访问性，局部演示不代替完整交付。正式产品行为与操作仍沿原项目依据。
+作品含多个相连交互模块时，核共同状态、动作和返回，兑现可连续使用的整件产物；按[交互方法](../../lib/methods/interaction.md)检查必要可访问性，局部演示不代替完整交付。正式产品行为与操作仍沿原项目依据。
 
 ## 按真实缺口补充参考
 
-- 需要外部事实：采用[外部取证](references/shared/external-research.md)，区分事实与来源观点。
-- 视觉方向未定：采用[视觉方向](references/shared/visual-direction.md)，用真实候选支持取舍；中文密页、图表等采用[视觉语义](references/shared/target-design.md)。
-- 作者尚未表达的一手材料影响当前内容：采用[作者采访](references/shared/author-interview.md)，已有材料足够时跳过。
-- 解释型作品存在具体理解缺口：采用[解释检验](references/shared/explanation-progression.md)。
-- 借鉴视听手法或进入实际媒体制作：分别采用[参考视听证据](references/shared/media-study.md)与[媒体制作](references/shared/media-production.md)。
-- 明确传播或标题优化请求：采用[标题与正文兑现](references/shared/title-promises.md)，普通文档不自动增加增长目标。
-- 真实中断、压缩或转交：采用[续办方法](references/shared/continuation.md)，对准当前请求、版本和未完成内容。
+- 需要外部事实：采用[外部取证](../../lib/methods/external-research.md)，区分事实与来源观点。
+- 视觉方向未定：采用[视觉方向](../../lib/methods/visual-direction.md)，用真实候选支持取舍；中文密页、图表等采用[视觉语义](../../lib/design/target-design.md)。
+- 作者尚未表达的一手材料影响当前内容：采用[作者采访](../../lib/methods/author-interview.md)，已有材料足够时跳过。
+- 解释型作品存在具体理解缺口：采用[解释检验](../../lib/methods/explanation-progression.md)。
+- 借鉴视听手法或进入实际媒体制作：分别采用[参考视听证据](../../lib/methods/media-study.md)与[媒体制作](../../lib/methods/media-production.md)。
+- 明确传播或标题优化请求：采用[标题与正文兑现](../../lib/methods/title-promises.md)，普通文档不自动增加增长目标。
+- 真实中断、压缩或转交：采用[续办方法](../../lib/methods/continuation.md)，对准当前请求、版本和未完成内容。
 
 ## 完成与返回
 
@@ -88,4 +90,4 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 
 事实、作者位置或材料不足时保留有效稿、已确认判断和失败证据，只暂停受影响部分；候选范围受材料限制时说明缺口或成立上限，不擅自缩掉用户要求。替换产物验证失败保留上一可用版。只有实质新取舍才回交用户，内部方法完成不结束尚未完成的作品目标。
 
-持续创作按[工作记录](references/shared/work-records.md)维护难从作品还原的关键约束、作者判断依据、版本与未完成状态；作品本身是主要记录，不为简单改稿另建过程文件。讨论素材、原话、用户认可和 Agent 建议分别保留；要求保留思考过程时不提前压成定稿，也不把局部认可扩成整段采用。
+持续创作按[工作记录](../../lib/methods/work-records.md)维护难从作品还原的关键约束、作者判断依据、版本与未完成状态；作品本身是主要记录，不为简单改稿另建过程文件。讨论素材、原话、用户认可和 Agent 建议分别保留；要求保留思考过程时不提前压成定稿，也不把局部认可扩成整段采用。

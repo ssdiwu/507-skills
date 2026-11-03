@@ -2,9 +2,11 @@
 
 完整初稿已形成、需要可复核的中文表达提醒时使用；局部润色按需要选择，不为了零命中扩大改稿。
 
+从当前技能所在集合定位同一份 `lib/`；以下 `<共有库>` 指该目录，不从业务工作目录猜测脚本位置。
+
 ```sh
-python3 scripts/check_prose.py <稿件.md>
-python3 scripts/check_spoken.py <讲稿.md>
+python3 <共有库>/components/check_prose.py <稿件.md>
+python3 <共有库>/components/check_spoken.py <讲稿.md>
 ```
 
 两者需要 Python 3.10+，仅使用标准库；加 `--json` 输出 JSON，路径 `-` 从标准输入读取。只读输入，不写回或自动改稿。
@@ -13,4 +15,4 @@ python3 scripts/check_spoken.py <讲稿.md>
 
 所有发现都是复核或统计提醒。`0` 表示运行成功，包括存在提醒；`2` 表示读取失败或没有可检查中文正文。零命中不证明材料、事实、归属、作者声音、朗读与载体成立；不能按命中次数、句长或词表自动裁决作者接受。
 
-唯一维护源为 `lib/components/check_prose.py`、`lib/components/check_spoken.py` 与本说明；create 和 adapt 随包普通副本使用。实现从已发布 forge 原脚本原样复用，原合成测试由组件维护位置保留，不复制私人作品。适用范围为中文 Markdown 或文本表达提醒，不涵盖 OCR、语义事实核验、分页、图片、PPTX、音频或视频验证。
+唯一维护源为 `lib/components/check_prose.py`、`lib/components/check_spoken.py` 与本说明；create 和 adapt 直接读取同一共有源，不携带副本。实现从已发布 forge 原脚本原样复用，原合成测试由组件维护位置保留，不复制私人作品。适用范围为中文 Markdown 或文本表达提醒，不涵盖 OCR、语义事实核验、分页、图片、PPTX、音频或视频验证。

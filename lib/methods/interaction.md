@@ -34,4 +34,4 @@ do 交付产品界面、create 交付已确认的交互作品、adapt 交付可�
 
 完成是原请求范围的动作、状态、失败恢复与呈現具有相称证据，产物、源码／内容版本、环境、动作和限制可查。基座、关键取舍或验证失败时保全可用原版，仅暂停依赖部分，不将候选说成已经可交付。
 
-有状态表单、标签页、分享、搜索或日期需展开时读[控件细节](interaction-detail.md)；容器、连续操作或材质变化读[容器与反馈](containers-and-motion.md)；目标明确为Apple平台时才读[平台参考](apple-interaction.md)，精确API和参数继续核当前官方资料。
+有状态表单、标签页、分享、搜索或日期需展开时读[控件细节](../design/interaction-detail.md)；容器、连续操作或材质变化读[容器与反馈](../design/containers-and-motion.md)；目标明确为Apple平台时才读[平台参考](../design/apple-interaction.md)，精确API和参数继续核当前官方资料。

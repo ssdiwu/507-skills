@@ -222,7 +222,37 @@ class TaskViewTests(unittest.TestCase):
         self.assertIn("connect-src 'none'", html)
         self.assertNotIn('href="javascript:', html)
         self.assertNotIn('href="https://fixture', html)
-        self.assertIn('textContent', html)
+        self.assertIn('id="visual-model"', html)
+        self.assertIn('script-src data:', html)
+
+    def test_shared_renderer_change_during_entry_keeps_current_unchanged(self):
+        self.run_view();before=self.output_bytes();changed=False
+        original_entry=view.stable_entry;original_identity=view.renderer_identity
+        def entry(version):
+            nonlocal changed
+            value=original_entry(version);changed=True;return value
+        def identity():
+            return 'f'*64 if changed else original_identity()
+        self.data['work']['tasks'][1]['report']='entry-race';self.write()
+        with patch.object(view,'stable_entry',side_effect=entry),patch.object(view,'renderer_identity',side_effect=identity):
+            with self.assertRaisesRegex(ValueError,'entry generation'):
+                self.run_view()
+        self.assertEqual(self.output_bytes(),before)
+
+    def test_registered_legacy_entry_is_validated_before_react_upgrade(self):
+        first=self.run_view();folder=Path(first['page']).parent
+        manifest=folder/'manifest.json';data=json.loads(manifest.read_text());data.pop('entrySha256')
+        raw=view.encoded(data);manifest.write_bytes(raw)
+        registry=self.out/'current.json';r=json.loads(registry.read_text());r['versions'][first['version']]=view.sha(raw);registry.write_bytes(view.encoded(r))
+        legacy=(SCRIPT.parent/'legacy/task-entry-v1.txt').read_bytes().replace(b'{{version}}',first['version'].encode())
+        (self.out/'index.html').write_bytes(legacy)
+        prior=(folder/'index.html').read_bytes()
+        self.data['work']['tasks'][1]['report']='new state';self.write();second=self.run_view()
+        self.assertNotEqual(first['version'],second['version'])
+        self.assertEqual((folder/'index.html').read_bytes(),prior)
+        self.assertIn(b'id="visual-model"',(self.out/'index.html').read_bytes())
+        current=json.loads((Path(second['page']).parent/'manifest.json').read_text())
+        self.assertEqual(current['entrySha256'],view.sha((self.out/'index.html').read_bytes()))
 
     def test_output_version_registration_and_symlink_edits_rejected(self):
         result = self.run_view()

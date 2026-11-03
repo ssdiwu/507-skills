@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "adopted": [
+    {
+      "name": "shadcn/ui",
+      "repository": "https://github.com/shadcn-ui/ui",
+      "commit": "4aaea19d9cff3e0908e12a8c1d504b8c5ec34610",
+      "license": "MIT",
+      "notice": "licenses/shadcn-ui.txt",
+      "upstreamFiles": [
+        {
+          "path": "apps/v4/registry/bases/radix/ui/dialog.tsx",
+          "sha256": "71fb4e64866fa41cd770866c433342b3c469a1576d6cc7afe0b3b6cb3b06ae04"
+        },
+        {
+          "path": "apps/v4/registry/bases/radix/ui/tabs.tsx",
+          "sha256": "96ad5bec050c42dc755c8254c9d7408a04969df29ce5230d29196d1c64bff497"
+        },
+        {
+          "path": "apps/v4/registry/bases/radix/ui/dropdown-menu.tsx",
+          "sha256": "f29f9046532435ec183482ad990ac282e5ecfc76af80a6352eaa500a5689c447"
+        },
+        {
+          "path": "apps/v4/registry/bases/radix/ui/accordion.tsx",
+          "sha256": "cdd4ad1df94e3c1ae85c77e916e3a6b7dc459efe454ccee35933b0160d2b386e"
+        }
+      ],
+      "localFiles": [
+        "index.tsx",
+        "ui.css"
+      ],
+      "adaptations": "Radix composition retained. Removed Tailwind, cn/cva and configurable icon registry; shared scoped CSS, lucide icons, required dialog title/description and caller-provided labels. Native form/status controls are local implementations."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "radix-ui",
+      "version": "1.8.1",
+      "license": "MIT",
+      "revisionIdentity": "package-lock.json integrity for exact aggregate and transitive versions",
+      "purpose": "keyboard navigation, modal focus/dismissal, tabs, menus, switch, accordion and tooltip; not copied into skills"
+    }
+  ],
+  "references": [
+    {
+      "name": "Motion Primitives",
+      "url": "https://motion-primitives.com/docs/accordion",
+      "purpose": "progressive disclosure and state-linked chevron; source not copied, Motion/Tailwind not added"
+    },
+    {
+      "name": "Bencho",
+      "url": "https://bencho.dev/licence",
+      "purpose": "interaction feedback reference; free blocks MIT but Pro excludes component-kit redistribution. No Bencho block or paid source copied."
+    },
+    {
+      "name": "AI Elements",
+      "url": "https://elements.ai-sdk.dev/",
+      "purpose": "bookmarked entry to shadcn/ui; homepage announces migration and end-November deprecation. No old registry installed."
+    }
+  ],
+  "supplementalNotices": [
+    {
+      "name": "react-remove-scroll-bar",
+      "version": "2.3.8",
+      "license": "MIT",
+      "reason": "npm tarball omits LICENSE; its package.json declares MIT. Use upstream project notice below. npm gitHead b3b1287aad81def2e2ae707274b74531b61ddbaf is not available from public GitHub.",
+      "source": "https://github.com/theKashey/react-remove-scroll-bar/blob/8ca9ba5ea52de03308fe8ced94f7b159a44d28ff/LICENSE",
+      "notice": "licenses/react-remove-scroll-bar-2.3.8.txt",
+      "sha256": "a79aae0c0f21990d9d963bb3c5a79cdcea9a46f8523ba55c58d7fe776b6ebc84",
+      "sourcePackageVersion": "2.3.7",
+      "scope": "Notice from the same upstream project at fixed 2.3.7 source, used to supplement the MIT-declared 2.3.8 npm tarball; not a recovered 2.3.8 release-source notice."
+    }
+  ]
+}

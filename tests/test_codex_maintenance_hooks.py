@@ -167,25 +167,24 @@ class HookTests(unittest.TestCase):
             hooks.handle(self.event('Stop'))
             run.assert_called_once()
 
-    def test_real_checker_detects_drift_and_existing_sync_repairs_it(self):
+    def test_real_checker_rejects_private_implementation_and_accepts_its_removal(self):
         # Real package inputs, outside the working tree and installed skills.
         shutil.rmtree(self.root / 'skills')
         shutil.rmtree(self.root / 'lib')
-        shutil.copytree(ROOT / 'skills', self.root / 'skills', ignore=shutil.ignore_patterns('__pycache__'))
+        shutil.copytree(ROOT / 'skills', self.root / 'skills', ignore=shutil.ignore_patterns('__pycache__','node_modules','dist'))
         shutil.copyfile(ROOT / 'packages.json', self.root / 'packages.json')
         shutil.copyfile(ROOT / 'scripts/package_skills.py', self.checker)
-        shutil.copytree(ROOT / 'lib', self.root / 'lib', ignore=shutil.ignore_patterns('__pycache__'))
+        shutil.copytree(ROOT / 'lib', self.root / 'lib', ignore=shutil.ignore_patterns('__pycache__','node_modules','dist'))
         ledger = json.loads((self.root / 'lib/registry/skill-dispositions.json').read_text())
         for row in ledger['legacy'] + ledger.get('retired', []):
             target = self.root / row['source']
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / row['source'], target)
         hooks.handle(self.event())
-        source = self.root / 'lib/methods/evidence.md'
-        source.write_text(source.read_text() + '\nIsolated drift fixture.\n')
-        self.assertIn('shared copy drift', hooks.handle(self.event('Stop'))['reason'])
-        sync = subprocess.run([sys.executable, '-B', str(self.checker), 'sync'], cwd=self.root, capture_output=True, text=True)
-        self.assertEqual(sync.returncode, 0, sync.stderr)
+        private = self.root / 'skills/507-demo/private-component.tsx'
+        private.write_text('export default null\n')
+        self.assertIn('undeclared', hooks.handle(self.event('Stop'))['reason'])
+        private.unlink()
         self.assertEqual(hooks.handle(self.event('Stop')), {})
 
     def test_cli_json_protocol_and_inactive_example(self):

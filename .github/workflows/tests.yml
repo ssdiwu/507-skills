@@ -21,6 +21,17 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
           cache-dependency-path: requirements-test.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: lib/components/visual-runtime/package-lock.json
+      - name: Install one shared React runtime
+        run: npm ci --ignore-scripts --prefix lib/components/visual-runtime
+      - name: Check shared React types and components
+        run: |
+          npm run typecheck --prefix lib/components/visual-runtime
+          npm run test:visuals --prefix lib/components/visual-runtime
       - name: Check current skill packages
         run: python scripts/package_skills.py check
       - name: Run current skill package regressions

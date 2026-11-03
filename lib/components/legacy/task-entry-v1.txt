@@ -1,0 +1,1 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>当前任务视图</title><body><p><a href="versions/{{version}}/index.html">打开当前任务视图</a></p><p>生成产物；更新原过程记录后重跑组件，不在这里维护任务。</p></body></html>

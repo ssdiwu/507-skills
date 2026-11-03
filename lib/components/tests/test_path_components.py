@@ -53,8 +53,8 @@ class Components(unittest.TestCase):
 
     def artifact(self,data,out='artifact'):
         path=self.root/'input.json';path.write_text(json.dumps(data))
-        result=subprocess.run([sys.executable,str(ROOT/'render_artifact.py'),'--input',str(path),'--out-dir',str(self.root/out)],capture_output=True,text=True)
-        return result.returncode,json.loads(result.stdout)
+        result=subprocess.run(['node',str(ROOT/'visual-runtime/scripts/render-artifact.mjs'),'--input',str(path),'--out-dir',str(self.root/out)],capture_output=True,text=True)
+        return result.returncode,json.loads(result.stdout or result.stderr)
 
     def model(self):
         return {'mode':'cards','title':'<script>bad()</script>','pages':[{'title':'完整标题','body':'真实正文','sourceIds':['s']}],'sources':[{'id':'s','label':'来源','url':'https://example.com/source'}]}
@@ -63,9 +63,10 @@ class Components(unittest.TestCase):
         code,r=self.artifact(self.model())
         self.assertEqual(code,0)
         html=(self.root/'artifact/index.html').read_text()
-        self.assertNotIn('<script>',html)
+        self.assertNotIn('<script>bad()',html)
+        self.assertNotIn('type="module">bad()',html)
         self.assertIn('&lt;script&gt;',html)
-        self.assertIn('href="#s0"',html)
+        self.assertIn('href="#source-s"',html)
         self.assertEqual(r['htmlSha256'],hashlib.sha256(html.encode()).hexdigest())
 
     def test_unknown_source_and_script_url_do_not_create_output(self):

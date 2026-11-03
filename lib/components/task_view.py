@@ -3,7 +3,6 @@
 import argparse
 from contextlib import contextmanager
 import hashlib
-import html
 import json
 import os
 from pathlib import Path
@@ -17,6 +16,24 @@ LABELS = {'id': '身份', 'title': '工作', 'status': '报告状态', 'owner': 
           'result': '结果', 'evidence': '证据', 'notes': '备注', 'decision': '决定', 'acceptance': '验收记录'}
 MAX_BYTES = 4 * 1024 * 1024
 FILES = {'index.html', 'projection.json', 'manifest.json'}
+
+
+REACT_API = Path(__file__).with_name('react_export.py')
+
+def react_api():
+    # Imported data tools use the same explicitly located shared renderer.
+    import importlib.util
+    sys.dont_write_bytecode = True
+    spec = importlib.util.spec_from_file_location('shared_react_export', REACT_API)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+def shared_render(kind, data):
+    return react_api().render_document(kind, data)
+
+def renderer_identity():
+    return sha(Path(__file__).read_bytes()+react_api().renderer_fingerprint().encode())
 
 
 def sha(data):
@@ -234,26 +251,14 @@ def project(raw, spec, source_path):
             'tasks': projected, 'scope': '只读过程记录的派生展示；不代表任务创建、派工、作者接受或业务验收。'}
 
 
-STYLE = '''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f3f1ea;color:#202c29;font:16px/1.7 system-ui,-apple-system,sans-serif}header,main,footer{max-width:1160px;margin:auto;padding:28px}h1{font-size:clamp(28px,4vw,46px);line-height:1.25}h2{font-size:23px}p,td,dd,a,.mono{overflow-wrap:anywhere}button,input,select{font:inherit;border:1px solid #acbbb0;background:#fffefa;color:inherit;border-radius:5px;padding:8px 12px;max-width:100%}button{cursor:pointer}a{color:#216047}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #c16829;outline-offset:3px}.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.tools label{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.table{overflow-x:auto;border:1px solid #ccd4c7;background:#fffefa}table{border-collapse:collapse;width:100%;min-width:580px}th,td{text-align:left;padding:12px;border-bottom:1px solid #dde1d6;vertical-align:top}.tiny{font-size:13px;color:#50655c}.mono{font-family:ui-monospace,monospace;font-size:12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}.node,.detail{background:#fffefa;border:1px solid #ccd4c7;padding:18px;min-width:0}.node h3{margin:5px 0}.detail{margin-top:24px;scroll-margin-top:14px}dt{font-weight:650}dd{margin:0 0 14px;white-space:pre-wrap}summary{cursor:pointer}.no{color:#815420}.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}[hidden]{display:none!important}@media(max-width:480px){header,main,footer{padding:18px}.tools label{width:100%}.tools input{width:100%}body{font-size:15px}.detail{padding:16px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}'''
-
-
-SCRIPT = '''const data=JSON.parse(document.querySelector('#task-data').textContent),tasks=data.projection.tasks;const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const text=(t,k)=>!(k in t.fields)?'未提供':t.fields[k]===null?'明确空值':t.fields[k]===''?'空文本':Array.isArray(t.fields[k])?(t.fields[k].length?t.fields[k].join('；'):'空数组'):t.fields[k];const status=document.querySelector('#status'),owner=document.querySelector('#owner'),query=document.querySelector('#query'),byId=new Map(tasks.map(t=>[t.fields.id,t]));for(const [select,key] of [[status,'status'],[owner,'owner']])for(const v of [...new Set(tasks.map(t=>text(t,key)))]){const o=document.createElement('option');o.value=v;o.textContent=key==='status'?(data.contract.statusMap?.[v]?.label||v):v;select.append(o)}const link=(id,label)=>'<button type="button" data-task="'+esc(id)+'">'+esc(label)+'</button>';function detail(id){const t=byId.get(id);if(!t)return;const node=document.querySelector('#detail');node.hidden=false;let content='<h2>'+esc(t.fields.title)+'</h2><dl>';for(const k of Object.keys(data.contract.fields)){let v=text(t,k);if(k==='status')v=t.statusLabel+'（原值：'+v+'）';content+='<dt>'+esc(data.labels[k])+'</dt><dd>'+esc(v)+'</dd>'}content+='</dl><p>'+esc(t.dependencyHint)+'</p><p class="tiny">报告状态与验收记录分别展示；未提供验收不能解释成已验收。</p><p class="mono">来源：'+esc(data.projection.source.file)+' · '+esc(t.sourceLocation.line?'行 '+t.sourceLocation.line+'（表头行 '+t.sourceLocation.tableHeaderLine+'）':'JSON 路径 '+JSON.stringify(t.sourceLocation.jsonPath))+'<br>SHA-256：'+esc(data.projection.source.sha256)+'</p>';const deps=t.fields.dependsOn;if(deps?.length)content+='<p>前置工作：'+deps.map(k=>link(k,byId.get(k).fields.title)).join(' ')+'</p>';const next=tasks.filter(x=>x.fields.dependsOn?.includes(id));if(next.length)content+='<p>后续工作：'+next.map(x=>link(x.fields.id,x.fields.title)).join(' ')+'</p>';node.innerHTML=content;node.focus();node.scrollIntoView({block:'start'})}function render(){const q=query.value.trim().toLocaleLowerCase();const selected=tasks.filter(t=>(!status.value||text(t,'status')===status.value)&&(!owner.value||text(t,'owner')===owner.value)&&(!q||Object.values(t.fields).flat().join(' ').toLocaleLowerCase().includes(q)));document.querySelector('#count').textContent='显示 '+selected.length+' / '+tasks.length+' 项';const rows=document.querySelector('#rows');rows.innerHTML=selected.map(t=>'<tr>'+data.columns.map(k=>'<td>'+(k==='title'?link(t.fields.id,t.fields.title):esc(k==='status'?t.statusLabel:text(t,k)))+'</td>').join('')+'</tr>').join('');document.querySelector('#empty').hidden=!!selected.length;const graph=document.querySelector('#graph');if(graph)graph.innerHTML=selected.map(t=>'<article class="node"><div class="tiny">'+esc(t.fields.id)+' · '+esc(t.statusLabel)+'</div><h3>'+link(t.fields.id,t.fields.title)+'</h3><p>'+esc(t.dependencyHint)+'</p><p>依赖：'+(!('dependsOn' in t.fields)?'未提供':!t.fields.dependsOn.length?'记录无依赖':t.fields.dependsOn.map(k=>link(k,byId.get(k).fields.title)).join(' '))+'</p></article>').join('')}for(const e of [status,owner,query])e.addEventListener('input',render);document.addEventListener('click',e=>{const b=e.target.closest('[data-task]');if(b)detail(b.dataset.task)});render();'''
-
 
 def render(projection, spec):
-    esc = lambda value: html.escape(str(value), quote=True)
-    columns = spec.get('columns', ['id', 'title', 'status'])
-    mode_label = {'simple': '普通工作：必要拆分与交回', 'graph': '有依赖的独立工作：任务关系', 'continuing': '持续工作：沿用现有记录'}[spec['mode']]
-    payload = encoded({'projection': projection, 'contract': spec, 'labels': LABELS, 'columns': columns}).decode('utf-8').replace('<', '\\u003c').replace('>', '\\u003e').replace('&', '\\u0026')
-    graph = '<section><h2>工作之间的依赖</h2><p class="tiny">关系来自指定记录；点击前置或后续工作查看原字段，筛选不改变依赖。</p><div id="graph" class="grid"></div></section>' if spec['mode'] != 'simple' else ''
-    continuing = '<p>持续工作只沿用同一过程记录。更新记录后重跑组件，历史网页保留；本页不保存第二套可编辑任务或工作日志。</p>' if spec['mode'] == 'continuing' else ''
-    table_head = ''.join('<th scope="col">' + esc(LABELS[k]) + '</th>' for k in columns)
-    return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'; script-src \'unsafe-inline\'; connect-src \'none\'; img-src \'none\'; base-uri \'none\'; form-action \'none\'"><title>'+esc(spec['title'])+'</title><style>'+STYLE+'</style></head><body><header><h1>'+esc(spec['title'])+'</h1><p>'+esc(mode_label)+'</p><p>'+esc(spec['modeNote'])+'</p><p class="tiny">'+esc(projection['scope'])+'</p>'+continuing+'</header><main><section><h2>当前工作</h2><div class="tools"><label>搜索<input id="query" type="search" placeholder="标题、备注、结果"></label><label>报告状态<select id="status"><option value="">全部状态</option></select></label><label>承担者<select id="owner"><option value="">全部承担者</option></select></label></div><p id="count" role="status" aria-live="polite"></p><div class="table" role="region" aria-label="工作记录，可横向滚动" tabindex="0"><table><thead><tr>'+table_head+'</tr></thead><tbody id="rows"></tbody></table></div><p id="empty" hidden>当前筛选没有匹配工作。</p></section>'+graph+'<section id="detail" class="detail" tabindex="-1" hidden aria-label="选定工作详情"></section><noscript>本页的筛选和详情需要浏览器允许本地脚本。完整只读投影位于同目录 projection.json。</noscript></main><footer><details><summary>来源与生成范围</summary><p class="mono">文件：'+esc(projection['source']['file'])+'<br>SHA-256：'+esc(projection['source']['sha256'])+'</p><p>如果页面需要新布局或字段能力，先修改组件及契约并验证，再生成新版本；不要手工改本页。</p></details></footer><script id="task-data" type="application/json">'+payload+'</script><script>'+SCRIPT+'</script></body></html>'
+    return shared_render('task-view', {'projection': projection, 'contract': spec,
+        'labels': LABELS, 'columns': spec.get('columns', ['id', 'title', 'status'])})
 
 
 def stable_entry(version):
-    link = 'versions/' + version + '/index.html'
-    return ('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>当前任务视图</title><body><p><a href="' + link + '">打开当前任务视图</a></p><p>生成产物；更新原过程记录后重跑组件，不在这里维护任务。</p></body></html>\n').encode('utf-8')
+    return shared_render('entry', {'href': 'versions/' + version + '/index.html'}).encode('utf-8')
 
 
 def check_tree(root, registry):
@@ -265,6 +270,7 @@ def check_tree(root, registry):
     version_root = root / 'versions'
     if version_root.is_symlink() or not version_root.is_dir() or set(p.name for p in version_root.iterdir()) != set(versions):
         raise ValueError('output versions differ from registry')
+    current_entry_sha = None
     for version, digest in versions.items():
         if not re.fullmatch(r'[a-f0-9]{64}', version) or not isinstance(digest, str):
             raise ValueError('invalid version registration')
@@ -275,13 +281,23 @@ def check_tree(root, registry):
         manifest = strict_json(raw)
         if sha(raw) != digest or manifest.get('version') != version or sha(encoded(manifest.get('identity'))) != version:
             raise ValueError('version manifest changed: ' + version)
+        if version == registry['current']:
+            current_entry_sha = manifest.get('entrySha256')
         if set(manifest.get('files', {})) != FILES - {'manifest.json'}:
             raise ValueError('invalid manifest file set')
         for name, expected in manifest['files'].items():
             if sha(read_bytes(directory / name)) != expected:
                 raise ValueError('generated version was modified: ' + version + '/' + name)
-    if read_bytes(root / 'index.html') != stable_entry(registry['current']):
-        raise ValueError('generated stable entry was modified')
+    entry = read_bytes(root / 'index.html')
+    if current_entry_sha is not None:
+        if not isinstance(current_entry_sha, str) or sha(entry) != current_entry_sha:
+            raise ValueError('generated stable entry was modified')
+    else:
+        # Only authenticate the frozen prior format so an existing registry
+        # can transition without rewriting or trusting a hand-edited entry.
+        template = (REACT_API.parent/'legacy/task-entry-v1.txt').read_bytes()
+        if entry != template.replace(b'{{version}}', registry['current'].encode()):
+            raise ValueError('generated stable entry was modified')
 
 
 @contextmanager
@@ -324,7 +340,10 @@ def publish(root, version, projection, rendered, identity):
             content = {'projection.json': encoded(projection), 'index.html': rendered.encode('utf-8')}
             for name, data in content.items():
                 (stage / name).write_bytes(data)
-            manifest = {'schema': 1, 'version': version, 'identity': identity,
+            entry = stable_entry(version)
+            if renderer_identity() != identity['rendererSha256']:
+                raise ValueError('shared renderer changed during entry generation; prior state preserved')
+            manifest = {'schema': 1, 'version': version, 'identity': identity, 'entrySha256': sha(entry),
                         'files': {name: sha(data) for name, data in content.items()},
                         'meaningVerified': False, 'acceptanceVerified': False}
             manifest_raw = encoded(manifest)
@@ -336,7 +355,7 @@ def publish(root, version, projection, rendered, identity):
                 os.replace(stage / name, directory / name)
             new_registry = {'schema': 1, 'current': version,
                             'versions': {**(registry['versions'] if registry else {}), version: sha(manifest_raw)}}
-            (stage / 'entry').write_bytes(stable_entry(version))
+            (stage / 'entry').write_bytes(entry)
             (stage / 'registry').write_bytes(encoded(new_registry))
             os.replace(stage / 'entry', root / 'index.html')
             os.replace(stage / 'registry', root / 'current.json')
@@ -363,11 +382,14 @@ def generate(record_path, contract_path, out_root):
     raw, contract_raw = read_bytes(record_path), read_bytes(contract_path)
     spec = contract(strict_json(contract_raw))
     projection = project(raw, spec, record_path.absolute())
-    renderer_sha = sha(Path(__file__).read_bytes())
+    renderer_sha = renderer_identity()
     identity = {'recordSha256': sha(raw), 'contractSha256': sha(contract_raw), 'rendererSha256': renderer_sha,
                 'recordFile': str(record_path.absolute()), 'schema': 1}
     version = sha(encoded(identity))
-    created = publish(out_root.absolute(), version, projection, render(projection, spec), identity)
+    rendered = render(projection, spec)
+    if renderer_identity() != renderer_sha:
+        raise ValueError('shared renderer changed during generation; prior state preserved')
+    created = publish(out_root.absolute(), version, projection, rendered, identity)
     return {'status': 'RENDERED' if created else 'UNCHANGED', 'mode': spec['mode'], 'tasks': len(projection['tasks']),
             'version': version, 'entry': str(out_root.absolute() / 'index.html'),
             'page': str(out_root.absolute() / 'versions' / version / 'index.html'),

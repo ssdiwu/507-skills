@@ -56,6 +56,12 @@ class LibraryTests(unittest.TestCase):
   for name,data in [('packages',self.packages),('catalog',self.catalog),('decisions',self.disp)]:
    (self.root/(name+'.json')).write_text(json.dumps(data))
   return library.project(self.root,self.root/'packages.json',self.root/'catalog.json',self.root/'decisions.json')
+ def test_current_registry_projects_the_separate_resource_declaration(self):
+  declaration={'schema':1,'files':['SKILL.md','RESOURCES.md','agents/openai.yaml'],'uses':['lib/methods/m.md']}
+  (self.root/'skills/a/RESOURCES.md').write_text('# Resources\n```json\n'+json.dumps(declaration)+'\n```\n')
+  self.packages={'schema':3,'skills':[{'name':'a','role':'main','source':'skills/a','resources':'RESOURCES.md'}]}
+  result=self.run_projection();self.assertEqual(result['implementation']['sharedCopies'],0)
+  self.assertIn('skills/a/RESOURCES.md',[f['path'] for f in result['skills'][0]['files']])
  def test_source_projection_never_claims_runtime(self):
   r=self.run_projection();self.assertEqual(r['status'],'SOURCE_PROJECTED');self.assertEqual(r['implementation']['entrypoints'],1);self.assertEqual(r['implementation']['sharedCopies'],1);self.assertNotIn('businessVerified',r)
  def test_legacy_missing_item_is_not_a_complete_map(self):

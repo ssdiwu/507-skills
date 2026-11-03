@@ -39,3 +39,11 @@ class LayoutTests(unittest.TestCase):
         self.assertIn('python scripts/package_skills.py check', workflow)
         self.assertIn('unittest discover -s tests -v', workflow)
         self.assertNotIn('next/', workflow)
+
+
+class ResourceMapTests(unittest.TestCase):
+    def test_all_skill_resource_map_matches_current_contracts_and_manifest(self):
+        import subprocess
+        result = subprocess.run([sys.executable, str(ROOT/'scripts/resource_map.py'), '--check'],
+                                capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)

@@ -1,0 +1,534 @@
+{
+  "repository": "https://github.com/benjitaylor/skills",
+  "commit": "802057409787133703c56001080169e347305572",
+  "sourceDirectory": "stageshow",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "f9420246652580af24aa2bc48531c17f0f377b064bc7ea218afeb983923ef643"
+    },
+    {
+      "path": "examples/form-error/form.css",
+      "sha256": "50559c0edf7a21ccd205ed56c5b7dadd1e10dcfdda55c2203affd6f360dfacb6"
+    },
+    {
+      "path": "examples/form-error/index.tsx",
+      "sha256": "6133d17c857b1d1cc2cf05cf1eadde2677f79929d57e242e1aa6dbc8036f2669"
+    },
+    {
+      "path": "examples/payout-flow/index.tsx",
+      "sha256": "e81a2c83dfda0c9130b0a10ce0bd16acc6243652f00829ac52d0febc43e9db8d"
+    },
+    {
+      "path": "examples/payout-flow/pace.css",
+      "sha256": "109d9a883082017ca013c38185ecf03650137ef9af7e5f7792d7b07b765cf544"
+    },
+    {
+      "path": "examples/static-card/card.css",
+      "sha256": "fb62020add191adf09ec10c41ea89a0cf9715aad049738d00f75a581deb4ade9"
+    },
+    {
+      "path": "examples/static-card/index.tsx",
+      "sha256": "e019e2295555210c7f40ecb5bb63fbbd726f561ac646ecd318daf9d2292469ae"
+    },
+    {
+      "path": "kit/act.ts",
+      "sha256": "2f2835e6600cd62022467ab8b67534f4f478b8eed4122deffdfc21901e3da573"
+    },
+    {
+      "path": "kit/chart.css",
+      "sha256": "50749dfe283565eeb881599a08b11f34c2fb1e0307950f70bfdd9f4adcb9f64c"
+    },
+    {
+      "path": "kit/chart.tsx",
+      "sha256": "e8f3b8a60a39b88c2e2ed8fe04697cc5c64837ae14ea5be6f4e5c5beac5cad4f"
+    },
+    {
+      "path": "kit/clock.ts",
+      "sha256": "06f30986325edbd8d26273c94d3d92a0e68ce4bce09eb711aad68994d06bbc47"
+    },
+    {
+      "path": "kit/code.css",
+      "sha256": "aa8a222394318305f3c6bfbe33ce73e95f39f686144f3a3c15579378990102bd"
+    },
+    {
+      "path": "kit/code.tsx",
+      "sha256": "e7b9a2b545e7f457ec58602bcf5c9d534479e5a425ac1ee24d43f24431cbe5fb"
+    },
+    {
+      "path": "kit/controls/Badge.css",
+      "sha256": "d71505b85615abe1160de5196a830ce30b73e449bbb43c6d2e57b8e300cb6093"
+    },
+    {
+      "path": "kit/controls/Badge.tsx",
+      "sha256": "55edfeec962ff1bf139af7d0868760f63a9d0e438d83f8f6d0a88a003c644816"
+    },
+    {
+      "path": "kit/controls/Field.css",
+      "sha256": "d48c35db3f1a7e966d2bc816bb492b6f1a2d69acf4e2f0e01b6fde475de0e54b"
+    },
+    {
+      "path": "kit/controls/Field.tsx",
+      "sha256": "16dd3a339be85893929c361892a906c389ac24db87a9083291e63a66f15f5d59"
+    },
+    {
+      "path": "kit/controls/Segmented.css",
+      "sha256": "f9c4f73d3eb2216f2969ac42906418c351471dcf4bb54a0e852fe642f4755e9e"
+    },
+    {
+      "path": "kit/controls/Segmented.tsx",
+      "sha256": "dcca115941880408e1616d57ab0e13fac260d832320afc445b299e7f1b604527"
+    },
+    {
+      "path": "kit/controls/Slot.css",
+      "sha256": "a7be1de89da119dc8dc48190defcd31c23235c8074476fb6f750201e397f858e"
+    },
+    {
+      "path": "kit/controls/Slot.tsx",
+      "sha256": "80b5239315bee28b2c738ef1cd8a3bb24997d9418e8ec6888ba4970370f28765"
+    },
+    {
+      "path": "kit/controls/Tabs.css",
+      "sha256": "7b562dcdcbd73b00c4eea7b9be4e860af1a40b27904b41554e107499ee4af213"
+    },
+    {
+      "path": "kit/controls/Tabs.tsx",
+      "sha256": "2c4170ac5a88ef426e2e4dc3307c49c5854b85e7de115a9453e0d970fad6d612"
+    },
+    {
+      "path": "kit/controls/Toggle.css",
+      "sha256": "df236dd3b3f71804d4431892e77ee9c9fa13c9110bc4bf947bc5ddd83816fc81"
+    },
+    {
+      "path": "kit/controls/Toggle.tsx",
+      "sha256": "bd83679a2b7462d450eea9a6e5895f00dbc0d797b085d3668a3fff7d1314d8de"
+    },
+    {
+      "path": "kit/controls/index.ts",
+      "sha256": "197b758f616a4012501ad48f0d73f101ab3ca6f39ef1a6256081361377ea71bb"
+    },
+    {
+      "path": "kit/cursor.css",
+      "sha256": "40c69aaff8c7c970f49ef9f9f4c6d8c3f89fdf4218d8aa703cf5b36483a9e42d"
+    },
+    {
+      "path": "kit/cursor.tsx",
+      "sha256": "e3c73976b0cc132af659c6079470a5fd22709f894058a044dceddcdd761b12f4"
+    },
+    {
+      "path": "kit/cursors.tsx",
+      "sha256": "cc5100bfe6393fb2635b644988557ca42589457b46faa81274e8683effadaae5"
+    },
+    {
+      "path": "kit/ease.ts",
+      "sha256": "0b1699fa40ff569f2d21f54c910565affed7fed3059b8a04514feacd9ab61636"
+    },
+    {
+      "path": "kit/index.ts",
+      "sha256": "bcd2de4a10e0038083ed90b8616aff9375719ba39d70b9bb8af842ae23e45d44"
+    },
+    {
+      "path": "kit/ios.css",
+      "sha256": "330e880fe6e48d145dc749cfc2134df6ad1b0cb7cf7445137e2b4fdc8b8cb42d"
+    },
+    {
+      "path": "kit/ios.tsx",
+      "sha256": "61f3dcbdb21c0e28e63c8748dc0e7ff2d817953be7d876cb0bbe7e40262784ae"
+    },
+    {
+      "path": "kit/keys.css",
+      "sha256": "929ef94999bfd7fd6bc78c5026c98f5b4ff8483c8aecfa3bc87cfb2e466cfc3c"
+    },
+    {
+      "path": "kit/keys.tsx",
+      "sha256": "ab45f610aa1c2ccac54a966e8e8c804ed601258cc4e8071278d48cb8bc4f6c59"
+    },
+    {
+      "path": "kit/looks.ts",
+      "sha256": "263a44eaa74b5d7f4efb7868080c1e04cbbd03a224c06ddf88fd27c47c6f92ac"
+    },
+    {
+      "path": "kit/measure.ts",
+      "sha256": "d782e507e8698952e2035260a41f7756c61dbeaf5cb81aede1e393bb0052964d"
+    },
+    {
+      "path": "kit/messages.css",
+      "sha256": "1836f406438fbe668c97f1fd2b5133ca5e0a598ee9c1f8ad0507002218d1eb72"
+    },
+    {
+      "path": "kit/messages.tsx",
+      "sha256": "4f9df8004be1548f4bc62f248932caed0e6ef83be58f5378fe17b950d70f278a"
+    },
+    {
+      "path": "kit/motion/Camera.css",
+      "sha256": "6bdc4d2b6a11b0275a5b4735c4b23b6839ccf0cf59193b804f3a5aac15688641"
+    },
+    {
+      "path": "kit/motion/Camera.tsx",
+      "sha256": "9853ab49e180da4280e4aa8d8431761413b72978434deb837db3785c0b5d5e96"
+    },
+    {
+      "path": "kit/motion/Collapse.css",
+      "sha256": "9ea9ce6c5e617b51b877e09397845c9358b844e2cc7d6d0b546ba92d23b09df2"
+    },
+    {
+      "path": "kit/motion/Collapse.tsx",
+      "sha256": "0fa0ef70d405f8dd97fe6934d5892180a4cdd825911db2743590492096ceb92e"
+    },
+    {
+      "path": "kit/motion/Connector.css",
+      "sha256": "3f85813244e8ffa59950beaa93e57a3b4776266299da2b1c8be38a2a55a499ef"
+    },
+    {
+      "path": "kit/motion/Connector.tsx",
+      "sha256": "e99cc275971955393bce8f8ebbb9fa0be88562f0079eb77b8d53c70d6627eb46"
+    },
+    {
+      "path": "kit/motion/Count.css",
+      "sha256": "1ed5fbf371ff3cec3a68ee695a6d7a16a1837aa423d2efa224b8a12a0ea9f423"
+    },
+    {
+      "path": "kit/motion/Count.tsx",
+      "sha256": "f28e0546819f1ab19ee32d8318708c389c2f001f5054c7bcd12ed3b31746ed85"
+    },
+    {
+      "path": "kit/motion/Expand.css",
+      "sha256": "4b38026afe2022df97962cec0e307b3f847a86ecef729f4316a66ac51001063d"
+    },
+    {
+      "path": "kit/motion/Expand.tsx",
+      "sha256": "ac5baf38ee800a1bf0c7ad9432016f99c5074be615cba3b08f666ea07a1bf706"
+    },
+    {
+      "path": "kit/motion/Fly.css",
+      "sha256": "d15267f457b8dd3700b6b6e4025f1d6dd99a2a07759ebf5014de00357bf83f57"
+    },
+    {
+      "path": "kit/motion/Fly.tsx",
+      "sha256": "2e4a56aea275ffb6918807608436af42480eaf0e7a6517e5125f91bbdec14140"
+    },
+    {
+      "path": "kit/motion/Follow.css",
+      "sha256": "68be055fb6195a1b28a4aab6edfb8ce1ecb4b9a89f88d0418f48805fdb32b61d"
+    },
+    {
+      "path": "kit/motion/Follow.tsx",
+      "sha256": "1b017886add5f0b908b55c5a0020fb379b4c470da17687b042a6f48c84e2f9df"
+    },
+    {
+      "path": "kit/motion/Popover.css",
+      "sha256": "4b6e64db3c5e2732d5b1182de07be31eb039624924b5791d688101bf33045cbd"
+    },
+    {
+      "path": "kit/motion/Popover.tsx",
+      "sha256": "cc29b9dc759bf7cd2e02d42723a66b4e30d116c43e67a917f0617428f1e8f13f"
+    },
+    {
+      "path": "kit/motion/Roll.css",
+      "sha256": "cd041a1258633dabe080eec018681f73124fdfced886542e2b0839d675d8bd51"
+    },
+    {
+      "path": "kit/motion/Roll.tsx",
+      "sha256": "aa117429a1fcb103d8845e6897a86c78e05ab9b8e3da778194eff80e0c0c4a50"
+    },
+    {
+      "path": "kit/motion/Scroll.css",
+      "sha256": "75b6e91737672c0e32a3c2ce1e31c174d1be8ab98d3436a767ef25eab47ce9b5"
+    },
+    {
+      "path": "kit/motion/Scroll.tsx",
+      "sha256": "7c6f75e475172958a192e6ff9d7970d26f32716233a1c1b248c40ca2bcceefec"
+    },
+    {
+      "path": "kit/motion/States.css",
+      "sha256": "6c12b54ce6d6d85182ae7276456921c46cf12281c6176cfb251b94035a50f40f"
+    },
+    {
+      "path": "kit/motion/States.tsx",
+      "sha256": "fd0b87fb68ff207fc43195c48503e566d2860ed39bac27568e536a2d8ec2bf54"
+    },
+    {
+      "path": "kit/motion/Stream.css",
+      "sha256": "65044bc4931973bd1f9367496cbec958e60c04034e69e0d90bc655b7870b11e5"
+    },
+    {
+      "path": "kit/motion/Stream.tsx",
+      "sha256": "8f5bce032133d0266e16a10dd64f268205c58b212ecad7305b0989516d33253d"
+    },
+    {
+      "path": "kit/motion/Swap.css",
+      "sha256": "2e4e1243f01ccda39601b0298f0642da26d4c45269251890ba3230462ef45861"
+    },
+    {
+      "path": "kit/motion/Swap.tsx",
+      "sha256": "a6928707dddb1c0299d76ab00089466af1d2fa15d7b8490f372abcaf861c1da3"
+    },
+    {
+      "path": "kit/motion/index.ts",
+      "sha256": "19e0ac13b0743a01b642da5c351abd648f7c186bf307e735f4969d5a99a353e6"
+    },
+    {
+      "path": "kit/parts/Avatar.css",
+      "sha256": "594951e42d8c0571263d5a460812bf32f8356b985c52f01cc6939bdc5844853e"
+    },
+    {
+      "path": "kit/parts/Avatar.tsx",
+      "sha256": "39e58c3d097fcb7843fb92bdb3700ec3c10ea672a86db82297b7cff1f609403e"
+    },
+    {
+      "path": "kit/parts/Check.css",
+      "sha256": "5c4c2080ab705ce4e6febfa560337d7248b00de5381bd0be2be97e6e689734a9"
+    },
+    {
+      "path": "kit/parts/Check.tsx",
+      "sha256": "e2dd0a7c25d1abeb14f6f091158f95f98fb99e8198bb6613398a39458e6eb762"
+    },
+    {
+      "path": "kit/parts/Chip.css",
+      "sha256": "e4a78bfe8730b0e0d7c775e167a1068dfae9f135c8337e3411e199acfe6187cc"
+    },
+    {
+      "path": "kit/parts/Chip.tsx",
+      "sha256": "a9aec63daf359996ee9eab3907f65bdc1fa93ae28078a2795133f9ef2084bad3"
+    },
+    {
+      "path": "kit/parts/Facepile.css",
+      "sha256": "5fe132b5bf3b306837e729998041cfed6acbabc9d708ffe0ba683b2834b721f7"
+    },
+    {
+      "path": "kit/parts/Facepile.tsx",
+      "sha256": "738ec4d682566984fa177c4f5923c956f656e504b4ebaf08da88472e80800e94"
+    },
+    {
+      "path": "kit/parts/Icon.css",
+      "sha256": "1e4a18b578f68fd23ddd3cdb4b3dcbc0a23c41ee09e546371b72d085c26f08d4"
+    },
+    {
+      "path": "kit/parts/Icon.tsx",
+      "sha256": "5876084fa0fbeb0904a31511148acf2daac99b7fa249d83b7a0bced52942b85a"
+    },
+    {
+      "path": "kit/parts/Menu.css",
+      "sha256": "46dd111c1a736eeb4ba56eeb1b4ba82cd2509e0abeac67975f47419a48746321"
+    },
+    {
+      "path": "kit/parts/Menu.tsx",
+      "sha256": "aae8277b0e5662cc6426cbd8f461b59d39dd4856ec866233c457e1c37c4cfe7c"
+    },
+    {
+      "path": "kit/parts/Meter.css",
+      "sha256": "d1da5486b4c9b9dc7910764768cc4aba8c4015e44fb5f1dba1f677227eb84163"
+    },
+    {
+      "path": "kit/parts/Meter.tsx",
+      "sha256": "b4ce82765556688162e68275cf9c3a53f91e71b8368515acc2b70562adc28495"
+    },
+    {
+      "path": "kit/parts/Pin.css",
+      "sha256": "af95fca4367d175f855892d2e15c2b108c12d546c745c8ff5768ea4116e62f47"
+    },
+    {
+      "path": "kit/parts/Pin.tsx",
+      "sha256": "13c999fdb1f90401f06ff847b5000447193684ee3923f1f7669e39d39c3e5746"
+    },
+    {
+      "path": "kit/parts/Row.css",
+      "sha256": "00405ccf9d7cc7242f6e8091b338a3d43c3cc34b2625d53d35c0dedee698a832"
+    },
+    {
+      "path": "kit/parts/Row.tsx",
+      "sha256": "3e67d13c07ad2b24258261f2a38245e6c53b3f2a266d4785f7c7f15fe366ea72"
+    },
+    {
+      "path": "kit/parts/Spinner.css",
+      "sha256": "62c45c9ccd18edf729f09d1a7f5b5a0eb72befe6dd816ae5804ddab1fa30746f"
+    },
+    {
+      "path": "kit/parts/Spinner.tsx",
+      "sha256": "7ad961df16662b4a330300850371881367bb53a6d1d279c5c35c5133122559f9"
+    },
+    {
+      "path": "kit/parts/Toast.css",
+      "sha256": "25b8789e8228bab946538f95da0669fd07d10183de0c40169790d069b80ed4dd"
+    },
+    {
+      "path": "kit/parts/Toast.tsx",
+      "sha256": "c7d9e9b6cede3160b744362417644c7aa22b7ac04c18ff00b0050892dd10e211"
+    },
+    {
+      "path": "kit/parts/Tooltip.css",
+      "sha256": "c6933e2a3100965d8c9c29a0e258f60bef9ff0c45b49961398126671ae57642f"
+    },
+    {
+      "path": "kit/parts/Tooltip.tsx",
+      "sha256": "f833c8f85a159b28643d098210bcf809c4109619f5404ae2e2615ec6a077998e"
+    },
+    {
+      "path": "kit/parts/index.ts",
+      "sha256": "0ed554242d52b217d1011e3b54fd18fb5a99fa0f3495ee169ba57b0045de297f"
+    },
+    {
+      "path": "kit/phone.css",
+      "sha256": "c50844fcdb1c2c06fe3c7afa307564350b0ede0f9026d9a7556aabcdb0448a94"
+    },
+    {
+      "path": "kit/phone.tsx",
+      "sha256": "cfd79ec0173191d0053ebb82f80df15ad450f432c44dcbf7d3d32fb3e4210add"
+    },
+    {
+      "path": "kit/reduced-motion.ts",
+      "sha256": "9f8926f18ce0489f2c4073d7041c82ee3b6cfb6c16ecd75aea3ef76c43581113"
+    },
+    {
+      "path": "kit/stage.css",
+      "sha256": "fa1b22a158235b7d3d0a89a46348d216d392a3ebdfd247f2a9a6041045e0f866"
+    },
+    {
+      "path": "kit/stage.tsx",
+      "sha256": "75f75e600ace3a75aa04ebb72f6d6300af01e84529a418e08ad0d3d6a867ced3"
+    },
+    {
+      "path": "kit/stageshow.css",
+      "sha256": "ca006f0c529c16438919b29f131165b09c3f4ab87695ebb3b8a0a3bd17302d34"
+    },
+    {
+      "path": "kit/util.ts",
+      "sha256": "b999c044ea0022744588ccb56fea58a41dcc94a60c030856bae05a9beb6ad67f"
+    },
+    {
+      "path": "kit/window.css",
+      "sha256": "f95bae539dd0525d2be41b12de516ce37f0b64901a6ed7889038861ed2c0b4cd"
+    },
+    {
+      "path": "kit/window.tsx",
+      "sha256": "a854067dde2c9c4271bc355d48da45879face6ea2ecec96a16980b238d356783"
+    },
+    {
+      "path": "playground/index.html",
+      "sha256": "9ec7b794d39aa83dd67265e689e17677742d65236d4d03b857439d8eeb1fbc5b"
+    },
+    {
+      "path": "playground/main.tsx",
+      "sha256": "af08211a535a0fb37ad27f40554d25ba40a62f4d412b3999dfc64e597dc6cb49"
+    },
+    {
+      "path": "playground/playback.ts",
+      "sha256": "5517bf0a5632a61634e8ee83b1b89339ddeab924eb460c694158ba305714c06b"
+    },
+    {
+      "path": "playground/preview.css",
+      "sha256": "c3efd68e93bf71da66822558d20d4774aa1234e239f370e8a755a74893b7922e"
+    },
+    {
+      "path": "playground/preview.tsx",
+      "sha256": "8d345cbaee381782a9b2069f7f3bd4c01cc4a863f2c2c138417cd8a3f84de8b7"
+    },
+    {
+      "path": "playground/tsconfig.json",
+      "sha256": "51f5e675941db67aa409b9935a25125dcc2d912efbd2768c56ae2d0c974ad8e3"
+    },
+    {
+      "path": "playground/viewer.css",
+      "sha256": "64b62277be5ed430396a97ec353b02b2c77b55838382d33690d01f352ac50a89"
+    },
+    {
+      "path": "playground/viewer.tsx",
+      "sha256": "e40f3dcfc641840e7eeff26825378fe611d6c8e2b39ccd87d6153c6175932360"
+    },
+    {
+      "path": "playground/vite.config.ts",
+      "sha256": "48394f60d95d72d9a29d5d54b32598280967451a1e31aa7ca04ae850dd1b1b72"
+    },
+    {
+      "path": "references/choreography.md",
+      "sha256": "084c09e6815a30c3f1feabd25f9f59da73f2aeaba1f8abc423ec0b9dea806651"
+    },
+    {
+      "path": "references/craft.md",
+      "sha256": "4251bc0e6d0c20808f6a166b4e1cf5c4e081541df807bdcdfa2a7256f4e5c2f7"
+    },
+    {
+      "path": "references/framing.md",
+      "sha256": "7843aa673d50068ce5ff70c16eaedf4db77cf74dff14d9601b3f4f61bc10cf2b"
+    },
+    {
+      "path": "references/kit.md",
+      "sha256": "6122536c2a7edf0712c753cafb5456d6b607905b5c3c81cb28a04a8c097603be"
+    },
+    {
+      "path": "references/motion.md",
+      "sha256": "6ccf5899c7fd186c9d629d80618e1a54bc0193b468b919a33e02aec267cc5d0a"
+    },
+    {
+      "path": "references/rehearse.md",
+      "sha256": "03644a4bcbd614d842e53a54824c6560267570a82cc70de31ffb096fe416bdf4"
+    },
+    {
+      "path": "references/review.md",
+      "sha256": "76bb8fd33cb77ebcded5bfc9573b5132637ed9a711c1738daeef89de72aa7fe5"
+    },
+    {
+      "path": "references/verify.md",
+      "sha256": "597f0cb24abe6fda20fb55de6ac379d981a4a63618b80b400b94e20abf1289bf"
+    },
+    {
+      "path": "scripts/browser.mjs",
+      "sha256": "ffce55eb334cdfd670f22578c8cadfe4fa6d06f0659f07e2f1491030bc11f2c6"
+    },
+    {
+      "path": "scripts/class-clash-core.mjs",
+      "sha256": "2265a44c7ce0706267e7191fd144165bacf9b28bbdbb3253f45e6ef599494717"
+    },
+    {
+      "path": "scripts/class-clash.mjs",
+      "sha256": "47e5c270dc12a129fce43d98458d69906d181020dc9bae61e265a214c9b2a401"
+    },
+    {
+      "path": "scripts/film-checks.mjs",
+      "sha256": "31d8971062d71c5a339108ddac617e58c33c3c1f4ec0b840d661d77322bf04da"
+    },
+    {
+      "path": "scripts/film.mjs",
+      "sha256": "3058db7b41df7f8b31602dfb39b3552537279ff2ddfe3987b650739037b7c0e5"
+    },
+    {
+      "path": "scripts/jumps-core.mjs",
+      "sha256": "ad2c06db75c97f6216854fd4f214fb9246d3827879bd0968dd467d503e529ecd"
+    },
+    {
+      "path": "scripts/jumps.mjs",
+      "sha256": "05aba89a744f2ab69d326a2a4c6feee8eea4c0886206a102effca57b431df77e"
+    },
+    {
+      "path": "scripts/layout-core.mjs",
+      "sha256": "6d9b60909276edd030ee875a898d75d9d081acc6246552caaa44e5b7179fb2cf"
+    },
+    {
+      "path": "scripts/layout.mjs",
+      "sha256": "8757e59201a5ef134e04b323df22e200bc652618e176dbdaa3785edf4b5db3ee"
+    },
+    {
+      "path": "scripts/motion-watch.mjs",
+      "sha256": "2972594dd0ce6d5f1fbfefef9622c69a928df6d46368ee1fd86c31f67ca8b0eb"
+    },
+    {
+      "path": "scripts/verification.mjs",
+      "sha256": "0b1a7ca7aae394b67233c6823026aca5a1d139c8cd8de3e3359531c65672538b"
+    }
+  ],
+  "excluded": [
+    "upstream SKILL.md (replaced by 507-demo contract)",
+    "kit/brands and BrandMark (not shipped)",
+    "assets/app-icons.ts and real-product studies (not shipped)",
+    "unselected examples, teaching, portless launcher (not shipped)"
+  ],
+  "modifications": [
+    "Removed BrandMark exports and stylesheet import from kit/index.ts, kit/parts/index.ts, kit/stageshow.css",
+    "Removed unavailable contrasts branch from playground/preview.tsx",
+    "Replaced catalog and localized viewer labels; adapted three examples in examples/review-card, review-flow, dual",
+    "Replaced package configuration and lockfile; no automatic portless installation",
+    "Fixed gate exit-code overwrite and incomplete-pass message in scripts/film.mjs using applyRehearsalGate in scripts/verification.mjs; added scripts/verification.test.mjs",
+    "Shared-library integration: no skill/runtime copies; rehearse.md setup updated; shared React document/diagram/task/product views and SSR/hydration export added. Original upstream hashes remain provenance only."
+  ]
+}

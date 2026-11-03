@@ -42,7 +42,7 @@ def fingerprint():
             paths.add(directory)
             continue
         paths.update(p for p in directory.rglob('*')
-                     if '__pycache__' not in p.parts and (p.is_file() or p.is_symlink()))
+                     if not {'__pycache__','node_modules','dist'} & set(p.relative_to(ROOT).parts) and (p.is_file() or p.is_symlink()))
     paths.update(ROOT / p for p in ('packages.json', 'scripts/package_skills.py', 'scripts/codex_maintenance_hooks.py'))
     dispositions = ROOT / 'lib/registry/skill-dispositions.json'
     if dispositions.is_file() and not dispositions.is_symlink():

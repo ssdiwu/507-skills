@@ -1,0 +1,148 @@
+{
+  "mode": "site",
+  "title": "共有图解组件｜虚构示例",
+  "subtitle": "时间、过程、比较、版面与数量联动；全部为演示数据。",
+  "pages": [
+    {
+      "title": "时间安排",
+      "blocks": [
+        {
+          "type": "timeline",
+          "title": "从修改到开放",
+          "items": [
+            {
+              "date": "第一阶段",
+              "label": "完成修改",
+              "status": "目标"
+            },
+            {
+              "date": "第二阶段",
+              "label": "开始测试",
+              "detail": "测试结果决定是否具备下一阶段条件。",
+              "status": "待验证"
+            },
+            {
+              "date": "第三阶段",
+              "label": "培训及开放",
+              "status": "暂定"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "核对过程",
+      "blocks": [
+        {
+          "type": "steps",
+          "title": "地址如何得到核对结果",
+          "caption": "仅说明建议过程，匹配结果不确定时仍需人工复核。",
+          "items": [
+            {
+              "label": "取得表格地址",
+              "detail": "正文或附件中的地址。"
+            },
+            {
+              "label": "查询地址资料",
+              "detail": "核对匹配楼宇与输入是否一致。"
+            },
+            {
+              "label": "显示匹配及地图",
+              "detail": "保留不确定提示，供人员确认。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "同条件比较",
+      "blocks": [
+        {
+          "type": "comparison",
+          "title": "表格份数与处理耗时",
+          "unit": "分钟",
+          "caption": "虚构示例；区间与未知分别保留，不能作为性能承诺。",
+          "items": [
+            {
+              "label": "一份表格",
+              "value": [
+                1,
+                1.5
+              ],
+              "note": "演示区间"
+            },
+            {
+              "label": "两份表格",
+              "value": 6,
+              "note": "演示值"
+            },
+            {
+              "label": "三份表格",
+              "value": null,
+              "note": "尚未量度"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "版面结构",
+      "blocks": [
+        {
+          "type": "layout",
+          "title": "五项核对与说明区",
+          "items": [
+            {
+              "label": "签署与注册",
+              "detail": "结果与必要依据"
+            },
+            {
+              "label": "日期",
+              "detail": "识别与先后关系"
+            },
+            {
+              "label": "地址",
+              "detail": "匹配位置与地图"
+            },
+            {
+              "label": "完整性",
+              "detail": "缺项与适用例外"
+            },
+            {
+              "label": "一致性",
+              "detail": "字段之间的对应"
+            }
+          ],
+          "aside": {
+            "label": "重点说明",
+            "detail": "只放当前读者需要的解释；长依据另保留来源。"
+          }
+        }
+      ]
+    },
+    {
+      "title": "排队与估算",
+      "blocks": [
+        {
+          "type": "queue",
+          "title": "先看预计等待时间",
+          "model": "serial",
+          "taskForms": [
+            1,
+            2
+          ],
+          "minutesPerForm": [
+            1,
+            1.5
+          ],
+          "remainingMinutes": [
+            1,
+            2
+          ],
+          "caption": "调整前方任务数和各任务的表格数，观察等待时间变化。"
+        }
+      ]
+    }
+  ],
+  "sources": []
+}

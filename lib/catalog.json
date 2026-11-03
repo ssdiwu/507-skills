@@ -61,7 +61,7 @@
         },
         {
           "skillId": "507-material",
-          "when": "1. 读取当前指定材料与必要上下文，核对可得范围。需要判断作者、Agent、第三方归属或支持关系时，读[作者与来源](references/shared/author-and-source.md)；基线或外部来源连接不明时读[事实与证据](references/shared/evidence.md)。未读取、未提供和无法核验分别说明。"
+          "when": "1. 读取当前指定材料与必要上下文，核对可得范围。需要判断作者、Agent、第三方归属或支持关系时，读[作者与来源](lib/methods/author-and-source.md)；基线或外部来源连接不明时读[事实与证据](lib/methods/evidence.md)。未读取、未提供和无法核验分别说明。"
         },
         {
           "skillId": "507-product-map",
@@ -475,11 +475,11 @@
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "用户手改、多派生载体或替换可用作品；仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](references/shared/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](references/shared/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
+          "when": "用户手改、多派生载体或替换可用作品；仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](lib/methods/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](lib/methods/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
         },
         {
           "skillId": "507-adapt",
-          "when": "承接成熟稿、指定版本与手改、目标受众、载体、保留要求和修改授权。按[作品合同](references/shared/artifact-contract.md)确定当前内容版本、保护项及派生位置，不回写唯一主稿除非本次授权覆盖。只读建议仍只交建议；有制作请求时完成目标环境中可用的内容和呈现实物。"
+          "when": "承接成熟稿、指定版本与手改、目标受众、载体、保留要求和修改授权。按[作品合同](lib/methods/artifact-contract.md)确定当前内容版本、保护项及派生位置，不回写唯一主稿除非本次授权覆盖。只读建议仍只交建议；有制作请求时完成目标环境中可用的内容和呈现实物。"
         },
         {
           "skillId": "507-review",
@@ -496,11 +496,19 @@
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "用户还要求离线 HTML 且内容成熟时，读[呈现合同](references/shared/artifact-rendering.md)，使用[呈现脚本](scripts/render_artifact.py)制作图卡式页面、幻灯片或阅读网站，并看最终 HTML。真实内容还需确定视觉阅读关系时采用[设计提示](references/shared/artifact-prompts.md)。目标是图片、PPTX 或视频时，复用真实可用成熟工具核对依赖及目标文件；缺工具交付内容包和具体依赖，不能称目标载体已完成。"
+          "when": "内容与阅读关系已成立且请求离线 HTML 时，先辨认时间、步骤、比较、版面或状态关系，用对应共有 blocks；普通文字页沿正文和列表，实际检查关系与交互，不把可生成 HTML 当选用文字模板的充分条件。"
         },
         {
           "skillId": "507-adapt",
-          "when": "4. 可以由离线 HTML 满足目标时，读[呈现合同](references/shared/artifact-rendering.md)，运行[呈现脚本](scripts/render_artifact.py)，生成图卡式页面、幻灯片或阅读网站。必须打开当前 HTML 核对全部页、最密页、来源、备注和实际导航；生成与内容指纹不代替这一步。"
+          "when": "内容与阅读关系已成立且请求离线 HTML 时，先辨认时间、步骤、比较、版面或状态关系，用对应共有 blocks；普通文字页沿正文和列表，实际检查关系与交互，不把可生成 HTML 当选用文字模板的充分条件。"
+        },
+        {
+          "skillId": "507-visualize",
+          "when": "需要交付离线图解页面或界面示意时，与共有图解组件一起核输入、输出和真实呈现。"
+        },
+        {
+          "skillId": "507-demo",
+          "when": "需要交付离线图解页面或界面示意时，与共有图解组件一起核输入、输出和真实呈现。"
         }
       ],
       "relatedAtomIds": [],
@@ -513,15 +521,15 @@
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "作者、Agent、第三方混合，引语或主张承重有缺口；仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](references/shared/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](references/shared/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
+          "when": "作者、Agent、第三方混合，引语或主张承重有缺口；仅读适用方法。作者和来源混杂、关键事实或引语需要核对时，读[作者与来源](lib/methods/author-and-source.md)。修订有效版本、保护含义、多个载体同步或交付状态判断时，读[作品合同](lib/methods/artifact-contract.md)。作者主张、说话位置或关键材料仍不足时，列明影响哪处表达并返回内容负责人；可查事实先查，有效信息与原授权继续承接。"
         },
         {
           "skillId": "507-material",
-          "when": "1. 读取当前指定材料与必要上下文，核对可得范围。需要判断作者、Agent、第三方归属或支持关系时，读[作者与来源](references/shared/author-and-source.md)；基线或外部来源连接不明时读[事实与证据](references/shared/evidence.md)。未读取、未提供和无法核验分别说明。"
+          "when": "1. 读取当前指定材料与必要上下文，核对可得范围。需要判断作者、Agent、第三方归属或支持关系时，读[作者与来源](lib/methods/author-and-source.md)；基线或外部来源连接不明时读[事实与证据](lib/methods/evidence.md)。未读取、未提供和无法核验分别说明。"
         },
         {
           "skillId": "507-adapt",
-          "when": "1. 按上节核对目标读者要理解、判断或执行什么。已有条件足够时自行安排入口、层级、分页与节奏，不重开总规划。归属、引语或材料支持可能受压缩影响时读[作者与来源](references/shared/author-and-source.md)。"
+          "when": "1. 按上节核对目标读者要理解、判断或执行什么。已有条件足够时自行安排入口、层级、分页与节奏，不重开总规划。归属、引语或材料支持可能受压缩影响时读[作者与来源](lib/methods/author-and-source.md)。"
         },
         {
           "skillId": "507-review",
@@ -1069,13 +1077,6 @@
       ]
     },
     {
-      "source": "lib/components/render_artifact.py",
-      "consumers": [
-        "507-create",
-        "507-adapt"
-      ]
-    },
-    {
       "source": "lib/components/state_diff.py",
       "consumers": [
         "507-work"
@@ -1125,6 +1126,31 @@
       "consumers": [
         "507-product-map"
       ]
+    },
+    {
+      "source": "lib/components/react_export.py",
+      "consumers": [
+        "507-work",
+        "507-coordinate",
+        "507-product-map"
+      ]
+    }
+  ],
+  "runtime": [
+    {
+      "sourceRoot": "lib/components/visual-runtime",
+      "consumers": [
+        "507-create",
+        "507-adapt",
+        "507-visualize",
+        "507-demo",
+        "507-work",
+        "507-coordinate",
+        "507-product-map",
+        "507-do"
+      ],
+      "when": "图解、界面场景、任务视图与产品地图直接引用同一 React 运行库；真实产品缺少适用组件时 do 可采用 ui 基础控件。技能不携带副本。",
+      "files": "共有源精确集合及消费者直接 uses 以 packages.json 为准，不含技能副本。"
     }
   ]
 }

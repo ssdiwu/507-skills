@@ -47,11 +47,42 @@ def source(root, relative):
     return path
 
 
+def resource_entries(root, packages):
+    """Read files/uses from each skill's sole Markdown declaration."""
+    entries = packages['skills']
+    if packages.get('schema') != 3:
+        return entries  # Frozen historical projections retain their original schema.
+    result = []
+    for entry in entries:
+        name = entry.get('name', '<unknown>')
+        if set(entry) != {'name', 'source', 'role', 'resources'} or entry['resources'] != 'RESOURCES.md':
+            raise ValueError(name + ': registry must reference RESOURCES.md without duplicate files/uses')
+        declaration = source(root, entry['source'] + '/' + entry['resources'])
+        blocks = re.findall(r'^```json[ \t]*\n(.*?)^```[ \t]*$', declaration.read_text(), re.M | re.S)
+        if len(blocks) != 1:
+            raise ValueError(name + ': RESOURCES.md must contain exactly one JSON declaration')
+        try:
+            data = json.loads(blocks[0], object_pairs_hook=pairs)
+        except ValueError as error:
+            raise ValueError(name + ': invalid RESOURCES.md: ' + str(error)) from error
+        if not isinstance(data, dict) or set(data) != {'schema', 'files', 'uses'} or type(data['schema']) is not int or data['schema'] != 1:
+            raise ValueError(name + ': invalid resource declaration schema')
+        for key in ['files', 'uses']:
+            values = data[key]
+            if (not isinstance(values, list) or not all(isinstance(p, str) and p for p in values)
+                    or len(values) != len(set(values))):
+                raise ValueError(name + ': invalid or duplicate resource ' + key)
+        if not {'SKILL.md', 'RESOURCES.md', 'agents/openai.yaml'} <= set(data['files']):
+            raise ValueError(name + ': resource files must include entry, metadata and RESOURCES.md')
+        result.append({**entry, 'files': data['files'], 'uses': data['uses']})
+    return result
+
+
 def project(root, packages_path, catalog_path, disposition_path):
     packages, ph = read(packages_path)
     catalog, ch = read(catalog_path)
     decisions, dh = read(disposition_path)
-    entries = packages['skills']
+    entries = resource_entries(root, packages)
     names = [e['name'] for e in entries]
     if len(names) != len(set(names)) or not entries:
         raise ValueError('duplicate or empty skill identities')
@@ -61,7 +92,7 @@ def project(root, packages_path, catalog_path, disposition_path):
         name, base = entry['name'], entry['source']
         if entry['role'] not in ('main', 'secondary'):
             raise ValueError('unknown role')
-        paths = entry['files'] + [r['target'] for r in entry['shared']]
+        paths = entry['files'] if packages.get('schema') in (2, 3) else entry['files'] + [r['target'] for r in entry['shared']]
         if len(paths) != len(set(paths)):
             raise ValueError('duplicate package files')
         files = [{'path': base + '/' + p, 'sha256': sha(source(root, base + '/' + p).read_bytes())} for p in paths]
@@ -73,31 +104,43 @@ def project(root, packages_path, catalog_path, disposition_path):
             raise ValueError('missing description')
         rendered.append({'name': name, 'role': entry['role'], 'source': base + '/SKILL.md',
                          'description': desc.group(1).strip('"'), 'files': files,
-                         'sharedSources': [r['source'] for r in entry['shared']]})
+                         'sharedSources': entry.get('uses', [r['source'] for r in entry.get('shared', [])])})
         file_count += len(paths)
-        shared_count += len(entry['shared'])
+        shared_count += 0 if packages.get('schema') in (2, 3) else len(entry['shared'])
     resources = []
+    runtime_sources = {path for e in entries for path in e.get('uses', [r['source'] for r in e.get('shared', [])])
+                       if path.startswith('lib/components/visual-runtime/')}
+    runtime_records = catalog.get('runtime', [])
+    if runtime_sources:
+        if len(runtime_records) != 1 or runtime_records[0].get('sourceRoot') != 'lib/components/visual-runtime':
+            raise ValueError('catalog must declare the shared visual runtime')
+        actual = {e['name'] for e in entries if any(path in runtime_sources for path in e.get('uses', [r['source'] for r in e.get('shared', [])]))}
+        if set(runtime_records[0].get('consumers', [])) != actual:
+            raise ValueError('runtime consumers differ from package declarations')
+    elif runtime_records:
+        raise ValueError('runtime catalog has no declared delivery resources')
     for kind in ('methods', 'components'):
         for record in catalog[kind]:
             path = record['source']
             consumers = [c['skillId'] if isinstance(c, dict) else c for c in record['consumers']]
-            actual = [e['name'] for e in entries if any(r['source'] == path for r in e['shared'])]
+            actual = [e['name'] for e in entries if path in e.get('uses', [r['source'] for r in e.get('shared', [])])]
             if set(consumers) != set(actual) or len(consumers) != len(set(consumers)):
                 raise ValueError('resource consumers differ: ' + path)
             resources.append({'kind': kind, 'source': path, 'title': record.get('title', Path(path).name),
                               'consumers': consumers, 'sha256': sha(source(root, path).read_bytes())})
     for kind, predicate in [('methods', lambda p: p.startswith('lib/methods/')), ('components', lambda p: p.endswith('.py'))]:
         declared = [r['source'] for r in catalog[kind]]
-        expected = {r['source'] for e in entries for r in e['shared'] if predicate(r['source'])}
+        expected = {path for e in entries for path in e.get('uses', [r['source'] for r in e.get('shared', [])]) if predicate(path)}
         if len(declared) != len(set(declared)) or set(declared) != expected:
             raise ValueError('catalog must exactly cover registered ' + kind)
     already = {r['source'] for r in resources}
-    extras = {r['source'] for e in entries for r in e['shared']} - already
+    extras = {path for e in entries for path in e.get('uses', [r['source'] for r in e.get('shared', [])])} - already
     for path in sorted(extras):
         file = source(root, path)
         title = file.read_text().splitlines()[0].lstrip('# ')
-        consumers = [e['name'] for e in entries if any(r['source'] == path for r in e['shared'])]
-        resources.append({'kind': 'references', 'source': path, 'title': title, 'consumers': consumers, 'sha256': sha(file.read_bytes())})
+        consumers = [e['name'] for e in entries if path in e.get('uses', [r['source'] for r in e.get('shared', [])])]
+        kind = 'runtime' if path.startswith('lib/components/visual-runtime/') else 'references'
+        resources.append({'kind': kind, 'source': path, 'title': title, 'consumers': consumers, 'sha256': sha(file.read_bytes())})
     if not isinstance(decisions.get('pending'), list) or not isinstance(decisions.get('historicalPlanning'), dict):
         raise ValueError('invalid pending or historical planning section')
     for pending in decisions['pending']:
@@ -143,7 +186,7 @@ def project(root, packages_path, catalog_path, disposition_path):
         connected = set()
         for target in row['targets']:
             source(root, target)
-            supported = {e['name'] for e in entries if target in [e['source'] + '/' + f for f in e['files']] or any(r['source'] == target for r in e['shared'])}
+            supported = {e['name'] for e in entries if target in [e['source'] + '/' + f for f in e['files']] or target in e.get('uses', [r['source'] for r in e.get('shared', [])])}
             active = supported & set(row['consumers'])
             if not active:
                 raise ValueError('target has no declared current consumer: ' + target)
@@ -161,7 +204,7 @@ def project(root, packages_path, catalog_path, disposition_path):
             'inputHashes': {'packages': ph, 'catalog': ch, 'dispositions': dh},
             'implementation': {'entrypoints': len(entries), 'main': sum(e['role'] == 'main' for e in entries),
                                'secondary': sum(e['role'] == 'secondary' for e in entries),
-                               'files': file_count, 'sharedCopies': shared_count,
+                               'files': file_count + (len(packages.get('sharedFiles', [])) if packages.get('schema') in (2, 3) else 0), 'sharedCopies': shared_count,
                                'methodSources': len(catalog['methods']), 'scriptSources': len(catalog['components'])},
             'skills': rendered, 'resources': resources, 'legacy': rows,
             'pending': decisions['pending'], 'historicalPlanning': decisions['historicalPlanning'],
