@@ -83,6 +83,8 @@ test -d "$skill_source" && test ! -e "$skill_link" && test ! -L "$skill_link" &&
 
 共有源和打包检查见[技能维护说明](skills/README.md#资源维护与构建)。技能修改遵循[贡献规范](AGENTS.md)；[全局规则示例](templates/AGENTS.global.example.md)可按明确目标参考，不自动覆盖宿主配置。
 
+远端自动检查覆盖集合、共有库与历史工具回归，包含现有UI、布局和检查器测试；具体入口见[检查配置](.github/workflows/tests.yml)。模型能否自然选择并正确执行技能需另行观察，当前[轻量行为测试方案](doc/40-版本实施方案/2026-11-04-核心技能轻量行为测试方案.md)仅供按变化选测，尚未试跑，不增加日常固定流程。
+
 贡献方式见[CONTRIBUTING](CONTRIBUTING.md)，安全边界见[SECURITY](SECURITY.md)，版本变更见[CHANGELOG](CHANGELOG.md)，许可见[LICENSE](LICENSE)。提交、推送、安装和发布分别依据具体授权与实际结果。
 
 持续工作主动维护必要本地依据并读回接续，守住只读和对外动作限制。what/why/how 是 5W2H 的独立视角，plan 是按需采用的次要能力；技能分层、会话分层和 A/B/C 验收职责分别定义，见[术语表](GLOSSARY.md#会话分层与验收职责)。当前源码更新与已发布版本、宿主安装及行为试用分别成立。
