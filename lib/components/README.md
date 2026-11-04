@@ -75,6 +75,10 @@ library_view另提供按名查询：`--index-file`配合`--lookup`只读一个�
 
 [product_map.py](product_map.py)按[合同](product-map.md)验证交互点、关系、路径与三维证据，从一份JSON生成包含树、筛选、详情、关系和路径的离线网页。源码声明与运行观察分开，未知及相反条件并存；结构与生成成功不证明语义或产品接受。更新同一记录后用新输出目录重生成，旧网页保持不变；现有目录拒绝覆盖。
 
+## 组件发现、接口与场景检查
+
+本地`visual-runtime/scripts/component-library.mjs`提供list/search/inspect/check；目录只补用途、状态及预览，接口从TypeScript源码与声明读取。播放器与CLI共用catalog.json，外部场景在统一导出器中自动检查，不执行用户代码；同名ui/kit能力明确区分。调用、退出状态和验证边界见[运行合同](visual-runtime.md)。
+
 ## 日常交互基础组件
 
 [ui 接入合同](visual-runtime/ui/README.md)提供真实 Button、Input、Textarea、Select、Field、Checkbox、Switch、Tabs、Dialog、DropdownMenu、Tooltip、Accordion 及状态反馈。复杂交互使用 Radix UI；原生 CSS 与项目主题结合，保留已有产品组件优先。Artifact、TaskView、ProductMap 已采用同一控件源码；演示时间线仍沿 kit，不用播放控件冒充真实表单。

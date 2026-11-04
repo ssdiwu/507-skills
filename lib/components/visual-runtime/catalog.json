@@ -1,0 +1,438 @@
+{
+  "schema": 1,
+  "modules": [
+    {
+      "id": "ui",
+      "source": "ui/index.tsx",
+      "guide": "ui/README.md",
+      "styles": [
+        "ui/ui.css"
+      ],
+      "kind": "interactive",
+      "note": "真实控件；业务数据、提交及权限仍由调用方实现。",
+      "tags": [
+        "真实交互",
+        "基础控件"
+      ],
+      "example": "ui/Showcase.tsx",
+      "preview": "?components",
+      "families": [
+        {
+          "exports": [
+            "Input",
+            "Textarea",
+            "Select",
+            "Field",
+            "Checkbox",
+            "Switch",
+            "Button"
+          ],
+          "tags": [
+            "表单",
+            "输入",
+            "校验",
+            "错误",
+            "提交",
+            "form"
+          ],
+          "states": [
+            "输入",
+            "错误",
+            "禁用"
+          ]
+        },
+        {
+          "exports": [
+            "Dialog",
+            "DialogContent",
+            "DialogTrigger",
+            "DialogClose",
+            "DropdownMenu",
+            "DropdownContent",
+            "DropdownItem"
+          ],
+          "tags": [
+            "弹窗",
+            "菜单",
+            "确认",
+            "dialog",
+            "menu"
+          ],
+          "states": [
+            "打开",
+            "关闭",
+            "焦点"
+          ]
+        },
+        {
+          "exports": [
+            "Tabs",
+            "TabsList",
+            "TabsTrigger",
+            "TabsContent",
+            "Accordion",
+            "AccordionItem",
+            "AccordionTrigger",
+            "AccordionContent"
+          ],
+          "tags": [
+            "切换",
+            "页签",
+            "展开",
+            "tabs"
+          ],
+          "states": [
+            "选中",
+            "展开"
+          ]
+        },
+        {
+          "exports": [
+            "Alert",
+            "Badge",
+            "EmptyState",
+            "Skeleton",
+            "Progress"
+          ],
+          "tags": [
+            "反馈",
+            "状态",
+            "空状态",
+            "加载",
+            "进度",
+            "status"
+          ],
+          "states": [
+            "空",
+            "加载",
+            "成功",
+            "错误"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kit",
+      "source": "kit/index.ts",
+      "guide": "references/kit.md",
+      "styles": [],
+      "kind": "simulation",
+      "note": "舞台、光标和时间线编排；模拟状态不证明业务可用。",
+      "tags": [
+        "编排演示",
+        "simulation"
+      ],
+      "example": "examples/review-flow/index.tsx",
+      "preview": "?example=review-flow",
+      "families": [
+        {
+          "exports": [
+            "Stage",
+            "Window",
+            "Phone"
+          ],
+          "tags": [
+            "舞台",
+            "窗口",
+            "手机",
+            "stage",
+            "window"
+          ],
+          "states": [
+            "播放",
+            "结果静帧"
+          ]
+        },
+        {
+          "exports": [
+            "Field",
+            "Tabs",
+            "Toggle",
+            "Badge",
+            "Segmented"
+          ],
+          "tags": [
+            "模拟表单",
+            "模拟控件"
+          ],
+          "states": [
+            "编排状态"
+          ]
+        }
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "id": "review-card",
+      "name": "中文项目卡片",
+      "note": "虚构数据；静态构图、中文与裁切。",
+      "group": "改造样例",
+      "tags": [
+        "卡片",
+        "概览",
+        "静态",
+        "项目",
+        "card"
+      ],
+      "states": [
+        "静态"
+      ],
+      "structure": "card",
+      "kind": "simulation",
+      "source": "examples/review-card/index.tsx",
+      "preview": "?example=review-card",
+      "api": [
+        "kit:Stage"
+      ]
+    },
+    {
+      "id": "review-flow",
+      "name": "中文表单反馈",
+      "note": "补全邮箱、修正错误、创建完成；编排演示。",
+      "group": "改造样例",
+      "tags": [
+        "表单",
+        "错误",
+        "修正",
+        "创建",
+        "form",
+        "validation"
+      ],
+      "states": [
+        "输入",
+        "错误",
+        "修正",
+        "成功"
+      ],
+      "structure": "form",
+      "kind": "simulation",
+      "source": "examples/review-flow/index.tsx",
+      "preview": "?example=review-flow",
+      "api": [
+        "kit:Stage"
+      ]
+    },
+    {
+      "id": "dual",
+      "name": "同页双演示",
+      "note": "两个独立Stage共用页面，检查共存与播放。",
+      "group": "改造样例",
+      "tags": [
+        "双演示",
+        "并列",
+        "对比",
+        "dual"
+      ],
+      "states": [
+        "播放",
+        "结果"
+      ],
+      "structure": "comparison",
+      "kind": "simulation",
+      "source": "examples/dual/index.tsx",
+      "preview": "?example=dual",
+      "api": [
+        "kit:Stage"
+      ]
+    },
+    {
+      "id": "static-card",
+      "name": "上游静态范例",
+      "note": "静态卡片的结构、裁切与层次。",
+      "group": "上游范例",
+      "tags": [
+        "静态",
+        "卡片",
+        "card"
+      ],
+      "states": [
+        "静态"
+      ],
+      "structure": "card",
+      "kind": "simulation",
+      "source": "examples/static-card/index.tsx",
+      "preview": "?example=static-card",
+      "api": [
+        "kit:Stage"
+      ]
+    },
+    {
+      "id": "form-error",
+      "name": "上游表单范例",
+      "note": "错误、修正与结果停留。",
+      "group": "上游范例",
+      "tags": [
+        "表单",
+        "错误",
+        "修正",
+        "form"
+      ],
+      "states": [
+        "输入",
+        "错误",
+        "修正",
+        "成功"
+      ],
+      "structure": "form",
+      "kind": "simulation",
+      "source": "examples/form-error/index.tsx",
+      "preview": "?example=form-error",
+      "api": [
+        "kit:Stage"
+      ]
+    },
+    {
+      "id": "payout-flow",
+      "name": "上游状态变化",
+      "note": "无光标的关联运动与结果。",
+      "group": "上游范例",
+      "tags": [
+        "支付",
+        "流转",
+        "状态",
+        "payout",
+        "流程"
+      ],
+      "states": [
+        "等待",
+        "处理",
+        "完成"
+      ],
+      "structure": "flow",
+      "kind": "simulation",
+      "source": "examples/payout-flow/index.tsx",
+      "preview": "?example=payout-flow",
+      "api": [
+        "kit:Stage"
+      ]
+    },
+    {
+      "id": "record-browser",
+      "name": "列表与详情",
+      "note": "虚构申请记录；搜索、选择、空状态和错误恢复均在本页，不连接服务。",
+      "group": "改造样例",
+      "tags": [
+        "列表",
+        "详情",
+        "搜索",
+        "筛选",
+        "空状态",
+        "错误恢复",
+        "list",
+        "detail"
+      ],
+      "states": [
+        "选择",
+        "详情",
+        "无结果",
+        "错误",
+        "恢复"
+      ],
+      "structure": "master-detail",
+      "kind": "interactive-example",
+      "source": "examples/record-browser/index.tsx",
+      "preview": "?example=record-browser",
+      "api": [
+        "ui:Input",
+        "ui:Button",
+        "ui:EmptyState",
+        "ui:Alert"
+      ]
+    }
+  ],
+  "diagrams": [
+    {
+      "id": "timeline",
+      "name": "时间线",
+      "tags": [
+        "日期",
+        "阶段",
+        "时间线",
+        "timeline"
+      ],
+      "states": [
+        "参数或内容变化"
+      ],
+      "kind": "illustration",
+      "note": "日期与状态示意，日期不证明完成。",
+      "source": "visuals/example.json",
+      "preview": "?artifact",
+      "structure": "timeline"
+    },
+    {
+      "id": "steps",
+      "name": "步骤",
+      "tags": [
+        "步骤",
+        "过程",
+        "顺序",
+        "steps"
+      ],
+      "states": [
+        "参数或内容变化"
+      ],
+      "kind": "illustration",
+      "note": "有条件的顺序说明，不删分支硬套直线。",
+      "source": "visuals/example.json",
+      "preview": "?artifact",
+      "structure": "steps"
+    },
+    {
+      "id": "comparison",
+      "name": "比较",
+      "tags": [
+        "比较",
+        "区间",
+        "数值",
+        "未知",
+        "comparison"
+      ],
+      "states": [
+        "参数或内容变化"
+      ],
+      "kind": "illustration",
+      "note": "同单位比较，区间与未知保留。",
+      "source": "visuals/example.json",
+      "preview": "?artifact",
+      "structure": "comparison"
+    },
+    {
+      "id": "layout",
+      "name": "版面示意",
+      "tags": [
+        "版面",
+        "布局",
+        "区域",
+        "layout"
+      ],
+      "states": [
+        "参数或内容变化"
+      ],
+      "kind": "illustration",
+      "note": "区域关系示意，不是产品截图。",
+      "source": "visuals/example.json",
+      "preview": "?artifact",
+      "structure": "layout"
+    },
+    {
+      "id": "queue",
+      "name": "排队示意",
+      "tags": [
+        "排队",
+        "队列",
+        "等待",
+        "估算",
+        "queue"
+      ],
+      "states": [
+        "参数或内容变化"
+      ],
+      "kind": "illustration",
+      "note": "单通道示意条件，不是生产队列。",
+      "source": "visuals/example.json",
+      "preview": "?artifact",
+      "structure": "queue"
+    }
+  ]
+}

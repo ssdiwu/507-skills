@@ -15,7 +15,12 @@
   "uses": [
     "lib/README.md",
     "lib/components/visual-components.md",
+    "lib/components/visual-runtime/catalog.json",
+    "lib/components/visual-runtime/examples/record-browser/index.tsx",
+    "lib/components/visual-runtime/examples/record-browser/records.css",
     "lib/components/visual-runtime/package.json",
+    "lib/components/visual-runtime/scripts/component-library.mjs",
+    "lib/components/visual-runtime/scripts/component-library.test.mjs",
     "lib/components/visual-runtime/scripts/render-artifact.mjs",
     "lib/methods/artifact-rendering.md",
     "lib/methods/evidence.md",

@@ -15,14 +15,16 @@
     "test": "node --test scripts/verification.test.mjs",
     "test:visuals": "node --test scripts/visuals.test.mjs",
     "test:layout": "node --test scripts/layout.test.mjs",
-    "test:ui": "node --test scripts/ui.test.mjs"
+    "test:ui": "node --test scripts/ui.test.mjs",
+    "test:library": "node --test scripts/component-library.test.mjs"
   },
   "dependencies": {
     "esbuild": "0.25.12",
     "lucide-react": "0.468.0",
     "radix-ui": "1.8.1",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "typescript": "5.6.3"
   },
   "devDependencies": {
     "@types/node": "20.19.0",
@@ -31,7 +33,6 @@
     "@vitejs/plugin-react": "4.7.0",
     "playwright-core": "1.48.2",
     "postcss": "8.5.32",
-    "typescript": "5.6.3",
     "vite": "6.4.5"
   }
 }

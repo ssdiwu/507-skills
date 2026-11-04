@@ -31,6 +31,7 @@ jobs:
       - name: Check shared React types and components
         run: |
           npm run typecheck --prefix lib/components/visual-runtime
+          npm run test:library --prefix lib/components/visual-runtime
           npm run test:visuals --prefix lib/components/visual-runtime
       - name: Check current skill packages
         run: python scripts/package_skills.py check

@@ -20,6 +20,8 @@ DialogContent、Switch、DropdownCheckboxItem 和 AccordionTrigger 自持内部�
 
 `kit/controls` 与 `kit/parts` 是已有演示编排，部分控件使用状态驱动画面，不承担真实输入与键盘保证。真实可操作界面采用本目录；光标、窗口和时间线仍使用 kit。Artifact、TaskView、ProductMap 已直接使用本目录的 Button/Input/Select；产品页面可以组合更多控件，业务内容留在页面，不新增私有通用实现。
 
+查找用途与接口可用共有本地入口：`node scripts/component-library.mjs search '表单错误'`、`inspect ui:Field`。命令从共有运行库执行；以返回的实际类型、样式和范例为依据，已知组件不重复搜索。外部场景可用`check <scene>`先查参数，统一导出器也会自动执行同一检查；完整合同见[运行合同](../../visual-runtime.md)。
+
 ## 查看与验证
 
 共有运行库 `npm run dev` 后打开 `/?components`，或用唯一导出器 `node scripts/render-artifact.mjs --components --out-dir <新目录>` 得到单文件离线目录。目录场景也在共有库，只消费本目录控件，不维护另一套实现。导出不会覆盖旧产物。

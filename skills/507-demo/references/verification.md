@@ -8,6 +8,7 @@
 
 ```sh
 npm run typecheck
+node scripts/component-library.mjs check <实际场景.tsx或jsx>
 npm test
 npm run check:css
 node scripts/film.mjs 'http://127.0.0.1:5173/?capture=review-card' --still --out <新的证据目录>/card.png --report <新的证据目录>/card.json --gate
@@ -15,6 +16,8 @@ node scripts/film.mjs 'http://127.0.0.1:5173/?capture=review-flow' --out <新的
 node scripts/film.mjs 'http://127.0.0.1:5173/?capture=review-flow' --width 390 --states --states-for 12000 --out <新的证据目录>/states.png --report <新的证据目录>/states.json --gate
 node scripts/film.mjs 'http://127.0.0.1:5173/?capture=review-flow' --width 390 --reduced --still --out <新的证据目录>/poster.png --gate
 ```
+
+check检查实际外部场景，不以运行库typecheck覆盖调用方；需要项目路径映射时给--project及真实tsconfig。发现类型问题返回具体文件和位置，any／抑制注释／动态数据的边界仍需人工检查。类型通过不替代画面和操作。
 
 命令中的地址与场景只是本包示例，真实交付须检查实际宿主页及其宽度。静态作品不跑无关的运动采样；动画看完整动作和循环／停留，不用一张静帧替代。普通预览有 iframe，film 应直接访问 `capture` 路径。
 

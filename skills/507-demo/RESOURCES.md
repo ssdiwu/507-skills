@@ -22,6 +22,9 @@
     "lib/components/visual-runtime.md",
     "lib/components/visual-runtime/LICENSE",
     "lib/components/visual-runtime/UPSTREAM.json",
+    "lib/components/visual-runtime/catalog.json",
+    "lib/components/visual-runtime/examples/record-browser/index.tsx",
+    "lib/components/visual-runtime/examples/record-browser/records.css",
     "lib/components/visual-runtime/package.json",
     "lib/components/visual-runtime/references/choreography.md",
     "lib/components/visual-runtime/references/craft.md",
@@ -30,6 +33,8 @@
     "lib/components/visual-runtime/references/motion.md",
     "lib/components/visual-runtime/references/rehearse.md",
     "lib/components/visual-runtime/references/review.md",
+    "lib/components/visual-runtime/scripts/component-library.mjs",
+    "lib/components/visual-runtime/scripts/component-library.test.mjs",
     "lib/components/visual-runtime/scripts/render-artifact.mjs",
     "lib/methods/artifact-rendering.md"
   ]

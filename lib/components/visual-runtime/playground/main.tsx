@@ -1,5 +1,6 @@
 import { installVirtualClock } from '../kit/clock'
 import { createFrameDriver, createPlayback } from './playback'
+import {validateArtifact} from '../visuals/model'
 
 const params = new URLSearchParams(location.search)
 const errorText = (error: unknown) => error instanceof Error ? error.message : String(error)
@@ -11,6 +12,16 @@ function showFailure(error: unknown) {
 }
 
 async function boot() {
+  if (params.has('artifact')) {
+    const React = await import('react')
+    const {createRoot} = await import('react-dom/client')
+    const {Artifact} = await import('../visuals/Artifact')
+    const {default: data} = await import('../visuals/example.json')
+    validateArtifact(data)
+    await import('../visuals/visuals.css')
+    createRoot(document.getElementById('root')!).render(React.createElement(Artifact,{data}))
+    return
+  }
   if (params.has('components')) {
     const React = await import('react')
     const { createRoot } = await import('react-dom/client')
@@ -30,6 +41,17 @@ async function boot() {
   if (!params.has('embed')) {
     const { mount } = await import('./viewer')
     mount()
+    return
+  }
+  const {examples} = await import('./catalog')
+  if (examples.find(e=>e.id===params.get('embed'))?.kind === 'interactive-example') {
+    const {mount} = await import('./preview')
+    await mount(params.get('embed')!,params.get('still')==='1')
+    await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()))
+    const example=document.getElementById('example')!
+    const report=()=>parent.postMessage({type:'stageshow:status',ready:true,staticScene:true,elapsed:0,height:example.offsetHeight},location.origin)
+    new ResizeObserver(report).observe(example)
+    report()
     return
   }
   // Only the iframe owns virtual time. Capture the native clocks before

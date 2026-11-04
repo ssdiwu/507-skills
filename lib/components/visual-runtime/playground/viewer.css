@@ -56,3 +56,7 @@ button:disabled, select:disabled { cursor: default; opacity: .4; }
 @media (prefers-reduced-motion: reduce) { .pg-buttons button, .pg-play-icon path, .pg-play-label > span, .pg-segment button { transition: none; } }
 .pg[data-reduced-motion] :is(.pg-buttons button, .pg-play-icon path, .pg-play-label > span, .pg-segment button) { transition: none; }
 @media (forced-colors: active) { .pg-picker select, .pg-time select { appearance: auto; background-image: none; padding-right: 10px; } .pg-picker select:focus-visible { outline-color: Highlight; } }
+
+.pg-picker { flex-wrap: wrap; }
+.pg-picker input { min-width: 160px; max-width: 100%; font: inherit; padding: 8px 10px; border: 1px solid #ced4df; border-radius: 6px; background: white; color: #253247; }
+.pg-picker p { flex-basis: 100%; margin: 4px 0; }

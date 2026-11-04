@@ -6,6 +6,8 @@ import './viewer.css'
 function Viewer() {
   const initial = new URLSearchParams(location.search).get('example')
   const [name, setName] = useState(examples.some(e => e.id === initial) ? initial! : examples[0].id)
+  const [query, setQuery] = useState('')
+  const matches = examples.filter(e => !query.trim() || [e.name,e.note,...e.tags,...e.states].some(t => t.toLowerCase().includes(query.trim().toLowerCase()) || query.trim().toLowerCase().includes(t.toLowerCase())))
   const [phone, setPhone] = useState(false)
   const [still, setStill] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches)
   const motionOverride = useRef(false)
@@ -56,7 +58,7 @@ function Viewer() {
   }, [name, revision, still])
   return <main className="pg" data-reduced-motion={still || undefined}>
     <header className="pg-header"><a className="pg-brand" href="./">界面演示</a><a className="pg-eyebrow" href="?components">真实交互基础组件</a></header>
-    <div className="pg-picker"><label htmlFor="example-choice">场景</label><select id="example-choice" value={name} onChange={e => setName(e.target.value)}>{groups.map(group => <optgroup key={group} label={group}>{examples.filter(e => e.group === group).map(e => <option key={e.id} value={e.id}>{e.name}</option>)}</optgroup>)}</select></div>
+    <div className="pg-picker"><label htmlFor="scene-search">查找用途或状态</label><input id="scene-search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="例如：表单、详情、空状态"/><label htmlFor="example-choice">场景</label><select id="example-choice" value={matches.some(e=>e.id===name)?name:''} onChange={e => setName(e.target.value)}>{!matches.some(e=>e.id===name)&&<option value="" disabled>{matches.length?'选择匹配范例':'没有匹配范例'}</option>}{groups.map(group => <optgroup key={group} label={group}>{matches.filter(e => e.group === group).map(e => <option key={e.id} value={e.id}>{e.name}</option>)}</optgroup>)}</select>{!matches.length&&<p role="status">没有匹配的范例，当前预览保持不变。</p>}</div>
     <section className="pg-preview" aria-label="场景预览">
       <div className="pg-toolbar"><div className="pg-segment" aria-label="预览宽度"><button aria-pressed={!phone} onClick={() => setPhone(false)}>宽版</button><button aria-pressed={phone} onClick={() => setPhone(true)}>窄版</button></div><label className="pg-still"><input type="checkbox" checked={still} onChange={e => { motionOverride.current = true; setStill(e.target.checked) }} />减少动态效果</label></div>
       <div className="pg-canvas" data-phone={phone || undefined}><iframe key={`${name}-${revision}-${still}`} ref={iframe} title={selected.name} src={source} style={{ height }} onLoad={() => send({ playing: playing && !still, speed, visible: visible.current })} /></div>
@@ -72,8 +74,8 @@ function Viewer() {
         <button disabled={transportDisabled} onClick={() => { setPlaying(false); send({ step: true }) }} title="前进一帧">逐帧</button><button onClick={() => replay(n => n + 1)}>重播</button>
       </div><div className="pg-time"><output aria-label="当前时间">{((still || staticScene ? 0 : elapsed) / 1000).toFixed(2)}<span>s</span></output><select aria-label="播放速度" value={speed} disabled={transportDisabled} onChange={e => setSpeed(Number(e.target.value))}><option value={0.25}>¼×</option><option value={0.5}>½×</option><option value={1}>1×</option><option value={2}>2×</option></select></div></div>
     </section>
-    <section className="pg-caption"><div><h2>{selected.name}</h2><p>{selected.note}</p></div><code>{`examples/${name}/`}</code></section>
-    <footer className="pg-footer"><span>{still ? '当前显示完整结果静帧。' : staticScene ? '此场景为静态展示。' : '暂停后可以逐帧检查；场景内容均为模拟。'}</span></footer>
+    <section className="pg-caption"><div><h2>{selected.name}</h2><p>{selected.note}</p><p>可看状态：{selected.states.join("、")}</p></div><code>{`examples/${name}/`}</code></section>
+    <footer className="pg-footer"><span>{selected.kind === 'interactive-example' ? '本地交互示例，数据均虚构；可直接操作控件。' : still ? '当前显示完整结果静帧。' : staticScene ? '此场景为静态展示。' : '暂停后可以逐帧检查；场景内容均为模拟。'}</span></footer>
   </main>
 }
 export function mount() { createRoot(document.getElementById('root')!).render(<Viewer />) }
