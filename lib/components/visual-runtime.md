@@ -4,7 +4,7 @@
 
 ## 一次依赖安装
 
-要求 Node.js 20.19+、npm。在实际共有库的 components/visual-runtime 中执行 `npm ci --ignore-scripts`，依据锁文件安装一次。无需全局安装或复制依赖到技能。`npm run typecheck`、`npm test`、`npm run test:library`、`npm run test:visuals` 检查类型及共有行为；`npm run dev` 启动仅本机预览，`npm run build` 构建预览。依赖、端口或浏览器不可得时保留具体失败，不改全局配置或结束其他进程。
+要求 Node.js 20.19+、npm。使用构建集合时，先将不可变构建包整体复制到安装版本目录，node_modules 和集合内的预览构建输出写入安装目录；对已经安装依赖的目录重新执行不可变构建校验会因新增文件而失败。在实际安装共有库的 components/visual-runtime 中执行 `npm ci --ignore-scripts`，依据锁文件安装一次。无需全局安装或复制依赖到技能。`npm run typecheck`、`npm test`、`npm run test:library`、`npm run test:visuals` 检查类型及共有行为；`npm run dev` 启动仅本机预览，`npm run build` 构建预览。依赖、端口或浏览器不可得时保留具体失败，不改全局配置或结束其他进程。
 
 ## 本地发现与接口读取
 
