@@ -48,14 +48,21 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "8842e6839e5cf4034497b4bd8fb27fb8b2d165e80f744942413d9401828a2d1b",
+      "contractSha256": "8f867a445bee1950bb28d2a7ecc44897f7e33fa58d5fab7b46e332ca3e31a034",
       "description": "按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只查组件或只跑测试不自动改代码。",
       "entry": "507-do/SKILL.md",
       "name": "507-do",
       "role": "main"
     },
     {
-      "contractSha256": "bd8a36fdd38f53b6d65f0a0ce71772dda4d492668977eaf1344bdfc81c8c96bc",
+      "contractSha256": "ad44d4b71d68f557d7b32ddabe0a37de15e9fd02bb94353aa882dc2604482978",
+      "description": "构建或校准项目领域概念、词义、边界与关系，用具体场景检验并按授权维护相关文档。适用于新领域模型、影响设计或实现的语义冲突及领域关系修订；查阅已有词汇、解释概念或沿充分定义执行时直接处理，不重开建模。",
+      "entry": "507-domain/SKILL.md",
+      "name": "507-domain",
+      "role": "secondary"
+    },
+    {
+      "contractSha256": "3e905fddfbffb5927878f2f4b516dd06028ae509b7b5136fda6296a13f28fb26",
       "description": "根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
@@ -111,7 +118,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "6f0475d46b81ced30abe7ea586455b565237c44000024beb9e02748fbb921546",
+      "contractSha256": "b0377581598443f4d414fda208907c04351e8ebbed4c56e2d21e7a8188f4551a",
       "description": "整理唯一现行的行为与验收规格，承接已确认的软件需求或方案，也支持维护 PRD。清理或重构前可整理范围内必须保留的功能，清理中可校准规格缺口；已有充分规格直接沿用，活动或合作提案按其写作任务处理。",
       "entry": "507-spec/SKILL.md",
       "name": "507-spec",
@@ -125,7 +132,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "588e1a281ed5fd5842139352d05fcbc50bb2d9604e72e63cc6152011c5e7d958",
+      "contractSha256": "0ab93a3208eccfa4f285055ad017ead547257e701702461954212c9149d7e989",
       "description": "定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。主动整合材料、提出有依据的观点与机会，只询问会改变方向的必要问题；事实查询、术语解释、故障诊断和前提已充分的执行不进入。",
       "entry": "507-what/SKILL.md",
       "name": "507-what",

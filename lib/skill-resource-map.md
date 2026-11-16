@@ -25,6 +25,7 @@
 | [507-plan](../skills/507-plan/SKILL.md) | 把已有目标与方向组织为可执行步骤、依赖、验证点、恢复办法和接续位置。 | 按条件读取共有方法，无执行工具 | 7 份 |
 | [507-visualize](../skills/507-visualize/SKILL.md) | 把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。 | [component-library.mjs](components/visual-runtime/scripts/component-library.mjs)、[component-library.test.mjs](components/visual-runtime/scripts/component-library.test.mjs)、[render-artifact.mjs](components/visual-runtime/scripts/render-artifact.mjs) | 4 份 |
 | [507-demo](../skills/507-demo/SKILL.md) | 制作产品界面的静态展示图、功能卡片或带光标的短动画，交付可编辑场景与目标实物。 | [component-library.mjs](components/visual-runtime/scripts/component-library.mjs)、[component-library.test.mjs](components/visual-runtime/scripts/component-library.test.mjs)、[render-artifact.mjs](components/visual-runtime/scripts/render-artifact.mjs) | 1 份 |
+| [507-domain](../skills/507-domain/SKILL.md) | 构建或校准项目领域概念、词义、边界与关系，用具体场景检验并按授权维护相关文档。 | 按条件读取共有方法，无执行工具 | 5 份 |
 
 ## 统一分工
 
@@ -473,3 +474,14 @@
 - [components/visual-runtime/scripts/component-library.test.mjs](components/visual-runtime/scripts/component-library.test.mjs)
 - [components/visual-runtime/scripts/render-artifact.mjs](components/visual-runtime/scripts/render-artifact.mjs)
 - [methods/artifact-rendering.md](methods/artifact-rendering.md)
+
+## 507-domain
+
+[资源声明](../skills/507-domain/RESOURCES.md)
+
+- [README.md](README.md)
+- [methods/authority-and-return.md](methods/authority-and-return.md)
+- [methods/decision-ownership.md](methods/decision-ownership.md)
+- [methods/evidence.md](methods/evidence.md)
+- [methods/question-frontier.md](methods/question-frontier.md)
+- [methods/validation.md](methods/validation.md)

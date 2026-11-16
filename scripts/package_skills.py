@@ -13,7 +13,7 @@ import tempfile
 from urllib.parse import unquote, urlsplit
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
-SKILL_NAMES = {'skill-design','507-what','507-why','507-how','507-create','507-work','507-material','507-adapt','507-spec','507-do','507-review','507-issue','507-coordinate','507-deliver','507-retro','507-setup','507-product-map','507-clean','507-plan','507-visualize','507-demo'}
+SKILL_NAMES = {'skill-design','507-what','507-why','507-how','507-create','507-work','507-material','507-adapt','507-spec','507-do','507-review','507-issue','507-coordinate','507-deliver','507-retro','507-setup','507-product-map','507-clean','507-plan','507-visualize','507-demo','507-domain'}
 DISPOSITIONS = 'lib/registry/skill-dispositions.json'
 class PackageError(ValueError):
     pass
