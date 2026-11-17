@@ -134,6 +134,18 @@
       "source": "skills/507-domain",
       "role": "secondary",
       "resources": "RESOURCES.md"
+    },
+    {
+      "name": "507-synthesize",
+      "source": "skills/507-synthesize",
+      "role": "secondary",
+      "resources": "RESOURCES.md"
+    },
+    {
+      "name": "507-coach",
+      "source": "skills/507-coach",
+      "role": "main",
+      "resources": "RESOURCES.md"
     }
   ],
   "sharedFiles": [

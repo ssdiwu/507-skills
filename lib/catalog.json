@@ -8,6 +8,10 @@
       "source": "lib/methods/evidence.md",
       "consumers": [
         {
+          "skillId": "507-synthesize",
+          "when": "研判依赖来源、版本、证据独立性或主张支持范围时核对材料。"
+        },
+        {
           "skillId": "skill-design",
           "when": "规划或演进前确认原合同、消费者、来源版本；融合外部方法时保留适用条件。"
         },
@@ -224,6 +228,10 @@
       "source": "lib/methods/alternatives.md",
       "consumers": [
         {
+          "skillId": "507-synthesize",
+          "when": "比较会改变处置的分组方式或检验竞争解释。"
+        },
+        {
           "skillId": "skill-design",
           "when": "比较新建、合并、拆解、做方法或脚本的结构方案，以消费者成本为依据。"
         },
@@ -362,6 +370,10 @@
       "title": "当前权威、冲突与返回",
       "source": "lib/methods/authority-and-return.md",
       "consumers": [
+        {
+          "skillId": "507-synthesize",
+          "when": "归纳结果需保存、核对前后结论或交回原任务时采用。"
+        },
         {
           "skillId": "skill-design",
           "when": "记录旧方法到新位置的逐项去向，切换消费者并保留恢复依据。"

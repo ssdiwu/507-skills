@@ -20,6 +20,13 @@
       "role": "main"
     },
     {
+      "contractSha256": "084016faa2a8aa725d6a74357e2af9c53355bc47ea423effbdd174994d36f194",
+      "description": "陪用户练习判断。仅在用户明确想练习、请人出题或点评自己的练习回答时启动。让用户先给判断和理由，用证据与反例反馈，再换条件检验能否独立运用。只想了解、求建议、改稿或直接要答案时按原请求处理。",
+      "entry": "507-coach/SKILL.md",
+      "name": "507-coach",
+      "role": "main"
+    },
+    {
       "contractSha256": "a9d2b50927316b19c6a7474b4c240ee2ff6e8000fe06b1f60368d1c66e0c30a7",
       "description": "判断必要的工作拆分、依赖、执行所有权与结果接收，适用于已有工程、写作、研究或一般工作目标。按情境选择局部协作、任务图推进或持续协调；简单任务直接完成，只做计划时不自动派发或实施。",
       "entry": "507-coordinate/SKILL.md",
@@ -125,6 +132,13 @@
       "role": "secondary"
     },
     {
+      "contractSha256": "8000f2aa7c8a9bd6e6ec5e308984aed066661f2fe8c65f6e6bd29266d0af8d6b",
+      "description": "围绕当前决策归纳已核对的访谈、反馈或问题记录，比较会改变处理方式的分组，交付可回查的判断、处理优先级和待查证据。仅需整理来源、解释机制或执行已有安排时直接处理。",
+      "entry": "507-synthesize/SKILL.md",
+      "name": "507-synthesize",
+      "role": "secondary"
+    },
+    {
       "contractSha256": "433f8f60f118737229cdd45f8eb793231d140a8c759e472e7fd55fd1b6699eb5",
       "description": "把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。用于状态变化、跨角色时序、对象关系或同条件比较需要图解的任务；简单事实和局部润色直接完成，产品功能证据地图、正式分析与业务实施保留原职责。",
       "entry": "507-visualize/SKILL.md",
@@ -139,14 +153,14 @@
       "role": "main"
     },
     {
-      "contractSha256": "5f98d203bdee3c6998be02c61c1f85e7ea190bf67986591e67dcbd29b4f622f7",
+      "contractSha256": "20965001e8d07b968efa972a850084d5fcf9d50ac5e5e94c082141bb5cfd2d6d",
       "description": "帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。明确故障修复、已有方案实施和作者作品编排直接进入相应工作，不重开解释主目标。",
       "entry": "507-why/SKILL.md",
       "name": "507-why",
       "role": "main"
     },
     {
-      "contractSha256": "5b07504309c6120de9e1421f80066a9829c76ee6b0de1f0485d5570bba3a7745",
+      "contractSha256": "44e420d8b559d5d93521d9631aeced2ac68c4323ce9cc0172b7975527a60142d",
       "description": "发现工作事项、梳理建议顺序并推进授权内可完成的工作，以已有消息、任务与过程资料为依据，一致更新工作状态或交回拟议结果。支持局部更新与跨会话接续；明确的作品成稿、单一故障修复或全新产品设计按其目标直接处理，不因出现工作二字进入。",
       "entry": "507-work/SKILL.md",
       "name": "507-work",

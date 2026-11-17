@@ -1,0 +1,4 @@
+interface:
+  display_name: "判断陪练"
+  short_description: "先说出自己的判断和理由，听取有证据的反馈，再用不同条件的新题检验。"
+  default_prompt: "用 $507-coach 陪我练习判断方案中的证据是否充分。请先出一道题，等我说完判断和理由再点评。"

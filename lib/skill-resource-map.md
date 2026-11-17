@@ -26,6 +26,8 @@
 | [507-visualize](../skills/507-visualize/SKILL.md) | 把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。 | [component-library.mjs](components/visual-runtime/scripts/component-library.mjs)、[component-library.test.mjs](components/visual-runtime/scripts/component-library.test.mjs)、[render-artifact.mjs](components/visual-runtime/scripts/render-artifact.mjs) | 4 份 |
 | [507-demo](../skills/507-demo/SKILL.md) | 制作产品界面的静态展示图、功能卡片或带光标的短动画，交付可编辑场景与目标实物。 | [component-library.mjs](components/visual-runtime/scripts/component-library.mjs)、[component-library.test.mjs](components/visual-runtime/scripts/component-library.test.mjs)、[render-artifact.mjs](components/visual-runtime/scripts/render-artifact.mjs) | 1 份 |
 | [507-domain](../skills/507-domain/SKILL.md) | 构建或校准项目领域概念、词义、边界与关系，用具体场景检验并按授权维护相关文档。 | 按条件读取共有方法，无执行工具 | 5 份 |
+| [507-synthesize](../skills/507-synthesize/SKILL.md) | 围绕当前决策归纳已核对的访谈、反馈或问题记录，比较会改变处理方式的分组，交付可回查的判断、处理优先级和待查证据。 | 按条件读取共有方法，无执行工具 | 3 份 |
+| [507-coach](../skills/507-coach/SKILL.md) | 陪用户练习判断。 | 按条件读取共有方法，无执行工具 | 0 份 |
 
 ## 统一分工
 
@@ -485,3 +487,18 @@
 - [methods/evidence.md](methods/evidence.md)
 - [methods/question-frontier.md](methods/question-frontier.md)
 - [methods/validation.md](methods/validation.md)
+
+## 507-synthesize
+
+[资源声明](../skills/507-synthesize/RESOURCES.md)
+
+- [README.md](README.md)
+- [methods/alternatives.md](methods/alternatives.md)
+- [methods/authority-and-return.md](methods/authority-and-return.md)
+- [methods/evidence.md](methods/evidence.md)
+
+## 507-coach
+
+[资源声明](../skills/507-coach/RESOURCES.md)
+
+- [README.md](README.md)
