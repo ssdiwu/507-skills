@@ -6,7 +6,7 @@
 {
   "current": [
     {
-      "contractSha256": "d099bd98c62c442ecaaf640eb703817c16e8eaabd03796219e23670d0282c7cf",
+      "contractSha256": "8233cfc85af9d22621d06705dcd20853f95860c3dd25fb432d20807fdb438798",
       "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
@@ -27,7 +27,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "c86cfcde073e1fa2dfdf3c1fbe12875c05d3e18d8f779f12d10a149518f77de5",
+      "contractSha256": "cde93099c8d298b63deeaddca0f8a9067a69a642aba95b7f0725975b9d05281b",
       "description": "承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。主线未成立时补必要判断；已有目的、材料或成熟稿时直接成文或修改，保留作者声音和已确认内容，不重走采访与规划。",
       "entry": "507-create/SKILL.md",
       "name": "507-create",
@@ -104,7 +104,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "41ec6bdd087ab3c325e19834902eadbca1365be727f7e4b106d967dca4ebd6a6",
+      "contractSha256": "39726b93da121f668a3aea4c2507c11baaabb93a793e4afac61aa075347859fd",
       "description": "检查现状是否满足已确认要求，只检查不修改。独立审查代码、文档、作品或指定提示与指令，核对失效、冲突及适用证据，给出发现和结论。实现者自查和全库改进机会调查不替代独审。",
       "entry": "507-review/SKILL.md",
       "name": "507-review",

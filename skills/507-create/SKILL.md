@@ -51,6 +51,7 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 | --- | --- |
 | 事实、指定稿或多来源身份不明 | [事实与证据](../../lib/methods/evidence.md)：核原版、来源及实际覆盖 |
 | 作者、Agent、第三方归属或材料承重需要核对 | [作者与来源](../../lib/methods/author-and-source.md)：明确材料能支持什么 |
+| 方案、汇报或培训需要安排读者正文与审阅依据 | [作品合同的受众安排](../../lib/methods/artifact-contract.md#根据受众和容量安排内容)，按读者实际用途选择主张、依据、操作解释和必要条件 |
 | 用户手改、版本替换、多载体同步或完成判断 | [作品合同](../../lib/methods/artifact-contract.md)：保护有效内容，核对本次实际承载文字的位置 |
 | 作者决定、目标或责任仍有实质取舍 | [决定归属](../../lib/methods/decision-ownership.md)、[问题依赖](../../lib/methods/question-frontier.md)：只补会改变下一动作的必要决定 |
 | 主线或表达方案确实竞争 | [候选与反证](../../lib/methods/alternatives.md)：比较支撑、代价与反例 |
@@ -77,7 +78,7 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 ## 按真实缺口补充参考
 
 - 需要外部事实：采用[外部取证](../../lib/methods/external-research.md)，区分事实与来源观点。
-- 视觉方向未定：采用[视觉方向](../../lib/methods/visual-direction.md)，用真实候选支持取舍；中文密页、图表等采用[视觉语义](../../lib/design/target-design.md)。
+- 需要应用既有视觉参考或解决会影响作品的呈现取舍时，采用[视觉方向](../../lib/methods/visual-direction.md)，提取参考中服务当前内容的做法，并在目标实物上核对；中文密页、图表等采用[视觉语义](../../lib/design/target-design.md)。
 - 作者尚未表达的一手材料影响当前内容：采用[作者采访](../../lib/methods/author-interview.md)，已有材料足够时跳过。
 - 解释型作品存在具体理解缺口：采用[解释检验](../../lib/methods/explanation-progression.md)。
 - 借鉴视听手法或进入实际媒体制作：分别采用[参考视听证据](../../lib/methods/media-study.md)与[媒体制作](../../lib/methods/media-production.md)。
