@@ -6,7 +6,7 @@
 {
   "current": [
     {
-      "contractSha256": "9c19624526b810d133ef2cdd35ea7b82b3a2bbec552707fb81edb15c6e025264",
+      "contractSha256": "a9e02883d1f515fc3ae4626ca3522d8194ae7e1a331a66c6cfd7ae6bb130ece3",
       "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
@@ -41,7 +41,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "c71cfaac80dbbf9ab7761ae6049792804ef92aa66d38a655b3d12bdd8f503bc0",
+      "contractSha256": "2f2dfc8707fcd9416565a62c60bdcfa864d2a23139b95bbfb6f1cc403a0a8a97",
       "description": "为已完成工程范围准备 PR 表达、交付说明及版本结果，并按具体授权执行相应 Git 或发布动作；接续旧507-git引用时核当前职责与原条件。仅写说明时交付草稿；提交、推送、建 PR、合并和渠道发布各自核验，不由技能调用自动授权。",
       "entry": "507-deliver/SKILL.md",
       "name": "507-deliver",
@@ -153,14 +153,14 @@
       "role": "main"
     },
     {
-      "contractSha256": "4710237e884e5abe2a565739f674c964b31e26d0ed1961f2b4ddb9ac0a10315d",
+      "contractSha256": "b8e45e69bd32817c6a7e5de2d56d72faced3065fccaa967f400315657411a3d7",
       "description": "帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。明确故障修复、已有方案实施和作者作品编排直接进入相应工作，不重开解释主目标。",
       "entry": "507-why/SKILL.md",
       "name": "507-why",
       "role": "main"
     },
     {
-      "contractSha256": "9c81aa1c558be8787714fcca7e109df905b5131d2a1d9d683acb8d5f43ed5974",
+      "contractSha256": "3f3b8479300553411508e5b8fa828274e419ea8ded6d1d981bbc3eb735624e03",
       "description": "发现工作事项、梳理建议顺序并推进授权内可完成的工作，以已有消息、任务与过程资料为依据，一致更新工作状态或交回拟议结果。支持局部更新与跨会话接续；明确的作品成稿、单一故障修复或全新产品设计按其目标直接处理，不因出现工作二字进入。",
       "entry": "507-work/SKILL.md",
       "name": "507-work",
