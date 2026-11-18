@@ -55,7 +55,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "e25bc6e596afb3c7927f6b3246f17fe4c3d28b6d431b45a8690e7fb90dd54c1d",
+      "contractSha256": "8395e7f97b8e161d00f8052baabe6f49b2549c91c975d79fb2d11ca7b5be95ee",
       "description": "按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只查组件或只跑测试不自动改代码。",
       "entry": "507-do/SKILL.md",
       "name": "507-do",
@@ -69,7 +69,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "168d47ef0d05686924ad17c22e420fd7ab381cd019cfc130160d7c91a7563dab",
+      "contractSha256": "abbd966d6155af7ce7c25a1072805cdbb1aac31a61242211952d37077209fce7",
       "description": "根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
@@ -111,7 +111,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "de58af65de945c69f7ea9340fd23fc8fd783b44032e95630189d7e077b50710d",
+      "contractSha256": "9f9b05d993872c8ca32051e97b94a5b4e1b214a58fdb5aa3ae0faa3836e850af",
       "description": "检查现状是否满足已确认要求，只检查不修改。独立审查代码、文档、作品或指定提示与指令，核对失效、冲突及适用证据，给出发现和结论。实现者自查和全库改进机会调查不替代独审。",
       "entry": "507-review/SKILL.md",
       "name": "507-review",
@@ -125,7 +125,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "d15963851e25e3fa720c0303ad587ade7ea06b26dbe08e684d8bf9cb203f426e",
+      "contractSha256": "58b2643ada8f0984bf59a6079dd8aa49b748fc50bfe8e2e67234c4484778749f",
       "description": "整理唯一现行的行为与验收规格，承接已确认的软件需求或方案，也支持维护 PRD。清理或重构前可整理范围内必须保留的功能，清理中可校准规格缺口；已有充分规格直接沿用，活动或合作提案按其写作任务处理。",
       "entry": "507-spec/SKILL.md",
       "name": "507-spec",
@@ -146,7 +146,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "115f46ebd1cdd33b71a02689d57ee4da05d53613a42ab4a425ac642df9b626c9",
+      "contractSha256": "b716c22c1bec35afba167b25f1e32ba6d7fc25234491b5be2695d6f966591bb9",
       "description": "定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。主动整合材料、提出有依据的观点与机会，只询问会改变方向的必要问题；事实查询、术语解释、故障诊断和前提已充分的执行不进入。",
       "entry": "507-what/SKILL.md",
       "name": "507-what",
