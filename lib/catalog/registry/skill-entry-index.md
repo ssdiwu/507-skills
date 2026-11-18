@@ -6,7 +6,7 @@
 {
   "current": [
     {
-      "contractSha256": "13d55295284aa98e3590de7d287dcf8573fd764e47f6db530b6dfc8d246cab90",
+      "contractSha256": "9c19624526b810d133ef2cdd35ea7b82b3a2bbec552707fb81edb15c6e025264",
       "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
