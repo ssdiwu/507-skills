@@ -6,168 +6,168 @@
 {
   "current": [
     {
-      "contractSha256": "2a9eeb49b840b870f1af8afae5cac2722cfc0caee0187f42ed606cf660ff676f",
+      "contractSha256": "13d55295284aa98e3590de7d287dcf8573fd764e47f6db530b6dfc8d246cab90",
       "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
       "role": "main"
     },
     {
-      "contractSha256": "105704e79ce371f3bb388ca7602a63ee7b7961f5df6b0ad5273a469d2f5f8ac9",
+      "contractSha256": "54cdfcaec43b42d32a46eb4673e77f71ef7ae3ba4fa7d13f6c0c083b3146162e",
       "description": "在指定模块内查找并清理死代码、重复逻辑和失效规则，保持已有功能，默认先只读列清单。重构先核范围内行为规格，单文件超过800行先出拆分方案；新增功能、明确故障和交付审查各按原任务处理。",
       "entry": "507-clean/SKILL.md",
       "name": "507-clean",
       "role": "main"
     },
     {
-      "contractSha256": "084016faa2a8aa725d6a74357e2af9c53355bc47ea423effbdd174994d36f194",
+      "contractSha256": "815f464e021998fe551613e4e63fb805a0883831f481ed3801cca2bdb715cdb3",
       "description": "陪用户练习判断。仅在用户明确想练习、请人出题或点评自己的练习回答时启动。让用户先给判断和理由，用证据与反例反馈，再换条件检验能否独立运用。只想了解、求建议、改稿或直接要答案时按原请求处理。",
       "entry": "507-coach/SKILL.md",
       "name": "507-coach",
       "role": "main"
     },
     {
-      "contractSha256": "7a3b4cbe8d45a7eea5e3598e274ff09faeecd9c419125ad25bfd7ad9e23e0e2e",
+      "contractSha256": "967b592eedaf0a190115757b4cadf68866372b74f0b1208856d9dd0648a4d96d",
       "description": "判断必要的工作拆分、依赖、执行所有权与结果接收，适用于已有工程、写作、研究或一般工作目标。按情境选择局部协作、任务图推进或持续协调；简单任务直接完成，只做计划时不自动派发或实施。",
       "entry": "507-coordinate/SKILL.md",
       "name": "507-coordinate",
       "role": "secondary"
     },
     {
-      "contractSha256": "1b05e067da12504882f9456475622b9ac6c83f5cf660d87c2bc9cc0919dc31ab",
+      "contractSha256": "019e9f3aa61729d203fb908ab16b86d6c58edb6d0447f4f6ba95b954e9ac8db8",
       "description": "承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。主线未成立时补必要判断；已有目的、材料或成熟稿时直接成文或修改，保留作者声音和已确认内容，不重走采访与规划。",
       "entry": "507-create/SKILL.md",
       "name": "507-create",
       "role": "main"
     },
     {
-      "contractSha256": "a74d9d7e07adf969107c2ca62ff581bdd2bc7586e27bc82b54f6433b6bfeee20",
+      "contractSha256": "c71cfaac80dbbf9ab7761ae6049792804ef92aa66d38a655b3d12bdd8f503bc0",
       "description": "为已完成工程范围准备 PR 表达、交付说明及版本结果，并按具体授权执行相应 Git 或发布动作；接续旧507-git引用时核当前职责与原条件。仅写说明时交付草稿；提交、推送、建 PR、合并和渠道发布各自核验，不由技能调用自动授权。",
       "entry": "507-deliver/SKILL.md",
       "name": "507-deliver",
       "role": "secondary"
     },
     {
-      "contractSha256": "0c97b82fddfa8249bb11d076646d01bec2e374764cb59baa210b0f0d770b6917",
+      "contractSha256": "497427318d88af2d2c36942753352541271b3eedd31bd1670245eb7580fe148b",
       "description": "制作产品界面的静态展示图、功能卡片或带光标的短动画，交付可编辑场景与目标实物。用于介绍页、方案和文档中的界面示意及演示；已有产品组件优先复用，真实业务功能、实际软件操作录制、流程关系图和完整视频制作沿原任务处理。",
       "entry": "507-demo/SKILL.md",
       "name": "507-demo",
       "role": "secondary"
     },
     {
-      "contractSha256": "f48af7a982eb198b26177b891666d07f12450488a643b6d33e3142ff3e345a63",
+      "contractSha256": "e25bc6e596afb3c7927f6b3246f17fe4c3d28b6d431b45a8690e7fb90dd54c1d",
       "description": "按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只查组件或只跑测试不自动改代码。",
       "entry": "507-do/SKILL.md",
       "name": "507-do",
       "role": "main"
     },
     {
-      "contractSha256": "b96d786db95a62bc63ae554830e680905f5ed177590a6dc89b6d779583014ba2",
+      "contractSha256": "e66a82b971f948c517eefceb6e5e19bfb60f5da76a04a46c48dec1d6654f494d",
       "description": "构建或校准项目领域概念、词义、边界与关系，用具体场景检验并按授权维护相关文档。适用于新领域模型、影响设计或实现的语义冲突及领域关系修订；查阅已有词汇、解释概念或沿充分定义执行时直接处理，不重开建模。",
       "entry": "507-domain/SKILL.md",
       "name": "507-domain",
       "role": "secondary"
     },
     {
-      "contractSha256": "8a7d45deae4bfbefe0fbde1f55d3ca7106d7ce0bcd82027963b4bbc1c2dde1ef",
+      "contractSha256": "f1af3dc395cbe998d987f09992d9a3df9b4e3d782b67bcec2405c779ebdc42b3",
       "description": "根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
       "role": "main"
     },
     {
-      "contractSha256": "fd4ac9719f72cd76d02d9ac113e2b45cf34ddf27b6de435efbc0ad20cb91857f",
+      "contractSha256": "5e3e29888e02fe81bb6874c5dfe543cca25dd189efe8cefd0b2b67ade00fd142",
       "description": "草拟、创建或维护可跟进的软件工单，保留调查证据并原位升级为可领取的执行任务。用于用户要求记录或追踪问题；发现缺陷本身不授权远程建单、分派或关闭。",
       "entry": "507-issue/SKILL.md",
       "name": "507-issue",
       "role": "secondary"
     },
     {
-      "contractSha256": "76b9836dfed17dc795885adbb9b87fa045935a1a008d1acaceb0aa8908596b64",
+      "contractSha256": "cf09e821546a2c36cc9b7f8161dddd4b161a374f7e9ad2e5c98aa649230119fd",
       "description": "整理指定资料，核清来源、身份、重复和支持范围；也可按明确请求组织已有知识入口。用于素材混杂、独立性或证据承重需要核对；不替作者选主张，不写成稿，不默认写入知识库。",
       "entry": "507-material/SKILL.md",
       "name": "507-material",
       "role": "secondary"
     },
     {
-      "contractSha256": "a21eefa5664c5009ee875f76b11f6eb89c7c4e446f29481076b6d50302a3672c",
+      "contractSha256": "c594b0840d6b40cb54503431091fcac5835b247de98c45679b5132c007221210",
       "description": "把已有目标与方向组织为可执行步骤、依赖、验证点、恢复办法和接续位置。多步骤工作确需独立安排时采用；简单任务或已有充分计划直接执行，目标定义与方案构造不由计划猜定，只做计划不自动派工或实施。",
       "entry": "507-plan/SKILL.md",
       "name": "507-plan",
       "role": "secondary"
     },
     {
-      "contractSha256": "034048567bf1e4de18b04ad4badde4bad8dd796656bcc8a70d38481ff5f28579",
+      "contractSha256": "487034fd995725c86950ff56d688d051e6858d6fdacf3ef412ce90173cfd0a0e",
       "description": "梳理指定产品功能的交互点与操作关系，把设计要求、实现依据和实际运行证据对到同一节点，生成可探索地图与范围差距。用于功能盘点、入口到结果的对照或明确要求交互地图；仓库目录导航、组件抽取和普通实现不默认进入。",
       "entry": "507-product-map/SKILL.md",
       "name": "507-product-map",
       "role": "secondary"
     },
     {
-      "contractSha256": "20bb90f0b75f75ec3ac0adc03617b1e62a82b5ceb45bd122e246686b2f8ed8d7",
+      "contractSha256": "ea85500a6636336593ab5d38e9cc225262bd80cf6e4053289c3aefc9a6ec7fad",
       "description": "复盘已发生的工程工作，以实际尝试和结果提炼改进及重复任务的工具建议。用于明确要求复盘，或已证实的重复摩擦需要形成独立改进结论时；日常记录、故障定位与修复直接在原任务处理。复盘不自动修改技能、规范、记忆或工具，批准方法写入后才实施。",
       "entry": "507-retro/SKILL.md",
       "name": "507-retro",
       "role": "secondary"
     },
     {
-      "contractSha256": "ea06ecf154d8efcb5b876cc63ee3a91bba41b36b6336f5fed5e88dc1bad523b8",
+      "contractSha256": "de58af65de945c69f7ea9340fd23fc8fd783b44032e95630189d7e077b50710d",
       "description": "检查现状是否满足已确认要求，只检查不修改。独立审查代码、文档、作品或指定提示与指令，核对失效、冲突及适用证据，给出发现和结论。实现者自查和全库改进机会调查不替代独审。",
       "entry": "507-review/SKILL.md",
       "name": "507-review",
       "role": "secondary"
     },
     {
-      "contractSha256": "21fba836f793ff97c5f9b96e9e2b51219979a1fbcef3bb3ca4c859aef1c340d6",
+      "contractSha256": "92fb14a5b29456b1c99cb8a2232cdcab50599c80f3f2c1f957c84f452059982d",
       "description": "建立、迁移或只读核对项目工作依据，审计工作指令的失效与冲突，或维护 README、目录职责与文档导航。按请求保全规则、词义、共用设计和现行要求；局部导航不扩大为审计或迁移，业务实现与技能设计按其任务处理。",
       "entry": "507-setup/SKILL.md",
       "name": "507-setup",
       "role": "main"
     },
     {
-      "contractSha256": "410f07b154628f16be9181d4175ff42ed1b3dece354b0a4ea2358f4f3c270e60",
+      "contractSha256": "d15963851e25e3fa720c0303ad587ade7ea06b26dbe08e684d8bf9cb203f426e",
       "description": "整理唯一现行的行为与验收规格，承接已确认的软件需求或方案，也支持维护 PRD。清理或重构前可整理范围内必须保留的功能，清理中可校准规格缺口；已有充分规格直接沿用，活动或合作提案按其写作任务处理。",
       "entry": "507-spec/SKILL.md",
       "name": "507-spec",
       "role": "secondary"
     },
     {
-      "contractSha256": "437e46c2bc62bfc614c2f9e9f8c7c61c0da422188373e15b0e1336caa446d731",
+      "contractSha256": "ecf5ac4dd0ef8789d71a383777901cda3bdef4609df3e5d2e94f62c42606130c",
       "description": "围绕当前决策归纳已核对的访谈、反馈或问题记录，比较会改变处理方式的分组，交付可回查的判断、处理优先级和待查证据。仅需整理来源、解释机制或执行已有安排时直接处理。",
       "entry": "507-synthesize/SKILL.md",
       "name": "507-synthesize",
       "role": "secondary"
     },
     {
-      "contractSha256": "e76909becb4f3d9f0b21861891472502ecb030df2e915d52ed80e0c55359a637",
+      "contractSha256": "3f7980695d0f2fbd17eb669ec948cf77a9bc9cda0064c8d6f0fc5fd8bcde9361",
       "description": "把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。用于状态变化、跨角色时序、对象关系或同条件比较需要图解的任务；简单事实和局部润色直接完成，产品功能证据地图、正式分析与业务实施保留原职责。",
       "entry": "507-visualize/SKILL.md",
       "name": "507-visualize",
       "role": "secondary"
     },
     {
-      "contractSha256": "5fd916ecdbf76403e7f562278ed2a1061814dd0b38dad198756b5e0f96524b69",
+      "contractSha256": "115f46ebd1cdd33b71a02689d57ee4da05d53613a42ab4a425ac642df9b626c9",
       "description": "定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。主动整合材料、提出有依据的观点与机会，只询问会改变方向的必要问题；事实查询、术语解释、故障诊断和前提已充分的执行不进入。",
       "entry": "507-what/SKILL.md",
       "name": "507-what",
       "role": "main"
     },
     {
-      "contractSha256": "65fae467fb3ed090d6ddb55472d7d2e367be45a42becb0950fc316f4ca3adeff",
+      "contractSha256": "4710237e884e5abe2a565739f674c964b31e26d0ed1961f2b4ddb9ac0a10315d",
       "description": "帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。明确故障修复、已有方案实施和作者作品编排直接进入相应工作，不重开解释主目标。",
       "entry": "507-why/SKILL.md",
       "name": "507-why",
       "role": "main"
     },
     {
-      "contractSha256": "3a111f9a0fc2070e7b8160b8589f70478ef8bf0848ec39e29388b21a96645b68",
+      "contractSha256": "da239a1bbba32a223bfe8feff2adbeda2d81159c6482e881d00ff617e019c24a",
       "description": "发现工作事项、梳理建议顺序并推进授权内可完成的工作，以已有消息、任务与过程资料为依据，一致更新工作状态或交回拟议结果。支持局部更新与跨会话接续；明确的作品成稿、单一故障修复或全新产品设计按其目标直接处理，不因出现工作二字进入。",
       "entry": "507-work/SKILL.md",
       "name": "507-work",
       "role": "main"
     },
     {
-      "contractSha256": "ed5eb14ed7fc5e6336691700dbf9a2eac29c0c1acad22e1f66375042bc882a57",
+      "contractSha256": "7533c0fe25592758af061cf87b39d73d6ecdb6b498e85ed907dc97dafdb6d3bb",
       "description": "规划、创建或重构技能体系，审计技能包中的触发、读取与指令适用性，把任务经验和外部方法组织成技能、共有方法与工具，并完成获授权的文件和验证。项目工作指令核对、普通业务执行及独立交付审查按其任务处理。",
       "entry": "skill-design/SKILL.md",
       "name": "skill-design",
@@ -200,6 +200,7 @@
         "语义模型只作线索；本地ASR/OCR/PTS/scene-cut限定时间；受限视觉搜索→增密抽帧→可见锚点回写；高承重声/画回原片核验；观察包交给内容/借鉴而非直接制作"
       ],
       "source": "archive/legacy/write/507-breakdown/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "489a1dc1e87b131ba84b93a774afe63ea98dfd7c38403fe725bdd1a04c6ac55a",
       "targets": [
         "lib/methods/design/media-study.md"
@@ -228,6 +229,7 @@
         "成熟主题簇→回访/二次学习入口，定位/子主题/链接及一句定位/覆盖/更新时间/相关页；材料变动只更新受影响入口；不贴全文/凭空长章节"
       ],
       "source": "archive/legacy/write/507-cast/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "f0c680aee2c42d100029e15eedebf9adca19a6fbbb194e900c002061162a596c",
       "targets": [
         "skills/507-material/references/knowledge-organization.md",
@@ -317,6 +319,7 @@
         "感知或条件操作确有收益才用临时观察件；采用条件：在隔离位置，说明模拟、验证和清理状态"
       ],
       "source": "archive/legacy/common/507-explain/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "83371d88755be5362540c7a414c180817085e4ab4f4e10f322c57d3745cba621",
       "targets": [
         "lib/methods/writing/explanation-progression.md",
@@ -348,6 +351,7 @@
         "可验证候选保留依据、成立边界、反证和最小动作；采用条件：真实技术路径竞争且已有证据不足时"
       ],
       "source": "archive/legacy/common/507-explore/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "bc7782980273c5a26d9a5fa413c385cc26850441917635a0d4b24d150be509f3",
       "targets": [
         "lib/methods/evidence-and-decisions/evidence.md",
@@ -387,6 +391,7 @@
         "临时插桩标记与敏感输出清理；稳定行为/回归/原因证据分别进规格/测试/doc，独立review与Git动作另立。"
       ],
       "source": "archive/legacy/code/507-fix/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a",
       "targets": [
         "skills/507-do/references/debugging.md",
@@ -424,6 +429,7 @@
         "实践真实因果链与图像证据位置；不同状态图不冒充时间迭代"
       ],
       "source": "archive/legacy/write/507-forge/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "a1dc986ad1d93e19fa15e98d7410eaa90d65507307721844984a980f829ffe57",
       "targets": [
         "skills/507-create/SKILL.md",
@@ -461,6 +467,7 @@
         "传播目标明确时标题候选、真实点击理由、证据与正文兑现位置一起返回"
       ],
       "source": "archive/legacy/write/507-fuse/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "b5e71b3f10faa349ecc5dff88f7da997d8c78b708448b2bc3ebc96ae836a07e2",
       "targets": [
         "skills/507-create/SKILL.md",
@@ -501,6 +508,7 @@
         "失败先外部对账，只瞬时/不变/安全可重复/无冲突最多重试一次；未知/身份变化/冲突停止，不强推覆tag或自撤已成外部动作。"
       ],
       "source": "archive/legacy/code/507-git/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "fc1a598d8f4344d619cc58eb6072e09d258cdc751af16f9fdab7e766bd36f6fb",
       "targets": [
         "skills/507-deliver/SKILL.md",
@@ -539,6 +547,7 @@
         "冲突和持久化回最近当前权威，授权不因归宿扩大；采用条件：只有需要保存且已有该写入授权"
       ],
       "source": "archive/legacy/common/507-grill/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "ad0519061f1ebbdb926405f641e93c6965b0ef2501c1233065c01806f88ac1b2",
       "targets": [
         "skills/507-what/SKILL.md",
@@ -588,6 +597,7 @@
         "接手先核当前权威和较新用户修订，不从摘要补权限；采用条件：实际续办时，写权明确交回"
       ],
       "source": "archive/legacy/common/507-handoff/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "882a825c5314c4dacad2b3cc9300ad8596ad1eba67d65ec3f6c31e120ccdefa8",
       "targets": [
         "lib/methods/collaboration/continuation.md"
@@ -656,6 +666,7 @@
         "候选并非缺陷，改变公开API/契约/产品行为归需求实施；不能把inspect变review或直接写入口。"
       ],
       "source": "archive/legacy/code/507-inspect/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "68572b2dd30670b90941613e632542a4ce21268335bfb5a405b609581b733939",
       "targets": [
         "lib/methods/engineering/architecture-candidates.md"
@@ -695,6 +706,7 @@
         "ready证据/决定失效退调查；只记录请求可停相应状态，父任务已授权实施时返回继续。"
       ],
       "source": "archive/legacy/code/507-issue/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "57211638c990fb6cc7f3683ff54029498f267f00501df75ef63e9ac65ad6b394",
       "targets": [
         "skills/507-issue/SKILL.md"
@@ -724,6 +736,7 @@
         "与主题页维护结合的受影响索引/图谱更新与链接一致性"
       ],
       "source": "archive/legacy/write/507-mine/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "e57d9af100ebd51e33fdbeb043a7beaaf3a3ee880aad118505ccc48c39c4dd46",
       "targets": [
         "skills/507-material/SKILL.md",
@@ -755,6 +768,7 @@
         "真实PPTX原生文字/图表/表格/备注编辑验收与来源，目标工具缺失保持未完成"
       ],
       "source": "archive/legacy/write/507-ppt/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "1ffc1592b8418fa7d4c258ab49954466bbe3b146fa8b33eb3cf39b2d2282c535",
       "targets": [
         "lib/methods/writing/artifact-contract.md",
@@ -793,6 +807,7 @@
         "关键行为未知不伪定稿；没有TODO/TBD/空章伪装充分，先保原权威并继续明确部分。"
       ],
       "source": "archive/legacy/code/507-prd/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "77d3a0153efb35692ac52b94fecbdc2d7241d960f1172dff650bd1790417863d",
       "targets": [
         "skills/507-spec/SKILL.md"
@@ -823,6 +838,7 @@
         "连续叙述任务；稳定上下文最高增益两三个独立缺口；依赖/矛盾/敏感才逐题；先具体后抽象；一般判断至少尝试反例；内部覆盖快照与会话材料交接"
       ],
       "source": "archive/legacy/write/507-prospect/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "0cb3e78bc5e7be46d20e41f5be440529d52e135bcd9449a243348cdd42dc698e",
       "targets": [
         "lib/methods/writing/author-interview.md"
@@ -862,6 +878,7 @@
         "证据回交调用问题；正式实现重新设计、测试和审查，原型运行不能冒充生产交付。"
       ],
       "source": "archive/legacy/code/507-prototype/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "e350a1445d8dc721abadd60f6d049dfa7040de579c7f37a68a3f323553ac34f2",
       "targets": [
         "lib/methods/engineering/probe-lifecycle.md"
@@ -893,6 +910,7 @@
         "输出图片目标必须由真实图像/页面导出工具完成；LivePhoto/公众号封面对保留明确按需适配与失败边界"
       ],
       "source": "archive/legacy/write/507-rednote/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "a95065cdacfa969aad6bb2b8a2ba3f2220ff305bda9b96b490320043f2cc9ab4",
       "targets": [
         "lib/methods/writing/artifact-contract.md",
@@ -921,6 +939,7 @@
         "抽象可迁移手法、来源冲突处理、明确不复制逐句主题/身份/品牌/独特画面、原创叙事任务→分镜/风格/工具无关蓝图、制作交接缺口"
       ],
       "source": "archive/legacy/write/507-remix/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "498ba81fd22093062d345314906024760938b92c518ff8c35b3446f309ca0c78",
       "targets": [
         "lib/methods/design/media-study.md"
@@ -955,6 +974,7 @@
         "传播借鉴交标题点击理由、正文兑现、效果证据及迁移条件；采用条件：只有当前目标包含传播/涨粉/业务增长"
       ],
       "source": "archive/legacy/common/507-research/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "4499a53dec2c8dabff1537bd19113bc5efef161a2d405978b1c70a8862899b46",
       "targets": [
         "lib/methods/evidence-and-decisions/external-research.md",
@@ -994,6 +1014,7 @@
         "结论绑定实际版本/差异与未覆盖，修正后另一执行者复核相关变化；无阻塞不声称业务接受/发布。"
       ],
       "source": "archive/legacy/code/507-review/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "3e986f852afc0ed073bf9001a39bb950503f49b3814814909addc839c0b0f95c",
       "targets": [
         "skills/507-review/SKILL.md"
@@ -1036,6 +1057,7 @@
         "走查要求→共用规则→实现→验证路径；巡检、迁移、实现可用、人工接受、提交发布分别成立。"
       ],
       "source": "archive/legacy/code/507-setup/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "2733198dc801fde5ebafd0769d9a3af0d620a2d720372aed257719b554046bec",
       "targets": [
         "skills/507-setup/references/project-foundation.md",
@@ -1078,6 +1100,7 @@
         "完整输入逐项结果与未覆盖交回，必要地图同步，独立review另立结果。"
       ],
       "source": "archive/legacy/code/507-simplify/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "c0d66d7fbc22e6608bb8f9875fe56b4bf72ec1ee706908eae62674f1b6548110",
       "targets": [
         "lib/methods/engineering/behavior-preserving-change.md",
@@ -1108,6 +1131,7 @@
         "源与消费者同步、身份/链接/闭包/实际行为回放分层核验；采用条件：触发、权限、产物或资源变化时"
       ],
       "source": "archive/legacy/common/507-skill/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "18fe2c3624552fb4454d4acf7a46f56064f4d7576f01d2e1dfe9c9bec12f2406",
       "targets": [
         "skills/skill-design/SKILL.md",
@@ -1145,6 +1169,7 @@
         "结果绑定观点前提、候选版本与实际检查；偏好变化复核依赖；采用条件：需要续用方向记录"
       ],
       "source": "archive/legacy/common/507-taste/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "7cc68b1864ed8a6d5c7822343ab3ccc0d0ad5d586b7c81742818d39bd4edb9f5",
       "targets": [
         "lib/methods/design/visual-direction.md",
@@ -1184,6 +1209,7 @@
         "必要检查后新变化/失败/具体疑点才扩大，证据绑定版本/环境，独立review另立结果。"
       ],
       "source": "archive/legacy/code/507-test/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5",
       "targets": [
         "skills/507-do/references/testing.md"
@@ -1227,6 +1253,7 @@
         "范围内规格/设计与运行记录同步，产品行为/权限/数据变动独立review；adapt采用共有交互不扩工程或业务权限。"
       ],
       "source": "archive/legacy/code/507-ui/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "06c751c58610c08a5ab6ac289fc7507619b2bf6fb2b3997ce8349ebd5f72c920",
       "targets": [
         "lib/methods/engineering/interaction.md",
@@ -1264,6 +1291,7 @@
         "产品真实功能→允许主张/安全状态/设计令牌→styleframe→功能镜头映射→分镜后真实采集→音乐条件→独立关键帧终检"
       ],
       "source": "archive/legacy/write/507-video/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "55fcb0f9513e1091db3f2d8e6c08600682a61107c5c193b4d0e53fd54870c0bc",
       "targets": [
         "lib/methods/design/media-production.md",
@@ -1300,6 +1328,7 @@
         "语义和操作分别验收；无映射/未知/空结果分别表达；采用条件：理解工具交付，不能用截图或节点存在代替操作"
       ],
       "source": "archive/legacy/common/507-visualize/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "09f4cb86602bd7f8371c99d1faf88d4688765a7f6ded1fa69df31a1fc581e4de",
       "targets": [
         "lib/methods/design/visual-understanding.md",
@@ -1332,6 +1361,7 @@
         "既有voicebox_narrate.py可独立保全为本地组件，保持标准库/FFmpeg/Voicebox与当前服务实际contract，不新建wrapper/MCP"
       ],
       "source": "archive/legacy/write/507-voiceover/SKILL.md",
+      "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "684def2f97612c2902a3b62978fad0f65799655b52526a8fa2752568b35d2a8d",
       "targets": [
         "lib/methods/design/media-production.md",

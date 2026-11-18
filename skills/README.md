@@ -6,6 +6,23 @@
 
 ## 主要职责
 
+```mermaid
+flowchart LR
+    root["skills/ · 24 个同级技能目录"]
+    root --> primary["主要入口 · 11"]
+    root --> secondary["次要能力 · 13"]
+    primary --> p1["理解、目标、方案<br/>507-why · 507-what · 507-how"]
+    primary --> p2["实现、清理、推进<br/>507-do · 507-clean · 507-work"]
+    primary --> p3["创作、适配、陪练<br/>507-create · 507-adapt · 507-coach"]
+    primary --> p4["项目依据、技能设计<br/>507-setup · skill-design"]
+    secondary --> s1["材料、判断、领域概念<br/>507-material · 507-synthesize · 507-domain"]
+    secondary --> s2["规格、计划、协作、工单<br/>507-spec · 507-plan · 507-coordinate · 507-issue"]
+    secondary --> s3["功能地图、图解、演示<br/>507-product-map · 507-visualize · 507-demo"]
+    secondary --> s4["独审、交付、复盘<br/>507-review · 507-deliver · 507-retro"]
+```
+
+图中按角色和产物归组。每个实际技能目录用 `SKILL.md` 说明采用条件、工作动作和完成标准，用 `RESOURCES.md` 声明依赖，用 `agents/openai.yaml` 提供宿主展示信息。有专用方法的技能将其放在自己的 `references/`。例如 `507-work` 有事项推进和状态视图两份专用说明，`507-plan` 直接在主文说明计划如何完成。
+
 | 实际入口 | 独有责任 |
 | --- | --- |
 | [skill-design](skill-design/SKILL.md) | 技能设计、编写与指定技能指令审计 |
@@ -81,8 +98,9 @@ python3 -B scripts/resource_map.py
 python3 -B scripts/resource_map.py --check
 python3 -B -m unittest discover -s tests -v
 python3 -B -m unittest discover -s lib/components/tools/tests -v
-python3 -B scripts/package_skills.py build
 ```
+
+从仓库根打包前，将 `TASK_DIR` 设为本次任务的库外目录，然后执行 `python3 -B scripts/package_skills.py build --output "${TASK_DIR:?请设置任务目录}/dist"`。
 
 check 直接读取各技能 RESOURCES.md，核身份、文件多缺、技能与共有库显式依赖、引用边界、禁止私有执行资源和共有副本、源文件与索引；build 生成 skills/ 加一份 lib/ 的不可变集合。依赖缺失如实失败，不复制实现兜底。构建工具不安装或自动路由。
 
@@ -90,7 +108,7 @@ build 在写入前执行同一 check，实际共有链接漏登 uses、私有实
 
 可选的宿主适配见[Codex 维护钩子说明](../scripts/codex-maintenance-hooks.md)：现仅保留结束一致性检查的未启用候选，采用依据尚未确认；副本编辑保护已撤除。仓库只提供未启用的示例，不自动配置宿主、生成索引、同步、构建或安装；未启用时继续使用上述维护流程。
 
-GitHub Actions 配置为在 Python 3.10、3.12 上执行 `check`、`tests` 和 `lib/components/tools/tests` 三项检查，再继续运行原有专项回归。CI 通过只证明这些检查覆盖的包一致性与脚本行为，不证明宿主发现、自然采用或业务效果。
+GitHub Actions 配置为在 Python 3.10、3.12 上执行 `check`、`tests` 和 `lib/components/tools/tests` 三项检查，再从固定提交隔离运行[历史专项回归](../doc/历史导航.md#旧版原件与回归)。CI 通过只证明这些检查覆盖的包一致性与脚本行为，不证明宿主发现、自然采用或业务效果。
 
 ## 能力与验证边界
 

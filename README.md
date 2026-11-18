@@ -63,7 +63,7 @@ flowchart TD
 | 当前版本、能力范围、已知限制与待办 | [PROGRESS](PROGRESS.md) |
 | 长期依据、外部来源和历史记录 | [文档导航](doc/README.md) |
 
-`skills/` 是唯一现行技能源码，`lib/` 是共有资源维护源。`archive/legacy/common/`、`archive/legacy/code/`、`archive/legacy/write/` 保留旧版技能、来源和回退用途；旧路线、候选及各轮验证从[历史导航](doc/历史导航.md)查阅，不并入当前入口清单。
+`skills/` 是唯一现行技能源码，`lib/` 是共有资源维护源。旧版原件固定在 `v0.3.4`。查旧名、读原件或隔离复跑请见[历史导航](doc/历史导航.md#旧版原件与回归)。
 
 ## 获取与使用
 
@@ -78,15 +78,15 @@ git clone https://github.com/ssdiwu/507-skills.git
 
 ### Codex：链接完整安装集合
 
-先用现有构建器生成版本固定的完整集合：
+从仓库根运行以下命令。将 `TASK_DIR` 设置为本次任务的库外目录。也可以在任务目录中通过绝对路径调用构建器，默认产物写入该目录下的 `dist/`。
 
 ```sh
-python3 -B scripts/package_skills.py build
+python3 -B scripts/package_skills.py build --output "${TASK_DIR:?请设置任务目录}/dist"
 ```
 
 构建回执中的目录包含并列的 `skills/`、`lib/`、`packages.json` 和 `bundle.json`。将该目录整体复制到宿主扫描范围之外的新安装版本目录，保留原层级；通用资源在每个安装集合中仅有一份。构建输出保持不可变，node_modules 和集合内的预览构建输出写入安装版本目录。需要图解、界面或离线页面导出时，先在安装版本的 `lib/components/visual/` 中执行 `npm ci --ignore-scripts`，再核对实际共有工具能运行。
 
-安装入口 `~/.agents/skills/507-skills` 链接到准备好的完整安装版本目录。宿主看到的入口形如 `507-skills/skills/507-adapt/SKILL.md`，其 `../../lib/README.md` 可直接定位同一集合的共有资源。不要链接整个源码仓库根目录，其中含归档和历史构建；构建集合仅包含清单内的现行技能及资源。
+安装入口 `~/.agents/skills/507-skills` 链接到准备好的完整安装版本目录。宿主看到的入口形如 `507-skills/skills/507-adapt/SKILL.md`，其 `../../lib/README.md` 可直接定位同一集合的共有资源。不要链接整个源码仓库根目录，其中还包含维护脚本和历史文档；构建集合仅包含清单内的现行技能及资源。
 
 已有安装切换前，记录原链接目标及当前安装版本。先在新目录完成文件指纹、引用和必要运行检查，再通过临时链接原子替换安装入口；目标已被其他工作改变时停止替换。实体目录、未知文件或其他技能入口不得直接覆盖。旧安装保留供恢复使用，恢复时同样核对入口当前归属。
 

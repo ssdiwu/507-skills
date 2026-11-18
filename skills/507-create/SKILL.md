@@ -7,7 +7,7 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 
 作为面向用户的主要技能，持续负责本次作品范围、作者主线、事实与声音，以及用户要求的最终交付。用户主要从主要技能表达目标；Agent 按需采用主次技能和共有资源，返回结果后继续当前作品。局部修改以约定范围为结果，不扩成整件作品重做。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 承接版本与操作范围
 

@@ -6,7 +6,7 @@
 
 ## 阅读顺序
 
-首次进入仓库时，读取本文件、根 [`README.md`](README.md) 与目标目录的 `README.md`（现行技能见 [`skills/README.md`](skills/README.md)，旧版归档见 `archive/legacy/write/`、`archive/legacy/code/` 或 `archive/legacy/common/`），建立定位、入口和安全边界；后续按任务与变化补读，已读且未变化的材料直接复用。
+首次进入仓库时，读取本文件、根 [`README.md`](README.md) 与目标目录的 `README.md`（现行技能见 [`skills/README.md`](skills/README.md)，旧版原件与隔离复跑见[历史导航](doc/历史导航.md#旧版原件与回归)），建立定位、入口和安全边界；后续按任务与变化补读，已读且未变化的材料直接复用。
 
 跨会话续办或阶段调整时读取根 [`PROGRESS.md`](PROGRESS.md)，核对公开的当前版本、能力范围、已知限制和待办；当前工作树的交付维护者在这些信息实质变化时更新该快照。本机安装、试验过程、临时交接和私有原始回执保存在库外，接续时由原任务交代位置、版本与未完成，不写入公开进度。共用开发依据和可公开的历史结论继续归 doc 对应入口，历史证据保留，不在本规则或 README 复制进度正文。
 

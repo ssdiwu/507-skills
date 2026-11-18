@@ -31,11 +31,11 @@
 
 | 对象 | 独立设计与行为依据 |
 | --- | --- |
-| 视觉幻灯片 | [PPT 三轴设计系统](archive/legacy/write/507-ppt/references/design-system.md) |
-| 小红书图文与本地工作台 | [现行产品规格](spec/507-rednote.md)、[视觉表达](archive/legacy/write/507-rednote/references/styles.md) |
-| 产品界面交付 | [507-ui](archive/legacy/code/507-ui/SKILL.md)；实际项目的 DESIGN 与规格继续作为权威 |
-| 视频制作 | [制作合同](archive/legacy/write/507-video/references/production-contract.md)及对应作品已确认的视觉／声音依据 |
-| 可视化理解与比较 | [507-visualize](archive/legacy/common/507-visualize/SKILL.md)及其[载体检查](archive/legacy/common/507-visualize/references/delivery-and-checks.md) |
+| 视觉幻灯片 | [PPT 三轴设计系统](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/write/507-ppt/references/design-system.md) |
+| 小红书图文与本地工作台 | [现行产品规格](spec/507-rednote.md)、[视觉表达](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/write/507-rednote/references/styles.md) |
+| 产品界面交付 | [现行工程入口](skills/507-do/SKILL.md)与[旧 507-ui 合同](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/code/507-ui/SKILL.md)；实际项目的 DESIGN 与规格继续作为权威 |
+| 视频制作 | [制作合同](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/write/507-video/references/production-contract.md)及对应作品已确认的视觉／声音依据 |
+| 可视化理解与比较 | [507-visualize](skills/507-visualize/SKILL.md)及[旧版载体检查](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/common/507-visualize/references/delivery-and-checks.md) |
 
 共用设计不把 PPT、图文、视频与产品 UI 统一成一套配色、组件或数值。修订阅读体验时同步受影响的导航和具体规格，验证真实阅读动作；文档完成不证明呈现已经实现。
 

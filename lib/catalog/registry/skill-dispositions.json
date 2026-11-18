@@ -1,7 +1,42 @@
 {
-  "schema": 1,
+  "schema": 2,
   "date": "2026-10-21",
   "authority": "各现行SKILL.md是行为合同；本记录只维护旧能力处置、去向和缺口。",
+  "legacySnapshot": {
+    "revision": "a4c28d19bfea418333ff1487a958d33b797f2308",
+    "contracts": {
+      "archive/legacy/code/507-fix/SKILL.md": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a",
+      "archive/legacy/code/507-git/SKILL.md": "fc1a598d8f4344d619cc58eb6072e09d258cdc751af16f9fdab7e766bd36f6fb",
+      "archive/legacy/code/507-inspect/SKILL.md": "68572b2dd30670b90941613e632542a4ce21268335bfb5a405b609581b733939",
+      "archive/legacy/code/507-issue/SKILL.md": "57211638c990fb6cc7f3683ff54029498f267f00501df75ef63e9ac65ad6b394",
+      "archive/legacy/code/507-prd/SKILL.md": "77d3a0153efb35692ac52b94fecbdc2d7241d960f1172dff650bd1790417863d",
+      "archive/legacy/code/507-prototype/SKILL.md": "e350a1445d8dc721abadd60f6d049dfa7040de579c7f37a68a3f323553ac34f2",
+      "archive/legacy/code/507-review/SKILL.md": "3e986f852afc0ed073bf9001a39bb950503f49b3814814909addc839c0b0f95c",
+      "archive/legacy/code/507-setup/SKILL.md": "2733198dc801fde5ebafd0769d9a3af0d620a2d720372aed257719b554046bec",
+      "archive/legacy/code/507-simplify/SKILL.md": "c0d66d7fbc22e6608bb8f9875fe56b4bf72ec1ee706908eae62674f1b6548110",
+      "archive/legacy/code/507-test/SKILL.md": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5",
+      "archive/legacy/code/507-ui/SKILL.md": "06c751c58610c08a5ab6ac289fc7507619b2bf6fb2b3997ce8349ebd5f72c920",
+      "archive/legacy/common/507-explain/SKILL.md": "83371d88755be5362540c7a414c180817085e4ab4f4e10f322c57d3745cba621",
+      "archive/legacy/common/507-explore/SKILL.md": "bc7782980273c5a26d9a5fa413c385cc26850441917635a0d4b24d150be509f3",
+      "archive/legacy/common/507-grill/SKILL.md": "ad0519061f1ebbdb926405f641e93c6965b0ef2501c1233065c01806f88ac1b2",
+      "archive/legacy/common/507-handoff/SKILL.md": "882a825c5314c4dacad2b3cc9300ad8596ad1eba67d65ec3f6c31e120ccdefa8",
+      "archive/legacy/common/507-research/SKILL.md": "4499a53dec2c8dabff1537bd19113bc5efef161a2d405978b1c70a8862899b46",
+      "archive/legacy/common/507-skill/SKILL.md": "18fe2c3624552fb4454d4acf7a46f56064f4d7576f01d2e1dfe9c9bec12f2406",
+      "archive/legacy/common/507-taste/SKILL.md": "7cc68b1864ed8a6d5c7822343ab3ccc0d0ad5d586b7c81742818d39bd4edb9f5",
+      "archive/legacy/common/507-visualize/SKILL.md": "09f4cb86602bd7f8371c99d1faf88d4688765a7f6ded1fa69df31a1fc581e4de",
+      "archive/legacy/write/507-breakdown/SKILL.md": "489a1dc1e87b131ba84b93a774afe63ea98dfd7c38403fe725bdd1a04c6ac55a",
+      "archive/legacy/write/507-cast/SKILL.md": "f0c680aee2c42d100029e15eedebf9adca19a6fbbb194e900c002061162a596c",
+      "archive/legacy/write/507-forge/SKILL.md": "a1dc986ad1d93e19fa15e98d7410eaa90d65507307721844984a980f829ffe57",
+      "archive/legacy/write/507-fuse/SKILL.md": "b5e71b3f10faa349ecc5dff88f7da997d8c78b708448b2bc3ebc96ae836a07e2",
+      "archive/legacy/write/507-mine/SKILL.md": "e57d9af100ebd51e33fdbeb043a7beaaf3a3ee880aad118505ccc48c39c4dd46",
+      "archive/legacy/write/507-ppt/SKILL.md": "1ffc1592b8418fa7d4c258ab49954466bbe3b146fa8b33eb3cf39b2d2282c535",
+      "archive/legacy/write/507-prospect/SKILL.md": "0cb3e78bc5e7be46d20e41f5be440529d52e135bcd9449a243348cdd42dc698e",
+      "archive/legacy/write/507-rednote/SKILL.md": "a95065cdacfa969aad6bb2b8a2ba3f2220ff305bda9b96b490320043f2cc9ab4",
+      "archive/legacy/write/507-remix/SKILL.md": "498ba81fd22093062d345314906024760938b92c518ff8c35b3446f309ca0c78",
+      "archive/legacy/write/507-video/SKILL.md": "55fcb0f9513e1091db3f2d8e6c08600682a61107c5c193b4d0e53fd54870c0bc",
+      "archive/legacy/write/507-voiceover/SKILL.md": "684def2f97612c2902a3b62978fad0f65799655b52526a8fa2752568b35d2a8d"
+    }
+  },
   "legacy": [
     {
       "id": "507-explore",

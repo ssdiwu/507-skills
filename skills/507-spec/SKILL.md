@@ -7,7 +7,7 @@ description: "整理唯一现行的行为与验收规格，承接已确认的软
 
 将已确认目标写成后续执行者和验收者可直接使用的行为依据。优先维护项目已有 spec；轻改只改必要条目，不强制建立完整 PRD（产品需求文档）或工单。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 输入与修改范围
 

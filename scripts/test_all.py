@@ -1,82 +1,43 @@
 #!/usr/bin/env python3
-"""Run every deterministic repository regression through explicit public entry points."""
-from __future__ import annotations
-
+"""Run the original v0.3.4 deterministic regressions in a disposable checkout."""
 import argparse
-import os
+import hashlib
+import json
+from pathlib import Path
 import subprocess
 import sys
-from dataclasses import dataclass
-from pathlib import Path
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
+REVISION = 'a4c28d19bfea418333ff1487a958d33b797f2308'
 
 
-@dataclass(frozen=True)
-class Check:
-    name: str
-    command: tuple[str, ...]
-    cwd: Path = ROOT
+def verify_snapshot(checkout):
+    decisions = json.loads((ROOT / 'lib/catalog/registry/skill-dispositions.json').read_bytes())
+    contracts = {path.relative_to(checkout).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
+                 for path in (checkout / 'archive/legacy').glob('*/*/SKILL.md')}
+    if decisions['legacySnapshot'] != {'revision': REVISION, 'contracts': contracts}:
+        raise SystemExit('旧名清单或合同指纹与 v0.3.4 原件不符')
 
 
-def checks() -> list[Check]:
-    python = sys.executable
-    breakdown = ROOT / "archive/legacy/write/507-breakdown/scripts"
-    standalone_breakdown = (
-        ("breakdown forced fallback", "test_forced_local_fallback.py"),
-        ("breakdown image response parser", "test_image_response_parser.py"),
-        ("breakdown MiniMax JSON parser", "test_minimax_json_parser.py"),
-        ("breakdown understanding fixtures", "test_understanding_fixtures.py"),
-        ("breakdown adaptive frames", "test_video_adaptive_frames.py"),
-        ("breakdown analysis brief", "test_video_analysis_brief.py"),
-        ("breakdown localization", "test_video_localization.py"),
-        ("breakdown pull runtime", "test_video_pull_runtime.py"),
-        ("breakdown visual relocalization", "test_visual_relocalization.py"),
-    )
-    result = [
-        Check("Review evidence package consistency", (python, "-B", "scripts/sync_review_evidence.py", "--check")),
-        Check("PPT unit and CLI regressions", (python, "-B", "-m", "unittest", "discover", "-s", ".", "-p", "test_*.py", "-v"), ROOT / "archive/legacy/write/507-ppt/scripts"),
-        Check("PPT HTML browser evidence", ("bash", "scripts/test_html.sh"), ROOT / "archive/legacy/write/507-ppt"),
-        Check("RedNote regressions", (python, "-B", "-m", "unittest", "-v", "scripts/test_render_rednote.py"), ROOT / "archive/legacy/write/507-rednote"),
-        Check("RedNote runtime bundle freshness", (python, "-B", "scripts/validate_runtime_bundle.py"), ROOT / "archive/legacy/write/507-rednote"),
-        Check("RedNote runtime JS regressions", ("npm", "test"), ROOT / "archive/legacy/write/507-rednote/runtime"),
-        Check("RedNote runtime browser and export", (python, "-B", "scripts/test_serve_rednote.py"), ROOT / "archive/legacy/write/507-rednote"),
-        Check("Voiceover regressions", (python, "-B", "-m", "unittest", "-v", "scripts/test_voicebox_narrate.py"), ROOT / "archive/legacy/write/507-voiceover"),
-        Check("Write prose audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_prose.py"), ROOT / "archive/legacy/write/507-forge/scripts/prose"),
-        Check("Write spoken audit regressions", (python, "-B", "-m", "unittest", "-v", "test_check_spoken.py"), ROOT / "archive/legacy/write/507-forge/scripts/spoken"),
-        Check("Video contract regressions", (python, "-B", "-m", "unittest", "-v", "archive/legacy/write/507-video/scripts/test_contract.py")),
-        Check("Breakdown atomic publication", (python, "-B", "-m", "unittest", "-v", "test_video_pull_force.py"), breakdown),
-    ]
-    result.extend(Check(name, (python, "-B", filename), breakdown) for name, filename in standalone_breakdown)
-    result.append(Check("Breakdown MiniMax no-key contract", (python, "-B", "test_minimax_adapter.py", "--no-key"), breakdown))
-    pptx_samples = sorted((ROOT / "archive/legacy/write/507-ppt/examples").rglob("*.pptx"))
-    result.append(Check("PPT checked-in SVG media quality", (python, "-B", "archive/legacy/write/507-ppt/scripts/pptx_svg.py", *(str(path) for path in pptx_samples))))
-    for manifest in sorted((ROOT / "archive/legacy/write/507-ppt/examples").glob("*.manifest.json")):
-        result.append(Check(f"PPT manifest {manifest.name}", (python, "-B", "archive/legacy/write/507-ppt/scripts/validate_manifest.py", str(manifest))))
-    result.append(Check("PPT provenance report", (python, "-B", "archive/legacy/write/507-ppt/scripts/validate_provenance.py", "--check", "archive/legacy/write/507-ppt/examples/provenance-report.json")))
-    return result
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--allow-missing-browser", action="store_true", help="explicitly permit static-only HTML checks")
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--allow-missing-browser', action='store_true')
     args = parser.parse_args()
-    environment = dict(os.environ)
-    environment["PYTHONDONTWRITEBYTECODE"] = "1"
-    environment.pop("ALLOW_NO_BROWSER", None)
-    if args.allow_missing_browser:
-        environment["ALLOW_NO_BROWSER"] = "1"
-    failures: list[str] = []
-    for index, check in enumerate(checks(), start=1):
-        print(f"\n[{index}] {check.name}", flush=True)
-        result = subprocess.run(check.command, cwd=check.cwd, env=environment, text=True)
-        if result.returncode != 0:
-            failures.append(f"{check.name} (exit {result.returncode})")
-    print("\nExternal gates not run: MiniMax live adapter/E2E, Voicebox authorized generation, full-deck PPTX visual acceptance in native viewers, Live Photo device acceptance.")
-    if failures:
-        raise SystemExit("deterministic test failures:\n- " + "\n- ".join(failures))
-    print("All deterministic repository checks passed.")
+    if subprocess.run(['git', '-C', str(ROOT), 'cat-file', '-e', REVISION + '^{commit}']).returncode:
+        parser.exit(1, '需要含固定历史提交的 Git 仓库。浅克隆请先运行 git fetch --depth=1 origin tag v0.3.4\n')
+    with tempfile.TemporaryDirectory(prefix='507-history-') as directory:
+        checkout = Path(directory)
+        subprocess.run(['git', 'init', '--quiet'], cwd=checkout, check=True)
+        subprocess.run(['git', 'fetch', '--quiet', '--depth=1', '--no-tags', str(ROOT), REVISION], cwd=checkout, check=True)
+        subprocess.run(['git', 'checkout', '--quiet', '--detach', REVISION], cwd=checkout, check=True)
+        verify_snapshot(checkout)
+        subprocess.run([sys.executable, '-B', '-m', 'unittest', 'test_layout.LayoutTests.test_every_legacy_regression_still_has_its_cwd_and_script'], cwd=checkout / 'tests', check=True)
+        command = [sys.executable, '-B', 'scripts/test_all.py']
+        if args.allow_missing_browser:
+            command.append('--allow-missing-browser')
+        return subprocess.run(command, cwd=checkout).returncode
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == '__main__':
+    sys.exit(main())

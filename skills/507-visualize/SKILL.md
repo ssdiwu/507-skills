@@ -7,7 +7,7 @@ description: "把已有事实、机制、流程与方案组织成便于理解和
 
 交付读者能辨认对象、追踪变化、比较选项或指出分歧的表达。可直接承接图解请求，也可由解释、方案、规格、工程、审查和写作任务按需采用；结果返回原负责人，不接管其事实调查、产品判断、作者主张或整件交付。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 输入、权限与范围
 

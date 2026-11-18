@@ -147,8 +147,22 @@ def project(root, packages_path, catalog_path, disposition_path):
         if not isinstance(pending, dict) or any(not isinstance(pending.get(k), str) or not pending[k] for k in ['id', 'kind', 'title', 'scope', 'status']):
             raise ValueError('invalid pending capability fields')
     rows = decisions['legacy']
-    observed = {p.parent.name for group in ('common', 'code', 'write') for p in (root / 'archive/legacy' / group).glob('*/SKILL.md')}
-    if len(rows) != len(observed) or {r['id'] for r in rows} != observed:
+    if decisions.get('schema', 1) == 2:
+        snapshot = decisions['legacySnapshot']
+        contracts = snapshot['contracts']
+        if (not re.fullmatch(r'[0-9a-f]{40}', snapshot['revision']) or not isinstance(contracts, dict)
+                or not contracts or any(not re.fullmatch(r'archive/legacy/(common|code|write)/[a-z0-9][a-z0-9-]{0,63}/SKILL\.md', path)
+                                        or not re.fullmatch(r'[0-9a-f]{64}', digest) for path, digest in contracts.items())):
+            raise ValueError('invalid legacy snapshot')
+    elif decisions.get('schema', 1) == 1:
+        snapshot = None
+        paths = (path.relative_to(root).as_posix() for group in ('common', 'code', 'write')
+                 for path in (root / 'archive/legacy' / group).glob('*/SKILL.md'))
+        contracts = {path: sha(source(root, path).read_bytes()) for path in paths}
+    else:
+        raise ValueError('unsupported disposition schema')
+    observed = {PurePosixPath(path).parent.name for path in contracts}
+    if len(rows) != len(observed) or len(contracts) != len(observed) or {r['id'] for r in rows} != observed:
         raise ValueError('legacy decisions must cover the exact source inventory')
     retired = decisions.get('retired', [])
     if not isinstance(retired, list) or any(not isinstance(row, dict) for row in retired):
@@ -182,7 +196,14 @@ def project(root, packages_path, catalog_path, disposition_path):
             raise ValueError('duplicate disposition consumer or target')
         if row['decision'] not in ('retain', 'merge', 'drop') or not row.get('reason'):
             raise ValueError('missing disposition reason')
-        row['sourceSha256'] = sha(source(root, row['source']).read_bytes())
+        if row in retired:
+            row['sourceSha256'] = sha(source(root, row['source']).read_bytes())
+        else:
+            if row['source'] not in contracts:
+                raise ValueError('legacy source must match exact source inventory')
+            row['sourceSha256'] = contracts[row['source']]
+            if snapshot:
+                row['sourceRevision'] = snapshot['revision']
         connected = set()
         for target in row['targets']:
             source(root, target)
@@ -225,7 +246,8 @@ def skill_index(view):
             'consumers', 'source', 'sourceSha256', 'verification']
     return {'schema': 1, 'kind': 'skill-declarations',
             'current': sorted(current, key=lambda row: row['name']),
-            'legacy': sorted([{key: row[key] for key in keys} for row in view['legacy']],
+            'legacy': sorted([{**{key: row[key] for key in keys},
+                               **({'sourceRevision': row['sourceRevision']} if 'sourceRevision' in row else {})} for row in view['legacy']],
                              key=lambda row: row['id'])}
 
 
@@ -264,6 +286,8 @@ def read_index(path):
                 or not re.fullmatch(r'[0-9a-f]{64}', str(row.get('contractSha256')))):
             raise ValueError('invalid current declaration')
     for row in index['legacy']:
+        if 'sourceRevision' in row and not re.fullmatch(r'[0-9a-f]{40}', str(row['sourceRevision'])):
+            raise ValueError('invalid legacy revision')
         if row.get('decision') not in ('retain', 'merge', 'drop'):
             raise ValueError('invalid legacy decision')
         for key in ('reason', 'source', 'verification'):

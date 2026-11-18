@@ -7,7 +7,7 @@ description: "帮助认识陌生项目，主动调查用途、角色、代表路
 
 围绕用户要理解的对象建立有依据、能继续探索的认识。陌生项目先建立全貌，再用代表路径核对；具体的词、机制或现象则解释当前问题。定义、现在怎样运作、为何形成与历史选择的理由是不同问题，按理解目标展开，判断证据支持到哪里。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 输入、权限与范围
 

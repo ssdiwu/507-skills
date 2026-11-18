@@ -7,7 +7,7 @@ description: "构建或校准项目领域概念、词义、边界与关系，用
 
 作为次要工作能力，承接可独立请求或由目标、方案、规格、实现任务提出的领域建模工作。结果是当前范围内可供后续设计、实施与验收使用的概念、关系和必要约束；原任务的整体目标与最终交付继续由原负责人持有。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 输入、范围与权限
 

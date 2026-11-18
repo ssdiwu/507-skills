@@ -43,7 +43,7 @@ a{color:var(--visual-accent);overflow-wrap:anywhere}button,input,select{font:inh
 .queue-states{display:flex;gap:2px;padding:3px;background:var(--queue-surface);border:1px solid var(--queue-line);border-radius:8px;max-width:100%}
 .queue-example .queue-states button{font-size:12px;line-height:1.4;min-height:36px;padding:6px 12px;background:transparent;color:var(--queue-muted);border:1px solid transparent;border-radius:5px;white-space:nowrap}
 .queue-example .queue-states button[aria-pressed=true]{background:oklch(99% .003 160);color:var(--queue-ink);border-color:var(--queue-line);box-shadow:0 1px 2px oklch(29% .018 160 / .05)}
-.queue-example .queue-states button:hover{color:var(--queue-ink);background:oklch(94% .008 160)}
+.queue-example .queue-states button[aria-pressed=false]:hover{color:var(--queue-ink);background:oklch(94% .008 160)}
 .queue-result{display:flex;align-items:flex-start;gap:12px;margin:24px 0}
 .queue-result>svg{flex:none;color:var(--queue-accent);margin-top:5px}.is-failed .queue-result>svg{color:oklch(48% .12 35)}
 .queue-example .queue-result strong{font-size:22px;line-height:1.45;font-weight:650;letter-spacing:-.015em;text-wrap:pretty}

@@ -7,7 +7,7 @@ description: "围绕当前决策归纳已核对的访谈、反馈或问题记录
 
 当一组材料可能指向不同的处理动作时，形成能供原任务采用的判断。可以独立交付一次研判，也可为已有工作提供中间结果。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始。首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 `SKILL.md` 路径。后续引用按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始。首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 `SKILL.md` 路径。后续引用按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 输入与权限
 

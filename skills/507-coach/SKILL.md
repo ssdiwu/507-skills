@@ -7,7 +7,7 @@ description: "陪用户练习判断。仅在用户明确想练习、请人出题
 
 每轮选一个用户想练的判断，例如「现有证据足以支持多强的承诺」。优先使用用户给的材料和已有回答。目标清楚但缺少材料时，可以给一个短的虚构情境，标明哪些信息是题设。陪练默认在对话中进行，题中的决定和修改只用于练习。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始。首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同。参数取当前实际读取的 `SKILL.md` 路径。
+共有依赖从[共有资源合同](../../lib/README.md)开始。首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同。参数取当前实际读取的 `SKILL.md` 路径。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 一轮怎么练
 

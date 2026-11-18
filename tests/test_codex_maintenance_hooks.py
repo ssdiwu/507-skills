@@ -176,7 +176,7 @@ class HookTests(unittest.TestCase):
         shutil.copyfile(ROOT / 'scripts/package_skills.py', self.checker)
         shutil.copytree(ROOT / 'lib', self.root / 'lib', ignore=shutil.ignore_patterns('__pycache__','node_modules','dist'))
         ledger = json.loads((self.root / 'lib/catalog/registry/skill-dispositions.json').read_text())
-        for row in ledger['legacy'] + ledger.get('retired', []):
+        for row in ledger.get('retired', []):
             target = self.root / row['source']
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / row['source'], target)

@@ -20,11 +20,11 @@ class CollectionTests(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)/'collection';self.root.mkdir()
   config=json.loads((ROOT/'packages.json').read_text())
   paths={e['source']+'/'+p for e in pack.load_manifest(ROOT) for p in e['files']}|set(config['sharedFiles'])|{'packages.json','lib/catalog/catalog.json',pack.DISPOSITIONS}
-  decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions['legacy']+decisions.get('retired',[])}
+  decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions.get('retired',[])}
   for rel in paths:
    q=self.root/rel;q.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/rel,q)
  def call(self,action='check',ok=True,extra=()):
-  r=subprocess.run([sys.executable,str(SCRIPT),action,'--root',str(self.root),*map(str,extra)],capture_output=True,text=True)
+  r=subprocess.run([sys.executable,str(SCRIPT),action,'--root',str(self.root),*map(str,extra)],cwd=self.tmp.name,capture_output=True,text=True)
   self.assertEqual(r.returncode,0 if ok else 1,r.stdout+r.stderr);return json.loads(r.stdout if ok else r.stderr)
  def manifest(self,change):
   p=self.root/'packages.json';d=json.loads(p.read_text());change(d);p.write_text(json.dumps(d,ensure_ascii=False))
@@ -38,6 +38,11 @@ class CollectionTests(unittest.TestCase):
   for entry in config['skills']:
    self.assertTrue((self.root/entry['source']/'RESOURCES.md').is_file(),entry['name'])
    self.assertNotIn('files',entry);self.assertNotIn('uses',entry)
+ def test_build_belongs_to_task_directory(self):
+  result=self.call('build')
+  self.assertTrue(Path(result['path']).parent.samefile(Path(self.tmp.name)/'dist'))
+  self.assertIn('overlaps source',self.call('build',ok=False,extra=['--output',self.root/'dist'])['error'])
+  self.assertFalse((self.root/'dist').exists())
  def test_collection_checks_and_never_writes_or_creates_copies(self):
   before=pack.file_map(self.root/'skills');r=self.call();self.assertEqual(r['sharedCopies'],0);self.assertEqual(pack.file_map(self.root/'skills'),before)
   for path in (self.root/'skills').rglob('*'):

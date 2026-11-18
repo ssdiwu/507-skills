@@ -219,11 +219,11 @@ def build(root,output=None):
     fingerprint=digest(json.dumps(records,sort_keys=True,separators=(',',':')).encode())
     manifest={'schema':3,'system':'507-layered-capabilities','layout':'skills/ + one lib/','fingerprint':fingerprint,'files':records}
     raw=(json.dumps(manifest,ensure_ascii=False,indent=2,sort_keys=True)+'\n').encode()
-    output=Path(output).absolute() if output else root/'dist'
+    output=Path(output).absolute() if output else Path.cwd()/'dist'
     if output.is_symlink():raise PackageError('Output symlink is prohibited')
     resolved=output.resolve()
-    if resolved==root.resolve() or root.resolve().is_relative_to(resolved) or any(resolved.is_relative_to(root/x) for x in ['lib','skills','scripts','tests','archive']):
-        raise PackageError('Build output overlaps source')
+    if resolved.is_relative_to(root.resolve()) or root.resolve().is_relative_to(resolved):
+        raise PackageError('Build output overlaps source. Run build from the task directory or use --output with a directory outside the source tree.')
     output.mkdir(parents=True,exist_ok=True);final=output/fingerprint
     expected={**payload,'bundle.json':raw}
     if final.exists():

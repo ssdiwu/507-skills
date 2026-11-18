@@ -81,6 +81,16 @@ class LibraryTests(unittest.TestCase):
  def test_legacy_missing_item_is_not_a_complete_map(self):
   self.disp['legacy']=[]
   with self.assertRaisesRegex(ValueError,'exact source'):self.run_projection()
+ def test_frozen_inventory_works_without_git_and_rejects_missing_or_malformed_contracts(self):
+  path=self.disp['legacy'][0]['source'];digest=library.sha((self.root/path).read_bytes())
+  shutil.rmtree(self.root/'archive');snapshot={'revision':'a'*40,'contracts':{path:digest}}
+  self.disp.update(schema=2,legacySnapshot=snapshot)
+  origin=library.skill_index(self.run_projection())['legacy'][0]
+  self.assertEqual((origin['sourceRevision'],origin['sourceSha256']),(snapshot['revision'],digest))
+  snapshot['contracts'][path]='invalid'
+  with self.assertRaisesRegex(ValueError,'invalid legacy snapshot'):self.run_projection()
+  snapshot['contracts']={path:digest};self.disp['legacy']=[]
+  with self.assertRaisesRegex(ValueError,'exact source'):self.run_projection()
  def test_undeclared_consumer_is_refused(self):
   self.catalog['methods'][0]['consumers']=[{'skillId':'unknown'}]
   with self.assertRaisesRegex(ValueError,'consumers differ'):self.run_projection()

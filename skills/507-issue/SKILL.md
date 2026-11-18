@@ -7,7 +7,7 @@ description: "草拟、创建或维护可跟进的软件工单，保留调查证
 
 让一个值得持续跟进的问题有明确身份、当前状态和独立接手所需依据。复用项目现有工单平台及同一对象，正文维护当前结论，评论或既有历史位置保留证据；工单负责跟进，现行规格负责完整行为，不维护两份需求全文。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 输入、状态与权限
 

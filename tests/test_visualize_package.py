@@ -28,6 +28,7 @@ class VisualizeLookupTests(unittest.TestCase):
             self.assertEqual([(x['name'], x['role']) for x in value['currentCandidates']],
                              [('507-visualize', 'secondary')])
             self.assertEqual(value['legacyOrigin']['source'], 'archive/legacy/common/507-visualize/SKILL.md')
+            self.assertEqual(value['legacyOrigin']['sourceRevision'], 'a4c28d19bfea418333ff1487a958d33b797f2308')
             self.assertEqual(value['runtimeAvailability'], 'NOT_CHECKED')
             self.assertEqual(value['actionAuthority'], 'UNCHANGED')
             self.assertEqual(set(p.name for p in isolated.iterdir()), {'query.py', 'index.md'})

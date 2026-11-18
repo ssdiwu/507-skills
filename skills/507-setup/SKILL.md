@@ -7,7 +7,7 @@ description: "建立、迁移或只读核对项目工作依据，审计工作指
 
 作为主要技能，承接项目工作依据的建立、迁移、维护或只读核对，负责本次文档结果与必要引用的一致性。用户主要通过本入口表达这类目标，Agent 也可按需采用；沿用指定项目、有效决定和已有授权。让维护者找到现行要求、共同规则、真实入口与验证依据，不接管产品开发、故障修复或架构改造的全部责任。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 与规格、工单的职责关系
 

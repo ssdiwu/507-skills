@@ -7,7 +7,7 @@ description: "规划、创建或重构技能体系，审计技能包中的触发
 
 从用户要完成的任务出发，构建能被准确选择、独立使用并可靠返回的能力。支持规划、新建、改写、拆合与退役；不以入口数量决定保留或退出；已验证决定默认延续，前提变化或反证才复审，也不以入口更少作为收益证明。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 技能架构与触发关系
 

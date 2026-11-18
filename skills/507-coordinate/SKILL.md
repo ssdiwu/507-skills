@@ -7,7 +7,7 @@ description: "判断必要的工作拆分、依赖、执行所有权与结果接
 
 作为次要技能，承接已有目标下的协作工作，对所接范围的组合结果负责，完成后返回原目标；执行者对指定结果负责。工程、创作、研究或工作入口都可按需采用，不要求先经过507-work。拆分以可独立完成的工作为单位；一件简单工作可直接完成，不要求工单、任务网页、PR（拉取请求）或固定流程。
 
-共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。
+共有依赖从[共有资源合同](../../lib/README.md)开始：首次读取参考前，用 `skill_document=$(realpath <本文件路径>) && test -f "$skill_document" && cat "$(dirname "$skill_document")/../../lib/README.md"` 打开合同，参数取当前实际读取的 SKILL.md 路径；其余引用统一按合同解析，已完整读取且未变化的合同直接复用。 持有多阶段原任务时，局部动作完成后按[阶段返回](../../lib/README.md#阶段返回)核对指定交接并继续。
 
 ## 先确定本次结果与情境
 
