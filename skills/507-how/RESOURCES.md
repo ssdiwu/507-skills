@@ -16,21 +16,21 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/methods/alternatives.md",
-    "lib/methods/architecture-candidates.md",
-    "lib/methods/authority-and-return.md",
-    "lib/methods/behavior-preserving-change.md",
-    "lib/methods/clear-expression.md",
-    "lib/methods/continuation.md",
-    "lib/methods/decision-ownership.md",
-    "lib/methods/evidence.md",
-    "lib/methods/external-research.md",
-    "lib/methods/interaction-map.md",
-    "lib/methods/probe-lifecycle.md",
-    "lib/methods/question-frontier.md",
-    "lib/methods/validation.md",
-    "lib/methods/visual-understanding.md",
-    "lib/methods/work-records.md"
+    "lib/methods/evidence-and-decisions/alternatives.md",
+    "lib/methods/engineering/architecture-candidates.md",
+    "lib/methods/evidence-and-decisions/authority-and-return.md",
+    "lib/methods/engineering/behavior-preserving-change.md",
+    "lib/methods/writing/clear-expression.md",
+    "lib/methods/collaboration/continuation.md",
+    "lib/methods/evidence-and-decisions/decision-ownership.md",
+    "lib/methods/evidence-and-decisions/evidence.md",
+    "lib/methods/evidence-and-decisions/external-research.md",
+    "lib/methods/engineering/interaction-map.md",
+    "lib/methods/engineering/probe-lifecycle.md",
+    "lib/methods/evidence-and-decisions/question-frontier.md",
+    "lib/methods/evidence-and-decisions/validation.md",
+    "lib/methods/design/visual-understanding.md",
+    "lib/methods/collaboration/work-records.md"
   ]
 }
 ```

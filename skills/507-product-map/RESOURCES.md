@@ -14,22 +14,22 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/components/product-map.md",
-    "lib/components/product_map.py",
-    "lib/components/react_export.py",
-    "lib/components/visual-components.md",
-    "lib/components/visual-runtime.md",
-    "lib/components/visual-runtime/catalog.json",
-    "lib/components/visual-runtime/examples/record-browser/index.tsx",
-    "lib/components/visual-runtime/examples/record-browser/records.css",
-    "lib/components/visual-runtime/package.json",
-    "lib/components/visual-runtime/scripts/component-library.mjs",
-    "lib/components/visual-runtime/scripts/component-library.test.mjs",
-    "lib/components/visual-runtime/scripts/render-artifact.mjs",
-    "lib/methods/authority-and-return.md",
-    "lib/methods/evidence.md",
-    "lib/methods/interaction-map.md",
-    "lib/methods/validation.md"
+    "lib/components/tools/projections/product-map.md",
+    "lib/components/tools/projections/product_map.py",
+    "lib/components/tools/export/react_export.py",
+    "lib/components/visual/visual-components.md",
+    "lib/components/visual/visual-runtime.md",
+    "lib/components/visual/catalog.json",
+    "lib/components/visual/scenes/examples/record-browser/index.tsx",
+    "lib/components/visual/scenes/examples/record-browser/records.css",
+    "lib/components/visual/package.json",
+    "lib/components/visual/scripts/component-library.mjs",
+    "lib/components/visual/scripts/component-library.test.mjs",
+    "lib/components/visual/scripts/render-artifact.mjs",
+    "lib/methods/evidence-and-decisions/authority-and-return.md",
+    "lib/methods/evidence-and-decisions/evidence.md",
+    "lib/methods/engineering/interaction-map.md",
+    "lib/methods/evidence-and-decisions/validation.md"
   ]
 }
 ```

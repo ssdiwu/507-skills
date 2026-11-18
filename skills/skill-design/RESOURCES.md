@@ -17,21 +17,21 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/components/library-view.md",
-    "lib/components/library_view.py",
-    "lib/methods/alternatives.md",
-    "lib/methods/authority-and-return.md",
-    "lib/methods/clear-expression.md",
-    "lib/methods/continuation.md",
-    "lib/methods/decision-ownership.md",
-    "lib/methods/evidence.md",
-    "lib/methods/external-research.md",
-    "lib/methods/prompt-instruction-audit.md",
-    "lib/methods/question-frontier.md",
-    "lib/methods/skill-entry-resolution.md",
-    "lib/methods/validation.md",
-    "lib/methods/work-records.md",
-    "lib/registry/skill-entry-index.md"
+    "lib/components/tools/projections/library-view.md",
+    "lib/components/tools/projections/library_view.py",
+    "lib/methods/evidence-and-decisions/alternatives.md",
+    "lib/methods/evidence-and-decisions/authority-and-return.md",
+    "lib/methods/writing/clear-expression.md",
+    "lib/methods/collaboration/continuation.md",
+    "lib/methods/evidence-and-decisions/decision-ownership.md",
+    "lib/methods/evidence-and-decisions/evidence.md",
+    "lib/methods/evidence-and-decisions/external-research.md",
+    "lib/methods/collaboration/prompt-instruction-audit.md",
+    "lib/methods/evidence-and-decisions/question-frontier.md",
+    "lib/methods/collaboration/skill-entry-resolution.md",
+    "lib/methods/evidence-and-decisions/validation.md",
+    "lib/methods/collaboration/work-records.md",
+    "lib/catalog/registry/skill-entry-index.md"
   ]
 }
 ```

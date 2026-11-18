@@ -14,9 +14,9 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/methods/behavior-preserving-change.md",
-    "lib/methods/continuation.md",
-    "lib/methods/work-records.md"
+    "lib/methods/engineering/behavior-preserving-change.md",
+    "lib/methods/collaboration/continuation.md",
+    "lib/methods/collaboration/work-records.md"
   ]
 }
 ```

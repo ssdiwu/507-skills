@@ -11,9 +11,9 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 HOW = Path('skills/507-how/SKILL.md')
 NESTED = Path('skills/507-how/references/solution-design.md')
-RESOURCE = Path('lib/methods/alternatives.md')
+RESOURCE = Path('lib/methods/evidence-and-decisions/alternatives.md')
 CONTRACT = Path('lib/README.md')
-INTERACTION = Path('lib/methods/interaction.md')
+INTERACTION = Path('lib/methods/engineering/interaction.md')
 
 
 class SharedResourcePathsTests(unittest.TestCase):
@@ -55,8 +55,8 @@ class SharedResourcePathsTests(unittest.TestCase):
         self.assert_resource(self.collection / HOW)
 
     def test_host_collection_symlink_resolves_shared_sibling(self):
-        self.assertFalse((self.alias / 'lib/methods/alternatives.md').exists())
-        self.assertFalse((self.alias.parent / 'lib/methods/alternatives.md').exists())
+        self.assertFalse((self.alias / 'lib/methods/evidence-and-decisions/alternatives.md').exists())
+        self.assertFalse((self.alias.parent / 'lib/methods/evidence-and-decisions/alternatives.md').exists())
         self.assert_resource(self.alias / '507-how/SKILL.md')
 
     def test_nested_reference_uses_its_own_real_document(self):

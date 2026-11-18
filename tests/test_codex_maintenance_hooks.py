@@ -72,8 +72,8 @@ class HookTests(unittest.TestCase):
             run.assert_called_once()
 
     def test_malformed_dispositions_still_reach_package_checker(self):
-        dispositions = self.root / 'lib/registry/skill-dispositions.json'
-        dispositions.parent.mkdir()
+        dispositions = self.root / 'lib/catalog/registry/skill-dispositions.json'
+        dispositions.parent.mkdir(parents=True)
         dispositions.write_text('{}')
         hooks.handle(self.event())
         dispositions.write_text('[]')
@@ -175,7 +175,7 @@ class HookTests(unittest.TestCase):
         shutil.copyfile(ROOT / 'packages.json', self.root / 'packages.json')
         shutil.copyfile(ROOT / 'scripts/package_skills.py', self.checker)
         shutil.copytree(ROOT / 'lib', self.root / 'lib', ignore=shutil.ignore_patterns('__pycache__','node_modules','dist'))
-        ledger = json.loads((self.root / 'lib/registry/skill-dispositions.json').read_text())
+        ledger = json.loads((self.root / 'lib/catalog/registry/skill-dispositions.json').read_text())
         for row in ledger['legacy'] + ledger.get('retired', []):
             target = self.root / row['source']
             target.parent.mkdir(parents=True, exist_ok=True)

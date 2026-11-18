@@ -14,16 +14,16 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/components/check_run.py",
-    "lib/methods/artifact-contract.md",
-    "lib/methods/author-and-source.md",
-    "lib/methods/authority-and-return.md",
-    "lib/methods/continuation.md",
-    "lib/methods/engineering-evidence.md",
-    "lib/methods/evidence.md",
-    "lib/methods/interaction-map.md",
-    "lib/methods/prompt-instruction-audit.md",
-    "lib/methods/validation.md"
+    "lib/components/tools/checks/check_run.py",
+    "lib/methods/writing/artifact-contract.md",
+    "lib/methods/writing/author-and-source.md",
+    "lib/methods/evidence-and-decisions/authority-and-return.md",
+    "lib/methods/collaboration/continuation.md",
+    "lib/methods/engineering/engineering-evidence.md",
+    "lib/methods/evidence-and-decisions/evidence.md",
+    "lib/methods/engineering/interaction-map.md",
+    "lib/methods/collaboration/prompt-instruction-audit.md",
+    "lib/methods/evidence-and-decisions/validation.md"
   ]
 }
 ```

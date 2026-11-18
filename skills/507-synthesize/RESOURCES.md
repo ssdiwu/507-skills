@@ -12,9 +12,9 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/methods/alternatives.md",
-    "lib/methods/authority-and-return.md",
-    "lib/methods/evidence.md"
+    "lib/methods/evidence-and-decisions/alternatives.md",
+    "lib/methods/evidence-and-decisions/authority-and-return.md",
+    "lib/methods/evidence-and-decisions/evidence.md"
   ]
 }
 ```

@@ -60,13 +60,13 @@
 | 梳理功能与实际操作证据 | product-map 对齐交互点、关系及设计／实现／运行证据；普通实现不强制建图 |
 | 推进已有工作或安排协作 | work 持有本次事项与推进结果；需要协作时按需采用 coordinate，工程、创作和研究也可直接采用它 |
 
-资源路径统一按[共有资源合同](../lib/README.md#定位和依赖)从链接所在文档的真实位置解析。共有呈现代码、范例、播放器与检查工具统一在 lib 维护，demo 不保留单独维护源。本地发现入口连接用途、状态、实际接口与预览；demo按结构选范例，外部场景在统一导出前检查类型，不把检查通过称为业务接通。所有视觉消费者直接采用同一共有 React 呈现层，技能不携带 runtime 或共有文档／脚本副本；真实产品组件仍由 do 在目标项目内复用。完整关系见[逐技能资源表](../lib/skill-resource-map.md)，选用与运行见[共有图解组件](../lib/components/visual-components.md)。旧 `507-component` 的历史身份保持不变。
+资源路径统一按[共有资源合同](../lib/README.md#定位和依赖)从链接所在文档的真实位置解析。共有呈现代码、范例、播放器与检查工具统一在 lib 维护，demo 不保留单独维护源。本地发现入口连接用途、状态、实际接口与预览；demo按结构选范例，外部场景在统一导出前检查类型，不把检查通过称为业务接通。所有视觉消费者直接采用同一共有 React 呈现层，技能不携带 runtime 或共有文档／脚本副本；真实产品组件仍由 do 在目标项目内复用。完整关系见[逐技能资源表](../lib/catalog/skill-resource-map.md)，选用与运行见[共有图解组件](../lib/components/visual/visual-components.md)。旧 `507-component` 的历史身份保持不变。
 
 ## 资源维护与构建
 
-[共有资源库](../lib/README.md)分开说明方法、执行代码、运行资源、工具说明、设计参考与名称索引。每技能精确文件和依赖以自己的 `RESOURCES.md` 为准，[packages.json](../packages.json)只保留身份与声明位置及共有文件总清单，[catalog.json](../lib/catalog.json)对账共有资源消费者；[逐技能资源表](../lib/skill-resource-map.md)从这些维护源生成，不另维护调用清单。
+[共有资源库](../lib/README.md)分开说明方法、执行代码、运行资源、工具说明、设计参考与名称索引。每技能精确文件和依赖以自己的 `RESOURCES.md` 为准，[packages.json](../packages.json)只保留身份与声明位置及共有文件总清单，[catalog/catalog.json](../lib/catalog/catalog.json)对账共有资源消费者；[逐技能资源表](../lib/catalog/skill-resource-map.md)从这些维护源生成，不另维护调用清单。
 
-共有源修改后直接检查实际消费者，不再生成或同步副本。入口合同或旧名处置改变时，按[名称索引说明](../lib/components/library-view.md)先生成并核对索引，再检查集合。名称查询只返回声明，不执行技能或证明宿主已启用。
+共有源修改后直接检查实际消费者，不再生成或同步副本。入口合同或旧名处置改变时，按[名称索引说明](../lib/components/tools/projections/library-view.md)先生成并核对索引，再检查集合。名称查询只返回声明，不执行技能或证明宿主已启用。
 
 每完成一个技能修改，在实际修改的仓库根必须运行独立检查；失败修复后重跑，不能运行则如实报告，未通过不声称完成。该命令检查全部现行技能，不要求每次打包：
 
@@ -80,7 +80,7 @@ python3 -B scripts/package_skills.py check
 python3 -B scripts/resource_map.py
 python3 -B scripts/resource_map.py --check
 python3 -B -m unittest discover -s tests -v
-python3 -B -m unittest discover -s lib/components/tests -v
+python3 -B -m unittest discover -s lib/components/tools/tests -v
 python3 -B scripts/package_skills.py build
 ```
 
@@ -90,7 +90,7 @@ build 在写入前执行同一 check，实际共有链接漏登 uses、私有实
 
 可选的宿主适配见[Codex 维护钩子说明](../scripts/codex-maintenance-hooks.md)：现仅保留结束一致性检查的未启用候选，采用依据尚未确认；副本编辑保护已撤除。仓库只提供未启用的示例，不自动配置宿主、生成索引、同步、构建或安装；未启用时继续使用上述维护流程。
 
-GitHub Actions 配置为在 Python 3.10、3.12 上执行 `check`、`tests` 和 `lib/components/tests` 三项检查，再继续运行原有专项回归。CI 通过只证明这些检查覆盖的包一致性与脚本行为，不证明宿主发现、自然采用或业务效果。
+GitHub Actions 配置为在 Python 3.10、3.12 上执行 `check`、`tests` 和 `lib/components/tools/tests` 三项检查，再继续运行原有专项回归。CI 通过只证明这些检查覆盖的包一致性与脚本行为，不证明宿主发现、自然采用或业务效果。
 
 ## 能力与验证边界
 

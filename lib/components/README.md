@@ -1,19 +1,19 @@
 # 执行脚本与工具说明
 
-本目录同时包含可运行脚本和配套说明，分开列示。本目录包含非界面的数据／检查工具，以及统一的共有 React 呈现资源；准确消费者见[catalog](../catalog.json)，随包路径见[packages](../../packages.json)。
+本目录同时包含可运行脚本和配套说明，分开列示。本目录包含非界面的数据／检查工具，以及统一的共有 React 呈现资源；准确消费者见[catalog](../catalog/catalog.json)，随包路径见[packages](../../packages.json)。
 
 ## 执行与呈现分工
 
-视觉呈现只有[共有 React 入口](visual-runtime/scripts/render-artifact.mjs)，统一承载普通页面、五类图解、任务视图、产品地图及界面场景。Python 的 task_view/product_map 保留模型验证与文件事务，通过 [react_export.py](react_export.py) 调同一 React 组件，不含界面模板。library_view、work_view、state_diff、check_run、文件回执与文字检查器继续承担非界面工作。
+视觉呈现只有[共有 React 入口](visual/scripts/render-artifact.mjs)，统一承载普通页面、五类图解、任务视图、产品地图及界面场景。Python 的 task_view/product_map 保留模型验证与文件事务，通过 [react_export.py](tools/export/react_export.py) 调同一 React 组件，不含界面模板。library_view、work_view、state_diff、check_run、文件回执与文字检查器继续承担非界面工作。
 
-工具与方法由各技能直接引用，无技能内执行副本。来源、参数和运行见[组件合同](visual-components.md)、[运行合同](visual-runtime.md)、[逐技能关系](../skill-resource-map.md)。原 Python render_artifact 与 visual_blocks 已退出活动实现；上一轮示例与回执保留历史身份。
+工具与方法由各技能直接引用，无技能内执行副本。来源、参数和运行见[组件合同](visual/visual-components.md)、[运行合同](visual/visual-runtime.md)、[逐技能关系](../catalog/skill-resource-map.md)。原 Python render_artifact 与 visual_blocks 已退出活动实现；上一轮示例与回执保留历史身份。
 
 ## 状态比较与现有用法
 
 `state_diff.py`是`artifact.check`的一个确定性适配：按选定政策比较两份记录快照，报告实际字段变化、身份变化与拒绝原因。仅用Python标准库，只读三个输入文件，JSON写到标准输出，不访问网络、不写业务、不安装技能，也不授予平台权限。它可独立使用；work 通过清单直接引用这一份实现。
 
 ```sh
-python3 state_diff.py --baseline baseline.json --candidate candidate.json --policy policy.json
+python3 tools/checks/state_diff.py --baseline baseline.json --candidate candidate.json --policy policy.json
 ```
 
 基线和候选可使用记录数组，或基线唯一包装`{"snapshot":[...]}`、候选唯一包装`{"afterSnapshot":[...]}`。原始模型输出含额外字段时，调用者先提取指定数组并保留原输出版本；不能把多个候选包装混在一起让组件猜。每条记录须有唯一非空字符串id。
@@ -30,8 +30,10 @@ python3 state_diff.py --baseline baseline.json --candidate candidate.json --poli
 
 政策及允许记录的语义由原指令或独立审读核定。组件无法判断自然语言是否明确修订、备注是否保留含义、来源是否有关联；不能把它的PASS写成意图确认、整体产物接受或业务写入成功。
 
+在源码仓库的 `lib/components/` 目录执行组件回归测试。测试文件随源码维护。
+
 ```sh
-python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s tools/tests -v
 ```
 
 测试覆盖拒绝无允许依据的日期变化、允许精确对应的变化、字段缺失、身份/JSON/政策错误、非保护字段报告及缺命令参数。
@@ -41,7 +43,7 @@ python3 -m unittest discover -s tests -v
 work_view.py从基线记录数组与一个候选对象（records、显式viewContract.activeStatuses及按需的unresolved/priorityAdvice/nextActions/newCandidates数组）生成snapshot.json、views.json、work.md和输入/输出SHA-256清单。只用Python标准库；只读输入、仅写不存在的指定输出目录，不访问网络或业务平台。
 
 ```sh
-python3 work_view.py --baseline baseline.json --candidate state.json --out-dir views-v1 --reference-date 2026-10-12
+python3 tools/projections/work_view.py --baseline baseline.json --candidate state.json --out-dir views-v1 --reference-date 2026-10-12
 ```
 
 reference-date由调用方给定，可选，仅比较支持的YYYY-MM-DD日历日期；缺日期与显式null分别保留，带时刻/时区的值保留原文，不猜测新日期或截止。提醒已过不表示完成。activeStatuses决定视图划分，退出活跃视图不表示业务完成，新增候选不自动成为原事项。
@@ -57,30 +59,30 @@ reference-date由调用方给定，可选，仅比较支持的YYYY-MM-DD日历�
 - 共有 React 导出入口接受 --input、--example 或 --components 与新的 --out-dir，生成离线 HTML、原输入与指纹清单。来源、有限数值和未知由同一模型校验，输出不覆盖；生成不代替实际阅读或其他载体实物。
 - check_prose.py、check_spoken.py从已发布forge原样提取为唯一源，接受文本路径与--json；只读提示，不自动重写或裁决接受。原算法与断言保留，旧目录继续作为来源/回退，尚未退出旧技能。
 
-Python 呈现与检查脚本仅使用标准库；React 场景依赖按共有图解组件和锁文件核对。共有说明text-checks.md和设计提示均按清单直接引用。现有字段组件的语义许可限制保留；本轮没有通过它判授权。脚本行为检查位于tests，运行python3 -m unittest discover -s lib/components/tests -v。
+Python 呈现与检查脚本使用标准库。React 场景依赖按共有图解组件和锁文件核对。共有说明 text-checks.md 和设计提示按清单直接引用。字段变更的语义与授权由调用者核对。源码仓库的组件回归命令见上文。
 
 ## 从既有过程记录生成任务网页
 
-[task_view.py](task_view.py)按[组件合同](task-view.md)读取明确JSON数组路径或Markdown唯一标题下的任务表，以字段映射生成任务、依赖、报告状态与验收记录分开的离线网页。当前消费者是coordinate/work；无需网页时不运行。
+[task_view.py](tools/projections/task_view.py)按[组件合同](tools/projections/task-view.md)读取明确JSON数组路径或Markdown唯一标题下的任务表，以字段映射生成任务、依赖、报告状态与验收记录分开的离线网页。当前消费者是coordinate/work；无需网页时不运行。
 
 原记录修改后用同一组件与输出根重生成；历史版本保留，当前入口更新，坏输入或手改生成文件拒绝。渲染器能力变化形成新身份，不能直接编辑HTML补状态或布局。只读投影与版本登记不是新的工作日志、任务数据库或授权来源，也不会自动派工、联网或发布。
 
 ## 当前库投影与实际成品回执
 
-[library_view](library-view.md)按显式维护清单输出当前实现、旧30处置与待补；[artifact_receipt](artifact-receipt.md)记录实际文件身份与所列结构，媒体制作沿[工具适配](media-adapters.md)。前者不判业务效果，后者不判渲染、语义或接受。精确消费者以catalog与packages为准。
+[library_view](tools/projections/library-view.md)按显式维护清单输出当前实现、旧30处置与待补；[artifact_receipt](tools/export/artifact-receipt.md)记录实际文件身份与所列结构，媒体制作沿[工具适配](tools/export/media-adapters.md)。前者不判业务效果，后者不判渲染、语义或接受。精确消费者以catalog与packages为准。
 
-library_view另提供按名查询：`--index-file`配合`--lookup`只读一个生成声明索引，返回当前、旧来源或未知，退出分别为0／1，输入错误为2。查询可在单包外移后运行，不访问作者清单、兄弟技能、安装目录或网络。`--emit-index`是维护者的源投影模式，需要显式的四项源输入；打包检查核索引与现行声明一致，不能用旧快照冒充当前入口。两个模式与权限界限见[合同](library-view.md)。
+library_view另提供按名查询：`--index-file`配合`--lookup`只读一个生成声明索引，返回当前、旧来源或未知，退出分别为0／1，输入错误为2。查询可在单包外移后运行，不访问作者清单、兄弟技能、安装目录或网络。`--emit-index`是维护者的源投影模式，需要显式的四项源输入；打包检查核索引与现行声明一致，不能用旧快照冒充当前入口。两个模式与权限界限见[合同](tools/projections/library-view.md)。
 
 ## 从同一交互点记录生成地图
 
-[product_map.py](product_map.py)按[合同](product-map.md)验证交互点、关系、路径与三维证据，从一份JSON生成包含树、筛选、详情、关系和路径的离线网页。源码声明与运行观察分开，未知及相反条件并存；结构与生成成功不证明语义或产品接受。更新同一记录后用新输出目录重生成，旧网页保持不变；现有目录拒绝覆盖。
+[product_map.py](tools/projections/product_map.py)按[合同](tools/projections/product-map.md)验证交互点、关系、路径与三维证据，从一份JSON生成包含树、筛选、详情、关系和路径的离线网页。源码声明与运行观察分开，未知及相反条件并存；结构与生成成功不证明语义或产品接受。更新同一记录后用新输出目录重生成，旧网页保持不变；现有目录拒绝覆盖。
 
 ## 组件发现、接口与场景检查
 
-本地`visual-runtime/scripts/component-library.mjs`提供list/search/inspect/check；目录只补用途、状态及预览，接口从TypeScript源码与声明读取。播放器与CLI共用catalog.json，外部场景在统一导出器中自动检查，不执行用户代码；同名ui/kit能力明确区分。调用、退出状态和验证边界见[运行合同](visual-runtime.md)。
+从 `lib/components/` 运行 `node visual/scripts/component-library.mjs inspect kit:Stage` 可查看场景舞台接口。该工具支持列举、搜索、查看接口和检查场景。播放器与工具共用组件目录，接口来自 TypeScript 源码与声明。调用方式、退出状态和验证范围见[运行合同](visual/visual-runtime.md)。
 
 ## 日常交互基础组件
 
-[ui 接入合同](visual-runtime/ui/README.md)提供真实 Button、Input、Textarea、Select、Field、Checkbox、Switch、Tabs、Dialog、DropdownMenu、Tooltip、Accordion 及状态反馈。复杂交互使用 Radix UI；原生 CSS 与项目主题结合，保留已有产品组件优先。Artifact、TaskView、ProductMap 已采用同一控件源码；演示时间线仍沿 kit，不用播放控件冒充真实表单。
+[ui 接入合同](visual/ui/README.md)提供真实 Button、Input、Textarea、Select、Field、Checkbox、Switch、Tabs、Dialog、DropdownMenu、Tooltip、Accordion 及状态反馈。复杂交互使用 Radix UI；原生 CSS 与项目主题结合，保留已有产品组件优先。Artifact、TaskView、ProductMap 已采用同一控件源码；演示时间线仍沿 kit，不用播放控件冒充真实表单。
 
 `npm run test:ui` 在已安装 Chrome 中核离线导出后的字段校验、对话框焦点与返回、菜单/页签键盘、窄屏和减少动效，以及图解消费者的选中悬停与输入保留。没有浏览器时明确失败；该检查不是宿主自然采用或用户接受实验。

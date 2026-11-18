@@ -42,10 +42,10 @@ description: "草拟、创建或维护可跟进的软件工单，保留调查证
 
 | 条件 | 读取与用途 |
 | --- | --- |
-| 证据版本、故障事实或来源归属不清 | [事实与来源](../../lib/methods/evidence.md)：核实支撑范围 |
-| 用户修订、状态升级或决定取代 | [权威与返回](../../lib/methods/authority-and-return.md)：保全条件，正文只保留当前结论 |
-| 是否可升级 ready 或验收是否成立 | [可观察验收](../../lib/methods/validation.md)：拒绝仅有清单或自报的放行 |
-| 写入许可、责任或产品取舍实质不明 | [决定归属](../../lib/methods/decision-ownership.md)：区分授权与可逆编辑选择 |
+| 证据版本、故障事实或来源归属不清 | [事实与来源](../../lib/methods/evidence-and-decisions/evidence.md)：核实支撑范围 |
+| 用户修订、状态升级或决定取代 | [权威与返回](../../lib/methods/evidence-and-decisions/authority-and-return.md)：保全条件，正文只保留当前结论 |
+| 是否可升级 ready 或验收是否成立 | [可观察验收](../../lib/methods/evidence-and-decisions/validation.md)：拒绝仅有清单或自报的放行 |
+| 写入许可、责任或产品取舍实质不明 | [决定归属](../../lib/methods/evidence-and-decisions/decision-ownership.md)：区分授权与可逆编辑选择 |
 
 ## 完成与返回
 
@@ -53,6 +53,6 @@ description: "草拟、创建或维护可跟进的软件工单，保留调查证
 
 关键证据或取舍失效时保持／退回 investigation，说明阻塞和下一证据动作。平台状态未知时先读回，不盲目重试非幂等写入，不为失败改权限或伪造完成。
 
-本次出现真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过时，读[真实中断、交接与续办](../../lib/methods/continuation.md)并在本职责原权限与完成边界内采用。
+本次出现真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过时，读[真实中断、交接与续办](../../lib/methods/collaboration/continuation.md)并在本职责原权限与完成边界内采用。
 
-持续调查的必要本地依据按[工作记录](../../lib/methods/work-records.md)主动保存并回链同一对象；一次性草稿可留会话。该记录不授权远程建单、评论、分派或关闭，也不把未确认建议写成正式要求。正文达到当前调查或执行状态的可接手标准后返回原任务。
+持续调查的必要本地依据按[工作记录](../../lib/methods/collaboration/work-records.md)主动保存并回链同一对象；一次性草稿可留会话。该记录不授权远程建单、评论、分派或关闭，也不把未确认建议写成正式要求。正文达到当前调查或执行状态的可接手标准后返回原任务。

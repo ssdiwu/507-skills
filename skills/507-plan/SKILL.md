@@ -21,18 +21,18 @@ description: "把已有目标与方向组织为可执行步骤、依赖、验证
 2. 标出真实先后依赖、可独立部分与必要输入，区分当前事实、设计选择和待验证假设；未知有最小查证动作，依赖不成立只阻塞相关步骤。
 3. 每个重要步骤给开始条件、结果、验证点及失败时的保全/恢复办法。验收源来自原目标与有效规则，不因实施便利改合格标准。
 4. 标明现有执行/整合责任与接续位置；未分配保持未分配，不编造负责人。独立验收须安排未参与实施者，实际委托由协调职责在授权内完成。
-5. 核步骤能连回最终结果、范围与明确排除，更新现有计划及受影响关系。按[工作记录](../../lib/methods/work-records.md)主动保存实质计划进展；明确不写文件时在会话交付，不新建竞争总账。
+5. 核步骤能连回最终结果、范围与明确排除，更新现有计划及受影响关系。按[工作记录](../../lib/methods/collaboration/work-records.md)主动保存实质计划进展；明确不写文件时在会话交付，不新建竞争总账。
 
 ## 按需依据
 
 | 条件 | 方法及用途 |
 | --- | --- |
-| 版本、输入或已有结果不明 | [事实与证据](../../lib/methods/evidence.md)：核真实基准 |
-| 目标或责任有实质取舍 | [决定归属](../../lib/methods/decision-ownership.md)：保持已确认要求 |
-| 缺口阻塞步骤 | [问题依赖](../../lib/methods/question-frontier.md)：先处理真实前提 |
-| 选择验证点和恢复条件 | [可观察验收](../../lib/methods/validation.md)：使错误结果可被拒绝 |
-| 新决定影响旧计划或计划已完成 | [权威与返回](../../lib/methods/authority-and-return.md)：同步关系并继续父目标 |
-| 真实中断或转交 | [续办方法](../../lib/methods/continuation.md)：保全版本、写权和下一动作 |
+| 版本、输入或已有结果不明 | [事实与证据](../../lib/methods/evidence-and-decisions/evidence.md)：核真实基准 |
+| 目标或责任有实质取舍 | [决定归属](../../lib/methods/evidence-and-decisions/decision-ownership.md)：保持已确认要求 |
+| 缺口阻塞步骤 | [问题依赖](../../lib/methods/evidence-and-decisions/question-frontier.md)：先处理真实前提 |
+| 选择验证点和恢复条件 | [可观察验收](../../lib/methods/evidence-and-decisions/validation.md)：使错误结果可被拒绝 |
+| 新决定影响旧计划或计划已完成 | [权威与返回](../../lib/methods/evidence-and-decisions/authority-and-return.md)：同步关系并继续父目标 |
+| 真实中断或转交 | [续办方法](../../lib/methods/collaboration/continuation.md)：保全版本、写权和下一动作 |
 
 ## 完成与返回
 

@@ -16,13 +16,13 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/components/library-view.md",
-    "lib/components/library_view.py",
-    "lib/methods/continuation.md",
-    "lib/methods/prompt-instruction-audit.md",
-    "lib/methods/skill-entry-resolution.md",
-    "lib/methods/work-records.md",
-    "lib/registry/skill-entry-index.md"
+    "lib/components/tools/projections/library-view.md",
+    "lib/components/tools/projections/library_view.py",
+    "lib/methods/collaboration/continuation.md",
+    "lib/methods/collaboration/prompt-instruction-audit.md",
+    "lib/methods/collaboration/skill-entry-resolution.md",
+    "lib/methods/collaboration/work-records.md",
+    "lib/catalog/registry/skill-entry-index.md"
   ]
 }
 ```

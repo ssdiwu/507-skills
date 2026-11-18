@@ -4,7 +4,7 @@ lib 是所有技能共同使用的一份资源库，不是技能入口，也不�
 
 ## 明确的分工
 
-技能决定当前任务为何采用能力、保护什么、怎样判断交付；共有方法提供判断依据，共有代码实现确定性工具，React 组件完成全部界面与交互。Python 负责校验、投影、比较、文件与检查，不再维护第二套可视组件。详情见[技能资源关系](skill-resource-map.md)与[React 组件合同](components/visual-components.md)。
+技能决定当前任务为何采用能力、保护什么、怎样判断交付；共有方法提供判断依据，共有代码实现确定性工具，React 组件完成全部界面与交互。Python 负责校验、投影、比较、文件与检查，不再维护第二套可视组件。详情见[技能资源关系](catalog/skill-resource-map.md)与[React 组件合同](components/visual/visual-components.md)。
 
 ## 定位和依赖
 
@@ -20,8 +20,8 @@ python3 -c 'from pathlib import Path; from urllib.parse import unquote; import s
 
 ## 唯一事实与更新
 
-每个技能的 `RESOURCES.md` 独立声明自有 files 与直接共有 uses，是这两项的唯一维护源；路径分别相对技能目录与集合根。[packages.json](../packages.json)只登记身份、角色、目录、声明位置和共有文件精确集合，不重复保存 files/uses。正文与专用参考实际链接的共有文件须登记；[catalog.json](catalog.json)保留共有资源采用条件与消费者对账；[逐技能关系](skill-resource-map.md)由现行合同和清单生成。调用条件变化改拥有该任务的技能及共有合同，代码变化改 lib 唯一源，受影响消费者共同验证。数据投影不是新的业务权威。
+每个技能的 `RESOURCES.md` 独立声明自有 files 与直接共有 uses，是这两项的唯一维护源；路径分别相对技能目录与集合根。[packages.json](../packages.json)只登记身份、角色、目录、声明位置和共有文件精确集合，不重复保存 files/uses。正文与专用参考实际链接的共有文件须登记；[catalog.json](catalog/catalog.json)保留共有资源采用条件与消费者对账；[逐技能关系](catalog/skill-resource-map.md)由现行合同和清单生成。调用条件变化改拥有该任务的技能及共有合同，代码变化改 lib 唯一源，受影响消费者共同验证。数据投影不是新的业务权威。
 
 检查会拒绝技能中的执行代码、runtime、共有副本标记、未知文件、越界引用、软链接、缺失依赖和失效索引；构建只包含一份 lib。新增技能或滚动更新须沿同一规则，不能另建专属组件体系。历史副本与原验证证据仅留历史／恢复范围，不纳入活动技能发现和交付。
 
-导航：[共有方法](methods/README.md) · [执行组件](components/README.md) · [设计参考](design/README.md)；技能入口位于同一集合的 skills/。结构、检查、实际运行、自然采用、用户接受与发布分别判断。
+导航：[共有方法](methods/README.md) · [执行组件](components/README.md) · [设计参考](methods/design/README.md)；技能入口位于同一集合的 skills/。结构、检查、实际运行、自然采用、用户接受与发布分别判断。

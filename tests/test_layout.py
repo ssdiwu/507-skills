@@ -42,6 +42,14 @@ class LayoutTests(unittest.TestCase):
 
 
 class ResourceMapTests(unittest.TestCase):
+    def test_command_examples_resolve_against_shared_library(self):
+        import re
+        documents = [*(ROOT / 'skills').rglob('*.md'), *(ROOT / 'lib/components/tools').rglob('*.md')]
+        for document in documents:
+            for relative in re.findall(r'<共有库>/([\w./-]+\.(?:py|mjs|md|tsx|json))\b', document.read_text()):
+                with self.subTest(document=document, relative=relative):
+                    self.assertTrue((ROOT / 'lib' / relative).is_file())
+
     def test_all_skill_resource_map_matches_current_contracts_and_manifest(self):
         import subprocess
         result = subprocess.run([sys.executable, str(ROOT/'scripts/resource_map.py'), '--check'],

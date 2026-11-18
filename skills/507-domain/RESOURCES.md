@@ -14,11 +14,11 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/methods/authority-and-return.md",
-    "lib/methods/decision-ownership.md",
-    "lib/methods/evidence.md",
-    "lib/methods/question-frontier.md",
-    "lib/methods/validation.md"
+    "lib/methods/evidence-and-decisions/authority-and-return.md",
+    "lib/methods/evidence-and-decisions/decision-ownership.md",
+    "lib/methods/evidence-and-decisions/evidence.md",
+    "lib/methods/evidence-and-decisions/question-frontier.md",
+    "lib/methods/evidence-and-decisions/validation.md"
   ]
 }
 ```

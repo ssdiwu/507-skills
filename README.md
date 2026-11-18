@@ -2,7 +2,18 @@
 
 507-skills 是一套可独立使用、按任务组合的智能体技能。当前源码在 `skills/`，包含 **24 个入口（11 个主要技能，13 个次要工作能力）**。共有方法、执行脚本、图解与界面组件和设计参考集中维护在 `lib/`。
 
-最近本地定版为 **0.3.3**，见[版本记录](CHANGELOG.md#033---2026-11-03)；后续四维方法、入口主动判断、共有库发现检查及任务转换／资源定位属于[未定版增量](CHANGELOG.md#unreleased)。demo与自动检查接入已推送main；本轮行为测试判定修订只作本地提交，暂不推送。原版本标签保留本地，不创建发布页。
+`v0.3.4` 的发布内容和当前源码增量见[变更日志](CHANGELOG.md)。
+
+## 查找共有资源
+
+| 想做什么 | 从哪里进入 |
+| --- | --- |
+| 查取证、工程、协作、写作或设计方法 | [共有方法](lib/methods/README.md) |
+| 找真实界面控件、页面视图、演示场景或预览 | [界面与呈现](lib/components/visual/visual-components.md) |
+| 运行检查、整理数据、导出页面或取得回执 | [执行组件](lib/components/README.md) |
+| 查看某个技能的直接依赖与旧入口去向 | [技能依赖表](lib/catalog/skill-resource-map.md) · [名称索引](lib/catalog/registry/skill-entry-index.md) |
+
+示例、测试和许可随所属组件维护。目录与运行包的取舍见[架构决策 0025](doc/决策档案/0025-按用途组织共有资源库.md)。
 
 用户主要通过主要技能表达目标，Agent 按任务需要采用主要或次要技能。清楚任务直接采用相应能力，有实质缺口才补相应判断；不要求用户点选内部技能链。各入口的触发、权限、结果与完成条件以自己的 `SKILL.md` 为准。
 
@@ -38,14 +49,14 @@ flowchart TD
 
 需要构建或校准领域概念、词义、边界与关系时，可按需采用次要能力 [507-domain](skills/507-domain/SKILL.md)，用具体场景检验并返回原任务；查词或按充分定义执行不重开建模。该能力属于未定版源码增量，安装和实际采用另行验证。
 
-需要产品界面展示图、功能卡片或模拟操作短动画时，可按需采用次要能力 [507-demo](skills/507-demo/SKILL.md)。通用组件、范例、播放器和检查工具只在共有库存在一份，技能直接引用；时间线、步骤、比较、版面与排队联动可直接用[共有图解组件](lib/components/visual-components.md)，真实业务与完整视频仍沿原任务交付。
+需要产品界面展示图、功能卡片或模拟操作短动画时，可按需采用次要能力 [507-demo](skills/507-demo/SKILL.md)。通用组件、范例、播放器和检查工具只在共有库存在一份，技能直接引用；时间线、步骤、比较、版面与排队联动可直接用[共有图解组件](lib/components/visual/visual-components.md)，真实业务与完整视频仍沿原任务交付。
 
 ## 当前文档与目录
 
 | 需要查什么 | 唯一入口 |
 | --- | --- |
 | 技能身份、用途和必要资源 | [技能清单](skills/README.md) · [身份与资源声明索引](packages.json) |
-| 共有方法、组件、工具说明与设计参考 | [共有资源库](lib/README.md) · [逐技能资源关系](lib/skill-resource-map.md) |
+| 共有方法、组件、工具说明与设计参考 | [共有资源库](lib/README.md) · [逐技能资源关系](lib/catalog/skill-resource-map.md) |
 | 名称和易混词义 | [术语表](GLOSSARY.md) |
 | 库级使用与交付要求 | [分层规格](spec/技能分层与共有资源.md) |
 | 文档与导航的共用阅读设计 | [DESIGN](DESIGN.md) |
@@ -73,7 +84,7 @@ git clone https://github.com/ssdiwu/507-skills.git
 python3 -B scripts/package_skills.py build
 ```
 
-构建回执中的目录包含并列的 `skills/`、`lib/`、`packages.json` 和 `bundle.json`。将该目录整体复制到宿主扫描范围之外的新安装版本目录，保留原层级；通用资源在每个安装集合中仅有一份。构建输出保持不可变，node_modules 和集合内的预览构建输出写入安装版本目录。需要图解、界面或离线页面导出时，先在安装版本的 `lib/components/visual-runtime/` 中执行 `npm ci --ignore-scripts`，再核对实际共有工具能运行。
+构建回执中的目录包含并列的 `skills/`、`lib/`、`packages.json` 和 `bundle.json`。将该目录整体复制到宿主扫描范围之外的新安装版本目录，保留原层级；通用资源在每个安装集合中仅有一份。构建输出保持不可变，node_modules 和集合内的预览构建输出写入安装版本目录。需要图解、界面或离线页面导出时，先在安装版本的 `lib/components/visual/` 中执行 `npm ci --ignore-scripts`，再核对实际共有工具能运行。
 
 安装入口 `~/.agents/skills/507-skills` 链接到准备好的完整安装版本目录。宿主看到的入口形如 `507-skills/skills/507-adapt/SKILL.md`，其 `../../lib/README.md` 可直接定位同一集合的共有资源。不要链接整个源码仓库根目录，其中含归档和历史构建；构建集合仅包含清单内的现行技能及资源。
 

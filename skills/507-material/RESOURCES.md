@@ -16,13 +16,13 @@
   ],
   "uses": [
     "lib/README.md",
-    "lib/methods/author-and-source.md",
-    "lib/methods/author-interview.md",
-    "lib/methods/continuation.md",
-    "lib/methods/evidence.md",
-    "lib/methods/external-research.md",
-    "lib/methods/media-study.md",
-    "lib/methods/work-records.md"
+    "lib/methods/writing/author-and-source.md",
+    "lib/methods/writing/author-interview.md",
+    "lib/methods/collaboration/continuation.md",
+    "lib/methods/evidence-and-decisions/evidence.md",
+    "lib/methods/evidence-and-decisions/external-research.md",
+    "lib/methods/design/media-study.md",
+    "lib/methods/collaboration/work-records.md"
   ]
 }
 ```

@@ -25,22 +25,22 @@ jobs:
         with:
           node-version: "20"
           cache: npm
-          cache-dependency-path: lib/components/visual-runtime/package-lock.json
+          cache-dependency-path: lib/components/visual/package-lock.json
       - name: Install one shared React runtime
-        run: npm ci --ignore-scripts --prefix lib/components/visual-runtime
+        run: npm ci --ignore-scripts --prefix lib/components/visual
       - name: Check shared React types and components
         run: |
-          npm run typecheck --prefix lib/components/visual-runtime
-          npm run test:library --prefix lib/components/visual-runtime
-          npm run test:visuals --prefix lib/components/visual-runtime
+          npm run typecheck --prefix lib/components/visual
+          npm run test:library --prefix lib/components/visual
+          npm run test:visuals --prefix lib/components/visual
       - name: Check shared visual verification reports
-        run: npm test --prefix lib/components/visual-runtime
+        run: npm test --prefix lib/components/visual
       - name: Check current skill packages
         run: python scripts/package_skills.py check
       - name: Run current skill package regressions
         run: python -m unittest discover -s tests -v
       - name: Run shared component regressions
-        run: python -m unittest discover -s lib/components/tests -v
+        run: python -m unittest discover -s lib/components/tools/tests -v
       - name: Install officecli for PPTX readback and generation
         run: |
           curl -fsSL --retry 3 \
@@ -60,9 +60,9 @@ jobs:
           fc-match ':lang=zh-cn'
           google-chrome --version
       - name: Check shared UI behavior in Chrome
-        run: npm run test:ui --prefix lib/components/visual-runtime
+        run: npm run test:ui --prefix lib/components/visual
       - name: Check shared layout coverage in Chrome
-        run: npm run test:layout --prefix lib/components/visual-runtime
+        run: npm run test:layout --prefix lib/components/visual
       - name: Run deterministic repository checks
         run: python scripts/test_all.py
       - name: Capture PPTX renderer environment evidence

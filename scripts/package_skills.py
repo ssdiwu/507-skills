@@ -14,7 +14,7 @@ from urllib.parse import unquote, urlsplit
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = {'skill-design','507-what','507-why','507-how','507-create','507-work','507-material','507-adapt','507-spec','507-do','507-review','507-issue','507-coordinate','507-deliver','507-retro','507-setup','507-product-map','507-clean','507-plan','507-visualize','507-demo','507-domain','507-synthesize','507-coach'}
-DISPOSITIONS = 'lib/registry/skill-dispositions.json'
+DISPOSITIONS = 'lib/catalog/registry/skill-dispositions.json'
 class PackageError(ValueError):
     pass
 
@@ -171,7 +171,7 @@ def validate_package(base,name,collection_root=None,declared=None,uses=None):
 
 def library_module(root):
     import importlib.util
-    path=within(root,'lib/components/library_view.py',True)
+    path=within(root,'lib/components/tools/projections/library_view.py',True)
     spec=importlib.util.spec_from_file_location('collection_library_view',path)
     module=importlib.util.module_from_spec(spec)
     # Loading a staged source must not add bytecode to the immutable collection.
@@ -180,8 +180,8 @@ def library_module(root):
 
 def check_skill_index(root):
     module=library_module(root)
-    actual,_=module.read_index(root/'lib/registry/skill-entry-index.md')
-    view=module.project(root,root/'packages.json',root/'lib/catalog.json',root/DISPOSITIONS)
+    actual,_=module.read_index(root/'lib/catalog/registry/skill-entry-index.md')
+    view=module.project(root,root/'packages.json',root/'lib/catalog/catalog.json',root/DISPOSITIONS)
     if actual!=module.skill_index(view):raise PackageError('Stale skill-entry index; regenerate from source declarations')
 
 
@@ -213,7 +213,7 @@ def check(root,entries=None):
 
 def build(root,output=None):
     payload=check(root)
-    for rel in ['packages.json','lib/catalog.json']:
+    for rel in ['packages.json','lib/catalog/catalog.json']:
         payload[rel]=within(root,rel,True).read_bytes()
     records={rel:digest(raw) for rel,raw in payload.items()}
     fingerprint=digest(json.dumps(records,sort_keys=True,separators=(',',':')).encode())

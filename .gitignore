@@ -11,7 +11,7 @@ node_modules/
 
 # Immutable local candidates; source packages and checks remain versioned
 /dist/
-/lib/components/visual-runtime/playground/dist/
+/lib/components/visual/playground/dist/
 
 # Local host session state
 /.mimosa/
