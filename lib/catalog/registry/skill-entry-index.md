@@ -69,7 +69,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "abbd966d6155af7ce7c25a1072805cdbb1aac31a61242211952d37077209fce7",
+      "contractSha256": "6f838228b3a391e7ae7e25e68a3d37fc03888307772ff5e76d967e4e9eca9526",
       "description": "根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
