@@ -1088,6 +1088,10 @@
   ],
   "components": [
     {
+      "source": "lib/components/tools/checks/delivery_check.py",
+      "consumers": ["507-work"]
+    },
+    {
       "source": "lib/components/tools/checks/check_prose.py",
       "consumers": [
         "507-create",

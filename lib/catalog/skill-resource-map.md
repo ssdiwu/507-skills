@@ -8,7 +8,7 @@
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | [skill-design](#skill-design) | 规划、创建或重构技能体系，审计技能包中的触发、读取与指令适用性，把任务经验和外部方法组织成技能、共有方法与工具，并完成获授权的文件和验证。 | 12 | 2 | 0 | 2 | 16 |
 | [507-what](#507-what) | 定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。 | 9 | 0 | 0 | 1 | 10 |
-| [507-work](#507-work) | 发现工作事项、梳理建议顺序并推进授权内可完成的工作，以已有消息、任务与过程资料为依据，一致更新工作状态或交回拟议结果。 | 6 | 9 | 4 | 2 | 21 |
+| [507-work](#507-work) | 发现工作事项、梳理建议顺序并推进授权内可完成的工作，以已有消息、任务与过程资料为依据，一致更新工作状态或交回拟议结果。 | 6 | 11 | 4 | 2 | 23 |
 | [507-why](#507-why) | 帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。 | 15 | 0 | 0 | 1 | 16 |
 | [507-how](#507-how) | 根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。 | 15 | 0 | 0 | 1 | 16 |
 | [507-create](#507-create) | 承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。 | 26 | 10 | 3 | 2 | 41 |
@@ -104,8 +104,10 @@
 - 指引 · [methods/evidence-and-decisions/validation.md](../methods/evidence-and-decisions/validation.md)
 - 指引 · [methods/collaboration/work-records.md](../methods/collaboration/work-records.md)
 
-### 工具（9）
+### 工具（11）
 
+- 使用说明 · [components/tools/checks/delivery-check.md](../components/tools/checks/delivery-check.md)
+- 执行文件 · [components/tools/checks/delivery_check.py](../components/tools/checks/delivery_check.py)
 - 执行文件 · [components/tools/export/react_export.py](../components/tools/export/react_export.py)
 - 执行文件 · [components/tools/checks/state_diff.py](../components/tools/checks/state_diff.py)
 - 使用说明 · [components/tools/projections/task-view.md](../components/tools/projections/task-view.md)

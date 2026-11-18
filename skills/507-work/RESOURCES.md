@@ -16,6 +16,8 @@
   ],
   "uses": [
     "lib/README.md",
+    "lib/components/tools/checks/delivery-check.md",
+    "lib/components/tools/checks/delivery_check.py",
     "lib/components/tools/export/react_export.py",
     "lib/components/tools/checks/state_diff.py",
     "lib/components/tools/projections/task-view.md",

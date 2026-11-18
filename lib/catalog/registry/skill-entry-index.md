@@ -69,7 +69,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "f1af3dc395cbe998d987f09992d9a3df9b4e3d782b67bcec2405c779ebdc42b3",
+      "contractSha256": "168d47ef0d05686924ad17c22e420fd7ab381cd019cfc130160d7c91a7563dab",
       "description": "根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
@@ -160,7 +160,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "da239a1bbba32a223bfe8feff2adbeda2d81159c6482e881d00ff617e019c24a",
+      "contractSha256": "9c81aa1c558be8787714fcca7e109df905b5131d2a1d9d683acb8d5f43ed5974",
       "description": "发现工作事项、梳理建议顺序并推进授权内可完成的工作，以已有消息、任务与过程资料为依据，一致更新工作状态或交回拟议结果。支持局部更新与跨会话接续；明确的作品成稿、单一故障修复或全新产品设计按其目标直接处理，不因出现工作二字进入。",
       "entry": "507-work/SKILL.md",
       "name": "507-work",
