@@ -153,7 +153,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "42dbddb8e0c4f1f9149eaaeecd225046015bbf5673f656187ab171dcc6191821",
+      "contractSha256": "3af5a25396b15f7262e5efae9adf1d8d8d9cc9c6e576775bf3572537c20b2496",
       "description": "帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。明确故障修复、已有方案实施和作者作品编排直接进入相应工作，不重开解释主目标。",
       "entry": "507-why/SKILL.md",
       "name": "507-why",

@@ -54,7 +54,7 @@ description: "帮助认识陌生项目，主动调查用途、角色、代表路
 | 关系或条件需要实际探索和观察 | [对象关系、比较与观察](../../lib/methods/design/visual-understanding.md)：在本职责原权限与完成边界内采用 |
 | 中断续办、换会话、上下文压缩或转交 | 按原授权读[续办方法](../../lib/methods/collaboration/continuation.md)。普通结束跳过。 |
 | 现有证据不能区分解释，隔离观察能低成本改变结论 | [可丢弃原型证据](../../lib/methods/engineering/probe-lifecycle.md)：在本职责原权限与完成边界内采用 |
-| 只读解释模块职责、接缝或维护现象 | [架构摩擦与候选证据](../../lib/methods/engineering/architecture-candidates.md)：在本职责原权限与完成边界内采用 |
+| 需要解释实际的维护负担，或一项具体改动为什么会牵连调用方 | [架构摩擦与候选证据](../../lib/methods/engineering/architecture-candidates.md)：只追相关依赖、约束和影响。只问模块职责或直接调用方时，读源码直接回答 |
 | 竞争解释的首个可见缺口需要同案重跑与反例 | [同一场景的解释检验](../../lib/methods/writing/explanation-progression.md)：在本职责原权限与完成边界内采用 |
 | 一组访谈或问题记录需要独立归纳，且分组会影响后续调查或处置 | 可按需采用 `507-synthesize`；接收有依据的判断和待查证据后，继续原解释任务 |
 | 解释参考视频的机制，需要逐段核对画面或声音 | 用[参考视听证据与原创借鉴](../../lib/methods/design/media-study.md)定位对应片段 |

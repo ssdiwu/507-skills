@@ -19,7 +19,7 @@ sources是`id/kind/label/locator`，kind为design/code/runtime/other；可加rev
 
 边含`id/from/to/kind/condition/evidence`，kind为contains/enter/open/switch/return/trigger；from/to引用节点。包含不能形成循环，多父级允许；操作返回和循环允许。paths含`id/label/edgeIds/conditions/evidence`，edgeIds至少一条并须连续，表达指定条件下的路径；路径运行证据独立记录，不由节点状态推导。
 
-网页提供包含树、节点筛选／搜索、三维证据详情、入出关系点击与路径查看。筛选只改变显示，详情仍可访问筛选外的关联节点；多父级下同一ID显示引用。选定节点写入地址，后退、前进或重载从地址恢复同一详情。每维显示原证据条数与未知，不汇总成一个绿灯。sources、record SHA及原模型保留；manifest的meaningVerified和acceptanceVerified始终false。
+先筛选或搜索交互点，点开节点查看可用条件、结果、三维证据与入出关系。需要看整个产品时，展开全局视图查看包含树、全部关系和登记路径。节点详情可以访问筛选外的关联节点，多父级下同一 ID 显示引用。选定节点写入地址，后退、前进或重载从地址恢复同一详情。每维显示原证据条数与未知。sources、record SHA 及原模型保留，manifest 的 meaningVerified 和 acceptanceVerified 始终为 false。
 
 示例和坏输入覆盖见`../tests/test_product_map.py`。source为本目录，运行副本由packages登记生成；结构PASS不是需求确认、证据真实或产品接受。
 
