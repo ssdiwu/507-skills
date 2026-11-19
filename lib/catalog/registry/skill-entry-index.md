@@ -27,7 +27,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "967b592eedaf0a190115757b4cadf68866372b74f0b1208856d9dd0648a4d96d",
+      "contractSha256": "ad1e1bb47b7ec020340f6922499b131e6e09155866c59bcbec9b47b669b4466b",
       "description": "判断必要的工作拆分、依赖、执行所有权与结果接收，适用于已有工程、写作、研究或一般工作目标。按情境选择局部协作、任务图推进或持续协调；简单任务直接完成，只做计划时不自动派发或实施。",
       "entry": "507-coordinate/SKILL.md",
       "name": "507-coordinate",
@@ -48,7 +48,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "497427318d88af2d2c36942753352541271b3eedd31bd1670245eb7580fe148b",
+      "contractSha256": "8ff26c6aea0aeadf462c8ae29804d2bcf3ca98558daf0a33503832355c908ede",
       "description": "制作产品界面的静态展示图、功能卡片或带光标的短动画，交付可编辑场景与目标实物。用于介绍页、方案和文档中的界面示意及演示；已有产品组件优先复用，真实业务功能、实际软件操作录制、流程关系图和完整视频制作沿原任务处理。",
       "entry": "507-demo/SKILL.md",
       "name": "507-demo",
@@ -97,7 +97,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "487034fd995725c86950ff56d688d051e6858d6fdacf3ef412ce90173cfd0a0e",
+      "contractSha256": "972e98bec17a20b97f1de79a0f55378f4d1dda24bb9864e2bca530d16283ec20",
       "description": "梳理指定产品功能的交互点与操作关系，把设计要求、实现依据和实际运行证据对到同一节点，生成可探索地图与范围差距。用于功能盘点、入口到结果的对照或明确要求交互地图；仓库目录导航、组件抽取和普通实现不默认进入。",
       "entry": "507-product-map/SKILL.md",
       "name": "507-product-map",
@@ -160,7 +160,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "3f3b8479300553411508e5b8fa828274e419ea8ded6d1d981bbc3eb735624e03",
+      "contractSha256": "9cc1e47e735d11e256be8eeef1355a35c3fe0ac7d0cf32fe403e6de85bb29f88",
       "description": "发现工作事项、梳理建议顺序并推进授权内可完成的工作，以已有消息、任务与过程资料为依据，一致更新工作状态或交回拟议结果。支持局部更新与跨会话接续；明确的作品成稿、单一故障修复或全新产品设计按其目标直接处理，不因出现工作二字进入。",
       "entry": "507-work/SKILL.md",
       "name": "507-work",

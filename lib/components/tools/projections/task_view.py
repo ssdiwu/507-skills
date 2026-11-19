@@ -379,10 +379,14 @@ def publish(root, version, projection, rendered, identity):
 
 
 def generate(record_path, contract_path, out_root):
-    record_path, contract_path, out_root = Path(record_path), Path(contract_path), Path(out_root)
+    record_path, contract_path = Path(record_path), Path(contract_path)
     raw, contract_raw = read_bytes(record_path), read_bytes(contract_path)
     spec = contract(strict_json(contract_raw))
     projection = project(raw, spec, record_path.absolute())
+    if out_root is None:
+        return {'status': 'MODEL_VALID', 'projection': projection,
+                'meaningVerified': False, 'acceptanceVerified': False}
+    out_root = Path(out_root)
     renderer_sha = renderer_identity()
     identity = {'recordSha256': sha(raw), 'contractSha256': sha(contract_raw), 'rendererSha256': renderer_sha,
                 'recordFile': str(record_path.absolute()), 'schema': 1}
@@ -401,7 +405,9 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--record', type=Path, required=True, help='existing authoritative process record; read-only')
     parser.add_argument('--contract', type=Path, required=True, help='explicit projection/display JSON; never a second task list')
-    parser.add_argument('--out-root', type=Path, required=True, help='dedicated output root; history preserved, current entry updated')
+    output = parser.add_mutually_exclusive_group(required=True)
+    output.add_argument('--check', action='store_true', help='validate and print the read-only projection as JSON')
+    output.add_argument('--out-root', type=Path, help='dedicated output root; history preserved, current entry updated')
     args = parser.parse_args(argv)
     try:
         print(json.dumps(generate(args.record, args.contract, args.out_root), ensure_ascii=False))

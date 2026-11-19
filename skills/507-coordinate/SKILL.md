@@ -35,7 +35,7 @@ description: "判断必要的工作拆分、依赖、执行所有权与结果接
 
 ## 用既有记录生成临时任务网页
 
-需要共同查看任务、依赖、进度或阻塞时，读[临时任务网页组件](../../lib/components/tools/projections/task-view.md)，使用包内[任务视图脚本](../../lib/components/tools/projections/task_view.py)从已有过程记录生成或更新。网页是派生视图，没有独立业务状态或权限；不为它维护第二套日志。页面更新只通过组件：先更新获授权的源记录再生成；呈现不足时先修订组件及必要验证再生成，不能直接手改生成 HTML（网页文件）来补状态、布局或功能。
+需要共同查看任务、依赖、进度或阻塞时，用[任务视图脚本](../../lib/components/tools/projections/task_view.py)按[使用说明](../../lib/components/tools/projections/task-view.md)校验已有记录。新建页面按[任务页方法](../../lib/methods/design/task-page.md)围绕分工、等待条件和交回物组织。沿用原记录维护状态，已有生成页从原入口重生成。
 
 视图生成失败保留上一版并指出它依据的旧记录；不把旧页面当当前状态。无需网页时直接用现有记录、文字或关系图，不为工具创建额外流程。
 

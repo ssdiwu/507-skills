@@ -43,7 +43,7 @@ description: "发现工作事项、梳理建议顺序并推进授权内可完成
 
 更新后删除已获答案的未决，保留真实阻塞。复杂整表维护一份候选状态，再用[状态视图与字段检查](references/state-views.md)生成活跃表、退出记录和差异，避免重复手写；一个局部修改不强制建立整套快照。工具不判语义或授权。
 
-需要共同查看任务、依赖、进度或阻塞时，读[临时任务网页组件](../../lib/components/tools/projections/task-view.md)，用包内[任务视图脚本](../../lib/components/tools/projections/task_view.py)从已有过程记录生成或更新；它与工作字段对账各自按缺口采用，不要求同时运行。网页只作派生视图，不另建必须维护的工作日志／数据库，不直接编辑生成 HTML。源记录改变则重新生成；表达能力不足先修订组件、验证后再生成。生成失败保留上一版并指出其旧来源，不把视图成功当实际工作更新。
+需要共同查看任务、依赖、进度或阻塞时，用[任务视图脚本](../../lib/components/tools/projections/task_view.py)按[使用说明](../../lib/components/tools/projections/task-view.md)校验过程记录和字段约定。新建页面按[任务页方法](../../lib/methods/design/task-page.md)组织，原记录持有状态。已有生成页沿原入口重生成，失败时保留上一版并注明所用来源。
 
 ## 记录、交接与结束
 

@@ -15,6 +15,7 @@
   "uses": [
     "lib/README.md",
     "lib/components/tools/projections/product-map.md",
+    "lib/methods/design/product-map-page.md",
     "lib/components/tools/projections/product_map.py",
     "lib/components/tools/export/react_export.py",
     "lib/components/visual/visual-components.md",

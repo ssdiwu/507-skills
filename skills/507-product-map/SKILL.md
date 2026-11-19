@@ -24,13 +24,13 @@ description: "梳理指定产品功能的交互点与操作关系，把设计要
 3. 每个节点和重要关系分别保存设计、实现和运行记录。每条依据写来源、支持范围及条件；源码声明、单元测试或旧截图不自动成为当前完整路径跑通。缺证据保留未知；相反观察并列，不由生成器选胜者。
 4. 从实际入口走到范围目标、失败恢复和返回，记录本次覆盖及未覆盖。只观察中段时说明前置；不把预置或摘要升级为完整路径成功。节点有正向证据也不自动意味着整条路径通过。
 
-需要点击节点、过滤状态或看关联时，按[地图组件合同](../../lib/components/tools/projections/product-map.md)运行包内组件：
+按[地图脚本合同](../../lib/components/tools/projections/product-map.md)校验结构和证据字段。新建地图网页时，按[产品地图页方法](../../lib/methods/design/product-map-page.md)安排读者要走的查找路径：
 
 ```sh
-python3 <共有库>/components/tools/projections/product_map.py --record map.json --out-dir map-view-r1
+python3 <共有库>/components/tools/projections/product_map.py --record map.json --check
 ```
 
-更新同一源记录后生成新的输出目录，保留旧网页。需要新字段、关系或布局时改组件再生成，不能手改生成 HTML。组件只验证模型并展示原证据，不判断自然语言真实、权限、功能完整性或产品接受。
+源记录更新后重新校验并复验页面。维护已有生成页时，沿原脚本输出到新的版本目录。证据是否真实及范围是否成立由本任务核对。
 
 地图中的某条状态、时序或关系需要局部图解时，可采用 `507-visualize`；复用同一地图身份、来源与证据，不另建第二份地图记录。交互点盘点、证据采集和可探索地图仍由本职责完成；普通图解不强制创建产品地图。
 

@@ -542,6 +542,25 @@
       "relatedAtomIds": []
     },
     {
+      "id": "task-page",
+      "title": "任务页的内容与验证",
+      "source": "lib/methods/design/task-page.md",
+      "consumers": [
+        {"skillId": "507-work", "when": "按读者要查的进度、等待条件或验收组织任务页。"},
+        {"skillId": "507-coordinate", "when": "按协作者要查的分工、依赖和交回物组织任务页。"}
+      ],
+      "relatedAtomIds": []
+    },
+    {
+      "id": "product-map-page",
+      "title": "产品地图的内容与验证",
+      "source": "lib/methods/design/product-map-page.md",
+      "consumers": [
+        {"skillId": "507-product-map", "when": "按读者要查的交互、失败条件和证据组织地图页。"}
+      ],
+      "relatedAtomIds": []
+    },
+    {
       "id": "artifact-rendering",
       "title": "离线 React 呈现合同",
       "source": "lib/methods/design/artifact-rendering.md",
@@ -552,7 +571,7 @@
         },
         {
           "skillId": "507-demo",
-          "when": "需要交付离线图解页面或界面示意时，与共有图解组件一起核输入、输出和真实呈现。"
+          "when": "续修或明确选用共有 React 场景时，核对原场景、导出和实际画面。"
         }
       ],
       "relatedAtomIds": [],

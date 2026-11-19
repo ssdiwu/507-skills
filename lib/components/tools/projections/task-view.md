@@ -3,8 +3,11 @@
 `task_view.py`把明确选定的现有过程记录，投影为可筛选、可点击详情与依赖的离线任务网页。任务正文只在已有过程记录维护；契约规定读哪个字段、怎样显示和本次选择哪种情境，不另存人工维护的任务状态，不建立工作日志、派工器或自动领取队列。
 
 ```sh
+python3 task_view.py --record process.json --contract task-view-contract.json --check
 python3 task_view.py --record process.json --contract task-view-contract.json --out-root task-view
 ```
+
+`--check` 使用 Python 标准库校验并向标准输出返回 `MODEL_VALID` 和只读投影 JSON。按[任务页方法](../../../methods/design/task-page.md)制作独立页面时，可使用这份投影保留来源和字段语义。`--out-root` 用于沿用原生成流程。
 
 Python 读取记录和契约，调用 Node.js 生成离线网页。首次使用请按[共有运行说明](../../visual/visual-runtime.md#一次依赖安装)在安装目录准备 Node.js 和渲染依赖。依赖就绪后可离线生成。渲染过程在系统临时目录写入输入副本和构建文件，正常结束后清理。成品和版本记录保存在 `--out-root` 指定的目录。
 

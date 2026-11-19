@@ -45,6 +45,18 @@ class TaskViewTests(unittest.TestCase):
     def output_bytes(self):
         return {str(p.relative_to(self.out)): p.read_bytes() for p in self.out.rglob('*') if p.is_file()}
 
+    def test_check_returns_projection_without_rendering_or_writing(self):
+        files_before = {file.name: file.read_bytes() for file in self.base.iterdir()}
+        with patch.object(view, 'render', side_effect=AssertionError('unexpected rendering')):
+            result = view.generate(self.record, self.contract, None)
+        self.assertEqual(result['status'], 'MODEL_VALID')
+        self.assertFalse(result['acceptanceVerified'])
+        first, second = result['projection']['tasks']
+        self.assertEqual(first['statusLabel'], '报告已做完')
+        self.assertEqual(first['fields']['acceptance'], '待作者确认')
+        self.assertNotIn('acceptance', second['fields'])
+        self.assertEqual({file.name: file.read_bytes() for file in self.base.iterdir()}, files_before)
+
     def test_json_original_state_and_missing_fields_preserved(self):
         result = self.run_view()
         p = self.projected(result)

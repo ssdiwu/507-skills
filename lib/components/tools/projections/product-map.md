@@ -1,6 +1,6 @@
 # 交互点地图组件
 
-`product_map.py`只用Python标准库，读取一份明确的地图JSON，生成离线HTML、原记录、投影与指纹清单。自身不联网、运行产品、扫描源码、采集证据或编辑业务；独立包携带此合同与脚本，不依赖作者仓库。
+`product_map.py` 读取一份地图 JSON。`--check` 用 Python 标准库校验记录。校验后可按[产品地图页方法](../../../methods/design/product-map-page.md)制作独立页面。维护既有生成页时，`--out-dir` 调用共有 React 渲染器生成离线 HTML、原记录与指纹清单。
 
 ```sh
 python3 product_map.py --record map.json --check

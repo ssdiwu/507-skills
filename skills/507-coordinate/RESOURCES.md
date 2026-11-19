@@ -18,6 +18,7 @@
     "lib/components/tools/projections/library_view.py",
     "lib/components/tools/export/react_export.py",
     "lib/components/tools/projections/task-view.md",
+    "lib/methods/design/task-page.md",
     "lib/components/tools/projections/task_view.py",
     "lib/components/visual/visual-components.md",
     "lib/components/visual/visual-runtime.md",

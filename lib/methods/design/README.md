@@ -7,6 +7,8 @@
 | 文件 | 关注内容 |
 | --- | --- |
 | [reading-page.md](reading-page.md) | 成文、适配和图解任务制作独立阅读页 |
+| [task-page.md](task-page.md) | 按执行、等待和复核组织任务页 |
+| [product-map-page.md](product-map-page.md) | 按交互、失败现象和来源组织产品地图 |
 | [artifact-prompts.md](guides/artifact-prompts.md) | 从成熟内容与阅读任务选择呈现方式 |
 | [target-design.md](guides/target-design.md) | 中文密页、图表及视觉语义 |
 | [apple-interaction.md](guides/apple-interaction.md) | 交互与平台相关参考 |

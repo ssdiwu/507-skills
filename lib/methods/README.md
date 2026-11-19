@@ -22,6 +22,8 @@
 | [作品版本与语义保护](writing/artifact-contract.md) | 507-create, 507-adapt, 507-review |
 | [独立阅读页](design/reading-page.md) | 507-create, 507-adapt, 507-visualize |
 | [离线 React 呈现合同](design/artifact-rendering.md) | 507-visualize, 507-demo |
+| [任务页的内容与验证](design/task-page.md) | 507-work, 507-coordinate |
+| [产品地图的内容与验证](design/product-map-page.md) | 507-product-map |
 | [作者归属与材料支持](writing/author-and-source.md) | 507-create, 507-material, 507-adapt, 507-review |
 | [工程原动作与运行证据](engineering/engineering-evidence.md) | 507-spec, 507-do, 507-review |
 | [按情境拆解与协调](collaboration/task-coordination.md) | 507-coordinate, 507-create, 507-work |
