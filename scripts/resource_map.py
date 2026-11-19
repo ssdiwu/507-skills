@@ -7,7 +7,7 @@ from pathlib import Path
 import re
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'lib/catalog/skill-resource-map.md'
-CATEGORIES = ('方法', '工具', '界面组件', '库务资料')
+CATEGORIES = ('方法', '工具', '界面组件', '库务资料', '库维护测试')
 
 def dependency_role(source):
  path = Path(source).relative_to('lib')
@@ -20,7 +20,7 @@ def dependency_role(source):
  if location in {'README.md', 'components/visual/catalog.json'}:
   return '库务资料', '导航'
  if name.endswith('.test.mjs'):
-  return '工具', '维护测试'
+  return '库维护测试', '回归测试'
  if name == 'package.json':
   return '工具', '运行配置'
  if location.startswith('components/visual/scenes/examples/'):
@@ -36,9 +36,9 @@ def dependency_role(source):
 def render():
  d=json.loads((ROOT/'packages.json').read_text());spec=importlib.util.spec_from_file_location('resource_library',ROOT/'lib/components/tools/projections/library_view.py');library=importlib.util.module_from_spec(spec);spec.loader.exec_module(library);d['skills']=library.resource_entries(ROOT,d);lines=['# 技能职责与共有库直接依赖','','本表由现行入口合同、packages.json 身份登记和每技能 RESOURCES.md 资源声明生成。所有技能目录只保留职责、采用条件、交付标准、专用文字方法和元数据；执行代码、共有方法、React 组件、范例与运行工具只在 lib 存在一份。技能集合按 skills/ 与 lib/ 并列布局使用，禁止生成共有资源副本。','','| 技能 | 独有职责 | 直接执行入口／运行依赖 | 共有方法 |','| --- | --- | --- | --- |'];details=[]
  lines[-2:] = [
-  '各列统计技能直接声明的文件数。每份文件按用途计入一类，合计为该技能的直接依赖总数。实际任务按需读取或执行。点击技能名查看分类明细。',
-  '', '| 技能 | 独有职责 | 方法 | 工具 | 界面组件 | 库务资料 | 合计 |',
-  '| --- | --- | ---: | ---: | ---: | ---: | ---: |']
+  '各列按用途统计声明文件。工具列统计交付工具，库维护测试列标明维护共有库时需要回归的技能。每项声明在合计中只计一次。点击技能名查看明细。',
+  '', '| 技能 | 独有职责 | ' + ' | '.join(CATEGORIES) + ' | 合计 |',
+  '| --- | --- | ' + ' ---: |' * (len(CATEGORIES) + 1)]
  for entry in d['skills']:
   raw = (ROOT / entry['source'] / 'SKILL.md').read_text()
   purpose = re.search(r'^description:\s*(.+)$', raw, re.M).group(1).strip('"').split('。')[0].replace('|', '／')
@@ -54,7 +54,7 @@ def render():
   for category, items in groups.items():
    if items:
     details.extend(['', f'### {category}（{len(items)}）', '', *items])
- lines+=['','## 统一分工','','- create：负责作品内容和作者表达；呈现直接调用共有 React，复杂产品演示可按需采用 demo 的工作方法。','- adapt：负责受众、阅读关系和载体；直接调用共有 React，不读取或复制 demo 的运行资源。','- visualize：负责图的关系、单位、来源、未知与理解路径；图解组件直接调用共有 React。','- demo：负责产品识别、构图和动作编排；不拥有专属 kit、运行库或通用组件。','- work、coordinate、product-map：负责各自记录、关系与证据模型，展示层同样直接使用共有 React。','- do：负责真实产品行为，先复用目标产品组件；React依赖与构建适用且缺少对应控件时直接采用共有 ui，离线React场景也由共有入口导出。模拟展示不作为业务实现或验收。','- review：独立核职责、直接依赖、复制回归、实际效果与未覆盖；不修改受审内容。','',*details]
+ lines+=['','## 统一分工','','- create 负责作品内容和作者表达，adapt 负责受众与载体，visualize 负责图解关系与理解路径。修改已有页面优先复用项目组件，新建独立离线页面默认使用共有呈现工具。','- demo：负责产品识别、构图和动作编排；不拥有专属 kit、运行库或通用组件。','- work、coordinate、product-map：负责各自记录、关系与证据模型，展示层同样直接使用共有 React。','- do：负责真实产品行为，先复用目标产品组件；React依赖与构建适用且缺少对应控件时直接采用共有 ui，离线React场景也由共有入口导出。模拟展示不作为业务实现或验收。','- review：独立核职责、直接依赖、复制回归、实际效果与未覆盖；不修改受审内容。','',*details]
  return '\n'.join(lines)+'\n'
 if __name__=='__main__':
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');args=parser.parse_args();content=render()

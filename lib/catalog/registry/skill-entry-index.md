@@ -6,7 +6,7 @@
 {
   "current": [
     {
-      "contractSha256": "3170d0fc69788fdc39f16c78e57aa2b3f44310d03999fbbf13db932611e03049",
+      "contractSha256": "b8ce7323a3b1b422591a878163b6d4c0b65eb5436fd152c23fdb00d68a4ee4f5",
       "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
@@ -34,7 +34,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "019e9f3aa61729d203fb908ab16b86d6c58edb6d0447f4f6ba95b954e9ac8db8",
+      "contractSha256": "81f833db446b9257d391313d2555cd6c8c6d07569b8a34bf1203fafbfae4bf6e",
       "description": "承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。主线未成立时补必要判断；已有目的、材料或成熟稿时直接成文或修改，保留作者声音和已确认内容，不重走采访与规划。",
       "entry": "507-create/SKILL.md",
       "name": "507-create",
@@ -139,7 +139,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "3f7980695d0f2fbd17eb669ec948cf77a9bc9cda0064c8d6f0fc5fd8bcde9361",
+      "contractSha256": "f4035f6f316cd63dd960fd1d50a0605dd9ed67b954b7b3a6d3eeb702ec201d8e",
       "description": "把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。用于状态变化、跨角色时序、对象关系或同条件比较需要图解的任务；简单事实和局部润色直接完成，产品功能证据地图、正式分析与业务实施保留原职责。",
       "entry": "507-visualize/SKILL.md",
       "name": "507-visualize",
@@ -153,7 +153,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "974e75ccfa3501c1585bde43e41cd3306dadb7aae9ac0cd22f80e301ac8101c4",
+      "contractSha256": "42dbddb8e0c4f1f9149eaaeecd225046015bbf5673f656187ab171dcc6191821",
       "description": "帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。明确故障修复、已有方案实施和作者作品编排直接进入相应工作，不重开解释主目标。",
       "entry": "507-why/SKILL.md",
       "name": "507-why",

@@ -6,7 +6,9 @@
 python3 task_view.py --record process.json --contract task-view-contract.json --out-root task-view
 ```
 
-只用 Python 标准库，无网络、安装或后台服务。记录和契约为只读输入，唯一写入范围是专用输出根。成功退出0（`RENDERED`或相同内容的`UNCHANGED`），错误退出2并报告原因；参数缺失由标准命令解析器返回2。生成与语义核对、作者接受、业务验收及发布分别成立。
+Python 读取记录和契约，调用 Node.js 生成离线网页。首次使用请按[共有运行说明](../../visual/visual-runtime.md#一次依赖安装)在安装目录准备 Node.js 和渲染依赖。依赖就绪后可离线生成。渲染过程在系统临时目录写入输入副本和构建文件，正常结束后清理。成品和版本记录保存在 `--out-root` 指定的目录。
+
+成功退出 0（`RENDERED` 或相同内容的 `UNCHANGED`），错误退出 2 并报告原因。记录和契约为只读输入。生成与语义核对、作者接受、业务验收及发布分别成立。
 
 ## 先选来源与情境
 

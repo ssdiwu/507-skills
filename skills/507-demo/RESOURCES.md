@@ -35,6 +35,7 @@
     "lib/components/visual/references/review.md",
     "lib/components/visual/scripts/component-library.mjs",
     "lib/components/visual/scripts/component-library.test.mjs",
+    "lib/components/visual/scripts/film.mjs",
     "lib/components/visual/scripts/render-artifact.mjs",
     "lib/methods/design/artifact-rendering.md"
   ]

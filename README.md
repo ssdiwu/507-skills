@@ -84,7 +84,7 @@ git clone https://github.com/ssdiwu/507-skills.git
 python3 -B scripts/package_skills.py build --output "${TASK_DIR:?请设置任务目录}/dist"
 ```
 
-构建回执中的目录包含并列的 `skills/`、`lib/`、`packages.json` 和 `bundle.json`。将该目录整体复制到宿主扫描范围之外的新安装版本目录，保留原层级；通用资源在每个安装集合中仅有一份。构建输出保持不可变，node_modules 和集合内的预览构建输出写入安装版本目录。需要图解、界面或离线页面导出时，先在安装版本的 `lib/components/visual/` 中执行 `npm ci --ignore-scripts`，再核对实际共有工具能运行。
+构建回执中的目录包含并列的 `skills/`、`lib/`、`packages.json` 和 `bundle.json`。将该目录整体复制到宿主扫描范围之外的新安装版本目录，保留原层级。通用资源在每个安装集合中仅有一份。构建输出保持不可变，node_modules 和集合内的预览构建输出写入安装版本目录。使用共有视觉工具时，先在安装版本的 `lib/components/visual/` 中执行 `npm ci --ignore-scripts`，再核对工具能运行。修改已有页面优先使用项目组件及其构建环境。
 
 安装入口 `~/.agents/skills/507-skills` 链接到准备好的完整安装版本目录。宿主看到的入口形如 `507-skills/skills/507-adapt/SKILL.md`，其 `../../lib/README.md` 可直接定位同一集合的共有资源。不要链接整个源码仓库根目录，其中还包含维护脚本和历史文档；构建集合仅包含清单内的现行技能及资源。
 

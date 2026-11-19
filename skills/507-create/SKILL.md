@@ -67,7 +67,7 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 
 书面或口播提醒有用时，先读[检查器说明](../../lib/components/tools/checks/text-checks.md)，再运行[书面检查器](../../lib/components/tools/checks/check_prose.py)或[口播检查器](../../lib/components/tools/checks/check_spoken.py)。两者只读，提示按语境处理，不能用零命中证明事实或作者接受。讲稿的朗读、计时与未实测范围按现场内容方法如实交代。
 
-用户还要求离线 HTML 且内容已成熟时，先按读者任务辨认时间、步骤、比较、版面或状态关系，读[共有图解组件](../../lib/components/visual/visual-components.md)与[呈现合同](../../lib/methods/design/artifact-rendering.md)，用[呈现脚本](../../lib/components/visual/scripts/render-artifact.mjs)的对应 blocks 直接呈现；普通文字页保留正文和列表。需要视觉方向时采用[呈现提示](../../lib/methods/design/guides/artifact-prompts.md)。打开实际页面检查关系、来源和必要交互，不能只用文字完整、布局无溢出代替理解路径。仅要求正文或备注时，内容即本次终点。
+修改已有页面时，优先复用项目组件，沿原页面入口检查结果。新建独立离线 HTML 时，按[呈现合同](../../lib/methods/design/artifact-rendering.md)辨认时间、步骤、比较、版面或状态关系，默认用[呈现脚本](../../lib/components/visual/scripts/render-artifact.mjs)和[共有图解组件](../../lib/components/visual/visual-components.md)表达。普通文字页保留正文和列表。需要视觉方向时采用[呈现提示](../../lib/methods/design/guides/artifact-prompts.md)。打开实际页面检查关系、来源和必要交互。仅要求正文或备注时，内容即本次终点。
 
 需要图片、可编辑 PPTX、音频或视频时，依[真实载体适配](../../lib/components/tools/export/media-adapters.md)在首次依赖动作前实际读齐所选工具说明，复用成熟工具完成并检查目标文件；HTML 或内容包不冒称其他成品。必要文件身份使用[回执说明](../../lib/components/tools/export/artifact-receipt.md)及[文件组件](../../lib/components/tools/export/artifact_receipt.py)，回执不裁决呈现和质量。缺素材或工具只阻塞相应动作，已确认的其余目标保持有效。
 

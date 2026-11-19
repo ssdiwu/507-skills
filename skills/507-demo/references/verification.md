@@ -4,7 +4,7 @@
 
 ## 运行检查
 
-在运行中的配套资源目录执行，URL 与输出目录使用本次实际值：
+在运行中的配套资源目录执行。用[录制脚本](../../../lib/components/visual/scripts/film.mjs)采集画面时，填入本次预览地址和输出目录。
 
 ```sh
 npm run typecheck
