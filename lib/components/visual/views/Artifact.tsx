@@ -50,10 +50,15 @@ export function VisualBlock({block:b,id,model,language='zh-CN'}:{block:Block;id:
  const t=(en:string,zh:string)=>language==='en'?en:zh
  const items=b.items??[],maximum=b.max??Math.max(1,...items.map(i=>i.value===null||i.value===undefined?0:bounds(i.value)[1]));let content:React.ReactNode
  if(b.type==='queue')content=<Queue block={b} language={language}/>
- else if(b.type==='comparison')content=<>{items.map((i,k)=><div className="viz-compare-row" key={k}><div className="viz-compare-label"><strong>{i.label}</strong><span>{i.value===null?t('Unknown / not measured','未知／未量度'):rangeText(i.value!)+(b.unit?' '+b.unit:'')}</span></div>{i.value===null?<div className="viz-unknown">{t('No value available; no bar drawn','暂无数值，不绘制长度')}</div>:<div className="viz-track" aria-hidden="true"><span className="viz-fill" style={{width:format(bounds(i.value!)[0]/maximum*100)+'%'}}/><span className="viz-range" style={{left:format(bounds(i.value!)[0]/maximum*100)+'%',width:format((bounds(i.value!)[1]-bounds(i.value!)[0])/maximum*100)+'%'}}/></div>}{i.note&&<p className="viz-note">{i.note}</p>}</div>)}<p className="viz-note">{t('Common scale: ','共同尺度：')}0–{format(maximum)} {b.unit}{t('. Hatching indicates a range.','。斜纹表示区间。')}</p></>
+ else if(b.type==='comparison'){
+  const hasInterval=items.some(item=>Array.isArray(item.value)&&item.value[0]<item.value[1])
+  content=<>{items.map((i,k)=><div className="viz-compare-row" key={k}><div className="viz-compare-label"><strong>{i.label}</strong><span>{i.value===null?t('Unknown / not measured','未知／未量度'):rangeText(i.value!)+(b.unit?' '+b.unit:'')}</span></div>{i.value===null?<div className="viz-unknown">{t('No value available; no bar drawn','暂无数值，不绘制长度')}</div>:<div className="viz-track" aria-hidden="true"><span className="viz-fill" style={{width:format(bounds(i.value!)[0]/maximum*100)+'%'}}/><span className="viz-range" style={{left:format(bounds(i.value!)[0]/maximum*100)+'%',width:format((bounds(i.value!)[1]-bounds(i.value!)[0])/maximum*100)+'%'}}/></div>}{i.note&&<p className="viz-note">{i.note}</p>}</div>)}
+   <p className="viz-note">{t('Common scale: ','共同尺度：')}0–{format(maximum)} {b.unit}{hasInterval&&t('. Hatching indicates a range.','。斜纹表示区间。')}</p></>
+ }
  else{
   const list=<ol className={'viz-'+b.type}>{items.map((i,k)=><li key={k}>{b.type==='timeline'?<span className="viz-date">{i.date}</span>:<span className="viz-index">{k+1}</span>}<strong>{i.label}</strong>{i.status&&<span className="viz-status">{i.status}</span>}{i.detail&&<p>{i.detail}</p>}</li>)}</ol>
-  content=b.type==='layout'?<><div className="viz-layout-pair">{list}<div className="viz-aside"><strong>{b.aside?.label??t('Notes','说明区')}</strong><p>{b.aside?.detail}</p></div></div><p className="viz-note">{t('Layout illustration, not an actual product screenshot.','版面示意，非真实产品截图。')}</p></>:list
+  const aside=b.aside
+  content=b.type==='layout'?<>{aside&&(aside.label.trim()||aside.detail?.trim())?<div className="viz-layout-pair">{list}<div className="viz-aside">{aside.label.trim()&&<strong>{aside.label}</strong>}{aside.detail?.trim()&&<p>{aside.detail}</p>}</div></div>:list}<p className="viz-note">{t('Layout illustration, not an actual product screenshot.','版面示意，非真实产品截图。')}</p></>:list
  }
  return <figure className={'viz viz-'+b.type+'-block'} aria-labelledby={id+'-title'}><figcaption id={id+'-title'}>{b.title}</figcaption>{content}{b.caption&&<p className="viz-caption">{b.caption}</p>}{!!b.sourceIds?.length&&<p className="viz-sources">{t('Source: ','来源：')}{b.sourceIds.map((ref,i)=>{const s=model.sources!.find(s=>s.id===ref)!;return <React.Fragment key={ref}>{i?'；':''}<a href={'#source-'+encodeURIComponent(ref)}>{s.label}</a></React.Fragment>})}</p>}</figure>
 }
@@ -66,11 +71,11 @@ export function Artifact({data}:{data:ArtifactModel}){
  return <div className={d.mode+' artifact'}>
   <header>
    {languages.length>1&&<div className="artifact-languages" role="group" aria-label="Language / 阅读语言">{languages.map(l=><Button type="button" key={l} lang={l} aria-pressed={language===l} onClick={()=>setLanguage(l)}>{l==='en'?'EN':'中文'}</Button>)}</div>}
-   <h1>{d.title}</h1><p>{d.subtitle}</p>
-   <nav aria-label={t('Page sections','逐页阅读')}>{d.pages.map((p,i)=><a key={i} href={'#p'+(i+1)}>{p.title}</a>)}</nav>
+   <h1>{d.title}</h1>{d.subtitle?.trim()&&<p>{d.subtitle}</p>}
+   {d.pages.length>1&&<nav aria-label={t('Page sections','逐页阅读')}>{d.pages.map((p,i)=><a key={i} href={'#p'+(i+1)}>{p.title}</a>)}</nav>}
   </header>
   <main>{d.pages.map((p,i)=><article id={'p'+(i+1)} tabIndex={-1} key={i}>
-   <span className="number">{String(i+1).padStart(2,'0')}</span><h2>{p.title}</h2>
+   {d.pages.length>1&&<span className="number">{String(i+1).padStart(2,'0')}</span>}<h2>{p.title}</h2>
    {pageSections(p).map((section,k)=><React.Fragment key={k}>
     {section.body?.split('\n\n').map((text,j)=><p key={j}>{text}</p>)}
     {section.blocks?.map((b,j)=><VisualBlock key={b.id!==undefined?`id:${b.id}`:`index:${j}`} block={b} model={d} language={language} id={`visual-${i+1}-${pageSections(p).slice(0,k).reduce((n,s)=>n+(s.blocks?.length??0),0)+j+1}`}/>)}
@@ -79,6 +84,6 @@ export function Artifact({data}:{data:ArtifactModel}){
    {!!p.sourceIds?.length&&<footer>{t('Source: ','来源：')}{p.sourceIds.map(ref=><a key={ref} href={'#source-'+encodeURIComponent(ref)}>{d.sources!.find(s=>s.id===ref)!.label} </a>)}</footer>}
    {p.notes&&<details><summary>{t('Reading notes','讲述提示')}</summary><p>{p.notes}</p></details>}
   </article>)}</main>
-  <footer><h2>{t('Sources and reading basis','来源与阅读依据')}</h2><ol>{d.sources?.map(s=><li id={'source-'+encodeURIComponent(s.id)} key={s.id}>{s.url?<a href={s.url} rel="noopener noreferrer">{s.label}</a>:s.label}</li>)}</ol></footer>
+  {!!d.sources?.length&&<footer><h2>{t('Sources and reading basis','来源与阅读依据')}</h2><ol>{d.sources.map(s=><li id={'source-'+encodeURIComponent(s.id)} key={s.id}>{s.url?<a href={s.url} rel="noopener noreferrer">{s.label}</a>:s.label}</li>)}</ol></footer>}
  </div>
 }
