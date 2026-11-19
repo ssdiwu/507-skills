@@ -2,116 +2,6 @@
   "schema": 1,
   "modules": [
     {
-      "id": "ui",
-      "source": "ui/index.tsx",
-      "guide": "ui/README.md",
-      "styles": [
-        "ui/ui.css"
-      ],
-      "kind": "interactive",
-      "note": "真实控件；业务数据、提交及权限仍由调用方实现。",
-      "tags": [
-        "真实交互",
-        "基础控件"
-      ],
-      "example": "ui/Showcase.tsx",
-      "preview": "?components",
-      "families": [
-        {
-          "exports": [
-            "Input",
-            "Textarea",
-            "Select",
-            "Field",
-            "Checkbox",
-            "Switch",
-            "Button"
-          ],
-          "tags": [
-            "表单",
-            "输入",
-            "校验",
-            "错误",
-            "提交",
-            "form"
-          ],
-          "states": [
-            "输入",
-            "错误",
-            "禁用"
-          ]
-        },
-        {
-          "exports": [
-            "Dialog",
-            "DialogContent",
-            "DialogTrigger",
-            "DialogClose",
-            "DropdownMenu",
-            "DropdownContent",
-            "DropdownItem"
-          ],
-          "tags": [
-            "弹窗",
-            "菜单",
-            "确认",
-            "dialog",
-            "menu"
-          ],
-          "states": [
-            "打开",
-            "关闭",
-            "焦点"
-          ]
-        },
-        {
-          "exports": [
-            "Tabs",
-            "TabsList",
-            "TabsTrigger",
-            "TabsContent",
-            "Accordion",
-            "AccordionItem",
-            "AccordionTrigger",
-            "AccordionContent"
-          ],
-          "tags": [
-            "切换",
-            "页签",
-            "展开",
-            "tabs"
-          ],
-          "states": [
-            "选中",
-            "展开"
-          ]
-        },
-        {
-          "exports": [
-            "Alert",
-            "Badge",
-            "EmptyState",
-            "Skeleton",
-            "Progress"
-          ],
-          "tags": [
-            "反馈",
-            "状态",
-            "空状态",
-            "加载",
-            "进度",
-            "status"
-          ],
-          "states": [
-            "空",
-            "加载",
-            "成功",
-            "错误"
-          ]
-        }
-      ]
-    },
-    {
       "id": "kit",
       "source": "scenes/index.ts",
       "guide": "references/kit.md",
@@ -332,13 +222,7 @@
       "structure": "master-detail",
       "kind": "interactive-example",
       "source": "scenes/examples/record-browser/index.tsx",
-      "preview": "?example=record-browser",
-      "api": [
-        "ui:Input",
-        "ui:Button",
-        "ui:EmptyState",
-        "ui:Alert"
-      ]
+      "preview": "?example=record-browser"
     }
   ],
   "diagrams": [

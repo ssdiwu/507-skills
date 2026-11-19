@@ -22,15 +22,6 @@ async function boot() {
     createRoot(document.getElementById('root')!).render(React.createElement(Artifact,{data}))
     return
   }
-  if (params.has('components')) {
-    const React = await import('react')
-    const { createRoot } = await import('react-dom/client')
-    const { Showcase } = await import('../ui/Showcase')
-    await import('../ui/ui.css')
-    await import('../ui/showcase.css')
-    createRoot(document.getElementById('root')!).render(React.createElement(Showcase))
-    return
-  }
   if (params.has('capture')) {
     // Film/jump tools control their own pacing and instrumentation. This
     // direct route keeps the browser's native timers, RAF and CSS clocks.

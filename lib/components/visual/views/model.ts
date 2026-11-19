@@ -8,7 +8,7 @@ export type ArtifactPage = ReadingSection & {title:string;sourceIds?:string[];no
 export const pageSections = (page:ArtifactPage):ReadingSection[] => page.sections??[page]
 export type ArtifactContent = {mode:'site'|'cards'|'deck';title:string;subtitle?:string;pages:ArtifactPage[];sources?:{id:string;label:string;url?:string}[]}
 export type ArtifactModel = ArtifactContent & {language?:Language;translations?:Partial<Record<Language,ArtifactContent>>}
-export type DocumentModel = {kind:'artifact';data:ArtifactModel}|{kind:'components';data:Record<string,never>}|{kind:'task-view'|'product-map'|'entry';data:any}
+export type DocumentModel = {kind:'artifact';data:ArtifactModel}|{kind:'task-view'|'product-map'|'entry';data:any}
 export function bounds(value:Range):[number,number]{return typeof value==='number'?[value,value]:value}
 export function format(value:number){return Number(value.toPrecision(8)).toString()}
 export function rangeText(value:Range){const [low,high]=bounds(value);return low===high?format(low):`${format(low)}–${format(high)}`}
@@ -79,5 +79,5 @@ export function validateArtifact(data:unknown):asserts data is ArtifactModel{
  }
 }
 export function validateDocument(value:unknown):asserts value is DocumentModel{
- object(value,['kind','data'],['kind','data']);if(value.kind==='artifact')validateArtifact(value.data);else if(value.kind==='components')object(value.data,[]);else if(!['task-view','product-map','entry'].includes(value.kind)||!value.data||typeof value.data!=='object')throw new Error('Unknown document kind');else if(value.kind==='entry'&&!/^versions\/[a-f0-9]+\/index\.html$/.test(value.data.href))throw new Error('Invalid version entry')
+ object(value,['kind','data'],['kind','data']);if(value.kind==='artifact')validateArtifact(value.data);else if(!['task-view','product-map','entry'].includes(value.kind)||!value.data||typeof value.data!=='object')throw new Error('Unknown document kind');else if(value.kind==='entry'&&!/^versions\/[a-f0-9]+\/index\.html$/.test(value.data.href))throw new Error('Invalid version entry')
 }

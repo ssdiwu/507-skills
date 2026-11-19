@@ -25,7 +25,7 @@ def dependency_role(source):
   return '工具', '运行配置'
  if location.startswith('components/visual/scenes/examples/'):
   return '界面组件', '示例'
- if location.startswith('components/visual/ui/') or name in {'visual-components.md', 'visual-runtime.md'}:
+ if name in {'visual-components.md', 'visual-runtime.md'}:
   return '界面组件', '接入说明' if path.suffix == '.md' else '实现与样式'
  if location.startswith('components/tools/') and path.suffix == '.md':
   return '工具', '使用说明'
@@ -54,7 +54,7 @@ def render():
   for category, items in groups.items():
    if items:
     details.extend(['', f'### {category}（{len(items)}）', '', *items])
- lines+=['','## 统一分工','','- create 负责作品内容和作者表达，adapt 负责受众与载体，visualize 负责图解关系与理解路径。新建独立阅读页采用[阅读页方法](../methods/design/reading-page.md)，修改已有页面优先复用项目组件。','- demo：负责产品识别、构图和动作编排；不拥有专属 kit、运行库或通用组件。','- work 和 coordinate 校验过程记录，再按[任务页方法](../methods/design/task-page.md)组织页面。product-map 校验交互与证据记录，再按[地图页方法](../methods/design/product-map-page.md)组织页面。共有 React 渲染器继续承接已有生成页。','- do：负责真实产品行为，先复用目标产品组件；React依赖与构建适用且缺少对应控件时直接采用共有 ui，离线React场景也由共有入口导出。模拟展示不作为业务实现或验收。','- review：独立核职责、直接依赖、复制回归、实际效果与未覆盖；不修改受审内容。','',*details]
+ lines+=['','## 统一分工','','- create 负责作品内容和作者表达，adapt 负责受众与载体，visualize 负责图解关系与理解路径。新建独立阅读页采用[阅读页方法](../methods/design/reading-page.md)，修改已有页面优先复用项目组件。','- demo 负责产品识别、构图和动作编排。','- work 和 coordinate 校验过程记录，再按[任务页方法](../methods/design/task-page.md)组织页面。product-map 校验交互与证据记录，再按[地图页方法](../methods/design/product-map-page.md)组织页面。共有 React 渲染器继续承接已有生成页。','- do 负责真实产品行为，按目标项目和本次参考选择界面实现。','- review 独立核对职责、直接依赖、实际效果与未覆盖范围。','',*details]
  return '\n'.join(lines)+'\n'
 if __name__=='__main__':
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');args=parser.parse_args();content=render()

@@ -1,5 +1,3 @@
-@import '../ui/ui.css';
-@import '../ui/showcase.css';
 /* Shared primitives are global once; view layouts stay within their root. */
 :root{--visual-canvas:#f3f1ea;--visual-surface:#fffefa;--visual-ink:#202c29;--visual-muted:#51695d;--visual-accent:#235e50;--visual-border:#acbbb0;--visual-focus:#bc6425;--visual-font:system-ui,-apple-system,sans-serif;color-scheme:light}
 *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--visual-canvas);color:var(--visual-ink);font:16px/1.65 var(--visual-font)}
@@ -82,3 +80,11 @@ a{color:var(--visual-accent);overflow-wrap:anywhere}button,input,select{font:inh
 .artifact .viz figcaption{font-size:18px;line-height:1.5;margin-bottom:20px}
 .artifact .viz-steps li{border:0;border-top:1px solid var(--reading-line);border-radius:0;background:transparent;padding:16px 0 0}
 .artifact .viz-note,.artifact .viz-caption{font-size:13px}
+.task-view .task-link{padding:0;border:0;border-radius:0;background:transparent;color:var(--visual-accent);text-align:left;text-decoration:underline;text-underline-offset:2px}
+.task-view .tools label{display:grid;gap:5px;min-width:min(100%,220px);align-items:start;width:auto}
+.task-view .task-control{width:100%;min-height:44px}
+.product-map .map-link{padding:0;border:0;border-radius:0;background:transparent;color:var(--visual-accent);text-align:left;text-decoration:underline;text-underline-offset:2px}
+.product-map .tools label{display:grid;gap:5px;align-items:start;min-width:min(100%,180px)}
+.product-map .map-control{width:100%;min-height:44px}
+.product-map .point{min-height:48px;padding:10px 12px}
+@media(max-width:480px){.task-view .tools label{width:100%}}

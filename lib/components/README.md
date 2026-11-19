@@ -56,7 +56,7 @@ reference-date由调用方给定，可选，仅比较支持的YYYY-MM-DD日历�
 ## 创作与工程组件
 
 - check_run.py接受--argv-json、--cwd、--log-dir、--timeout及可重复--source，记录一个真实检查命令、退出/超时、日志指纹及源前后。目录已存在拒绝覆盖。退出0/1/2分别是命令成功、命令失败、准备/运行输入错误；选择断言、业务判定与授权仍由消费者承担。
-- 共有 React 导出入口接受 --input、--example 或 --components 与新的 --out-dir，生成离线 HTML、原输入与指纹清单。来源、有限数值和未知由同一模型校验，输出不覆盖；生成不代替实际阅读或其他载体实物。
+- React 导出入口接受 `--input` 或 `--example` 与新的 `--out-dir`，生成离线 HTML、原输入与指纹清单。来源、有限数值和未知由同一模型校验，输出不覆盖。
 - check_prose.py、check_spoken.py从已发布forge原样提取为唯一源，接受文本路径与--json；只读提示，不自动重写或裁决接受。原算法与断言保留，旧目录继续作为来源/回退，尚未退出旧技能。
 
 Python 呈现与检查脚本使用标准库。React 场景依赖按共有图解组件和锁文件核对。共有说明 text-checks.md 和设计提示按清单直接引用。字段变更的语义与授权由调用者核对。源码仓库的组件回归命令见上文。
@@ -80,9 +80,3 @@ library_view另提供按名查询：`--index-file`配合`--lookup`只读一个�
 ## 组件发现、接口与场景检查
 
 从 `lib/components/` 运行 `node visual/scripts/component-library.mjs inspect kit:Stage` 可查看场景舞台接口。该工具支持列举、搜索、查看接口和检查场景。播放器与工具共用组件目录，接口来自 TypeScript 源码与声明。调用方式、退出状态和验证范围见[运行合同](visual/visual-runtime.md)。
-
-## 日常交互基础组件
-
-[ui 接入合同](visual/ui/README.md)提供真实 Button、Input、Textarea、Select、Field、Checkbox、Switch、Tabs、Dialog、DropdownMenu、Tooltip、Accordion 及状态反馈。复杂交互使用 Radix UI；原生 CSS 与项目主题结合，保留已有产品组件优先。Artifact、TaskView、ProductMap 已采用同一控件源码；演示时间线仍沿 kit，不用播放控件冒充真实表单。
-
-`npm run test:ui` 在已安装 Chrome 中核离线导出后的字段校验、对话框焦点与返回、菜单/页签键盘、窄屏和减少动效，以及图解消费者的选中悬停与输入保留。没有浏览器时明确失败；该检查不是宿主自然采用或用户接受实验。

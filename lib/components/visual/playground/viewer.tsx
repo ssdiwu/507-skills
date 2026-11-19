@@ -57,7 +57,7 @@ function Viewer() {
     const url = new URL(location.href); url.searchParams.set('example', name); history.replaceState(null, '', url)
   }, [name, revision, still])
   return <main className="pg" data-reduced-motion={still || undefined}>
-    <header className="pg-header"><a className="pg-brand" href="./">界面演示</a><a className="pg-eyebrow" href="?components">真实交互基础组件</a></header>
+    <header className="pg-header"><a className="pg-brand" href="./">界面演示</a></header>
     <div className="pg-picker"><label htmlFor="scene-search">查找用途或状态</label><input id="scene-search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="例如：表单、详情、空状态"/><label htmlFor="example-choice">场景</label><select id="example-choice" value={matches.some(e=>e.id===name)?name:''} onChange={e => setName(e.target.value)}>{!matches.some(e=>e.id===name)&&<option value="" disabled>{matches.length?'选择匹配范例':'没有匹配范例'}</option>}{groups.map(group => <optgroup key={group} label={group}>{matches.filter(e => e.group === group).map(e => <option key={e.id} value={e.id}>{e.name}</option>)}</optgroup>)}</select>{!matches.length&&<p role="status">没有匹配的范例，当前预览保持不变。</p>}</div>
     <section className="pg-preview" aria-label="场景预览">
       <div className="pg-toolbar"><div className="pg-segment" aria-label="预览宽度"><button aria-pressed={!phone} onClick={() => setPhone(false)}>宽版</button><button aria-pressed={phone} onClick={() => setPhone(true)}>窄版</button></div><label className="pg-still"><input type="checkbox" checked={still} onChange={e => { motionOverride.current = true; setStill(e.target.checked) }} />减少动态效果</label></div>

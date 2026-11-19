@@ -1,6 +1,5 @@
 import React,{useState,useEffect} from 'react'
 import {FileText,Clock3,Check,TriangleAlert,LoaderCircle} from 'lucide-react'
-import {Button,Input} from '../ui'
 import {ArtifactModel,ArtifactContent,Language,Block,bounds,format,rangeText,pageSections} from './model'
 export function Queue({block:b,language='zh-CN'}:{block:Block;language?:Language}){
  const t=(en:string,zh:string)=>language==='en'?en:zh
@@ -20,7 +19,7 @@ export function Queue({block:b,language='zh-CN'}:{block:Block;language?:Language
   <div className="queue-toolbar">
    <span className="queue-example-label"><span aria-hidden="true"/>{t('Interactive example','交互示意')}</span>
    <div className="queue-states" role="group" aria-label={t('Illustration states','切换示意状态')}>
-    {choices.map(([key,label])=><Button type="button" key={key} data-queue-state={key} aria-pressed={state===key} onClick={()=>setState(key)}>{label}</Button>)}
+    {choices.map(([key,label])=><button type="button" key={key} data-queue-state={key} aria-pressed={state===key} onClick={()=>setState(key)}>{label}</button>)}
    </div>
   </div>
   <div className="queue-result" role="status" aria-live="polite">
@@ -31,13 +30,13 @@ export function Queue({block:b,language='zh-CN'}:{block:Block;language?:Language
   <div hidden={state!=='waiting'}>
    <div className="queue-flow-heading">
     <span>{t('Processing order','处理顺序')}</span>
-    <label className="queue-count">{t('Waiting tasks ahead across the platform','全平台前方等待任务数')}<Input data-task-count type="number" min={0} max={8} value={forms.length} onChange={e=>{const n=numeric(e.target.value,0,8,forms.length);setForms(old=>Array.from({length:n},(_,i)=>old[i]??1))}}/></label>
+    <label className="queue-count">{t('Waiting tasks ahead across the platform','全平台前方等待任务数')}<input data-task-count type="number" min={0} max={8} value={forms.length} onChange={e=>{const n=numeric(e.target.value,0,8,forms.length);setForms(old=>Array.from({length:n},(_,i)=>old[i]??1))}}/></label>
    </div>
    <ol className="queue-flow" aria-label={t('Illustrative platform queue','平台队列示意')}>
     <li className="queue-task queue-active"><span className="queue-position">{t('Processing channel','当前处理通道')}</span><Clock3 size={26} strokeWidth={1.4} aria-hidden="true"/><strong>{t('Already processing','正在处理')}</strong><span className="queue-task-detail">{t('Remaining: ','剩余 ')}{rangeText(b.remainingMinutes!)} {t('min','分钟')}</span></li>
     {forms.map((n,i)=><li className="queue-task queue-waiting" key={i} data-waiting-task>
      <span className="queue-position">{t(`Ahead ${i+1}`,`前方 ${i+1}`)}</span><FileText size={26} strokeWidth={1.4} aria-hidden="true"/><strong>{t(`Task ${i+1}`,`任务 ${i+1}`)}</strong>
-     <label className="queue-forms">{t('Forms','表格')}<Input data-forms type="number" min={1} max={100} aria-label={t(`Forms in task ${i+1} ahead`,`前方任务 ${i+1} 的表格数`)} value={n} onChange={e=>{const value=numeric(e.target.value,1,100,n);setForms(old=>old.map((x,j)=>j===i?value:x))}}/>{t('','份')}</label>
+     <label className="queue-forms">{t('Forms','表格')}<input data-forms type="number" min={1} max={100} aria-label={t(`Forms in task ${i+1} ahead`,`前方任务 ${i+1} 的表格数`)} value={n} onChange={e=>{const value=numeric(e.target.value,1,100,n);setForms(old=>old.map((x,j)=>j===i?value:x))}}/>{t('','份')}</label>
     </li>)}
     <li className="queue-task queue-mine"><span className="queue-position">{t('Next after these','轮到我时')}</span><FileText size={26} strokeWidth={1.4} aria-hidden="true"/><strong>{t('Your task','我的任务')}</strong><span className="queue-task-detail">{t('Waiting to start','等待开始处理')}</span></li>
    </ol>
@@ -70,7 +69,7 @@ export function Artifact({data}:{data:ArtifactModel}){
  useEffect(()=>{document.documentElement.lang=language;document.title=d.title},[language,d.title])
  return <div className={d.mode+' artifact'}>
   <header>
-   {languages.length>1&&<div className="artifact-languages" role="group" aria-label="Language / 阅读语言">{languages.map(l=><Button type="button" key={l} lang={l} aria-pressed={language===l} onClick={()=>setLanguage(l)}>{l==='en'?'EN':'中文'}</Button>)}</div>}
+   {languages.length>1&&<div className="artifact-languages" role="group" aria-label="Language / 阅读语言">{languages.map(l=><button type="button" key={l} lang={l} aria-pressed={language===l} onClick={()=>setLanguage(l)}>{l==='en'?'EN':'中文'}</button>)}</div>}
    <h1>{d.title}</h1>{d.subtitle?.trim()&&<p>{d.subtitle}</p>}
    {d.pages.length>1&&<nav aria-label={t('Page sections','逐页阅读')}>{d.pages.map((p,i)=><a key={i} href={'#p'+(i+1)}>{p.title}</a>)}</nav>}
   </header>

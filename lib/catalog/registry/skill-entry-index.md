@@ -55,7 +55,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "bfcaaa8313232b6ce723f87d5a6866975e4333c3ced9c6abf7c17b5234ef88e2",
+      "contractSha256": "343a7366fe70b38b87c310b98db2c73226eb2811650c353ef3c327cd4e366ef4",
       "description": "按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只查组件或只跑测试不自动改代码。",
       "entry": "507-do/SKILL.md",
       "name": "507-do",

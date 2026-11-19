@@ -26,10 +26,8 @@ workflow: consumers reference this runtime directly. All document, diagram,
 task-map and product-map UI is now implemented in shared React components;
 export uses the same components for SSR and browser hydration.
 
-Live UI composition adapts MIT shadcn/ui Radix components; see ui/SOURCES.json
-and ui/licenses/shadcn-ui.txt. Radix UI and its exact dependency closure are
-locked in package-lock.json. The exporter embeds package license notices from
-the actual browser build along with the shadcn and original Stageshow notices.
+The exporter embeds package license notices from the actual browser build
+along with the original Stageshow notice.
 The shared-source notices are retained for every export, including scenes that
 use kit or adapted examples; they are not inferred from node_modules alone.
 Motion Primitives and

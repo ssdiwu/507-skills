@@ -1,11 +1,10 @@
 import React,{useEffect,useRef,useState} from 'react'
-import {Button,Input,Select} from '../ui'
 const display=(v:any)=>v===undefined?'未提供':v===null?'明确空值':v===''?'空文本':Array.isArray(v)?v.length?v.join('；'):'空数组':String(v)
 export function TaskView({data:d}:{data:any}){
  const {projection:p,contract:c,labels,columns}=d,tasks=p.tasks as any[];const [navigation,setNavigation]=useState(0);const [query,setQuery]=useState(''),[status,setStatus]=useState(''),[owner,setOwner]=useState(''),[selected,setSelected]=useState<string|null>(null),detail=useRef<HTMLElement>(null)
  const byId=new Map<string,any>(tasks.map(t=>[t.fields.id,t])),chosen=selected?byId.get(selected):null
  const filtered=tasks.filter(t=>(!status||display(t.fields.status)===status)&&(!owner||display(t.fields.owner)===owner)&&(!query||Object.values(t.fields).flat().join(' ').toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())))
- const link=(id:string)=><Button type="button" data-task={id} onClick={()=>{setSelected(id);setNavigation(n=>n+1)}}>{byId.get(id)?.fields.title??id}</Button>
+ const link=(id:string)=><button type="button" className="task-link" data-task={id} onClick={()=>{setSelected(id);setNavigation(n=>n+1)}}>{byId.get(id)?.fields.title??id}</button>
  useEffect(()=>{if(selected){detail.current?.focus();detail.current?.scrollIntoView({block:'start'})}},[selected,navigation])
  const modeLabel=({simple:'普通工作：必要拆分与交回',graph:'有依赖的独立工作：任务关系',continuing:'持续工作：沿用现有记录'} as Record<string,string>)[c.mode]
  return <div className="task-view">
@@ -14,9 +13,9 @@ export function TaskView({data:d}:{data:any}){
    <section>
     <h2>当前工作</h2>
     <div className="tools">
-     <label>搜索<Input id="query" type="search" value={query} onChange={event=>setQuery(event.target.value)}/></label>
-     <label>报告状态<Select id="status" value={status} onChange={event=>setStatus(event.target.value)}><option value="">全部状态</option>{[...new Set(tasks.map(task=>display(task.fields.status)))].map(value=><option key={value} value={value}>{c.statusMap?.[value]?.label??value}</option>)}</Select></label>
-     <label>承担者<Select id="owner" value={owner} onChange={event=>setOwner(event.target.value)}><option value="">全部承担者</option>{[...new Set(tasks.map(task=>display(task.fields.owner)))].map(value=><option key={value}>{value}</option>)}</Select></label>
+     <label htmlFor="query">搜索<input className="task-control" id="query" type="search" value={query} onChange={event=>setQuery(event.target.value)}/></label>
+     <label htmlFor="status">报告状态<select className="task-control" id="status" value={status} onChange={event=>setStatus(event.target.value)}><option value="">全部状态</option>{[...new Set(tasks.map(task=>display(task.fields.status)))].map(value=><option key={value} value={value}>{c.statusMap?.[value]?.label??value}</option>)}</select></label>
+     <label htmlFor="owner">承担者<select className="task-control" id="owner" value={owner} onChange={event=>setOwner(event.target.value)}><option value="">全部承担者</option>{[...new Set(tasks.map(task=>display(task.fields.owner)))].map(value=><option key={value}>{value}</option>)}</select></label>
     </div>
     <p id="count" role="status" aria-live="polite">显示 {filtered.length} / {tasks.length} 项</p>
     <div className="table" role="region" aria-label="工作记录，可横向滚动" tabIndex={0}>
@@ -66,7 +65,7 @@ export function ProductMap({data:d}:{data:any}){
  function choose(id:string){setSelected(id);setNavigation(n=>n+1);if(typeof location!=='undefined')location.hash='node='+encodeURIComponent(id)}
  useEffect(()=>{const restore=()=>{const id=new URLSearchParams(location.hash.slice(1)).get('node');setSelected(id&&byId.has(id)?id:null)};window.addEventListener('hashchange',restore);restore();return()=>window.removeEventListener('hashchange',restore)},[])
  useEffect(()=>{if(selected){detail.current?.focus();detail.current?.scrollIntoView({block:'start'})}},[selected,navigation])
- const link=(id:string)=><Button type="button" data-node={id} onClick={()=>choose(id)}>{byId.get(id)?.label??id}</Button>
+ const link=(id:string)=><button type="button" className="map-link" data-node={id} onClick={()=>choose(id)}>{byId.get(id)?.label??id}</button>
  const filtered=nodes.filter(n=>(!kind||n.kind===kind)&&(!query||[n.id,n.label,n.purpose,...n.conditions,...n.outcomes].join(' ').toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()))&&(!state||(state==='unprovided'?n.evidence[dimension].length===0:n.evidence[dimension].some((e:any)=>e.state===state))))
  const contained=new Set(edges.filter(e=>e.kind==='contains').map(e=>e.to)),tree:{id:string;depth:number}[]=[],stack=nodes.filter(n=>!contained.has(n.id)).reverse().map(n=>({id:n.id,depth:0}));while(stack.length&&tree.length<3000){const next=stack.pop()!;tree.push(next);for(const e of edges.filter(e=>e.kind==='contains'&&e.from===next.id).reverse())stack.push({id:e.to,depth:next.depth+1})}
  const chosen=selected?byId.get(selected):null
@@ -82,18 +81,18 @@ export function ProductMap({data:d}:{data:any}){
   </header>
   <main>
    <section className="tools" aria-label="交互点筛选">
-    <label>搜索<Input id="query" type="search" value={query} onChange={event=>setQuery(event.target.value)}/></label>
-    <label>类型<Select id="kind" value={kind} onChange={event=>setKind(event.target.value)}><option value="">全部类型</option>{Object.keys(kinds).map(key=><option key={key} value={key}>{kinds[key]}</option>)}</Select></label>
-    <label>证据维度<Select id="dimension" value={dimension} onChange={event=>{setDimension(event.target.value);setState('')}}>{Object.entries(dimensions).map(([key,label])=><option key={key} value={key}>{label}</option>)}</Select></label>
-    <label>状态<Select id="state" value={state} onChange={event=>setState(event.target.value)}><option value="">全部证据状态</option><option value="unprovided">未提供证据</option>{d.states[dimension].map((key:string)=><option value={key} key={key}>{states[key]}</option>)}</Select></label>
+    <label htmlFor="query">搜索<input className="map-control" id="query" type="search" value={query} onChange={event=>setQuery(event.target.value)}/></label>
+    <label htmlFor="kind">类型<select className="map-control" id="kind" value={kind} onChange={event=>setKind(event.target.value)}><option value="">全部类型</option>{Object.keys(kinds).map(key=><option key={key} value={key}>{kinds[key]}</option>)}</select></label>
+    <label htmlFor="dimension">证据维度<select className="map-control" id="dimension" value={dimension} onChange={event=>{setDimension(event.target.value);setState('')}}>{Object.entries(dimensions).map(([key,label])=><option key={key} value={key}>{label}</option>)}</select></label>
+    <label htmlFor="state">状态<select className="map-control" id="state" value={state} onChange={event=>setState(event.target.value)}><option value="">全部证据状态</option><option value="unprovided">未提供证据</option>{d.states[dimension].map((key:string)=><option value={key} key={key}>{states[key]}</option>)}</select></label>
    </section>
    <p id="count" role="status" aria-live="polite">显示 {filtered.length} / {nodes.length} 个交互点</p>
    <div className="grid">
     <section className="panel">
      <h2>交互点</h2>
-     <div id="points" className="points">{filtered.length?filtered.map(node=><Button className="point" type="button" data-node={node.id} onClick={()=>choose(node.id)} key={node.id}>
+     <div id="points" className="points">{filtered.length?filtered.map(node=><button className="point" type="button" data-node={node.id} onClick={()=>choose(node.id)} key={node.id}>
       <strong>{node.label}</strong><br/><span className="tiny">{kinds[node.kind]} · {Object.keys(dimensions).map(key=>dimensions[key]+node.evidence[key].length+'条').join(' ／ ')}</span>
-     </Button>):<p>没有匹配交互点；筛选不改变关系与证据。</p>}</div>
+     </button>):<p>没有匹配交互点；筛选不改变关系与证据。</p>}</div>
     </section>
     <section className="panel" id="detail" ref={detail} tabIndex={-1} aria-label="交互点详情">
      {chosen?<>

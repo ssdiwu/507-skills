@@ -13,7 +13,7 @@
 | [507-how](#507-how) | 根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。 | 15 | 0 | 0 | 1 | 0 | 16 |
 | [507-create](#507-create) | 承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。 | 26 | 6 | 0 | 1 | 0 | 33 |
 | [507-spec](#507-spec) | 整理唯一现行的行为与验收规格，承接已确认的软件需求或方案，也支持维护 PRD。 | 9 | 0 | 0 | 1 | 0 | 10 |
-| [507-do](#507-do) | 按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。 | 13 | 4 | 6 | 3 | 1 | 27 |
+| [507-do](#507-do) | 按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。 | 13 | 4 | 3 | 2 | 1 | 23 |
 | [507-clean](#507-clean) | 在指定模块内查找并清理死代码、重复逻辑和失效规则，保持已有功能，默认先只读列清单。 | 3 | 0 | 0 | 1 | 0 | 4 |
 | [507-review](#507-review) | 检查现状是否满足已确认要求，只检查不修改。 | 9 | 1 | 0 | 1 | 0 | 11 |
 | [507-issue](#507-issue) | 草拟、创建或维护可跟进的软件工单，保留调查证据并原位升级为可领取的执行任务。 | 6 | 0 | 0 | 1 | 0 | 7 |
@@ -34,10 +34,10 @@
 ## 统一分工
 
 - create 负责作品内容和作者表达，adapt 负责受众与载体，visualize 负责图解关系与理解路径。新建独立阅读页采用[阅读页方法](../methods/design/reading-page.md)，修改已有页面优先复用项目组件。
-- demo：负责产品识别、构图和动作编排；不拥有专属 kit、运行库或通用组件。
+- demo 负责产品识别、构图和动作编排。
 - work 和 coordinate 校验过程记录，再按[任务页方法](../methods/design/task-page.md)组织页面。product-map 校验交互与证据记录，再按[地图页方法](../methods/design/product-map-page.md)组织页面。共有 React 渲染器继续承接已有生成页。
-- do：负责真实产品行为，先复用目标产品组件；React依赖与构建适用且缺少对应控件时直接采用共有 ui，离线React场景也由共有入口导出。模拟展示不作为业务实现或验收。
-- review：独立核职责、直接依赖、复制回归、实际效果与未覆盖；不修改受审内容。
+- do 负责真实产品行为，按目标项目和本次参考选择界面实现。
+- review 独立核对职责、直接依赖、实际效果与未覆盖范围。
 
 
 ## skill-design
@@ -277,20 +277,16 @@
 - 执行文件 · [components/visual/scripts/component-library.mjs](../components/visual/scripts/component-library.mjs)
 - 执行文件 · [components/visual/scripts/render-artifact.mjs](../components/visual/scripts/render-artifact.mjs)
 
-### 界面组件（6）
+### 界面组件（3）
 
 - 接入说明 · [components/visual/visual-runtime.md](../components/visual/visual-runtime.md)
 - 示例 · [components/visual/scenes/examples/record-browser/index.tsx](../components/visual/scenes/examples/record-browser/index.tsx)
 - 示例 · [components/visual/scenes/examples/record-browser/records.css](../components/visual/scenes/examples/record-browser/records.css)
-- 接入说明 · [components/visual/ui/README.md](../components/visual/ui/README.md)
-- 实现与样式 · [components/visual/ui/index.tsx](../components/visual/ui/index.tsx)
-- 实现与样式 · [components/visual/ui/ui.css](../components/visual/ui/ui.css)
 
-### 库务资料（3）
+### 库务资料（2）
 
 - 导航 · [README.md](../README.md)
 - 导航 · [components/visual/catalog.json](../components/visual/catalog.json)
-- 登记与溯源 · [components/visual/ui/SOURCES.json](../components/visual/ui/SOURCES.json)
 
 ### 库维护测试（1）
 
