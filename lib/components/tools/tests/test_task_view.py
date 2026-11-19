@@ -2,6 +2,7 @@
 import importlib.util
 import json
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -98,6 +99,26 @@ class TaskViewTests(unittest.TestCase):
         with patch.object(view, '__file__', str(copied_script)):
             third = self.run_view()
         self.assertNotEqual(second['version'], third['version'])
+
+    def test_preview_changes_do_not_version_document_exports(self):
+        renderer = view.react_api()
+        source = renderer.VISUAL_ROOT
+        isolated = self.base / 'visual'
+        shutil.copytree(source, isolated, ignore=shutil.ignore_patterns('node_modules', 'dist'))
+        (isolated / 'node_modules').symlink_to(source / 'node_modules', target_is_directory=True)
+        with patch.object(renderer, 'VISUAL_ROOT', isolated), patch.object(view, 'react_api', return_value=renderer):
+            first = self.run_view()
+            preview = isolated / 'playground/viewer.css'
+            preview.write_bytes(preview.read_bytes() + b'\n')
+            (isolated / 'scripts/component-library.mjs').unlink()
+            second = self.run_view()
+            self.assertEqual(second['status'], 'UNCHANGED')
+            self.assertEqual(first['version'], second['version'])
+            styles = isolated / 'views/visuals.css'
+            styles.write_bytes(styles.read_bytes() + b'\n.task-view { outline: 1px solid; }\n')
+            third = self.run_view()
+            self.assertNotEqual(second['version'], third['version'])
+            self.assertNotEqual(Path(first['page']).read_bytes(), Path(third['page']).read_bytes())
 
     def test_invalid_new_record_keeps_current_byte_identical(self):
         self.run_view()
