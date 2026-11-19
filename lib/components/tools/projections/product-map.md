@@ -21,7 +21,7 @@ sources是`id/kind/label/locator`，kind为design/code/runtime/other；可加rev
 
 先筛选或搜索交互点，点开节点查看可用条件、结果、三维证据与入出关系。需要看整个产品时，展开全局视图查看包含树、全部关系和登记路径。节点详情可以访问筛选外的关联节点，多父级下同一 ID 显示引用。选定节点写入地址，后退、前进或重载从地址恢复同一详情。每维显示原证据条数与未知。sources、record SHA 及原模型保留，manifest 的 meaningVerified 和 acceptanceVerified 始终为 false。
 
-示例和坏输入覆盖见`../tests/test_product_map.py`。source为本目录，运行副本由packages登记生成；结构PASS不是需求确认、证据真实或产品接受。
+维护者可在源码仓库的 `lib/components/tools/tests/test_product_map.py` 查看示例和坏输入测试。安装包不包含该测试文件。结构校验通过只确认记录符合输入模型。
 
 ## 最小有效结构示例
 

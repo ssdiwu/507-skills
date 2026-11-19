@@ -69,6 +69,8 @@ Markdown 依赖单元格只能用JSON字符串数组（例如`["A","B"]`），�
 
 页面先展示本次 `modeNote`、当前工作及报告状态，模式名称、生成说明与记录指纹可在「来源与生成范围」展开。页面支持搜索、报告状态／承担者筛选、点击工作详情、前置／后续关系，键盘焦点、可滚动窄屏表和减少动效设置。测试校验字段、来源、更新与失败保全；桌面和390px实际使用仍需打开最终生成页面核对，不以静态源码或脚本测试替代。
 
+维护者可在源码仓库根目录运行回归测试。安装包不包含测试目录。
+
 ```sh
-python3 -m unittest discover -s ../tests -p test_task_view.py -v
+python3 -m unittest discover -s lib/components/tools/tests -p test_task_view.py -v
 ```
