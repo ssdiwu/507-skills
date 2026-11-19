@@ -4,7 +4,7 @@
 
 ## 执行与呈现分工
 
-视觉呈现只有[共有 React 入口](visual/scripts/render-artifact.mjs)，统一承载普通页面、五类图解、任务视图、产品地图及界面场景。Python 的 task_view/product_map 保留模型验证与文件事务，通过 [react_export.py](tools/export/react_export.py) 调同一 React 组件，不含界面模板。library_view、work_view、state_diff、check_run、文件回执与文字检查器继续承担非界面工作。
+成文、适配和图解技能制作独立阅读页时采用[阅读页方法](../methods/design/reading-page.md)。需要导出共有 React 组件时，[共有 React 入口](visual/scripts/render-artifact.mjs)支持普通页面、五类图解、任务视图、产品地图及界面场景。Python 的 task_view/product_map 保留模型验证与文件事务，通过 [react_export.py](tools/export/react_export.py) 调同一 React 组件，不含界面模板。library_view、work_view、state_diff、check_run、文件回执与文字检查器继续承担非界面工作。
 
 工具与方法由各技能直接引用，无技能内执行副本。来源、参数和运行见[组件合同](visual/visual-components.md)、[运行合同](visual/visual-runtime.md)、[逐技能关系](../catalog/skill-resource-map.md)。原 Python render_artifact 与 visual_blocks 已退出活动实现；上一轮示例与回执保留历史身份。
 

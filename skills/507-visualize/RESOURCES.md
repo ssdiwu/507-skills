@@ -23,6 +23,7 @@
     "lib/components/visual/scripts/component-library.test.mjs",
     "lib/components/visual/scripts/render-artifact.mjs",
     "lib/methods/design/artifact-rendering.md",
+    "lib/methods/design/reading-page.md",
     "lib/methods/evidence-and-decisions/evidence.md",
     "lib/methods/evidence-and-decisions/validation.md",
     "lib/methods/design/visual-understanding.md"

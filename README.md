@@ -9,6 +9,7 @@
 | 想做什么 | 从哪里进入 |
 | --- | --- |
 | 查取证、工程、协作、写作或设计方法 | [共有方法](lib/methods/README.md) |
+| 将文章、成熟材料或图解做成独立阅读页 | [阅读页方法](lib/methods/design/reading-page.md) |
 | 找真实界面控件、页面视图、演示场景或预览 | [界面与呈现](lib/components/visual/visual-components.md) |
 | 运行检查、整理数据、导出页面或取得回执 | [执行组件](lib/components/README.md) |
 | 查看某个技能的直接依赖与旧入口去向 | [技能依赖表](lib/catalog/skill-resource-map.md) · [名称索引](lib/catalog/registry/skill-entry-index.md) |

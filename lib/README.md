@@ -4,7 +4,7 @@ lib 是所有技能共同使用的一份资源库，不是技能入口，也不�
 
 ## 明确的分工
 
-技能决定当前任务为何采用能力、保护什么、怎样判断交付；共有方法提供判断依据，共有代码实现确定性工具，React 组件完成全部界面与交互。Python 负责校验、投影、比较、文件与检查，不再维护第二套可视组件。详情见[技能资源关系](catalog/skill-resource-map.md)与[React 组件合同](components/visual/visual-components.md)。
+技能决定当前任务为何采用能力、保护什么、怎样判断交付。成文、适配和图解技能制作独立阅读页时按内容安排页面，并打开成品验证阅读路径，见[阅读页方法](methods/design/reading-page.md)。共有 React 组件服务于界面演示、任务视图、产品地图和实际接入的产品控件。Python 负责校验、投影、比较、文件与检查。详情见[技能资源关系](catalog/skill-resource-map.md)与[React 组件合同](components/visual/visual-components.md)。
 
 ## 定位和依赖
 

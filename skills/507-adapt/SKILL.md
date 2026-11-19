@@ -48,7 +48,7 @@ description: "把成熟内容适配为目标受众、场景与载体中可用的
 1. 按上节核对目标读者要理解、判断或执行什么。已有条件足够时自行安排入口、层级、分页与节奏，不重开总规划。归属、引语或材料支持可能受压缩影响时读[作者与来源](../../lib/methods/writing/author-and-source.md)。
 2. 完成目标阅读关系，逐项对应原稿。保留条件、否定、责任、数字对象、时序、来源与未知；必要限制留在对应主张或动作旁。内容超容量时拆页、调整安排或在原授权内缩小范围，不缩字、隐藏正文或用多处摘要代替完整交付。
 3. 目标含视觉方向或阅读界面时采用[设计提示](../../lib/methods/design/guides/artifact-prompts.md)，从真实内容与阅读任务选择，不固定模板、候选数量或外站参数。需要用户审美取舍时提供具体候选与理由；机械检查不能替代人的接受。
-4. 先按材料辨认时间先后、过程、同条件比较、版面或状态关系。修改已有页面时优先复用项目组件，在原入口核对结果。新建独立离线 HTML 时按[呈现合同](../../lib/methods/design/artifact-rendering.md)，默认用[共有图解组件](../../lib/components/visual/visual-components.md)和[呈现脚本](../../lib/components/visual/scripts/render-artifact.mjs)表达这些关系。普通文字页用正文和列表。必须打开当前 HTML，沿时间、流程、比较或数量联动实际核对理解路径，以及密页、来源、备注和导航。
+4. 新建供人阅读的独立网页时，按[独立阅读页方法](../../lib/methods/design/reading-page.md)从真实内容与具体参考安排页面；不要求采用共有视觉组件或旧呈现合同。若目标是图解，则按实际关系选择图表形式；修改已有页面时优先复用项目组件，并在原入口核对结果。必须打开当前 HTML，沿读者任务实际核对内容、来源、备注和导航。
 5. 图片、可编辑 PPTX、音频或视频先按[真实载体适配](../../lib/components/tools/export/media-adapters.md)读齐所选工具的当前合同，确认可用依赖、素材与授权，再在新位置制作并检查目标文件。HTML 预览不能证明 PNG、PPTX 或视频已经生成。目标依赖缺失时交付可用派生内容与最小依赖，标明载体未完成，继续不依赖它的工作。
 
 适配后的中文书面或口播可运行[书面检查器](../../lib/components/tools/checks/check_prose.py)或[口播检查器](../../lib/components/tools/checks/check_spoken.py)，适用边界见[检查器说明](../../lib/components/tools/checks/text-checks.md)。提醒按语境复核，不自动改稿，也不作为事实或作者接受裁决。

@@ -98,7 +98,7 @@ class CollectionTests(unittest.TestCase):
  def test_actual_shared_reference_requires_a_declared_dependency_at_build(self):
   output=Path(self.tmp.name)/'delivery'
   bundle=Path(self.call('build',extra=['--output',output])['path']);before=pack.file_map(bundle)
-  dependency='lib/components/visual/visual-components.md'
+  dependency='lib/methods/design/reading-page.md'
   self.resource('507-adapt',lambda d:d['uses'].remove(dependency))
   failure=self.call('build',ok=False,extra=['--output',output])
   self.assertIn('Undeclared direct shared reference',failure['error']);self.assertIn(dependency,failure['error'])

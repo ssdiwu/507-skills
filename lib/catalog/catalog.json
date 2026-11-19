@@ -522,21 +522,33 @@
       "lineageMeaning": "本轮真实消费者采用的共有方法；原子归一尚待逐条映射，不推断为零能力。"
     },
     {
-      "id": "artifact-rendering",
-      "title": "离线HTML呈现合同",
-      "source": "lib/methods/design/artifact-rendering.md",
+      "id": "reading-page",
+      "title": "独立阅读页",
+      "source": "lib/methods/design/reading-page.md",
       "consumers": [
         {
           "skillId": "507-create",
-          "when": "修改已有页面时优先使用项目组件。新建独立离线 HTML 时默认用共有组件表达时间、步骤、比较、版面或状态关系，并检查实际页面。"
+          "when": "作品需交付独立阅读页时，按作者主张与阅读顺序安排页面。"
         },
         {
           "skillId": "507-adapt",
-          "when": "修改已有页面时优先使用项目组件。新建独立离线 HTML 时默认用共有组件表达时间、步骤、比较、版面或状态关系，并检查实际页面。"
+          "when": "成熟内容需转成独立阅读页时，按目标受众的用途组织页面。"
         },
         {
           "skillId": "507-visualize",
-          "when": "修改已有页面时优先使用项目组件。新建独立离线图解页面时默认用共有图解组件，并核对实际呈现。"
+          "when": "图解需独立阅读页时，按读者要理解的关系安排图表与说明。"
+        }
+      ],
+      "relatedAtomIds": []
+    },
+    {
+      "id": "artifact-rendering",
+      "title": "离线 React 呈现合同",
+      "source": "lib/methods/design/artifact-rendering.md",
+      "consumers": [
+        {
+          "skillId": "507-visualize",
+          "when": "图解作品使用共有 React 导出器时，核对图表输入、交互与导出结果。"
         },
         {
           "skillId": "507-demo",
@@ -1176,7 +1188,6 @@
     {
       "sourceRoot": "lib/components/visual",
       "consumers": [
-        "507-create",
         "507-adapt",
         "507-visualize",
         "507-demo",
@@ -1186,7 +1197,7 @@
         "507-do"
       ],
       "when": "图解、界面场景、任务视图与产品地图直接引用同一 React 运行库；真实产品缺少适用组件时 do 可采用 ui 基础控件。技能不携带副本。",
-      "files": "共有源精确集合及消费者直接 uses 以 packages.json 为准，不含技能副本。"
+      "files": "共有文件清单见 packages.json，各技能直接使用的文件见其 RESOURCES.md。"
     }
   ]
 }

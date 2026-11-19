@@ -11,7 +11,7 @@
 | [507-work](#507-work) | 发现工作事项、梳理建议顺序并推进授权内可完成的工作，以已有消息、任务与过程资料为依据，一致更新工作状态或交回拟议结果。 | 6 | 10 | 4 | 2 | 1 | 23 |
 | [507-why](#507-why) | 帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。 | 15 | 0 | 0 | 1 | 0 | 16 |
 | [507-how](#507-how) | 根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。 | 15 | 0 | 0 | 1 | 0 | 16 |
-| [507-create](#507-create) | 承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。 | 26 | 9 | 3 | 2 | 1 | 41 |
+| [507-create](#507-create) | 承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。 | 26 | 6 | 0 | 1 | 0 | 33 |
 | [507-spec](#507-spec) | 整理唯一现行的行为与验收规格，承接已确认的软件需求或方案，也支持维护 PRD。 | 9 | 0 | 0 | 1 | 0 | 10 |
 | [507-do](#507-do) | 按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。 | 13 | 4 | 6 | 3 | 1 | 27 |
 | [507-clean](#507-clean) | 在指定模块内查找并清理死代码、重复逻辑和失效规则，保持已有功能，默认先只读列清单。 | 3 | 0 | 0 | 1 | 0 | 4 |
@@ -21,11 +21,11 @@
 | [507-deliver](#507-deliver) | 为已完成工程范围准备 PR 表达、交付说明及版本结果，并按具体授权执行相应 Git 或发布动作；接续旧507-git引用时核当前职责与原条件。 | 8 | 2 | 0 | 2 | 0 | 12 |
 | [507-retro](#507-retro) | 复盘已发生的工程工作，以实际尝试和结果提炼改进及重复任务的工具建议。 | 7 | 0 | 0 | 1 | 0 | 8 |
 | [507-material](#507-material) | 整理指定资料，核清来源、身份、重复和支持范围；也可按明确请求组织已有知识入口。 | 7 | 0 | 0 | 1 | 0 | 8 |
-| [507-adapt](#507-adapt) | 把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。 | 16 | 9 | 4 | 2 | 1 | 32 |
+| [507-adapt](#507-adapt) | 把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。 | 16 | 8 | 4 | 2 | 1 | 31 |
 | [507-setup](#507-setup) | 建立、迁移或只读核对项目工作依据，审计工作指令的失效与冲突，或维护 README、目录职责与文档导航。 | 4 | 2 | 0 | 2 | 0 | 8 |
 | [507-product-map](#507-product-map) | 梳理指定产品功能的交互点与操作关系，把设计要求、实现依据和实际运行证据对到同一节点，生成可探索地图与范围差距。 | 4 | 6 | 4 | 2 | 1 | 17 |
 | [507-plan](#507-plan) | 为承担当前任务的执行者安排如何交付结果，明确步骤、依赖、验证与恢复。 | 7 | 0 | 0 | 1 | 0 | 8 |
-| [507-visualize](#507-visualize) | 把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。 | 4 | 3 | 3 | 2 | 1 | 13 |
+| [507-visualize](#507-visualize) | 把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。 | 5 | 3 | 3 | 2 | 1 | 14 |
 | [507-demo](#507-demo) | 制作产品界面的静态展示图、功能卡片或带光标的短动画，交付可编辑场景与目标实物。 | 8 | 4 | 4 | 4 | 1 | 21 |
 | [507-domain](#507-domain) | 构建或校准项目领域概念、词义、边界与关系，用具体场景检验并按授权维护相关文档。 | 5 | 0 | 0 | 1 | 0 | 6 |
 | [507-synthesize](#507-synthesize) | 围绕当前决策归纳已核对的访谈、反馈或问题记录，比较会改变处理方式的分组，交付可回查的判断、处理优先级和待查证据。 | 3 | 0 | 0 | 1 | 0 | 4 |
@@ -33,7 +33,7 @@
 
 ## 统一分工
 
-- create 负责作品内容和作者表达，adapt 负责受众与载体，visualize 负责图解关系与理解路径。修改已有页面优先复用项目组件，新建独立离线页面默认使用共有呈现工具。
+- create 负责作品内容和作者表达，adapt 负责受众与载体，visualize 负责图解关系与理解路径。新建独立阅读页采用[阅读页方法](../methods/design/reading-page.md)，修改已有页面优先复用项目组件。
 - demo：负责产品识别、构图和动作编排；不拥有专属 kit、运行库或通用组件。
 - work、coordinate、product-map：负责各自记录、关系与证据模型，展示层同样直接使用共有 React。
 - do：负责真实产品行为，先复用目标产品组件；React依赖与构建适用且缺少对应控件时直接采用共有 ui，离线React场景也由共有入口导出。模拟展示不作为业务实现或验收。
@@ -196,7 +196,7 @@
 - 指引 · [methods/design/guides/target-design.md](../methods/design/guides/target-design.md)
 - 指引 · [methods/evidence-and-decisions/alternatives.md](../methods/evidence-and-decisions/alternatives.md)
 - 指引 · [methods/writing/artifact-contract.md](../methods/writing/artifact-contract.md)
-- 指引 · [methods/design/artifact-rendering.md](../methods/design/artifact-rendering.md)
+- 指引 · [methods/design/reading-page.md](../methods/design/reading-page.md)
 - 指引 · [methods/writing/author-and-source.md](../methods/writing/author-and-source.md)
 - 指引 · [methods/writing/author-interview.md](../methods/writing/author-interview.md)
 - 指引 · [methods/evidence-and-decisions/authority-and-return.md](../methods/evidence-and-decisions/authority-and-return.md)
@@ -216,7 +216,7 @@
 - 指引 · [methods/design/visual-direction.md](../methods/design/visual-direction.md)
 - 指引 · [methods/collaboration/work-records.md](../methods/collaboration/work-records.md)
 
-### 工具（9）
+### 工具（6）
 
 - 使用说明 · [components/tools/export/artifact-receipt.md](../components/tools/export/artifact-receipt.md)
 - 执行文件 · [components/tools/export/artifact_receipt.py](../components/tools/export/artifact_receipt.py)
@@ -224,24 +224,10 @@
 - 执行文件 · [components/tools/checks/check_spoken.py](../components/tools/checks/check_spoken.py)
 - 使用说明 · [components/tools/export/media-adapters.md](../components/tools/export/media-adapters.md)
 - 使用说明 · [components/tools/checks/text-checks.md](../components/tools/checks/text-checks.md)
-- 运行配置 · [components/visual/package.json](../components/visual/package.json)
-- 执行文件 · [components/visual/scripts/component-library.mjs](../components/visual/scripts/component-library.mjs)
-- 执行文件 · [components/visual/scripts/render-artifact.mjs](../components/visual/scripts/render-artifact.mjs)
 
-### 界面组件（3）
-
-- 接入说明 · [components/visual/visual-components.md](../components/visual/visual-components.md)
-- 示例 · [components/visual/scenes/examples/record-browser/index.tsx](../components/visual/scenes/examples/record-browser/index.tsx)
-- 示例 · [components/visual/scenes/examples/record-browser/records.css](../components/visual/scenes/examples/record-browser/records.css)
-
-### 库务资料（2）
+### 库务资料（1）
 
 - 导航 · [README.md](../README.md)
-- 导航 · [components/visual/catalog.json](../components/visual/catalog.json)
-
-### 库维护测试（1）
-
-- 回归测试 · [components/visual/scripts/component-library.test.mjs](../components/visual/scripts/component-library.test.mjs)
 
 ## 507-spec
 
@@ -483,7 +469,7 @@
 - 指引 · [methods/design/guides/interaction-detail.md](../methods/design/guides/interaction-detail.md)
 - 指引 · [methods/design/guides/target-design.md](../methods/design/guides/target-design.md)
 - 指引 · [methods/writing/artifact-contract.md](../methods/writing/artifact-contract.md)
-- 指引 · [methods/design/artifact-rendering.md](../methods/design/artifact-rendering.md)
+- 指引 · [methods/design/reading-page.md](../methods/design/reading-page.md)
 - 指引 · [methods/writing/author-and-source.md](../methods/writing/author-and-source.md)
 - 指引 · [methods/collaboration/continuation.md](../methods/collaboration/continuation.md)
 - 指引 · [methods/engineering/interaction.md](../methods/engineering/interaction.md)
@@ -494,7 +480,7 @@
 - 指引 · [methods/design/visual-understanding.md](../methods/design/visual-understanding.md)
 - 指引 · [methods/collaboration/work-records.md](../methods/collaboration/work-records.md)
 
-### 工具（9）
+### 工具（8）
 
 - 使用说明 · [components/tools/export/artifact-receipt.md](../components/tools/export/artifact-receipt.md)
 - 执行文件 · [components/tools/export/artifact_receipt.py](../components/tools/export/artifact_receipt.py)
@@ -504,7 +490,6 @@
 - 使用说明 · [components/tools/checks/text-checks.md](../components/tools/checks/text-checks.md)
 - 运行配置 · [components/visual/package.json](../components/visual/package.json)
 - 执行文件 · [components/visual/scripts/component-library.mjs](../components/visual/scripts/component-library.mjs)
-- 执行文件 · [components/visual/scripts/render-artifact.mjs](../components/visual/scripts/render-artifact.mjs)
 
 ### 界面组件（4）
 
@@ -601,9 +586,10 @@
 
 [技能说明](../../skills/507-visualize/SKILL.md) · [资源声明](../../skills/507-visualize/RESOURCES.md)
 
-### 方法（4）
+### 方法（5）
 
 - 指引 · [methods/design/artifact-rendering.md](../methods/design/artifact-rendering.md)
+- 指引 · [methods/design/reading-page.md](../methods/design/reading-page.md)
 - 指引 · [methods/evidence-and-decisions/evidence.md](../methods/evidence-and-decisions/evidence.md)
 - 指引 · [methods/evidence-and-decisions/validation.md](../methods/evidence-and-decisions/validation.md)
 - 指引 · [methods/design/visual-understanding.md](../methods/design/visual-understanding.md)

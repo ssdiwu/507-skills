@@ -8,7 +8,7 @@
 | 作者、内容与表达 | `writing/` |
 | 呈现方式、交互与设计参考 | [设计与呈现](design/README.md) |
 
-本目录的 29 份方法按条件提供判断与工作做法，没有独立技能入口。消费者与采用条件以[资源登记](../catalog/catalog.json)为准；专用方法留在各技能包内。脚本和工具说明见[components](../components/README.md)，设计参考见[design](design/README.md)。
+本目录的方法按条件提供判断与工作做法，没有独立技能入口。消费者与采用条件以[资源登记](../catalog/catalog.json)为准；专用方法留在各技能包内。脚本和工具说明见[components](../components/README.md)，设计参考见[design](design/README.md)。
 
 | 方法 | 当前使用者 |
 | --- | --- |
@@ -20,7 +20,8 @@
 | [当前权威、冲突与返回](evidence-and-decisions/authority-and-return.md) | skill-design, 507-what, 507-work, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-review, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-product-map, 507-plan |
 | [最小清晰表达与关系类型](writing/clear-expression.md) | skill-design, 507-what, 507-why, 507-how, 507-create, 507-coordinate, 507-deliver |
 | [作品版本与语义保护](writing/artifact-contract.md) | 507-create, 507-adapt, 507-review |
-| [离线HTML呈现合同](design/artifact-rendering.md) | 507-create, 507-adapt |
+| [独立阅读页](design/reading-page.md) | 507-create, 507-adapt, 507-visualize |
+| [离线 React 呈现合同](design/artifact-rendering.md) | 507-visualize, 507-demo |
 | [作者归属与材料支持](writing/author-and-source.md) | 507-create, 507-material, 507-adapt, 507-review |
 | [工程原动作与运行证据](engineering/engineering-evidence.md) | 507-spec, 507-do, 507-review |
 | [按情境拆解与协调](collaboration/task-coordination.md) | 507-coordinate, 507-create, 507-work |
