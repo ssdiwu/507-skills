@@ -69,7 +69,7 @@ description: "规划、创建或重构技能体系，审计技能包中的触发
 
 本次出现融合外部方法、核一手出处与适用条件时，读[外部取证与证据交接](../../lib/methods/evidence-and-decisions/external-research.md)并在本职责原权限与完成边界内采用。
 
-本次出现真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过时，读[真实中断、交接与续办](../../lib/methods/collaboration/continuation.md)并在本职责原权限与完成边界内采用。
+中断续办、换会话、上下文压缩或转交时，按原授权读[续办方法](../../lib/methods/collaboration/continuation.md)。普通结束跳过。
 
 库级清单与旧能力去向需对账时，读[当前库投影合同](../../lib/components/tools/projections/library-view.md)，运行[投影组件](../../lib/components/tools/projections/library_view.py)；用真实维护清单生成当前状态，历史规划与待实现／待验证分开。组件不安装或自动路由。
 

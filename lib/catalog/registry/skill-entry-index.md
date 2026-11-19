@@ -6,7 +6,7 @@
 {
   "current": [
     {
-      "contractSha256": "a9e02883d1f515fc3ae4626ca3522d8194ae7e1a331a66c6cfd7ae6bb130ece3",
+      "contractSha256": "3170d0fc69788fdc39f16c78e57aa2b3f44310d03999fbbf13db932611e03049",
       "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
@@ -41,7 +41,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "2f2dfc8707fcd9416565a62c60bdcfa864d2a23139b95bbfb6f1cc403a0a8a97",
+      "contractSha256": "e442aa182a8a67a1ea5a7f8fb7d7df897aeba854326faf678ef730329f519e10",
       "description": "为已完成工程范围准备 PR 表达、交付说明及版本结果，并按具体授权执行相应 Git 或发布动作；接续旧507-git引用时核当前职责与原条件。仅写说明时交付草稿；提交、推送、建 PR、合并和渠道发布各自核验，不由技能调用自动授权。",
       "entry": "507-deliver/SKILL.md",
       "name": "507-deliver",
@@ -55,7 +55,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "3ce21378e7802aab38c19f3e9ec3aec26fe05916885d25342e418a47720855ea",
+      "contractSha256": "bfcaaa8313232b6ce723f87d5a6866975e4333c3ced9c6abf7c17b5234ef88e2",
       "description": "按已明确的工程目标完成新增功能、故障修复、局部修改、指定测试或产品界面组件查找与复用。已有需求、方案与版本直接采用，不重走规划；修复保留复现、根因和原动作复验，只查组件或只跑测试不自动改代码。",
       "entry": "507-do/SKILL.md",
       "name": "507-do",
@@ -69,21 +69,21 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "6f838228b3a391e7ae7e25e68a3d37fc03888307772ff5e76d967e4e9eca9526",
+      "contractSha256": "1408f104ad3c168d4a59a2a0dbff952d13f08c30a1aa283d2df80f66ab3c78e5",
       "description": "根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
       "entry": "507-how/SKILL.md",
       "name": "507-how",
       "role": "main"
     },
     {
-      "contractSha256": "5e3e29888e02fe81bb6874c5dfe543cca25dd189efe8cefd0b2b67ade00fd142",
+      "contractSha256": "e4b53cc5d0ba64cc476d8b3461c8f9f2b8f85b469fb08c857f8fa4c0e6548206",
       "description": "草拟、创建或维护可跟进的软件工单，保留调查证据并原位升级为可领取的执行任务。用于用户要求记录或追踪问题；发现缺陷本身不授权远程建单、分派或关闭。",
       "entry": "507-issue/SKILL.md",
       "name": "507-issue",
       "role": "secondary"
     },
     {
-      "contractSha256": "cf09e821546a2c36cc9b7f8161dddd4b161a374f7e9ad2e5c98aa649230119fd",
+      "contractSha256": "5e58a98eedf8810b5bc99e71797a05bce7626f4335d73fd22af711a3532a1165",
       "description": "整理指定资料，核清来源、身份、重复和支持范围；也可按明确请求组织已有知识入口。用于素材混杂、独立性或证据承重需要核对；不替作者选主张，不写成稿，不默认写入知识库。",
       "entry": "507-material/SKILL.md",
       "name": "507-material",
@@ -104,28 +104,28 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "ea85500a6636336593ab5d38e9cc225262bd80cf6e4053289c3aefc9a6ec7fad",
+      "contractSha256": "9c7fea91cda540d7113d30f38e2f5fdb28f9505daf0c2e6d4282bef0f8eb398d",
       "description": "复盘已发生的工程工作，以实际尝试和结果提炼改进及重复任务的工具建议。用于明确要求复盘，或已证实的重复摩擦需要形成独立改进结论时；日常记录、故障定位与修复直接在原任务处理。复盘不自动修改技能、规范、记忆或工具，批准方法写入后才实施。",
       "entry": "507-retro/SKILL.md",
       "name": "507-retro",
       "role": "secondary"
     },
     {
-      "contractSha256": "9f9b05d993872c8ca32051e97b94a5b4e1b214a58fdb5aa3ae0faa3836e850af",
+      "contractSha256": "7afc8d3d991424c27449dfdaff7e9a52e1406fc1d0d4866a34f89fef51b4067c",
       "description": "检查现状是否满足已确认要求，只检查不修改。独立审查代码、文档、作品或指定提示与指令，核对失效、冲突及适用证据，给出发现和结论。实现者自查和全库改进机会调查不替代独审。",
       "entry": "507-review/SKILL.md",
       "name": "507-review",
       "role": "secondary"
     },
     {
-      "contractSha256": "92fb14a5b29456b1c99cb8a2232cdcab50599c80f3f2c1f957c84f452059982d",
+      "contractSha256": "b9d7470e9e42c6d2b0b596865dbe948953a0c48c26c48738b99ee5fbf302e211",
       "description": "建立、迁移或只读核对项目工作依据，审计工作指令的失效与冲突，或维护 README、目录职责与文档导航。按请求保全规则、词义、共用设计和现行要求；局部导航不扩大为审计或迁移，业务实现与技能设计按其任务处理。",
       "entry": "507-setup/SKILL.md",
       "name": "507-setup",
       "role": "main"
     },
     {
-      "contractSha256": "58b2643ada8f0984bf59a6079dd8aa49b748fc50bfe8e2e67234c4484778749f",
+      "contractSha256": "2aa3261e28118f9b8069f51dfed8be42accb2f3820e5d8e5ed184a6aab3dda83",
       "description": "整理唯一现行的行为与验收规格，承接已确认的软件需求或方案，也支持维护 PRD。清理或重构前可整理范围内必须保留的功能，清理中可校准规格缺口；已有充分规格直接沿用，活动或合作提案按其写作任务处理。",
       "entry": "507-spec/SKILL.md",
       "name": "507-spec",
@@ -146,14 +146,14 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "b716c22c1bec35afba167b25f1e32ba6d7fc25234491b5be2695d6f966591bb9",
+      "contractSha256": "b560ea55a1abfe6931fd92ff420e93c71ca93e615f4792a63680fe99e015a14a",
       "description": "定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。主动整合材料、提出有依据的观点与机会，只询问会改变方向的必要问题；事实查询、术语解释、故障诊断和前提已充分的执行不进入。",
       "entry": "507-what/SKILL.md",
       "name": "507-what",
       "role": "main"
     },
     {
-      "contractSha256": "b8e45e69bd32817c6a7e5de2d56d72faced3065fccaa967f400315657411a3d7",
+      "contractSha256": "974e75ccfa3501c1585bde43e41cd3306dadb7aae9ac0cd22f80e301ac8101c4",
       "description": "帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。明确故障修复、已有方案实施和作者作品编排直接进入相应工作，不重开解释主目标。",
       "entry": "507-why/SKILL.md",
       "name": "507-why",
@@ -167,7 +167,7 @@
       "role": "main"
     },
     {
-      "contractSha256": "7533c0fe25592758af061cf87b39d73d6ecdb6b498e85ed907dc97dafdb6d3bb",
+      "contractSha256": "d81a924fec5dbe9cfd607c712a1afa7e8b991ae0b793b52cff8f8a7c4b20f3cb",
       "description": "规划、创建或重构技能体系，审计技能包中的触发、读取与指令适用性，把任务经验和外部方法组织成技能、共有方法与工具，并完成获授权的文件和验证。项目工作指令核对、普通业务执行及独立交付审查按其任务处理。",
       "entry": "skill-design/SKILL.md",
       "name": "skill-design",

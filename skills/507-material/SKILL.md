@@ -32,7 +32,7 @@ description: "整理指定资料，核清来源、身份、重复和支持范围
 
 本次出现来源材料需外部核实并形成证据交接时，读[外部取证与证据交接](../../lib/methods/evidence-and-decisions/external-research.md)并在本职责原权限与完成边界内采用。
 
-本次出现真实中断、上下文压缩或转交时核实际版本、写权、有效尝试与未完成；普通结束跳过时，读[真实中断、交接与续办](../../lib/methods/collaboration/continuation.md)并在本职责原权限与完成边界内采用。
+中断续办、换会话、上下文压缩或转交时，按原授权读[续办方法](../../lib/methods/collaboration/continuation.md)。普通结束跳过。
 
 本次出现请求明确包含采访或补作者一手材料时，读[显化作者一手材料](../../lib/methods/writing/author-interview.md)并在本职责原权限与完成边界内采用。
 
