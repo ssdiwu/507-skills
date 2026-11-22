@@ -41,7 +41,7 @@
       "role": "secondary"
     },
     {
-      "contractSha256": "c6807207d9637ac6b5b7a1c80657dec67620ada00c19b4a3ebc91ec7071fb3bc",
+      "contractSha256": "4b6d96cb78a70f4de3f5992df3d6ba34e079b7b0697b96e9e029efd7a5810a2f",
       "description": "承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。主线未成立时补必要判断；已有目的、材料或成熟稿时直接成文或修改，保留作者声音和已确认内容，不重走采访与规划。",
       "entry": "507-create/SKILL.md",
       "name": "507-create",
