@@ -15,6 +15,19 @@ class LayoutTests(unittest.TestCase):
 
     def test_ci_uses_the_real_current_maintenance_entrypoints(self):
         workflow = (ROOT / '.github/workflows/tests.yml').read_text()
+        self.assertIn('gitleaks" git', workflow)
+        self.assertIn('--log-opts=-m', workflow)
+        self.assertIn('--redact=100', workflow)
+        self.assertIn('fetch-depth: 0', workflow)
+        self.assertIn('gitleaks_8.30.1_linux_x64.tar.gz', workflow)
+        self.assertIn('551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb', workflow)
+        self.assertIn('Scan commit history for secrets', workflow)
+        self.assertIn('python3 scripts/test_gitleaks_history.py', workflow)
+        self.assertLess(workflow.index('Scan commit history for secrets'),
+                        workflow.index('python scripts/package_skills.py check'))
+        security = (ROOT / 'SECURITY.md').read_text()
+        self.assertIn('gitleaks dir --redact=100 --no-banner --no-color .', security)
+        self.assertIn('不检查索引里的独立版本', security)
         self.assertIn('python scripts/package_skills.py check', workflow)
         self.assertLess(workflow.index('pip install -r requirements-package.txt'),
                         workflow.index('python scripts/package_skills.py check'))
