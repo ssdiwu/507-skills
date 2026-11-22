@@ -106,6 +106,12 @@
       "resources": "RESOURCES.md"
     },
     {
+      "name": "507-audit",
+      "source": "skills/507-audit",
+      "role": "main",
+      "resources": "RESOURCES.md"
+    },
+    {
       "name": "507-product-map",
       "source": "skills/507-product-map",
       "role": "secondary",

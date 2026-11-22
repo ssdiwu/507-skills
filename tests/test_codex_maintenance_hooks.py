@@ -57,6 +57,38 @@ class HookTests(unittest.TestCase):
         self.checker.write_text('package checker changed')
         self.assertNotEqual(hooks.fingerprint(), before)
 
+    def test_document_inputs_and_discovered_instructions_change_fingerprint(self):
+        before = hooks.fingerprint()
+        document = self.root / 'spec/507-rednote.md'
+        document.parent.mkdir(parents=True)
+        document.write_text('changed')
+        self.assertNotEqual(hooks.fingerprint(), before)
+        before = hooks.fingerprint()
+        instruction = self.root / 'nested/CLAUDE.md'
+        instruction.parent.mkdir()
+        instruction.write_text('instruction')
+        self.assertNotEqual(hooks.fingerprint(), before)
+
+    def test_removing_entry_link_target_changes_fingerprint(self):
+        (self.root / 'README.md').write_text('[license](LICENSE)\n')
+        license_file = self.root / 'LICENSE'
+        license_file.write_text('license')
+        before = hooks.fingerprint()
+        license_file.unlink()
+        self.assertNotEqual(hooks.fingerprint(), before)
+
+    def test_symlink_target_removal_and_special_target_do_not_hide_changes(self):
+        (self.root / 'README.md').write_text('[license](LICENSE)\n')
+        target = self.root / 'actual-license'
+        target.write_text('license')
+        (self.root / 'LICENSE').symlink_to(target.name)
+        before = hooks.fingerprint()
+        target.unlink()
+        self.assertNotEqual(hooks.fingerprint(), before)
+        (self.root / 'LICENSE').unlink()
+        os.mkfifo(self.root / 'LICENSE')
+        self.assertNotEqual(hooks.fingerprint(), before)
+
     def test_corrupt_cache_rebuilds_without_blocking_repairs(self):
         hooks.handle(self.event())
         state = next(self.cache.glob('507-*/' + '*.json'))
@@ -175,7 +207,18 @@ class HookTests(unittest.TestCase):
         shutil.copyfile(ROOT / 'packages.json', self.root / 'packages.json')
         shutil.copyfile(ROOT / 'scripts/package_skills.py', self.checker)
         shutil.copytree(ROOT / 'lib', self.root / 'lib', ignore=shutil.ignore_patterns('__pycache__','node_modules','dist'))
-        for entry in ('AGENTS.md', 'README.md', 'CONTRIBUTING.md', 'PROGRESS.md', 'skills/README.md', 'doc/README.md'):
+        for directory in ('doc/10-架构与运行', 'doc/30-独立审计', 'doc/决策档案'):
+            for source in (ROOT / directory).rglob('*.md'):
+                target = self.root / source.relative_to(ROOT)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text('# Maintained documentation fixture\n')
+        for entry in (
+            'AGENTS.md', 'README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'PRODUCT.md',
+            'DESIGN.md', 'GLOSSARY.md', 'CHANGELOG.md', 'PROGRESS.md',
+            'skills/README.md', 'lib/README.md', 'doc/README.md', 'spec/README.md',
+            'spec/507-rednote.md', 'spec/技能分层与共有资源.md',
+            'scripts/codex-maintenance-hooks.md',
+        ):
             document = self.root / entry
             document.parent.mkdir(parents=True, exist_ok=True)
             document.write_text('# Fixture entry\n')
@@ -195,9 +238,14 @@ class HookTests(unittest.TestCase):
         script = self.root / 'scripts/codex_maintenance_hooks.py'
         script.parent.mkdir(exist_ok=True)
         shutil.copyfile(ROOT / 'scripts/codex_maintenance_hooks.py', script)
+        shutil.copyfile(ROOT / 'scripts/package_skills.py', self.checker)
         result = subprocess.run([sys.executable, '-B', str(script)], input=json.dumps(self.event()), capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(result.stdout), {})
+        self.checker.write_text('invalid syntax !')
+        result = subprocess.run([sys.executable, '-B', str(script)], input=json.dumps(self.event()), capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn('技能维护钩子未完成检查', json.loads(result.stdout)['systemMessage'])
         config = json.loads((ROOT / 'templates/codex-maintenance-hooks.example.json').read_text())
         self.assertEqual(set(config['hooks']), {'Stop'})
 

@@ -27,3 +27,5 @@ python3 <共有库>/components/tools/projections/library_view.py --source-root <
 输入必须是普通文件，拒绝重复JSON键、重复身份、越界／软链／缺资源、消费者不一致、旧common/code/write实际SKILL清单缺项及保留方法没有当前消费者。成功为SOURCE_PROJECTED、exit0，输入错误为INPUT_ERROR、exit2。处置格式第 2 版从 `legacySnapshot.contracts` 核对旧 30 项原路径及 SHA-256，查询同时返回 `sourceRevision`。使用 `git show <sourceRevision>:<source>` 可读取原件。仓库的 `scripts/test_all.py` 另从固定提交核对这份清单与文件内容。现行文件和其后退役合同仍直接核对源码。上述检查，不替代打包检查、语义审查、宿主发现或业务效果。
 
 当前数据由真实清单生成，安装／发现由各自回执另核。历史85候选和旧试跑保持原版本，不随源码补强冒称已验证新版本。网页只消费组件输出；记录变化后重生成，布局和交互不足修改网页生成组件，再验证并重生成，不能直接编辑生成HTML。
+
+旧版本已迁走、后来又用于不同现行职责的同名入口，在处置源的 `historicalAliases` 登记固定提交、原路径、指纹与当时去向；查询仍优先现行声明，同时返回历史来源。投影校验格式及现行消费者，不联网读取历史原件；需要核验原件时按固定提交与指纹另查。

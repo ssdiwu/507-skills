@@ -2,14 +2,24 @@
 """Optional Codex adapter; never generates packages or installs hook configuration."""
 import fcntl
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
+import stat
 import subprocess
 import sys
 import tempfile
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def checker_module():
+    spec = importlib.util.spec_from_file_location('package_check_inputs', Path(__file__).with_name('package_skills.py'))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def digest(raw):
@@ -44,6 +54,20 @@ def fingerprint():
         paths.update(p for p in directory.rglob('*')
                      if not {'__pycache__','node_modules','dist'} & set(p.relative_to(ROOT).parts) and (p.is_file() or p.is_symlink()))
     paths.update(ROOT / p for p in ('packages.json', 'scripts/package_skills.py', 'scripts/codex_maintenance_hooks.py'))
+    checker_inputs = checker_module()
+    documents = checker_inputs.entry_documents(ROOT)
+    paths.update(ROOT / path for path in documents)
+    for relative in documents:
+        document = ROOT / relative
+        if not document.is_file() or document.is_symlink():
+            continue
+        for link, _ in checker_inputs.markdown_links(document.read_text(encoding='utf-8')):
+            parsed = urlsplit(link)
+            if parsed.scheme or parsed.netloc or not parsed.path or parsed.path.startswith('/'):
+                continue
+            target = Path(os.path.abspath(document.parent / unquote(parsed.path)))
+            if target.is_relative_to(ROOT):
+                paths.add(target)
     dispositions = ROOT / 'lib/catalog/registry/skill-dispositions.json'
     if dispositions.is_file() and not dispositions.is_symlink():
         try:
@@ -59,8 +83,22 @@ def fingerprint():
     for path in sorted(paths):
         if path.is_symlink():
             identity = 'symlink:' + os.readlink(path)
+            try:
+                target = path.resolve(strict=True)
+                if not target.is_relative_to(ROOT):
+                    identity += ':outside'
+                elif target.is_file():
+                    identity += ':file:' + digest(target.read_bytes())
+                else:
+                    identity += ':nonfile'
+            except (FileNotFoundError, RuntimeError):
+                identity += ':missing'
         elif not path.exists():
             identity = 'missing'
+        elif path.is_dir():
+            identity = 'directory'
+        elif not stat.S_ISREG(path.stat().st_mode):
+            identity = 'special:' + str(stat.S_IFMT(path.stat().st_mode))
         else:
             if not path.resolve().is_relative_to(ROOT):
                 raise ValueError('Input leaves repository through a symlink')
@@ -142,7 +180,7 @@ def main():
             event = {}
             raise ValueError('Hook input must be an object')
         result = handle(event)
-    except (OSError, ValueError, KeyError, TypeError) as error:
+    except (OSError, ValueError, KeyError, TypeError, SyntaxError, ImportError, RuntimeError) as error:
         message = '技能维护钩子未完成检查：' + str(error)
         # Adapter errors remain visible without modifying repository inputs.
         result = {'systemMessage': message}

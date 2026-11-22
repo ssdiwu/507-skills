@@ -13,6 +13,13 @@
       "role": "main"
     },
     {
+      "contractSha256": "a028de95bcd1f073c71a2f34f614fefe2cfab03c3e648b63fc7433fb8bbedbe4",
+      "description": "盘点项目现行规则与已有检查，将适合机器判断的要求落实为静态检查、测试或构建门禁。按授权实施并用正反例验证；只读盘点不修改，无法可靠自动判断的部分保留人工核验。",
+      "entry": "507-audit/SKILL.md",
+      "name": "507-audit",
+      "role": "main"
+    },
+    {
       "contractSha256": "7aa3b4e78f6e0d9f3cf6408e236138b703ce44a2a4b1e96d845652e7dab2b1c5",
       "description": "在指定模块内查找并清理死代码、重复逻辑和失效规则，保持已有功能，默认先只读列清单。重构先核范围内行为规格，单文件超过800行先出拆分方案；新增功能、明确故障和交付审查各按原任务处理。",
       "entry": "507-clean/SKILL.md",
@@ -176,6 +183,25 @@
   ],
   "kind": "skill-declarations",
   "legacy": [
+    {
+      "consumers": [
+        "507-review"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-audit",
+      "reason": "旧版交付审查先迁至507-review；现行同名入口负责项目规则与自动检查，职责不同。",
+      "retained": [
+        "根据已确认要求独立审查交付，报告发现与证据边界。"
+      ],
+      "source": "code/507-audit/SKILL.md",
+      "sourceRevision": "4d165e56aaaf8dfb909ac0a78d0cee2b6ac4f520",
+      "sourceSha256": "4e157b662c73a5057e413629df37070f35a71d199cc9305c3a18d0b6df25b189",
+      "targets": [
+        "skills/507-review/SKILL.md"
+      ],
+      "verification": "固定版本和指纹用于追溯历史；当前入口、安装与实际审查各自验证。"
+    },
     {
       "consumers": [
         "507-why",

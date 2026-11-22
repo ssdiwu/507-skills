@@ -14,16 +14,31 @@ import tempfile
 from urllib.parse import unquote, urlsplit
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
-SKILL_NAMES = {'skill-design','507-what','507-why','507-how','507-create','507-work','507-material','507-adapt','507-spec','507-do','507-review','507-issue','507-coordinate','507-deliver','507-retro','507-setup','507-product-map','507-clean','507-plan','507-visualize','507-demo','507-domain','507-synthesize','507-coach'}
+SKILL_NAMES = {'skill-design','507-what','507-why','507-how','507-create','507-work','507-material','507-adapt','507-spec','507-do','507-review','507-issue','507-coordinate','507-deliver','507-retro','507-setup','507-audit','507-product-map','507-clean','507-plan','507-visualize','507-demo','507-domain','507-synthesize','507-coach'}
 DISPOSITIONS = 'lib/catalog/registry/skill-dispositions.json'
 ENTRY_DOCUMENTS = (
     'AGENTS.md',
     'README.md',
     'CONTRIBUTING.md',
+    'SECURITY.md',
+    'PRODUCT.md',
+    'DESIGN.md',
+    'GLOSSARY.md',
+    'CHANGELOG.md',
     'PROGRESS.md',
     'skills/README.md',
     'lib/README.md',
     'doc/README.md',
+    'spec/README.md',
+    'spec/507-rednote.md',
+    'spec/技能分层与共有资源.md',
+    'scripts/codex-maintenance-hooks.md',
+)
+EXTERNAL_LINK_SCHEMES = {'http','https','mailto'}
+MAINTAINED_DOCUMENT_ROOTS = (
+    'doc/10-架构与运行',
+    'doc/30-独立审计',
+    'doc/决策档案',
 )
 class PackageError(ValueError):
     pass
@@ -166,17 +181,21 @@ def validate_package(base,name,collection_root=None,declared=None,uses=None):
         if rel.endswith('.md') and digest(raw.strip()) in common_hashes:
             raise PackageError(name+': verbatim shared text copy is prohibited: '+rel)
         if not rel.endswith('.md'):continue
-        for link in re.findall(r'\[[^\]]*\]\(([^)]+)\)',raw.decode()):
-            parsed=urlsplit(link.strip('<>'))
-            if parsed.scheme in ['http','https','mailto'] or link.startswith('#'):continue
-            if parsed.scheme or parsed.path.startswith('/'):raise PackageError('Unsupported absolute reference: '+link)
+        for link,line in markdown_links(raw.decode()):
+            parsed=urlsplit(link)
+            if parsed.scheme in EXTERNAL_LINK_SCHEMES:continue
+            if parsed.scheme or parsed.netloc or parsed.path.startswith('/'):
+                raise PackageError(f'Unsupported absolute reference: {rel}:{line} -> {link}')
+            if not parsed.path:continue
             target=((base/rel).parent/unquote(parsed.path)).resolve()
-            if not target.is_relative_to(collection_root.resolve()):raise PackageError('Reference escapes collection: '+link)
-            if not target.is_file():raise PackageError('Missing collection reference: '+str(target))
+            if not target.is_relative_to(collection_root.resolve()):
+                raise PackageError(f'Reference escapes collection: {rel}:{line} -> {link}')
+            if not target.is_file():
+                raise PackageError(f'Missing collection reference: {rel}:{line} -> {link}')
             if uses is not None and target.is_relative_to(collection_root/'lib'):
                 dependency=target.relative_to(collection_root).as_posix()
                 if dependency not in uses:
-                    raise PackageError(name+': Undeclared direct shared reference: '+dependency+' in '+rel)
+                    raise PackageError(f'{name}: Undeclared direct shared reference: {dependency} in {rel}:{line}')
     return payload
 
 def library_module(root):
@@ -229,6 +248,7 @@ def link_parser():
         raise PackageError('Install package check dependencies: python3 -m pip install -r requirements-package.txt') from error
 
     parser = MarkdownIt('commonmark').enable('table')
+    parser.validateLink = lambda url: True
     parser.inline.ruler.at('link', record_link_line(link, 'link_open'))
     parser.inline.ruler.at('image', record_link_line(image, 'image'))
     return parser
@@ -244,9 +264,39 @@ def markdown_links(text):
                 yield token.attrs[attribute], block.map[0] + token.meta['line_offset'] + 1
 
 
+def project_instruction_documents(root):
+    ignored_directories={'.git','.venv','__pycache__','dist','node_modules'}
+    documents=[]
+    for current,directories,files in os.walk(root):
+        current_parts=Path(current).relative_to(root).parts
+        directories[:]=[
+            name for name in directories
+            if name not in ignored_directories
+            and not (not current_parts and name=='archive')
+            and not (current_parts==('doc',) and name=='90-归档')
+            and not (current_parts[:2]==('doc','20-能力参考') and name.startswith('upstream-'))
+        ]
+        for name in ('AGENTS.md','CLAUDE.md'):
+            if name in files:
+                documents.append((Path(current)/name).relative_to(root).as_posix())
+    return documents
+
+
+def entry_documents(root):
+    documents=sorted(set(ENTRY_DOCUMENTS)|set(project_instruction_documents(root)))
+    for relative in MAINTAINED_DOCUMENT_ROOTS:
+        directory=within(root,relative)
+        documents.extend(
+            path.relative_to(root).as_posix()
+            for path in directory.rglob('*.md')
+            if path.is_file()
+        )
+    return sorted(set(documents))
+
+
 def check_entry_links(root):
     collection_root=root.resolve()
-    for rel in ENTRY_DOCUMENTS:
+    for rel in entry_documents(root):
         document=within(root,rel,True)
         try:
             text=document.read_text(encoding='utf-8')

@@ -20,13 +20,18 @@ class CollectionTests(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)/'collection';self.root.mkdir()
   config=json.loads((ROOT/'packages.json').read_text())
   paths={e['source']+'/'+p for e in pack.load_manifest(ROOT) for p in e['files']}|set(config['sharedFiles'])|{'packages.json','lib/catalog/catalog.json',pack.DISPOSITIONS,*pack.ENTRY_DOCUMENTS}
-  decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions.get('retired',[])}
+  paths|={path.relative_to(ROOT).as_posix() for directory in pack.MAINTAINED_DOCUMENT_ROOTS for path in (ROOT/directory).rglob('*.md')}
+  decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions.get('retired',[]) if 'sourceRevision' not in r}
   for rel in paths:
    q=self.root/rel;q.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/rel,q)
   for rel in pack.ENTRY_DOCUMENTS:
    if rel=='lib/README.md':
     continue
    (self.root/rel).write_text('# Entry fixture\n\n[external](https://example.com) [anchor](#entry-fixture)\n')
+  for directory in pack.MAINTAINED_DOCUMENT_ROOTS:
+   for source in (ROOT/directory).rglob('*.md'):
+    relative=source.relative_to(ROOT)
+    (self.root/relative).write_text('# Maintained documentation fixture\n')
  def call(self,action='check',ok=True,extra=()):
   r=subprocess.run([sys.executable,str(SCRIPT),action,'--root',str(self.root),*map(str,extra)],cwd=self.tmp.name,capture_output=True,text=True)
   self.assertEqual(r.returncode,0 if ok else 1,r.stdout+r.stderr);return json.loads(r.stdout if ok else r.stderr)
@@ -322,6 +327,66 @@ class CollectionTests(unittest.TestCase):
   error=self.call(ok=False)['error']
   self.assertIn('Entry document link escapes collection: PROGRESS.md:',error)
   progress.write_text(original)
+ def test_current_specs_and_nested_agent_instructions_are_link_checked(self):
+  self.assertIn('spec/README.md',pack.ENTRY_DOCUMENTS)
+  self.assertIn('spec/507-rednote.md',pack.ENTRY_DOCUMENTS)
+  spec_document=self.root/'spec/507-rednote.md'
+  spec_document.write_text('# Spec\n\n[missing](missing.md)\n')
+  with self.assertRaisesRegex(pack.PackageError,r'Missing entry document link: spec/507-rednote\.md:3'):
+   pack.check_entry_links(self.root)
+  spec_document.write_text('# Spec\n')
+  instruction=self.root/'.claude/CLAUDE.md'
+  instruction.parent.mkdir()
+  instruction.write_text('# Instructions\n\n[missing](missing.md)\n')
+  with self.assertRaisesRegex(pack.PackageError,r'Missing entry document link: \.claude/CLAUDE\.md:3'):
+   pack.check_entry_links(self.root)
+  instruction.unlink()
+  instruction.parent.rmdir()
+  project_instruction=self.root/'examples/upstream-docs/CLAUDE.md'
+  project_instruction.parent.mkdir(parents=True)
+  project_instruction.write_text('# Project instructions\n\n[missing](missing.md)\n')
+  with self.assertRaisesRegex(pack.PackageError,r'Missing entry document link: examples/upstream-docs/CLAUDE\.md:3'):
+   pack.check_entry_links(self.root)
+  project_instruction.unlink()
+  project_instruction.parent.rmdir()
+  rationale=self.root/'doc/10-架构与运行/README.md'
+  rationale.write_text('# Rationale\n\n[missing](missing.md)\n')
+  with self.assertRaisesRegex(pack.PackageError,r'Missing entry document link: doc/10-架构与运行/README\.md:3'):
+   pack.check_entry_links(self.root)
+  rationale.write_text('# Rationale\n')
+  upstream=self.root/'doc/20-能力参考/reference/upstream-abc123/CLAUDE.md'
+  upstream.parent.mkdir(parents=True)
+  upstream.write_text('# Upstream instructions\n\n[missing](missing.md)\n')
+  pack.check_entry_links(self.root)
+  archived=self.root/'archive/CLAUDE.md'
+  archived.parent.mkdir()
+  archived.write_text('# Historical instructions\n\n[missing](missing.md)\n')
+  pack.check_entry_links(self.root)
+ def test_skill_markdown_links_use_markdown_tokens_and_report_usage_line(self):
+  entry=next(item for item in pack.load_manifest(self.root) if item['name']=='507-demo')
+  skill=self.root/'skills/507-demo/SKILL.md'
+  original=skill.read_text()
+  skill.write_text(original+'\n```md\n[code](references/missing.md)\n```\n`[inline](references/missing.md)`\n\\[escaped](references/missing.md)\n[external](https://example.com)\n')
+  pack.validate_package(
+   self.root/'skills/507-demo','507-demo',self.root,entry['files'],entry['uses']
+  )
+  broken='[guide][missing]\n\n[missing]: references/missing.md\n'
+  skill.write_text(original+'\n'+broken)
+  usage_line=skill.read_text().splitlines().index('[guide][missing]')+1
+  with self.assertRaisesRegex(
+   pack.PackageError,
+   rf'Missing collection reference: SKILL\.md:{usage_line} -> references/missing\.md',
+  ):
+   pack.validate_package(
+    self.root/'skills/507-demo','507-demo',self.root,entry['files'],entry['uses']
+   )
+  for reference in ('ftp://example.com/file', '//example.com/file', 'file:///private/example'):
+   skill.write_text(original+f'\n[unsupported]({reference})\n')
+   with self.assertRaisesRegex(pack.PackageError,r'Unsupported absolute reference: SKILL\.md:'):
+    pack.validate_package(
+     self.root/'skills/507-demo','507-demo',self.root,entry['files'],entry['uses']
+    )
+  skill.write_text(original)
  def test_frontmatter_cannot_be_replaced_by_body_text(self):
   p=self.root/'skills/507-demo/SKILL.md';p.write_text(p.read_text().removeprefix('---\n'))
   self.assertIn('frontmatter',self.call(ok=False)['error'])
