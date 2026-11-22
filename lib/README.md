@@ -8,6 +8,28 @@ lib 是所有技能共同使用的一份资源库，不是技能入口，也不�
 
 ## 定位和依赖
 
+### 查定义与决定
+
+按技能给定的条件执行时直接继续。两个名称容易混淆时先查定义。准备合并对象、更改默认行为或撤销规则时，再核原决定的取舍及后继记录。有同版源码时从仓库的 `doc/README.md` 进入。仅持有安装集合时，可按下表打开已核对版本的仓库原文。离线且缺少原文时，沿已知合同执行，待能核实理由后再评议变更。
+
+| 要核对的内容 | 仓库原文 |
+| --- | --- |
+| 对象定义、当前职责及验收要求 | [术语表](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/GLOSSARY.md) · [规格入口](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/spec/README.md) |
+| 连续文章与逐页摘要的内容单位 | [0015 图文取舍](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/doc/决策档案/0015-小红书图文区分连续文章与视觉摘要.md) |
+| 本地提交与外部发布的权限 | [0010 可逆性](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/doc/决策档案/0010-commit与release按可逆性边界拆分.md) · [0021 入口整合](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/doc/决策档案/0021-同职责入口按权限与产物分流.md) |
+| 技能分层、验收分工与资源归属 | [分层依据](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/doc/10-架构与运行/技能分层设计依据.md) · [0025 共有资源归属](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/doc/决策档案/0025-按用途组织共有资源库.md) |
+| 存量规格应保留在哪里 | [0020 规格归属与迁移取舍](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/doc/决策档案/0020-现行规格独立维护与存量项目迁移.md) |
+
+查完理由后，回到这份安装集合的执行合同：
+
+| 要判断的工作 | 本版技能 | 对应定义或规格 |
+| --- | --- | --- |
+| 全文排版或提炼摘要 | [成稿适配](../skills/507-adapt/SKILL.md) | [作品术语](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/GLOSSARY.md#跨任务与作品术语) · [图文内容模式与验收](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/spec/507-rednote.md) |
+| 提交或对外发布 | [软件交付](../skills/507-deliver/SKILL.md) | [操作授权](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/GLOSSARY.md#分层与共有资源) |
+| 合并入口或转移共有方法 | [技能设计](../skills/skill-design/SKILL.md) | [分层与共有资源规格](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/spec/技能分层与共有资源.md) |
+| 自查或独立验收 | [独立审查](../skills/507-review/SKILL.md) | [验收职责](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/GLOSSARY.md#会话分层与验收职责) |
+| 从旧方案中辨认仍有效的要求并迁入规格 | [规格整理](../skills/507-spec/SKILL.md) · [项目依据维护](../skills/507-setup/SKILL.md) | [规格入口](https://github.com/ssdiwu/507-skills/blob/b119782d741521d5cdce5dd969a873758b21a8e3/spec/README.md) |
+
 ### 阶段返回
 
 持有原任务的执行者在局部修订、提交或审查完成，准备切回已约定的下一阶段时，若当前任务已指定交接文档，重新打开其现行版本，核对本轮用户修订、实际产物、剩余交付及授权。已完成项以产物为据，条件已满足的事项直接继续，待用户决定的事项保留到相应步骤。交接中的新增动作沿用本轮授权边界。没有指定交接时沿用当前请求、上下文和实际产物；单项任务完成即可结束。交接无法读取时说明影响并继续独立可做的事项。

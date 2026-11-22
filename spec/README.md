@@ -7,4 +7,6 @@
 | [技能分层与共有资源](技能分层与共有资源.md) | 任务入口、工作能力、共有资源、集合安装与验收边界 | [现行技能](../skills/README.md)、[共有资源](../lib/README.md)、[验证记录](../PROGRESS.md) |
 | [507-rednote](507-rednote.md) | 连续文章、视觉摘要、本地工作台、单一 DOM 分页与同源导出的产品要求 | [技能入口](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/write/507-rednote/SKILL.md)、[运行说明](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/write/507-rednote/README.md) |
 
-目标要求、当前实现和实际验收分别成立。需要改变产品行为时先更新对应规格；版本交付安排与取舍理由进入 doc，来源历史保留在 Git。
+图文规格的旧技能链接用于复查原实现。现在处理成熟文章由[成稿适配](../skills/507-adapt/SKILL.md)承接；具体分页工具和导出能力按实际环境核验。
+
+目标要求、当前实现和实际验收分别成立。修订规格时先核对[术语定义](../GLOSSARY.md)和[相关决定](../doc/README.md#从实际问题找依据)，更新受影响的技能或工具入口，再从[验证记录](../PROGRESS.md)核对已覆盖的版本与行为。版本交付安排与取舍理由进入 doc，来源历史保留在 Git。

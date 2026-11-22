@@ -20,7 +20,7 @@ class CollectionTests(unittest.TestCase):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)/'collection';self.root.mkdir()
   config=json.loads((ROOT/'packages.json').read_text())
   paths={e['source']+'/'+p for e in pack.load_manifest(ROOT) for p in e['files']}|set(config['sharedFiles'])|{'packages.json','lib/catalog/catalog.json',pack.DISPOSITIONS,*pack.ENTRY_DOCUMENTS}
-  decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions.get('retired',[])}
+  decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions.get('retired',[]) if 'sourceRevision' not in r}
   for rel in paths:
    q=self.root/rel;q.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/rel,q)
   for rel in pack.ENTRY_DOCUMENTS:

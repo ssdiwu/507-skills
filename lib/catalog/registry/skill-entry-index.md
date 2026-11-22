@@ -6,7 +6,7 @@
 {
   "current": [
     {
-      "contractSha256": "08265ae1f3507871865541933865baa0f06488bad19469e1124b59204978085a",
+      "contractSha256": "20e8a8d0dc3138973e00049ae07866f3b71dfc717ecc2ffd50e24d9cc1a3f20d",
       "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
@@ -256,6 +256,7 @@
         "单处无适用组件留在原地；保留原操作授权、行为、原页面验证与返回"
       ],
       "source": "doc/90-归档/技能/507-component/SKILL.md",
+      "sourceRevision": "b119782d741521d5cdce5dd969a873758b21a8e3",
       "sourceSha256": "96c729cd5b53e6bd5049ef85489c55b3261162fb327a4aa9efd1da7b43077c0f",
       "targets": [
         "skills/507-do/SKILL.md",
@@ -282,6 +283,7 @@
         "内容检查与已请求载体的相称验证"
       ],
       "source": "doc/90-归档/技能/507-compose/SKILL.md",
+      "sourceRevision": "b119782d741521d5cdce5dd969a873758b21a8e3",
       "sourceSha256": "c67ff3da93d0ee898b1b8679d50856f641c62082c65f5968c4f96fad154ae928",
       "targets": [
         "skills/507-create/SKILL.md",
@@ -624,6 +626,7 @@
         "独立审查、原任务返回和失败保全"
       ],
       "source": "doc/90-归档/技能/507-implement/SKILL.md",
+      "sourceRevision": "b119782d741521d5cdce5dd969a873758b21a8e3",
       "sourceSha256": "8d5a4790a1563125e0a10544af07e87d51ff4b23ed0c532b513c7ade86aee994",
       "targets": [
         "skills/507-do/SKILL.md",
@@ -1390,6 +1393,7 @@
         "真实中断接续、独立协作及结果验收的原有边界"
       ],
       "source": "doc/90-归档/技能/507-work-update/SKILL.md",
+      "sourceRevision": "b119782d741521d5cdce5dd969a873758b21a8e3",
       "sourceSha256": "8d3ce8e08c26d769d978e6da057728b5f55042af09010cc65a8086906ab6e7e0",
       "targets": [
         "skills/507-work/SKILL.md",

@@ -766,7 +766,8 @@
         {
           "path": "doc/90-归档/技能/507-fix/SKILL.md",
           "startLine": null,
-          "endLine": null
+          "endLine": null,
+          "revision": "b119782d741521d5cdce5dd969a873758b21a8e3"
         }
       ],
       "implementation": "SOURCE_IMPLEMENTED",
@@ -1756,7 +1757,9 @@
       "consumers": [
         "507-create"
       ],
-      "verification": "原独审及首次证据保持原身份；本次合并的包检查和独审另记，不继承自然任务效果结论。"
+      "verification": "原独审及首次证据保持原身份；本次合并的包检查和独审另记，不继承自然任务效果结论。",
+      "sourceRevision": "b119782d741521d5cdce5dd969a873758b21a8e3",
+      "sourceSha256": "c67ff3da93d0ee898b1b8679d50856f641c62082c65f5968c4f96fad154ae928"
     },
     {
       "id": "507-implement",
@@ -1783,7 +1786,9 @@
       "consumers": [
         "507-do"
       ],
-      "verification": "本次源码、包闭包及独审另记；原首次、反馈与旧独审不重归类。"
+      "verification": "本次源码、包闭包及独审另记；原首次、反馈与旧独审不重归类。",
+      "sourceRevision": "b119782d741521d5cdce5dd969a873758b21a8e3",
+      "sourceSha256": "8d5a4790a1563125e0a10544af07e87d51ff4b23ed0c532b513c7ade86aee994"
     },
     {
       "id": "507-work-update",
@@ -1811,7 +1816,9 @@
       "consumers": [
         "507-work"
       ],
-      "verification": "原包、首次及旧独审保留原身份；本次源码、包检查与独审另记，不继承自然任务采用结论。"
+      "verification": "原包、首次及旧独审保留原身份；本次源码、包检查与独审另记，不继承自然任务采用结论。",
+      "sourceRevision": "b119782d741521d5cdce5dd969a873758b21a8e3",
+      "sourceSha256": "8d3ce8e08c26d769d978e6da057728b5f55042af09010cc65a8086906ab6e7e0"
     },
     {
       "id": "507-component",
@@ -1837,7 +1844,9 @@
       "consumers": [
         "507-do"
       ],
-      "verification": "原入口全包及历史首次证据保持原身份；本次源码、独审和安装另记，不继承真实任务采用或效率结论。"
+      "verification": "原入口全包及历史首次证据保持原身份；本次源码、独审和安装另记，不继承真实任务采用或效率结论。",
+      "sourceRevision": "b119782d741521d5cdce5dd969a873758b21a8e3",
+      "sourceSha256": "96c729cd5b53e6bd5049ef85489c55b3261162fb327a4aa9efd1da7b43077c0f"
     }
   ]
 }

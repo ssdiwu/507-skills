@@ -149,6 +149,19 @@ class LibraryTests(unittest.TestCase):
   row['source']='doc/90-归档/技能/retired/SKILL.md';row['consumers']=['missing']
   with self.assertRaisesRegex(ValueError,'current consumer'):self.run_projection()
 
+ def test_fixed_retired_source_survives_local_removal(self):
+  row,archive=self.add_retired()
+  row.update(sourceRevision='a'*40,sourceSha256=library.sha(archive.read_bytes()))
+  archive.unlink()
+  projected=self.run_projection()['legacy'][-1]
+  self.assertEqual(projected['sourceSha256'],row['sourceSha256'])
+  self.assertEqual(projected['sourceRevision'],row['sourceRevision'])
+  for field in ('sourceRevision','sourceSha256'):
+   with self.subTest(field=field):
+    original=row[field];row[field]='invalid'
+    with self.assertRaisesRegex(ValueError,'source snapshot'):self.run_projection()
+    row[field]=original
+
  def write_index(self,index=None):
   index=index or library.skill_index(self.run_projection())
   path=self.root/'index.md';path.write_text(library.index_markdown(index));return path

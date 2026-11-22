@@ -181,6 +181,8 @@ class HookTests(unittest.TestCase):
             document.write_text('# Fixture entry\n')
         ledger = json.loads((self.root / 'lib/catalog/registry/skill-dispositions.json').read_text())
         for row in ledger.get('retired', []):
+            if 'sourceRevision' in row:
+                continue
             target = self.root / row['source']
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / row['source'], target)
