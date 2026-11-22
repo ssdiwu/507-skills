@@ -23,6 +23,8 @@ flowchart LR
 
 图中按角色和产物归组。每个实际技能目录用 `SKILL.md` 说明采用条件、工作动作和完成标准，用 `RESOURCES.md` 声明依赖，用 `agents/openai.yaml` 提供宿主展示信息。有专用方法的技能将其放在自己的 `references/`。例如 `507-work` 有事项推进和状态视图两份专用说明，`507-plan` 直接在主文说明计划如何完成。
 
+Codex 中文展示名在 `agents/openai.yaml` 的 `display_name` 中统一使用 `507-` 前缀，例如 `507-规则自动检查`。调用标识沿用 `SKILL.md` 中的 `name`，例如 `$507-audit`。
+
 | 实际入口 | 独有责任 |
 | --- | --- |
 | [skill-design](skill-design/SKILL.md) | 技能设计、编写与指定技能指令审计 |
