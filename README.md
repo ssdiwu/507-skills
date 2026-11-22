@@ -82,6 +82,7 @@ git clone https://github.com/ssdiwu/507-skills.git
 从仓库根运行以下命令。将 `TASK_DIR` 设置为本次任务的库外目录。也可以在任务目录中通过绝对路径调用构建器，默认产物写入该目录下的 `dist/`。
 
 ```sh
+python3 -m pip install -r requirements-package.txt
 python3 -B scripts/package_skills.py build --output "${TASK_DIR:?请设置任务目录}/dist"
 ```
 

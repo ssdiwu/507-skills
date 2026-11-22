@@ -19,10 +19,14 @@ class CollectionTests(unittest.TestCase):
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)/'collection';self.root.mkdir()
   config=json.loads((ROOT/'packages.json').read_text())
-  paths={e['source']+'/'+p for e in pack.load_manifest(ROOT) for p in e['files']}|set(config['sharedFiles'])|{'packages.json','lib/catalog/catalog.json',pack.DISPOSITIONS}
+  paths={e['source']+'/'+p for e in pack.load_manifest(ROOT) for p in e['files']}|set(config['sharedFiles'])|{'packages.json','lib/catalog/catalog.json',pack.DISPOSITIONS,*pack.ENTRY_DOCUMENTS}
   decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions.get('retired',[])}
   for rel in paths:
    q=self.root/rel;q.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/rel,q)
+  for rel in pack.ENTRY_DOCUMENTS:
+   if rel=='lib/README.md':
+    continue
+   (self.root/rel).write_text('# Entry fixture\n\n[external](https://example.com) [anchor](#entry-fixture)\n')
  def call(self,action='check',ok=True,extra=()):
   r=subprocess.run([sys.executable,str(SCRIPT),action,'--root',str(self.root),*map(str,extra)],cwd=self.tmp.name,capture_output=True,text=True)
   self.assertEqual(r.returncode,0 if ok else 1,r.stdout+r.stderr);return json.loads(r.stdout if ok else r.stderr)
@@ -72,6 +76,13 @@ class CollectionTests(unittest.TestCase):
  def test_build_refuses_bad_sources_and_preserves_existing_delivery(self):
   output=Path(self.tmp.name)/'delivery'
   bundle=Path(self.call('build',extra=['--output',output])['path']);before=pack.file_map(bundle)
+  progress=self.root/'PROGRESS.md';original_progress=progress.read_text()
+  progress.write_text('First paragraph line.\n[broken](missing.md)\n')
+  self.assertEqual(self.call('build',ok=False,extra=['--output',output])['error'],
+                   'Missing entry document link: PROGRESS.md:2 -> missing.md')
+  self.assertEqual({path.name for path in output.iterdir()},{bundle.name})
+  self.assertEqual(pack.file_map(bundle),before)
+  progress.write_text(original_progress)
   manifest_path=self.root/'skills/507-demo/RESOURCES.md';original=manifest_path.read_bytes()
   for case in ['private-code','marked-copy','unmarked-copy','missing-dependency']:
    with self.subTest(case=case):
@@ -155,6 +166,162 @@ class CollectionTests(unittest.TestCase):
    p=self.root/rel;raw=p.read_bytes();saved=Path(self.tmp.name)/'saved';saved.write_bytes(raw);p.unlink();p.symlink_to(saved);self.assertIn('Symlink',self.call(ok=False)['error']);p.unlink();p.write_bytes(raw)
  def test_stale_contract_index_is_detected(self):
   p=self.root/'skills/507-adapt/SKILL.md';p.write_text(p.read_text()+'\nScoped contract change.\n');self.assertIn('Stale skill-entry',self.call(ok=False)['error'])
+ def test_entry_document_relative_links_are_checked_with_locations(self):
+  progress=self.root/'PROGRESS.md';original=progress.read_text()
+  for path in ['lib/methods/prompt-instruction-audit.md','lib/skill-resource-map.md']:
+   with self.subTest(path=path):
+    progress.write_text(original+f'\n[historical broken entry link]({path})\n')
+    error=self.call(ok=False)['error']
+    self.assertEqual(error,f'Missing entry document link: PROGRESS.md:{original.count(chr(10))+2} -> {path}')
+  progress.write_text(original+'\n[broken entry link](lib/missing-entry.md)\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n```md\nThis is a code example:\n[code example](lib/missing-entry.md)\n```\n`[inline code](lib/missing-entry.md)`\n[unused reference]: lib/missing-entry.md\n')
+  self.call()
+  progress.write_text(original+'\n> ```md\n> [example](lib/missing-entry.md)\n> ```\n\n- ```md\n  [example](lib/missing-entry.md)\n  ```\n')
+  self.call()
+  progress.write_text(original+'\n![alt [text](lib/missing-entry.md)](https://example.com/image.png)\n')
+  self.call()
+  progress.write_text(original+'\n[Guide] (lib/missing-entry.md)\n\n    [indented code](lib/missing-entry.md)\n')
+  self.call()
+  progress.write_text(original+'\n`single marker\n\n[visible broken link](lib/missing-entry.md)\n\nanother marker`\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\nRun `check` and read [guide](lib/missing-entry.md).\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\nRun `check`, read [guide](lib/missing-entry.md), then run `build`.\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n`[code example](lib/missing-entry.md)\n2. continued`\n')
+  self.call()
+  progress.write_text(original+'\n`single\n[visible before divider](lib/missing-entry.md)\n***\n` another marker\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\nA literal ` and [guide](lib/missing-entry.md).\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n`[code example](lib/missing-entry.md)\\`\n')
+  self.call()
+  progress.write_text(original+'\n`[code example](lib/missing-entry.md)\nclosing`<!-- comment -->\n')
+  self.call()
+  progress.write_text(original+'\n`single\n[visible after opener](lib/missing-entry.md)\n<!-- ` -->\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n`single\n[visible after opener](lib/missing-entry.md)\n> ` -->\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n`single\n[visible before comment](lib/missing-entry.md)\n<!-- comment\n` -->\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n`single\n[visible before comment](lib/missing-entry.md)\n<!-- comment\n-->\n`\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n`single\n[visible before comment](lib/missing-entry.md)\n<!-- note -->\n`\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n`single\n[visible before quote](lib/missing-entry.md)\n> `\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n> `[quoted code](lib/missing-entry.md)\n> closes`\n')
+  self.call()
+  progress.write_text(original+'\n> `[quoted code](lib/missing-entry.md)\ncloses`\n')
+  self.call()
+  progress.write_text(original+'\n> `single\n> [visible outer quote](lib/missing-entry.md)\n>> `\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n## Example `[guide](lib/missing-entry.md)`\n')
+  self.call()
+  progress.write_text(original+'\n`<!--`\n\n[visible after inline code](lib/missing-entry.md)\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n    <!--\n    [indented code](lib/missing-entry.md)\n\n[visible after indented code](lib/missing-entry.md)\n')
+  visible_line=progress.read_text().splitlines().index('[visible after indented code](lib/missing-entry.md)')+1
+  self.assertIn(f'PROGRESS.md:{visible_line} -> lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n-   list item `code\n    [list continuation code](lib/missing-entry.md)\n    closing`\n')
+  self.call()
+  progress.write_text(original+'\n- `\n- [visible list link](lib/missing-entry.md)\n- `\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n# `\n[visible heading link](lib/missing-entry.md)\n# `\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n<!--\n~~~\n-->\n[visible broken link](lib/missing-entry.md)\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n```html\n<!--\n```\n[visible after code](lib/missing-entry.md)\n\n<!-- ordinary comment -->\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n-   list item\n\n    [list link](lib/missing-entry.md)\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n-   list item\n\n        [list code](lib/missing-entry.md)\n')
+  self.call()
+  progress.write_text(original+'\n    - [indented code list](lib/missing-entry.md)\n')
+  self.call()
+  progress.write_text(original+'\n-   list item\n\n    ~~~md\n    [fenced list code](lib/missing-entry.md)\n    ~~~\n')
+  self.call()
+  progress.write_text(original+'\n\t[tab indented code](lib/missing-entry.md)\n')
+  self.call()
+  progress.write_text(original+'\n-   list item\n\n~~~md\n[standalone fence](lib/missing-entry.md)\n~~~\n\n[after fence](lib/missing-entry.md)\n')
+  trailing_line=progress.read_text().splitlines().index('[after fence](lib/missing-entry.md)')+1
+  self.assertIn(f'PROGRESS.md:{trailing_line} -> lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n-   list item\n\n    ~~~md\n    [list fence code](lib/missing-entry.md)\n[after unclosed list fence](lib/missing-entry.md)\n')
+  trailing_line=progress.read_text().splitlines().index('[after unclosed list fence](lib/missing-entry.md)')+1
+  self.assertIn(f'PROGRESS.md:{trailing_line} -> lib/missing-entry.md',self.call(ok=False)['error'])
+  progress.write_text(original+'\n-   parent item\n\n    - nested item\n\n    [parent list link](lib/missing-entry.md)\n')
+  self.assertIn('lib/missing-entry.md',self.call(ok=False)['error'])
+  broken_references=[
+   ('[broken reference][missing-target]\n\n[missing-target]: lib/missing-reference.md','lib/missing-reference.md'),
+   ('[broken reference][missing-target]\n\n[missing-target]:\n  lib/missing-reference.md','lib/missing-reference.md'),
+   ('[broken reference][missing-target]\n\n[missing-target]:\nlib/missing-reference.md','lib/missing-reference.md'),
+   ('[broken [nested label]](lib/missing-reference.md)','lib/missing-reference.md'),
+   ('[outer [inner](lib/missing-reference.md)](README.md)','lib/missing-reference.md'),
+   ('[outer [inner][ref]](README.md)\n\n[ref]: lib/missing-reference.md','lib/missing-reference.md'),
+   ('[![image](https://example.com/image.png)](lib/missing-reference.md)','lib/missing-reference.md'),
+   ('- ```bad` [actual](lib/missing-reference.md)','lib/missing-reference.md'),
+   ('> [ref]: lib/missing-reference.md\n\n[ref]','lib/missing-reference.md'),
+   ('See [details: [guide](lib/missing-reference.md)].','lib/missing-reference.md'),
+   ('See [details: ![guide](lib/missing-reference.png)].','lib/missing-reference.png'),
+   ('[broken](lib/missing(reference).md)','lib/missing(reference).md'),
+   ('[broken](lib/missing-reference.md (title))','lib/missing-reference.md'),
+   ('[duplicate reference][same]\n\n[same]: lib/missing-reference.md\n[same]: README.md','lib/missing-reference.md'),
+  ]
+  for reference,missing_path in broken_references:
+   with self.subTest(reference=reference):
+    progress.write_text(original+'\n'+reference+'\n')
+    self.assertIn(missing_path,self.call(ok=False)['error'])
+  progress.write_text(original+'\n[external](https://example.com) [same page](#current)\n')
+  self.call()
+  progress.write_text(original)
+ def test_shared_markdown_link_scanner_ignores_code_and_checks_nested_images(self):
+  document=self.root/'lib/methods/README.md';original=document.read_text()
+  document.write_text(original+'\n`[code example](missing.md)`\n')
+  self.call()
+  preview=self.root/'preview(v2).png';preview.write_bytes(b'fixture')
+  document.write_text(original+'\n[![preview](../../preview(v2).png)](../README.md)\n[preview]: missing-unused.png\n')
+  self.call()
+  document.write_text(original+'\n[![preview]](../README.md)\n\n[preview]: missing-reference-image.png\n')
+  self.assertIn('missing-reference-image.png',self.call(ok=False)['error'])
+  preview.unlink()
+  document.write_text(original+'\n[![preview](missing.png)](../README.md)\n')
+  self.assertIn('missing.png',self.call(ok=False)['error'])
+  document.write_text(original)
+  entry=self.root/'lib/README.md';entry_original=entry.read_text()
+  entry.write_text(entry_original+'\n`[code example](missing.md)` and [external](//example.com/guide)\n')
+  self.call()
+  entry.write_text(entry_original+'\n[broken entry link](missing.md)\n')
+  error=self.call(ok=False)['error']
+  self.assertIn('Missing entry document link: lib/README.md:',error)
+  entry.write_text(entry_original)
+ def test_markdown_links_report_each_usage_line(self):
+  cases=[
+   (r'\[示例](missing.md)', []),
+   ('[项目说明](README&#46;md)', [('README.md',1)]),
+   ('- [ref]: missing.md\n\n[ref]', [('missing.md',3)]),
+   ('>   [ref]: missing.md\n\n[ref]', [('missing.md',3)]),
+   ('> [ref]: missing.md\n\n[ref]\n[ref]', [('missing.md',3),('missing.md',4)]),
+   ('prefix [ok](exists.md)\r\nsecond [bad](missing.md)', [('exists.md',1),('missing.md',2)]),
+   ('prefix\n[outer [inner][ref]](ignored.md)\n\n[ref]: missing.md', [('missing.md',2)]),
+   ('prefix\n[outer [inner](missing.md)](ignored.md)', [('missing.md',2)]),
+   ('prefix\n[![pic](pic.png)](missing.md)', [('missing.md',2),('pic.png',2)]),
+   ('prefix\n![alt [inner](ignored.md)](pic.png)', [('pic.png',2)]),
+   ('- ```bad` [actual](missing.md)', [('missing.md',1)]),
+   ('> ```md\n> [code](ignored.md)\n> ```\n> [actual](missing.md)', [('missing.md',4)]),
+   ('- ```md\n  [code](ignored.md)\n  ```\n  [actual](missing.md)', [('missing.md',4)]),
+   ('| Doc |\n| --- |\n| [bad](missing.md) |', [('missing.md',3)]),
+   ('first `code\nspan`\n[bad\nlabel](missing.md)', [('missing.md',3)]),
+  ]
+  for source,expected in cases:
+   with self.subTest(source=source):
+    self.assertEqual(list(pack.markdown_links(source)),expected)
+ def test_entry_document_links_cannot_escape_collection(self):
+  progress=self.root/'PROGRESS.md';original=progress.read_text()
+  progress.write_text(original+'\n[escape](../../outside.md)\n')
+  error=self.call(ok=False)['error']
+  self.assertIn('Entry document link escapes collection: PROGRESS.md:',error)
+  progress.write_text(original)
  def test_frontmatter_cannot_be_replaced_by_body_text(self):
   p=self.root/'skills/507-demo/SKILL.md';p.write_text(p.read_text().removeprefix('---\n'))
   self.assertIn('frontmatter',self.call(ok=False)['error'])

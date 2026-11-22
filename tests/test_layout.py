@@ -16,6 +16,8 @@ class LayoutTests(unittest.TestCase):
     def test_ci_uses_the_real_current_maintenance_entrypoints(self):
         workflow = (ROOT / '.github/workflows/tests.yml').read_text()
         self.assertIn('python scripts/package_skills.py check', workflow)
+        self.assertLess(workflow.index('pip install -r requirements-package.txt'),
+                        workflow.index('python scripts/package_skills.py check'))
         self.assertIn('unittest discover -s tests -v', workflow)
         self.assertIn('python scripts/test_all.py', workflow)
         self.assertNotIn('next/', workflow)

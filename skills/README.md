@@ -89,6 +89,8 @@ create、adapt 和 visualize 新建独立离线阅读页时，按内容和读者
 
 共有源修改后直接检查实际消费者，不再生成或同步副本。入口合同或旧名处置改变时，按[名称索引说明](../lib/components/tools/projections/library-view.md)先生成并核对索引，再检查集合。名称查询只返回声明，不执行技能或证明宿主已启用。
 
+首次在新的 Python 环境运行 `check` 或 `build`，先从仓库根执行 `python3 -m pip install -r requirements-package.txt`，安装与 CI 同版本的 Markdown 解析器。
+
 每完成一个技能修改，在实际修改的仓库根必须运行独立检查；失败修复后重跑，不能运行则如实报告，未通过不声称完成。该命令检查全部现行技能，不要求每次打包：
 
 ```sh
@@ -106,7 +108,9 @@ python3 -B -m unittest discover -s lib/components/tools/tests -v
 
 从仓库根打包前，将 `TASK_DIR` 设为本次任务的库外目录，然后执行 `python3 -B scripts/package_skills.py build --output "${TASK_DIR:?请设置任务目录}/dist"`。
 
-check 直接读取各技能 RESOURCES.md，核身份、文件多缺、技能与共有库显式依赖、引用边界、禁止私有执行资源和共有副本、源文件与索引；build 生成 skills/ 加一份 lib/ 的不可变集合。依赖缺失如实失败，不复制实现兜底。构建工具不安装或自动路由。
+`check` 直接读取各技能的 `RESOURCES.md`，核对身份、文件多缺、技能与共有库的显式依赖、引用边界、禁止私有执行资源和共有副本、源文件与索引。`build` 生成含 `skills/` 和一份 `lib/` 的不可变集合。
+
+七份入口文档为根目录的 `AGENTS.md`、`README.md`、`CONTRIBUTING.md`、`PROGRESS.md`，以及 `skills/README.md`、`lib/README.md`、`doc/README.md`。包检查按 Markdown 语义提取链接和图片，验证相对路径指向集合内已有文件。缺失或越界时，报错给出文档和链接开始的行号，引用式链接报使用处。外部网址与页内锚点跳过。
 
 build 在写入前执行同一 check，实际共有链接漏登 uses、私有实现或缺失依赖会阻止交付；入口回归同时验证没有新增交付且已有包不变。这里验证结构，不执行 TypeScript 编译或裁决图解语义；上述测试、类型检查与目标文件的独立内容／视觉验收仍按变更范围完成。聊天交付并非由构建器自动门控，须明确报告实际调用的检查入口和未覆盖。
 

@@ -2,6 +2,7 @@
 """Validate a skill collection and its single explicit shared library; never copy resources into skills."""
 import argparse
 import ctypes
+from functools import cache
 import hashlib
 import json
 import os
@@ -15,6 +16,15 @@ from urllib.parse import unquote, urlsplit
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAMES = {'skill-design','507-what','507-why','507-how','507-create','507-work','507-material','507-adapt','507-spec','507-do','507-review','507-issue','507-coordinate','507-deliver','507-retro','507-setup','507-product-map','507-clean','507-plan','507-visualize','507-demo','507-domain','507-synthesize','507-coach'}
 DISPOSITIONS = 'lib/catalog/registry/skill-dispositions.json'
+ENTRY_DOCUMENTS = (
+    'AGENTS.md',
+    'README.md',
+    'CONTRIBUTING.md',
+    'PROGRESS.md',
+    'skills/README.md',
+    'lib/README.md',
+    'doc/README.md',
+)
 class PackageError(ValueError):
     pass
 
@@ -188,12 +198,69 @@ def check_skill_index(root):
 def check_shared_links(root, paths):
     for rel in paths:
         if not rel.endswith('.md'):continue
-        for link in re.findall(r'\[[^\]]*\]\(([^)]+)\)',(root/rel).read_text()):
-            parsed=urlsplit(link.strip('<>'))
-            if parsed.scheme or link.startswith('#'):continue
+        text=(root/rel).read_text()
+        for link,line in markdown_links(text):
+            parsed=urlsplit(link)
+            if parsed.scheme or parsed.netloc or not parsed.path:continue
             target=((root/rel).parent/unquote(parsed.path)).resolve()
             if not target.is_relative_to(root.resolve()) or not target.is_file():
-                raise PackageError('Missing shared collection reference: '+rel+' -> '+link)
+                raise PackageError(f'Missing shared collection reference: {rel}:{line} -> {link}')
+
+
+def record_link_line(rule, token_type):
+    def with_line(state, silent):
+        start = state.pos
+        first_token = len(state.tokens)
+        matched = rule(state, silent)
+        if matched and not silent:
+            token = next(item for item in state.tokens[first_token:] if item.type == token_type)
+            token.meta['line_offset'] = state.src.count('\n', 0, start)
+        return matched
+
+    return with_line
+
+
+@cache
+def link_parser():
+    try:
+        from markdown_it import MarkdownIt
+        from markdown_it.rules_inline import image, link
+    except ImportError as error:
+        raise PackageError('Install package check dependencies: python3 -m pip install -r requirements-package.txt') from error
+
+    parser = MarkdownIt('commonmark').enable('table')
+    parser.inline.ruler.at('link', record_link_line(link, 'link_open'))
+    parser.inline.ruler.at('image', record_link_line(image, 'image'))
+    return parser
+
+
+def markdown_links(text):
+    for block in link_parser().parse(text):
+        if block.type != 'inline':
+            continue
+        for token in block.children:
+            if token.type in ('link_open', 'image') and 'line_offset' in token.meta:
+                attribute = 'src' if token.type == 'image' else 'href'
+                yield token.attrs[attribute], block.map[0] + token.meta['line_offset'] + 1
+
+
+def check_entry_links(root):
+    collection_root=root.resolve()
+    for rel in ENTRY_DOCUMENTS:
+        document=within(root,rel,True)
+        try:
+            text=document.read_text(encoding='utf-8')
+        except (OSError,UnicodeError) as error:
+            raise PackageError('Cannot read entry document '+rel+': '+str(error)) from error
+        for raw,line in markdown_links(text):
+            parsed=urlsplit(raw)
+            if parsed.scheme or parsed.netloc or parsed.path.startswith('/') or not parsed.path:
+                continue
+            target=(document.parent/unquote(parsed.path)).resolve()
+            if not target.is_relative_to(collection_root):
+                raise PackageError(f'Entry document link escapes collection: {rel}:{line} -> {raw}')
+            if not target.is_file():
+                raise PackageError(f'Missing entry document link: {rel}:{line} -> {raw}')
 
 
 def check(root,entries=None):
@@ -207,6 +274,7 @@ def check(root,entries=None):
         raw=within(root,rel,True).read_bytes()
         if rel.endswith('.py'):compile(raw,rel,'exec')
         payload[rel]=raw
+    check_entry_links(root)
     check_shared_links(root, config['sharedFiles'])
     check_skill_index(root)
     return payload
