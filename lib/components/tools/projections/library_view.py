@@ -185,9 +185,21 @@ def project(root, packages_path, catalog_path, disposition_path):
             if not re.search(r'^name: ' + re.escape(row['id']) + r'\s*$', original.decode(), re.M):
                 raise ValueError('archived contract name differs from retired identity')
             row['sourceSha256'] = sha(original)
-    rows = rows + retired
+    aliases = decisions.get('historicalAliases', [])
+    if not isinstance(aliases, list) or any(not isinstance(row, dict) for row in aliases):
+        raise ValueError('invalid historical alias list')
+    alias_ids = [row.get('id') for row in aliases]
+    if len(alias_ids) != len(set(alias_ids)) or set(alias_ids) & (observed | set(retired_ids)):
+        raise ValueError('historical aliases must have unique origins')
+    for row in aliases:
+        if (row.get('id') not in names or row.get('group') != 'historical'
+                or row.get('source') != 'code/' + row['id'] + '/SKILL.md'
+                or not re.fullmatch(r'[0-9a-f]{40}', str(row.get('sourceRevision', '')))
+                or not re.fullmatch(r'[0-9a-f]{64}', str(row.get('sourceSha256', '')))):
+            raise ValueError('invalid historical alias snapshot')
+    rows = rows + retired + aliases
     for row in rows:
-        if row not in retired and (row.get('group') not in ('common', 'code', 'write') or row.get('source') != 'archive/legacy/' + row['group'] + '/' + row['id'] + '/SKILL.md'):
+        if row not in retired and row not in aliases and (row.get('group') not in ('common', 'code', 'write') or row.get('source') != 'archive/legacy/' + row['group'] + '/' + row['id'] + '/SKILL.md'):
             raise ValueError('legacy source must match identity and group')
         for key in ['targets', 'consumers', 'retained', 'dropped']:
             if not isinstance(row.get(key), list):
@@ -202,7 +214,7 @@ def project(root, packages_path, catalog_path, disposition_path):
             raise ValueError('duplicate disposition consumer or target')
         if row['decision'] not in ('retain', 'merge', 'drop') or not row.get('reason'):
             raise ValueError('missing disposition reason')
-        if row not in retired:
+        if row not in retired and row not in aliases:
             if row['source'] not in contracts:
                 raise ValueError('legacy source must match exact source inventory')
             row['sourceSha256'] = contracts[row['source']]

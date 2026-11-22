@@ -127,6 +127,18 @@ class LibraryTests(unittest.TestCase):
   self.assertEqual(result['status'],'LEGACY_DECLARATION_FOUND')
   self.assertEqual([r['name'] for r in result['currentCandidates']],['a'])
   self.assertEqual(result['actionAuthority'],'UNCHANGED')
+ def test_active_name_preserves_an_earlier_distinct_origin(self):
+  self.disp['historicalAliases']=[{'id':'a','group':'historical','source':'code/a/SKILL.md',
+   'sourceRevision':'a'*40,'sourceSha256':'b'*64,'decision':'merge','reason':'renamed',
+   'retained':['review'],'dropped':[],'targets':['skills/a/SKILL.md'],'consumers':['a'],
+   'verification':'historical only'}]
+  result=library.lookup(library.skill_index(self.run_projection()),'a','index')
+  self.assertEqual(result['status'],'CURRENT_DECLARATION_FOUND')
+  self.assertEqual(result['currentCandidates'][0]['name'],'a')
+  self.assertEqual(result['legacyOrigin']['source'],'code/a/SKILL.md')
+  self.assertEqual(result['legacyOrigin']['sourceRevision'],'a'*40)
+  self.disp['historicalAliases'][0]['source']='code/other/SKILL.md'
+  with self.assertRaisesRegex(ValueError,'historical alias snapshot'):self.run_projection()
  def test_retirement_cannot_hide_missing_original_legacy_coverage(self):
   self.add_retired();self.disp['legacy']=[]
   with self.assertRaisesRegex(ValueError,'exact source'):self.run_projection()

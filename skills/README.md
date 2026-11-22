@@ -1,6 +1,6 @@
 # 当前技能入口
 
-当前清单包含 **24 个入口（11 个主要技能，13 个次要工作能力）**。`skills/` 是唯一现行技能源码目录。当前版本、能力范围、已知限制与待办见[公开进度](../PROGRESS.md)。
+当前清单包含 **25 个入口（12 个主要技能，13 个次要工作能力）**。`skills/` 是唯一现行技能源码目录。当前版本、能力范围、已知限制与待办见[公开进度](../PROGRESS.md)。
 
 主要／次要沿[术语表](../GLOSSARY.md#分层与共有资源)定义：用户主要触发主要技能，Agent 按需采用主次技能。清楚任务由 Agent 直接采用所需能力，不固定串行调用；这不表示运行环境权限或宿主已经隐藏次要入口。
 
@@ -10,13 +10,13 @@
 
 ```mermaid
 flowchart LR
-    root["skills/ · 24 个同级技能目录"]
-    root --> primary["主要入口 · 11"]
+    root["skills/ · 25 个同级技能目录"]
+    root --> primary["主要入口 · 12"]
     root --> secondary["次要能力 · 13"]
     primary --> p1["理解、目标、方案<br/>507-why · 507-what · 507-how"]
     primary --> p2["实现、清理、推进<br/>507-do · 507-clean · 507-work"]
     primary --> p3["创作、适配、陪练<br/>507-create · 507-adapt · 507-coach"]
-    primary --> p4["项目依据、技能设计<br/>507-setup · skill-design"]
+    primary --> p4["项目依据、规则检查、技能设计<br/>507-setup · 507-audit · skill-design"]
     secondary --> s1["材料、判断、领域概念<br/>507-material · 507-synthesize · 507-domain"]
     secondary --> s2["规格、计划、协作、工单<br/>507-spec · 507-plan · 507-coordinate · 507-issue"]
     secondary --> s3["功能地图、图解、演示<br/>507-product-map · 507-visualize · 507-demo"]
@@ -37,6 +37,7 @@ flowchart LR
 | [507-adapt](507-adapt/SKILL.md) | 成熟内容换受众、场景与载体，完成实际制作；持续修订多份关联交付时结合工作记录核对漏件与受众路径 |
 | [507-work](507-work/SKILL.md) | 工作事项发现、整理、推进与原记录更新；局部请求直接处理 |
 | [507-setup](507-setup/SKILL.md) | 项目工作依据、工作指令审计与导航；局部维护不扩大范围 |
+| [507-audit](507-audit/SKILL.md) | 盘点项目有效规则及检查覆盖，按授权落实并验证自动检查 |
 | [507-coach](507-coach/SKILL.md) | 在用户主动要求练习时，用初判、反馈和条件变化的新案例帮助用户练习独立判断 |
 
 ## 次要工作能力
@@ -70,6 +71,7 @@ flowchart LR
 | 了解可定位的陌生项目 | why 自主建立必要全貌并核对代表路径；交互地图只在确有需要时使用 |
 | 构建领域模型或解决影响当前任务的语义冲突 | domain 明确概念及适用业务范围，用场景检验关系和约束；what、how、spec、do 按需采用，查词与沿充分定义执行不重开建模 |
 | 审计提示、工作指令或技能 | setup承接项目工作指令，skill-design承接技能演进，review承接独立只读审查；按需采用共有方法，核宿主和实际模型，不固定串行 |
+| 找出项目规则的自动检查缺口 | audit 核规则来源、有效范围和现有覆盖；授权实施时落实并验证，内容判断与独立审查保留各自责任 |
 | 识别技能提升空间与优化方向 | skill-design按需从速度、高度、深度、广度选择方向，并核方法读取、实际动作与反馈；已有方向和小任务直接继续，不固定走完四维，用相称观察验证改善 |
 | 基于外部技能设计能力或检查路径 | skill-design 先核原技能的触发与交付。提案按稳定入口、职责和结果归属判断层级；可独立验收或用户直接点名本身不足以定层，不因可复用而降级。涉及层级取舍时才用主要入口正例和父任务内部动作反例核验 |
 | 初始化仓库或维护文档导航 | setup 按范围建立或维护项目依据；spec维护现行行为与验收，issue维护软件工单和跟进；局部导航直接处理，不串成固定流程 |
@@ -112,13 +114,13 @@ python3 -B -m unittest discover -s lib/components/tools/tests -v
 
 `check` 直接读取各技能的 `RESOURCES.md`，核对身份、文件多缺、技能与共有库的显式依赖、引用边界、禁止私有执行资源和共有副本、源文件与索引。`build` 生成含 `skills/` 和一份 `lib/` 的不可变集合。
 
-七份入口文档为根目录的 `AGENTS.md`、`README.md`、`CONTRIBUTING.md`、`PROGRESS.md`，以及 `skills/README.md`、`lib/README.md`、`doc/README.md`。包检查按 Markdown 语义提取链接和图片，验证相对路径指向集合内已有文件。缺失或越界时，报错给出文档和链接开始的行号，引用式链接报使用处。外部网址与页内锚点跳过。
+包检查按 Markdown 语义提取技能文档、共有库文档及维护文档中的链接和图片，验证相对路径指向集合内已有文件。它检查根目录的 `AGENTS.md`、`README.md`、`CONTRIBUTING.md`、`SECURITY.md`、`PRODUCT.md`、`DESIGN.md`、`GLOSSARY.md`、`CHANGELOG.md`、`PROGRESS.md`，以及 `skills/README.md`、`lib/README.md`、`doc/README.md`、`spec/README.md`、两份现行规格、维护钩子说明、架构与运行资料、独立审计记录和决策档案；另外自动发现项目自有非归档目录中的 `AGENTS.md` 与 `CLAUDE.md`，只排除 `doc/20-能力参考` 内已标识的 `upstream-*` 上游镜像。缺失或越界时，报错给出文档和链接开始的行号，引用式链接报使用处。外部网址与页内锚点跳过。
 
 build 在写入前执行同一 check，实际共有链接漏登 uses、私有实现或缺失依赖会阻止交付；入口回归同时验证没有新增交付且已有包不变。这里验证结构，不执行 TypeScript 编译或裁决图解语义；上述测试、类型检查与目标文件的独立内容／视觉验收仍按变更范围完成。聊天交付并非由构建器自动门控，须明确报告实际调用的检查入口和未覆盖。
 
 可选的宿主适配见[Codex 维护钩子说明](../scripts/codex-maintenance-hooks.md)：现仅保留结束一致性检查的未启用候选，采用依据尚未确认；副本编辑保护已撤除。仓库只提供未启用的示例，不自动配置宿主、生成索引、同步、构建或安装；未启用时继续使用上述维护流程。
 
-GitHub Actions 配置为在 Python 3.10、3.12 上执行 `check`、`tests` 和 `lib/components/tools/tests` 三项检查，再从固定提交隔离运行[历史专项回归](../scripts/test_all.py)。CI 通过只证明这些检查覆盖的包一致性与脚本行为，不证明宿主发现、自然采用或业务效果。
+GitHub Actions 先用 Gitleaks 扫描当前检出提交可达的提交历史，再在 Python 3.10、3.12 上执行 `check`、`tests` 和 `lib/components/tools/tests`，最后从固定提交隔离运行[历史专项回归](../scripts/test_all.py)。CI 通过只证明这些检查覆盖的包一致性、凭据模式扫描和脚本行为，不证明仓库没有其他类型的私密材料，也不证明宿主发现、自然采用或业务效果。
 
 ## 能力与验证边界
 

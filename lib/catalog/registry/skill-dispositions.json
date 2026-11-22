@@ -1730,6 +1730,22 @@
     "旧30原件保全，只切换当前身份与方法维护；静态对账、局部检查、宿主发现与业务验收分别成立。"
   ],
   "basis": "旧30原处置保留在2026-10-13记录；本文件仅维护当前去向及其后退役入口，不改写历史验证。",
+  "historicalAliases": [
+    {
+      "id": "507-audit",
+      "group": "historical",
+      "source": "code/507-audit/SKILL.md",
+      "sourceRevision": "4d165e56aaaf8dfb909ac0a78d0cee2b6ac4f520",
+      "sourceSha256": "4e157b662c73a5057e413629df37070f35a71d199cc9305c3a18d0b6df25b189",
+      "decision": "merge",
+      "reason": "旧版交付审查先迁至507-review；现行同名入口负责项目规则与自动检查，职责不同。",
+      "retained": ["根据已确认要求独立审查交付，报告发现与证据边界。"],
+      "dropped": [],
+      "targets": ["skills/507-review/SKILL.md"],
+      "consumers": ["507-review"],
+      "verification": "固定版本和指纹用于追溯历史；当前入口、安装与实际审查各自验证。"
+    }
+  ],
   "retired": [
     {
       "id": "507-compose",
