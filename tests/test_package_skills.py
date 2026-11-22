@@ -21,7 +21,7 @@ class CollectionTests(unittest.TestCase):
   config=json.loads((ROOT/'packages.json').read_text())
   paths={e['source']+'/'+p for e in pack.load_manifest(ROOT) for p in e['files']}|set(config['sharedFiles'])|{'packages.json','lib/catalog/catalog.json',pack.DISPOSITIONS,*pack.ENTRY_DOCUMENTS}
   paths|={path.relative_to(ROOT).as_posix() for directory in pack.MAINTAINED_DOCUMENT_ROOTS for path in (ROOT/directory).rglob('*.md')}
-  decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions.get('retired',[]) if 'sourceRevision' not in r}
+  decisions=json.loads((ROOT/pack.DISPOSITIONS).read_text());paths|={r['source'] for r in decisions.get('retired',[])}
   for rel in paths:
    q=self.root/rel;q.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(ROOT/rel,q)
   for rel in pack.ENTRY_DOCUMENTS:

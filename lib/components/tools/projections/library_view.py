@@ -176,15 +176,9 @@ def project(root, packages_path, catalog_path, disposition_path):
         if (row.get('group') != 'retired' or row.get('decision') not in ('merge', 'drop')
                 or row.get('source') != 'doc/90-归档/技能/' + row['id'] + '/SKILL.md'):
             raise ValueError('retired source must match archived identity')
-        if 'sourceRevision' in row:
-            if (not re.fullmatch(r'[0-9a-f]{40}', str(row['sourceRevision']))
-                    or not re.fullmatch(r'[0-9a-f]{64}', str(row.get('sourceSha256', '')))):
-                raise ValueError('invalid retired source snapshot')
-        else:
-            original = source(root, row['source']).read_bytes()
-            if not re.search(r'^name: ' + re.escape(row['id']) + r'\s*$', original.decode(), re.M):
-                raise ValueError('archived contract name differs from retired identity')
-            row['sourceSha256'] = sha(original)
+        raw = source(root, row['source']).read_text()
+        if not re.search(r'^name: ' + re.escape(row['id']) + r'\s*$', raw, re.M):
+            raise ValueError('archived contract name differs from retired identity')
     aliases = decisions.get('historicalAliases', [])
     if not isinstance(aliases, list) or any(not isinstance(row, dict) for row in aliases):
         raise ValueError('invalid historical alias list')
@@ -214,7 +208,9 @@ def project(root, packages_path, catalog_path, disposition_path):
             raise ValueError('duplicate disposition consumer or target')
         if row['decision'] not in ('retain', 'merge', 'drop') or not row.get('reason'):
             raise ValueError('missing disposition reason')
-        if row not in retired and row not in aliases:
+        if row in retired:
+            row['sourceSha256'] = sha(source(root, row['source']).read_bytes())
+        elif row not in aliases:
             if row['source'] not in contracts:
                 raise ValueError('legacy source must match exact source inventory')
             row['sourceSha256'] = contracts[row['source']]
