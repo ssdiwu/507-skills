@@ -65,6 +65,8 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 
 ## 内容检查与已请求载体
 
+用户指定呈现参考或有会影响作品的呈现取舍时，制作前按[视觉方向](../../lib/methods/design/visual-direction.md)提取服务当前内容的做法，交付前在实物上对照。中文密页、图表等采用[视觉语义](../../lib/methods/design/guides/target-design.md)。
+
 书面或口播提醒有用时，先读[检查器说明](../../lib/components/tools/checks/text-checks.md)，再运行[书面检查器](../../lib/components/tools/checks/check_prose.py)或[口播检查器](../../lib/components/tools/checks/check_spoken.py)。两者只读，提示按语境处理，不能用零命中证明事实或作者接受。讲稿的朗读、计时与未实测范围按现场内容方法如实交代。
 
 修改已有页面时，优先复用项目组件，沿原页面入口检查结果。新建供人阅读的独立网页时，按[独立阅读页方法](../../lib/methods/design/reading-page.md)从真实内容与具体参考安排页面；不要求采用共有视觉组件或旧呈现合同。需要图解时仍按其实际任务选择图表形式；需要视觉方向时采用[呈现提示](../../lib/methods/design/guides/artifact-prompts.md)。打开实际页面检查内容关系、来源和必要交互。仅要求正文或备注时，内容即本次终点。
@@ -78,7 +80,6 @@ description: "承接创作、成文与修订请求，完成文章、方案、讲
 ## 按真实缺口补充参考
 
 - 需要外部事实：采用[外部取证](../../lib/methods/evidence-and-decisions/external-research.md)，区分事实与来源观点。
-- 需要应用既有视觉参考或解决会影响作品的呈现取舍时，采用[视觉方向](../../lib/methods/design/visual-direction.md)，提取参考中服务当前内容的做法，并在目标实物上核对；中文密页、图表等采用[视觉语义](../../lib/methods/design/guides/target-design.md)。
 - 作者尚未表达的一手材料影响当前内容：采用[作者采访](../../lib/methods/writing/author-interview.md)，已有材料足够时跳过。
 - 解释型作品存在具体理解缺口：采用[解释检验](../../lib/methods/writing/explanation-progression.md)。
 - 借鉴视听手法或进入实际媒体制作：分别采用[参考视听证据](../../lib/methods/design/media-study.md)与[媒体制作](../../lib/methods/design/media-production.md)。
