@@ -12,6 +12,8 @@
 
 ## 名称与状态表达
 
+本库主要技能用 `507-` 加一个英文词，中文展示名用 `507-` 加三个汉字；次要技能用两个英文词，词间用连字符分隔，中文展示名用四个汉字，前缀相同。 地图从任务跑道进入，技能、接力配方和历史去向都可按需查看。
+
 - 调用标识、用户显示名、工作角色和方法名分别表达。中文显示不要求把技术标识改成中文；5W2H整体是按需思考方法；主要技能分别拥有目标取舍、理解解释、变更策略、工程执行、存量清理、作者责任、受众与载体适配、工作事项与推进、项目依据与导航、能力设计；why作为价值追问也可在what内部采用，不因此强制新主目标。
 - 事实、已确认目标、设计候选、当前实现、验证结果和未覆盖范围可辨认。完整目录、条款存在、测试通过和真实任务效果不能用同一状态表示。
 - 原版、合集采入版和本地改写保持版本身份；未建立原子对应不显示为零能力，不把原子数做成能力排名。
@@ -33,9 +35,9 @@
 | --- | --- |
 | 视觉幻灯片 | [PPT 三轴设计系统](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/write/507-ppt/references/design-system.md) |
 | 小红书图文与本地工作台 | [现行产品规格](spec/507-rednote.md)、[视觉表达](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/write/507-rednote/references/styles.md) |
-| 产品界面交付 | [现行工程入口](skills/507-do/SKILL.md)与[旧 507-ui 合同](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/code/507-ui/SKILL.md)；实际项目的 DESIGN 与规格继续作为权威 |
+| 产品界面交付 | [现行工程入口](skills/507-build/SKILL.md)与[旧 507-ui 合同](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/code/507-ui/SKILL.md)；实际项目的 DESIGN 与规格继续作为权威 |
 | 视频制作 | [制作合同](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/write/507-video/references/production-contract.md)及对应作品已确认的视觉／声音依据 |
-| 可视化理解与比较 | [507-visualize](skills/507-visualize/SKILL.md)及[旧版载体检查](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/common/507-visualize/references/delivery-and-checks.md) |
+| 可视化理解与比较 | [507-visual-explain](skills/507-visual-explain/SKILL.md)及[旧版载体检查](https://github.com/ssdiwu/507-skills/blob/a4c28d19bfea418333ff1487a958d33b797f2308/archive/legacy/common/507-visualize/references/delivery-and-checks.md) |
 
 共用设计不把 PPT、图文、视频与产品 UI 统一成一套配色、组件或数值。修订阅读体验时同步受影响的导航和具体规格，验证真实阅读动作；文档完成不证明呈现已经实现。
 

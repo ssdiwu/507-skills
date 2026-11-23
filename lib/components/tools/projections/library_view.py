@@ -344,20 +344,109 @@ def lookup(index, name, index_hash):
                        '历史原件仅作来源；宿主存在性、完整合同与原动作许可需分别核对。']}
 
 
+def library_map(root, view):
+    guide, _ = read(source(root, 'lib/catalog/registry/library-map.json'))
+    if not isinstance(guide, dict) or set(guide) != {'lanes', 'crosscutting', 'recipes', 'cards', 'previousLabels'}:
+        raise ValueError('invalid map guide fields')
+    names = {entry['name'] for entry in view['skills']}
+    destinations = names | {row['id'] for row in view['legacy'] if row['decision'] == 'drop'}
+    previous = guide['previousLabels']
+    if not isinstance(previous, dict) or any(not label.strip() or not isinstance(target, str)
+                                            or target not in destinations for label, target in previous.items()):
+        raise ValueError('invalid previous display name destination')
+    cards = guide['cards']
+    if not isinstance(cards, dict):
+        raise ValueError('map cards must be an object')
+    if set(cards) != names:
+        raise ValueError('map cards differ from current identities: ' + ', '.join(sorted(set(cards) ^ names)))
+
+    def references(values, label):
+        if not isinstance(values, list) or not values or any(
+                not isinstance(value, str) or value not in names for value in values):
+            raise ValueError('unknown or missing map skill in ' + label)
+        return values
+
+    def groups(key, field, count):
+        rows = guide[key]
+        if not isinstance(rows, list) or len(rows) != count:
+            raise ValueError(f'expected {count} map groups in {key}')
+        titles = set()
+        for row in rows:
+            if (not isinstance(row, dict) or set(row) != {'title', field}
+                    or not isinstance(row['title'], str) or not row['title'].strip()
+                    or row['title'] in titles):
+                raise ValueError('invalid map group in ' + key)
+            titles.add(row['title'])
+            references(row[field], row['title'])
+        return rows
+
+    lanes = groups('lanes', 'skills', 4)
+    crosscutting = references(guide['crosscutting'], 'crosscutting')
+    assigned = [name for lane in lanes for name in lane['skills']] + crosscutting
+    if len(assigned) != len(names) or set(assigned) != names:
+        raise ValueError('map lanes and crosscutting must partition current identities')
+    recipes = groups('recipes', 'steps', 6)
+    upstream = {name: [] for name in names}
+    downstream = {name: [] for name in names}
+    for recipe in recipes:
+        if len(recipe['steps']) < 2:
+            raise ValueError('map recipe needs a start and a handoff: ' + recipe['title'])
+        for before, after in zip(recipe['steps'], recipe['steps'][1:]):
+            if after not in downstream[before]:
+                downstream[before].append(after)
+                upstream[after].append(before)
+
+    skills = []
+    for entry in view['skills']:
+        name = entry['name']
+        card = cards[name]
+        if (not isinstance(card, dict) or set(card) != {'skip', 'input', 'authority', 'stop', 'example'}
+                or not all(isinstance(text, str) and text.strip() for text in card.values())):
+            raise ValueError('invalid map card: ' + name)
+        metadata = str(PurePosixPath(entry['source']).parent / 'agents/openai.yaml')
+        labels = re.findall(r'^  display_name:[ \t]*(.*)$', source(root, metadata).read_text(), re.M)
+        if len(labels) != 1:
+            raise ValueError('expected one display_name: ' + metadata)
+        label = labels[0].strip()
+        if label.startswith('"'):
+            label = json.loads(label)
+        elif label.startswith("'") and label.endswith("'"):
+            label = label[1:-1].replace("''", "'")
+        else:
+            label = label.split(' #', 1)[0].strip()
+        if not isinstance(label, str) or not label.strip():
+            raise ValueError('empty display_name: ' + metadata)
+        skills.append({**card, 'name': name, 'displayName': label, 'description': entry['description'],
+                       'upstream': upstream[name], 'downstream': downstream[name], 'resources': entry['sharedSources'],
+                       'aliases': [row['id'] for row in view['legacy'] if name in row['consumers'] or row['id'] == name]})
+    resources = []
+    for row in view['resources']:
+        title = row['title']
+        if row['kind'] in ('references', 'runtime') and not row['source'].endswith('.md'):
+            title = PurePosixPath(row['source']).name
+        resources.append({'source': row['source'], 'title': title, 'consumers': row['consumers']})
+    legacy = [{key: row[key] for key in ('id', 'decision', 'reason', 'consumers')} for row in view['legacy']]
+    return {'kind': 'library-map', 'data': {'lanes': lanes, 'crosscutting': crosscutting, 'recipes': recipes,
+                                           'skills': skills, 'resources': resources, 'legacy': legacy,
+                                           'previousLabels': previous}}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-root')
     parser.add_argument('--packages')
     parser.add_argument('--catalog')
     parser.add_argument('--dispositions')
-    parser.add_argument('--emit-index', action='store_true', help='Emit a package-independent Markdown name index')
+    output = parser.add_mutually_exclusive_group()
+    output.add_argument('--emit-index', action='store_true', help='Emit a package-independent Markdown name index')
+    output.add_argument('--library-map', action='store_true', help='Emit a library-map React document model')
     parser.add_argument('--index-file', help='Read only a supplied index; requires --lookup')
     parser.add_argument('--lookup', help='Return declarations for one literal name; never execute them')
     args = parser.parse_args()
     try:
         source_args = [args.source_root, args.packages, args.catalog, args.dispositions]
         if args.index_file or args.lookup:
-            if not args.index_file or not args.lookup or any(source_args) or args.emit_index:
+            if not args.index_file or not args.lookup or any(source_args) or args.emit_index or args.library_map:
                 raise ValueError('lookup requires only --index-file and --lookup')
             index, identity = read_index(args.index_file)
             result = lookup(index, args.lookup, identity)
@@ -369,6 +458,8 @@ def main():
         if root.is_symlink() or not root.is_dir():
             raise ValueError('expected explicit regular source root')
         result = project(root, args.packages, args.catalog, args.dispositions)
+        if args.library_map:
+            result = library_map(root, result)
         print(index_markdown(skill_index(result)) if args.emit_index else json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except (ValueError, KeyError, TypeError, OSError) as exc:

@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-界面演示"
+  short_description: "制作产品界面的静态功能卡片或带光标的模拟操作短动画。"
+  default_prompt: "使用 $507-ui-demo 制作当前产品的界面展示，沿用已确认内容与尺寸，交付可编辑场景、目标文件和实际检查结果。"

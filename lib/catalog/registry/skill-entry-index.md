@@ -6,191 +6,184 @@
 {
   "current": [
     {
-      "contractSha256": "08265ae1f3507871865541933865baa0f06488bad19469e1124b59204978085a",
-      "description": "把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。已有稿件直接处理；重新决定主张或论证按成文工作承接，普通局部润色不重走适配流程。",
+      "contractSha256": "adad3514e52dce95d2b4c00f8f2b3310642ffb6865b342d987142ad0cd80960f",
+      "description": "把成熟内容改写并制作成适合目标受众与载体的作品。保留作者判断、事实和来源；需要重定主张时回到成文工作。",
       "entry": "507-adapt/SKILL.md",
       "name": "507-adapt",
       "role": "main"
     },
     {
-      "contractSha256": "a028de95bcd1f073c71a2f34f614fefe2cfab03c3e648b63fc7433fb8bbedbe4",
-      "description": "盘点项目现行规则与已有检查，将适合机器判断的要求落实为静态检查、测试或构建门禁。按授权实施并用正反例验证；只读盘点不修改，无法可靠自动判断的部分保留人工核验。",
+      "contractSha256": "1d58c03a836e0d75d015f3a78d423507639f5c419862bbc6679b210a29006a0c",
+      "description": "盘点项目现行规则和已有检查，把能由机器可靠判断的要求落实为静态检查、测试或持续集成门禁。只读盘点交付覆盖与缺口，实施须在授权范围内。",
       "entry": "507-audit/SKILL.md",
       "name": "507-audit",
       "role": "main"
     },
     {
-      "contractSha256": "7aa3b4e78f6e0d9f3cf6408e236138b703ce44a2a4b1e96d845652e7dab2b1c5",
-      "description": "在指定模块内查找并清理死代码、重复逻辑和失效规则，保持已有功能，默认先只读列清单。重构先核范围内行为规格，单文件超过800行先出拆分方案；新增功能、明确故障和交付审查各按原任务处理。",
+      "contractSha256": "d89c3f8a109ea7a66669b098b290b37c1baf3f991d1bcbcf22cd761a6f1f07b7",
+      "description": "整理唯一现行的软件行为要求与验收规格。承接已确认需求、方案或清理范围，把应保留的行为写成能拒绝错误结果的验收条件。",
+      "entry": "507-behavior-spec/SKILL.md",
+      "name": "507-behavior-spec",
+      "role": "secondary"
+    },
+    {
+      "contractSha256": "e12e52ac1f93e10b05ab03e223f5a5d92c6db2f29aaa81a82de6e29ba67c3b5c",
+      "description": "按需求写代码开发功能，复现并修复故障，用原操作和测试验证结果。只读排查、只查组件或只跑指定测试时，交付止于对应证据。",
+      "entry": "507-build/SKILL.md",
+      "name": "507-build",
+      "role": "main"
+    },
+    {
+      "contractSha256": "25300e8076950c92227bd69d4ef3cd349fc7fe0b8529a6a59729276e9ce1954e",
+      "description": "围绕当前决策，去重归纳多份访谈、反馈或问题记录。交付影响处理方式的分组、优先级、来源和待查项。",
+      "entry": "507-case-synthesis/SKILL.md",
+      "name": "507-case-synthesis",
+      "role": "secondary"
+    },
+    {
+      "contractSha256": "2a4699adbb285101f7ab1c11ecb24775d7c868b9cae112b008cbc7ea569585c0",
+      "description": "清理指定模块的死代码、重复逻辑和失效规则。默认先交只读清单；单文件超过800行先出拆分方案，获准后实施。",
       "entry": "507-clean/SKILL.md",
       "name": "507-clean",
       "role": "main"
     },
     {
-      "contractSha256": "815f464e021998fe551613e4e63fb805a0883831f481ed3801cca2bdb715cdb3",
-      "description": "陪用户练习判断。仅在用户明确想练习、请人出题或点评自己的练习回答时启动。让用户先给判断和理由，用证据与反例反馈，再换条件检验能否独立运用。只想了解、求建议、改稿或直接要答案时按原请求处理。",
-      "entry": "507-coach/SKILL.md",
-      "name": "507-coach",
-      "role": "main"
-    },
-    {
-      "contractSha256": "ad1e1bb47b7ec020340f6922499b131e6e09155866c59bcbec9b47b669b4466b",
-      "description": "判断必要的工作拆分、依赖、执行所有权与结果接收，适用于已有工程、写作、研究或一般工作目标。按情境选择局部协作、任务图推进或持续协调；简单任务直接完成，只做计划时不自动派发或实施。",
-      "entry": "507-coordinate/SKILL.md",
-      "name": "507-coordinate",
-      "role": "secondary"
-    },
-    {
-      "contractSha256": "4b6d96cb78a70f4de3f5992df3d6ba34e079b7b0697b96e9e029efd7a5810a2f",
-      "description": "承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。主线未成立时补必要判断；已有目的、材料或成熟稿时直接成文或修改，保留作者声音和已确认内容，不重走采访与规划。",
+      "contractSha256": "740b2264243e493cfd9c4c5758ed90ccf3b448df59bac388f893620726f5adcf",
+      "description": "推敲文章、方案和讲稿的主线，校准作者口吻，完成写作或改稿。已有主张、成熟稿或指定修订时直接承接。",
       "entry": "507-create/SKILL.md",
       "name": "507-create",
       "role": "main"
     },
     {
-      "contractSha256": "244121d70fa68e77af9745ec97c729238131ef5ce9f71c9d2580c1d477e2c433",
-      "description": "为已完成工程范围准备 PR 表达、交付说明及版本结果，并按具体授权执行相应 Git 或发布动作；接续旧507-git引用时核当前职责与原条件。仅写说明时交付草稿；提交、推送、建 PR、合并和渠道发布各自核验，不由技能调用自动授权。",
-      "entry": "507-deliver/SKILL.md",
-      "name": "507-deliver",
-      "role": "secondary"
-    },
-    {
-      "contractSha256": "b7b4c9b70ecbfa64c6fa3418b0d74ce632d4454bec31565ca4563886b2f33a22",
-      "description": "制作产品界面的静态展示图、功能卡片或带光标的短动画，交付可编辑场景与目标实物。用于介绍页、方案和文档中的界面示意及演示；已有产品组件优先复用，真实业务功能、实际软件操作录制、流程关系图和完整视频制作沿原任务处理。",
-      "entry": "507-demo/SKILL.md",
-      "name": "507-demo",
-      "role": "secondary"
-    },
-    {
-      "contractSha256": "1fea2c62e5f3f4625d5798e07506a2a6863b6abb68eb3eb75b3401c14973f273",
-      "description": "排查已出现的工程故障，或按明确目标新增功能、修复故障、做局部修改、运行指定测试或查找并复用产品界面组件。沿用已有需求、方案与版本。只读排查时核对用户遇到的现象，说明定位到哪一步。修复保留复现、根因和原动作复验。只排查、只跑测试或只查组件时，以核验结果和证据为交付。",
-      "entry": "507-do/SKILL.md",
-      "name": "507-do",
+      "contractSha256": "a0b3b7d6e5ce6b60ef0e34c34ac112ee3f56f800851798c3689d9fd4ce339558",
+      "description": "在目标与约束下构造新方案或已有系统的变更路径。明确前后差异、关键取舍、迁移与验证；已有成熟方案直接实施。",
+      "entry": "507-design/SKILL.md",
+      "name": "507-design",
       "role": "main"
     },
     {
-      "contractSha256": "e66a82b971f948c517eefceb6e5e19bfb60f5da76a04a46c48dec1d6654f494d",
-      "description": "构建或校准项目领域概念、词义、边界与关系，用具体场景检验并按授权维护相关文档。适用于新领域模型、影响设计或实现的语义冲突及领域关系修订；查阅已有词汇、解释概念或沿充分定义执行时直接处理，不重开建模。",
-      "entry": "507-domain/SKILL.md",
-      "name": "507-domain",
+      "contractSha256": "4da7f0bb3cb064c68ecbf0131ccc2087908591ba5e75834f3bd020875d7a0531",
+      "description": "构建或校准领域概念、词义边界与关系。用具体场景检验，按授权回写权威文档并返回原任务；普通查词直接解释。",
+      "entry": "507-domain-model/SKILL.md",
+      "name": "507-domain-model",
       "role": "secondary"
     },
     {
-      "contractSha256": "970b97b2750b30d1b54923a5fcba07368e49fbda2bc707eb9406207636791317",
-      "description": "根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。明确故障、成熟方案、执行工单或任务图直接进入相应工作。",
-      "entry": "507-how/SKILL.md",
-      "name": "507-how",
+      "contractSha256": "01b4ee661c5fd2e07ecd9350932bb08441726cbab4d2e9264ab04e004a8ce053",
+      "description": "只读调查陌生项目，解释现有代码或机制怎样运作、为何如此。沿代表路径说明依据与未知；需要设计变更时转入方案工作。",
+      "entry": "507-explain/SKILL.md",
+      "name": "507-explain",
       "role": "main"
     },
     {
-      "contractSha256": "e4b53cc5d0ba64cc476d8b3461c8f9f2b8f85b469fb08c857f8fa4c0e6548206",
-      "description": "草拟、创建或维护可跟进的软件工单，保留调查证据并原位升级为可领取的执行任务。用于用户要求记录或追踪问题；发现缺陷本身不授权远程建单、分派或关闭。",
-      "entry": "507-issue/SKILL.md",
-      "name": "507-issue",
+      "contractSha256": "734933c38ff9053cb998656bfc3b72ca653abed9279752c10adf79fa4200ca88",
+      "description": "由未参与实施的人只读审查指定交付，核对已确认要求、质量风险和实际证据。形成可定位的发现与结论，由实施者接回修复。",
+      "entry": "507-peer-review/SKILL.md",
+      "name": "507-peer-review",
       "role": "secondary"
     },
     {
-      "contractSha256": "45e51c13118c4e95b2ef8fa130977cf6c20c9fafc18e88f57f91fcbe3a119ea1",
-      "description": "整理指定资料，核清来源、身份、重复和支持范围；也可按明确请求组织已有知识入口。用于素材混杂、独立性或证据承重需要核对；不替作者选主张，不写成稿，不默认写入知识库。",
-      "entry": "507-material/SKILL.md",
-      "name": "507-material",
-      "role": "secondary"
-    },
-    {
-      "contractSha256": "41b7cf2b4f08422fd5aa003a9ae1a6595dc2bb13eac81b1089ccfda365ccc35d",
-      "description": "为承担当前任务的执行者安排如何交付结果，明确步骤、依赖、验证与恢复。用户要工作计划，或执行者确需独立安排工作时采用。用户直接要清单、操作指引或复盘提纲，步骤由拿到成品的读者执行时，直接成稿。",
-      "entry": "507-plan/SKILL.md",
-      "name": "507-plan",
-      "role": "secondary"
-    },
-    {
-      "contractSha256": "2b825fb2efd9ea86303ed1ff8df1ca2edd07b5cded2ba030b54c1991b79ea650",
-      "description": "梳理指定产品功能的交互点与操作关系，把设计要求、实现依据和实际运行证据对到同一节点，生成可探索地图与范围差距。用于功能盘点、入口到结果的对照或明确要求交互地图；仓库目录导航、组件抽取和普通实现不默认进入。",
+      "contractSha256": "07f17bb5974dbe5f26bf6cc3e45210fd4dc8323e9641dfe5eba5edc47c762e6b",
+      "description": "梳理指定产品功能的交互点及其关系，把设计、实现和实际运行证据对到同一节点。交付可探索地图、覆盖和差距。",
       "entry": "507-product-map/SKILL.md",
       "name": "507-product-map",
       "role": "secondary"
     },
     {
-      "contractSha256": "9c7fea91cda540d7113d30f38e2f5fdb28f9505daf0c2e6d4282bef0f8eb398d",
-      "description": "复盘已发生的工程工作，以实际尝试和结果提炼改进及重复任务的工具建议。用于明确要求复盘，或已证实的重复摩擦需要形成独立改进结论时；日常记录、故障定位与修复直接在原任务处理。复盘不自动修改技能、规范、记忆或工具，批准方法写入后才实施。",
-      "entry": "507-retro/SKILL.md",
-      "name": "507-retro",
-      "role": "secondary"
-    },
-    {
-      "contractSha256": "7afc8d3d991424c27449dfdaff7e9a52e1406fc1d0d4866a34f89fef51b4067c",
-      "description": "检查现状是否满足已确认要求，只检查不修改。独立审查代码、文档、作品或指定提示与指令，核对失效、冲突及适用证据，给出发现和结论。实现者自查和全库改进机会调查不替代独审。",
-      "entry": "507-review/SKILL.md",
-      "name": "507-review",
-      "role": "secondary"
-    },
-    {
-      "contractSha256": "e5b98dc31a1cf7d83b85c051d4bad448e5497e60d1a20d4e404dbc972d4f3122",
-      "description": "理顺项目文档的阅读路径，维护 README、目录职责及通往规格、术语表和决策档案的导航，也建立、迁移或只读核对项目工作依据。检查工作指令的失效与冲突，按请求保全规则、词义、共用设计和现行要求。局部导航按指定范围处理，业务实现与技能设计按其任务承接。",
+      "contractSha256": "e234826acf13d02782d7f702463f025c8217bc66c228be685591f90ed61389f7",
+      "description": "建立或维护项目工作依据、README 和文档阅读导航。核对适用的工作指令，按范围整理当前权威和决策来源。",
       "entry": "507-setup/SKILL.md",
       "name": "507-setup",
       "role": "main"
     },
     {
-      "contractSha256": "2aa3261e28118f9b8069f51dfed8be42accb2f3820e5d8e5ed184a6aab3dda83",
-      "description": "整理唯一现行的行为与验收规格，承接已确认的软件需求或方案，也支持维护 PRD。清理或重构前可整理范围内必须保留的功能，清理中可校准规格缺口；已有充分规格直接沿用，活动或合作提案按其写作任务处理。",
-      "entry": "507-spec/SKILL.md",
-      "name": "507-spec",
+      "contractSha256": "bc4ffa4b1faf2e1ed1b0eb2af666865785664502e7d037213fd0241b00b48440",
+      "description": "规划、编写、重构或审计技能体系与共有资源。核对真实使用场景、外部方法的适用范围和直接消费者，完成已授权的文件与验证。",
+      "entry": "507-skill/SKILL.md",
+      "name": "507-skill",
+      "role": "main"
+    },
+    {
+      "contractSha256": "61c2012ce2d2154c0c62ccfbe5075b2328794d678fad59dd71edc94e68d9fcae",
+      "description": "核清指定资料的来源、身份、重复与支持范围，或按请求组织已有知识入口。交付可回查的材料与缺口，作者主张和知识库写入沿原授权处理。",
+      "entry": "507-source-material/SKILL.md",
+      "name": "507-source-material",
       "role": "secondary"
     },
     {
-      "contractSha256": "ecf5ac4dd0ef8789d71a383777901cda3bdef4609df3e5d2e94f62c42606130c",
-      "description": "围绕当前决策归纳已核对的访谈、反馈或问题记录，比较会改变处理方式的分组，交付可回查的判断、处理优先级和待查证据。仅需整理来源、解释机制或执行已有安排时直接处理。",
-      "entry": "507-synthesize/SKILL.md",
-      "name": "507-synthesize",
+      "contractSha256": "d3cc6320e4c922f55fbfd6756ccbbd5da180bfa1dc159e33eaead10b4bc12f91",
+      "description": "为当前任务的执行者安排实施步骤、依赖、验证点和恢复办法。读者使用的操作指引按作品交付。",
+      "entry": "507-step-plan/SKILL.md",
+      "name": "507-step-plan",
       "role": "secondary"
     },
     {
-      "contractSha256": "4498420e57f07bca3a0890185f7906897ad77cdcf73efefe7e1fb1184a5d237d",
-      "description": "把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。用于状态变化、跨角色时序、对象关系或同条件比较需要图解的任务；简单事实和局部润色直接完成，产品功能证据地图、正式分析与业务实施保留原职责。",
-      "entry": "507-visualize/SKILL.md",
-      "name": "507-visualize",
+      "contractSha256": "9d008a66c6a796ef9ca72fce7e7dd87732e57b43cd547e780e10459484ed245e",
+      "description": "拆分多执行者的工作，隔离写入范围，接收并验证组合结果。按需要维护任务图或生成任务网页；简单任务直接完成，只做计划时止于计划。",
+      "entry": "507-task-dispatch/SKILL.md",
+      "name": "507-task-dispatch",
       "role": "secondary"
     },
     {
-      "contractSha256": "b560ea55a1abfe6931fd92ff420e93c71ca93e615f4792a63680fe99e015a14a",
-      "description": "定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。主动整合材料、提出有依据的观点与机会，只询问会改变方向的必要问题；事实查询、术语解释、故障诊断和前提已充分的执行不进入。",
+      "contractSha256": "fdf6726fbaf2a73e58e25286b7ba356fbee2626229c250d11c1f35256aa217f3",
+      "description": "发现并推进待办事项，接续已有工作的约定和交付。收到确认后继续已解锁的行动，按约定核对交齐的文件和还在等待的结果。",
+      "entry": "507-track/SKILL.md",
+      "name": "507-track",
+      "role": "main"
+    },
+    {
+      "contractSha256": "ee6c0428187300740163f99c992db637e300b635b235f09ea79c053bf5fe5d82",
+      "description": "制作产品界面的静态功能卡片或带光标的模拟操作短动画。交付可编辑场景与目标实物，真实业务功能、实际操作录制和完整视频沿原任务处理。",
+      "entry": "507-ui-demo/SKILL.md",
+      "name": "507-ui-demo",
+      "role": "secondary"
+    },
+    {
+      "contractSha256": "4075c44ecc52ed0efbce11473baaf187f1645bb788043ba9e43b5f0c72e73e94",
+      "description": "准备版本交付与 PR 说明，跟进评审评论并读回已授权动作的结果。本地提交、推送、建 PR、合并和发布分别核对授权；只要说明时止于草稿。",
+      "entry": "507-version-deliver/SKILL.md",
+      "name": "507-version-deliver",
+      "role": "secondary"
+    },
+    {
+      "contractSha256": "affe7a3712928ce188d583c200e71e2db792b57757e0e0ff89ebd2edb55560d8",
+      "description": "用状态图、时序图、关系图或同条件对比表讲清复杂机制与差异。使用已核对的材料并保留未知；简单事实直接说明。",
+      "entry": "507-visual-explain/SKILL.md",
+      "name": "507-visual-explain",
+      "role": "secondary"
+    },
+    {
+      "contractSha256": "398828ec788d5fafb899604cd055ccd565e0cc4075832bdeca8064d4b9ef028c",
+      "description": "定义要解决的问题、目标、范围与关键取舍。已有事实可查或已有方案可执行时沿原任务继续。",
       "entry": "507-what/SKILL.md",
       "name": "507-what",
       "role": "main"
     },
     {
-      "contractSha256": "3af5a25396b15f7262e5efae9adf1d8d8d9cc9c6e576775bf3572537c20b2496",
-      "description": "帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。明确故障修复、已有方案实施和作者作品编排直接进入相应工作，不重开解释主目标。",
-      "entry": "507-why/SKILL.md",
-      "name": "507-why",
-      "role": "main"
+      "contractSha256": "4c93d11efa5c662f0ed047d023215a4a1a44e14f7e141b3496986bd6594dbb59",
+      "description": "起草或维护可跟进的软件工单，把调查记录原位升级为可领取的执行任务。建单、分派、跟评和关闭分别沿用具体授权。",
+      "entry": "507-work-issue/SKILL.md",
+      "name": "507-work-issue",
+      "role": "secondary"
     },
     {
-      "contractSha256": "bf54debf02648daab7f91e0bcb46aa6c37fca51e63f8b9804c49fef25f8db44d",
-      "description": "接续已有项目或从消息、任务和过程记录中发现工作事项，按建议顺序推进已获授权的工作。收到定稿、确认或解除阻塞时，对照原约定完成刚解锁的交付。支持局部事项更新和跨会话接续，沿原记录更新状态或交回拟议结果。明确的作品成稿、单一故障修复或全新产品设计按其目标直接处理。",
-      "entry": "507-work/SKILL.md",
-      "name": "507-work",
-      "role": "main"
-    },
-    {
-      "contractSha256": "8e2c3535e4b9d19fbed0d206a3a76d606a74efff00d32f2e61f3fef78dc3d894",
-      "description": "规划、创建或重构技能体系，借鉴外部技能时先核对原技能何时启动、交付什么，再判断借用范围。审计技能包中的触发、读取与指令适用性，将任务经验和外部方法组织成技能、共有方法与工具，并完成获授权的文件和验证。项目工作指令核对、普通业务执行及独立交付审查按其任务处理。",
-      "entry": "skill-design/SKILL.md",
-      "name": "skill-design",
-      "role": "main"
+      "contractSha256": "81e8d2b3515aafb1fca385a1ab368e2f641210bc3d38f5fcbdbefddf79434ae1",
+      "description": "复盘已发生的工程尝试与重复摩擦，提炼有依据的防复发措施或工具化建议。复盘结束交回建议，写入规则或工具另循授权。",
+      "entry": "507-work-retro/SKILL.md",
+      "name": "507-work-retro",
+      "role": "secondary"
     }
   ],
   "kind": "skill-declarations",
   "legacy": [
     {
       "consumers": [
-        "507-review"
+        "507-peer-review"
       ],
       "decision": "merge",
       "dropped": [],
       "id": "507-audit",
-      "reason": "旧版交付审查先迁至507-review；现行同名入口负责项目规则与自动检查，职责不同。",
+      "reason": "旧版交付审查先迁至 507-review，现由 507-peer-review 承接；现行同名的 507-audit 负责项目规则与自动检查。",
       "retained": [
         "根据已确认要求独立审查交付，报告发现与证据边界。"
       ],
@@ -198,14 +191,14 @@
       "sourceRevision": "4d165e56aaaf8dfb909ac0a78d0cee2b6ac4f520",
       "sourceSha256": "4e157b662c73a5057e413629df37070f35a71d199cc9305c3a18d0b6df25b189",
       "targets": [
-        "skills/507-review/SKILL.md"
+        "skills/507-peer-review/SKILL.md"
       ],
       "verification": "固定版本和指纹用于追溯历史；当前入口、安装与实际审查各自验证。"
     },
     {
       "consumers": [
-        "507-why",
-        "507-material",
+        "507-explain",
+        "507-source-material",
         "507-create"
       ],
       "decision": "merge",
@@ -235,7 +228,7 @@
     },
     {
       "consumers": [
-        "507-material"
+        "507-source-material"
       ],
       "decision": "merge",
       "dropped": [
@@ -258,14 +251,31 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "f0c680aee2c42d100029e15eedebf9adca19a6fbbb194e900c002061162a596c",
       "targets": [
-        "skills/507-material/references/knowledge-organization.md",
-        "skills/507-material/SKILL.md"
+        "skills/507-source-material/references/knowledge-organization.md",
+        "skills/507-source-material/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
     {
+      "consumers": [],
+      "decision": "drop",
+      "dropped": [
+        {
+          "mechanism": "独立判断陪练入口",
+          "reason": "缺少需要独立入口的真实使用场景，判断陪练退出活动清单。"
+        }
+      ],
+      "id": "507-coach",
+      "reason": "缺少需要独立入口的真实使用场景，判断陪练退出活动清单。",
+      "retained": [],
+      "source": "doc/90-归档/技能/507-coach/SKILL.md",
+      "sourceSha256": "815f464e021998fe551613e4e63fb805a0883831f481ed3801cca2bdb715cdb3",
+      "targets": [],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
       "consumers": [
-        "507-do"
+        "507-build"
       ],
       "decision": "merge",
       "dropped": [
@@ -275,7 +285,7 @@
         }
       ],
       "id": "507-component",
-      "reason": "产品界面组件查找、复用和抽取迁移由主要工程入口507-do直接承接，专用方法留在包内按需读取。",
+      "reason": "产品界面组件查找、复用和抽取迁移曾由 507-do 直接承接，现归 507-build，专用方法留在包内按需读取。",
       "retained": [
         "只查找时交可定位结果，不修改组件、调用、依赖或库配置",
         "已有适用组件直接采用；同语义且多个已存在或已确认使用位置才抽取并迁移范围内已有调用",
@@ -284,8 +294,8 @@
       "source": "doc/90-归档/技能/507-component/SKILL.md",
       "sourceSha256": "96c729cd5b53e6bd5049ef85489c55b3261162fb327a4aa9efd1da7b43077c0f",
       "targets": [
-        "skills/507-do/SKILL.md",
-        "skills/507-do/references/component-reuse.md"
+        "skills/507-build/SKILL.md",
+        "skills/507-build/references/component-reuse.md"
       ],
       "verification": "原入口全包及历史首次证据保持原身份；本次源码、独审和安装另记，不继承真实任务采用或效率结论。"
     },
@@ -319,7 +329,97 @@
     },
     {
       "consumers": [
-        "507-why",
+        "507-task-dispatch"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-coordinate",
+      "reason": "按已确认的职责命名，原入口由 507-task-dispatch 接续。",
+      "retained": [
+        "拆分多执行者的工作，隔离写入范围，接收并验证组合结果"
+      ],
+      "source": "doc/90-归档/技能/507-coordinate/SKILL.md",
+      "sourceSha256": "ad1e1bb47b7ec020340f6922499b131e6e09155866c59bcbec9b47b669b4466b",
+      "targets": [
+        "skills/507-task-dispatch/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-version-deliver"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-deliver",
+      "reason": "按已确认的职责命名，原入口由 507-version-deliver 接续。",
+      "retained": [
+        "准备版本交付与 PR 说明，跟进评审评论并读回已授权动作的结果"
+      ],
+      "source": "doc/90-归档/技能/507-deliver/SKILL.md",
+      "sourceSha256": "244121d70fa68e77af9745ec97c729238131ef5ce9f71c9d2580c1d477e2c433",
+      "targets": [
+        "skills/507-version-deliver/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-ui-demo"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-demo",
+      "reason": "按已确认的职责命名，原入口由 507-ui-demo 接续。",
+      "retained": [
+        "制作产品界面的静态功能卡片或带光标的模拟操作短动画"
+      ],
+      "source": "doc/90-归档/技能/507-demo/SKILL.md",
+      "sourceSha256": "b7b4c9b70ecbfa64c6fa3418b0d74ce632d4454bec31565ca4563886b2f33a22",
+      "targets": [
+        "skills/507-ui-demo/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-build"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-do",
+      "reason": "按已确认的职责命名，原入口由 507-build 接续。",
+      "retained": [
+        "按需求写代码开发功能，复现并修复故障，用原操作和测试验证结果"
+      ],
+      "source": "doc/90-归档/技能/507-do/SKILL.md",
+      "sourceSha256": "1fea2c62e5f3f4625d5798e07506a2a6863b6abb68eb3eb75b3401c14973f273",
+      "targets": [
+        "skills/507-build/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-domain-model"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-domain",
+      "reason": "按已确认的职责命名，原入口由 507-domain-model 接续。",
+      "retained": [
+        "构建或校准领域概念、词义边界与关系"
+      ],
+      "source": "doc/90-归档/技能/507-domain/SKILL.md",
+      "sourceSha256": "e66a82b971f948c517eefceb6e5e19bfb60f5da76a04a46c48dec1d6654f494d",
+      "targets": [
+        "skills/507-domain-model/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-explain",
         "507-create"
       ],
       "decision": "merge",
@@ -338,7 +438,7 @@
         }
       ],
       "id": "507-explain",
-      "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
+      "reason": "旧版解释方法由现行同名入口 507-explain 和创作入口按需采用。现行入口还承接原 507-why 的项目调查职责。",
       "retained": [
         "定义的对象可指认，从场景建立概念；术语解释/黑盒/移除三选一；采用条件：定义或读者背景需要时",
         "保留事实与类比、代表性误解与反馈路径；采用条件：解释当前核心，不扩系统课程",
@@ -349,14 +449,14 @@
       "sourceSha256": "83371d88755be5362540c7a414c180817085e4ab4f4e10f322c57d3745cba621",
       "targets": [
         "lib/methods/writing/explanation-progression.md",
-        "skills/507-why/references/explanation.md"
+        "skills/507-explain/references/explanation.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
     {
       "consumers": [
-        "507-why",
-        "507-how"
+        "507-explain",
+        "507-design"
       ],
       "decision": "merge",
       "dropped": [
@@ -387,7 +487,7 @@
     },
     {
       "consumers": [
-        "507-do"
+        "507-build"
       ],
       "decision": "merge",
       "dropped": [
@@ -405,7 +505,7 @@
         }
       ],
       "id": "507-fix",
-      "reason": "修复职责并入主要工程入口507-do的修复模式，保留复现、根因、最小修复和原动作复验；旧30及随后next版本分别保留原件。",
+      "reason": "修复职责曾由 507-do 承接，现由 507-build 保留复现、根因、最小修复和原动作复验；旧 30 及后续版本分别保留原件。",
       "retained": [
         "完整错误与首个真实失败，预期/输入/环境/范围/版本先核，生产故障、规格变化、过时测试和环境分清。",
         "改生产前确定可重复故障信号，断言能拒原错；无确定信号缩小/观测，不症状猜改。",
@@ -420,7 +520,7 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "d1342f5b6887533567d46b7a65b7095c56dd23531bb69315d96d2735eb12a71a",
       "targets": [
-        "skills/507-do/references/debugging.md",
+        "skills/507-build/references/debugging.md",
         "lib/methods/engineering/engineering-evidence.md"
       ],
       "verification": "旧首次与原独审按原身份保留；本次合并的结构检查与独审另记，不继承自然任务采用或业务效果结论。"
@@ -503,7 +603,7 @@
     },
     {
       "consumers": [
-        "507-deliver"
+        "507-version-deliver"
       ],
       "decision": "retain",
       "dropped": [
@@ -537,8 +637,8 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "fc1a598d8f4344d619cc58eb6072e09d258cdc751af16f9fdab7e766bd36f6fb",
       "targets": [
-        "skills/507-deliver/SKILL.md",
-        "skills/507-deliver/references/actions.md"
+        "skills/507-version-deliver/SKILL.md",
+        "skills/507-version-deliver/references/actions.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -583,20 +683,20 @@
     },
     {
       "consumers": [
-        "skill-design",
+        "507-skill",
         "507-what",
-        "507-work",
-        "507-why",
-        "507-how",
+        "507-track",
+        "507-explain",
+        "507-design",
         "507-create",
-        "507-spec",
-        "507-do",
-        "507-review",
-        "507-issue",
-        "507-coordinate",
-        "507-deliver",
-        "507-retro",
-        "507-material",
+        "507-behavior-spec",
+        "507-build",
+        "507-peer-review",
+        "507-work-issue",
+        "507-task-dispatch",
+        "507-version-deliver",
+        "507-work-retro",
+        "507-source-material",
         "507-adapt",
         "507-setup"
       ],
@@ -632,7 +732,25 @@
     },
     {
       "consumers": [
-        "507-do"
+        "507-design"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-how",
+      "reason": "按已确认的职责命名，原入口由 507-design 接续。",
+      "retained": [
+        "在目标与约束下构造新方案或已有系统的变更路径"
+      ],
+      "source": "doc/90-归档/技能/507-how/SKILL.md",
+      "sourceSha256": "970b97b2750b30d1b54923a5fcba07368e49fbda2bc707eb9406207636791317",
+      "targets": [
+        "skills/507-design/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-build"
       ],
       "decision": "merge",
       "dropped": [
@@ -642,7 +760,7 @@
         }
       ],
       "id": "507-implement",
-      "reason": "原实施能力升格并改名为主要工程入口507-do，保留已有需求直接执行及各类测试限定。",
+      "reason": "原实施能力先升格为 507-do，现由 507-build 承接，保留已有需求直接执行及各类测试限定。",
       "retained": [
         "新增功能和已确认行为的完整工程结果",
         "指定版本、局部修改、行为不变调整及必要验证",
@@ -652,15 +770,15 @@
       "source": "doc/90-归档/技能/507-implement/SKILL.md",
       "sourceSha256": "8d5a4790a1563125e0a10544af07e87d51ff4b23ed0c532b513c7ade86aee994",
       "targets": [
-        "skills/507-do/SKILL.md",
-        "skills/507-do/references/testing.md"
+        "skills/507-build/SKILL.md",
+        "skills/507-build/references/testing.md"
       ],
       "verification": "本次源码、包闭包及独审另记；原首次、反馈与旧独审不重归类。"
     },
     {
       "consumers": [
-        "507-why",
-        "507-how"
+        "507-explain",
+        "507-design"
       ],
       "decision": "merge",
       "dropped": [
@@ -701,7 +819,7 @@
     },
     {
       "consumers": [
-        "507-issue"
+        "507-work-issue"
       ],
       "decision": "retain",
       "dropped": [
@@ -735,13 +853,31 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "57211638c990fb6cc7f3683ff54029498f267f00501df75ef63e9ac65ad6b394",
       "targets": [
-        "skills/507-issue/SKILL.md"
+        "skills/507-work-issue/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
     {
       "consumers": [
-        "507-material"
+        "507-source-material"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-material",
+      "reason": "按已确认的职责命名，原入口由 507-source-material 接续。",
+      "retained": [
+        "核清指定资料的来源、身份、重复与支持范围，或按请求组织已有知识入口"
+      ],
+      "source": "doc/90-归档/技能/507-material/SKILL.md",
+      "sourceSha256": "45e51c13118c4e95b2ef8fa130977cf6c20c9fafc18e88f57f91fcbe3a119ea1",
+      "targets": [
+        "skills/507-source-material/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-source-material"
       ],
       "decision": "merge",
       "dropped": [
@@ -765,10 +901,28 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "e57d9af100ebd51e33fdbeb043a7beaaf3a3ee880aad118505ccc48c39c4dd46",
       "targets": [
-        "skills/507-material/SKILL.md",
-        "skills/507-material/references/material-units.md"
+        "skills/507-source-material/SKILL.md",
+        "skills/507-source-material/references/material-units.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
+    },
+    {
+      "consumers": [
+        "507-step-plan"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-plan",
+      "reason": "按已确认的职责命名，原入口由 507-step-plan 接续。",
+      "retained": [
+        "为当前任务的执行者安排实施步骤、依赖、验证点和恢复办法"
+      ],
+      "source": "doc/90-归档/技能/507-plan/SKILL.md",
+      "sourceSha256": "41b7cf2b4f08422fd5aa003a9ae1a6595dc2bb13eac81b1089ccfda365ccc35d",
+      "targets": [
+        "skills/507-step-plan/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
     },
     {
       "consumers": [
@@ -806,7 +960,7 @@
     },
     {
       "consumers": [
-        "507-spec"
+        "507-behavior-spec"
       ],
       "decision": "merge",
       "dropped": [
@@ -836,14 +990,14 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "77d3a0153efb35692ac52b94fecbdc2d7241d960f1172dff650bd1790417863d",
       "targets": [
-        "skills/507-spec/SKILL.md"
+        "skills/507-behavior-spec/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
     {
       "consumers": [
         "507-create",
-        "507-material"
+        "507-source-material"
       ],
       "decision": "merge",
       "dropped": [
@@ -873,8 +1027,8 @@
     },
     {
       "consumers": [
-        "507-why",
-        "507-how"
+        "507-explain",
+        "507-design"
       ],
       "decision": "merge",
       "dropped": [
@@ -974,11 +1128,11 @@
     },
     {
       "consumers": [
-        "507-why",
-        "507-how",
+        "507-explain",
+        "507-design",
         "507-create",
-        "507-material",
-        "skill-design"
+        "507-source-material",
+        "507-skill"
       ],
       "decision": "merge",
       "dropped": [
@@ -1010,7 +1164,25 @@
     },
     {
       "consumers": [
-        "507-review"
+        "507-work-retro"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-retro",
+      "reason": "按已确认的职责命名，原入口由 507-work-retro 接续。",
+      "retained": [
+        "复盘已发生的工程尝试与重复摩擦，提炼有依据的防复发措施或工具化建议"
+      ],
+      "source": "doc/90-归档/技能/507-retro/SKILL.md",
+      "sourceSha256": "9c7fea91cda540d7113d30f38e2f5fdb28f9505daf0c2e6d4282bef0f8eb398d",
+      "targets": [
+        "skills/507-work-retro/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-peer-review"
       ],
       "decision": "retain",
       "dropped": [
@@ -1043,7 +1215,7 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "3e986f852afc0ed073bf9001a39bb950503f49b3814814909addc839c0b0f95c",
       "targets": [
-        "skills/507-review/SKILL.md"
+        "skills/507-peer-review/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
@@ -1094,8 +1266,8 @@
     },
     {
       "consumers": [
-        "507-how",
-        "507-do"
+        "507-design",
+        "507-build"
       ],
       "decision": "merge",
       "dropped": [
@@ -1130,13 +1302,13 @@
       "sourceSha256": "c0d66d7fbc22e6608bb8f9875fe56b4bf72ec1ee706908eae62674f1b6548110",
       "targets": [
         "lib/methods/engineering/behavior-preserving-change.md",
-        "skills/507-do/SKILL.md"
+        "skills/507-build/SKILL.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
     {
       "consumers": [
-        "skill-design"
+        "507-skill"
       ],
       "decision": "retain",
       "dropped": [
@@ -1160,16 +1332,52 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "18fe2c3624552fb4454d4acf7a46f56064f4d7576f01d2e1dfe9c9bec12f2406",
       "targets": [
-        "skills/skill-design/SKILL.md",
+        "skills/507-skill/SKILL.md",
         "lib/components/tools/projections/library_view.py"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
     {
       "consumers": [
+        "507-behavior-spec"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-spec",
+      "reason": "按已确认的职责命名，原入口由 507-behavior-spec 接续。",
+      "retained": [
+        "整理唯一现行的软件行为要求与验收规格"
+      ],
+      "source": "doc/90-归档/技能/507-spec/SKILL.md",
+      "sourceSha256": "2aa3261e28118f9b8069f51dfed8be42accb2f3820e5d8e5ed184a6aab3dda83",
+      "targets": [
+        "skills/507-behavior-spec/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-case-synthesis"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-synthesize",
+      "reason": "按已确认的职责命名，原入口由 507-case-synthesis 接续。",
+      "retained": [
+        "围绕当前决策，去重归纳多份访谈、反馈或问题记录"
+      ],
+      "source": "doc/90-归档/技能/507-synthesize/SKILL.md",
+      "sourceSha256": "ecf5ac4dd0ef8789d71a383777901cda3bdef4609df3e5d2e94f62c42606130c",
+      "targets": [
+        "skills/507-case-synthesis/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
         "507-create",
         "507-adapt",
-        "507-do"
+        "507-build"
       ],
       "decision": "merge",
       "dropped": [
@@ -1205,7 +1413,7 @@
     },
     {
       "consumers": [
-        "507-do"
+        "507-build"
       ],
       "decision": "merge",
       "dropped": [
@@ -1238,13 +1446,13 @@
       "sourceRevision": "a4c28d19bfea418333ff1487a958d33b797f2308",
       "sourceSha256": "b63ccd61587148b82b128e3c7fa803d57737641edbf69ab8eb8ecb3f428e21b5",
       "targets": [
-        "skills/507-do/references/testing.md"
+        "skills/507-build/references/testing.md"
       ],
       "verification": "本轮已完成源码与消费者登记；静态映射不代表新方法实际遵循或正式业务通过。"
     },
     {
       "consumers": [
-        "507-do",
+        "507-build",
         "507-adapt"
       ],
       "decision": "merge",
@@ -1328,11 +1536,11 @@
     },
     {
       "consumers": [
-        "507-why",
-        "507-how",
+        "507-explain",
+        "507-design",
         "507-adapt",
-        "507-coordinate",
-        "507-visualize"
+        "507-task-dispatch",
+        "507-visual-explain"
       ],
       "decision": "merge",
       "dropped": [
@@ -1346,7 +1554,7 @@
         }
       ],
       "id": "507-visualize",
-      "reason": "旧入口的有效理解方法继续由共有资源维护；2026-10-24按图解表达独立结果建立同名次要入口，当前与旧版合同分别追溯。",
+      "reason": "旧入口的理解方法由共有资源维护。2026-10-24 建立的同名图解入口现已改名为 507-visual-explain；其他消费者按需使用这些共有方法。",
       "retained": [
         "先确定理解动作，对象稳定身份/版本与事实/候选分开；采用条件：已有材料需要关系探索、条件观察或同条件比較",
         "关键边有类型、方向、条件和可定位依据；采用条件：引用/依赖/调用/时间/接力/同类不混",
@@ -1359,7 +1567,7 @@
       "targets": [
         "lib/methods/design/visual-understanding.md",
         "lib/methods/writing/clear-expression.md",
-        "skills/507-visualize/SKILL.md"
+        "skills/507-visual-explain/SKILL.md"
       ],
       "verification": "原方法保留；同名次要入口的结构与试用结果见当前进度，不能由名称恢复推断旧版所有载体已验证。"
     },
@@ -1398,7 +1606,43 @@
     },
     {
       "consumers": [
-        "507-work"
+        "507-explain"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-why",
+      "reason": "按已确认的职责命名，原入口由 507-explain 接续。",
+      "retained": [
+        "只读调查陌生项目，解释现有代码或机制怎样运作、为何如此"
+      ],
+      "source": "doc/90-归档/技能/507-why/SKILL.md",
+      "sourceSha256": "3af5a25396b15f7262e5efae9adf1d8d8d9cc9c6e576775bf3572537c20b2496",
+      "targets": [
+        "skills/507-explain/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-track"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "507-work",
+      "reason": "按已确认的职责命名，原入口由 507-track 接续。",
+      "retained": [
+        "发现并推进待办事项，接续已有工作的约定和交付"
+      ],
+      "source": "doc/90-归档/技能/507-work/SKILL.md",
+      "sourceSha256": "bf54debf02648daab7f91e0bcb46aa6c37fca51e63f8b9804c49fef25f8db44d",
+      "targets": [
+        "skills/507-track/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "consumers": [
+        "507-track"
       ],
       "decision": "merge",
       "dropped": [
@@ -1408,7 +1652,7 @@
         }
       ],
       "id": "507-work-update",
-      "reason": "原工作能力升格并改名为主要入口507-work；coordinate保留独立的次要协调职责，重复方法采用原共有源。",
+      "reason": "原工作能力先升格为 507-work，现由 507-track 承接；507-task-dispatch 保留独立的协调职责。",
       "retained": [
         "工作事项发现、组织、建议排序、授权内推进与原记录更新",
         "事项身份、日期、条件、来源与接受状态的保全",
@@ -1418,11 +1662,29 @@
       "source": "doc/90-归档/技能/507-work-update/SKILL.md",
       "sourceSha256": "8d3ce8e08c26d769d978e6da057728b5f55042af09010cc65a8086906ab6e7e0",
       "targets": [
-        "skills/507-work/SKILL.md",
-        "skills/507-work/references/process.md",
-        "skills/507-work/references/state-views.md"
+        "skills/507-track/SKILL.md",
+        "skills/507-track/references/process.md",
+        "skills/507-track/references/state-views.md"
       ],
       "verification": "原包、首次及旧独审保留原身份；本次源码、包检查与独审另记，不继承自然任务采用结论。"
+    },
+    {
+      "consumers": [
+        "507-skill"
+      ],
+      "decision": "merge",
+      "dropped": [],
+      "id": "skill-design",
+      "reason": "按已确认的职责命名，原入口由 507-skill 接续。",
+      "retained": [
+        "规划、编写、重构或审计技能体系与共有资源"
+      ],
+      "source": "doc/90-归档/技能/skill-design/SKILL.md",
+      "sourceSha256": "8e2c3535e4b9d19fbed0d206a3a76d606a74efff00d32f2e61f3fef78dc3d894",
+      "targets": [
+        "skills/507-skill/SKILL.md"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
     }
   ],
   "schema": 1

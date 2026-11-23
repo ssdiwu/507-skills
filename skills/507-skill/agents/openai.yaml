@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-造技能"
+  short_description: "规划、编写、重构或审计技能体系与共有资源。"
+  default_prompt: "使用 $507-skill 设计或改进技能，按需选择优化方向并核对实际质量缺口，完成已授权的技能包、共有资源和验证。"

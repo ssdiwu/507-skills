@@ -8,7 +8,16 @@ export type ArtifactPage = ReadingSection & {title:string;sourceIds?:string[];no
 export const pageSections = (page:ArtifactPage):ReadingSection[] => page.sections??[page]
 export type ArtifactContent = {mode:'site'|'cards'|'deck';title:string;subtitle?:string;pages:ArtifactPage[];sources?:{id:string;label:string;url?:string}[]}
 export type ArtifactModel = ArtifactContent & {language?:Language;translations?:Partial<Record<Language,ArtifactContent>>}
-export type DocumentModel = {kind:'artifact';data:ArtifactModel}|{kind:'task-view'|'product-map'|'entry';data:any}
+export type LibraryData = {
+ previousLabels:Record<string,string>
+ lanes: {title:string;skills:string[]}[]
+ crosscutting:string[]
+ recipes:{title:string;steps:string[]}[]
+ skills:{name:string;displayName:string;description:string;skip:string;input:string;authority:string;stop:string;example:string;upstream:string[];downstream:string[];resources:string[];aliases:string[]}[]
+ resources:{source:string;title:string;consumers:string[]}[]
+ legacy:{id:string;decision:string;reason:string;consumers:string[]}[]
+}
+export type DocumentModel = {kind:'library-map';data:LibraryData}|{kind:'artifact';data:ArtifactModel}|{kind:'task-view'|'product-map'|'entry';data:any}
 export function bounds(value:Range):[number,number]{return typeof value==='number'?[value,value]:value}
 export function format(value:number){return Number(value.toPrecision(8)).toString()}
 export function rangeText(value:Range){const [low,high]=bounds(value);return low===high?format(low):`${format(low)}–${format(high)}`}
@@ -79,5 +88,46 @@ export function validateArtifact(data:unknown):asserts data is ArtifactModel{
  }
 }
 export function validateDocument(value:unknown):asserts value is DocumentModel{
- object(value,['kind','data'],['kind','data']);if(value.kind==='artifact')validateArtifact(value.data);else if(!['task-view','product-map','entry'].includes(value.kind)||!value.data||typeof value.data!=='object')throw new Error('Unknown document kind');else if(value.kind==='entry'&&!/^versions\/[a-f0-9]+\/index\.html$/.test(value.data.href))throw new Error('Invalid version entry')
+ object(value,['kind','data'],['kind','data'])
+ if(value.kind==='library-map'){
+  validateLibrary(value.data)
+  return
+ }
+ if(value.kind==='artifact')validateArtifact(value.data);else if(!['task-view','product-map','entry'].includes(value.kind)||!value.data||typeof value.data!=='object')throw new Error('Unknown document kind');else if(value.kind==='entry'&&!/^versions\/[a-f0-9]+\/index\.html$/.test(value.data.href))throw new Error('Invalid version entry')
+}
+
+function validateLibrary(data:unknown):asserts data is LibraryData {
+ const keys=['lanes','crosscutting','recipes','skills','resources','legacy','previousLabels']
+ object(data,keys,keys)
+ function records(rows:unknown, scalar:string[], lists:string[], identity:string){
+  if(!Array.isArray(rows))throw new Error('Expected library records')
+  const ids=new Set<string>()
+  for(const row of rows){
+   const fields=[...scalar,...lists]
+   object(row,fields,fields)
+   scalar.forEach(field=>text(row[field]))
+   lists.forEach(field=>strings(row[field]))
+   if(!row[identity].trim() || ids.has(row[identity]))throw new Error('Duplicate or empty library identity: '+row[identity])
+   ids.add(row[identity])
+  }
+  return ids
+ }
+ const skills=records(data.skills,['name','displayName','description','skip','input','authority','stop','example'],['upstream','downstream','resources','aliases'],'name')
+ const resources=records(data.resources,['source','title'],['consumers'],'source')
+ const historicalNames=records(data.legacy,['id','decision','reason'],['consumers'],'id')
+ if (!data.previousLabels || typeof data.previousLabels!=='object' || Array.isArray(data.previousLabels))
+  throw new Error('Expected previous display names')
+ refs(Object.values(data.previousLabels),new Set([...skills,...historicalNames]))
+ records(data.lanes,['title'],['skills'],'title')
+ records(data.recipes,['title'],['steps'],'title')
+ refs(data.crosscutting,skills)
+ for(const lane of data.lanes)refs(lane.skills,skills)
+ for(const recipe of data.recipes)refs(recipe.steps,skills)
+ for(const skill of data.skills){
+  refs(skill.upstream,skills)
+  refs(skill.downstream,skills)
+  refs(skill.resources,resources)
+  refs(skill.aliases,historicalNames)
+ }
+ for(const item of [...data.resources,...data.legacy])refs(item.consumers,skills)
 }

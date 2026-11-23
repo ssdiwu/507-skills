@@ -228,7 +228,7 @@ class HookTests(unittest.TestCase):
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT / row['source'], target)
         hooks.handle(self.event())
-        private = self.root / 'skills/507-demo/private-component.tsx'
+        private = self.root / 'skills/507-ui-demo/private-component.tsx'
         private.write_text('export default null\n')
         self.assertIn('undeclared', hooks.handle(self.event('Stop'))['reason'])
         private.unlink()

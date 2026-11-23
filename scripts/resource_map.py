@@ -54,7 +54,7 @@ def render():
   for category, items in groups.items():
    if items:
     details.extend(['', f'### {category}（{len(items)}）', '', *items])
- lines+=['','## 统一分工','','- create 负责作品内容和作者表达，adapt 负责受众与载体，visualize 负责图解关系与理解路径。新建独立阅读页采用[阅读页方法](../methods/design/reading-page.md)，修改已有页面优先复用项目组件。','- demo 负责产品识别、构图和动作编排。','- work 和 coordinate 校验过程记录，再按[任务页方法](../methods/design/task-page.md)组织页面。product-map 校验交互与证据记录，再按[地图页方法](../methods/design/product-map-page.md)组织页面。共有 React 渲染器继续承接已有生成页。','- do 负责真实产品行为，按目标项目和本次参考选择界面实现。','- review 独立核对职责、直接依赖、实际效果与未覆盖范围。','',*details]
+ lines+=['','## 统一分工','','- create 负责作品内容和作者表达，adapt 负责受众与载体，visual-explain 负责图解关系与理解路径。新建独立阅读页采用[阅读页方法](../methods/design/reading-page.md)，修改已有页面优先复用项目组件。','- ui-demo 负责产品识别、构图和动作编排。','- track 和 task-dispatch 校验过程记录，再按[任务页方法](../methods/design/task-page.md)组织页面。product-map 校验交互与证据记录，再按[地图页方法](../methods/design/product-map-page.md)组织页面。共有 React 渲染器继续承接已有生成页。','- build 负责真实产品行为，按目标项目和本次参考选择界面实现。','- peer-review 独立核对职责、直接依赖、实际效果与未覆盖范围。','',*details]
  return '\n'.join(lines)+'\n'
 if __name__=='__main__':
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--check',action='store_true');args=parser.parse_args();content=render()

@@ -14,7 +14,7 @@ import tempfile
 from urllib.parse import unquote, urlsplit
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
-SKILL_NAMES = {'skill-design','507-what','507-why','507-how','507-create','507-work','507-material','507-adapt','507-spec','507-do','507-review','507-issue','507-coordinate','507-deliver','507-retro','507-setup','507-audit','507-product-map','507-clean','507-plan','507-visualize','507-demo','507-domain','507-synthesize','507-coach'}
+SKILL_NAMES = {'507-skill','507-what','507-explain','507-design','507-create','507-track','507-source-material','507-adapt','507-behavior-spec','507-build','507-peer-review','507-work-issue','507-task-dispatch','507-version-deliver','507-work-retro','507-setup','507-audit','507-product-map','507-clean','507-step-plan','507-visual-explain','507-ui-demo','507-domain-model','507-case-synthesis'}
 DISPOSITIONS = 'lib/catalog/registry/skill-dispositions.json'
 ENTRY_DOCUMENTS = (
     'AGENTS.md',

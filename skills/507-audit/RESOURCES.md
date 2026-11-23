@@ -11,7 +11,8 @@
     "agents/openai.yaml"
   ],
   "uses": [
-    "lib/README.md"
+    "lib/README.md",
+    "lib/methods/engineering/engineering-evidence.md"
   ]
 }
 ```

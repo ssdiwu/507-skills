@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "date": "2026-10-21",
+  "date": "2026-11-23",
   "authority": "各现行SKILL.md是行为合同；本记录只维护旧能力处置、去向和缺口。",
   "legacySnapshot": {
     "revision": "a4c28d19bfea418333ff1487a958d33b797f2308",
@@ -64,8 +64,8 @@
         "lib/methods/engineering/architecture-candidates.md"
       ],
       "consumers": [
-        "507-why",
-        "507-how"
+        "507-explain",
+        "507-design"
       ],
       "sourceEvidence": [
         {
@@ -87,7 +87,7 @@
       "group": "common",
       "source": "archive/legacy/common/507-explain/SKILL.md",
       "decision": "merge",
-      "reason": "保留有效动作与条件，按实际任务合并到现有职责、共有方法或组件；退出旧独立入口身份。",
+      "reason": "旧版解释方法由现行同名入口 507-explain 和创作入口按需采用。现行入口还承接原 507-why 的项目调查职责。",
       "retained": [
         "定义的对象可指认，从场景建立概念；术语解释/黑盒/移除三选一；采用条件：定义或读者背景需要时",
         "保留事实与类比、代表性误解与反馈路径；采用条件：解释当前核心，不扩系统课程",
@@ -109,10 +109,10 @@
       ],
       "targets": [
         "lib/methods/writing/explanation-progression.md",
-        "skills/507-why/references/explanation.md"
+        "skills/507-explain/references/explanation.md"
       ],
       "consumers": [
-        "507-why",
+        "507-explain",
         "507-create"
       ],
       "sourceEvidence": [
@@ -198,11 +198,11 @@
         }
       ],
       "targets": [
-        "skills/skill-design/SKILL.md",
+        "skills/507-skill/SKILL.md",
         "lib/components/tools/projections/library_view.py"
       ],
       "consumers": [
-        "skill-design"
+        "507-skill"
       ],
       "sourceEvidence": [
         {
@@ -241,11 +241,11 @@
         "lib/methods/evidence-and-decisions/evidence.md"
       ],
       "consumers": [
-        "507-why",
-        "507-how",
+        "507-explain",
+        "507-design",
         "507-create",
-        "507-material",
-        "skill-design"
+        "507-source-material",
+        "507-skill"
       ],
       "sourceEvidence": [
         {
@@ -267,7 +267,7 @@
       "group": "common",
       "source": "archive/legacy/common/507-visualize/SKILL.md",
       "decision": "merge",
-      "reason": "旧入口的有效理解方法继续由共有资源维护；2026-10-24按图解表达独立结果建立同名次要入口，当前与旧版合同分别追溯。",
+      "reason": "旧入口的理解方法由共有资源维护。2026-10-24 建立的同名图解入口现已改名为 507-visual-explain；其他消费者按需使用这些共有方法。",
       "retained": [
         "先确定理解动作，对象稳定身份/版本与事实/候选分开；采用条件：已有材料需要关系探索、条件观察或同条件比較",
         "关键边有类型、方向、条件和可定位依据；采用条件：引用/依赖/调用/时间/接力/同类不混",
@@ -287,14 +287,14 @@
       "targets": [
         "lib/methods/design/visual-understanding.md",
         "lib/methods/writing/clear-expression.md",
-        "skills/507-visualize/SKILL.md"
+        "skills/507-visual-explain/SKILL.md"
       ],
       "consumers": [
-        "507-why",
-        "507-how",
+        "507-explain",
+        "507-design",
         "507-adapt",
-        "507-coordinate",
-        "507-visualize"
+        "507-task-dispatch",
+        "507-visual-explain"
       ],
       "sourceEvidence": [
         {
@@ -349,7 +349,7 @@
       "consumers": [
         "507-create",
         "507-adapt",
-        "507-do"
+        "507-build"
       ],
       "sourceEvidence": [
         {
@@ -395,20 +395,20 @@
         "lib/methods/collaboration/continuation.md"
       ],
       "consumers": [
-        "skill-design",
+        "507-skill",
         "507-what",
-        "507-work",
-        "507-why",
-        "507-how",
+        "507-track",
+        "507-explain",
+        "507-design",
         "507-create",
-        "507-spec",
-        "507-do",
-        "507-review",
-        "507-issue",
-        "507-coordinate",
-        "507-deliver",
-        "507-retro",
-        "507-material",
+        "507-behavior-spec",
+        "507-build",
+        "507-peer-review",
+        "507-work-issue",
+        "507-task-dispatch",
+        "507-version-deliver",
+        "507-work-retro",
+        "507-source-material",
         "507-adapt",
         "507-setup"
       ],
@@ -528,8 +528,8 @@
         "lib/methods/engineering/probe-lifecycle.md"
       ],
       "consumers": [
-        "507-why",
-        "507-how"
+        "507-explain",
+        "507-design"
       ],
       "sourceEvidence": [
         {
@@ -574,10 +574,10 @@
         }
       ],
       "targets": [
-        "skills/507-spec/SKILL.md"
+        "skills/507-behavior-spec/SKILL.md"
       ],
       "consumers": [
-        "507-spec"
+        "507-behavior-spec"
       ],
       "sourceEvidence": [
         {
@@ -626,10 +626,10 @@
         }
       ],
       "targets": [
-        "skills/507-issue/SKILL.md"
+        "skills/507-work-issue/SKILL.md"
       ],
       "consumers": [
-        "507-issue"
+        "507-work-issue"
       ],
       "sourceEvidence": [
         {
@@ -687,7 +687,7 @@
         "lib/methods/design/guides/apple-interaction.md"
       ],
       "consumers": [
-        "507-do",
+        "507-build",
         "507-adapt"
       ],
       "sourceEvidence": [
@@ -720,7 +720,7 @@
       "group": "code",
       "source": "archive/legacy/code/507-fix/SKILL.md",
       "decision": "merge",
-      "reason": "修复职责并入主要工程入口507-do的修复模式，保留复现、根因、最小修复和原动作复验；旧30及随后next版本分别保留原件。",
+      "reason": "修复职责曾由 507-do 承接，现由 507-build 保留复现、根因、最小修复和原动作复验；旧 30 及后续版本分别保留原件。",
       "retained": [
         "完整错误与首个真实失败，预期/输入/环境/范围/版本先核，生产故障、规格变化、过时测试和环境分清。",
         "改生产前确定可重复故障信号，断言能拒原错；无确定信号缩小/观测，不症状猜改。",
@@ -746,11 +746,11 @@
         }
       ],
       "targets": [
-        "skills/507-do/references/debugging.md",
+        "skills/507-build/references/debugging.md",
         "lib/methods/engineering/engineering-evidence.md"
       ],
       "consumers": [
-        "507-do"
+        "507-build"
       ],
       "sourceEvidence": [
         {
@@ -803,10 +803,10 @@
         }
       ],
       "targets": [
-        "skills/507-do/references/testing.md"
+        "skills/507-build/references/testing.md"
       ],
       "consumers": [
-        "507-do"
+        "507-build"
       ],
       "sourceEvidence": [
         {
@@ -861,11 +861,11 @@
       ],
       "targets": [
         "lib/methods/engineering/behavior-preserving-change.md",
-        "skills/507-do/SKILL.md"
+        "skills/507-build/SKILL.md"
       ],
       "consumers": [
-        "507-how",
-        "507-do"
+        "507-design",
+        "507-build"
       ],
       "sourceEvidence": [
         {
@@ -918,10 +918,10 @@
         }
       ],
       "targets": [
-        "skills/507-review/SKILL.md"
+        "skills/507-peer-review/SKILL.md"
       ],
       "consumers": [
-        "507-review"
+        "507-peer-review"
       ],
       "sourceEvidence": [
         {
@@ -970,11 +970,11 @@
         }
       ],
       "targets": [
-        "skills/507-deliver/SKILL.md",
-        "skills/507-deliver/references/actions.md"
+        "skills/507-version-deliver/SKILL.md",
+        "skills/507-version-deliver/references/actions.md"
       ],
       "consumers": [
-        "507-deliver"
+        "507-version-deliver"
       ],
       "sourceEvidence": [
         {
@@ -1027,8 +1027,8 @@
         "lib/methods/engineering/architecture-candidates.md"
       ],
       "consumers": [
-        "507-why",
-        "507-how"
+        "507-explain",
+        "507-design"
       ],
       "sourceEvidence": [
         {
@@ -1074,8 +1074,8 @@
         "lib/methods/design/media-study.md"
       ],
       "consumers": [
-        "507-why",
-        "507-material",
+        "507-explain",
+        "507-source-material",
         "507-create"
       ],
       "sourceEvidence": [
@@ -1130,11 +1130,11 @@
         }
       ],
       "targets": [
-        "skills/507-material/references/knowledge-organization.md",
-        "skills/507-material/SKILL.md"
+        "skills/507-source-material/references/knowledge-organization.md",
+        "skills/507-source-material/SKILL.md"
       ],
       "consumers": [
-        "507-material"
+        "507-source-material"
       ],
       "sourceEvidence": [
         {
@@ -1296,11 +1296,11 @@
         }
       ],
       "targets": [
-        "skills/507-material/SKILL.md",
-        "skills/507-material/references/material-units.md"
+        "skills/507-source-material/SKILL.md",
+        "skills/507-source-material/references/material-units.md"
       ],
       "consumers": [
-        "507-material"
+        "507-source-material"
       ],
       "sourceEvidence": [
         {
@@ -1411,7 +1411,7 @@
       ],
       "consumers": [
         "507-create",
-        "507-material"
+        "507-source-material"
       ],
       "sourceEvidence": [
         {
@@ -1737,11 +1737,17 @@
       "sourceRevision": "4d165e56aaaf8dfb909ac0a78d0cee2b6ac4f520",
       "sourceSha256": "4e157b662c73a5057e413629df37070f35a71d199cc9305c3a18d0b6df25b189",
       "decision": "merge",
-      "reason": "旧版交付审查先迁至507-review；现行同名入口负责项目规则与自动检查，职责不同。",
-      "retained": ["根据已确认要求独立审查交付，报告发现与证据边界。"],
+      "reason": "旧版交付审查先迁至 507-review，现由 507-peer-review 承接；现行同名的 507-audit 负责项目规则与自动检查。",
+      "retained": [
+        "根据已确认要求独立审查交付，报告发现与证据边界。"
+      ],
       "dropped": [],
-      "targets": ["skills/507-review/SKILL.md"],
-      "consumers": ["507-review"],
+      "targets": [
+        "skills/507-peer-review/SKILL.md"
+      ],
+      "consumers": [
+        "507-peer-review"
+      ],
       "verification": "固定版本和指纹用于追溯历史；当前入口、安装与实际审查各自验证。"
     }
   ],
@@ -1779,7 +1785,7 @@
       "group": "retired",
       "source": "doc/90-归档/技能/507-implement/SKILL.md",
       "decision": "merge",
-      "reason": "原实施能力升格并改名为主要工程入口507-do，保留已有需求直接执行及各类测试限定。",
+      "reason": "原实施能力先升格为 507-do，现由 507-build 承接，保留已有需求直接执行及各类测试限定。",
       "retained": [
         "新增功能和已确认行为的完整工程结果",
         "指定版本、局部修改、行为不变调整及必要验证",
@@ -1793,11 +1799,11 @@
         }
       ],
       "targets": [
-        "skills/507-do/SKILL.md",
-        "skills/507-do/references/testing.md"
+        "skills/507-build/SKILL.md",
+        "skills/507-build/references/testing.md"
       ],
       "consumers": [
-        "507-do"
+        "507-build"
       ],
       "verification": "本次源码、包闭包及独审另记；原首次、反馈与旧独审不重归类。"
     },
@@ -1806,7 +1812,7 @@
       "group": "retired",
       "source": "doc/90-归档/技能/507-work-update/SKILL.md",
       "decision": "merge",
-      "reason": "原工作能力升格并改名为主要入口507-work；coordinate保留独立的次要协调职责，重复方法采用原共有源。",
+      "reason": "原工作能力先升格为 507-work，现由 507-track 承接；507-task-dispatch 保留独立的协调职责。",
       "retained": [
         "工作事项发现、组织、建议排序、授权内推进与原记录更新",
         "事项身份、日期、条件、来源与接受状态的保全",
@@ -1820,12 +1826,12 @@
         }
       ],
       "targets": [
-        "skills/507-work/SKILL.md",
-        "skills/507-work/references/process.md",
-        "skills/507-work/references/state-views.md"
+        "skills/507-track/SKILL.md",
+        "skills/507-track/references/process.md",
+        "skills/507-track/references/state-views.md"
       ],
       "consumers": [
-        "507-work"
+        "507-track"
       ],
       "verification": "原包、首次及旧独审保留原身份；本次源码、包检查与独审另记，不继承自然任务采用结论。"
     },
@@ -1834,7 +1840,7 @@
       "group": "retired",
       "source": "doc/90-归档/技能/507-component/SKILL.md",
       "decision": "merge",
-      "reason": "产品界面组件查找、复用和抽取迁移由主要工程入口507-do直接承接，专用方法留在包内按需读取。",
+      "reason": "产品界面组件查找、复用和抽取迁移曾由 507-do 直接承接，现归 507-build，专用方法留在包内按需读取。",
       "retained": [
         "只查找时交可定位结果，不修改组件、调用、依赖或库配置",
         "已有适用组件直接采用；同语义且多个已存在或已确认使用位置才抽取并迁移范围内已有调用",
@@ -1847,13 +1853,282 @@
         }
       ],
       "targets": [
-        "skills/507-do/SKILL.md",
-        "skills/507-do/references/component-reuse.md"
+        "skills/507-build/SKILL.md",
+        "skills/507-build/references/component-reuse.md"
       ],
       "consumers": [
-        "507-do"
+        "507-build"
       ],
       "verification": "原入口全包及历史首次证据保持原身份；本次源码、独审和安装另记，不继承真实任务采用或效率结论。"
+    },
+    {
+      "id": "507-why",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-why/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-explain 接续。",
+      "retained": [
+        "只读调查陌生项目，解释现有代码或机制怎样运作、为何如此"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-explain/SKILL.md"
+      ],
+      "consumers": [
+        "507-explain"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-how",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-how/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-design 接续。",
+      "retained": [
+        "在目标与约束下构造新方案或已有系统的变更路径"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-design/SKILL.md"
+      ],
+      "consumers": [
+        "507-design"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-do",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-do/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-build 接续。",
+      "retained": [
+        "按需求写代码开发功能，复现并修复故障，用原操作和测试验证结果"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-build/SKILL.md"
+      ],
+      "consumers": [
+        "507-build"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-work",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-work/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-track 接续。",
+      "retained": [
+        "发现并推进待办事项，接续已有工作的约定和交付"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-track/SKILL.md"
+      ],
+      "consumers": [
+        "507-track"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "skill-design",
+      "group": "retired",
+      "source": "doc/90-归档/技能/skill-design/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-skill 接续。",
+      "retained": [
+        "规划、编写、重构或审计技能体系与共有资源"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-skill/SKILL.md"
+      ],
+      "consumers": [
+        "507-skill"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-domain",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-domain/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-domain-model 接续。",
+      "retained": [
+        "构建或校准领域概念、词义边界与关系"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-domain-model/SKILL.md"
+      ],
+      "consumers": [
+        "507-domain-model"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-synthesize",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-synthesize/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-case-synthesis 接续。",
+      "retained": [
+        "围绕当前决策，去重归纳多份访谈、反馈或问题记录"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-case-synthesis/SKILL.md"
+      ],
+      "consumers": [
+        "507-case-synthesis"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-spec",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-spec/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-behavior-spec 接续。",
+      "retained": [
+        "整理唯一现行的软件行为要求与验收规格"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-behavior-spec/SKILL.md"
+      ],
+      "consumers": [
+        "507-behavior-spec"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-plan",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-plan/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-step-plan 接续。",
+      "retained": [
+        "为当前任务的执行者安排实施步骤、依赖、验证点和恢复办法"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-step-plan/SKILL.md"
+      ],
+      "consumers": [
+        "507-step-plan"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-coordinate",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-coordinate/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-task-dispatch 接续。",
+      "retained": [
+        "拆分多执行者的工作，隔离写入范围，接收并验证组合结果"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-task-dispatch/SKILL.md"
+      ],
+      "consumers": [
+        "507-task-dispatch"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-demo",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-demo/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-ui-demo 接续。",
+      "retained": [
+        "制作产品界面的静态功能卡片或带光标的模拟操作短动画"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-ui-demo/SKILL.md"
+      ],
+      "consumers": [
+        "507-ui-demo"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-deliver",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-deliver/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-version-deliver 接续。",
+      "retained": [
+        "准备版本交付与 PR 说明，跟进评审评论并读回已授权动作的结果"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-version-deliver/SKILL.md"
+      ],
+      "consumers": [
+        "507-version-deliver"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-retro",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-retro/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-work-retro 接续。",
+      "retained": [
+        "复盘已发生的工程尝试与重复摩擦，提炼有依据的防复发措施或工具化建议"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-work-retro/SKILL.md"
+      ],
+      "consumers": [
+        "507-work-retro"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-material",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-material/SKILL.md",
+      "decision": "merge",
+      "reason": "按已确认的职责命名，原入口由 507-source-material 接续。",
+      "retained": [
+        "核清指定资料的来源、身份、重复与支持范围，或按请求组织已有知识入口"
+      ],
+      "dropped": [],
+      "targets": [
+        "skills/507-source-material/SKILL.md"
+      ],
+      "consumers": [
+        "507-source-material"
+      ],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
+    },
+    {
+      "id": "507-coach",
+      "group": "retired",
+      "source": "doc/90-归档/技能/507-coach/SKILL.md",
+      "decision": "drop",
+      "reason": "缺少需要独立入口的真实使用场景，判断陪练退出活动清单。",
+      "retained": [],
+      "dropped": [
+        {
+          "mechanism": "独立判断陪练入口",
+          "reason": "缺少需要独立入口的真实使用场景，判断陪练退出活动清单。"
+        }
+      ],
+      "targets": [],
+      "consumers": [],
+      "verification": "原合同按改名前的版本归档；当前宿主发现和自然采用另验。"
     }
   ]
 }

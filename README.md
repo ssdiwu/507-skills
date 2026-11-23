@@ -1,6 +1,6 @@
 # 507-skills
 
-507-skills 是一套可独立使用、按任务组合的智能体技能。当前源码在 `skills/`，包含 **25 个入口（12 个主要技能，13 个次要工作能力）**。共有方法、执行脚本、图解与界面组件和设计参考集中维护在 `lib/`。
+507-skills 是一套可独立使用、按任务组合的智能体技能。当前源码在 `skills/`，包含 **24 个入口（11 个主要技能，13 个次要工作能力）**。共有方法、执行脚本、图解与界面组件和设计参考集中维护在 `lib/`。
 
 `v0.3.6` 的变更见[变更日志](CHANGELOG.md)。
 
@@ -8,6 +8,7 @@
 
 | 想做什么 | 从哪里进入 |
 | --- | --- |
+| 按任务跑道、组合配方、共有方法或旧名找技能 | [导出本地应用地图](lib/components/tools/projections/library-view.md#从源码导出本地技能应用地图) |
 | 查取证、工程、协作、写作或设计方法 | [共有方法](lib/methods/README.md) |
 | 将文章、成熟材料或图解做成独立阅读页 | [阅读页方法](lib/methods/design/reading-page.md) |
 | 找真实界面控件、页面视图、演示场景或预览 | [界面与呈现](lib/components/visual/visual-components.md) |
@@ -23,17 +24,16 @@
 | 需要完成什么 | 当前入口 |
 | --- | --- |
 | 弄清目标、边界和关键取舍 | [507-what](skills/507-what/SKILL.md) |
-| 认识项目、查清现状或解释机制 | [507-why](skills/507-why/SKILL.md) |
-| 构造新方案或选择已有系统的变更路径 | [507-how](skills/507-how/SKILL.md) |
-| 完成工程实现、修复、局部修改或指定测试 | [507-do](skills/507-do/SKILL.md) |
+| 认识项目、查清现状或解释机制 | [507-explain](skills/507-explain/SKILL.md) |
+| 构造新方案或选择已有系统的变更路径 | [507-design](skills/507-design/SKILL.md) |
+| 完成工程实现、修复、局部修改或指定测试 | [507-build](skills/507-build/SKILL.md) |
 | 限定模块清理代码与规则，先列清单 | [507-clean](skills/507-clean/SKILL.md) |
 | 完成创作、成文或局部修改 | [507-create](skills/507-create/SKILL.md) |
 | 将成熟内容适配目标受众、场景与载体 | [507-adapt](skills/507-adapt/SKILL.md) |
-| 发现、整理和推进已有工作，或局部更新事项 | [507-work](skills/507-work/SKILL.md) |
+| 发现、整理和推进已有工作，或局部更新事项 | [507-track](skills/507-track/SKILL.md) |
 | 建立项目依据、审计工作指令或维护导航 | [507-setup](skills/507-setup/SKILL.md) |
 | 盘点项目规则和检查，并落实可自动验证的约束 | [507-audit](skills/507-audit/SKILL.md) |
-| 设计、维护技能或审计技能指令 | [skill-design](skills/skill-design/SKILL.md) |
-| 练习作判断、看反馈并尝试新案例 | [507-coach](skills/507-coach/SKILL.md) |
+| 设计、维护技能或审计技能指令 | [507-skill](skills/507-skill/SKILL.md) |
 | 实施、修复、写作、适配、审查及其他清楚工作 | [全部入口与职责](skills/README.md) |
 
 ```mermaid
@@ -47,11 +47,11 @@ flowchart TD
     work --> result
 ```
 
-图解复杂状态、跨角色时序、对象关系或同条件比较时，可按需采用次要能力 [507-visualize](skills/507-visualize/SKILL.md)；简单说明直接完成。
+图解复杂状态、跨角色时序、对象关系或同条件比较时，可按需采用次要能力 [507-visual-explain](skills/507-visual-explain/SKILL.md)；简单说明直接完成。
 
-需要构建或校准领域概念、词义、边界与关系时，可按需采用次要能力 [507-domain](skills/507-domain/SKILL.md)，用具体场景检验并返回原任务。查词或按充分定义执行时直接处理。
+需要构建或校准领域概念、词义、边界与关系时，可按需采用次要能力 [507-domain-model](skills/507-domain-model/SKILL.md)，用具体场景检验并返回原任务。查词或按充分定义执行时直接处理。
 
-需要产品界面展示图、功能卡片或模拟操作短动画时，可按需采用次要能力 [507-demo](skills/507-demo/SKILL.md)。通用组件、范例、播放器和检查工具只在共有库存在一份，技能直接引用；时间线、步骤、比较、版面与排队联动可直接用[共有图解组件](lib/components/visual/visual-components.md)，真实业务与完整视频仍沿原任务交付。
+需要产品界面展示图、功能卡片或模拟操作短动画时，可按需采用次要能力 [507-ui-demo](skills/507-ui-demo/SKILL.md)。通用组件、范例、播放器和检查工具只在共有库存在一份，技能直接引用；时间线、步骤、比较、版面与排队联动可直接用[共有图解组件](lib/components/visual/visual-components.md)，真实业务与完整视频仍沿原任务交付。
 
 ## 当前文档与目录
 
@@ -111,4 +111,4 @@ python3 -B scripts/package_skills.py build --output "${TASK_DIR:?请设置任务
 
 贡献方式见[CONTRIBUTING](CONTRIBUTING.md)，安全边界见[SECURITY](SECURITY.md)，版本变更见[CHANGELOG](CHANGELOG.md)，许可见[LICENSE](LICENSE)。提交、推送、安装和发布分别依据具体授权与实际结果。
 
-持续工作主动维护必要本地依据并读回接续，守住只读和对外动作限制。what/why/how 是 5W2H 的独立视角，plan 是按需采用的次要能力；技能分层、会话分层和 A/B/C 验收职责分别定义，见[术语表](GLOSSARY.md#会话分层与验收职责)。当前源码更新与已发布版本、宿主安装及行为试用分别成立。
+持续工作主动维护必要本地依据并读回接续，守住只读和对外动作限制。目标、解释与方案可按需采用 5W2H 的观察角度，执行计划 是按需采用的次要能力；技能分层、会话分层和 A/B/C 验收职责分别定义，见[术语表](GLOSSARY.md#会话分层与验收职责)。当前源码更新与已发布版本、宿主安装及行为试用分别成立。

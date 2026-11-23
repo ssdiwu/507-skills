@@ -6,44 +6,43 @@
 
 | 技能 | 独有职责 | 方法 | 工具 | 界面组件 | 库务资料 | 库维护测试 | 合计 |
 | --- | --- |  ---: | ---: | ---: | ---: | ---: | ---: |
-| [skill-design](#skill-design) | 规划、创建或重构技能体系，借鉴外部技能时先核对原技能何时启动、交付什么，再判断借用范围。 | 12 | 2 | 0 | 2 | 0 | 16 |
-| [507-what](#507-what) | 定义要解决的问题、目标、范围与成功标准，承接初步设想、重新定义及关键取舍讨论。 | 9 | 0 | 0 | 1 | 0 | 10 |
-| [507-work](#507-work) | 接续已有项目或从消息、任务和过程记录中发现工作事项，按建议顺序推进已获授权的工作。 | 7 | 10 | 4 | 2 | 1 | 24 |
-| [507-why](#507-why) | 帮助认识陌生项目，主动调查用途、角色、代表路径、内部职责和当前实际情况；也解释概念、现象与机制，保留证据边界。 | 15 | 0 | 0 | 1 | 0 | 16 |
-| [507-how](#507-how) | 根据目标与约束构造、比较和推敲产品、系统与工程方案，覆盖新产品、重设计及已有系统变更；连接操作、状态、数据、权限与结果，调查会改变方案的未知。 | 15 | 0 | 0 | 1 | 0 | 16 |
-| [507-create](#507-create) | 承接创作、成文与修订请求，完成文章、方案、讲稿或局部改稿。 | 26 | 6 | 0 | 1 | 0 | 33 |
-| [507-spec](#507-spec) | 整理唯一现行的行为与验收规格，承接已确认的软件需求或方案，也支持维护 PRD。 | 9 | 0 | 0 | 1 | 0 | 10 |
-| [507-do](#507-do) | 排查已出现的工程故障，或按明确目标新增功能、修复故障、做局部修改、运行指定测试或查找并复用产品界面组件。 | 13 | 4 | 3 | 2 | 1 | 23 |
-| [507-clean](#507-clean) | 在指定模块内查找并清理死代码、重复逻辑和失效规则，保持已有功能，默认先只读列清单。 | 3 | 0 | 0 | 1 | 0 | 4 |
-| [507-review](#507-review) | 检查现状是否满足已确认要求，只检查不修改。 | 9 | 1 | 0 | 1 | 0 | 11 |
-| [507-issue](#507-issue) | 草拟、创建或维护可跟进的软件工单，保留调查证据并原位升级为可领取的执行任务。 | 6 | 0 | 0 | 1 | 0 | 7 |
-| [507-coordinate](#507-coordinate) | 判断必要的工作拆分、依赖、执行所有权与结果接收，适用于已有工程、写作、研究或一般工作目标。 | 12 | 8 | 4 | 3 | 1 | 28 |
-| [507-deliver](#507-deliver) | 为已完成工程范围准备 PR 表达、交付说明及版本结果，并按具体授权执行相应 Git 或发布动作；接续旧507-git引用时核当前职责与原条件。 | 8 | 2 | 0 | 2 | 0 | 12 |
-| [507-retro](#507-retro) | 复盘已发生的工程工作，以实际尝试和结果提炼改进及重复任务的工具建议。 | 7 | 0 | 0 | 1 | 0 | 8 |
-| [507-material](#507-material) | 整理指定资料，核清来源、身份、重复和支持范围；也可按明确请求组织已有知识入口。 | 7 | 0 | 0 | 1 | 0 | 8 |
-| [507-adapt](#507-adapt) | 把成熟内容适配为目标受众、场景与载体中可用的作品，完成表达改写、信息安排和实际制作，保留作者判断、事实与来源。 | 16 | 8 | 4 | 2 | 1 | 31 |
-| [507-setup](#507-setup) | 理顺项目文档的阅读路径，维护 README、目录职责及通往规格、术语表和决策档案的导航，也建立、迁移或只读核对项目工作依据。 | 4 | 2 | 0 | 2 | 0 | 8 |
-| [507-audit](#507-audit) | 盘点项目现行规则与已有检查，将适合机器判断的要求落实为静态检查、测试或构建门禁。 | 0 | 0 | 0 | 1 | 0 | 1 |
-| [507-product-map](#507-product-map) | 梳理指定产品功能的交互点与操作关系，把设计要求、实现依据和实际运行证据对到同一节点，生成可探索地图与范围差距。 | 5 | 6 | 4 | 2 | 1 | 18 |
-| [507-plan](#507-plan) | 为承担当前任务的执行者安排如何交付结果，明确步骤、依赖、验证与恢复。 | 7 | 0 | 0 | 1 | 0 | 8 |
-| [507-visualize](#507-visualize) | 把已有事实、机制、流程与方案组织成便于理解和判断的图、表与配套说明。 | 5 | 3 | 3 | 2 | 1 | 14 |
-| [507-demo](#507-demo) | 制作产品界面的静态展示图、功能卡片或带光标的短动画，交付可编辑场景与目标实物。 | 8 | 4 | 4 | 4 | 1 | 21 |
-| [507-domain](#507-domain) | 构建或校准项目领域概念、词义、边界与关系，用具体场景检验并按授权维护相关文档。 | 5 | 0 | 0 | 1 | 0 | 6 |
-| [507-synthesize](#507-synthesize) | 围绕当前决策归纳已核对的访谈、反馈或问题记录，比较会改变处理方式的分组，交付可回查的判断、处理优先级和待查证据。 | 3 | 0 | 0 | 1 | 0 | 4 |
-| [507-coach](#507-coach) | 陪用户练习判断。 | 0 | 0 | 0 | 1 | 0 | 1 |
+| [507-skill](#507-skill) | 规划、编写、重构或审计技能体系与共有资源。 | 12 | 3 | 0 | 3 | 1 | 19 |
+| [507-what](#507-what) | 定义要解决的问题、目标、范围与关键取舍。 | 9 | 0 | 0 | 1 | 0 | 10 |
+| [507-track](#507-track) | 发现并推进待办事项，接续已有工作的约定和交付。 | 7 | 10 | 4 | 2 | 1 | 24 |
+| [507-explain](#507-explain) | 只读调查陌生项目，解释现有代码或机制怎样运作、为何如此。 | 15 | 0 | 0 | 1 | 0 | 16 |
+| [507-design](#507-design) | 在目标与约束下构造新方案或已有系统的变更路径。 | 15 | 0 | 0 | 1 | 0 | 16 |
+| [507-create](#507-create) | 推敲文章、方案和讲稿的主线，校准作者口吻，完成写作或改稿。 | 26 | 6 | 0 | 1 | 0 | 33 |
+| [507-behavior-spec](#507-behavior-spec) | 整理唯一现行的软件行为要求与验收规格。 | 9 | 0 | 0 | 1 | 0 | 10 |
+| [507-build](#507-build) | 按需求写代码开发功能，复现并修复故障，用原操作和测试验证结果。 | 13 | 4 | 3 | 2 | 1 | 23 |
+| [507-clean](#507-clean) | 清理指定模块的死代码、重复逻辑和失效规则。 | 3 | 0 | 0 | 1 | 0 | 4 |
+| [507-peer-review](#507-peer-review) | 由未参与实施的人只读审查指定交付，核对已确认要求、质量风险和实际证据。 | 9 | 1 | 0 | 1 | 0 | 11 |
+| [507-work-issue](#507-work-issue) | 起草或维护可跟进的软件工单，把调查记录原位升级为可领取的执行任务。 | 6 | 0 | 0 | 1 | 0 | 7 |
+| [507-task-dispatch](#507-task-dispatch) | 拆分多执行者的工作，隔离写入范围，接收并验证组合结果。 | 12 | 8 | 4 | 3 | 1 | 28 |
+| [507-version-deliver](#507-version-deliver) | 准备版本交付与 PR 说明，跟进评审评论并读回已授权动作的结果。 | 8 | 2 | 0 | 2 | 0 | 12 |
+| [507-work-retro](#507-work-retro) | 复盘已发生的工程尝试与重复摩擦，提炼有依据的防复发措施或工具化建议。 | 7 | 0 | 0 | 1 | 0 | 8 |
+| [507-source-material](#507-source-material) | 核清指定资料的来源、身份、重复与支持范围，或按请求组织已有知识入口。 | 7 | 0 | 0 | 1 | 0 | 8 |
+| [507-adapt](#507-adapt) | 把成熟内容改写并制作成适合目标受众与载体的作品。 | 16 | 8 | 4 | 2 | 1 | 31 |
+| [507-setup](#507-setup) | 建立或维护项目工作依据、README 和文档阅读导航。 | 4 | 2 | 0 | 2 | 0 | 8 |
+| [507-audit](#507-audit) | 盘点项目现行规则和已有检查，把能由机器可靠判断的要求落实为静态检查、测试或持续集成门禁。 | 1 | 0 | 0 | 1 | 0 | 2 |
+| [507-product-map](#507-product-map) | 梳理指定产品功能的交互点及其关系，把设计、实现和实际运行证据对到同一节点。 | 5 | 6 | 4 | 2 | 1 | 18 |
+| [507-step-plan](#507-step-plan) | 为当前任务的执行者安排实施步骤、依赖、验证点和恢复办法。 | 7 | 0 | 0 | 1 | 0 | 8 |
+| [507-visual-explain](#507-visual-explain) | 用状态图、时序图、关系图或同条件对比表讲清复杂机制与差异。 | 5 | 3 | 3 | 2 | 1 | 14 |
+| [507-ui-demo](#507-ui-demo) | 制作产品界面的静态功能卡片或带光标的模拟操作短动画。 | 8 | 4 | 4 | 4 | 1 | 21 |
+| [507-domain-model](#507-domain-model) | 构建或校准领域概念、词义边界与关系。 | 5 | 0 | 0 | 1 | 0 | 6 |
+| [507-case-synthesis](#507-case-synthesis) | 围绕当前决策，去重归纳多份访谈、反馈或问题记录。 | 3 | 0 | 0 | 1 | 0 | 4 |
 
 ## 统一分工
 
-- create 负责作品内容和作者表达，adapt 负责受众与载体，visualize 负责图解关系与理解路径。新建独立阅读页采用[阅读页方法](../methods/design/reading-page.md)，修改已有页面优先复用项目组件。
-- demo 负责产品识别、构图和动作编排。
-- work 和 coordinate 校验过程记录，再按[任务页方法](../methods/design/task-page.md)组织页面。product-map 校验交互与证据记录，再按[地图页方法](../methods/design/product-map-page.md)组织页面。共有 React 渲染器继续承接已有生成页。
-- do 负责真实产品行为，按目标项目和本次参考选择界面实现。
-- review 独立核对职责、直接依赖、实际效果与未覆盖范围。
+- create 负责作品内容和作者表达，adapt 负责受众与载体，visual-explain 负责图解关系与理解路径。新建独立阅读页采用[阅读页方法](../methods/design/reading-page.md)，修改已有页面优先复用项目组件。
+- ui-demo 负责产品识别、构图和动作编排。
+- track 和 task-dispatch 校验过程记录，再按[任务页方法](../methods/design/task-page.md)组织页面。product-map 校验交互与证据记录，再按[地图页方法](../methods/design/product-map-page.md)组织页面。共有 React 渲染器继续承接已有生成页。
+- build 负责真实产品行为，按目标项目和本次参考选择界面实现。
+- peer-review 独立核对职责、直接依赖、实际效果与未覆盖范围。
 
 
-## skill-design
+## 507-skill
 
-[技能说明](../../skills/skill-design/SKILL.md) · [资源声明](../../skills/skill-design/RESOURCES.md)
+[技能说明](../../skills/507-skill/SKILL.md) · [资源声明](../../skills/507-skill/RESOURCES.md)
 
 ### 方法（12）
 
@@ -60,15 +59,21 @@
 - 指引 · [methods/evidence-and-decisions/validation.md](../methods/evidence-and-decisions/validation.md)
 - 指引 · [methods/collaboration/work-records.md](../methods/collaboration/work-records.md)
 
-### 工具（2）
+### 工具（3）
 
 - 使用说明 · [components/tools/projections/library-view.md](../components/tools/projections/library-view.md)
 - 执行文件 · [components/tools/projections/library_view.py](../components/tools/projections/library_view.py)
+- 执行文件 · [components/visual/scripts/render-artifact.mjs](../components/visual/scripts/render-artifact.mjs)
 
-### 库务资料（2）
+### 库务资料（3）
 
 - 导航 · [README.md](../README.md)
+- 登记与溯源 · [catalog/registry/library-map.json](../catalog/registry/library-map.json)
 - 登记与溯源 · [catalog/registry/skill-entry-index.md](../catalog/registry/skill-entry-index.md)
+
+### 库维护测试（1）
+
+- 回归测试 · [components/visual/scripts/ui.test.mjs](../components/visual/scripts/ui.test.mjs)
 
 ## 507-what
 
@@ -90,9 +95,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-work
+## 507-track
 
-[技能说明](../../skills/507-work/SKILL.md) · [资源声明](../../skills/507-work/RESOURCES.md)
+[技能说明](../../skills/507-track/SKILL.md) · [资源声明](../../skills/507-track/RESOURCES.md)
 
 ### 方法（7）
 
@@ -133,9 +138,9 @@
 
 - 回归测试 · [components/visual/scripts/component-library.test.mjs](../components/visual/scripts/component-library.test.mjs)
 
-## 507-why
+## 507-explain
 
-[技能说明](../../skills/507-why/SKILL.md) · [资源声明](../../skills/507-why/RESOURCES.md)
+[技能说明](../../skills/507-explain/SKILL.md) · [资源声明](../../skills/507-explain/RESOURCES.md)
 
 ### 方法（15）
 
@@ -159,9 +164,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-how
+## 507-design
 
-[技能说明](../../skills/507-how/SKILL.md) · [资源声明](../../skills/507-how/RESOURCES.md)
+[技能说明](../../skills/507-design/SKILL.md) · [资源声明](../../skills/507-design/RESOURCES.md)
 
 ### 方法（15）
 
@@ -231,9 +236,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-spec
+## 507-behavior-spec
 
-[技能说明](../../skills/507-spec/SKILL.md) · [资源声明](../../skills/507-spec/RESOURCES.md)
+[技能说明](../../skills/507-behavior-spec/SKILL.md) · [资源声明](../../skills/507-behavior-spec/RESOURCES.md)
 
 ### 方法（9）
 
@@ -251,9 +256,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-do
+## 507-build
 
-[技能说明](../../skills/507-do/SKILL.md) · [资源声明](../../skills/507-do/RESOURCES.md)
+[技能说明](../../skills/507-build/SKILL.md) · [资源声明](../../skills/507-build/RESOURCES.md)
 
 ### 方法（13）
 
@@ -307,9 +312,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-review
+## 507-peer-review
 
-[技能说明](../../skills/507-review/SKILL.md) · [资源声明](../../skills/507-review/RESOURCES.md)
+[技能说明](../../skills/507-peer-review/SKILL.md) · [资源声明](../../skills/507-peer-review/RESOURCES.md)
 
 ### 方法（9）
 
@@ -331,9 +336,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-issue
+## 507-work-issue
 
-[技能说明](../../skills/507-issue/SKILL.md) · [资源声明](../../skills/507-issue/RESOURCES.md)
+[技能说明](../../skills/507-work-issue/SKILL.md) · [资源声明](../../skills/507-work-issue/RESOURCES.md)
 
 ### 方法（6）
 
@@ -348,9 +353,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-coordinate
+## 507-task-dispatch
 
-[技能说明](../../skills/507-coordinate/SKILL.md) · [资源声明](../../skills/507-coordinate/RESOURCES.md)
+[技能说明](../../skills/507-task-dispatch/SKILL.md) · [资源声明](../../skills/507-task-dispatch/RESOURCES.md)
 
 ### 方法（12）
 
@@ -395,9 +400,9 @@
 
 - 回归测试 · [components/visual/scripts/component-library.test.mjs](../components/visual/scripts/component-library.test.mjs)
 
-## 507-deliver
+## 507-version-deliver
 
-[技能说明](../../skills/507-deliver/SKILL.md) · [资源声明](../../skills/507-deliver/RESOURCES.md)
+[技能说明](../../skills/507-version-deliver/SKILL.md) · [资源声明](../../skills/507-version-deliver/RESOURCES.md)
 
 ### 方法（8）
 
@@ -420,9 +425,9 @@
 - 导航 · [README.md](../README.md)
 - 登记与溯源 · [catalog/registry/skill-entry-index.md](../catalog/registry/skill-entry-index.md)
 
-## 507-retro
+## 507-work-retro
 
-[技能说明](../../skills/507-retro/SKILL.md) · [资源声明](../../skills/507-retro/RESOURCES.md)
+[技能说明](../../skills/507-work-retro/SKILL.md) · [资源声明](../../skills/507-work-retro/RESOURCES.md)
 
 ### 方法（7）
 
@@ -438,9 +443,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-material
+## 507-source-material
 
-[技能说明](../../skills/507-material/SKILL.md) · [资源声明](../../skills/507-material/RESOURCES.md)
+[技能说明](../../skills/507-source-material/SKILL.md) · [资源声明](../../skills/507-source-material/RESOURCES.md)
 
 ### 方法（7）
 
@@ -531,6 +536,10 @@
 
 [技能说明](../../skills/507-audit/SKILL.md) · [资源声明](../../skills/507-audit/RESOURCES.md)
 
+### 方法（1）
+
+- 指引 · [methods/engineering/engineering-evidence.md](../methods/engineering/engineering-evidence.md)
+
 ### 库务资料（1）
 
 - 导航 · [README.md](../README.md)
@@ -572,9 +581,9 @@
 
 - 回归测试 · [components/visual/scripts/component-library.test.mjs](../components/visual/scripts/component-library.test.mjs)
 
-## 507-plan
+## 507-step-plan
 
-[技能说明](../../skills/507-plan/SKILL.md) · [资源声明](../../skills/507-plan/RESOURCES.md)
+[技能说明](../../skills/507-step-plan/SKILL.md) · [资源声明](../../skills/507-step-plan/RESOURCES.md)
 
 ### 方法（7）
 
@@ -590,9 +599,9 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-visualize
+## 507-visual-explain
 
-[技能说明](../../skills/507-visualize/SKILL.md) · [资源声明](../../skills/507-visualize/RESOURCES.md)
+[技能说明](../../skills/507-visual-explain/SKILL.md) · [资源声明](../../skills/507-visual-explain/RESOURCES.md)
 
 ### 方法（5）
 
@@ -623,9 +632,9 @@
 
 - 回归测试 · [components/visual/scripts/component-library.test.mjs](../components/visual/scripts/component-library.test.mjs)
 
-## 507-demo
+## 507-ui-demo
 
-[技能说明](../../skills/507-demo/SKILL.md) · [资源声明](../../skills/507-demo/RESOURCES.md)
+[技能说明](../../skills/507-ui-demo/SKILL.md) · [资源声明](../../skills/507-ui-demo/RESOURCES.md)
 
 ### 方法（8）
 
@@ -663,9 +672,9 @@
 
 - 回归测试 · [components/visual/scripts/component-library.test.mjs](../components/visual/scripts/component-library.test.mjs)
 
-## 507-domain
+## 507-domain-model
 
-[技能说明](../../skills/507-domain/SKILL.md) · [资源声明](../../skills/507-domain/RESOURCES.md)
+[技能说明](../../skills/507-domain-model/SKILL.md) · [资源声明](../../skills/507-domain-model/RESOURCES.md)
 
 ### 方法（5）
 
@@ -679,23 +688,15 @@
 
 - 导航 · [README.md](../README.md)
 
-## 507-synthesize
+## 507-case-synthesis
 
-[技能说明](../../skills/507-synthesize/SKILL.md) · [资源声明](../../skills/507-synthesize/RESOURCES.md)
+[技能说明](../../skills/507-case-synthesis/SKILL.md) · [资源声明](../../skills/507-case-synthesis/RESOURCES.md)
 
 ### 方法（3）
 
 - 指引 · [methods/evidence-and-decisions/alternatives.md](../methods/evidence-and-decisions/alternatives.md)
 - 指引 · [methods/evidence-and-decisions/authority-and-return.md](../methods/evidence-and-decisions/authority-and-return.md)
 - 指引 · [methods/evidence-and-decisions/evidence.md](../methods/evidence-and-decisions/evidence.md)
-
-### 库务资料（1）
-
-- 导航 · [README.md](../README.md)
-
-## 507-coach
-
-[技能说明](../../skills/507-coach/SKILL.md) · [资源声明](../../skills/507-coach/RESOURCES.md)
 
 ### 库务资料（1）
 

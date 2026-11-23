@@ -1,6 +1,6 @@
 # 当前库投影与技能名查询
 
-skill-design核对库级当前实现、历史来源及待补能力时采用来源投影。setup、deliver、coordinate 接续旧引用时查询同一共有库的索引；集合在没有作者仓库和兄弟技能实现的位置也可使用。仅标准库、只读，输出到标准输出；不安装、发消息、写业务或执行候选。
+507-skill 核对库级当前实现、历史来源及待补能力时采用来源投影。507-setup、507-version-deliver、507-task-dispatch 接续旧引用时查询同一共有库的索引；集合在没有作者仓库和兄弟技能实现的位置也可查询名称。投影只用 Python 标准库，结果写到标准输出，离线页面另由共有 React 导出器生成。
 
 ## 查询共有声明
 
@@ -29,3 +29,28 @@ python3 <共有库>/components/tools/projections/library_view.py --source-root <
 当前数据由真实清单生成，安装／发现由各自回执另核。历史85候选和旧试跑保持原版本，不随源码补强冒称已验证新版本。网页只消费组件输出；记录变化后重生成，布局和交互不足修改网页生成组件，再验证并重生成，不能直接编辑生成HTML。
 
 旧版本已迁走、后来又用于不同现行职责的同名入口，在处置源的 `historicalAliases` 登记固定提交、原路径、指纹与当时去向；查询仍优先现行声明，同时返回历史来源。投影校验格式及现行消费者，不联网读取历史原件；需要核验原件时按固定提交与指纹另查。
+
+## 从源码导出本地技能应用地图
+
+在含现行技能与历史归档的仓库根目录运行。首次使用渲染器时在 `lib/components/visual` 执行 `npm ci --ignore-scripts` 安装锁定的依赖。以下命令在新的临时目录生成模型和可离线打开的单文件 HTML。
+
+```sh
+(
+  set -eu
+  map_dir=$(mktemp -d "${TMPDIR:-/tmp}/507-library-map.XXXXXX")
+  python3 -B lib/components/tools/projections/library_view.py \
+    --source-root . --packages packages.json --catalog lib/catalog/catalog.json \
+    --dispositions lib/catalog/registry/skill-dispositions.json \
+    --library-map > "$map_dir/model.json"
+  node lib/components/visual/scripts/render-artifact.mjs \
+    --input "$map_dir/model.json" --document > "$map_dir/candidate.html"
+  mv "$map_dir/candidate.html" "$map_dir/library-map.html"
+  printf '%s\n' "$map_dir/library-map.html"
+)
+```
+
+`--library-map` 输出 `{"kind":"library-map","data":{...}}`。技能身份、用途、展示名分别取自入口清单、`SKILL.md` 和 `agents/openai.yaml`。资源与消费者来自 `RESOURCES.md` 和共有目录的双向核对；旧名去向来自同一次来源投影。退役且无消费者的旧名仍可查到原因，同名历史记录与现行入口分别保留。
+
+[地图导读维护源](../../../catalog/registry/library-map.json)保存四条跑道、两项横切能力、六条示例配方与各卡片的阅读提示。修改权限和停止位置以对应技能合同及本次授权为准。每个现行身份在跑道或横切区出现一次。配方 `steps[0]` 是显示为 `START` 的起点，后续相邻步骤生成卡片可跳转的上下游；同一方案允许返回原技能。配方供查阅，用户可从已有进展直接进入所需步骤。
+
+卡片缺失、配方引用未知身份、跑道重复或遗漏、源文件缺失及目录消费者不符时，命令返回 2 并将错误原因写入标准错误。数据投影与 HTML 导出各自验收，离线交互另用浏览器核对。

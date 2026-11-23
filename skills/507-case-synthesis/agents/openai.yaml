@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-归纳研判"
+  short_description: "围绕当前决策，去重归纳多份访谈、反馈或问题记录。"
+  default_prompt: "使用 $507-case-synthesis 围绕当前决策归纳已核对的材料，比较哪些分组会改变处理安排，交付判断、优先级、出处与待查证据。"

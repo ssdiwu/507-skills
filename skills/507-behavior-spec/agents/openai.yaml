@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-行为规格"
+  short_description: "整理唯一现行的软件行为要求与验收规格。"
+  default_prompt: "使用 $507-behavior-spec 将已确认需求整理到当前规格，保留有效条件并明确验收。"

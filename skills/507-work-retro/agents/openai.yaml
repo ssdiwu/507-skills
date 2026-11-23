@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-工程复盘"
+  short_description: "复盘已发生的工程尝试与重复摩擦，提炼有依据的防复发措施或工具化建议。"
+  default_prompt: "使用 $507-work-retro 复盘已发生工作，区分真实证据和建议，提出重复任务的工具化候选。"

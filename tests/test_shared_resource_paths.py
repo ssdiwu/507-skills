@@ -9,8 +9,8 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-HOW = Path('skills/507-how/SKILL.md')
-NESTED = Path('skills/507-how/references/solution-design.md')
+HOW = Path('skills/507-design/SKILL.md')
+NESTED = Path('skills/507-design/references/solution-design.md')
 RESOURCE = Path('lib/methods/evidence-and-decisions/alternatives.md')
 CONTRACT = Path('lib/README.md')
 INTERACTION = Path('lib/methods/engineering/interaction.md')
@@ -57,15 +57,15 @@ class SharedResourcePathsTests(unittest.TestCase):
     def test_host_collection_symlink_resolves_shared_sibling(self):
         self.assertFalse((self.alias / 'lib/methods/evidence-and-decisions/alternatives.md').exists())
         self.assertFalse((self.alias.parent / 'lib/methods/evidence-and-decisions/alternatives.md').exists())
-        self.assert_resource(self.alias / '507-how/SKILL.md')
+        self.assert_resource(self.alias / '507-design/SKILL.md')
 
     def test_nested_reference_uses_its_own_real_document(self):
         self.assert_resource(self.collection / NESTED)
-        self.assert_resource(self.alias / '507-how/references/solution-design.md')
+        self.assert_resource(self.alias / '507-design/references/solution-design.md')
 
     def test_missing_resource_is_an_error_not_a_fallback(self):
         self.expected.unlink()
-        result = self.read_reference(self.alias / '507-how/SKILL.md')
+        result = self.read_reference(self.alias / '507-design/SKILL.md')
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(result.stdout, '')
         self.assertIn('alternatives.md', result.stderr)

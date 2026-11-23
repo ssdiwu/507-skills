@@ -1,4 +1,0 @@
-interface:
-  display_name: "507-归纳研判"
-  short_description: "按当前决策比较反馈或问题分组，给出可回查判断、处理优先级和待查证据。"
-  default_prompt: "使用 $507-synthesize 围绕当前决策归纳已核对的材料，比较哪些分组会改变处理安排，交付判断、优先级、出处与待查证据。"

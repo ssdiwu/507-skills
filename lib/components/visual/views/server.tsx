@@ -14,6 +14,6 @@ function shell(title:string,language:string,markup:string,model:unknown,css:stri
 export function renderScene(title:string,source:unknown,css:string,script:string,licenses:License[]){return shell(title,'zh-CN','<noscript>此交互场景需要允许本地脚本。</noscript>',source,css,script,licenses)}
 export function render(model:DocumentModel,css:string,script:string,licenses:{name:string;text:string}[]=[]){
  validateDocument(model)
- const data=model.data as any,title=model.kind==='artifact'?data.title:model.kind==='task-view'?data.contract.title:model.kind==='product-map'?data.record.title:'当前任务视图'
+ const data=model.data as any,title=model.kind==='artifact'?data.title:model.kind==='task-view'?data.contract.title:model.kind==='product-map'?data.record.title:model.kind==='library-map'?'技能应用地图':'当前任务视图'
  return shell(title,model.kind==='artifact'?(data.language??'zh-CN'):'zh-CN',renderToString(<App model={model}/>),model,css,script,licenses)
 }

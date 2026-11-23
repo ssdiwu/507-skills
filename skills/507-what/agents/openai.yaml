@@ -1,4 +1,4 @@
 interface:
-  display_name: "507-定义目标与关键取舍"
-  short_description: "从初步设想形成目标与成功标准，主动提出有依据的观点、机会与取舍。"
+  display_name: "507-定目标"
+  short_description: "定义要解决的问题、目标、范围与关键取舍。"
   default_prompt: "使用 $507-what 整合材料形成问题与目标，主动提出有依据的新观点和关键取舍，区分建议与定案并继续原任务。"

@@ -1,0 +1,6 @@
+interface:
+  display_name: "507-讲清楚"
+  short_description: "只读调查陌生项目，解释现有代码或机制怎样运作、为何如此。"
+  default_prompt: "使用 $507-explain 帮我理解当前项目或问题；陌生项目主动调查必要维度和代表路径，具体问题直接解释，保留证据边界。"
+policy:
+  allow_implicit_invocation: true

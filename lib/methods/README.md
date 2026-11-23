@@ -12,38 +12,38 @@
 
 | 方法 | 当前使用者 |
 | --- | --- |
-| [事实、来源与工作基线](evidence-and-decisions/evidence.md) | skill-design, 507-what, 507-work, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-review, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-material, 507-product-map, 507-plan, 507-visualize |
-| [目标、边界与决定归属](evidence-and-decisions/decision-ownership.md) | skill-design, 507-what, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-plan |
-| [信息缺口与问题依赖](evidence-and-decisions/question-frontier.md) | skill-design, 507-what, 507-why, 507-how, 507-create, 507-spec, 507-plan |
-| [真实候选、反证与代价](evidence-and-decisions/alternatives.md) | skill-design, 507-what, 507-why, 507-how, 507-create, 507-coordinate, 507-retro |
-| [可观察验收与相称验证](evidence-and-decisions/validation.md) | skill-design, 507-what, 507-work, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-review, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-product-map, 507-plan, 507-visualize |
-| [当前权威、冲突与返回](evidence-and-decisions/authority-and-return.md) | skill-design, 507-what, 507-work, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-review, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-product-map, 507-plan |
-| [最小清晰表达与关系类型](writing/clear-expression.md) | skill-design, 507-what, 507-why, 507-how, 507-create, 507-coordinate, 507-deliver |
-| [作品版本与语义保护](writing/artifact-contract.md) | 507-create, 507-adapt, 507-review |
-| [独立阅读页](design/reading-page.md) | 507-create, 507-adapt, 507-visualize |
-| [离线 React 呈现合同](design/artifact-rendering.md) | 507-visualize, 507-demo |
-| [任务页的内容与验证](design/task-page.md) | 507-work, 507-coordinate |
+| [事实、来源与工作基线](evidence-and-decisions/evidence.md) | 507-skill, 507-what, 507-track, 507-explain, 507-design, 507-create, 507-behavior-spec, 507-build, 507-peer-review, 507-work-issue, 507-task-dispatch, 507-version-deliver, 507-work-retro, 507-source-material, 507-product-map, 507-step-plan, 507-visual-explain |
+| [目标、边界与决定归属](evidence-and-decisions/decision-ownership.md) | 507-skill, 507-what, 507-explain, 507-design, 507-create, 507-behavior-spec, 507-build, 507-work-issue, 507-task-dispatch, 507-version-deliver, 507-work-retro, 507-step-plan |
+| [信息缺口与问题依赖](evidence-and-decisions/question-frontier.md) | 507-skill, 507-what, 507-explain, 507-design, 507-create, 507-behavior-spec, 507-step-plan |
+| [真实候选、反证与代价](evidence-and-decisions/alternatives.md) | 507-skill, 507-what, 507-explain, 507-design, 507-create, 507-task-dispatch, 507-work-retro |
+| [可观察验收与相称验证](evidence-and-decisions/validation.md) | 507-skill, 507-what, 507-track, 507-explain, 507-design, 507-create, 507-behavior-spec, 507-build, 507-peer-review, 507-work-issue, 507-task-dispatch, 507-version-deliver, 507-work-retro, 507-product-map, 507-step-plan, 507-visual-explain |
+| [当前权威、冲突与返回](evidence-and-decisions/authority-and-return.md) | 507-skill, 507-what, 507-track, 507-explain, 507-design, 507-create, 507-behavior-spec, 507-build, 507-peer-review, 507-work-issue, 507-task-dispatch, 507-version-deliver, 507-work-retro, 507-product-map, 507-step-plan |
+| [最小清晰表达与关系类型](writing/clear-expression.md) | 507-skill, 507-what, 507-explain, 507-design, 507-create, 507-task-dispatch, 507-version-deliver |
+| [作品版本与语义保护](writing/artifact-contract.md) | 507-create, 507-adapt, 507-peer-review |
+| [独立阅读页](design/reading-page.md) | 507-create, 507-adapt, 507-visual-explain |
+| [离线 React 呈现合同](design/artifact-rendering.md) | 507-visual-explain, 507-ui-demo |
+| [任务页的内容与验证](design/task-page.md) | 507-track, 507-task-dispatch |
 | [产品地图的内容与验证](design/product-map-page.md) | 507-product-map |
-| [作者归属与材料支持](writing/author-and-source.md) | 507-create, 507-material, 507-adapt, 507-review |
-| [工程原动作与运行证据](engineering/engineering-evidence.md) | 507-spec, 507-do, 507-review |
-| [按情境拆解与协调](collaboration/task-coordination.md) | 507-coordinate, 507-create, 507-work |
-| [外部取证与证据交接](evidence-and-decisions/external-research.md) | skill-design, 507-why, 507-how, 507-create, 507-material |
-| [对象关系、比较与观察](design/visual-understanding.md) | 507-why, 507-how, 507-adapt, 507-coordinate, 507-visualize |
-| [视觉方向与真实反馈](design/visual-direction.md) | 507-create, 507-adapt, 507-do |
-| [真实中断、交接与续办](collaboration/continuation.md) | skill-design, 507-what, 507-work, 507-why, 507-how, 507-create, 507-spec, 507-do, 507-review, 507-issue, 507-coordinate, 507-deliver, 507-retro, 507-material, 507-adapt, 507-setup, 507-clean, 507-plan |
-| [可丢弃原型证据](engineering/probe-lifecycle.md) | 507-why, 507-how |
-| [架构摩擦与候选证据](engineering/architecture-candidates.md) | 507-why, 507-how |
-| [行为不变修改证据门](engineering/behavior-preserving-change.md) | 507-how, 507-do, 507-clean |
-| [操作、状态与实际呈现](engineering/interaction.md) | 507-do, 507-adapt, 507-create |
-| [显化作者一手材料](writing/author-interview.md) | 507-create, 507-material |
-| [同一场景的解释检验](writing/explanation-progression.md) | 507-why, 507-create |
-| [参考视听证据与原创借鉴](design/media-study.md) | 507-why, 507-material, 507-create, 507-adapt |
+| [作者归属与材料支持](writing/author-and-source.md) | 507-create, 507-source-material, 507-adapt, 507-peer-review |
+| [工程原动作与运行证据](engineering/engineering-evidence.md) | 507-behavior-spec, 507-build, 507-peer-review, 507-audit |
+| [按情境拆解与协调](collaboration/task-coordination.md) | 507-task-dispatch, 507-create, 507-track |
+| [外部取证与证据交接](evidence-and-decisions/external-research.md) | 507-skill, 507-explain, 507-design, 507-create, 507-source-material |
+| [对象关系、比较与观察](design/visual-understanding.md) | 507-explain, 507-design, 507-adapt, 507-task-dispatch, 507-visual-explain |
+| [视觉方向与真实反馈](design/visual-direction.md) | 507-create, 507-adapt, 507-build |
+| [真实中断、交接与续办](collaboration/continuation.md) | 507-skill, 507-what, 507-track, 507-explain, 507-design, 507-create, 507-behavior-spec, 507-build, 507-peer-review, 507-work-issue, 507-task-dispatch, 507-version-deliver, 507-work-retro, 507-source-material, 507-adapt, 507-setup, 507-clean, 507-step-plan |
+| [可丢弃原型证据](engineering/probe-lifecycle.md) | 507-explain, 507-design |
+| [架构摩擦与候选证据](engineering/architecture-candidates.md) | 507-explain, 507-design |
+| [行为不变修改证据门](engineering/behavior-preserving-change.md) | 507-design, 507-build, 507-clean |
+| [操作、状态与实际呈现](engineering/interaction.md) | 507-build, 507-adapt, 507-create |
+| [显化作者一手材料](writing/author-interview.md) | 507-create, 507-source-material |
+| [同一场景的解释检验](writing/explanation-progression.md) | 507-explain, 507-create |
+| [参考视听证据与原创借鉴](design/media-study.md) | 507-explain, 507-source-material, 507-create, 507-adapt |
 | [媒体版本、时间与验收](design/media-production.md) | 507-create, 507-adapt |
 | [传播标题与正文兑现](writing/title-promises.md) | 507-create, 507-adapt |
-| [旧技能引用与当前职责](collaboration/skill-entry-resolution.md) | skill-design, 507-setup, 507-deliver, 507-coordinate |
-| [交互点、关系与证据](engineering/interaction-map.md) | 507-product-map, 507-how, 507-spec, 507-review |
-| [持续工作的记录与读回](collaboration/work-records.md) | skill-design, 507-what, 507-why, 507-how, 507-plan, 507-do, 507-clean, 507-create, 507-adapt, 507-work, 507-setup, 507-spec, 507-coordinate, 507-issue, 507-deliver, 507-retro, 507-material |
-| [提示与指令审计](collaboration/prompt-instruction-audit.md) | skill-design, 507-setup, 507-review |
+| [旧技能引用与当前职责](collaboration/skill-entry-resolution.md) | 507-skill, 507-setup, 507-version-deliver, 507-task-dispatch |
+| [交互点、关系与证据](engineering/interaction-map.md) | 507-product-map, 507-design, 507-behavior-spec, 507-peer-review |
+| [持续工作的记录与读回](collaboration/work-records.md) | 507-skill, 507-what, 507-explain, 507-design, 507-step-plan, 507-build, 507-clean, 507-create, 507-adapt, 507-track, 507-setup, 507-behavior-spec, 507-task-dispatch, 507-work-issue, 507-version-deliver, 507-work-retro, 507-source-material |
+| [提示与指令审计](collaboration/prompt-instruction-audit.md) | 507-skill, 507-setup, 507-peer-review |
 
 主入口说明何时读取和读后做什么；这里集中维护方法正文，消费者按[清单](../../packages.json)直接引用同一份方法。方法共享不要求每个任务通读整套资料。
 

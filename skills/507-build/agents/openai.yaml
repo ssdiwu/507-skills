@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-写代码"
+  short_description: "按需求写代码开发功能，复现并修复故障，用原操作和测试验证结果。"
+  default_prompt: "使用 $507-build 沿用当前需求、方案和指定版本，按本次范围完成工程实现、修复或测试，并核对实际结果。"

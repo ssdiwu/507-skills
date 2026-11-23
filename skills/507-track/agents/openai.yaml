@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-推事项"
+  short_description: "发现并推进待办事项，接续已有工作的约定和交付。"
+  default_prompt: "使用 $507-track 承接本次工作请求和已有材料，完成授权内的推进或局部更新，并回读原记录、交代结果与剩余。"

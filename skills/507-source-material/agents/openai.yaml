@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-整理材料"
+  short_description: "核清指定资料的来源、身份、重复与支持范围，或按请求组织已有知识入口。"
+  default_prompt: "使用 $507-source-material 整理指定材料，保留来源、身份、支持范围和待核验缺口。"

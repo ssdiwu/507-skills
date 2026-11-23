@@ -1,4 +1,4 @@
 interface:
-  display_name: "507-规则自动检查"
-  short_description: "盘点项目规则与检查，落实可自动验证的约束"
+  display_name: "507-转门禁"
+  short_description: "盘点项目现行规则和已有检查，把能由机器可靠判断的要求落实为静态检查、测试或持续集成门禁。"
   default_prompt: "使用 $507-audit 核对项目现行规则和已有检查，在授权范围内落实可验证的自动检查。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "507-版本交付"
+  short_description: "准备版本交付与 PR 说明，跟进评审评论并读回已授权动作的结果。"
+  default_prompt: "使用 $507-version-deliver 整理最终变更与验证，并完成当前明确授权的交付终点。"

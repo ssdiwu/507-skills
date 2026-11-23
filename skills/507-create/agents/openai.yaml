@@ -1,6 +1,6 @@
 interface:
-  display_name: "507-创作、成文与改稿"
-  short_description: "完成文章、方案、讲稿与指定修改，成熟稿直接进入，保留作者判断与声音"
+  display_name: "507-写作品"
+  short_description: "推敲文章、方案和讲稿的主线，校准作者口吻，完成写作或改稿。"
   default_prompt: "使用 $507-create 沿指定材料与稿件完成创作、成文或局部修改，已有目的和成熟稿直接采用，不重走采访与规划。"
 policy:
   allow_implicit_invocation: true
