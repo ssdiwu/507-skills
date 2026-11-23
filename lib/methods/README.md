@@ -47,4 +47,4 @@
 
 主入口说明何时读取和读后做什么；这里集中维护方法正文，消费者按[清单](../../packages.json)直接引用同一份方法。方法共享不要求每个任务通读整套资料。
 
-项目依据与项目导航仅由setup消费，现分别在其包内维护[项目依据](../../skills/507-setup/references/project-foundation.md)与[项目导航](../../skills/507-setup/references/project-navigation.md)，不再参与共有副本生成。
+项目依据与项目导航仅由 `507-setup` 消费，现分别在其包内维护[项目依据](../../skills/507-setup/references/project-foundation.md)与[项目导航](../../skills/507-setup/references/project-navigation.md)，不再参与共有副本生成。

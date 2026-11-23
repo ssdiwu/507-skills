@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### Changed
+
+- 精简根 [AGENTS.md](AGENTS.md)（65 行压缩至 29 行仓内工作规范），移除与全局规则重复的通用条目，补齐 `PROGRESS.md` 换阶段归档纪律、改完必跑命令清单，并修正 `visualize` 旧名引用为 `507-visual-explain`。
+- 将原 [PROGRESS.md](PROGRESS.md) 中的 `v0.3.3`–`v0.3.6` 阶段验证记录归档至 [2026-11-23 阶段快照](doc/90-归档/阶段快照/2026-11-23-v0.4.0定版前.md)，同步更新[历史导航](doc/历史导航.md)与历史变更链接，`PROGRESS.md` 保持 39 行轻量运行态快照。
+- 同步更新 [执行脚本说明](lib/components/README.md) 与 [共有方法说明](lib/methods/README.md) 中的现行技能消费者名称（`507-track`、`507-task-dispatch`、`507-setup`）。
+
 ## [0.4.0] - 2026-11-23
 
 本版共 24 个现行技能（11 个主要技能、13 个次要工作能力），退役 `507-coach`。

@@ -10,7 +10,7 @@
 
 ## 状态比较与现有用法
 
-`state_diff.py`是`artifact.check`的一个确定性适配：按选定政策比较两份记录快照，报告实际字段变化、身份变化与拒绝原因。仅用Python标准库，只读三个输入文件，JSON写到标准输出，不访问网络、不写业务、不安装技能，也不授予平台权限。它可独立使用；work 通过清单直接引用这一份实现。
+`state_diff.py`是`artifact.check`的一个确定性适配：按选定政策比较两份记录快照，报告实际字段变化、身份变化与拒绝原因。仅用Python标准库，只读三个输入文件，JSON写到标准输出，不访问网络、不写业务、不安装技能，也不授予平台权限。它可独立使用；`507-track` 通过清单直接引用这一份实现。
 
 ```sh
 python3 tools/checks/state_diff.py --baseline baseline.json --candidate candidate.json --policy policy.json
@@ -50,7 +50,7 @@ reference-date由调用方给定，可选，仅比较支持的YYYY-MM-DD日历�
 
 输出RENDERED只表示派生成功，exit2表示输入/运行错误；拒绝重复键、重复ID、缺身份/标题/状态、无明确活跃状态或已有输出目录。Markdown单元格转义；JSON输出保留数据原值。字段对账继续独立执行，权限/正文语义由当前承担者核对。
 
-两个组件的唯一源为本目录，work 通过直接共有依赖使用。脚本不创建任务系统、日志技能或路由器。
+两个组件的唯一源为本目录，`507-track` 通过直接共有依赖使用。脚本不创建任务系统、日志技能或路由器。
 
 
 ## 创作与工程组件
@@ -63,7 +63,7 @@ Python 呈现与检查脚本使用标准库。React 场景依赖按共有图解�
 
 ## 从既有过程记录生成任务网页
 
-[task_view.py](tools/projections/task_view.py)按[组件合同](tools/projections/task-view.md)读取明确JSON数组路径或Markdown唯一标题下的任务表，以字段映射生成任务、依赖、报告状态与验收记录分开的离线网页。当前消费者是coordinate/work；无需网页时不运行。
+[task_view.py](tools/projections/task_view.py)按[组件合同](tools/projections/task-view.md)读取明确JSON数组路径或Markdown唯一标题下的任务表，以字段映射生成任务、依赖、报告状态与验收记录分开的离线网页。当前消费者是 `507-task-dispatch` 与 `507-track`；无需网页时不运行。
 
 原记录修改后用同一组件与输出根重生成；历史版本保留，当前入口更新，坏输入或手改生成文件拒绝。渲染器能力变化形成新身份，不能直接编辑HTML补状态或布局。只读投影与版本登记不是新的工作日志、任务数据库或授权来源，也不会自动派工、联网或发布。
 
