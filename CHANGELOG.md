@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-11-23
+
 ### Changed
 
 - 精简根 [AGENTS.md](AGENTS.md)（65 行压缩至 29 行仓内工作规范），移除与全局规则重复的通用条目，补齐 `PROGRESS.md` 换阶段归档纪律、改完必跑命令清单，并修正 `visualize` 旧名引用为 `507-visual-explain`。
